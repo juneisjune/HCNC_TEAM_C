@@ -5,32 +5,20 @@
             <PatternLayout pattern="%d %5p [%c] %m%n" />
         </Console>
     </Appenders>
-    <Loggers>        
-        <Logger name="java.sql.Connection" level="WARN" additivity="false">
-            <AppenderRef ref="console" />
-        </Logger>
-        <Logger name="java.sql.PreparedStatement" level="WARN" additivity="false">
+    <Loggers>
+        <Logger name="java.sql" level="INFO" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
         <Logger name="egovframework" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
-        <Logger name="org.springframework" level="WARN" additivity="false">
+          <!-- log SQL with timing information, post execution -->
+        <Logger name="jdbc.sqltiming" level="INFO" additivity="false">
             <AppenderRef ref="console" />
-        </Logger>        
-		<logger name="jdbc.resultsettable" level="INFO" additivity="false"> 
-			<AppenderRef ref="console"/>  	
-		</logger>    	
-		<logger name="jdbc.resultset" level="WARN" additivity="false">		
-			<AppenderRef ref="console"/> 
-		</logger>    
-		<logger name="jdbc.sqltiming" level="WARN" additivity="false">
-			<AppenderRef ref="console"/> 	
-		</logger>		
-		<logger name="com.nexacro" level="ERROR" additivity="false"> 
-			<AppenderRef ref="console"/> 
-		</logger> 
-
+        </Logger>
+        <Logger name="org.springframework" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
         <Root level="INFO">
             <AppenderRef ref="console" />
         </Root>
