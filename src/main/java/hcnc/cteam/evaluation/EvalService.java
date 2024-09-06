@@ -1,5 +1,5 @@
 package hcnc.cteam.evaluation;
 
-public class EvalController {
+public interface EvalService {
 
 }

@@ -1,5 +1,5 @@
 package hcnc.cteam.attendance;
 
-public class AttenController {
+public interface AttenService {
 
 }
