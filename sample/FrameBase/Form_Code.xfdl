@@ -4,7 +4,6 @@
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
         <!-- 마스터 코드 -->
-        <!-- Nexa test -->
         <Static id="stc_TITLE1" text="마스터 코드" left="10" top="10" width="160" height="60" font="28px/normal &quot;Gulim&quot;"/>
         <Edit id="edt_Search" left="170" top="80" width="150" height="30"/>
         <Combo id="cmb_Search" text="코드명" left="10" top="80" width="150" height="30" innerdataset="ds_SearchType" codecolumn="CODE" datacolumn="CODE_NM" index="2" value="CODE_NM"/>
