@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Welcome" width="720" height="450" titletext="Welcome" onload="Form_Welcome_onload">
+    <Layouts>
+      <Layout height="450" mobileorientation="landscape" width="720">
+        <Static id="stc_local" text="Welcomde To Nexacro! 백태수" left="140" top="45" width="190" height="30"/>
+        <Static id="stc_db" text="" left="140" top="90" width="381" height="30"/>
+        <Button id="btn_callDB" text="텍스트 입력 후 눌러보세요!" left="460" top="50" width="180" height="20" onclick="btn_callDB_onclick"/>
+        <Edit id="edt_txt" left="325" top="50" width="120" height="20"/>
+        <Button id="Button00" taborder="4" text="Button00" left="113" top="158" width="112" height="63" onclick="Button00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="bind_01" compid="edt_txt" propid="value" datasetid="ds_txt" columnid="txt"/>
+      <BindItem id="bind_02" compid="stc_db" propid="text" datasetid="ds_welcome" columnid="welcomeText"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[this.Form_Welcome_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+};
+
+//처리콜백 함수
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	// 에러 시 화면 처리 내역
+	if(errorCode == -1)
+	{
+		this.alert(errorMsg);
+		return;
+	}
+
+	switch(svcID)
+	{
+		case "welcome":
+			break;
+		default :
+			break;
+	}
+};
+
+this.btn_callDB_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	/*
+	var strSvcId    = "welcome";
+	var strSvcUrl   = "svc::welcome.do";
+	var inData      = "ds_txt=ds_txt";
+	var outData     = "ds_welcome=ds_welcome";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync     = true;
+	
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+	*/
+	
+	this.go("FrameBase/Form_Code.xfdl");
+};
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_welcome">
+        <ColumnInfo>
+          <Column id="welcomeText" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_txt">
+        <ColumnInfo>
+          <Column id="txt" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row id="txt"/>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>
