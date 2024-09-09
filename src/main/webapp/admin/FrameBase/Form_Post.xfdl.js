@@ -17,7 +17,9 @@
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
-
+            obj = new Dataset("ds_Post", this);
+            obj._setContents("<ColumnInfo><Column id=\"number\" type=\"INT\" size=\"256\"/><Column id=\"title\" type=\"STRING\" size=\"256\"/><Column id=\"author\" type=\"STRING\" size=\"256\"/><Column id=\"date\" type=\"DATE\" size=\"256\"/><Column id=\"view_count\" type=\"INT\" size=\"256\"/></ColumnInfo>");
+            this.addChild(obj.name, obj);
             
             // UI Components Initialize
             obj = new Static("Static00","10","10","400","30",null,null,null,null,null,null,this);
@@ -32,7 +34,7 @@
             obj = new Grid("grd_notice","10","50","680","400",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_notice");
             obj.set_taborder("1");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"30\"/><Column size=\"50\"/><Column size=\"300\"/><Column size=\"100\"/><Column size=\"150\"/><Column size=\"50\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"선택\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"번호\"/><Cell col=\"2\" text=\"제목\"/><Cell col=\"3\" text=\"작성자\"/><Cell col=\"4\" text=\"작성일자\"/><Cell col=\"5\" text=\"조회수\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chk\"/><Cell col=\"1\" text=\"bind:number\"/><Cell col=\"2\" text=\"bind:title\"/><Cell col=\"3\" text=\"bind:author\"/><Cell col=\"4\" text=\"bind:date\"/><Cell col=\"5\" text=\"bind:view_count\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"50\"/><Column size=\"300\"/><Column size=\"100\"/><Column size=\"150\"/><Column size=\"50\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"번호\"/><Cell col=\"1\" text=\"제목\"/><Cell col=\"2\" text=\"작성자\"/><Cell col=\"3\" text=\"작성일자\"/><Cell col=\"4\" text=\"조회수\"/></Band><Band id=\"body\"><Cell text=\"bind:number\"/><Cell col=\"1\" text=\"bind:title\"/><Cell col=\"2\" text=\"bind:author\"/><Cell col=\"3\" text=\"bind:date\"/><Cell col=\"4\" text=\"bind:view_count\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_addNotice","590","10","100","30",null,null,null,null,null,null,this);

@@ -8,7 +8,6 @@
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="30"/>
                 <Column size="50"/>
                 <Column size="300"/>
                 <Column size="100"/>
@@ -20,20 +19,18 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="선택" displaytype="checkboxcontrol" edittype="checkbox"/>
-                <Cell col="1" text="번호"/>
-                <Cell col="2" text="제목"/>
-                <Cell col="3" text="작성자"/>
-                <Cell col="4" text="작성일자"/>
-                <Cell col="5" text="조회수"/>
+                <Cell text="번호"/>
+                <Cell col="1" text="제목"/>
+                <Cell col="2" text="작성자"/>
+                <Cell col="3" text="작성일자"/>
+                <Cell col="4" text="조회수"/>
               </Band>
               <Band id="body">
-                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:chk"/>
-                <Cell col="1" text="bind:number"/>
-                <Cell col="2" text="bind:title"/>
-                <Cell col="3" text="bind:author"/>
-                <Cell col="4" text="bind:date"/>
-                <Cell col="5" text="bind:view_count"/>
+                <Cell text="bind:number"/>
+                <Cell col="1" text="bind:title"/>
+                <Cell col="2" text="bind:author"/>
+                <Cell col="3" text="bind:date"/>
+                <Cell col="4" text="bind:view_count"/>
               </Band>
             </Format>
           </Formats>
@@ -47,5 +44,17 @@ this.btn_addNotice_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInf
 	
 };
 ]]></Script>
+    <Objects>
+      <Dataset id="ds_Post">
+        <!--공지사항 화면 축출 화면의 data set-->
+        <ColumnInfo>
+          <Column id="number" type="INT" size="256"/>
+          <Column id="title" type="STRING" size="256"/>
+          <Column id="author" type="STRING" size="256"/>
+          <Column id="date" type="DATE" size="256"/>
+          <Column id="view_count" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
   </Form>
 </FDL>
