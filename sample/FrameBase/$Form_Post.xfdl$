@@ -1,41 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Post" width="1280" height="720" titletext="New Form">
+  <Form id="btn_Search" width="1280" height="720" titletext="New Form">
     <Layouts>
       <Layout height="720" width="1280">
         <Static id="Static00" taborder="0" text="공지사항조회" left="10" top="10" width="400" height="30" onclick="Static00_onclick" textAlign="left" font="bold 26px/normal &quot;Gulim&quot;" background="blue" color="white"/>
-        <Grid id="grd_notice" binddataset="ds_notice" left="10" top="50" width="680" height="400" taborder="1">
+        <Grid id="grd_notice" binddataset="ds_Post" left="10" top="50" width="680" height="400" taborder="1">
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="50"/>
+                <Column size="85"/>
                 <Column size="300"/>
-                <Column size="100"/>
+                <Column size="300"/>
                 <Column size="150"/>
-                <Column size="50"/>
+                <Column size="100"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="번호"/>
+                <Cell text="게시글 번호"/>
                 <Cell col="1" text="제목"/>
-                <Cell col="2" text="작성자"/>
+                <Cell col="2" text="내용"/>
                 <Cell col="3" text="작성일자"/>
-                <Cell col="4" text="조회수"/>
+                <Cell col="4" text="사번"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:number"/>
+                <Cell text="bind:post_code"/>
                 <Cell col="1" text="bind:title"/>
-                <Cell col="2" text="bind:author"/>
-                <Cell col="3" text="bind:date"/>
-                <Cell col="4" text="bind:view_count"/>
+                <Cell col="2" text="bind:content"/>
+                <Cell col="3" text="bind:reg_date" displaytype="date" mask="####-##-##"/>
+                <Cell col="4" text="bind:emp_code"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
         <Button id="btn_addNotice" text="공지사항관리" left="590" top="10" width="100" height="30" onclick="btn_addNotice_onclick" taborder="2"/>
+        <Button id="btn_Search" taborder="3" text="조회" left="532" top="12" width="50" height="28" onclick="Button00_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -43,7 +44,69 @@ this.btn_addNotice_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInf
 {
 	
 };
-]]></Script>
+
+this.fnSearch = function (){
+// 	var strSvcId	="selectPost";
+// 	var strSvcUrl	="svc::selectPost.do"
+// 	var inData     	= "ds_Search=ds_Search";       // 요청할 데이터셋
+// 	var outData     = "ds_Page=ds_Page";			// 응답받을 데이터셋(내가 만들었던 데이터 셋)
+// 	var strArg 		="";
+// 	var callBackFnc ="fnCallback";
+// 	var isAsync		= true; 
+	
+	  var strSvcId    = "selectPost";                     // 콜백 서비스명
+    var strSvcUrl   = "svc::selectPost.do";             // 호출 URL
+    var inData      = "";                              // 입력 데이터셋
+    var outData     = "ds_Post=ds_Post";               // 결과 데이터를 담을 데이터셋
+    var strArg      = "";                              // 추가 파라미터
+    var fnCallback  = "fnCallback";                    // 콜백 함수
+    var isAsync     = true;                            // 비동기 여부
+	
+	
+	console.log("async까지 들어옴");
+	
+	this.transaction(strSvcId, strSvcUrl, inData,outData,strArg,fnCallback,isAsync);
+	console.log("transaction 다음부분");
+	
+}
+
+
+this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
+	console.log("fnCallback까지 들어옴");
+    if (nErrorCode < 0) {
+        alert("조회 중 오류가 발생했습니다: " + strErrorMsg);
+    } else {
+        alert("조회가 완료되었습니다.");
+		console.log(this.ds_Post.saveXML());	//데이터셋 내용을 확인
+    }
+}
+
+ this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	console.log("버튼 클릭됨 들어옴");
+	this.fnSearch();
+ };
+/*
+var outData = "ds_Post=ds_Post"; 
+this.fnSearch = function(){
+	// 바인딩 된 값 콘솔로그로 찍어서 조회
+	console.log("cmb_Search = " + this.ds_Search.getColumn(0,"SEARCH_TYPE"));
+	console.log("edt_Search = " + this.ds_Search.getColumn(0,"SEARCH_WORD"));
+	
+	this.fnInitMst();
+	
+	// 컨트롤러 호출
+	var strSvcId    = "selectCodeMst";                     // 콜백 서비스명
+	var strSvcUrl   = "svc::selectCodeMst.do";             // 호출 URL
+	var inData      = "ds_Search=ds_Search";               // Request Dataset 파라미터 (AAA=BBB) AAA = 컨트롤러에서 받을 파라미터명, BBB = 보낼 데이터셋명
+	var outData     = "ds_CodeMstList=ds_CodeMstList";     // Response Dataset 파라미터 (AAA=BBB) AAA = 데이터를 저장할 데이터셋명, BBB = 응답받은 데이터
+	var strArg      = ""                                   // Request 문자 파라미터
+	var callBackFnc = "fnCallback";                        // 콜백 후 실행 할 함수
+	var isAsync     = true;                                // 동기/비동기
+	
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+}
+*/]]></Script>
     <Objects>
       <Dataset id="ds_Post">
         <!--공지사항 화면 축출 화면의 data set-->

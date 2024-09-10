@@ -22,7 +22,7 @@
             // UI Components Initialize
             obj = new Static("Static00","10","10","400","30",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("공지사항조회");
+            obj.set_text("공지사항관리");
             obj.set_textAlign("left");
             obj.set_font("bold 26px/normal \"Gulim\"");
             obj.set_background("blue");
