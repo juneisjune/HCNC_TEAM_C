@@ -13,5 +13,4 @@ public interface AttenMapper {
 
 	List<AttenDTO> getAttenListByCondition(Map<String, Object> params);
 
-	
 }
