@@ -66,11 +66,11 @@
             frame3.set_formurl("FrameBase::Form_Left.xfdl");
 
 
-            var frame4 = new ChildFrame("WorkFrame",null,null,null,null,null,null,"FrameBase::Form_Attendance.xfdl",frame2);
+            var frame4 = new ChildFrame("WorkFrame",null,null,null,null,null,null,"FrameBase::Form_Code.xfdl",frame2);
             frame4.set_showtitlebar("false");
             frame4.set_showstatusbar("false");
             frame2.addChild(frame4.name, frame4);
-            frame4.set_formurl("FrameBase::Form_Attendance.xfdl");
+            frame4.set_formurl("FrameBase::Form_Code.xfdl");
         };
         
         this.on_initEvent = function()
