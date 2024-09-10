@@ -6,18 +6,20 @@
 <meta charset="UTF-8">
 <title>footer</title>
 <style>
-	* {
-            margin: 50px auto;
-            font-family: 'Noto Sans KR', sans-serif;
-            box-sizing: border-box;
-            
-    }
+	.footer {
+		text-align: center;
+		margin-top : 100px;
+		margin-bottom : 100px;
+	}
 </style>
 </head>
 <body>
-	<hr>
-    <div style="text-align: center;"> ⓒ 2024 by hcnc Corp., Ltd. All rights reserved
-    <br>     Designed by HCNC_TEAM_C </div>
-    <hr>
+	<div class="footer">
+		<hr><br>
+		 ⓒ 2024 by hcnc Corp., Ltd. All rights reserved
+	    <br>     
+	    Designed by HCNC_TEAM_C
+	    <br><br><hr>
+    </div>
 </body>
 </html>

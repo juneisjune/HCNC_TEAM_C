@@ -11,7 +11,7 @@
 		AND pay_year = YEAR(CURDATE()) ;
 	</select>
 	
-	<select id="selectEmp" resultType="empVO">
+	<select id="selectEmp" resultType="payEmpVO">
 		SELECT emp_code, e.assign_code, assign_name, e.dep_code, dep_name, id, name, birth
 		FROM employee e JOIN `assignment` a 
 		ON e.assign_code = a.assign_code 

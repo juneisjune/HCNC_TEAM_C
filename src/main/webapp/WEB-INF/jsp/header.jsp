@@ -7,8 +7,7 @@
     <title>header</title>
     <style>
 		* {
-            margin: 0;
-            padding: 0;
+            margin: 0 auto;
             box-sizing: border-box;
             font-family: 'Noto Sans KR', sans-serif;
         }
@@ -16,6 +15,7 @@
         /* Container for the entire header */
         .header {
             width: 100%;
+            margin-bottom : 80px;
         }
         
         /* Home section style */
@@ -35,8 +35,6 @@
         
 
         .home .banner img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
             display : block;
         }
@@ -96,6 +94,7 @@
 
         .navbar .nav-item {
             position: relative;
+            justify-content: space-between;
         }
 
         .navbar .nav-link {

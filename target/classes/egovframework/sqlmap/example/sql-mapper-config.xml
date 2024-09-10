@@ -11,7 +11,7 @@
     <typeAliases>
 		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 		<typeAlias alias="payVO" type="hcnc.cteam.pay.PayVO" />
-		<typeAlias alias="empVO" type="hcnc.cteam.pay.EmpVO" />
+		<typeAlias alias="payEmpVO" type="hcnc.cteam.pay.PayEmpVO" />
 		
 <!-- 		<typeAlias alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/> -->
 <!-- 		<typeAlias alias="sampleVO" type="egovframework.example.sample.service.SampleVO"/> -->

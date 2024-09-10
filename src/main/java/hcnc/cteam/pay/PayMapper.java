@@ -8,7 +8,7 @@ public interface PayMapper {
 	PayVO selectMyPay() throws Exception;
 	
 	//해당 직원 정보 조회 
-	EmpVO selectEmp() throws Exception;
+	PayEmpVO selectEmp() throws Exception;
 	
 	//기본급 조회
 	int selectMonthly() throws Exception;

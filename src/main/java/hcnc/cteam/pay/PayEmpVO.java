@@ -2,7 +2,7 @@ package hcnc.cteam.pay;
 
 import java.sql.Date;
 
-public class EmpVO {
+public class PayEmpVO {
 	private int empCode;
 	private int assignCode;
 	private String assignName;

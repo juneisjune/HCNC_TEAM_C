@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:forward page="/pay/viewPayslip.do"/>
+
 <script type='text/javascript'>
-	 /* document.href = "/sample/index.html"; */
+
 </script>
+
+<a href="/pay/viewPayslip.do" >급여명세서</a>
+<a href="/pay/searchPay.do">급여 조회</a>
+<a href="/pay/header.do">헤더</a>

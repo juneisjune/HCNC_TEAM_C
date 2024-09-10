@@ -1,16 +1,21 @@
 package hcnc.cteam.pay;
 
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/pay")
 public class PayController {
 	
+	private static final RequestMethod[] POST = null;
 	@Resource(name="payService")
 	private PayService payService;
 	
@@ -20,7 +25,7 @@ public class PayController {
 		PayVO myPay = payService.selectMyPay();
 		model.addAttribute("myPay", myPay);
 		
-		EmpVO emp = payService.selectEmp();
+		PayEmpVO emp = payService.selectEmp();
 		model.addAttribute("emp", emp);
 		
 		int monthly = payService.selectMonthly();
@@ -45,9 +50,23 @@ public class PayController {
 	}
 	
 	@RequestMapping("/searchPay.do")
-	public String searchPay() {
+	public String searchPayView(ModelMap model) throws Exception {
+		PayEmpVO emp = payService.selectEmp();
+		model.addAttribute("emp", emp);
+		
 		return "pay/searchPay";
 	}
 	
+	@PostMapping("/searchPay.do")
+	public String searchPay(ModelMap model, HashMap<String, Integer> hashMap) throws Exception {
+		
+		
+		return "pay/searchPay";
+	}
+	
+	@RequestMapping("/header.do")
+	public String viewHeader() {
+		return "header";
+	}
 	
 }

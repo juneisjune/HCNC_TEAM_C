@@ -18,7 +18,7 @@ public class PayServiceImpl extends EgovAbstractServiceImpl implements PayServic
 	}
 
 	@Override
-	public EmpVO selectEmp() throws Exception {
+	public PayEmpVO selectEmp() throws Exception {
 		return payMapper.selectEmp();
 	}
 

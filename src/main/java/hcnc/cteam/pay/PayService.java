@@ -4,7 +4,7 @@ public interface PayService {
 
 	PayVO selectMyPay() throws Exception;
 
-	EmpVO selectEmp() throws Exception;
+	PayEmpVO selectEmp() throws Exception;
 	
 	int selectMonthly() throws Exception;
 	
