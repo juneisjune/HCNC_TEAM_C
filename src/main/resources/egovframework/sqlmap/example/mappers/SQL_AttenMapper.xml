@@ -15,14 +15,14 @@
 	<!-- 조건에 따른 조회(검색) 쿼리 -->
 	<select id="getAttenListByCondition"
 		resultType="attenDTO">
-		SELECT a.emp_code as emp_code, b.name as name, a.work_date as
-		work_date, c.atten_type as atten_type, a.work_start as work_start
-		, a.work_end as work_end, a.work_over as work_over
+		SELECT a.emp_code as empCode, b.name as name, a.work_date as
+		workDate, c.atten_type as attenType, a.work_start as workStart
+		, a.work_end as workEnd, a.work_over as workOver
 		FROM attendance a
 		JOIN employee b ON a.emp_code = b.emp_code
 		JOIN att_code c ON a.atten_code = c.atten_code
 		WHERE 1=1
-		<if test="SEARCH_WORD != null and SEARCH_TYPE != ''">
+		<if test="SEARCH_WORD != null and SEARCH_WORD != '' and SEARCH_TYPE != '' and SEARCH_TYPE != null">
 			<!-- 전체 조회 -->
 			<if test="SEARCH_TYPE == 'ALL'">
 				AND (a.emp_code LIKE CONCAT('%', #{SEARCH_WORD}, '%')
@@ -42,7 +42,7 @@
 				AND c.atten_type LIKE CONCAT('%', #{SEARCH_WORD}, '%')
 			</if>
 			<!-- 근무일자에 따른 조회 -->
-			<if test="START_DATE != null and END_DATE != null">
+			<if test="START_DATE != null and START_DATE != '' and END_DATE != null and END_DATE != ''">
 				AND a.work_date BETWEEN #{START_DATE} AND #{END_DATE}
 			</if>
 		</if>

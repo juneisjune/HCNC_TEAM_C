@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>직원 근태 목록</h1>
-    <form action="/searchAtten.do" method="post">
+    <form action="/atten/searchAtten.do" method="post">
     <select name="SEARCH_TYPE">
             <option value="ALL">전체</option>
             <option value="NAME">이름</option>
