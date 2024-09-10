@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hcnc.cteam.pay.PayMapper">
+
+	<select id="selectMyPay" resultType="payVO">
+		SELECT emp_code, pay_year, pay_month, give_date, pay_over, pay_meal, pay_amount,
+		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay
+		FROM pay 
+		WHERE emp_code = 1
+		AND pay_month = MONTH(CURDATE())-1
+		AND pay_year = YEAR(CURDATE()) ;
+	</select>
+	
+	<select id="selectEmp" resultType="empVO">
+		SELECT emp_code, e.assign_code, assign_name, e.dep_code, dep_name, id, name, birth
+		FROM employee e JOIN `assignment` a 
+		ON e.assign_code = a.assign_code 
+		JOIN department d 
+		ON d.dep_code = e.dep_code 
+		WHERE emp_code = 1;
+	</select>	
+	
+	<select id="selectMonthly" resultType="int">
+		SELECT DISTINCT monthly 
+		FROM `assignment` a JOIN employee e 
+		ON a.assign_code = e.assign_code 
+		JOIN pay p 
+		ON p.emp_code = e.emp_code
+		WHERE p.emp_code = 1;
+	</select>
+	
+	<select id="selectPlus" resultType="int">
+		SELECT pay_over + pay_meal + pay_amount
+		FROM pay 
+		WHERE emp_code = 1
+		AND pay_month = MONTH(CURDATE())-1
+		AND pay_year = YEAR(CURDATE()) ;
+	</select>
+	
+	<select id="selectMinus"  resultType="int">
+		SELECT income_tax + resident_tax + national_tax + emp_insurance + health_insurance + longcare_insurance 
+		FROM pay 
+		WHERE emp_code = 1
+		AND pay_month = MONTH(CURDATE())-1
+		AND pay_year = YEAR(CURDATE())
+	</select>
+	
+	<select id="selectTotalDay" resultType="int">
+		SELECT COUNT(*)
+		FROM attendance a JOIN att_code ac 
+		ON a.atten_code = ac.atten_code 
+		JOIN employee e 
+		ON a.emp_code = e.emp_code 
+		WHERE a.emp_code = 1
+		AND a.atten_code = 1
+		AND MONTH(work_date) = MONTH(CURDATE())-1
+		AND YEAR(work_date) = YEAR(CURDATE()) ;
+	</select>
+	
+	<select id="selectTotalTime" resultType="int">
+		SELECT (SELECT COUNT(*) * 8
+		FROM attendance a JOIN att_code ac 
+		ON a.atten_code = ac.atten_code 
+		JOIN employee e 
+		ON a.emp_code = e.emp_code 
+		WHERE a.emp_code = 1
+		AND a.atten_code = 1
+		AND MONTH(work_date) = MONTH(CURDATE())-1
+		AND YEAR(work_date) = YEAR(CURDATE()) ) + 
+		(SELECT COUNT(*) * 8 
+		FROM attendance a JOIN att_code ac 
+		ON a.atten_code = ac.atten_code 
+		JOIN employee e 
+		ON a.emp_code = e.emp_code 
+		WHERE a.emp_code = 1
+		AND a.atten_code = 3
+		AND MONTH(work_date) = MONTH(CURDATE())-1
+		AND YEAR(work_date) = YEAR(CURDATE()));
+	</select>
+	
+	<select id="selectWorkOver" resultType="double">
+		SELECT SUM(work_over)
+		FROM attendance a JOIN att_code ac 
+		ON a.atten_code = ac.atten_code 
+		JOIN employee e 
+		ON a.emp_code = e.emp_code 
+		WHERE a.emp_code = 1
+		AND a.atten_code = 1
+		AND MONTH(work_date) = MONTH(CURDATE())-1
+		AND YEAR(work_date) = YEAR(CURDATE()) ;
+	</select>
+	
+	
+	
+</mapper>

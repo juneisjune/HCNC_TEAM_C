@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
+
 <configuration>
+	
+	<settings>
+	        <setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+
     <typeAliases>
 		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+		<typeAlias alias="payVO" type="hcnc.cteam.pay.PayVO" />
+		<typeAlias alias="empVO" type="hcnc.cteam.pay.EmpVO" />
+		
 <!-- 		<typeAlias alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/> -->
 <!-- 		<typeAlias alias="sampleVO" type="egovframework.example.sample.service.SampleVO"/> -->
     </typeAliases>
+    
   <!-- myBatis Inteceptor for get column information  -->
   <plugins>  
     <!-- NexacroMybatisMetaDataProvider :  Executor Plugin:쿼리를 실행하며, 
