@@ -1,24 +1,30 @@
 package hcnc.cteam.employee;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
-@RequestMapping(value="/test")
 public class EmpController {
-	
-	
-	@RequestMapping(value="/test11.do")
-	public String pglogin() {
-		System.out.println("123");
-//		ModelAndView view = new ModelAndView();
-//		view.setViewName("test");
-			
-		return "test01";
-	}
+
+    @Autowired
+    private EmpService empServiceImpl;  // 빈 이름 지정
+
+    @RequestMapping("/test/test11.do")
+    public String searchEmployees(String name, String depCode, Model model) {
+        List<EmployeeDTO> employees;
+
+        if (name != null && !name.isEmpty()) {
+            employees = empServiceImpl.getEmployeeByName(name);
+        } else if (depCode != null && !depCode.isEmpty()) {
+            employees = empServiceImpl.getEmployeesByDepartment(depCode);
+        } else {
+            employees = empServiceImpl.getAllEmployees();
+        }
+
+        model.addAttribute("employees", employees);
+        return "employee/employee";  // JSP 경로
+    }
 }

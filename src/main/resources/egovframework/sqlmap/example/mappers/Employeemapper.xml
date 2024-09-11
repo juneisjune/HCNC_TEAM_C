@@ -1,0 +1,11 @@
+<mapper namespace="hcnc.cteam.employee.EmployeeMapper">
+
+    <select id="getEmployeeByName" resultType="hcnc.cteam.employee.EmployeeDTO">
+        SELECT * FROM employee WHERE name = #{name}
+    </select>
+
+    <select id="getEmployeesByDepartment" resultType="hcnc.cteam.employee.EmployeeDTO">
+        SELECT * FROM employee WHERE dep_code = #{depCode}
+    </select>
+
+</mapper>

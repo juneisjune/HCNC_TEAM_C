@@ -22,7 +22,7 @@
 	</properties>
 
 	<repositories>
-		<!-- 기존 repositories 그대로 유지 -->
+		<!-- ############  NEXACROPLATFORM UIADAPTER17 REPOSITORY  ############ -->
 		<repository>
 		  <id>tobesoft</id>
 		  <url>http://mangosteen.tobesoft.co.kr/nexus/repository/maven-public</url>
@@ -77,7 +77,7 @@
     </repositories>
 
 	<dependencies>
-		<!-- 기존 의존성 유지 -->
+<!-- ############  NEXACROPLATFORM UIADAPTER17 LIBRARY  ############ -->
 		<dependency>
 		  <groupId>com.nexacro.uiadapter17.spring</groupId>
 		  <artifactId>uiadapter17-spring-core</artifactId>
@@ -201,35 +201,40 @@
             <version>0.2.7</version>
         </dependency>
         
-        <!-- MySQL 및 MariaDB -->
+        <!-- mysql이나 oracle DB 사용시 아래 설정 추가-->
         <dependency>
 		    <groupId>org.bgee.log4jdbc-log4j2</groupId>
 		    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
 		    <version>1.16</version>
 		</dependency>
+<!--         <dependency> -->
+<!--             <groupId>com.googlecode.log4jdbc</groupId> -->
+<!--             <artifactId>log4jdbc</artifactId> -->
+<!--             <version>1.2</version> -->
+<!--             <exclusions> -->
+<!--                 <exclusion> -->
+<!--                     <artifactId>slf4j-api</artifactId> -->
+<!--                     <groupId>org.slf4j</groupId> -->
+<!--                 </exclusion> -->
+<!--             </exclusions> -->
+<!--         </dependency> -->
+
+<!--         <dependency> -->
+<!--             <groupId>commons-dbcp</groupId> -->
+<!--             <artifactId>commons-dbcp</artifactId> -->
+<!--             <version>1.4</version> -->
+<!--         </dependency> -->
+        
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <version>2.9.0</version>
         </dependency>
+        
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.31</version>
-        </dependency>
-
-        <!-- MariaDB JDBC Driver -->
-        <dependency>
-            <groupId>org.mariadb.jdbc</groupId>
-            <artifactId>mariadb-java-client</artifactId>
-            <version>2.7.2</version>
-        </dependency>
-
-        <!-- MyBatis Spring Boot Starter -->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.1.4</version>
         </dependency>
 
         <dependency>
