@@ -34,7 +34,7 @@ tmp/
 *.bak
 *.swp
 local.properties
-pom.properties
+**/pom.properties
 .settings/
 .loadpath
 .recommenders
