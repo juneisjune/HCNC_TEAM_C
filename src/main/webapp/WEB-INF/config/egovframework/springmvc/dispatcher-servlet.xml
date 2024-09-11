@@ -52,11 +52,18 @@
 <!--         <property name="paramName" value="lang" /> -->
 <!--     </bean> -->
     
+    <!-- jsonView 사용위해 추가(p:order="0" 설정해서 가장 먼저 인식하도록) -->
+	<bean id="beanNameResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+	    <property name="contentType" value="application/json;charset=UTF-8"></property>
+	</bean>
+	
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" 
     	p:order="1"
 	    p:viewClass="org.springframework.web.servlet.view.JstlView"
 	    p:prefix="/WEB-INF/jsp/" 
 	    p:suffix=".jsp"/>
+	    
     <!-- /////////////////////////////////// 넥사크로플랫폼 UIADAPTER17 설정 시작 /////////////////////////////////// -->
     <bean id="nexacroFileView"    class="com.nexacro.uiadapter17.spring.core.view.NexacroFileView" />
     <bean id="nexacroView"        class="com.nexacro.uiadapter17.spring.core.view.NexacroView">
@@ -65,7 +72,7 @@
     </bean>
     
     <!-- 넥사크로플랫폼 RequestMappingHandlerAdapter 구현체 등록 -->
-    <bean class="com.nexacro.uiadapter17.spring.core.resolve.NexacroRequestMappingHandlerAdapter" p:order="0">
+    <bean class="com.nexacro.uiadapter17.spring.core.resolve.NexacroRequestMappingHandlerAdapter" p:order="2">
         <property name="customArgumentResolvers">
             <list><bean class="com.nexacro.uiadapter17.spring.core.resolve.NexacroMethodArgumentResolver" /></list>
         </property>
@@ -82,7 +89,7 @@
     
     
     <!-- 넥사크로플랫폼 EXCEPTION-RESOLVER 등록 -->
-    <bean id="exceptionResolver" class="com.nexacro.uiadapter17.spring.core.resolve.NexacroMappingExceptionResolver" p:order="1">
+    <bean id="exceptionResolver" class="com.nexacro.uiadapter17.spring.core.resolve.NexacroMappingExceptionResolver" p:order="3">
         <property name="view" ref="nexacroView" />   
         <property name="shouldLogStackTrace" value="true" />   
         <property name="shouldSendStackTrace" value="true" />

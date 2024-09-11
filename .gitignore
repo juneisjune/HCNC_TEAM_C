@@ -48,3 +48,4 @@ target/
 .springBeans
 .recommenders/
 .geninfo
+MANIFEST.MF

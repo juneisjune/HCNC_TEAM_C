@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
 	<title>급여 조회</title>
 	<style>
 		table {
-            width: 1000px;
+            width: 1100px;
             border-collapse: collapse;
             margin-top: 20px;
         }
@@ -62,38 +63,50 @@
 			var startMonth = $("#startMonth").val();
 			var endYear = $("#endYear").val();
 			var endMonth = $("#endMonth").val();
-				
-	    	console.log(startYear);
-	    	console.log(startMonth);
-	    	console.log(endYear);
-	    	console.log(endMonth);
 			
 			$.ajax({
 			    type : "POST",
 			    data : "startYear="+startYear+"&startMonth="+startMonth+"&endYear="+endYear+"&endMonth="+endMonth,
-			    url : "/pay/searchPay.do",
-			    /*
-			    success : function(result){
-			    	console.log("result: " + result);
-			    
-			    	
-			        if(result == "ok") {
-			            alert("조회가 완료되었습니다.");
-			        } else if (result = "") {
-			        	alert("조회 결과가 없습니다.");
-			        }
-			    },
-			    */
+			    url : "/pay/searchPay2.do",
+			    dataType: "json",
+			 
 			    success: function(result) {
-			    	console.log(status);
-	                if (result.status === "ok") {
-	                    // payList 데이터를 처리하거나 화면에 표시
-	                    console.log(result.payList);
+			    	console.log(result);
+	                if (result.msg === "ok") {
+	                	 var payList = result.payList;
+	                	 var monthly = result.monthly;
+	                     var payListBody = $("#payListBody");
+	                     payListBody.empty(); // 기존 데이터를 초기화
+
+	                     $.each(payList, function(index, item) {
+	           
+	                         var totalTax = item.incomeTax + item.residentTax + item.nationalTax + item.empInsurance + item.healthInsurance + item.longcareInsurance;
+	                         
+	                         var row = "<tr>"
+	                                 + "<td>" + item.payYear + "." + item.payMonth + "</td>"
+	                                 + "<td>" + "<a href='/pay/viewPayslip.do'>" + item.giveDate + "</a>" + "</td>"
+	                                 + "<td>" + Number(monthly).toLocaleString() + "원" +  "</td>"  // monthly 변수
+	                                 + "<td>" + item.payMeal.toLocaleString() + "원" +  "</td>"
+	                                 + "<td>" + item.payOver.toLocaleString() + "원" +  "</td>"
+	                                 + "<td>" + item.payAmount.toLocaleString() + "원" +  "</td>"
+	                                 + "<td>" + item.actualPay.toLocaleString() + "원" +  "</td>"
+	                                 + "<td>" + item.incomeTax.toLocaleString() + "원" +  "</td>"
+	                                 + "<td>" + item.residentTax.toLocaleString() + "원" +  "</td>"
+	                                 + "<td>" + item.nationalTax.toLocaleString() + "원" +  "</td>"
+	                                 + "<td>" + item.empInsurance.toLocaleString() + "원" +  "</td>"
+	                                 + "<td>" + item.healthInsurance.toLocaleString() + "원" +  "</td>"
+	                                 + "<td>" + item.longcareInsurance.toLocaleString() + "원" +  "</td>"
+	                                 + "<td>" + totalTax.toLocaleString() + "원" +  "</td>"
+	                                 + "</tr>";
+	                         
+	                         payListBody.append(row);  // 테이블에 행 추가
+	               	
+	                     });
+	                     
 	                    alert("조회가 완료되었습니다.");
-	                } else if (result.status === "noData") {
-	                    alert("조회 결과가 없습니다.");
+	                   
 	                } else {
-	                    alert("에러 발생: " + result.message);
+	                    alert("에러 발생 : " + result.msg);
 	                }
 	            },
 	            error : function(xhr, status, error) {
@@ -204,30 +217,15 @@
                 <td>공제액합계</td>
             </tr>
 	            
-	        <c:if test="${payList}">
-	            <c:forEach var="item" items="${payList}"> 
-		            <tr>
-		                <td>${item.payYear}.${item.payMonth}</td>
-		                <td>${item.giveDate}</td>
-		                <td></td>
-		                <td>${item.payMeal}</td>
-		                <td>${item.payOver}</td>
-		                <td>${item.payAmount}</td>
-		                <td>${item.incomeTax}</td>
-		                <td>${item.residentTax}</td>
-		                <td>${item.nationalTax}</td>
-		                <td>${item.empInsurance}</td>
-		                <td>${item.healthInsurance}</td>
-		                <td>${item.longcareInsurance}</td>
-		                <td>${item.incomeTax + item.residentTax + item.nationalTax + item.empInsurance + item.healthInsurance + item.longcareInsurance}</td>
-		                <td>${item.actualPay}</td>
-		            </tr>
-		        </c:forEach>    
-		    </c:if>
+            <tbody id="payListBody"> 
+	          
+	        </tbody>
+
   
 	     </table>
+	
 
-    </div>
+    </div> <!-- container -->
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>   	
 </body>
 </html>

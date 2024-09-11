@@ -2,11 +2,16 @@ package hcnc.cteam.pay;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class PayDTO {
 	private int empCode;
 	private int payYear;
 	private int payMonth;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date giveDate;
+	
 	private int payOver;
 	private int payMeal = 100000;
 	private int payAmount;

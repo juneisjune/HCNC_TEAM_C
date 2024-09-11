@@ -14,6 +14,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 @Controller
 @RequestMapping("/pay")
@@ -61,28 +65,58 @@ public class PayController {
 		
 		return "pay/searchPay";
 	}
-	
+
+	@RequestMapping(value="/searchPay1.do", method = RequestMethod.POST)
 	@ResponseBody
-	@RequestMapping(value="/searchPay.do", method = RequestMethod.POST)
-	public ResponseEntity<Map<String, Object>> searchPay(PaySearchDTO paySearchDTO, ModelMap model) {
-		String msg = "";
+	public String searchPay1(PaySearchDTO paySearchDTO, ModelMap model) {
+		
+		String result = "";
+		
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		try {
-			List<PayDTO> payList = payService.selectPeriod(paySearchDTO);
-			model.addAttribute("payList", payList);
+			List<PayDTO> payList = payService.selectPeriod(paySearchDTO);		
+			int monthly = payService.selectMonthly();
 			
-			msg = "ok";
-			map.put("msg", msg);
-			map.put("payList", payList);
+			map.put("msg", "ok");
+			map.put("payList", payList);	
+			map.put("monthly", monthly);
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-		return new ResponseEntity<>(map, HttpStatus.OK);
+		
+		try {
+			result = new ObjectMapper().writeValueAsString(map);
+		}catch (Exception e) {
+			result = "{'msg':'error'}";
+		}
+		
+		return result;
+	}
+
+	@RequestMapping(value="/searchPay2.do", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView searchPay2(PaySearchDTO paySearchDTO, ModelMap model) {
+		ModelAndView mv = new ModelAndView("jsonView");
+		String msg = "";
+		try {
+			List<PayDTO> payList = payService.selectPeriod(paySearchDTO);
+			int monthly = payService.selectMonthly();
+			msg = "ok";
+			
+			model.addAttribute("payList", payList);
+			model.addAttribute("msg", msg);
+			model.addAttribute("monthly", monthly);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return mv;
 	}
 	
-	
-
 	
 }
 
