@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Login" width="710" height="310" titletext="로그인">
+    <Layouts>
+      <Layout width="710" height="310">
+        <Static id="lbl_user_id" text="아이디" left="150" top="115" width="100" height="30" taborder="0"/>
+        <Edit id="edt_user_id" left="250" top="115" width="200" height="30" taborder="1" binddataset="ds_login" bindcolumn="user_id" onchanged="edt_user_id_onchanged"/>
+        <Static id="lbl_password" text="비밀번호" left="150" top="160" width="100" height="30" taborder="2"/>
+        <Edit id="edt_password" left="250" top="160" width="200" height="30" password="true" taborder="3" binddataset="ds_login" bindcolumn="password"/>
+        <Button id="btn_login" text="로그인" left="280" top="200" width="100" height="40" taborder="4" onclick="fnLogin_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_login" type="normal">
+        <ColumnInfo>
+          <Column id="user_id" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="user_id"></Col>
+            <Col id="password"></Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.fnLoginCallback=function(strSvcId, nErrorCode, strErrorMsg)
+{
+    if (nErrorCode < 0)
+    {
+        alert("로그인 실패: " + strErrorMsg);
+    }
+    else {
+        alert("로그인 성공!");
+		nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
+        this.go("Form_Post.xfdl");  // 성공 시 다음 페이지로 이동
+    }
+};
+
+this.fnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	
+    // ds_login에서 user_id와 password 값을 가져옴
+    var user_id = this.ds_login.getColumn(0,"user_id"); // "emp_code" 대신 "user_id"를 사용
+    var password = this.ds_login.getColumn(0,"password"); // Dataset에서 password 값을 가져옴
+    
+    // Dataset에 Row가 제대로 있는지 확인
+    console.log("Dataset row count: " + this.ds_login.getRowCount()); // Row 개수를 확인
+    
+    // 데이터가 제대로 입력되었는지 로그로 출력
+    console.log("id: " + user_id);
+    console.log("password: " + password);
+
+    // 아이디와 비밀번호가 비어있으면 경고 메시지 출력
+    if(user_id == "" ||user_id =='undefined'|| user_id== null||password == "")
+    {
+        alert("아이디를 입력해 주세요");
+        return;
+    }
+    
+    // 로그인 함수 호출
+    this.fnLogin();
+};
+
+
+this.fnLogin = function() {
+    console.log("함수 안에 들어옴");
+	console.log(this.ds_login.saveXML());  // DataSet 내용 확인
+    
+    var strSvcId = "loginService";
+    var strSvcUrl = "svc::login.do";
+    var inData = "ds_login=ds_login";  // 입력 데이터를 전달
+    var outData = "";
+    var strArg = "";
+    var callBackFnc = "fnLoginCallback";  // 콜백 함수
+    var isAsync = true;
+    
+    this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);  // 트랜잭션 호출
+    console.log("transaction 지나감");
+};
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="edt_user_id" propid="value" datasetid="ds_login" columnid="user_id"/>
+      <BindItem id="item1" compid="edt_password" propid="value" datasetid="ds_login" columnid="password"/>
+    </Bind>
+  </Form>
+</FDL>

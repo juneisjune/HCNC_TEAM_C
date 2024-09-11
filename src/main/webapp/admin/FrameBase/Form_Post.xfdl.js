@@ -31,18 +31,18 @@
             obj.set_color("white");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_notice","10","50","680","400",null,null,null,null,null,null,this);
+            obj = new Grid("grd_notice","10","50","940","400",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Post");
             obj.set_taborder("1");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"85\"/><Column size=\"300\"/><Column size=\"300\"/><Column size=\"150\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"게시글 번호\"/><Cell col=\"1\" text=\"제목\"/><Cell col=\"2\" text=\"내용\"/><Cell col=\"3\" text=\"작성일자\"/><Cell col=\"4\" text=\"사번\"/></Band><Band id=\"body\"><Cell text=\"bind:post_code\"/><Cell col=\"1\" text=\"bind:title\"/><Cell col=\"2\" text=\"bind:content\"/><Cell col=\"3\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"4\" text=\"bind:emp_code\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_addNotice","590","10","100","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_addNotice","848","10","100","30",null,null,null,null,null,null,this);
             obj.set_text("공지사항관리");
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","532","12","50","28",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","790","12","50","28",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
             this.addChild(obj.name, obj);
@@ -68,7 +68,7 @@
 
         this.btn_addNotice_onclick = function(obj,e)
         {
-
+        	this.go("PostPage");
         };
 
         this.fnSearch = function (){
@@ -80,7 +80,7 @@
         // 	var callBackFnc ="fnCallback";
         // 	var isAsync		= true;
 
-        	  var strSvcId    = "selectPost";                     // 콜백 서비스명
+        	var strSvcId    = "selectPost";                     // 콜백 서비스명
             var strSvcUrl   = "svc::selectPost.do";             // 호출 URL
             var inData      = "";                              // 입력 데이터셋
             var outData     = "ds_Post=ds_Post";               // 결과 데이터를 담을 데이터셋
@@ -112,27 +112,7 @@
         	console.log("버튼 클릭됨 들어옴");
         	this.fnSearch();
          };
-        /*
-        var outData = "ds_Post=ds_Post";
-        this.fnSearch = function(){
-        	// 바인딩 된 값 콘솔로그로 찍어서 조회
-        	console.log("cmb_Search = " + this.ds_Search.getColumn(0,"SEARCH_TYPE"));
-        	console.log("edt_Search = " + this.ds_Search.getColumn(0,"SEARCH_WORD"));
 
-        	this.fnInitMst();
-
-        	// 컨트롤러 호출
-        	var strSvcId    = "selectCodeMst";                     // 콜백 서비스명
-        	var strSvcUrl   = "svc::selectCodeMst.do";             // 호출 URL
-        	var inData      = "ds_Search=ds_Search";               // Request Dataset 파라미터 (AAA=BBB) AAA = 컨트롤러에서 받을 파라미터명, BBB = 보낼 데이터셋명
-        	var outData     = "ds_CodeMstList=ds_CodeMstList";     // Response Dataset 파라미터 (AAA=BBB) AAA = 데이터를 저장할 데이터셋명, BBB = 응답받은 데이터
-        	var strArg      = ""                                   // Request 문자 파라미터
-        	var callBackFnc = "fnCallback";                        // 콜백 후 실행 할 함수
-        	var isAsync     = true;                                // 동기/비동기
-
-        	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
-        }
-        */
         });
         
         // Regist UI Components Event

@@ -38,7 +38,7 @@
 
 
             obj = new Dataset("ds_SearchDtl", this);
-            obj._setContents("<ColumnInfo><Column id=\"SEARCH_TYPE\" type=\"STRING\" size=\"256\"/><Column id=\"SEARCH_WORD\" type=\"STRING\" size=\"256\"/><Column id=\"PT_CODE\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"SEARCH_TYPE\" type=\"STRING\" size=\"256\"/><Column id=\"SEARCH_WORD\" type=\"STRING\" size=\"256\"/><Column id=\"PT_CODE\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"SEARCH_TYPE\"/></Row></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -335,14 +335,6 @@
         }
 
 
-
-
-
-
-
-
-
-
         /****************************************************************/
         /*                   컴포넌트 이벤트                          */
         /****************************************************************/
@@ -556,6 +548,7 @@
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Form_Code_onload,this);
+            this.edt_Search.addEventHandler("onchanged",this.edt_Search_onchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.btn_Add.addEventHandler("onclick",this.btn_Add_onclick,this);
             this.btn_Save.addEventHandler("onclick",this.btn_Save_onclick,this);

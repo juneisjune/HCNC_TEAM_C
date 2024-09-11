@@ -4,7 +4,7 @@
     <Layouts>
       <Layout height="720" width="1280">
         <Static id="Static00" taborder="0" text="공지사항조회" left="10" top="10" width="400" height="30" onclick="Static00_onclick" textAlign="left" font="bold 26px/normal &quot;Gulim&quot;" background="blue" color="white"/>
-        <Grid id="grd_notice" binddataset="ds_Post" left="10" top="50" width="680" height="400" taborder="1">
+        <Grid id="grd_notice" binddataset="ds_Post" left="8" top="50" width="940" height="400" taborder="1">
           <Formats>
             <Format id="default">
               <Columns>
@@ -35,14 +35,14 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_addNotice" text="공지사항관리" left="590" top="10" width="100" height="30" onclick="btn_addNotice_onclick" taborder="2"/>
-        <Button id="btn_Search" taborder="3" text="조회" left="532" top="12" width="50" height="28" onclick="Button00_onclick"/>
+        <Button id="btn_addNotice" text="공지사항관리" left="848" top="10" width="100" height="30" onclick="btn_addNotice_onclick" taborder="2"/>
+        <Button id="btn_Search" taborder="3" text="조회" left="790" top="12" width="50" height="28" onclick="Button00_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
 this.btn_addNotice_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	
+	this.go("PostPage");
 };
 
 this.fnSearch = function (){
@@ -54,7 +54,7 @@ this.fnSearch = function (){
 // 	var callBackFnc ="fnCallback";
 // 	var isAsync		= true; 
 	
-	  var strSvcId    = "selectPost";                     // 콜백 서비스명
+	var strSvcId    = "selectPost";                     // 콜백 서비스명
     var strSvcUrl   = "svc::selectPost.do";             // 호출 URL
     var inData      = "";                              // 입력 데이터셋
     var outData     = "ds_Post=ds_Post";               // 결과 데이터를 담을 데이터셋
@@ -86,27 +86,7 @@ this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
 	console.log("버튼 클릭됨 들어옴");
 	this.fnSearch();
  };
-/*
-var outData = "ds_Post=ds_Post"; 
-this.fnSearch = function(){
-	// 바인딩 된 값 콘솔로그로 찍어서 조회
-	console.log("cmb_Search = " + this.ds_Search.getColumn(0,"SEARCH_TYPE"));
-	console.log("edt_Search = " + this.ds_Search.getColumn(0,"SEARCH_WORD"));
-	
-	this.fnInitMst();
-	
-	// 컨트롤러 호출
-	var strSvcId    = "selectCodeMst";                     // 콜백 서비스명
-	var strSvcUrl   = "svc::selectCodeMst.do";             // 호출 URL
-	var inData      = "ds_Search=ds_Search";               // Request Dataset 파라미터 (AAA=BBB) AAA = 컨트롤러에서 받을 파라미터명, BBB = 보낼 데이터셋명
-	var outData     = "ds_CodeMstList=ds_CodeMstList";     // Response Dataset 파라미터 (AAA=BBB) AAA = 데이터를 저장할 데이터셋명, BBB = 응답받은 데이터
-	var strArg      = ""                                   // Request 문자 파라미터
-	var callBackFnc = "fnCallback";                        // 콜백 후 실행 할 함수
-	var isAsync     = true;                                // 동기/비동기
-	
-	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
-}
-*/]]></Script>
+]]></Script>
     <Objects>
       <Dataset id="ds_Post">
         <!--공지사항 화면 축출 화면의 data set-->
