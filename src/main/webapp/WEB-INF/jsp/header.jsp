@@ -43,14 +43,14 @@
         .home .btn {
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
+            align-items: center;
         }
 
         .home .btn a {
             display: block;
             color: #333;
             text-align: center;
-            padding: 12px 18px;
+            padding: 10px 16px;
             margin: 10px 0;
             text-decoration: none;
             font-weight: bold;
@@ -128,6 +128,7 @@
 
         .navbar .sub-menu li {
             border-bottom: 1px solid #ddd;
+            font-size: 14px;
         }
 
         .navbar .sub-menu li:last-child {
@@ -168,6 +169,8 @@
 
                 <a href="#" >퇴근</a>
                 <div>18:00:00</div>
+                
+                <a href="#" >로그아웃</a>
   
             </div> <!-- btn -->
          </div> <!-- home -->
@@ -200,8 +203,8 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">급여 조회</a>
                     <ul class="sub-menu">
-                        <li><a href="#">기간별 급여 조회</a></li>
-                        <li><a href="#">급여명세서</a></li>
+                        <li><a href="/pay/viewPayslip.do">급여명세서</a></li>
+                        <li><a href="/pay/searchPay.do">기간별 급여 조회</a></li>
                     </ul>
                 </li>
             </ul>  <!-- nav-list -->

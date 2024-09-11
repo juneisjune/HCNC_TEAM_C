@@ -1,14 +1,16 @@
 package hcnc.cteam.pay;
 
+import java.util.List;
+
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 @Mapper("payMapper")
 public interface PayMapper {
 	//이번달 급여명세서 조회
-	PayVO selectMyPay() throws Exception;
+	PayDTO selectMyPay() throws Exception;
 	
 	//해당 직원 정보 조회 
-	PayEmpVO selectEmp() throws Exception;
+	PayEmpDTO selectEmp() throws Exception;
 	
 	//기본급 조회
 	int selectMonthly() throws Exception;
@@ -27,4 +29,7 @@ public interface PayMapper {
 	
 	//pay_over 조회
 	double selectWorkOver() throws Exception;
+	
+	//기간별 급여 조회
+	List<PayDTO> selectPeriod(PaySearchDTO paySearchDTO) throws Exception;
 }

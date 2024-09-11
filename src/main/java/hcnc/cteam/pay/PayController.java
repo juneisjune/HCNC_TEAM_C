@@ -1,31 +1,36 @@
 package hcnc.cteam.pay;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/pay")
 public class PayController {
 	
 	private static final RequestMethod[] POST = null;
+	
 	@Resource(name="payService")
 	private PayService payService;
 	
 	@RequestMapping("/viewPayslip.do")
 	public String viewPayslip(ModelMap model) throws Exception {
 		
-		PayVO myPay = payService.selectMyPay();
+		PayDTO myPay = payService.selectMyPay();
 		model.addAttribute("myPay", myPay);
 		
-		PayEmpVO emp = payService.selectEmp();
+		PayEmpDTO emp = payService.selectEmp();
 		model.addAttribute("emp", emp);
 		
 		int monthly = payService.selectMonthly();
@@ -51,22 +56,37 @@ public class PayController {
 	
 	@RequestMapping("/searchPay.do")
 	public String searchPayView(ModelMap model) throws Exception {
-		PayEmpVO emp = payService.selectEmp();
+		PayEmpDTO emp = payService.selectEmp();
 		model.addAttribute("emp", emp);
 		
 		return "pay/searchPay";
 	}
 	
-	@PostMapping("/searchPay.do")
-	public String searchPay(ModelMap model, HashMap<String, Integer> hashMap) throws Exception {
+	@ResponseBody
+	@RequestMapping(value="/searchPay.do", method = RequestMethod.POST)
+	public ResponseEntity<Map<String, Object>> searchPay(PaySearchDTO paySearchDTO, ModelMap model) {
+		String msg = "";
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			List<PayDTO> payList = payService.selectPeriod(paySearchDTO);
+			model.addAttribute("payList", payList);
+			
+			msg = "ok";
+			map.put("msg", msg);
+			map.put("payList", payList);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-		
-		return "pay/searchPay";
+		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 	
-	@RequestMapping("/header.do")
-	public String viewHeader() {
-		return "header";
-	}
+	
+	
+	
+	
 	
 }
+
+	
+

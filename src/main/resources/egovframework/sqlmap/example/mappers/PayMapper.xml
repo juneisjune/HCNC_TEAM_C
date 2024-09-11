@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hcnc.cteam.pay.PayMapper">
 
-	<select id="selectMyPay" resultType="payVO">
+	<select id="selectMyPay" resultType="payDTO">
 		SELECT emp_code, pay_year, pay_month, give_date, pay_over, pay_meal, pay_amount,
 		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay
 		FROM pay 
@@ -11,7 +11,7 @@
 		AND pay_year = YEAR(CURDATE()) ;
 	</select>
 	
-	<select id="selectEmp" resultType="payEmpVO">
+	<select id="selectEmp" resultType="payEmpDTO">
 		SELECT emp_code, e.assign_code, assign_name, e.dep_code, dep_name, id, name, birth
 		FROM employee e JOIN `assignment` a 
 		ON e.assign_code = a.assign_code 
@@ -88,6 +88,16 @@
 		AND a.atten_code = 1
 		AND MONTH(work_date) = MONTH(CURDATE())-1
 		AND YEAR(work_date) = YEAR(CURDATE()) ;
+	</select>
+	
+	<select id="selectPeriod" resultType="payDTO" parameterType="paySearchDTO">
+		SELECT emp_code, pay_year, pay_month, give_date, pay_over, pay_meal, pay_amount,
+		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay
+		FROM pay 
+		WHERE emp_code = 1
+		AND pay_year BETWEEN #{startYear} AND #{endYear}
+		AND pay_month BETWEEN #{startMonth} AND #{endMonth}
+		ORDER BY pay_year DESC;
 	</select>
 	
 	

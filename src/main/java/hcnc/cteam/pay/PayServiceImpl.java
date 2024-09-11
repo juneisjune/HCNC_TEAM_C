@@ -1,5 +1,7 @@
 package hcnc.cteam.pay;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -13,12 +15,12 @@ public class PayServiceImpl extends EgovAbstractServiceImpl implements PayServic
 	private PayMapper payMapper;
 
 	@Override
-	public PayVO selectMyPay() throws Exception {
+	public PayDTO selectMyPay() throws Exception {
 		return payMapper.selectMyPay();
 	}
 
 	@Override
-	public PayEmpVO selectEmp() throws Exception {
+	public PayEmpDTO selectEmp() throws Exception {
 		return payMapper.selectEmp();
 	}
 
@@ -50,6 +52,11 @@ public class PayServiceImpl extends EgovAbstractServiceImpl implements PayServic
 	@Override
 	public double selectWorkOver() throws Exception {
 		return payMapper.selectWorkOver();
+	}
+
+	@Override
+	public List<PayDTO> selectPeriod(PaySearchDTO paySearchDTO) throws Exception {
+		return payMapper.selectPeriod(paySearchDTO);
 	}
 
 	

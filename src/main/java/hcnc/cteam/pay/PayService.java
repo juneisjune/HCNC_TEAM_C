@@ -1,10 +1,12 @@
 package hcnc.cteam.pay;
 
+import java.util.List;
+
 public interface PayService {
 
-	PayVO selectMyPay() throws Exception;
+	PayDTO selectMyPay() throws Exception;
 
-	PayEmpVO selectEmp() throws Exception;
+	PayEmpDTO selectEmp() throws Exception;
 	
 	int selectMonthly() throws Exception;
 	
@@ -17,4 +19,6 @@ public interface PayService {
 	int selectTotalTime() throws Exception;
 	
 	double selectWorkOver() throws Exception;
+	
+	List<PayDTO> selectPeriod(PaySearchDTO paySearchDTO) throws Exception;
 }
