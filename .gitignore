@@ -1,1 +1,4 @@
 **/pom.properties
+
+# Ignore MANIFEST.MF file
+MANIFEST.MF
