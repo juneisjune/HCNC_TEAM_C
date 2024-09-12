@@ -1,6 +1,7 @@
 package hcnc.cteam.pay;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -12,8 +13,8 @@ public class PayDTO {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date giveDate;
 	
-	private int payOver;
 	private int payMeal = 100000;
+	private int payOver;
 	private int payAmount;
 	private int incomeTax;
 	private int residentTax;
@@ -23,9 +24,9 @@ public class PayDTO {
 	private int longcareInsurance;
 	private int actualPay;
 
-	private Date regDate;
+	private LocalDateTime regDate;
 	private String regName;
-	private Date updDate;
+	private LocalDateTime updDate;
 	private String updName;
 	
 	public int getEmpCode() {
@@ -112,10 +113,10 @@ public class PayDTO {
 	public void setActualPay(int actualPay) {
 		this.actualPay = actualPay;
 	}
-	public Date getRegDate() {
+	public LocalDateTime getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(Date regDate) {
+	public void setRegDate(LocalDateTime regDate) {
 		this.regDate = regDate;
 	}
 	public String getRegName() {
@@ -124,10 +125,10 @@ public class PayDTO {
 	public void setRegName(String regName) {
 		this.regName = regName;
 	}
-	public Date getUpdDate() {
+	public LocalDateTime getUpdDate() {
 		return updDate;
 	}
-	public void setUpdDate(Date updDate) {
+	public void setUpdDate(LocalDateTime updDate) {
 		this.updDate = updDate;
 	}
 	public String getUpdName() {

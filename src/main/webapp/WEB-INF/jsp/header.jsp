@@ -160,7 +160,7 @@
         <!-- 배너 영역 -->
         <div class="home">
             <div class="banner">
-                <a href="" ><img src="../images/banner/banner.png" alt="배너 이미지"></a>
+                <a href="" ><img src="/images/banner/banner.png" alt="배너 이미지"></a>
             </div>
             <!--버튼 영역 -->
             <div class="btn">

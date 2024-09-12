@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,42 +72,55 @@
 			 
 			    success: function(result) {
 			    	console.log(result);
-	                if (result.msg === "ok") {
-	                	 var payList = result.payList;
+	                if (result.msg === "ok") {	       
+	                	
+	                	if (Array.isArray(result.searchList) && result.searchList.length === 0) {
+	                		var payListBody = $("#payListBody");
+		                	 payListBody.empty();
+		                	 
+		                     var searchListBody = $("#searchListBody");
+		                	 searchListBody.empty(); 
+		                	 
+	                        alert("조회 결과가 없습니다.");
+	                    } else {
+	                	
+	                	 var searchList = result.searchList;
 	                	 var monthly = result.monthly;
-	                     var payListBody = $("#payListBody");
-	                     payListBody.empty(); // 기존 데이터를 초기화
+	                	 var payListBody = $("#payListBody");
+	                	 payListBody.empty();
+	                	 
+	                     var searchListBody = $("#searchListBody");
+	                	 searchListBody.empty(); 
 
-	                     $.each(payList, function(index, item) {
+	                     $.each(searchList, function(index, pay) {
 	           
-	                         var totalTax = item.incomeTax + item.residentTax + item.nationalTax + item.empInsurance + item.healthInsurance + item.longcareInsurance;
-	                         
+	                         var totalTax = pay.incomeTax + pay.residentTax + pay.nationalTax + pay.empInsurance + pay.healthInsurance + pay.longcareInsurance;
+	                   
 	                         var row = "<tr>"
-	                                 + "<td>" + item.payYear + "." + item.payMonth + "</td>"
-	                                 + "<td>" + "<a href='/pay/viewPayslip.do'>" + item.giveDate + "</a>" + "</td>"
-	                                 + "<td>" + Number(monthly).toLocaleString() + "원" +  "</td>"  // monthly 변수
-	                                 + "<td>" + item.payMeal.toLocaleString() + "원" +  "</td>"
-	                                 + "<td>" + item.payOver.toLocaleString() + "원" +  "</td>"
-	                                 + "<td>" + item.payAmount.toLocaleString() + "원" +  "</td>"
-	                                 + "<td>" + item.actualPay.toLocaleString() + "원" +  "</td>"
-	                                 + "<td>" + item.incomeTax.toLocaleString() + "원" +  "</td>"
-	                                 + "<td>" + item.residentTax.toLocaleString() + "원" +  "</td>"
-	                                 + "<td>" + item.nationalTax.toLocaleString() + "원" +  "</td>"
-	                                 + "<td>" + item.empInsurance.toLocaleString() + "원" +  "</td>"
-	                                 + "<td>" + item.healthInsurance.toLocaleString() + "원" +  "</td>"
-	                                 + "<td>" + item.longcareInsurance.toLocaleString() + "원" +  "</td>"
-	                                 + "<td>" + totalTax.toLocaleString() + "원" +  "</td>"
-	                                 + "</tr>";
-	                         
-	                         payListBody.append(row);  // 테이블에 행 추가
-	               	
+	                             + "<td>" + "<a href='/pay/viewPayslip/" + pay.payYear + "/" + pay.payMonth + ".do'>" + pay.payYear + "." + pay.payMonth + "</a>" + "</td>"
+	                             + "<td>" + pay.giveDate + "</td>"
+	                             + "<td>" + Number(monthly).toLocaleString() + "원" + "</td>" 
+	                             + "<td>" + pay.payMeal.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + pay.payOver.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + pay.payAmount.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + pay.actualPay.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + pay.incomeTax.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + pay.residentTax.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + pay.nationalTax.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + pay.empInsurance.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + pay.healthInsurance.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + pay.longcareInsurance.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + totalTax.toLocaleString() + "원" + "</td>"
+	                             + "</tr>";
+
+	                         payListBody.append(row);  
 	                     });
 	                     
 	                    alert("조회가 완료되었습니다.");
+	                    
+	                    }
 	                   
-	                } else {
-	                    alert("에러 발생 : " + result.msg);
-	                }
+	                } 
 	            },
 	            error : function(xhr, status, error) {
 	                console.log("xhr:", xhr);
@@ -119,9 +132,9 @@
 	    });	
 	});
 	</script>
-</head>
-<%@ include file="/WEB-INF/jsp/header.jsp" %>   	
+</head>	
 <body>
+<%@ include file="/WEB-INF/jsp/header.jsp" %>   
 	<div class="container">
 		<form id="searchForm" >
 	        <table >
@@ -202,7 +215,7 @@
             </tr>
             <tr class="payName">
                 <td>급여월</td>
-                <td>급여일</td>
+                <td>지급일</td>
                 <td>기본급</td>
                 <td>식대</td>
                 <td>연장근로수당</td>
@@ -216,8 +229,36 @@
                 <td>장기요양보험</td>
                 <td>공제액합계</td>
             </tr>
+            <tbody id="payListBody">
+	            <c:forEach var="pay" items="${payList}" > 
+		            <tr>
+		                <td><a href="/pay/viewPayslip/${pay.payYear}/${pay.payMonth}.do">${pay.payYear}.${pay.payMonth}</a></td>
+		                <td>${pay.giveDate}</td>
+		                <td><fmt:formatNumber value="${monthly}" type="currency" groupingUsed="true"/></td>
+		                <td><fmt:formatNumber value="${pay.payMeal}" type="currency" groupingUsed="true"/></td>
+		                <td><fmt:formatNumber value="${pay.payOver}" type="currency" groupingUsed="true"/></td>
+		                <td><fmt:formatNumber value="${pay.payAmount}" type="currency" groupingUsed="true"/></td>
+		                <td><fmt:formatNumber value="${pay.actualPay}" type="currency" groupingUsed="true"/></td>
+		                <td><fmt:formatNumber value="${pay.incomeTax}" type="currency" groupingUsed="true"/></td>			                			                
+		                <td><fmt:formatNumber value="${pay.residentTax}" type="currency" groupingUsed="true"/></td>			                			                
+		                <td><fmt:formatNumber value="${pay.nationalTax}" type="currency" groupingUsed="true"/></td>			                			                
+		                <td><fmt:formatNumber value="${pay.empInsurance}" type="currency" groupingUsed="true"/></td>			                			                
+		                <td><fmt:formatNumber value="${pay.healthInsurance}" type="currency" groupingUsed="true"/></td>			                			                
+		                <td><fmt:formatNumber value="${pay.longcareInsurance}" type="currency" groupingUsed="true"/></td>			                			                
+		                <td><fmt:formatNumber value="${pay.incomeTax + pay.residentTax + pay.nationalTax + pay.empInsurance + pay.healthInsurance + pay.longcareInsurance}" type="currency" groupingUsed="true"/></td>			                			               
+		            </tr>
+	            </c:forEach>
+			</tbody>
+			
+			<c:if test="${empty payList}">
+				<tr>
+					<td colspan="14">
+						급여 내역이 없습니다.
+					</td>
+				</tr>
+			</c:if>
 	            
-            <tbody id="payListBody"> 
+            <tbody id="searchListBody"> 
 	          
 	        </tbody>
 

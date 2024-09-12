@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hcnc.cteam.pay.PayMapper">
 
-	<select id="selectMyPay" resultType="payDTO">
+	<select id="selectMyPay" resultType="payDTO" parameterType="paySearchDTO">
 		SELECT emp_code, pay_year, pay_month, give_date, pay_over, pay_meal, pay_amount,
 		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay
 		FROM pay 
 		WHERE emp_code = 1
-		AND pay_month = MONTH(CURDATE())-1
-		AND pay_year = YEAR(CURDATE()) ;
+		AND pay_month = #{payMonth}
+		AND pay_year = #{payYear};
 	</select>
 	
 	<select id="selectEmp" resultType="payEmpDTO">
@@ -29,35 +29,38 @@
 		WHERE p.emp_code = 1;
 	</select>
 	
-	<select id="selectPlus" resultType="int">
-		SELECT pay_over + pay_meal + pay_amount
-		FROM pay 
-		WHERE emp_code = 1
-		AND pay_month = MONTH(CURDATE())-1
-		AND pay_year = YEAR(CURDATE()) ;
-	</select>
-	
-	<select id="selectMinus"  resultType="int">
+	<select id="selectMinus"  resultType="int" parameterType="paySearchDTO">
 		SELECT income_tax + resident_tax + national_tax + emp_insurance + health_insurance + longcare_insurance 
 		FROM pay 
 		WHERE emp_code = 1
-		AND pay_month = MONTH(CURDATE())-1
-		AND pay_year = YEAR(CURDATE())
+		AND pay_month = #{payMonth}
+		AND pay_year = #{payYear}
 	</select>
 	
-	<select id="selectTotalDay" resultType="int">
-		SELECT COUNT(*)
+	<select id="selectTotalDay" resultType="int" parameterType="paySearchDTO">
+		SELECT 
+		(SELECT COUNT(*)
 		FROM attendance a JOIN att_code ac 
 		ON a.atten_code = ac.atten_code 
 		JOIN employee e 
 		ON a.emp_code = e.emp_code 
 		WHERE a.emp_code = 1
 		AND a.atten_code = 1
-		AND MONTH(work_date) = MONTH(CURDATE())-1
-		AND YEAR(work_date) = YEAR(CURDATE()) ;
+		AND MONTH(work_date) = #{payMonth}
+		AND YEAR(work_date) = #{payYear}  ) 
+		+ 
+		(SELECT COUNT(*)
+		FROM attendance a JOIN att_code ac 
+		ON a.atten_code = ac.atten_code 
+		JOIN employee e 
+		ON a.emp_code = e.emp_code 
+		WHERE a.emp_code = 1
+		AND a.atten_code = 3
+		AND MONTH(work_date) = #{payMonth}
+		AND YEAR(work_date) = #{payYear} );
 	</select>
 	
-	<select id="selectTotalTime" resultType="int">
+	<select id="selectTotalTime" resultType="int" parameterType="paySearchDTO">
 		SELECT (SELECT COUNT(*) * 8
 		FROM attendance a JOIN att_code ac 
 		ON a.atten_code = ac.atten_code 
@@ -65,8 +68,9 @@
 		ON a.emp_code = e.emp_code 
 		WHERE a.emp_code = 1
 		AND a.atten_code = 1
-		AND MONTH(work_date) = MONTH(CURDATE())-1
-		AND YEAR(work_date) = YEAR(CURDATE()) ) + 
+		AND MONTH(work_date) = #{payMonth}
+		AND YEAR(work_date) =  #{payYear} ) 
+		+ 
 		(SELECT COUNT(*) * 8 
 		FROM attendance a JOIN att_code ac 
 		ON a.atten_code = ac.atten_code 
@@ -74,11 +78,11 @@
 		ON a.emp_code = e.emp_code 
 		WHERE a.emp_code = 1
 		AND a.atten_code = 3
-		AND MONTH(work_date) = MONTH(CURDATE())-1
-		AND YEAR(work_date) = YEAR(CURDATE()));
+		AND MONTH(work_date) = #{payMonth}
+		AND YEAR(work_date) =  #{payYear} );
 	</select>
 	
-	<select id="selectWorkOver" resultType="double">
+	<select id="selectWorkOver" resultType="Double" parameterType="paySearchDTO">
 		SELECT SUM(work_over)
 		FROM attendance a JOIN att_code ac 
 		ON a.atten_code = ac.atten_code 
@@ -86,8 +90,17 @@
 		ON a.emp_code = e.emp_code 
 		WHERE a.emp_code = 1
 		AND a.atten_code = 1
-		AND MONTH(work_date) = MONTH(CURDATE())-1
-		AND YEAR(work_date) = YEAR(CURDATE()) ;
+		AND MONTH(work_date) = #{payMonth}
+		AND YEAR(work_date) = #{payYear} ;
+	</select>	
+	
+	<select id="selectPayList" resultType="payDTO">
+		SELECT emp_code, pay_year, pay_month, give_date, pay_over, pay_meal, pay_amount,
+		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay
+		FROM pay 
+		WHERE emp_code = 1
+		ORDER BY pay_year DESC,
+		pay_month DESC;
 	</select>
 	
 	<select id="selectPeriod" resultType="payDTO" parameterType="paySearchDTO">
@@ -97,7 +110,8 @@
 		WHERE emp_code = 1
 		AND pay_year BETWEEN #{startYear} AND #{endYear}
 		AND pay_month BETWEEN #{startMonth} AND #{endMonth}
-		ORDER BY pay_year DESC;
+		ORDER BY pay_year DESC,
+		pay_month DESC;
 	</select>
 	
 	

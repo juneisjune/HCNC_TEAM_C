@@ -81,7 +81,7 @@
 	        </tr>
 	        <tr>
 	            <td><strong>총 지급액</strong></td>
-	            <td style="text-align: right;"><strong><fmt:formatNumber value="${plus}" type="number" groupingUsed="true"/>원</strong></td>
+	            <td style="text-align: right;"><strong><fmt:formatNumber value="${myPay.payAmount}" type="number" groupingUsed="true"/>원</strong></td>
 	            <td>고용보험</td>
 	            <td style="text-align: right;"><fmt:formatNumber value="${myPay.empInsurance}" type="number" groupingUsed="true"/>원</td>
 	        </tr>      
