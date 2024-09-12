@@ -3,5 +3,45 @@
 # Ignore MANIFEST.MF file
 MANIFEST.MF
 
-$Geninfo$.geninfo
+*.dll
+*.exe
+*.o
+*.so
+*.com
+*.class
 
+*.log
+logs/
+
+*.xlsx
+*.xls
+*.pdf
+*.docs
+*.ppt
+*.pptx
+
+.Trashes
+.Thumbs.db
+.ehthumbs.db
+
+#=> Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+local.properties
+.settings/
+.loadpath
+.recommenders
+.project
+.externalToolBuilders/
+*.launch
+.classpath
+.factorypath
+.buildpath
+target/
+.springBeans
+.recommenders/
+*.geninfo
