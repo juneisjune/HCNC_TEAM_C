@@ -27,163 +27,122 @@ import oracle.sql.DATE;
 @Controller
 @RequestMapping("/pay")
 public class PayController {
-	
+
 	private static final RequestMethod[] POST = null;
-	
-	@Resource(name="payService")
+
+	@Resource(name = "payService")
 	private PayService payService;
-	
+
 	@RequestMapping("/viewPayslip.do")
 	public String viewPayslip(ModelMap model) throws Exception {
 		LocalDate currentDate = LocalDate.now();
-        int payYear = currentDate.getYear(); 
-        int payMonth = currentDate.getMonthValue() - 1;
- 
-		PaySearchDTO paySearchDTO = new PaySearchDTO(payYear, payMonth);		
-		
+		int payYear = currentDate.getYear();
+		int payMonth = currentDate.getMonthValue() - 1;
+
+		PaySearchDTO paySearchDTO = new PaySearchDTO(payYear, payMonth);
+
 		PayDTO myPay = payService.selectMyPay(paySearchDTO);
 		model.addAttribute("myPay", myPay);
-		
+
 		PayEmpDTO emp = payService.selectEmp();
 		model.addAttribute("emp", emp);
-		
+
 		int monthly = payService.selectMonthly();
 		model.addAttribute("monthly", monthly);
-		
+
 		int minus = payService.selectMinus(paySearchDTO);
 		model.addAttribute("minus", minus);
-		
+
 		int totalDay = payService.selectTotalDay(paySearchDTO);
 		model.addAttribute("totalDay", totalDay);
-		
+
 		int totalTime = payService.selectTotalTime(paySearchDTO);
 		model.addAttribute("totalTime", totalTime);
-		
+
 		double overTime = payService.selectWorkOver(paySearchDTO);
 		model.addAttribute("overTime", overTime);
 
 		return "pay/payslip";
 	}
-	
+
 	@RequestMapping("/viewPayslip/{payYear}/{payMonth}.do")
 	public String viewPayMonth(@PathVariable int payYear, @PathVariable int payMonth, ModelMap model) throws Exception {
 		PaySearchDTO paySearchDTO = new PaySearchDTO(payYear, payMonth);
-		
+
 		PayDTO myPay = payService.selectMyPay(paySearchDTO);
 		model.addAttribute("myPay", myPay);
-		
+
 		PayEmpDTO emp = payService.selectEmp();
 		model.addAttribute("emp", emp);
-		
+
 		int monthly = payService.selectMonthly();
 		model.addAttribute("monthly", monthly);
-		
+
 		int minus = payService.selectMinus(paySearchDTO);
 		model.addAttribute("minus", minus);
-		
+
 		int totalDay = payService.selectTotalDay(paySearchDTO);
 		model.addAttribute("totalDay", totalDay);
-		
+
 		int totalTime = payService.selectTotalTime(paySearchDTO);
 		model.addAttribute("totalTime", totalTime);
-		
+
 		Double overTime = payService.selectWorkOver(paySearchDTO);
-		overTime = (overTime != null) ? overTime : 0.0; 
+		overTime = (overTime != null) ? overTime : 0.0;
 		model.addAttribute("overTime", overTime);
-		
+
 		return "pay/payslip";
 	}
-	
+
 	@RequestMapping("/searchPay.do")
 	public String searchPayView(ModelMap model) throws Exception {
 		PayEmpDTO emp = payService.selectEmp();
 		model.addAttribute("emp", emp);
-		
+
 		List<PayDTO> payList = payService.selectPayList();
-		
+
 		if (payList != null && !payList.isEmpty()) {
-	        model.addAttribute("payList", payList);
-	        
-	        int monthly = payService.selectMonthly();
-	        model.addAttribute("monthly", monthly);
-	    }
-		
+			model.addAttribute("payList", payList);
+
+			int monthly = payService.selectMonthly();
+			model.addAttribute("monthly", monthly);
+		}
+
 		return "pay/searchPay";
 	}
 
-	@RequestMapping(value="/searchPay1.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/searchPay.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchPay1(PaySearchDTO paySearchDTO, ModelMap model) {
-		
-		String result = "";
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		try {
-			List<PayDTO> searchList = payService.selectPeriod(paySearchDTO);		
-			int monthly = payService.selectMonthly();
-			
-			map.put("msg", "ok");
-			map.put("searchList", searchList);	
-			map.put("monthly", monthly);
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		try {
-			result = new ObjectMapper().writeValueAsString(map);
-		}catch (Exception e) {
-			result = "{'msg':'error'}";
-		}
-		
-		return result;
-	}
 
-	@RequestMapping(value="/searchPay2.do", method = RequestMethod.POST)
-	@ResponseBody
-	public ModelAndView searchPay2(PaySearchDTO paySearchDTO, ModelMap model) {
-		ModelAndView mv = new ModelAndView("jsonView");
-		String msg = "";
+		String result = "";
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
 		try {
 			List<PayDTO> searchList = payService.selectPeriod(paySearchDTO);
 			int monthly = payService.selectMonthly();
-			msg = "ok";
-			
-			model.addAttribute("searchList", searchList);
-			model.addAttribute("msg", msg);
-			model.addAttribute("monthly", monthly);
-			
-		} catch(Exception e) {
+
+			map.put("msg", "ok");
+			map.put("searchList", searchList);
+			map.put("monthly", monthly);
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return mv;
+
+		try {
+			result = new ObjectMapper().writeValueAsString(map);
+		} catch (Exception e) {
+			result = "{'msg':'error'}";
+		}
+
+		return result;
 	}
+
+
 	
-	/*
-	 * @RequestMapping(value="/searchPay2.do", method = RequestMethod.POST)
-	 * 
-	 * @ResponseBody public ModelAndView searchPay2(PaySearchDTO paySearchDTO) {
-	 * ModelAndView mv = new ModelAndView("jsonView"); 
-	 * String msg = ""; 
-	 * try {
-	 * List<PayDTO> searchList = payService.selectPeriod(paySearchDTO); 
-	 * int monthly = payService.selectMonthly(); 
-	 * msg = "ok";
-	 * 
-	 * mv.addObject("searchList", searchList); 
-	 * mv.addObject("msg", msg);
-	 * mv.addObject("monthly", monthly);
-	 * 
-	 * } catch(Exception e) { e.printStackTrace(); }
-	 * 
-	 * return mv; }
-	 */
-	
-	
+	  
+	 
+
 }
-
-	
-

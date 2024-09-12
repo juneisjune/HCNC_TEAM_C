@@ -67,7 +67,7 @@
 			$.ajax({
 			    type : "POST",
 			    data : "startYear="+startYear+"&startMonth="+startMonth+"&endYear="+endYear+"&endMonth="+endMonth,
-			    url : "/pay/searchPay2.do",
+			    url : "/pay/searchPay.do",
 			    dataType: "json",
 			 
 			    success: function(result) {
