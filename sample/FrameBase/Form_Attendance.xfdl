@@ -40,8 +40,8 @@
                 <Cell col="1" text="bind:name" textAlign="center"/>
                 <Cell col="2" text="bind:workDate" calendardateformat="yyyy년 MM월 dd일" displaytype="date"/>
                 <Cell col="3" text="bind:attenType" textAlign="center"/>
-                <Cell col="4" text="bind:workStart" displaytype="normal"/>
-                <Cell col="5" text="bind:workEnd"/>
+                <Cell col="4" text="bind:workStart" displaytype="date" calendardateformat="yyyy-MM-dd" textAlign="center"/>
+                <Cell col="5" text="bind:workEnd" textAlign="center" displaytype="date"/>
                 <Cell col="6" text="bind:workOver" textAlign="center"/>
               </Band>
             </Format>
@@ -118,8 +118,8 @@ this.fnCallback = function(svcID,errorCode,errorMsg)
           <Column id="name" type="STRING" size="256"/>
           <Column id="workDate" type="DATE" size="256"/>
           <Column id="attenType" type="STRING" size="256"/>
-          <Column id="workStart" type="TIME" size="256"/>
-          <Column id="workEnd" type="TIME" size="256"/>
+          <Column id="workStart" type="TIME" size="256" prop=""/>
+          <Column id="workEnd" type="TIME" size="256" prop=""/>
           <Column id="workOver" type="INT" size="256"/>
         </ColumnInfo>
       </Dataset>

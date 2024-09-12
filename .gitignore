@@ -2,3 +2,6 @@
 
 # Ignore MANIFEST.MF file
 MANIFEST.MF
+
+$Geninfo$.geninfo
+

@@ -6,7 +6,7 @@
 	<select id="nexaGetAttenListByCondition"
 		resultType="nexaAttenDTO">
 		SELECT a.emp_code as empCode, b.name as name, a.work_date as
-		workDate, c.atten_type as attenType, DATE_FORMAT(a.work_start, '%H:%i:%s') as workStart
+		workDate, c.atten_type as attenType, a.work_start as workStart
 		, a.work_end as workEnd, a.work_over as workOver
 		FROM attendance a
 		JOIN employee b ON a.emp_code = b.emp_code
@@ -31,10 +31,10 @@
 			<if test="SEARCH_TYPE == 'WORK_TYPE'">
 				AND c.atten_type LIKE CONCAT('%', #{SEARCH_WORD}, '%')
 			</if>
-			<!-- 근무일자에 따른 조회 -->
-			<if test="START_DATE != null and START_DATE != '' and END_DATE != null and END_DATE != ''">
-				AND a.work_date BETWEEN #{START_DATE} AND #{END_DATE}
-			</if>
+		</if>
+		<!-- 근무일자에 따른 조회 -->
+		<if test="START_DATE != null and END_DATE != null">
+			AND a.work_date BETWEEN #{START_DATE} AND #{END_DATE}
 		</if>
 	</select>
 

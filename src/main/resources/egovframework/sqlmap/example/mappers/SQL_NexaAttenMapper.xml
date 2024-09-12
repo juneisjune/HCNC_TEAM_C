@@ -6,7 +6,7 @@
 	<select id="nexaGetAttenListByCondition"
 		resultType="nexaAttenDTO">
 		SELECT a.emp_code as empCode, b.name as name, a.work_date as
-		workDate, c.atten_type as attenType, DATE_FORMAT(a.work_start, '%H:%i:%s') as workStart
+		workDate, c.atten_type as attenType, a.work_start as workStart
 		, a.work_end as workEnd, a.work_over as workOver
 		FROM attendance a
 		JOIN employee b ON a.emp_code = b.emp_code
