@@ -338,11 +338,6 @@
 
 
 
-
-
-
-
-
         /****************************************************************/
         /*                   컴포넌트 이벤트                          */
         /****************************************************************/
@@ -540,22 +535,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Form_Code_onload,this);
+            this.cmb_Search.addEventHandler("onitemchanged",this.cmb_Search_onitemchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.btn_Add.addEventHandler("onclick",this.btn_Add_onclick,this);
             this.btn_Save.addEventHandler("onclick",this.btn_Save_onclick,this);

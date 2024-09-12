@@ -7,7 +7,7 @@
         <!-- Nexa test -->
         <Static id="stc_TITLE1" text="마스터 코드" left="10" top="10" width="160" height="60" font="28px/normal &quot;Gulim&quot;"/>
         <Edit id="edt_Search" left="170" top="80" width="150" height="30"/>
-        <Combo id="cmb_Search" text="코드명" left="10" top="80" width="150" height="30" innerdataset="ds_SearchType" codecolumn="CODE" datacolumn="CODE_NM" index="2" value="CODE_NM"/>
+        <Combo id="cmb_Search" text="코드명" left="10" top="80" width="150" height="30" innerdataset="ds_SearchType" codecolumn="CODE" datacolumn="CODE_NM" index="2" value="CODE_NM" onitemchanged="cmb_Search_onitemchanged"/>
         <Button id="btn_Search" text="조회" left="330" top="80" width="50" height="30" onclick="btn_Search_onclick"/>
         <Button id="btn_Add" text="추가" left="385" top="80" width="50" height="30" onclick="btn_Add_onclick"/>
         <Grid id="grd_CodeMst" left="15" top="120" width="370" height="330" binddataset="ds_CodeMstList">
@@ -207,11 +207,6 @@ this.fnSearchDtl = function(){
 
 
 
-
-
-
-
-
 /****************************************************************/
 /*                   컴포넌트 이벤트                          */
 /****************************************************************/
@@ -400,16 +395,6 @@ this.ds_CodeDtlList_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexac
 	this.ds_CodeDtl.setColumn(0,"CODE",obj.getColumn(obj.rowposition,"CODE"));
 	this.ds_CodeDtl.setColumn(0,"CODE_NM",obj.getColumn(obj.rowposition,"CODE_NM"));
 };
-
-
-
-
-
-
-
-
-
-
 
 
 
