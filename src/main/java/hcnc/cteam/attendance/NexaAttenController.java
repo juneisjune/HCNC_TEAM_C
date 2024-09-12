@@ -29,7 +29,10 @@ public class NexaAttenController {
 	public NexacroResult welcome(@ParamDataSet(name = "ds_Search", required = false) Map<String, Object> param) {
 		NexacroResult result = new NexacroResult();
 		try {
-			List<Map<String, Object>> ds_AttenList = nexaAttenService.nexaGetAttenListByCondition(param);
+			List<NexaAttenDTO> ds_AttenList = nexaAttenService.nexaGetAttenListByCondition(param);
+			for(NexaAttenDTO test : ds_AttenList) {
+				System.out.println(test.getWorkStart());
+			}
 			result.addDataSet("ds_AttenList", ds_AttenList);
 		} catch (Exception ee) {
 			System.out.println(ee);

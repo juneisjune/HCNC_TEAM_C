@@ -40,8 +40,8 @@
                 <Cell col="1" text="bind:name" textAlign="center"/>
                 <Cell col="2" text="bind:workDate" calendardateformat="yyyy년 MM월 dd일" displaytype="date"/>
                 <Cell col="3" text="bind:attenType" textAlign="center"/>
-                <Cell col="4" text="bind:workStart" displaytype="date" calendardateformat="yyyy-MM-dd" textAlign="center"/>
-                <Cell col="5" text="bind:workEnd" textAlign="center" displaytype="date"/>
+                <Cell col="4" text="bind:workStart" textAlign="center" displaytype="normal"/>
+                <Cell col="5" text="bind:workEnd" textAlign="center"/>
                 <Cell col="6" text="bind:workOver" textAlign="center"/>
               </Band>
             </Format>
@@ -62,6 +62,8 @@
     <Script type="xscript5.1"><![CDATA[
 this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	
+
 	this.fnSearch();
 };
 
@@ -90,6 +92,7 @@ this.fnSearch = function(){
 	var isAsync     = true; 							// 동기/ 비동기
 	
 	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+
 }
 
 //처리콜백 함수
@@ -118,8 +121,8 @@ this.fnCallback = function(svcID,errorCode,errorMsg)
           <Column id="name" type="STRING" size="256"/>
           <Column id="workDate" type="DATE" size="256"/>
           <Column id="attenType" type="STRING" size="256"/>
-          <Column id="workStart" type="TIME" size="256" prop=""/>
-          <Column id="workEnd" type="TIME" size="256" prop=""/>
+          <Column id="workStart" type="STRING" size="256"/>
+          <Column id="workEnd" type="STRING" size="256"/>
           <Column id="workOver" type="INT" size="256"/>
         </ColumnInfo>
       </Dataset>
@@ -127,8 +130,8 @@ this.fnCallback = function(svcID,errorCode,errorMsg)
         <ColumnInfo>
           <Column id="SEARCH_TYPE" type="STRING" size="256"/>
           <Column id="SEARCH_WORD" type="STRING" size="256"/>
-          <Column id="START_DATE" type="DATE" size="256"/>
-          <Column id="END_DATE" type="DATE" size="256"/>
+          <Column id="START_DATE" type="STRING" size="256"/>
+          <Column id="END_DATE" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>

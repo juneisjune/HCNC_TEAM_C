@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface NexaAttenService {
 
-	List<Map<String, Object>> nexaGetAttenListByCondition(Map<String, Object> param);
+	List<NexaAttenDTO> nexaGetAttenListByCondition(Map<String, Object> param);
 
 }

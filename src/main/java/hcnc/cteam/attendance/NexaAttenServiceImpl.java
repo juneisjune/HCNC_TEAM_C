@@ -16,9 +16,8 @@ public class NexaAttenServiceImpl implements NexaAttenService {
 	private NexaAttenMapper mapper;
 
 	@Override
-	public List<Map<String, Object>> nexaGetAttenListByCondition(Map<String, Object> param) {
+	public List<NexaAttenDTO> nexaGetAttenListByCondition(Map<String, Object> param) {
 		return mapper.nexaGetAttenListByCondition(param);
 	}
-	
 	
 }

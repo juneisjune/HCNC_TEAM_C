@@ -9,8 +9,8 @@ public class NexaAttenDTO {
 	private String name; // 직원 이름
 	private Date workDate; // 근무 일자
 	private String attenType; // 근무 형태
-	private Time workStart; // 출근 시간
-	private Time workEnd; // 퇴근 시간
+	private String workStart; // 출근 시간
+	private String workEnd; // 퇴근 시간
 	private long workOver; // 초과 근무 시간
 	private String managerName; //관리자 이름
 	
@@ -38,16 +38,16 @@ public class NexaAttenDTO {
 	public void setAttenType(String attenType) {
 		this.attenType = attenType;
 	}
-	public Time getWorkStart() {
+	public String getWorkStart() {
 		return workStart;
 	}
-	public void setWorkStart(Time workStart) {
+	public void setWorkStart(String workStart) {
 		this.workStart = workStart;
 	}
-	public Time getWorkEnd() {
+	public String getWorkEnd() {
 		return workEnd;
 	}
-	public void setWorkEnd(Time workEnd) {
+	public void setWorkEnd(String workEnd) {
 		this.workEnd = workEnd;
 	}
 	public long getWorkOver() {

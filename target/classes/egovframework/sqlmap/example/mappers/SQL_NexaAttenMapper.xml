@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hcnc.cteam.attendance.NexaAttenMapper">
-
+	
 	<!-- 조건에 따른 조회(검색) 쿼리 -->
 	<select id="nexaGetAttenListByCondition"
 		resultType="nexaAttenDTO">
-		SELECT a.emp_code as empCode, b.name as name, a.work_date as
-		workDate, c.atten_type as attenType, a.work_start as workStart
-		, a.work_end as workEnd, a.work_over as workOver
+		SELECT 
+		a.emp_code as empCode
+		, b.name as name
+		, a.work_date as workDate
+		, c.atten_type as attenType
+		, DATE_FORMAT(a.work_start, '%H:%i') as workStart
+		, DATE_FORMAT(a.work_end, '%H:%i') as workEnd
+		, a.work_over as workOver
 		FROM attendance a
 		JOIN employee b ON a.emp_code = b.emp_code
 		JOIN att_code c ON a.atten_code = c.atten_code
@@ -33,7 +38,7 @@
 			</if>
 		</if>
 		<!-- 근무일자에 따른 조회 -->
-		<if test="START_DATE != null and END_DATE != null">
+		<if test='START_DATE != null and START_DATE != "" and END_DATE != null and END_DATE != ""'>
 			AND a.work_date BETWEEN #{START_DATE} AND #{END_DATE}
 		</if>
 	</select>
