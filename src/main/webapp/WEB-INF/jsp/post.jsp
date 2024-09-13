@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>게시글 조회 페이지</title>
     <style>
-    	table {
+        table {
             width: 100%;
             border-collapse: collapse;
         }
@@ -19,10 +19,19 @@
         th {
             background-color: #f2f2f2;
         }
+        .btn1 {
+            padding: 5px 10px;
+            background-color: gray;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn1:hover {
+            background-color: #0056b3;
+        }
     </style>
-    
-		
-
 </head>
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 <body>
@@ -35,22 +44,28 @@
                 <th>제목</th>
                 <th>내용</th>
                 <th>작성자 이름</th>
-                
                 <th>등록일</th>
+                <th>상세 조회</th> <!-- 버튼을 위한 열 추가 -->
             </tr>
         </thead>
         <tbody>
-    <c:forEach var="post" items="${postList}">
-        <tr>
-            <td><a href="postDetail.do?post_code=${post.post_code}">${post.post_code}</a></td>
-            <td>${post.title}</td>
-            <td>${post.content}</td>
-            <td>${post.emp_name}</td>
-            <td>${post.reg_date}</td>
-        </tr>
-    </c:forEach>
-</tbody>
-
+            <c:forEach var="post" items="${postList}">
+                <tr>
+                    <td>${post.post_code}</td>
+                    <td>${post.title}</td>
+                    <td>${post.content}</td>
+                    <td>${post.emp_name}</td>
+                    <td>${post.reg_date}</td>
+                    <td>
+                        <!-- 상세 조회 버튼 -->
+                        <form action="postDetail.do" method="get">
+                            <input type="hidden" name="post_code" value="${post.post_code}">
+                            <button type="submit" class="btn1">상세 조회</button>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
 
 </body>

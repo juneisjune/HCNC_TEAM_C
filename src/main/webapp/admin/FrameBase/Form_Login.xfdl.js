@@ -114,11 +114,12 @@
         		console.log("저장된 Email: " + objApp.ds_userInfo.getColumn(row, "email"));
 
         		console.log(nexacro.getApplication().ds_userInfo.saveXML());
+        		console.log(nexacro.getApplication().ds_userInfo.getColumn(row,"name"));
 
                 alert("로그인 성공! 사용자 정보가 저장되었습니다.");
 
                 // 로그인 성공 후 페이지 이동
-                nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_VerifyLogin.xfdl");
+                nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
             }
         };
 

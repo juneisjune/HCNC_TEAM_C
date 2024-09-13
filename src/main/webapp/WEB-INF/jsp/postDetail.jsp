@@ -71,7 +71,7 @@
 
         .btn-area a {
             padding: 10px 20px;
-            background-color: #007BFF;
+            background-color: gray;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;

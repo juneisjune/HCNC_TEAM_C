@@ -10,8 +10,10 @@
 	</select>
 	<!-- 게시글 상세 조회 관련 쿼리 -->	
 	<select id="selectPostDetail" parameterType="int" resultType="map">
-	    SELECT a.post_code, a.title, content, reg_date, emp_code
+	    SELECT a.post_code, a.title, a.content, a.reg_date, name
 	    FROM post a
+	    INNER JOIN employee b 
+	      ON a.emp_code = b.emp_code
 	    WHERE post_code = #{postCode}
 	</select>	
 	
