@@ -18,7 +18,7 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("ds_AttenList", this);
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"workDate\" type=\"DATE\" size=\"256\"/><Column id=\"attenType\" type=\"STRING\" size=\"256\"/><Column id=\"workStart\" type=\"STRING\" size=\"256\"/><Column id=\"workEnd\" type=\"STRING\" size=\"256\"/><Column id=\"workOver\" type=\"INT\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"workDate\" type=\"DATE\" size=\"256\"/><Column id=\"attenType\" type=\"STRING\" size=\"256\"/><Column id=\"workStart\" type=\"STRING\" size=\"256\"/><Column id=\"workEnd\" type=\"STRING\" size=\"256\"/><Column id=\"workOver\" type=\"INT\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -28,7 +28,7 @@
 
 
             obj = new Dataset("ds_SearchType", this);
-            obj._setContents("<ColumnInfo><Column id=\"Value\" type=\"STRING\" size=\"256\"/><Column id=\"Name\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"Name\">전체</Col><Col id=\"Value\">ALL</Col></Row><Row><Col id=\"Name\">이름</Col><Col id=\"Value\">NAME</Col></Row><Row><Col id=\"Name\">근무형태</Col><Col id=\"Value\">WORK_TYPE</Col></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"Value\" type=\"STRING\" size=\"256\"/><Column id=\"Name\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"Name\">전체</Col><Col id=\"Value\">ALL</Col></Row><Row><Col id=\"Name\">이름</Col><Col id=\"Value\">NAME</Col></Row><Row><Col id=\"Name\">직책</Col><Col id=\"Value\">ASSIGNMENT</Col></Row><Row><Col id=\"Name\">부서명</Col><Col id=\"Value\">DEPARTMENT</Col></Row><Row><Col id=\"Name\">근무형태</Col><Col id=\"Value\">WORK_TYPE</Col></Row></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -74,7 +74,7 @@
             obj = new Grid("grid_Atten","20","130","1240","460",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_binddataset("ds_AttenList");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"120\"/><Column size=\"130\"/><Column size=\"240\"/><Column size=\"130\"/><Column size=\"240\"/><Column size=\"240\"/><Column size=\"138\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"근무 일자\"/><Cell col=\"3\" text=\"근무 형태\"/><Cell col=\"4\" text=\"출근 시간\"/><Cell col=\"5\" text=\"퇴근 시간\"/><Cell col=\"6\" text=\"초과 근무 시간\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:workDate\" calendardateformat=\"yyyy년 MM월 dd일\" displaytype=\"date\"/><Cell col=\"3\" text=\"bind:attenType\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:workStart\" textAlign=\"center\" displaytype=\"normal\"/><Cell col=\"5\" text=\"bind:workEnd\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:workOver\" textAlign=\"center\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"120\"/><Column size=\"130\"/><Column size=\"120\"/><Column size=\"160\"/><Column size=\"240\"/><Column size=\"130\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"138\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"부서명\"/><Cell col=\"4\" text=\"근무 일자\"/><Cell col=\"5\" text=\"근무 형태\"/><Cell col=\"6\" text=\"출근 시간\"/><Cell col=\"7\" text=\"퇴근 시간\"/><Cell col=\"8\" text=\"초과 근무 시간\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:workDate\" calendardateformat=\"yyyy년 MM월 dd일\" displaytype=\"date\"/><Cell col=\"5\" text=\"bind:attenType\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:workStart\" textAlign=\"center\" displaytype=\"normal\"/><Cell col=\"7\" text=\"bind:workEnd\" textAlign=\"center\"/><Cell col=\"8\" text=\"bind:workOver\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_RegisterAtten","1180","600","80","40",null,null,null,null,null,null,this);
@@ -128,8 +128,6 @@
 
         this.btn_Search_onclick = function(obj,e)
         {
-
-
         	this.fnSearch();
         };
 
@@ -192,20 +190,58 @@
 
         };
 
+        // 그리드에서 원하는 열 더블클릭 시 수정 팝업 호출
         this.grid_Atten_oncelldblclick = function(obj,e)
         {
+        	var objParam = {COL_EMPCODE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_EMPCODE")
+                          , COL_NAME:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_NAME")
+                          , COL_ASSIGNMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ASSIGNMENT")
+        				  , COL_DEPARTMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_DEPARTMENT")
+        				  , COL_WORKDATE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKDATE")
+        				  , COL_ATTENDANCE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ATTENDANCE")
+        				  , COL_WORKSTART:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKSTART")
+        				  , COL_WORKEND:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKEND")};
 
+        	this.showEditAtten(objParam);
         };
 
+        // 수정 버튼 클릭 시 수정 팝업 호출
         this.btn_EditAtten_onclick = function(obj,e)
         {
+        	var objParam = {COL_EMPCODE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_EMPCODE")
+                          , COL_NAME:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_NAME")
+                          , COL_ASSIGNMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ASSIGNMENT")
+        				  , COL_DEPARTMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_DEPARTMENT")
+        				  , COL_WORKDATE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKDATE")
+        				  , COL_ATTENDANCE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ATTENDANCE")
+        				  , COL_WORKSTART:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKSTART")
+        				  , COL_WORKEND:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKEND")};
 
+        	this.showEditAtten(objParam);
         };
 
         this.btn_RegisterAtten_onclick = function(obj,e)
         {
 
         };
+
+        // 팝업호출
+        this.showEditAtten = function (objParam)
+        {
+        	popup = new nexacro.ChildFrame;
+        	popup.init("popupEditAtten", 0, 0, 800, 700, null, null, "FrameBase::Popup_EditAtten.xfdl");
+        	popup.set_dragmovetype("all");
+        	popup.set_layered("true");
+        	popup.set_autosize(true);
+        	popup.set_showtitlebar("근태 수정 화면");
+        	popup.set_showstatusbar(false);
+        	popup.set_resizable(true);
+        	popup.set_openalign("center middle");
+        	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
+        	popup.style.set_overlaycolor("#6666664C");
+        	popup.form.style.set_border("1 solid #4c5a6f");
+
+        }
 
         });
         

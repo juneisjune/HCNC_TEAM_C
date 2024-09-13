@@ -7,6 +7,8 @@ public class NexaAttenDTO {
 
 	private int empCode; // 직원 코드(사번)
 	private String name; // 직원 이름
+	private String assignName; //직급
+	private String depName; // 부서명
 	private Date workDate; // 근무 일자
 	private String attenType; // 근무 형태
 	private String workStart; // 출근 시간
@@ -25,6 +27,18 @@ public class NexaAttenDTO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getAssignName() {
+		return assignName;
+	}
+	public void setAssignName(String assignName) {
+		this.assignName = assignName;
+	}
+	public String getDepName() {
+		return depName;
+	}
+	public void setDepName(String depName) {
+		this.depName = depName;
 	}
 	public Date getWorkDate() {
 		return workDate;
@@ -62,6 +76,5 @@ public class NexaAttenDTO {
 	public void setManagerName(String managerName) {
 		this.managerName = managerName;
 	}
-	
 	
 }

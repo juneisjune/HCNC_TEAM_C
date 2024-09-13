@@ -16,10 +16,12 @@
               <Columns>
                 <Column size="120"/>
                 <Column size="130"/>
+                <Column size="120"/>
+                <Column size="160"/>
                 <Column size="240"/>
                 <Column size="130"/>
-                <Column size="240"/>
-                <Column size="240"/>
+                <Column size="100"/>
+                <Column size="100"/>
                 <Column size="138"/>
               </Columns>
               <Rows>
@@ -29,20 +31,24 @@
               <Band id="head">
                 <Cell text="사번"/>
                 <Cell col="1" text="이름"/>
-                <Cell col="2" text="근무 일자"/>
-                <Cell col="3" text="근무 형태"/>
-                <Cell col="4" text="출근 시간"/>
-                <Cell col="5" text="퇴근 시간"/>
-                <Cell col="6" text="초과 근무 시간"/>
+                <Cell col="2" text="직책"/>
+                <Cell col="3" text="부서명"/>
+                <Cell col="4" text="근무 일자"/>
+                <Cell col="5" text="근무 형태"/>
+                <Cell col="6" text="출근 시간"/>
+                <Cell col="7" text="퇴근 시간"/>
+                <Cell col="8" text="초과 근무 시간"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:empCode" textAlign="center"/>
                 <Cell col="1" text="bind:name" textAlign="center"/>
-                <Cell col="2" text="bind:workDate" calendardateformat="yyyy년 MM월 dd일" displaytype="date"/>
-                <Cell col="3" text="bind:attenType" textAlign="center"/>
-                <Cell col="4" text="bind:workStart" textAlign="center" displaytype="normal"/>
-                <Cell col="5" text="bind:workEnd" textAlign="center"/>
-                <Cell col="6" text="bind:workOver" textAlign="center"/>
+                <Cell col="2" text="bind:assignName" textAlign="center"/>
+                <Cell col="3" text="bind:depName" textAlign="center"/>
+                <Cell col="4" text="bind:workDate" calendardateformat="yyyy년 MM월 dd일" displaytype="date"/>
+                <Cell col="5" text="bind:attenType" textAlign="center"/>
+                <Cell col="6" text="bind:workStart" textAlign="center" displaytype="normal"/>
+                <Cell col="7" text="bind:workEnd" textAlign="center"/>
+                <Cell col="8" text="bind:workOver" textAlign="center"/>
               </Band>
             </Format>
           </Formats>
@@ -55,8 +61,6 @@
     <Script type="xscript5.1"><![CDATA[
 this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	
-
 	this.fnSearch();
 };
 
@@ -119,26 +123,66 @@ this.btn_SearchReset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventI
 	
 };
 
+// 그리드에서 원하는 열 더블클릭 시 수정 팝업 호출
 this.grid_Atten_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
-	
+	var objParam = {COL_EMPCODE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_EMPCODE")
+                  , COL_NAME:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_NAME")
+                  , COL_ASSIGNMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ASSIGNMENT")
+				  , COL_DEPARTMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_DEPARTMENT")
+				  , COL_WORKDATE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKDATE")
+				  , COL_ATTENDANCE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ATTENDANCE")
+				  , COL_WORKSTART:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKSTART")
+				  , COL_WORKEND:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKEND")};
+				  
+	this.showEditAtten(objParam);
 };
 
+// 수정 버튼 클릭 시 수정 팝업 호출
 this.btn_EditAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	
+	var objParam = {COL_EMPCODE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_EMPCODE")
+                  , COL_NAME:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_NAME")
+                  , COL_ASSIGNMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ASSIGNMENT")
+				  , COL_DEPARTMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_DEPARTMENT")
+				  , COL_WORKDATE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKDATE")
+				  , COL_ATTENDANCE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ATTENDANCE")
+				  , COL_WORKSTART:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKSTART")
+				  , COL_WORKEND:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKEND")};
+				  
+	this.showEditAtten(objParam);
 };
 
 this.btn_RegisterAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	
 };
+
+// 팝업호출
+this.showEditAtten = function (objParam) 
+{		  
+	popup = new nexacro.ChildFrame;
+	popup.init("popupEditAtten", 0, 0, 800, 700, null, null, "FrameBase::Popup_EditAtten.xfdl");
+	popup.set_dragmovetype("all");
+	popup.set_layered("true");
+	popup.set_autosize(true);
+	popup.set_showtitlebar("근태 수정 화면");
+	popup.set_showstatusbar(false);
+	popup.set_resizable(true);
+	popup.set_openalign("center middle");
+	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
+	popup.style.set_overlaycolor("#6666664C");
+	popup.form.style.set_border("1 solid #4c5a6f");
+	
+}
 ]]></Script>
     <Objects>
       <Dataset id="ds_AttenList">
         <ColumnInfo>
           <Column id="empCode" type="INT" size="256"/>
           <Column id="name" type="STRING" size="256"/>
+          <Column id="assignName" type="STRING" size="256"/>
+          <Column id="depName" type="STRING" size="256"/>
           <Column id="workDate" type="DATE" size="256"/>
           <Column id="attenType" type="STRING" size="256"/>
           <Column id="workStart" type="STRING" size="256"/>
@@ -170,6 +214,14 @@ this.btn_RegisterAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEven
           <Row>
             <Col id="Name">이름</Col>
             <Col id="Value">NAME</Col>
+          </Row>
+          <Row>
+            <Col id="Name">직책</Col>
+            <Col id="Value">ASSIGNMENT</Col>
+          </Row>
+          <Row>
+            <Col id="Name">부서명</Col>
+            <Col id="Value">DEPARTMENT</Col>
           </Row>
           <Row>
             <Col id="Name">근무형태</Col>
