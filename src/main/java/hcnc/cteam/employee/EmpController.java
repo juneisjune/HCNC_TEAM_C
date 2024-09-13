@@ -14,6 +14,6 @@ public class EmpController {
 //		ModelAndView view = new ModelAndView();
 //		view.setViewName("test");
 			
-		return "test01";
+		return "menu";
 	}
 }

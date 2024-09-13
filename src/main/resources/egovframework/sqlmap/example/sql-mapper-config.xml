@@ -3,18 +3,23 @@
 
 
 <configuration>
-   
-   <settings>
-           <setting name="mapUnderscoreToCamelCase" value="true"/>
-   </settings>
+
+	<settings>
+	        <setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
 
     <typeAliases>
 		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+		<typeAlias alias="payDTO" type="hcnc.cteam.pay.PayDTO" />
+		<typeAlias alias="payEmpDTO" type="hcnc.cteam.pay.PayEmpDTO" />
+		<typeAlias alias="paySearchDTO" type="hcnc.cteam.pay.PaySearchDTO"/>
 		<typeAlias alias="attenDTO" type="hcnc.cteam.attendance.AttenDTO"/>
 		<typeAlias alias="nexaAttenDTO" type="hcnc.cteam.attendance.NexaAttenDTO"/>		
+		
 <!-- 		<typeAlias alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/> -->
 <!-- 		<typeAlias alias="sampleVO" type="egovframework.example.sample.service.SampleVO"/> -->
     </typeAliases>
+    
   <!-- myBatis Inteceptor for get column information  -->
   <plugins>  
     <!-- NexacroMybatisMetaDataProvider :  Executor Plugin:쿼리를 실행하며, 
