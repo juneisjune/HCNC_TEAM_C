@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Attendance" width="1280" height="720" titletext="New Form" onload="Form_Attendance_onload">
+  <Form id="Form_Attendance" width="1280" height="720" titletext="출/퇴근 목록" onload="Form_Attendance_onload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
         <Static id="Title" taborder="0" text="직원 출/퇴근 기록 관리" left="15" top="15" width="350" height="50" font="32px/normal &quot;Gulim&quot;"/>
-        <Combo id="cmb_SearchType" taborder="1" text="전체" left="520" top="80" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL"/>
-        <Edit id="edt_SearchWord" taborder="2" left="640" top="80" width="180" height="30"/>
-        <Calendar id="cal_Start" taborder="3" left="840" top="80" width="150" height="30"/>
-        <Calendar id="cal_End" taborder="4" left="1030" top="80" width="150" height="30"/>
-        <Button id="btn_Search" taborder="5" text="검색" left="1190" top="80" width="70" height="30" onclick="btn_Search_onclick"/>
-        <Static id="Static01" taborder="6" text="~" left="1000" top="80" width="20" height="30" font="24px/normal &quot;Gulim&quot;"/>
-        <Grid id="grid_Atten" taborder="7" left="20" top="130" width="1240" height="460" binddataset="ds_AttenList">
+        <Combo id="cmb_SearchType" taborder="1" text="전체" left="450" top="90" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL"/>
+        <Edit id="edt_SearchWord" taborder="2" left="570" top="90" width="180" height="30"/>
+        <Calendar id="cal_Start" taborder="3" left="770" top="90" width="150" height="30"/>
+        <Calendar id="cal_End" taborder="4" left="960" top="90" width="150" height="30"/>
+        <Button id="btn_Search" taborder="5" text="검색" left="1120" top="90" width="70" height="30" onclick="btn_Search_onclick"/>
+        <Static id="Static01" taborder="6" text="~" left="930" top="90" width="20" height="30" font="24px/normal &quot;Gulim&quot;"/>
+        <Grid id="grid_Atten" taborder="7" left="20" top="130" width="1240" height="460" binddataset="ds_AttenList" oncelldblclick="grid_Atten_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -47,16 +47,9 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Submit" taborder="8" text="저장" left="1180" top="600" width="80" height="40"/>
-        <Edit id="edt_emp_code" taborder="9" left="200" top="600" width="60" height="40"/>
-        <Calendar id="edt_work_date" taborder="10" left="390" top="600" width="120" height="40"/>
-        <Combo id="edt_work_type" taborder="11" text="Combo00" left="630" top="600" width="100" height="40"/>
-        <Combo id="Combo01" taborder="12" text="Combo01" left="20" top="600" width="100" height="40"/>
-        <Static id="txt_emp_code" taborder="13" text="사번 : " left="140" top="600" width="50" height="40" font="18px/normal &quot;Gulim&quot;"/>
-        <Static id="txt_work_date" taborder="14" text="근무 일자  : " left="280" top="600" width="100" height="40" font="18px/normal &quot;Gulim&quot;"/>
-        <Static id="txt_work_type" taborder="15" text="근무 형태 : " left="530" top="600" width="100" height="40" font="18px/normal &quot;Gulim&quot;"/>
-        <Static id="txt_work_start" taborder="16" text="출근 시간  : " left="749" top="600" width="100" height="40" font="18px/normal &quot;Gulim&quot;"/>
-        <Static id="txt_work_end" taborder="17" text="퇴근 시간  : " left="950" top="600" width="100" height="40" font="18px/normal &quot;Gulim&quot;"/>
+        <Button id="btn_RegisterAtten" taborder="8" text="+ 등록" left="1180" top="600" width="80" height="40" onclick="btn_RegisterAtten_onclick"/>
+        <Button id="btn_SearchReset" taborder="9" text="초기화" left="1200" top="90" width="60" height="30" onclick="btn_SearchReset_onclick"/>
+        <Button id="btn_EditAtten" taborder="10" text="수정" left="1080" top="600" width="80" height="40" onclick="btn_EditAtten_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -113,7 +106,34 @@ this.fnCallback = function(svcID,errorCode,errorMsg)
 		// 위 서비스 ID에 해당하지 않을 경우
 			break;
 	}
-};]]></Script>
+};
+
+// 초기화 버튼 클릭 시 검색조건 초기화
+this.btn_SearchReset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
+	this.ds_Search.setColumn(0, "SEARCH_WORD", "");
+	this.ds_Search.setColumn(0, "START_DATE", "");
+	this.ds_Search.setColumn(0, "END_DATE", "");
+	
+};
+
+this.grid_Atten_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	
+};
+
+this.btn_EditAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+this.btn_RegisterAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
     <Objects>
       <Dataset id="ds_AttenList">
         <ColumnInfo>
