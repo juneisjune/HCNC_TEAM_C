@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Attendance" width="1280" height="720" titletext="출/퇴근 목록" onload="Form_Attendance_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Static id="Title" taborder="0" text="직원 출/퇴근 기록 관리" left="15" top="15" width="350" height="50" font="32px/normal &quot;Gulim&quot;"/>
+        <Combo id="cmb_SearchType" taborder="1" text="전체" left="450" top="90" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL"/>
+        <Edit id="edt_SearchWord" taborder="2" left="570" top="90" width="180" height="30"/>
+        <Calendar id="cal_Start" taborder="3" left="770" top="90" width="150" height="30"/>
+        <Calendar id="cal_End" taborder="4" left="960" top="90" width="150" height="30"/>
+        <Button id="btn_Search" taborder="5" text="검색" left="1120" top="90" width="70" height="30" onclick="btn_Search_onclick"/>
+        <Static id="Static01" taborder="6" text="~" left="930" top="90" width="20" height="30" font="24px/normal &quot;Gulim&quot;"/>
+        <Grid id="grid_Atten" taborder="7" left="20" top="130" width="1240" height="460" binddataset="ds_AttenList" oncelldblclick="grid_Atten_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="120"/>
+                <Column size="130"/>
+                <Column size="240"/>
+                <Column size="130"/>
+                <Column size="240"/>
+                <Column size="240"/>
+                <Column size="138"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사번"/>
+                <Cell col="1" text="이름"/>
+                <Cell col="2" text="근무 일자"/>
+                <Cell col="3" text="근무 형태"/>
+                <Cell col="4" text="출근 시간"/>
+                <Cell col="5" text="퇴근 시간"/>
+                <Cell col="6" text="초과 근무 시간"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:empCode" textAlign="center"/>
+                <Cell col="1" text="bind:name" textAlign="center"/>
+                <Cell col="2" text="bind:workDate" calendardateformat="yyyy년 MM월 dd일" displaytype="date"/>
+                <Cell col="3" text="bind:attenType" textAlign="center"/>
+                <Cell col="4" text="bind:workStart" textAlign="center" displaytype="normal"/>
+                <Cell col="5" text="bind:workEnd" textAlign="center"/>
+                <Cell col="6" text="bind:workOver" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_RegisterAtten" taborder="8" text="+ 등록" left="1180" top="600" width="80" height="40" onclick="btn_RegisterAtten_onclick"/>
+        <Button id="btn_SearchReset" taborder="9" text="초기화" left="1200" top="90" width="60" height="30" onclick="btn_SearchReset_onclick"/>
+        <Button id="btn_EditAtten" taborder="10" text="수정" left="1080" top="600" width="80" height="40" onclick="btn_EditAtten_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+
+	this.fnSearch();
+};
+
+this.Form_Attendance_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	// 검색 조건 콤보박스값 임의 부여
+	this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
+	
+	this.fnSearch();
+};
+
+//조회 함수
+this.fnSearch = function(){
+
+ 	console.log("SEARCH_TYPE = " + this.ds_Search.getColumn(0, "SEARCH_TYPE"));
+ 	console.log("SEARCH_WORD = " + this.ds_Search.getColumn(0, "SEARCH_WORD"));
+ 	console.log("START_DATE = " + this.ds_Search.getColumn(0, "START_DATE"));
+ 	console.log("END_DATE = " + this.ds_Search.getColumn(0, "END_DATE"));
+	
+	var strSvcId    = "selectAttenList"; 					// 콜백 서비스명
+	var strSvcUrl   = "svc::selectAttenList.do"; 			// 호출 URL
+	var inData      = "ds_Search=ds_Search"; 			// 앞=뒤 //앞은 컨트롤러단에서 받는 파라미터명 / 뒤는 넥사크로에서 보낼 파라미터명
+	var outData     = "ds_AttenList=ds_AttenList"; 	//inData와는 반대
+	var strArg      = ""; 								// 특정 문자열을 넘길 때 사용하는 매개변수, 구분자는 스페이스(공백)
+	var callBackFnc = "fnCallback"; 					// 콜백 후 실행 할 함수
+	var isAsync     = true; 							// 동기/ 비동기
+	
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+
+}
+
+//처리콜백 함수
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	// 에러 시 화면 처리 내역
+	if(errorCode == -1)
+	{
+		this.alert(errorMsg);
+		return;
+	}
+
+	switch(svcID)
+	{
+		case "selectAttenList":
+			break;
+		default :
+		// 위 서비스 ID에 해당하지 않을 경우
+			break;
+	}
+};
+
+// 초기화 버튼 클릭 시 검색조건 초기화
+this.btn_SearchReset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+	this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
+	this.ds_Search.setColumn(0, "SEARCH_WORD", "");
+	this.ds_Search.setColumn(0, "START_DATE", "");
+	this.ds_Search.setColumn(0, "END_DATE", "");
+	
+};
+
+this.grid_Atten_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	
+};
+
+this.btn_EditAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+this.btn_RegisterAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_AttenList">
+        <ColumnInfo>
+          <Column id="empCode" type="INT" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="workDate" type="DATE" size="256"/>
+          <Column id="attenType" type="STRING" size="256"/>
+          <Column id="workStart" type="STRING" size="256"/>
+          <Column id="workEnd" type="STRING" size="256"/>
+          <Column id="workOver" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_Search">
+        <ColumnInfo>
+          <Column id="SEARCH_TYPE" type="STRING" size="256"/>
+          <Column id="SEARCH_WORD" type="STRING" size="256"/>
+          <Column id="START_DATE" type="STRING" size="256"/>
+          <Column id="END_DATE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_SearchType">
+        <ColumnInfo>
+          <Column id="Value" type="STRING" size="256"/>
+          <Column id="Name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Name">전체</Col>
+            <Col id="Value">ALL</Col>
+          </Row>
+          <Row>
+            <Col id="Name">이름</Col>
+            <Col id="Value">NAME</Col>
+          </Row>
+          <Row>
+            <Col id="Name">근무형태</Col>
+            <Col id="Value">WORK_TYPE</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edt_SearchWord" propid="value" datasetid="ds_Search" columnid="SEARCH_WORD"/>
+      <BindItem id="item1" compid="cmb_SearchType" propid="value" datasetid="ds_Search" columnid="SEARCH_TYPE"/>
+      <BindItem id="item2" compid="cal_Start" propid="value" datasetid="ds_Search" columnid="START_DATE"/>
+      <BindItem id="item3" compid="cal_End" propid="value" datasetid="ds_Search" columnid="END_DATE"/>
+    </Bind>
+  </Form>
+</FDL>
