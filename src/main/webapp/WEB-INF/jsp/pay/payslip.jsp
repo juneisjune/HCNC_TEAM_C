@@ -120,7 +120,7 @@
 	            <td>${totalDay}일</td>
 	            <td>${totalTime}시간</td>
 	            <td>${overTime}시간</td>
-	            <td></td>
+	            <td><fmt:formatNumber value="${myPay.etc}" type="currency" groupingUsed="true"/>원</td>
 	        </tr>
 	    </table>
 	

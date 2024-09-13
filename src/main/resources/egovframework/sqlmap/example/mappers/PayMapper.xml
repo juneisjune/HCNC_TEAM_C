@@ -4,7 +4,7 @@
 
 	<select id="selectMyPay" resultType="payDTO" parameterType="paySearchDTO">
 		SELECT emp_code, pay_year, pay_month, give_date, pay_over, pay_meal, pay_amount,
-		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay
+		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay, etc
 		FROM pay 
 		WHERE emp_code = 1
 		AND pay_month = #{payMonth}
@@ -96,7 +96,7 @@
 	
 	<select id="selectPayList" resultType="payDTO">
 		SELECT emp_code, pay_year, pay_month, give_date, pay_over, pay_meal, pay_amount,
-		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay
+		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay, etc
 		FROM pay 
 		WHERE emp_code = 1
 		ORDER BY pay_year DESC,
@@ -105,7 +105,7 @@
 	
 	<select id="selectPeriod" resultType="payDTO" parameterType="paySearchDTO">
 		SELECT emp_code, pay_year, pay_month, give_date, pay_over, pay_meal, pay_amount,
-		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay
+		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay, etc
 		FROM pay 
 		WHERE emp_code = 1
 		AND pay_year BETWEEN #{startYear} AND #{endYear}

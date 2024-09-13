@@ -32,7 +32,8 @@ public class PayController {
 
 	@Resource(name = "payService")
 	private PayService payService;
-
+	
+	//저번달 급여명세서 조회 
 	@RequestMapping("/viewPayslip.do")
 	public String viewPayslip(ModelMap model) throws Exception {
 		LocalDate currentDate = LocalDate.now();
@@ -65,6 +66,7 @@ public class PayController {
 		return "pay/payslip";
 	}
 
+	//해당 년,월 급여 조회
 	@RequestMapping("/viewPayslip/{payYear}/{payMonth}.do")
 	public String viewPayMonth(@PathVariable int payYear, @PathVariable int payMonth, ModelMap model) throws Exception {
 		PaySearchDTO paySearchDTO = new PaySearchDTO(payYear, payMonth);
@@ -94,6 +96,7 @@ public class PayController {
 		return "pay/payslip";
 	}
 
+	//해당 직원 급여 내역 모두 조회
 	@RequestMapping("/searchPay.do")
 	public String searchPayView(ModelMap model) throws Exception {
 		PayEmpDTO emp = payService.selectEmp();
@@ -111,6 +114,7 @@ public class PayController {
 		return "pay/searchPay";
 	}
 
+	//해당 기간 급여 조회 
 	@RequestMapping(value = "/searchPay.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String searchPay1(PaySearchDTO paySearchDTO, ModelMap model) {
