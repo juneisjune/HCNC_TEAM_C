@@ -15,7 +15,8 @@ public class PaySearchDTO {
 		
 	}
 	
-	public PaySearchDTO (int payYear, int payMonth) {
+	public PaySearchDTO (int empCode, int payYear, int payMonth) {
+		this.empCode = empCode;
 		this.payYear = payYear;
 		this.payMonth = payMonth;
 	}

@@ -37,7 +37,8 @@
 </head>
 <body>
  	<%@ include file="/WEB-INF/jsp/header.jsp" %>  
- 	<div class="container">
+ 	
+ 	<c:if test="${not empty myPay}">
 	    <table>
 	        <caption><h1>${myPay.payYear}년 ${myPay.payMonth}월 급여 명세서</h1></caption>
 	        <tr>
@@ -126,7 +127,10 @@
 	
 	    <h4>귀하의 노고에 감사드립니다.</h4>
 	    <h3>(주)에이치씨엔씨</h3>
-    </div>
+    </c:if>
+    <c:if test="${empty myPay}">
+    	<h4>급여 내역이 없습니다.</h4>
+    </c:if>
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>   
 </body>
 </html>

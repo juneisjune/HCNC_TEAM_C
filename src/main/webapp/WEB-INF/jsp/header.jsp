@@ -170,7 +170,7 @@
                 <a href="#" >퇴근</a>
                 <div>18:00:00</div>
                 
-                <a href="#" >로그아웃</a>
+                <a href="/logout.do" >로그아웃</a>
   
             </div> <!-- btn -->
          </div> <!-- home -->
