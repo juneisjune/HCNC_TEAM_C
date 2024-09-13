@@ -13,7 +13,7 @@
             this.set_titletext("출/퇴근 정보 등록");
             if (Form == this.constructor)
             {
-                this._setFormPosition(1050,300);
+                this._setFormPosition(1100,600);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -23,7 +23,7 @@
 
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",800,300,this,function(p){});
+            obj = new Layout("default","",1100,600,this,function(p){});
             obj.set_mobileorientation("landscape");
             this.addLayout(obj.name, obj);
             

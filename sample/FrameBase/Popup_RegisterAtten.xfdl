@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Popup_RegisterAtten" width="1050" height="300" titletext="출/퇴근 정보 등록">
+  <Form id="Popup_RegisterAtten" width="1100" height="600" titletext="출/퇴근 정보 등록">
     <Layouts>
-      <Layout height="300" mobileorientation="landscape" width="800"/>
+      <Layout height="600" mobileorientation="landscape" width="1100"/>
     </Layouts>
     <Objects/>
   </Form>

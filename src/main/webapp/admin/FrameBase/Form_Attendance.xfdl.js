@@ -193,14 +193,14 @@
         // 그리드에서 원하는 열 더블클릭 시 수정 팝업 호출
         this.grid_Atten_oncelldblclick = function(obj,e)
         {
-        	var objParam = {COL_EMPCODE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_EMPCODE")
-                          , COL_NAME:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_NAME")
-                          , COL_ASSIGNMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ASSIGNMENT")
-        				  , COL_DEPARTMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_DEPARTMENT")
-        				  , COL_WORKDATE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKDATE")
-        				  , COL_ATTENDANCE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ATTENDANCE")
-        				  , COL_WORKSTART:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKSTART")
-        				  , COL_WORKEND:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKEND")};
+        	var objParam = {empCode:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "empCode")
+                          , name:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "name")
+                          , assignName:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "assignName")
+        				  , depName:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "depName")
+        				  , workDate:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workDate")
+        				  , attenType:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "attenType")
+        				  , workStart:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workStart")
+        				  , workEnd:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workEnd")};
 
         	this.showEditAtten(objParam);
         };
@@ -208,32 +208,51 @@
         // 수정 버튼 클릭 시 수정 팝업 호출
         this.btn_EditAtten_onclick = function(obj,e)
         {
-        	var objParam = {COL_EMPCODE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_EMPCODE")
-                          , COL_NAME:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_NAME")
-                          , COL_ASSIGNMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ASSIGNMENT")
-        				  , COL_DEPARTMENT:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_DEPARTMENT")
-        				  , COL_WORKDATE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKDATE")
-        				  , COL_ATTENDANCE:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_ATTENDANCE")
-        				  , COL_WORKSTART:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKSTART")
-        				  , COL_WORKEND:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "COL_WORKEND")};
+        	var objParam = {empCode:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "empCode")
+                          , name:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "name")
+                          , assignName:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "assignName")
+        				  , depName:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "depName")
+        				  , workDate:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workDate")
+        				  , attenType:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "attenType")
+        				  , workStart:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workStart")
+        				  , workEnd:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workEnd")};
 
         	this.showEditAtten(objParam);
         };
 
+        // 등록 버튼 클릭 시 등록 팝업 호출
         this.btn_RegisterAtten_onclick = function(obj,e)
         {
-
+        	this.showRegisterAtten();
         };
 
-        // 팝업호출
+        // 수정 팝업호출
         this.showEditAtten = function (objParam)
         {
         	popup = new nexacro.ChildFrame;
-        	popup.init("popupEditAtten", 0, 0, 800, 700, null, null, "FrameBase::Popup_EditAtten.xfdl");
+        	popup.init("popupEditAtten", 0, 0, 1050, 200, null, null, "FrameBase::Popup_EditAtten.xfdl");
         	popup.set_dragmovetype("all");
         	popup.set_layered("true");
         	popup.set_autosize(true);
         	popup.set_showtitlebar("근태 수정 화면");
+        	popup.set_showstatusbar(false);
+        	popup.set_resizable(true);
+        	popup.set_openalign("center middle");
+        	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
+        	popup.style.set_overlaycolor("#6666664C");
+        	popup.form.style.set_border("1 solid #4c5a6f");
+
+        }
+
+        // 등록 팝업호출
+        this.showRegisterAtten = function (objParam)
+        {
+        	popup = new nexacro.ChildFrame;
+        	popup.init("popupRegisterAtten", 0, 0, 1100, 600, null, null, "FrameBase::Popup_RegisterAtten.xfdl");
+        	popup.set_dragmovetype("all");
+        	popup.set_layered("true");
+        	popup.set_autosize(true);
+        	popup.set_showtitlebar("근태 등록 화면");
         	popup.set_showstatusbar(false);
         	popup.set_resizable(true);
         	popup.set_openalign("center middle");
