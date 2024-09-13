@@ -236,7 +236,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.31</version>
         </dependency>
-
+       
         <dependency>
             <groupId>ojdbc</groupId>
             <artifactId>ojdbc</artifactId>
@@ -245,6 +245,15 @@
             <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/ojdbc14.jar</systemPath>
         </dependency>
         
+        <!-- 양민준 이메일 인증 주가 라이브러리 삭제하지 마세용 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>4.3.25.RELEASE</version>
+		</dependency>
+		
+		<!-- 양민준 이메일 인증 주가 라이브러리 끝  -->
+
 	</dependencies>
 
 	<build>

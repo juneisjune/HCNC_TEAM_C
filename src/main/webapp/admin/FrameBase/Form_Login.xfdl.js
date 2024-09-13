@@ -13,7 +13,7 @@
             this.set_titletext("로그인");
             if (Form == this.constructor)
             {
-                this._setFormPosition(710,310);
+                this._setFormPosition(720,350);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -23,36 +23,36 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("lbl_user_id","150","115","100","30",null,null,null,null,null,null,this);
+            obj = new Static("lbl_user_id","203","182","100","30",null,null,null,null,null,null,this);
             obj.set_text("아이디");
             obj.set_taborder("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_user_id","250","115","200","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_user_id","303","182","200","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.getSetter("binddataset").set("ds_login");
             obj.getSetter("bindcolumn").set("user_id");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lbl_password","150","160","100","30",null,null,null,null,null,null,this);
+            obj = new Static("lbl_password","203","227","100","30",null,null,null,null,null,null,this);
             obj.set_text("비밀번호");
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_password","250","160","200","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_password","303","227","200","30",null,null,null,null,null,null,this);
             obj.set_password("true");
             obj.set_taborder("3");
             obj.getSetter("binddataset").set("ds_login");
             obj.getSetter("bindcolumn").set("password");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_login","280","200","100","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_login","333","267","100","40",null,null,null,null,null,null,this);
             obj.set_text("로그인");
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",710,310,this,function(p){});
+            obj = new Layout("default","",720,350,this,function(p){});
             this.addLayout(obj.name, obj);
             
             // BindItem Information
@@ -75,18 +75,53 @@
         
         // User Script
         this.registerScript("Form_Login.xfdl", function() {
-        this.fnLoginCallback=function(strSvcId, nErrorCode, strErrorMsg)
-        {
-            if (nErrorCode < 0)
-            {
+        this.fnLoginCallback = function(strSvcId, nErrorCode, strErrorMsg) {
+        	objApp=nexacro.getApplication();
+            if (nErrorCode < 0) {
                 alert("로그인 실패: " + strErrorMsg);
             }
             else {
-                alert("로그인 성공!");
-        		nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
-                this.go("Form_Post.xfdl");  // 성공 시 다음 페이지로 이동
+                // 서버에서 반환한 ds_userInfo에서 각 정보 가져옴
+        		//console.log(this.ds_userInfo.saveXML());
+        //         var userId = this.ds_login.getColumn(0, "id");
+        //         var password = this.ds_login.getColumn(0, "password");
+        //         var adminName = this.ds_login.getColumn(0, "name");
+        //         var email = this.ds_login.getColumn(0, "email");
+
+        // 		console.log(this.ds_login.saveXML());
+        // 		console.log("userId: " + userId);
+        // 		console.log("password: " + password);
+        // 		console.log("name: " + name);
+        // 		console.log("email: " + email);
+
+        		// 전역 데이터셋에 저장
+                var row = objApp.ds_userInfo.addRow();
+        		var row2 = objApp.ds_userInfo.rowposition;
+        		console.log("#####");
+        		console.log(objApp.ds_userInfo.rowcount); // 2
+        		console.log(objApp.ds_userInfo.rowposition); // 1
+        		console.log("#####");
+
+        //         nexacro.getApplication().ds_userInfo.setColumn(row, "id", user_id);
+        //         nexacro.getApplication().ds_userInfo.setColumn(row, "password", password);
+        //         nexacro.getApplication().ds_userInfo.setColumn(row, "name", name);
+        //         nexacro.getApplication().ds_userInfo.setColumn(row, "email", email);
+
+        		// 저장된 값 확인하는 콘솔 로그
+        		console.log("저장된 ID: " + objApp.ds_userInfo.getColumn(row, "id"));
+        		console.log("저장된 Password: " + objApp.ds_userInfo.getColumn(row, "password"));
+        		console.log("저장된 Name: " + objApp.ds_userInfo.getColumn(row, "name"));
+        		console.log("저장된 Email: " + objApp.ds_userInfo.getColumn(row, "email"));
+
+        		console.log(nexacro.getApplication().ds_userInfo.saveXML());
+
+                alert("로그인 성공! 사용자 정보가 저장되었습니다.");
+
+                // 로그인 성공 후 페이지 이동
+                nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_VerifyLogin.xfdl");
             }
         };
+
 
         this.fnLogin_onclick = function(obj,e)
         {
@@ -121,13 +156,13 @@
 
             var strSvcId = "loginService";
             var strSvcUrl = "svc::login.do";
-            var inData = "ds_login=ds_login";  // 입력 데이터를 전달
-            var outData = "";
+            var inData = "ds_login=ds_login";
+            var outData = "nexacro.getApplication().ds_userInfo=ds_login";  // 서버로부터 받아온 데이터를 받을 데이터셋
             var strArg = "";
             var callBackFnc = "fnLoginCallback";  // 콜백 함수
             var isAsync = true;
 
-            this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);  // 트랜잭션 호출
+            this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
             console.log("transaction 지나감");
         };
 

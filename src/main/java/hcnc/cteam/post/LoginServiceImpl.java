@@ -22,4 +22,10 @@ public class LoginServiceImpl implements LoginService {
         }
         return false;  // 로그인 실패
     }
+
+    @Override
+    public Map<String, Object> getUserInfoByUserId(String userId) {
+        // 사용자 정보를 데이터베이스에서 조회하는 메서드 구현
+        return loginMapper.getUserByUserId(userId);
+    }
 }

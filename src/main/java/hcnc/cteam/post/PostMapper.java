@@ -9,4 +9,7 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 public interface PostMapper {
     // 게시글 목록을 조회하는 메서드
     List<Map<String, Object>> selectPost(Map<String, Object> param);
+    
+    //게시글 상세 조회 메서드 추가
+    Map<String, Object > selectPostDetail(int postCode);
 }

@@ -31,7 +31,7 @@
             obj.set_color("white");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_notice","10","50","940","400",null,null,null,null,null,null,this);
+            obj = new Grid("grd_notice","8","50","940","400",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Post");
             obj.set_taborder("1");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"85\"/><Column size=\"300\"/><Column size=\"300\"/><Column size=\"150\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"게시글 번호\"/><Cell col=\"1\" text=\"제목\"/><Cell col=\"2\" text=\"내용\"/><Cell col=\"3\" text=\"작성일자\"/><Cell col=\"4\" text=\"사번\"/></Band><Band id=\"body\"><Cell text=\"bind:post_code\"/><Cell col=\"1\" text=\"bind:title\"/><Cell col=\"2\" text=\"bind:content\"/><Cell col=\"3\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"4\" text=\"bind:emp_code\"/></Band></Format></Formats>");

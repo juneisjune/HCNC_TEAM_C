@@ -24,6 +24,14 @@ public class LoginController {
         boolean isAuthenticated = loginService.authenticate(userId, password);
         
         if (isAuthenticated) {
+            // 사용자 정보를 가져와서 반환 (아이디, 비밀번호, 관리자 이름, 이메일)
+            Map<String, Object> userInfo = loginService.getUserInfoByUserId(userId);
+
+            // 디버깅용 출력
+            System.out.println("userInfo: " + userInfo);
+
+            // Nexacro에서 사용할 데이터셋에 추가
+            result.addDataSet("ds_login", userInfo);  // 사용자 정보 전체 반환
             result.setErrorCode(0);  // 성공
             result.setErrorMsg("로그인 성공");
         } else {
@@ -33,4 +41,5 @@ public class LoginController {
         
         return result;
     }
+
 }

@@ -18,4 +18,10 @@ public class PostServiceImpl implements PostService {
         // 데이터베이스에서 게시글 목록 조회
         return postMapper.selectPost(param);
     }
+    
+    @Override
+    public Map<String, Object> selectPostDetail(int postCode){
+    	return postMapper.selectPostDetail(postCode);
+    }
+    
 }

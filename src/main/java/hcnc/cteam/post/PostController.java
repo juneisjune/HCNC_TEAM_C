@@ -18,8 +18,8 @@ public class PostController {
     private PostService postService;
 
     /**
-     * 게시글 리스트 조회
-     */
+     * 넥사크로 게시글 리스트 조회
+    */
     @RequestMapping(value = "/selectPost.do")
     public NexacroResult selectPost(@ParamDataSet(name = "ds_Search", required = false) Map<String, Object> param) {
         NexacroResult result = new NexacroResult();

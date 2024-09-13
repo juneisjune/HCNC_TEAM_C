@@ -48,4 +48,4 @@ local.properties
 target/
 .springBeans
 .recommenders/
-.geninfo
+*.geninfo

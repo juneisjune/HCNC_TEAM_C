@@ -9,7 +9,9 @@
 			// global dataobject
 		
             // global dataset
-
+            obj = new Dataset("ds_userInfo", this);
+            obj._setContents("<ColumnInfo><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"password\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"dep_code\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"email\"/></Row></Rows>");
+            this._addDataset(obj.name, obj);
             
             // global variable
 

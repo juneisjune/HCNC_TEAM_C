@@ -4,7 +4,7 @@
     <Layouts>
       <Layout height="720" width="1280">
         <Static id="Static00" taborder="0" text="공지사항조회" left="10" top="10" width="400" height="30" onclick="Static00_onclick" textAlign="left" font="bold 26px/normal &quot;Gulim&quot;" background="blue" color="white"/>
-        <Grid id="grd_notice" binddataset="ds_Post" left="10" top="50" width="940" height="400" taborder="1">
+        <Grid id="grd_notice" binddataset="ds_Post" left="8" top="50" width="940" height="400" taborder="1">
           <Formats>
             <Format id="default">
               <Columns>
