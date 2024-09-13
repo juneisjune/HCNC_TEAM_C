@@ -20,6 +20,7 @@ public class JspPostController {
     private PostService postService;
 	
 	
+	
 	@RequestMapping(value="/viewPost.do")
 	public String getPostList(Model model) {
 		// 게시글 목록 조회
@@ -34,6 +35,8 @@ public class JspPostController {
 	
 	@RequestMapping("/postDetail.do")
     public String getPostDetail(@RequestParam("post_code") int postCode, Model model) {
+		//조회수 1증가
+		postService.increaseViewCount(postCode);
         // 게시글 상세 정보 조회
         Map<String, Object> postDetail = postService.selectPostDetail(postCode);
         
@@ -43,5 +46,6 @@ public class JspPostController {
         // postDetail.jsp로 이동
         return "postDetail";
     }
+	
 	
 }

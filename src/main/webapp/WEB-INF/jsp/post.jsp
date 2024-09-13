@@ -45,17 +45,19 @@
                 <th>내용</th>
                 <th>작성자 이름</th>
                 <th>등록일</th>
+                <th>조회수</th>
                 <th>상세 조회</th> <!-- 버튼을 위한 열 추가 -->
             </tr>
         </thead>
         <tbody>
             <c:forEach var="post" items="${postList}">
                 <tr>
-                    <td>${post.post_code}</td>
-                    <td>${post.title}</td>
-                    <td>${post.content}</td>
-                    <td>${post.emp_name}</td>
-                    <td>${post.reg_date}</td>
+                    <td>${post.post_code}</td>	<!-- 게시글 번호-->
+                    <td>${post.title}</td>		<!-- 제목 출력 -->
+                    <td>${post.content}</td>	<!-- 내용 -->
+                    <td>${post.emp_name}</td>	<!-- 작성자-->
+                    <td>${post.reg_date}</td>	<!-- 작성일-->
+                    <td>${post.view_count}</td> <!-- 조회수 출력 -->
                     <td>
                         <!-- 상세 조회 버튼 -->
                         <form action="postDetail.do" method="get">

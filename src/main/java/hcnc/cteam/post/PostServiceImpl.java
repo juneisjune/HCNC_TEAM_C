@@ -23,5 +23,10 @@ public class PostServiceImpl implements PostService {
     public Map<String, Object> selectPostDetail(int postCode){
     	return postMapper.selectPostDetail(postCode);
     }
+    @Override
+    public void increaseViewCount(int postCode) {
+        postMapper.increaseViewCount(postCode);
+    }
+
     
 }

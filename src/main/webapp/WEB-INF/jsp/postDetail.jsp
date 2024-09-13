@@ -90,17 +90,24 @@
         <tr>
             <th>제목</th>
             <td colspan="3">${postDetail.title}</td>
+            
         </tr>
         <tr>
             <th>작성일자</th>
             <td>${postDetail.reg_date}</td>
             <th>작성자</th>
             <td>${postDetail.name}</td>
+            
         </tr>
         <tr>
             <th>첨부파일</th>
             <td colspan="3">없음</td>
+            <th>조회수</th>
+            <td>${postDetail.view_count}</td>
         </tr>
+        <tr>
+        </tr>
+        
     </table>
 
     <div class="content-area">

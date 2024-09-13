@@ -9,4 +9,6 @@ public interface PostService {
     
     //게시글 상세 조회
     Map<String, Object> selectPostDetail(int postCode);
+    //조회수 증가 관련
+    void increaseViewCount(int postCode);
 }
