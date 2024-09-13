@@ -196,7 +196,7 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link">근태 관리</a>
                     <ul class="sub-menu">
-                        <li><a href="#">근태 조회</a></li>
+                        <li><a href="/atten/attenlist.do">근태 조회</a></li>
                         <li><a href="#">휴가 신청</a></li>
                     </ul>
                 </li>
