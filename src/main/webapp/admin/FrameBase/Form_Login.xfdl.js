@@ -112,7 +112,6 @@
         		console.log("저장된 Password: " + objApp.ds_userInfo.getColumn(row, "password"));
         		console.log("저장된 Name: " + objApp.ds_userInfo.getColumn(row, "name"));
         		console.log("저장된 Email: " + objApp.ds_userInfo.getColumn(row, "email"));
-
         		console.log(nexacro.getApplication().ds_userInfo.saveXML());
         		console.log(nexacro.getApplication().ds_userInfo.getColumn(row,"name"));
 

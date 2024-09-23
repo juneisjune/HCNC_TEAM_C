@@ -33,8 +33,9 @@
         }
     </style>
 </head>
-<%@ include file="/WEB-INF/jsp/header.jsp" %>
+
 <body>
+<%@ include file="/WEB-INF/jsp/header.jsp" %>
     <h1>공지사항 목록</h1>
 
     <table>
