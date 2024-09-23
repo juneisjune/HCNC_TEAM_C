@@ -1,12 +1,13 @@
-package hcnc.cteam.employee;
+package hcnc.cteam.login;
 
-public class EmpDTO {
+public class LoginDTO {
 	private int empCode;
 	private int assignCode;
 	private int depCode;
 	private String id;
 	private String password;
 	private String name;
+	private String email;
 	
 	public int getEmpCode() {
 		return empCode;
@@ -44,6 +45,13 @@ public class EmpDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	
 	
 	

@@ -70,6 +70,7 @@
 			 
 			    success: function(result) {
 			    	console.log(result);
+			    	
 	                if (result.msg === "ok") {	 
 	                	
 	                	var payListBody = $("#payListBody");

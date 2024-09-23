@@ -131,7 +131,7 @@ public class PayController {
 	//해당 기간 급여 조회 
 	@RequestMapping(value = "/searchPay.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String searchPay1(PaySearchDTO paySearchDTO, ModelMap model, HttpServletRequest request) {
+	public String searchPay1(PaySearchDTO paySearchDTO, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		int empCode = (int) session.getAttribute("loginUser");	
 		paySearchDTO.setEmpCode(empCode);
