@@ -13,7 +13,7 @@ public class NexaAttenDTO {
 	private String attenType; // 근무 형태
 	private String workStart; // 출근 시간
 	private String workEnd; // 퇴근 시간
-	private long workOver; // 초과 근무 시간
+	private double workOver; // 초과 근무 시간
 	private String managerName; //관리자 이름
 	
 	public int getEmpCode() {
@@ -64,10 +64,10 @@ public class NexaAttenDTO {
 	public void setWorkEnd(String workEnd) {
 		this.workEnd = workEnd;
 	}
-	public long getWorkOver() {
+	public double getWorkOver() {
 		return workOver;
 	}
-	public void setWorkOver(long workOver) {
+	public void setWorkOver(double workOver) {
 		this.workOver = workOver;
 	}
 	public String getManagerName() {

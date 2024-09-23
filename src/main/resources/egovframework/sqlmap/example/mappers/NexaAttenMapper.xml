@@ -56,4 +56,52 @@
 		</if>
 	</select>
 
+	<update id="editAttenList" parameterType="nexaAttenDTO">
+		UPDATE attendance 
+		SET <if test="attenType == '출근'">
+				atten_code = 1
+				, work_start = CASE 
+		        WHEN LENGTH(#{workStart}) = 4 THEN 
+		            CONCAT(SUBSTRING(#{workStart}, 1, 2), ":", SUBSTRING(#{workStart}, 3, 2), ':00')
+		        WHEN LENGTH(#{workStart}) = 5 THEN 
+		            #{workStart}
+		        ELSE null
+			    END
+			    , work_end = CASE 
+			        WHEN LENGTH(#{workEnd}) = 4 THEN 
+			            CONCAT(SUBSTRING(#{workEnd}, 1, 2), ":", SUBSTRING(#{workEnd}, 3, 2), ':00')
+			        WHEN LENGTH(#{workEnd}) = 5 THEN 
+			            #{workEnd}
+			        ELSE null
+			    END
+				, work_over = (
+				FLOOR(
+						TIME_TO_SEC(
+							CASE 
+								WHEN 0 > TIMEDIFF(work_end, '18:00:00') THEN 0
+								WHEN work_end > '21:00:00' THEN TIMEDIFF('21:00:00', '18:00:00')
+								ELSE TIMEDIFF(work_end, '18:00:00')
+							END
+						) / 1800
+					) * 0.5
+				)
+			</if>
+			<if test="attenType == '결근'">
+				atten_code = 2
+				, work_start = null
+				, work_end = null
+				, work_over = null
+			</if>
+			<if test="attenType == '휴가'">
+				atten_code = 3
+				, work_start = null
+				, work_end = null
+				, work_over = null
+			</if>
+		   		, upd_date = CURTIME()
+		   		, upd_name = '변수민'
+			WHERE 1=1
+				AND emp_code = #{empCode}
+				AND work_date = SUBSTRING(#{workDate}, 1, 8)
+	</update>
 </mapper>

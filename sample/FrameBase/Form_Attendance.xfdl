@@ -48,7 +48,7 @@
                 <Cell col="5" text="bind:attenType" textAlign="center"/>
                 <Cell col="6" text="bind:workStart" textAlign="center" displaytype="normal"/>
                 <Cell col="7" text="bind:workEnd" textAlign="center"/>
-                <Cell col="8" text="bind:workOver" textAlign="center"/>
+                <Cell col="8" text="bind:workOver" textAlign="center" maskeditformat="##0.0"/>
               </Band>
             </Format>
           </Formats>
@@ -202,7 +202,7 @@ this.showRegisterAtten = function (objParam)
           <Column id="name" type="STRING" size="256"/>
           <Column id="assignName" type="STRING" size="256"/>
           <Column id="depName" type="STRING" size="256"/>
-          <Column id="workDate" type="DATE" size="256"/>
+          <Column id="workDate" type="STRING" size="256"/>
           <Column id="attenType" type="STRING" size="256"/>
           <Column id="workStart" type="STRING" size="256"/>
           <Column id="workEnd" type="STRING" size="256"/>

@@ -38,4 +38,19 @@ public class NexaAttenController {
 		}
 		return result;
 	}
+	
+	@RequestMapping(value = "/editAttenList.do")
+	public NexacroResult editAttenList(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
+		NexacroResult result = new NexacroResult();
+		
+		System.out.println(param);
+		try {
+			nexaAttenService.editAttenList(param);
+		} catch (Exception ee) {
+			System.out.println(ee);
+			result.setErrorCode(-1);
+			result.setErrorMsg("catch 조회 오류");
+		}
+		return result;
+	}
 }

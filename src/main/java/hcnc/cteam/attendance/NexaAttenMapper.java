@@ -10,5 +10,7 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 public interface NexaAttenMapper {
 
 	List<NexaAttenDTO> nexaGetAttenListByCondition(Map<String, Object> param);
+
+	void editAttenList(Map<String, Object> param);
 	
 }
