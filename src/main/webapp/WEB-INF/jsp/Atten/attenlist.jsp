@@ -12,9 +12,11 @@
 	<form action="/atten/searchAtten.do" method="post">
 		<select name="SEARCH_TYPE">
 			<option value="ALL">전체</option>
-			<option value="WORK_TYPE">근무 형태</option>
-		</select> <input type="text" name="SEARCH_WORD" placeholder="Search" /> <input
-			type="date" name="START_DATE" /> ~ <input type="date" name="END_DATE" />
+			<option value="ON">출근</option>
+			<option value="OFF">결근</option>
+			<option value="HOLY">휴가</option>
+		</select>
+		<input type="date" name="START_DATE" /> ~ <input type="date" name="END_DATE" />
 		<button type="submit">검색</button>
 	</form>
 	<table border="1">
