@@ -16,10 +16,10 @@
 	      ON a.emp_code = b.emp_code
 	    WHERE post_code = #{postCode}
 	</select>	
-	<!-- 조회수 1증가 관련 -->
+	<!-- 조회수 1 증가 관련 -->
 	<update id ="increaseViewCount" parameterType="int">
 		UPDATE post
-		SET view_count =view_count +1
+			SET view_count =view_count +1
 		WHERE post_code =#{post_code}
 	</update>
 	

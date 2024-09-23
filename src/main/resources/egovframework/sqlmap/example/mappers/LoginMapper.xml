@@ -3,12 +3,15 @@
 <mapper namespace="hcnc.cteam.post.LoginMapper">
 
     <!-- 아이디로 사용자 정보 조회 -->
-    <select id="getUserByUserId" parameterType="string" resultType="map">
+    <select id="getUserByUserId" parameterType="map" resultType="map">
 	    SELECT id, password, name, email, dep_code, emp_code, assign_code  
 	    FROM employee
 	    WHERE id = #{userId}
-	    <!--AND assign_code >= 5-->
+	    AND password = SHA2(#{password}, 256)
+	    AND assign_code >= 5;
 	</select>
+
+	<!---->
     <!-- 사용자 인증 상태 업데이트 -->
     <update id="updateUserVerificationStatus">
         UPDATE employee
