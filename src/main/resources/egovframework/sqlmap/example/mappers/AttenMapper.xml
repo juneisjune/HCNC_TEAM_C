@@ -20,6 +20,7 @@
 		JOIN department e ON a.dep_code = e.dep_code
 		WHERE 1=1
 			AND a.emp_Code = #{empCode}
+		ORDER BY b.work_date ASC
 	</select>
 
 	<!-- 조건에 따른 조회(검색) -->
@@ -56,6 +57,7 @@
 		<if test="START_DATE != null and START_DATE != '' and END_DATE != null and END_DATE != ''">
 			AND b.work_date BETWEEN #{START_DATE} AND #{END_DATE}
 		</if>
+		ORDER BY b.work_date ASC
 	</select>
 
 </mapper>

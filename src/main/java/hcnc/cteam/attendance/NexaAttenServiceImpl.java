@@ -25,5 +25,15 @@ public class NexaAttenServiceImpl implements NexaAttenService {
 	public void editAttenList(Map<String, Object> param) {
 		mapper.editAttenList(param);
 	}
+
+	@Override
+	public List<NexaAttenDTO> nexaGetEmpListByCondition(Map<String, Object> param) {
+		return mapper.nexaGetEmpListByCondition(param);
+	}
+
+	@Override
+	public void attenRegister(Map<String, Object> param) {
+		mapper.attenRegister(param);
+	}
 	
 }

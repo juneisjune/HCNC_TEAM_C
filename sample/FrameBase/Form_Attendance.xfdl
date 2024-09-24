@@ -3,7 +3,7 @@
   <Form id="Form_Attendance" width="1280" height="720" titletext="출/퇴근 목록" onload="Form_Attendance_onload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
-        <Static id="Title" taborder="0" text="직원 출/퇴근 기록 관리" left="15" top="15" width="350" height="50" font="32px/normal &quot;Gulim&quot;"/>
+        <Static id="sta_Title" taborder="0" text="직원 출/퇴근 기록 관리" left="15" top="15" width="350" height="50" font="32px/normal &quot;Gulim&quot;"/>
         <Combo id="cmb_SearchType" taborder="1" text="전체" left="450" top="90" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL"/>
         <Edit id="edt_SearchWord" taborder="2" left="570" top="90" width="180" height="30"/>
         <Calendar id="cal_Start" taborder="3" left="770" top="90" width="150" height="30"/>

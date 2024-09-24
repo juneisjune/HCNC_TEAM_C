@@ -25,6 +25,7 @@ public class NexaAttenController {
 	@Autowired
 	private NexaAttenService nexaAttenService;
 	
+	// 근태 목록 조회
 	@RequestMapping(value = "/selectAttenList.do")
 	public NexacroResult nexaSearchAtten(@ParamDataSet(name = "ds_Search", required = false) Map<String, Object> param) {
 		NexacroResult result = new NexacroResult();
@@ -39,6 +40,22 @@ public class NexaAttenController {
 		return result;
 	}
 	
+	// 근태 정보 등록을 위한 직원 정보 조회
+	@RequestMapping(value = "/selectEmpList.do")
+	public NexacroResult nexaSearchEmp(@ParamDataSet(name = "ds_SearchEmp", required = false) Map<String, Object> param) {
+		NexacroResult result = new NexacroResult();
+		try {
+			List<NexaAttenDTO> ds_EmpList = nexaAttenService.nexaGetEmpListByCondition(param);
+			result.addDataSet("ds_EmpList", ds_EmpList);
+		} catch (Exception ee) {
+			System.out.println(ee);
+			result.setErrorCode(-1);
+			result.setErrorMsg("catch 조회 오류");
+		}
+		return result;
+	}
+	
+	// 근태 정보 수정
 	@RequestMapping(value = "/editAttenList.do")
 	public NexacroResult editAttenList(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
 		NexacroResult result = new NexacroResult();
@@ -53,4 +70,20 @@ public class NexaAttenController {
 		}
 		return result;
 	}
+	
+	// 근태 정보 수정
+	@RequestMapping(value = "/attenRegister.do")
+	public NexacroResult attenRegister(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
+		NexacroResult result = new NexacroResult();
+			
+		System.out.println(param);
+		try {
+			nexaAttenService.attenRegister(param);
+		} catch (Exception ee) {
+				System.out.println(ee);
+			result.setErrorCode(-1);
+			result.setErrorMsg("catch 조회 오류");
+		}
+		return result;
+		}
 }

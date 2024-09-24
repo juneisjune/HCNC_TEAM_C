@@ -12,4 +12,8 @@ public interface NexaAttenService {
 	List<NexaAttenDTO> nexaGetAttenListByCondition(Map<String, Object> param);
 
 	void editAttenList(Map<String, Object> param);
+
+	List<NexaAttenDTO> nexaGetEmpListByCondition(Map<String, Object> param);
+
+	void attenRegister(Map<String, Object> param);
 }

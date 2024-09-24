@@ -1,7 +1,6 @@
 package hcnc.cteam.attendance;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
 
 public class NexaAttenDTO {
 
@@ -15,6 +14,8 @@ public class NexaAttenDTO {
 	private String workEnd; // 퇴근 시간
 	private double workOver; // 초과 근무 시간
 	private String managerName; //관리자 이름
+	private String birth; // 직원 생일
+	private String gender; // 직원 성별
 	
 	public int getEmpCode() {
 		return empCode;
@@ -75,6 +76,18 @@ public class NexaAttenDTO {
 	}
 	public void setManagerName(String managerName) {
 		this.managerName = managerName;
+	}
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	
 }

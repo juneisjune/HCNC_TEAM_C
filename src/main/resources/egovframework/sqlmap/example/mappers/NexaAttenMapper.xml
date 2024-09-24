@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hcnc.cteam.attendance.NexaAttenMapper">
 	
-	<!-- 조건에 따른 조회(검색) 쿼리 -->
+	<!-- 조건에 따른 근태 목록 조회(검색) 쿼리 -->
 	<select id="nexaGetAttenListByCondition"
 		resultType="nexaAttenDTO">
 		SELECT a.emp_code as empCode
@@ -54,8 +54,10 @@
 		<if test='START_DATE != null and START_DATE != "" and END_DATE != null and END_DATE != ""'>
 			AND b.work_date BETWEEN #{START_DATE} AND #{END_DATE}
 		</if>
+		ORDER BY b.work_date ASC
 	</select>
 
+	<!-- 근태 정보 수정 -->
 	<update id="editAttenList" parameterType="nexaAttenDTO">
 		UPDATE attendance 
 		SET <if test="attenType == '출근'">
@@ -104,4 +106,86 @@
 				AND emp_code = #{empCode}
 				AND work_date = SUBSTRING(#{workDate}, 1, 8)
 	</update>
+	
+	<!-- 근태 등록을 위한 직원 정보 조회 -->
+	<select id="nexaGetEmpListByCondition"
+		resultType="nexaAttenDTO">
+		SELECT a.emp_code as empCode
+			, a.name as name
+			, b.assign_name as assignName
+			, c.dep_name as depName
+			, a.birth as birth
+			, a.gender as gender
+		FROM employee a
+		JOIN assignment b ON a.assign_code = b.assign_code
+		JOIN department c ON a.dep_code = c.dep_code
+		WHERE 1=1
+		<if test="SEARCH_WORD != null and SEARCH_WORD != '' and SEARCH_TYPE != '' and SEARCH_TYPE != null">
+			<!-- 전체 조회 -->
+			<if test="SEARCH_TYPE == 'ALL'">
+				AND a.name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+				OR d.assign_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+				OR c.dep_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+				OR a.birth LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+				OR a.gender LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+			</if>
+			<!-- 이름별 조회 -->
+			<if test="SEARCH_TYPE == 'NAME'">
+				AND a.name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+			</if>
+			<!-- 직책별 조회 -->			
+			<if test="SEARCH_TYPE == 'ASSIGNMENT'">
+				AND b.assign_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+			</if>
+			<!-- 부서별 조회 -->
+			<if test="SEARCH_TYPE == 'DEPARTMENT'">
+				AND c.dep_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+			</if>
+		</if>
+	</select>
+	
+	<insert id="attenRegister" parameterType="nexaAttenDTO">
+		INSERT INTO attendance 
+			(
+			emp_code
+			, work_date
+			, atten_code
+			, work_start
+			, work_end
+			, work_over
+			, reg_date
+			, reg_name
+			)
+			VALUES
+			(
+			#{empCode}
+			, #{workDate}
+			<if test="attenType == '출근'">
+			, 1
+			, CONCAT(SUBSTRING(#{workStart}, 1, 2), ":", SUBSTRING(#{workStart}, 3, 2), ':00')
+			, CONCAT(SUBSTRING(#{workEnd}, 1, 2), ":", SUBSTRING(#{workEnd}, 3, 2), ':00')
+			</if>
+			<if test="attenType == '결근'">
+			, 2
+			, null
+			, null
+			</if>
+			<if test="attenType == '휴가'">
+			, 3
+			, null
+			, null
+			</if>
+			, FLOOR(
+		            TIME_TO_SEC(
+		                CASE 
+		                    WHEN 0 > TIMEDIFF(work_end, '18:00:00') THEN 0
+		                    WHEN work_end > '21:00:00' THEN TIMEDIFF('21:00:00', '18:00:00')
+		                    ELSE TIMEDIFF(work_end, '18:00:00')
+		                END
+		            ) / 1800
+		        ) * 0.5
+			, CURTIME()
+			, '변수민'
+			)
+		</insert>
 </mapper>

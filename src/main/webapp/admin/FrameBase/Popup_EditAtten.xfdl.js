@@ -78,12 +78,13 @@
 
         };
 
-        //팝업 닫기 버튼
+        // 팝업 닫기 버튼
         this.btn_Close_onclick = function(obj,e)
         {
-        	this.close('Close EditAtten Popup');
+        	this.close('Close EditPopup');
         };
 
+        // 수정 완료 버튼
         this.btn_Edit_onclick = function(obj,e)
         {
             if (this.ds_AttenList.getColumn(0, "attenType")=="출근") {
@@ -130,7 +131,7 @@
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 
         	alert("수정이 완료되었습니다.");
-        	this.close('Close Popup');
+        	this.close('Close EditPopup');
 
         	this.opener.fnSearch();
         };

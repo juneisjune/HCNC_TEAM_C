@@ -32,7 +32,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Title","15","15","350","50",null,null,null,null,null,null,this);
+            obj = new Static("sta_Title","15","15","350","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("직원 출/퇴근 기록 관리");
             obj.set_font("32px/normal \"Gulim\"");
