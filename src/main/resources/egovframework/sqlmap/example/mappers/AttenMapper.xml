@@ -49,7 +49,7 @@
 			<if test="SEARCH_TYPE == 'OFF'">
 				AND c.atten_type LIKE CONCAT('%', '결근', '%')
 			</if>
-			<if test="SEARCH_TYPE == 'HOLY'">
+			<if test="SEARCH_TYPE == 'HOLI'">
 				AND c.atten_type LIKE CONCAT('%', '휴가', '%')
 			</if>
 		<!-- 근무일자에 따른 조회 -->

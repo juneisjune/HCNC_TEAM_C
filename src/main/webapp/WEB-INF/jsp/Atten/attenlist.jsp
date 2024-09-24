@@ -14,7 +14,7 @@
 			<option value="ALL">전체</option>
 			<option value="ON">출근</option>
 			<option value="OFF">결근</option>
-			<option value="HOLY">휴가</option>
+			<option value="HOLI">휴가</option>
 		</select>
 		<input type="date" name="START_DATE" /> ~ <input type="date" name="END_DATE" />
 		<button type="submit">검색</button>

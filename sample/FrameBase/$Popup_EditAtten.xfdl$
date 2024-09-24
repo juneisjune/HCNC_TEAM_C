@@ -101,8 +101,6 @@ this.btn_Close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 
 this.btn_Edit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	
-
     if (this.ds_AttenList.getColumn(0, "attenType")=="출근") {
 	
 		var workStart = this.ds_AttenList.getColumn(0, "workStart");

@@ -86,8 +86,6 @@
 
         this.btn_Edit_onclick = function(obj,e)
         {
-
-
             if (this.ds_AttenList.getColumn(0, "attenType")=="출근") {
 
         		var workStart = this.ds_AttenList.getColumn(0, "workStart");
