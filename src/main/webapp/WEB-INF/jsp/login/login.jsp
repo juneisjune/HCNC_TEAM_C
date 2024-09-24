@@ -54,7 +54,7 @@
 					
 					success : function(result){
 						if(result == "ok") {
-							location.href = "/viewAuth.do";
+							location.href = "/pay/searchPay.do";
 							
 						} else {
 							alert("아이디 또는 비밀번호를 확인하세요.");
@@ -74,12 +74,6 @@
 		});
 		
 		
-/* 		 window.onload = function() {
-		        var successMsg = '${successMsg}';
-		        if (successMsg) {
-		            alert(successMsg);
-		        }
-		 }; */
 		 
 </script>
 </head>

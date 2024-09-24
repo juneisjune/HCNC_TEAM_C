@@ -1,5 +1,6 @@
 package hcnc.cteam.login;
 
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,10 +48,20 @@ public class LoginController {
 		
 		 if (result == 1) {
 			 HttpSession session = request.getSession();
-			 int empCode = loginService.selectUser(loginDTO).getEmpCode();
-			 session.setAttribute("loginUser", empCode);
+			 int userCode = loginService.selectUser(loginDTO).getEmpCode();
+			 String userName = loginService.selectUser(loginDTO).getName();
+			 
+			 session.setAttribute("userCode", userCode);
+			 session.setAttribute("userName", userName);
+			 
 
-	            msg = "ok";
+//			 LocalTime workStart = loginService.selectWork(userCode).getWorkStart();
+//			 LocalTime workEnd = loginService.selectWork(userCode).getWorkEnd();
+			 
+//			 session.setAttribute("workStart", workStart);
+//			 session.setAttribute("workEnd", workEnd);
+
+	         msg = "ok";
 	        }
 		 
 		 

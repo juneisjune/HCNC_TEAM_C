@@ -8,4 +8,6 @@ public interface LoginService {
 	
 	String selectEmail(int empCode) throws Exception;
 	
+	LoginDTO selectWork(int empCode) throws Exception;
+	
 }

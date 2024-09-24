@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+import hcnc.cteam.login.LoginDTO;
 import oracle.sql.DATE;
 
 @Controller
@@ -46,7 +47,7 @@ public class PayController {
 		int payMonth = currentDate.getMonthValue() - 1;
 		
 		HttpSession session = request.getSession();
-		int empCode = (int) session.getAttribute("loginUser");	
+		int empCode = (int) session.getAttribute("userCode");	
 
 		PaySearchDTO paySearchDTO = new PaySearchDTO(empCode, payYear, payMonth);
 
@@ -78,7 +79,7 @@ public class PayController {
 	@RequestMapping("/viewPayslip/{payYear}/{payMonth}.do")
 	public String viewPayMonth(@PathVariable int payYear, @PathVariable int payMonth, ModelMap model, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-		int empCode = (int) session.getAttribute("loginUser");	
+		int empCode = (int) session.getAttribute("userCode");	
 		
 		PaySearchDTO paySearchDTO = new PaySearchDTO(empCode, payYear, payMonth);
 
@@ -111,9 +112,10 @@ public class PayController {
 	@RequestMapping("/searchPay.do")
 	public String searchPayView(ModelMap model, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-		int empCode = (int) session.getAttribute("loginUser");	
+		int empCode = (int) session.getAttribute("userCode");	
 		
 		PayEmpDTO emp = payService.selectEmp(empCode);
+		
 		model.addAttribute("emp", emp);
 
 		List<PayDTO> payList = payService.selectPayList(emp.getEmpCode());

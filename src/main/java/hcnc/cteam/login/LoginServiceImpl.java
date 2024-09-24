@@ -28,4 +28,9 @@ public class LoginServiceImpl extends EgovAbstractServiceImpl implements LoginSe
 		return loginMapper.selectEmail(empCode);
 	}
 
+	@Override
+	public LoginDTO selectWork(int empCode) throws Exception {
+		return loginMapper.selectWork(empCode);
+	}
+
 }

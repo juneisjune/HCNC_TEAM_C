@@ -1,5 +1,8 @@
 package hcnc.cteam.login;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class LoginDTO {
 	private int empCode;
 	private int assignCode;
@@ -8,6 +11,10 @@ public class LoginDTO {
 	private String password;
 	private String name;
 	private String email;
+	
+	private LocalTime workStart;
+	private LocalTime workEnd;
+	private LocalDate workDate;
 	
 	public int getEmpCode() {
 		return empCode;
@@ -51,9 +58,24 @@ public class LoginDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
-	
+	public LocalTime getWorkStart() {
+		return workStart;
+	}
+	public void setWorkStart(LocalTime workStart) {
+		this.workStart = workStart;
+	}
+	public LocalTime getWorkEnd() {
+		return workEnd;
+	}
+	public void setWorkEnd(LocalTime workEnd) {
+		this.workEnd = workEnd;
+	}
+	public LocalDate getWorkDate() {
+		return workDate;
+	}
+	public void setWorkDate(LocalDate workDate) {
+		this.workDate = workDate;
+	}
 	
 
 }
