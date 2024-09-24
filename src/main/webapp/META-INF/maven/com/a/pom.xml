@@ -77,6 +77,24 @@
     </repositories>
 
 	<dependencies>
+	
+	<!-- jackson 사용위해 필요 -->
+      <dependency>
+	      <groupId>com.fasterxml.jackson.core</groupId>
+	      <artifactId>jackson-databind</artifactId>
+	      <version>2.9.3</version>
+      </dependency>
+      <dependency>
+	      <groupId>com.fasterxml.jackson.core</groupId>
+	      <artifactId>jackson-core</artifactId>
+	      <version>2.9.3</version>
+      </dependency>
+      <dependency>
+	      <groupId>com.fasterxml.jackson.core</groupId>
+	      <artifactId>jackson-annotations</artifactId>
+	      <version>2.9.3</version>
+      </dependency>
+	
 <!-- ############  NEXACROPLATFORM UIADAPTER17 LIBRARY  ############ -->
 		<dependency>
 		  <groupId>com.nexacro.uiadapter17.spring</groupId>

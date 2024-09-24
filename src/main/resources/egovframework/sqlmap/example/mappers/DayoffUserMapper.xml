@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hcnc.cteam.attendance.DayoffUserMapper">
+	
+	<!--연차신청(저장)  -->
+	<insert id="sendRequest" parameterType="dayoffDto">
+		INSERT INTO dayoff(emp_code,start_date,off_code,end_date,reason,reg_name) 
+		VALUES (#{empCode},#{startDate},#{offCode},#{endDate},#{reason},#{name})
+	</insert>
+	
+	<!-- 연차신청내역  -->
+	<select id="requestResult" parameterType="dayoffDto" resultType="dayoffDto">
+		SELECT
+		e.name, <!--이름  --> 
+		d.emp_code,<!--사번 -->
+		dt.dep_name,<!--부서명 -->
+		d.start_date,<!--연차시작일 -->
+		d.end_date,<!--연차종료일 -->
+		dc.off_type,<!--연차ㅅ ㅏ유 -->
+		d.reason , <!--사유  -->
+		d.mng_confirm,
+		d.md_confirm,
+		d.ceo_confirm,
+		d.off_result 
+		FROM dayoff d JOIN dayoff_code dc 
+			ON d.off_code =dc.off_code JOIN employee e 
+			ON d.emp_code = e.emp_code JOIN department dt
+			ON e.dep_code =dt.dep_code 
+		WHERE d.emp_code = #{empCode} 
+			AND YEAR(start_date) BETWEEN #{startYear} AND #{endYear}
+			AND MONTH(start_date) BETWEEN #{startMonth} AND #{endMonth}
+	</select>
+	
+</mapper>
