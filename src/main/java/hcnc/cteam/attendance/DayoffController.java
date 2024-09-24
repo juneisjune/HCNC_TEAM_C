@@ -105,32 +105,7 @@ public class DayoffController {
     	return result;
     }
 	
-	//Atten으로 옮길예정
-	@RequestMapping(value="/attendance/startWork.do", method= RequestMethod.POST)
-    public ResponseEntity<String> startWork(@RequestParam String start_time, 
-    										NgjAttenDTO attenDto, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		//session.getAttribute(emp_code);
-		//emp_code로 empDto(가져오기)
-		//가져온 Dto + 
-		//출근코드
-		attenDto.setAttenCode(1);
-		
-		//attenDto는 현재 료그인한 유저의 emp코드를 기준으로 입력
-	 	dayoffService.startWork(attenDto);
-        return ResponseEntity.ok("출근 시간 저장 완료");
-    }
 	
-    @PostMapping(value="/attendance/endWork.do")
-    public ResponseEntity<String> endWork(@RequestParam String end_time,
-    										NgjAttenDTO attenDto, HttpServletRequest request) {
-    	
-    	//session.getAttribute(emp_code);
-    	//emp_code로 empDto(가져오기)		
-    	//attenDto는 현재 료그인한 유저의 emp코드를 기준으로 입력
-	 	dayoffService.startWork(attenDto);
-        return ResponseEntity.ok("퇴근 시간 저장 완료");
-    }
     
     
 

@@ -31,26 +31,6 @@ public class DayoffServiceImpl implements DayoffService{
 	}
 
 	
-	//atten으로 옮길예정
-	@Override
-	public int startWork(NgjAttenDTO attenDto) {
-		// TODO Auto-generated method stub
-		return dayoffMapper.startWork(attenDto);
-	}
-
-	@Override
-	public int endWork(NgjAttenDTO attenDto) {
-		// TODO Auto-generated method stub
-		return dayoffMapper.endWork(attenDto);
-	}
-	//로그인기능 있는 곳으로
-	@Override
-	public NgjAttenDTO userAttendanceInfo(Map<String, Object> param) {
-		// TODO Auto-generated method stub
-		return dayoffMapper.userAttendanceInfo(param);
-	}
-
-	
 	
 	
 }

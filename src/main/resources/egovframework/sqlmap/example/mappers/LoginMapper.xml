@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hcnc.cteam.login.LoginMapper">
+
+	<select id="userLogin" resultType="int" parameterType="loginDTO">
+		SELECT COUNT(*)
+		FROM employee e 
+		WHERE id = #{id}
+		AND password = SHA2(#{password}, 256);
+	</select>
+	
+	<select id="selectUser" resultType="loginDTO" >
+		SELECT emp_code, assign_code, dep_code, id, name, email
+		FROM employee 
+		WHERE id = #{id}
+		AND password = SHA2(#{password}, 256);
+	</select>
+	
+	<select id="selectEmail" resultType="String" parameterType="int">
+		SELECT email
+		FROM employee
+		WHERE emp_code = #{empCode}
+	</select>
+	
+	<select id="selectWork" resultType="attenDTO" parameterType="int">
+		SELECT emp_code, work_date, work_start, work_end
+		FROM attendance a
+		WHERE emp_code = #{empCode} 
+		AND work_date = CURDATE();
+	</select>
+</mapper>

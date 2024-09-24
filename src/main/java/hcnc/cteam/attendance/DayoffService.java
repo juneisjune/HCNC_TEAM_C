@@ -14,10 +14,5 @@ public interface DayoffService {
 	public void updateConfirm(Map<String, Object> param);
 	public void updateReturn(Map<String, Object> param);
 	
-	//atten으로 옮길예정
-		public int startWork(NgjAttenDTO attenDto);
-		public int endWork(NgjAttenDTO attenDto);
-	//로그인기능
-		public NgjAttenDTO userAttendanceInfo(Map<String, Object> param);
 		
 }

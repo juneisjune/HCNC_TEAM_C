@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 **/pom.properties
 MANIFEST.MF
 $Geninfo$.geninfo
 
+=======
+>>>>>>> ebf336d4d7a1d8a998fd6ea1e4fb050f2ce4c932
 *.dll
 *.exe
 *.o
@@ -38,6 +41,10 @@ tmp/
 *.bak
 *.swp
 local.properties
+<<<<<<< HEAD
+=======
+**/pom.properties
+>>>>>>> ebf336d4d7a1d8a998fd6ea1e4fb050f2ce4c932
 .settings/
 .loadpath
 .recommenders
@@ -50,4 +57,9 @@ local.properties
 target/
 .springBeans
 .recommenders/
+<<<<<<< HEAD
 *.geninfo
+=======
+*.geninfo
+MANIFEST.MF
+>>>>>>> ebf336d4d7a1d8a998fd6ea1e4fb050f2ce4c932
