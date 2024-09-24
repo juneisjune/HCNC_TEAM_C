@@ -29,7 +29,6 @@ public class DayoffController {
     public NexacroResult dayoffList(@ParamDataSet(name = "ds_offList", required = false) Map<String,Object> param) {
 		
     	NexacroResult result = new NexacroResult();
-    	System.out.println("넘어온데이터" + param);
     	try {
     		List<Map<String, Object>> ds_doRequestList = dayoffService.offRequest(param);
     		result.addDataSet("ds_doRequestList", ds_doRequestList);

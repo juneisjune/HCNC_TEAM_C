@@ -8,5 +8,6 @@ public interface NgjEmpMapper {
 	
 	public int selectUser(NgjEmpDTO empDto);
 	
-	public NgjEmpDTO empInfo(NgjEmpDTO emp);
+	public NgjEmpDTO empInfo(int emp);
+	
 }

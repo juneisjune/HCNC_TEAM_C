@@ -9,12 +9,12 @@
 	</select>
 	<!-- 로그인정보 부서명 까지 가져오기  -->
 	
-	<select id="empInfo" parameterType="empDto" resultType="empDto">
+	<select id="empInfo" parameterType="int" resultType="empDto">
 		SELECT e.emp_code ,e.assign_code,a.assign_name ,e.dep_code ,d.dep_name ,e.id ,e.password ,e.name ,e.mng_code 
 		FROM employee e JOIN department d 
 			ON e.dep_code = d.dep_code JOIN `assignment` a 
 			ON e.assign_code = a.assign_code 
-		WHERE id = #{id} AND password = SHA2(#{password},256);
+		WHERE e.emp_code = #{empCode};
 	</select>
 	
 

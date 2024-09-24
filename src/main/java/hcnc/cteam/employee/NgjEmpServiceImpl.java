@@ -18,8 +18,9 @@ public class NgjEmpServiceImpl implements NgjEmpService{
 
 
 	@Override
-	public NgjEmpDTO empInfo(NgjEmpDTO emp) {
+	public NgjEmpDTO empInfo(int emp) {
 		return empMapper.empInfo(emp);
 	}
+
 
 }
