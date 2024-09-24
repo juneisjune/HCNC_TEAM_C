@@ -157,7 +157,7 @@
             var strSvcId = "loginService";
             var strSvcUrl = "svc::login.do";
             var inData = "ds_login=ds_login";
-            var outData = "nexacro.getApplication().ds_userInfo=ds_login";  // 서버로부터 받아온 데이터를 받을 데이터셋
+            var outData = "ds_userInfo=ds_login";  // 서버로부터 받아온 데이터를 받을 데이터셋
             var strArg = "";
             var callBackFnc = "fnLoginCallback";  // 콜백 함수
             var isAsync = true;

@@ -7,9 +7,14 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.nexacro.uiadapter17.spring.core.annotation.ParamDataSet;
+import com.nexacro.uiadapter17.spring.core.annotation.ParamVariable;
 import com.nexacro.uiadapter17.spring.core.data.NexacroResult;
+
+
 
 @Controller
 public class PostController {
@@ -34,6 +39,26 @@ public class PostController {
             result.setErrorMsg("게시글 조회 중 오류 발생");
         }
         
+        return result;
+    }
+    
+ // 공지사항 등록 메서드 추가
+    @RequestMapping(value = "/insertPost.do", method = RequestMethod.POST)
+    public NexacroResult insertPost(
+        @ParamDataSet(name = "ds_Post") Map<String, Object> param,
+        @ParamVariable(name = "fileList") List<MultipartFile> fileList
+    ) {
+        NexacroResult result = new NexacroResult();
+
+        try {
+            postService.insertPost(param, fileList);
+            result.setErrorCode(0);
+            result.setErrorMsg("공지사항이 성공적으로 등록되었습니다.");
+        } catch (Exception e) {
+            result.setErrorCode(-1);
+            result.setErrorMsg("공지사항 등록 중 오류 발생: " + e.getMessage());
+        }
+
         return result;
     }
 }

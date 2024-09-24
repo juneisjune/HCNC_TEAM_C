@@ -9,7 +9,7 @@
         
         this.on_create = function()
         {
-            this.set_name("btn_Search");
+            this.set_name("btn_Post");
             this.set_titletext("New Form");
             if (Form == this.constructor)
             {
@@ -31,13 +31,13 @@
             obj.set_color("white");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_notice","8","50","1032","400",null,null,null,null,null,null,this);
+            obj = new Grid("grd_notice","8","50","932","400",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Post");
             obj.set_taborder("1");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"85\"/><Column size=\"300\"/><Column size=\"300\"/><Column size=\"150\"/><Column size=\"100\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"게시글 번호\"/><Cell col=\"1\" text=\"제목\"/><Cell col=\"2\" text=\"내용\"/><Cell col=\"3\" text=\"작성일자\"/><Cell col=\"4\" text=\"작성자\"/><Cell col=\"5\" text=\"조회수\"/></Band><Band id=\"body\"><Cell text=\"bind:post_code\"/><Cell col=\"1\" text=\"bind:title\"/><Cell col=\"2\" text=\"bind:content\"/><Cell col=\"3\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"4\" text=\"bind:emp_name\"/><Cell col=\"5\" text=\"bind:view_count\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"85\"/><Column size=\"188\"/><Column size=\"300\"/><Column size=\"150\"/><Column size=\"100\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"게시글 번호\"/><Cell col=\"1\" text=\"제목\"/><Cell col=\"2\" text=\"내용\"/><Cell col=\"3\" text=\"작성일자\"/><Cell col=\"4\" text=\"작성자\"/><Cell col=\"5\" text=\"조회수\"/></Band><Band id=\"body\"><Cell text=\"bind:post_code\"/><Cell col=\"1\" text=\"bind:title\"/><Cell col=\"2\" text=\"bind:content\"/><Cell col=\"3\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"4\" text=\"bind:emp_name\"/><Cell col=\"5\" text=\"bind:view_count\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","895","12","50","28",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","760","16","50","28",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("조회");
             this.addChild(obj.name, obj);
@@ -61,6 +61,11 @@
             obj.set_text("다음");
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
+
+            obj = new Button("btn_newPost","830","16","110","28",null,null,null,null,null,null,this);
+            obj.set_taborder("7");
+            obj.set_text("새 공지사항 등록");
+            this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
             obj = new Layout("default","",1280,720,this,function(p){});
@@ -80,10 +85,10 @@
         
         // User Script
         this.registerScript("Form_Post.xfdl", function() {
-        this.Form_Code_onload = function(obj,e)
+        this.Form_Post_onload = function(obj,e)
         {
-
-
+        	console.log("onload페이지 들엉몸");
+        	this.fnSearch();
         }
 
         this.btn_addNotice_onclick = function(obj,e)
@@ -131,16 +136,26 @@
         {
         	console.log("버튼 클릭됨 들어옴");
         	this.fnSearch();
+
          };
+
+
+
+        this.btn_newPost_onclick = function(obj,e)
+        {
+        	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_newPost1.xfdl");
+        };
 
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
+            this.addEventHandler("onload",this.Form_Post_onload,this);
             this.Static00.addEventHandler("onclick",this.Static00_onclick,this);
             this.btn_Search.addEventHandler("onclick",this.Button00_onclick,this);
             this.btn_delete.addEventHandler("onclick",this.btn_delete_onclick,this);
+            this.btn_newPost.addEventHandler("onclick",this.btn_newPost_onclick,this);
         };
         this.loadIncludeScript("Form_Post.xfdl");
         this.loadPreloadList();

@@ -15,4 +15,10 @@ public interface PostMapper {
     
     //조회수 증가 관련
     void increaseViewCount(int postCode);
+    
+ // 공지사항 등록 메서드
+    void insertPost(Map<String, Object> param);
+
+    // 첨부파일 등록 메서드
+    void insertAttachment(Map<String, Object> param);
 }
