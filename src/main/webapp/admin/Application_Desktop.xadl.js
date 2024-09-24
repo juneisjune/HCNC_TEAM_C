@@ -27,7 +27,7 @@
             	return;
         
             // frame
-            var mainframe = this.createMainFrame("mainframe","0","0","1280","720",null,null,this);
+            var mainframe = this.createMainFrame("mainframe","15","15","1280","720",null,null,this);
             mainframe.set_showtitlebar("true");
             mainframe.set_showstatusbar("true");
             mainframe.set_titletext("TopLeftFrame");
@@ -66,11 +66,11 @@
             frame3.set_formurl("FrameBase::Form_Left.xfdl");
 
 
-            var frame4 = new ChildFrame("WorkFrame",null,null,null,null,null,null,"FrameBase::Form_Work.xfdl",frame2);
+            var frame4 = new ChildFrame("WorkFrame",null,null,null,null,null,null,"FrameBase::Form_dayoff_Confirm.xfdl",frame2);
             frame4.set_showtitlebar("false");
             frame4.set_showstatusbar("false");
             frame2.addChild(frame4.name, frame4);
-            frame4.set_formurl("FrameBase::Form_Work.xfdl");
+            frame4.set_formurl("FrameBase::Form_dayoff_Confirm.xfdl");
         };
         
         this.on_initEvent = function()

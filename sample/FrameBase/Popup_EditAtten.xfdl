@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Popup_EditAtten" width="1050" height="300" titletext="출/퇴근 정보 수정">
+    <Layouts>
+      <Layout height="300" mobileorientation="landscape" width="800"/>
+    </Layouts>
+    <Objects/>
+  </Form>
+</FDL>
