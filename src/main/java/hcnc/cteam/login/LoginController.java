@@ -53,9 +53,7 @@ public class LoginController {
 			 session.setAttribute("userName", userName);
 			 
 			 AttenDTO workResult = loginService.selectWork(userCode);
-			 System.out.println("workResult : " + workResult);
-			 System.out.println("startTime : " + workResult.getWorkStart());
-			 System.out.println("endTime : " + workResult.getWorkEnd());
+			 
 			 
 			 if (workResult != null) {
 				 LocalTime workStart = workResult.getWorkStart();
