@@ -9,7 +9,7 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 @Mapper
 public interface AttenMapper {
 
-	List<AttenDTO> getAttenList();
+	List<AttenDTO> getAttenList(Map<String, Object> params);
 
 	List<AttenDTO> getAttenListByCondition(Map<String, Object> params);
 

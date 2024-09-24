@@ -130,6 +130,9 @@
         	var isAsync     = true;
 
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+
+        	alert("수정이 완료되었습니다.");
+        	this.close('Close Popup');
         };
         });
         

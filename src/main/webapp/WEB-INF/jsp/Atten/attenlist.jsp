@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>직원 근태 목록</title>
+<title>근태 목록</title>
 </head>
 <body>
-	<h1>직원 근태 목록</h1>
+	<h1>근태 목록</h1>
 	<form action="/atten/searchAtten.do" method="post">
 		<select name="SEARCH_TYPE">
 			<option value="ALL">전체</option>
@@ -47,6 +47,11 @@
 					<td>${atten.workOver}</td>
 				</tr>
 			</c:forEach>
+			<c:if test="${empty attenList}">
+	          <tr>
+	            <td colspan="9">근태 정보가 없습니다.</td>
+	          </tr>
+	        </c:if>
 		</tbody>
 	</table>
 </body>

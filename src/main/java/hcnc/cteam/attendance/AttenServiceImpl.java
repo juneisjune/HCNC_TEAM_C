@@ -13,8 +13,8 @@ public class AttenServiceImpl implements AttenService{
 	private AttenMapper attenMapper;
 	
 	@Override
-	public List<AttenDTO> getAttenList() {
-		return attenMapper.getAttenList();
+	public List<AttenDTO> getAttenList(Map<String, Object> params) {
+		return attenMapper.getAttenList(params);
 	}
 
 	@Override

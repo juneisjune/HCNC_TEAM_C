@@ -17,10 +17,12 @@
 		JOIN attendance b ON a.emp_code = b.emp_code
 		JOIN att_code c ON b.atten_code = c.atten_code
 		JOIN assignment d ON a.assign_code = d.assign_code
-		JOIN department e ON a.dep_code = e.dep_code;
+		JOIN department e ON a.dep_code = e.dep_code
+		WHERE 1=1
+			AND a.emp_Code = #{empCode}
 	</select>
 
-	<!-- 조건에 따른 조회(검색) 쿼리 -->
+	<!-- 조건에 따른 조회(검색) -->
 	<select id="getAttenListByCondition"
 		resultType="attenDTO">
 		SELECT a.emp_code as empCode
@@ -38,6 +40,8 @@
 		JOIN assignment d ON a.assign_code = d.assign_code
 		JOIN department e ON a.dep_code = e.dep_code
 		WHERE 1=1
+			<!-- 로그인한 사용자의 근태 정보만 가져오기 -->
+				AND a.emp_Code = #{empCode}
 			<!-- 근무형태별 조회 -->
 			<if test="SEARCH_TYPE == 'ON'">
 				AND c.atten_type LIKE CONCAT('%', '출근', '%')
