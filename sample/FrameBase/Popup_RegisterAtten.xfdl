@@ -76,7 +76,7 @@
                 <Cell col="1" text="bind:name" textAlign="center"/>
                 <Cell col="2" text="bind:assignName" textAlign="center"/>
                 <Cell col="3" text="bind:depName" textAlign="center"/>
-                <Cell col="4" text="bind:workDate" displaytype="date" calendardateformat="yyyy년 MM월 dd일" textAlign="center" edittype="date" calendareditformat="yyyy년 MM월 dd일"/>
+                <Cell col="4" text="bind:workDate" displaytype="date" calendardateformat="yyyy년 MM월 dd일" textAlign="center" edittype="date" calendareditformat="yyyy년 MM월 dd일" calendardisplayinvalidtype="none"/>
                 <Cell col="5" text="bind:attenType" displaytype="text" textAlign="center" edittype="combo" combodataset="ds_WorkType" combocodecol="Name" combodatacol="Name" comboautoselect="false" autosizecol="default" autosizerow="default"/>
                 <Cell col="6" text="bind:workStart" textAlign="center" edittype="mask" maskeditformat="##:##" maskedittype="string" displaytype="mask"/>
                 <Cell col="7" text="bind:workEnd" textAlign="center" edittype="mask" maskedittype="string" displaytype="mask" calendareditformat="HH:mm" maskeditformat="##:##"/>
@@ -220,6 +220,7 @@ this.grid_SearchEmp_oncellposchanged = function(obj:nexacro.Grid,e:nexacro.GridS
 	this.ds_AttenList.setColumn(0, "name", this.ds_EmpList.getColumn(this.ds_EmpList.rowposition, "name"))
 	this.ds_AttenList.setColumn(0, "assignName", this.ds_EmpList.getColumn(this.ds_EmpList.rowposition, "assignName"))
 	this.ds_AttenList.setColumn(0, "depName", this.ds_EmpList.getColumn(this.ds_EmpList.rowposition, "depName"))
+	this.ds_AttenList.setColumn(0, "workDate", new Date())
 };
 
 this.btn_Register_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)

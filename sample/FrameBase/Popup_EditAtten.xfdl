@@ -38,7 +38,7 @@
                 <Cell col="3" text="bind:depName" textAlign="center"/>
                 <Cell col="4" text="bind:workDate" displaytype="date" calendardateformat="yyyy년 MM월 dd일" textAlign="center"/>
                 <Cell col="5" text="bind:attenType" displaytype="text" textAlign="center" edittype="combo" combodataset="ds_WorkType" combocodecol="Name" combodatacol="Name" comboautoselect="false" autosizecol="default" autosizerow="default"/>
-                <Cell col="6" text="bind:workStart" textAlign="center" edittype="mask" maskeditformat="##:##" maskedittype="string" displaytype="mask"/>
+                <Cell col="6" text="bind:workStart" textAlign="center" edittype="mask" maskeditformat="##:##" maskedittype="string" displaytype="mask" maskedittrimtype="none"/>
                 <Cell col="7" text="bind:workEnd" textAlign="center" edittype="mask" maskedittype="string" displaytype="mask" calendareditformat="HH:mm" maskeditformat="##:##"/>
               </Band>
             </Format>
@@ -108,8 +108,8 @@ this.btn_Edit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		var workEnd = this.ds_AttenList.getColumn(0, "workEnd");
 	
         if(!workStart || !workEnd) {
-		alert("출근시간 또는 퇴근시간을 입력하세요.");
-        return;
+			alert("출근시간 또는 퇴근시간을 입력하세요.");
+			return;
 		}
 		
 		var startHour = parseInt(workStart.slice(0, 2), 10);
