@@ -4,35 +4,35 @@
 
 	<select id="selectMyPay" resultType="payDTO" parameterType="paySearchDTO">
 		SELECT emp_code, pay_year, pay_month, give_date, pay_over, pay_meal, pay_amount,
-		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay
+		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay, etc
 		FROM pay 
-		WHERE emp_code = 1
+		WHERE emp_code = #{empCode}
 		AND pay_month = #{payMonth}
 		AND pay_year = #{payYear};
 	</select>
 	
-	<select id="selectEmp" resultType="payEmpDTO">
+	<select id="selectEmp" resultType="payEmpDTO" parameterType="Integer">
 		SELECT emp_code, e.assign_code, assign_name, e.dep_code, dep_name, id, name, birth
 		FROM employee e JOIN `assignment` a 
 		ON e.assign_code = a.assign_code 
 		JOIN department d 
 		ON d.dep_code = e.dep_code 
-		WHERE emp_code = 1;
+		WHERE emp_code =  #{empCode};
 	</select>	
 	
-	<select id="selectMonthly" resultType="int">
+	<select id="selectMonthly" resultType="int" parameterType="Integer">
 		SELECT DISTINCT monthly 
 		FROM `assignment` a JOIN employee e 
 		ON a.assign_code = e.assign_code 
 		JOIN pay p 
 		ON p.emp_code = e.emp_code
-		WHERE p.emp_code = 1;
+		WHERE p.emp_code =  #{empCode};
 	</select>
 	
 	<select id="selectMinus"  resultType="int" parameterType="paySearchDTO">
 		SELECT income_tax + resident_tax + national_tax + emp_insurance + health_insurance + longcare_insurance 
 		FROM pay 
-		WHERE emp_code = 1
+		WHERE emp_code =  #{empCode}
 		AND pay_month = #{payMonth}
 		AND pay_year = #{payYear}
 	</select>
@@ -44,7 +44,7 @@
 		ON a.atten_code = ac.atten_code 
 		JOIN employee e 
 		ON a.emp_code = e.emp_code 
-		WHERE a.emp_code = 1
+		WHERE a.emp_code =  #{empCode}
 		AND a.atten_code = 1
 		AND MONTH(work_date) = #{payMonth}
 		AND YEAR(work_date) = #{payYear}  ) 
@@ -54,7 +54,7 @@
 		ON a.atten_code = ac.atten_code 
 		JOIN employee e 
 		ON a.emp_code = e.emp_code 
-		WHERE a.emp_code = 1
+		WHERE a.emp_code =  #{empCode}
 		AND a.atten_code = 3
 		AND MONTH(work_date) = #{payMonth}
 		AND YEAR(work_date) = #{payYear} );
@@ -66,7 +66,7 @@
 		ON a.atten_code = ac.atten_code 
 		JOIN employee e 
 		ON a.emp_code = e.emp_code 
-		WHERE a.emp_code = 1
+		WHERE a.emp_code =  #{empCode}
 		AND a.atten_code = 1
 		AND MONTH(work_date) = #{payMonth}
 		AND YEAR(work_date) =  #{payYear} ) 
@@ -76,7 +76,7 @@
 		ON a.atten_code = ac.atten_code 
 		JOIN employee e 
 		ON a.emp_code = e.emp_code 
-		WHERE a.emp_code = 1
+		WHERE a.emp_code =  #{empCode}
 		AND a.atten_code = 3
 		AND MONTH(work_date) = #{payMonth}
 		AND YEAR(work_date) =  #{payYear} );
@@ -88,26 +88,26 @@
 		ON a.atten_code = ac.atten_code 
 		JOIN employee e 
 		ON a.emp_code = e.emp_code 
-		WHERE a.emp_code = 1
+		WHERE a.emp_code =  #{empCode}
 		AND a.atten_code = 1
 		AND MONTH(work_date) = #{payMonth}
 		AND YEAR(work_date) = #{payYear} ;
 	</select>	
 	
-	<select id="selectPayList" resultType="payDTO">
+	<select id="selectPayList" resultType="payDTO" parameterType="int">
 		SELECT emp_code, pay_year, pay_month, give_date, pay_over, pay_meal, pay_amount,
-		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay
+		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay, etc
 		FROM pay 
-		WHERE emp_code = 1
+		WHERE emp_code =  #{empCode}
 		ORDER BY pay_year DESC,
 		pay_month DESC;
 	</select>
 	
 	<select id="selectPeriod" resultType="payDTO" parameterType="paySearchDTO">
 		SELECT emp_code, pay_year, pay_month, give_date, pay_over, pay_meal, pay_amount,
-		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay
+		income_tax, resident_tax, national_tax, emp_insurance, health_insurance, longcare_insurance, actual_pay, etc
 		FROM pay 
-		WHERE emp_code = 1
+		WHERE emp_code =  #{empCode}
 		AND pay_year BETWEEN #{startYear} AND #{endYear}
 		AND pay_month BETWEEN #{startMonth} AND #{endMonth}
 		ORDER BY pay_year DESC,

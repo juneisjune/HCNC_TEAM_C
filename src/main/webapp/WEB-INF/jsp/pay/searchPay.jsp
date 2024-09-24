@@ -9,7 +9,7 @@
 	<title>급여 조회</title>
 	<style>
 		table {
-            width: 1100px;
+            width: 1200px;
             border-collapse: collapse;
             margin-top: 20px;
         }
@@ -45,12 +45,10 @@
 
         .result tr, .result td {
             border: 1px solid #ccc;
-        }
-      
-        .result td {
             font-size: 12px;
             text-align: center;
         }
+        
         .payName {
             font-weight: bold;
         }
@@ -72,25 +70,23 @@
 			 
 			    success: function(result) {
 			    	console.log(result);
-	                if (result.msg === "ok") {	       
+			    	
+	                if (result.msg === "ok") {	 
 	                	
-	                	if (Array.isArray(result.searchList) && result.searchList.length === 0) {
-	                		var payListBody = $("#payListBody");
-		                	 payListBody.empty();
-		                	 
-		                     var searchListBody = $("#searchListBody");
-		                	 searchListBody.empty(); 
-		                	 
-	                        alert("조회 결과가 없습니다.");
-	                    } else {
-	                	
-	                	 var searchList = result.searchList;
-	                	 var monthly = result.monthly;
-	                	 var payListBody = $("#payListBody");
+	                	var payListBody = $("#payListBody");
 	                	 payListBody.empty();
 	                	 
 	                     var searchListBody = $("#searchListBody");
 	                	 searchListBody.empty(); 
+	                	
+	                	if (Array.isArray(result.searchList) && result.searchList.length === 0) {
+	                		
+	                        alert("조회 결과가 없습니다.");
+	                        
+	                    } else {
+	                    	
+	                	 var searchList = result.searchList;
+	                	 var monthly = result.monthly;
 
 	                     $.each(searchList, function(index, pay) {
 	           
@@ -103,7 +99,6 @@
 	                             + "<td>" + pay.payMeal.toLocaleString() + "원" + "</td>"
 	                             + "<td>" + pay.payOver.toLocaleString() + "원" + "</td>"
 	                             + "<td>" + pay.payAmount.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + pay.actualPay.toLocaleString() + "원" + "</td>"
 	                             + "<td>" + pay.incomeTax.toLocaleString() + "원" + "</td>"
 	                             + "<td>" + pay.residentTax.toLocaleString() + "원" + "</td>"
 	                             + "<td>" + pay.nationalTax.toLocaleString() + "원" + "</td>"
@@ -111,6 +106,8 @@
 	                             + "<td>" + pay.healthInsurance.toLocaleString() + "원" + "</td>"
 	                             + "<td>" + pay.longcareInsurance.toLocaleString() + "원" + "</td>"
 	                             + "<td>" + totalTax.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + pay.etc.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + pay.actualPay.toLocaleString() + "원" + "</td>"
 	                             + "</tr>";
 
 	                         payListBody.append(row);  
@@ -137,7 +134,7 @@
 <%@ include file="/WEB-INF/jsp/header.jsp" %>   
 	<div class="container">
 		<form id="searchForm" >
-	        <table >
+	        <table>
 	            <caption><h1>급여 내역 조회</h1></caption>
 	            <tr>
 	                <td>
@@ -210,8 +207,10 @@
 
         <table class="result">
             <tr>
-                <th colspan="7">월별 급여내역</th>
-                <th colspan="7">4대보험 및 갑근세 내역</th>
+            	<th colspan="2">날짜</th>
+                <th colspan="4">월별 급여내역</th>
+                <th colspan="8">4대보험 및 갑근세 내역</th>
+                <th>합계</th>
             </tr>
             <tr class="payName">
                 <td>급여월</td>
@@ -219,8 +218,7 @@
                 <td>기본급</td>
                 <td>식대</td>
                 <td>연장근로수당</td>
-                <td>지급합계</td>
-                <td>실지급액</td>
+                <td>지급액합계</td>
                 <td>소득세</td>
                 <td>주민세</td>
                 <td>국민연금</td>
@@ -228,24 +226,27 @@
                 <td>건강보험</td>
                 <td>장기요양보험</td>
                 <td>공제액합계</td>
+                <td>기타</td>
+                <td>실지급액</td>
             </tr>
             <tbody id="payListBody">
 	            <c:forEach var="pay" items="${payList}" > 
 		            <tr>
 		                <td><a href="/pay/viewPayslip/${pay.payYear}/${pay.payMonth}.do">${pay.payYear}.${pay.payMonth}</a></td>
 		                <td>${pay.giveDate}</td>
-		                <td><fmt:formatNumber value="${monthly}" type="currency" groupingUsed="true"/></td>
-		                <td><fmt:formatNumber value="${pay.payMeal}" type="currency" groupingUsed="true"/></td>
-		                <td><fmt:formatNumber value="${pay.payOver}" type="currency" groupingUsed="true"/></td>
-		                <td><fmt:formatNumber value="${pay.payAmount}" type="currency" groupingUsed="true"/></td>
-		                <td><fmt:formatNumber value="${pay.actualPay}" type="currency" groupingUsed="true"/></td>
-		                <td><fmt:formatNumber value="${pay.incomeTax}" type="currency" groupingUsed="true"/></td>			                			                
-		                <td><fmt:formatNumber value="${pay.residentTax}" type="currency" groupingUsed="true"/></td>			                			                
-		                <td><fmt:formatNumber value="${pay.nationalTax}" type="currency" groupingUsed="true"/></td>			                			                
-		                <td><fmt:formatNumber value="${pay.empInsurance}" type="currency" groupingUsed="true"/></td>			                			                
-		                <td><fmt:formatNumber value="${pay.healthInsurance}" type="currency" groupingUsed="true"/></td>			                			                
-		                <td><fmt:formatNumber value="${pay.longcareInsurance}" type="currency" groupingUsed="true"/></td>			                			                
-		                <td><fmt:formatNumber value="${pay.incomeTax + pay.residentTax + pay.nationalTax + pay.empInsurance + pay.healthInsurance + pay.longcareInsurance}" type="currency" groupingUsed="true"/></td>			                			               
+		                <td><fmt:formatNumber value="${monthly}" type="number" groupingUsed="true"/>원</td>
+		                <td><fmt:formatNumber value="${pay.payMeal}" type="number" groupingUsed="true"/>원</td>
+		                <td><fmt:formatNumber value="${pay.payOver}" type="number" groupingUsed="true"/>원</td>
+		                <td><fmt:formatNumber value="${pay.payAmount}" type="number" groupingUsed="true"/>원</td>
+		                <td><fmt:formatNumber value="${pay.incomeTax}" type="number" groupingUsed="true"/>원</td>			                			                
+		                <td><fmt:formatNumber value="${pay.residentTax}" type="number" groupingUsed="true"/>원</td>			                			                
+		                <td><fmt:formatNumber value="${pay.nationalTax}" type="number" groupingUsed="true"/>원</td>			                			                
+		                <td><fmt:formatNumber value="${pay.empInsurance}" type="number" groupingUsed="true"/>원</td>			                			                
+		                <td><fmt:formatNumber value="${pay.healthInsurance}" type="number" groupingUsed="true"/>원</td>			                			                
+		                <td><fmt:formatNumber value="${pay.longcareInsurance}" type="number" groupingUsed="true"/>원</td>			                			                
+		                <td><fmt:formatNumber value="${pay.incomeTax + pay.residentTax + pay.nationalTax + pay.empInsurance + pay.healthInsurance + pay.longcareInsurance}" type="number" groupingUsed="true"/>원</td>	
+		                <td><fmt:formatNumber value="${pay.etc}" type="number" groupingUsed="true"/>원</td>	
+		                <td><fmt:formatNumber value="${pay.actualPay}" type="number" groupingUsed="true"/>원</td>	                			               
 		            </tr>
 	            </c:forEach>
 			</tbody>

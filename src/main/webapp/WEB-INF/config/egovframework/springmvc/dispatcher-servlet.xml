@@ -25,8 +25,8 @@
 <!--         </property> -->
 <!--     </bean> -->
 
-		<!-- contentType 에러 발생해서 추가  
-		<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" p:order="0"/>
+	<!-- contentType 에러 발생해서 추가  
+		<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
 		<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
 			<property name="messageConverters">
 				<list>
@@ -43,9 +43,7 @@
 			</property>
 		</bean>
 		<bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-		-->
-
-
+-->
     
 <!--     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"> -->
 <!--       <property name="defaultLocale" value="ko" /> -->

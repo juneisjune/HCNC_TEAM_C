@@ -23,6 +23,7 @@ public class PayDTO {
 	private int healthInsurance;
 	private int longcareInsurance;
 	private int actualPay;
+	private int etc;
 
 	private LocalDateTime regDate;
 	private String regName;
@@ -137,5 +138,13 @@ public class PayDTO {
 	public void setUpdName(String updName) {
 		this.updName = updName;
 	}
+	public int getEtc() {
+		return etc;
+	}
+	public void setEtc(int etc) {
+		this.etc = etc;
+	}
+	
+	
 
 }

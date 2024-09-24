@@ -20,27 +20,27 @@ public class PayServiceImpl extends EgovAbstractServiceImpl implements PayServic
 	}
 
 	@Override
-	public PayEmpDTO selectEmp() throws Exception {
-		return payMapper.selectEmp();
+	public PayEmpDTO selectEmp(int empCode) throws Exception {
+		return payMapper.selectEmp(empCode);
 	}
 
 	@Override
-	public int selectMonthly() throws Exception {
-		return payMapper.selectMonthly();
+	public Integer selectMonthly(int empCode) throws Exception {
+		return payMapper.selectMonthly(empCode);
 	}
 
 	@Override
-	public int selectMinus(PaySearchDTO paySearchDTO) throws Exception {
+	public Integer selectMinus(PaySearchDTO paySearchDTO) throws Exception {
 		return payMapper.selectMinus(paySearchDTO);
 	}
 
 	@Override
-	public int selectTotalDay(PaySearchDTO paySearchDTO) throws Exception {
+	public Integer selectTotalDay(PaySearchDTO paySearchDTO) throws Exception {
 		return payMapper.selectTotalDay(paySearchDTO);
 	}
 	
 	@Override
-	public int selectTotalTime(PaySearchDTO paySearchDTO) throws Exception {
+	public Integer selectTotalTime(PaySearchDTO paySearchDTO) throws Exception {
 		return payMapper.selectTotalTime(paySearchDTO);
 	}
 	
@@ -50,8 +50,8 @@ public class PayServiceImpl extends EgovAbstractServiceImpl implements PayServic
 	}
 	
 	@Override
-	public List<PayDTO> selectPayList() throws Exception {
-		return payMapper.selectPayList();
+	public List<PayDTO> selectPayList(int empCode) throws Exception {
+		return payMapper.selectPayList(empCode);
 	}
 
 	@Override

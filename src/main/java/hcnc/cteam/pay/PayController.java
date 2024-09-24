@@ -7,21 +7,26 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+import hcnc.cteam.login.LoginDTO;
 import oracle.sql.DATE;
 
 @Controller
@@ -32,59 +37,67 @@ public class PayController {
 
 	@Resource(name = "payService")
 	private PayService payService;
-
+	
+	//최근 급여명세서 조회 
 	@RequestMapping("/viewPayslip.do")
-	public String viewPayslip(ModelMap model) throws Exception {
+	public String viewPayslip(ModelMap model, HttpServletRequest request) throws Exception {
 		LocalDate currentDate = LocalDate.now();
 		int payYear = currentDate.getYear();
 		int payMonth = currentDate.getMonthValue() - 1;
+		
+		HttpSession session = request.getSession();
+		int empCode = (int) session.getAttribute("userCode");	
 
-		PaySearchDTO paySearchDTO = new PaySearchDTO(payYear, payMonth);
+		PaySearchDTO paySearchDTO = new PaySearchDTO(empCode, payYear, payMonth);
 
 		PayDTO myPay = payService.selectMyPay(paySearchDTO);
 		model.addAttribute("myPay", myPay);
 
-		PayEmpDTO emp = payService.selectEmp();
+		PayEmpDTO emp = payService.selectEmp(empCode);
 		model.addAttribute("emp", emp);
 
-		int monthly = payService.selectMonthly();
+		Integer monthly = payService.selectMonthly(empCode);
 		model.addAttribute("monthly", monthly);
 
-		int minus = payService.selectMinus(paySearchDTO);
+		Integer minus = payService.selectMinus(paySearchDTO);
 		model.addAttribute("minus", minus);
 
-		int totalDay = payService.selectTotalDay(paySearchDTO);
+		Integer totalDay = payService.selectTotalDay(paySearchDTO);
 		model.addAttribute("totalDay", totalDay);
 
-		int totalTime = payService.selectTotalTime(paySearchDTO);
+		Integer totalTime = payService.selectTotalTime(paySearchDTO);
 		model.addAttribute("totalTime", totalTime);
 
-		double overTime = payService.selectWorkOver(paySearchDTO);
+		Double overTime = payService.selectWorkOver(paySearchDTO);
 		model.addAttribute("overTime", overTime);
 
 		return "pay/payslip";
 	}
 
+	//해당 년,월 급여 조회
 	@RequestMapping("/viewPayslip/{payYear}/{payMonth}.do")
-	public String viewPayMonth(@PathVariable int payYear, @PathVariable int payMonth, ModelMap model) throws Exception {
-		PaySearchDTO paySearchDTO = new PaySearchDTO(payYear, payMonth);
+	public String viewPayMonth(@PathVariable int payYear, @PathVariable int payMonth, ModelMap model, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		int empCode = (int) session.getAttribute("userCode");	
+		
+		PaySearchDTO paySearchDTO = new PaySearchDTO(empCode, payYear, payMonth);
 
 		PayDTO myPay = payService.selectMyPay(paySearchDTO);
 		model.addAttribute("myPay", myPay);
 
-		PayEmpDTO emp = payService.selectEmp();
+		PayEmpDTO emp = payService.selectEmp(empCode);
 		model.addAttribute("emp", emp);
 
-		int monthly = payService.selectMonthly();
+		Integer monthly = payService.selectMonthly(empCode);
 		model.addAttribute("monthly", monthly);
 
-		int minus = payService.selectMinus(paySearchDTO);
+		Integer minus = payService.selectMinus(paySearchDTO);
 		model.addAttribute("minus", minus);
 
-		int totalDay = payService.selectTotalDay(paySearchDTO);
+		Integer totalDay = payService.selectTotalDay(paySearchDTO);
 		model.addAttribute("totalDay", totalDay);
 
-		int totalTime = payService.selectTotalTime(paySearchDTO);
+		Integer totalTime = payService.selectTotalTime(paySearchDTO);
 		model.addAttribute("totalTime", totalTime);
 
 		Double overTime = payService.selectWorkOver(paySearchDTO);
@@ -94,26 +107,35 @@ public class PayController {
 		return "pay/payslip";
 	}
 
+	//해당 직원 급여 내역 모두 조회
 	@RequestMapping("/searchPay.do")
-	public String searchPayView(ModelMap model) throws Exception {
-		PayEmpDTO emp = payService.selectEmp();
+	public String searchPayView(ModelMap model, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		int empCode = (int) session.getAttribute("userCode");	
+		
+		PayEmpDTO emp = payService.selectEmp(empCode);
+		
 		model.addAttribute("emp", emp);
 
-		List<PayDTO> payList = payService.selectPayList();
+		List<PayDTO> payList = payService.selectPayList(emp.getEmpCode());
 
 		if (payList != null && !payList.isEmpty()) {
 			model.addAttribute("payList", payList);
 
-			int monthly = payService.selectMonthly();
+			Integer monthly = payService.selectMonthly(empCode);
 			model.addAttribute("monthly", monthly);
 		}
 
 		return "pay/searchPay";
 	}
 
+	//해당 기간 급여 조회 
 	@RequestMapping(value = "/searchPay.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String searchPay1(PaySearchDTO paySearchDTO, ModelMap model) {
+	public String searchPay1(PaySearchDTO paySearchDTO, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		int empCode = (int) session.getAttribute("userCode");	
+		paySearchDTO.setEmpCode(empCode);
 
 		String result = "";
 
@@ -121,7 +143,7 @@ public class PayController {
 
 		try {
 			List<PayDTO> searchList = payService.selectPeriod(paySearchDTO);
-			int monthly = payService.selectMonthly();
+			Integer monthly = payService.selectMonthly(empCode);
 
 			map.put("msg", "ok");
 			map.put("searchList", searchList);
