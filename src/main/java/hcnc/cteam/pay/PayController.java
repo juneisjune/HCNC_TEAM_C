@@ -31,7 +31,6 @@ import oracle.sql.DATE;
 
 @Controller
 @RequestMapping("/pay")
-@SessionAttributes("loginUser")
 public class PayController {
 
 	private static final RequestMethod[] POST = null;
@@ -135,7 +134,7 @@ public class PayController {
 	@ResponseBody
 	public String searchPay1(PaySearchDTO paySearchDTO, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		int empCode = (int) session.getAttribute("loginUser");	
+		int empCode = (int) session.getAttribute("userCode");	
 		paySearchDTO.setEmpCode(empCode);
 
 		String result = "";

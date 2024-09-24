@@ -73,7 +73,7 @@ public class LoginController {
 	public String viewAuth(ModelMap model, HttpServletRequest request) throws Exception {
 		
 		HttpSession session = request.getSession();
-		int empCode = (int) session.getAttribute("loginUser");	
+		int empCode = (int) session.getAttribute("userCode");	
 		
 		String email = loginService.selectEmail(empCode);
 		model.addAttribute("email", email);
