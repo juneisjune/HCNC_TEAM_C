@@ -30,7 +30,6 @@ public class CodeController {
     		                     ,@ParamVariable(name = "var_1", required = false) Map<String,Object> var_param1
     		                     ,@ParamVariable(name = "var_2", required = false) Map<String,Object> var_param2
     		                     ,@ParamVariable(name = "var_3", required = false) Map<String,Object> var_param3) {
-
     	NexacroResult result = new NexacroResult();
     	System.out.println("ds_param1 = " + ds_param1);
     	System.out.println("ds_param2 = " + ds_param2);
@@ -96,7 +95,38 @@ public class CodeController {
     	return result;
     }
     
-     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     /**

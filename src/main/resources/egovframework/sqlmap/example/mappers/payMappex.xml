@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hcnc.cteam.pay.PayMapper">
+
+    <!-- 조건에 맞는 급여 목록 조회 -->
+    <select id="nexaGetPayListByCondition" 
+    resultType="PayDTO">
+        SELECT a.emp_code as empCode,       
+               a.name as name,              
+               d.assign_name as assignName, 
+               e.dep_name as depName,       
+               b.pay_year as payYear,       
+               b.pay_month as payMonth,     
+               b.pay_amount as payAmount    
+        FROM employee a
+        JOIN pay b ON a.emp_code = b.emp_code
+        JOIN assignment d ON a.assign_code = d.assign_code
+        JOIN department e ON a.dep_code = e.dep_code
+        WHERE 1=1
+
+        <!-- 검색어와 검색 타입에 따른 조건 추가 -->
+        <if test="SEARCH_WORD != null and SEARCH_WORD != '' and SEARCH_TYPE != '' and SEARCH_TYPE != null">
+            <!-- 전체 조회 -->
+            <if test="SEARCH_TYPE == 'ALL'">
+                AND (a.emp_code LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+                OR a.name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+                OR d.assign_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+                OR e.dep_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+                OR b.pay_year LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+                OR b.pay_month LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+                OR b.pay_amount LIKE CONCAT('%', #{SEARCH_WORD}, '%'))
+            </if>
+        </if>
+    </select>
+
+</mapper>
+
+
+

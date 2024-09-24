@@ -44,7 +44,7 @@ public class CodeServiceImpl extends EgovAbstractServiceImpl implements CodeServ
 		// TODO Auto-generated method stub
 		DefaultTransactionDefinition transDef = new DefaultTransactionDefinition(TransactionDefinition.PROPAGATION_REQUIRED);
 		transDef.setReadOnly(false);
-		transDef.setIsolationLevel(TransactionDefinition.ISOLATION_READ_COMMITTED);
+    	transDef.setIsolationLevel(TransactionDefinition.ISOLATION_READ_COMMITTED);
 		TransactionStatus txStatus = transationManager.getTransaction(transDef);
 		try {
 			//mapper.saveCodeMst(param);
@@ -92,8 +92,8 @@ public class CodeServiceImpl extends EgovAbstractServiceImpl implements CodeServ
 	@Override
 	public List<Map<String, Object>> selectCodeDtl(Map<String, Object> param) {
 		// TODO Auto-generated method stub
-		return mapper.selectCodeDtl(param);
-	}
+		return mapper.selectCodeDtl(param);	
+		}
 
 	/**
 	 * 세부 코드 저장
