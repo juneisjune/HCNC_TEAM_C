@@ -52,5 +52,57 @@
 			AND a.work_date BETWEEN #{START_DATE} AND #{END_DATE}
 		</if>
 	</select>
+	
+	<!--NGJ작성 옮겨온 부분  -->
+ 	<!-- 출근  -->
+	<insert id="startWork" parameterType="attenDTO">
+		INSERT INTO attendance (
+		   emp_code
+		   , work_date 
+		   , atten_code
+		   , work_start
+		   , reg_date
+		   , reg_name
+		) VALUES (
+		   #{empCode}
+		   , CURDATE()
+		   , #{attenCode}
+		   , CURTIME()
+		   , CURTIME()
+		   , #{name}
+		);
+		</insert>
+	<!-- 퇴근  -->
+	<update id="endWork" parameterType="attenDTO">
+		UPDATE attendance 
+		SET work_end = CURTIME(),
+		    work_over = (
+		        FLOOR(
+		            TIME_TO_SEC(
+		                CASE 
+		                    WHEN 0 > TIMEDIFF(work_end, '18:00:00') THEN 0
+		                    WHEN work_end > '21:00:00' THEN TIMEDIFF('21:00:00', '18:00:00')
+		                    ELSE TIMEDIFF(work_end, '18:00:00')
+		                END
+		            ) / 1800
+		        ) * 0.5
+		    ),
+		    upd_name = #{name}
+		WHERE 1=1
+		    AND emp_code = #{empCode}
+		    AND work_date = CURDATE();
+    </update>
+   
+    
+     <!-- 로그인성공후 실행할 근태정보 가져오기  -->
+     <!-- 로그인기능이 들어가는 컨트롤러에 옮길예정 -->
+     <select id="userAttendanceInfo" parameterType="java.util.Map" resultType="attenDTO">
+     	SELECT a.emp_code , a.work_start, a.work_end 
+		FROM employee e JOIN attendance a 
+			ON e.emp_code  = a.emp_code 
+		WHERE id = #{id} 
+			AND password = SHA2(#{password},256)
+			AND work_date = CURDATE(); 
+     </select>
 
 </mapper>
