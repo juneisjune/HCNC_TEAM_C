@@ -1,110 +1,66 @@
-<!DOCTYPE html>
-<html lang="ko">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>직원 검색</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #333;
-        }
-        form {
-            margin-bottom: 20px;
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            margin-right: 10px;
-            font-weight: bold;
-        }
-        input, select, button {
-            padding: 10px;
-            margin-top: 5px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .no-results {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
+    <title>직원 목록 조회</title>
 </head>
 <body>
+   <%@include file="/WEB-INF/jsp/header.jsp" %>
+    <h2>직원 목록 조회</h2>
 
-    <h1>직원 검색</h1>
-    <form action="/test/search.do" method="get">
-        <label for="search_type">검색 유형:</label>
-        <select id="search_type" name="search_type">
-            <option value="name">직원 이름</option>
-            <option value="dep_code">부서 코드</option>
+    <form action="/employee/searchEmployee.do" method="post">
+        <select name="searchType">
+         
+            <option value="depName">부서</option>
+            <option value="assignName">직책</option>
+            <option value="name">이름</option>
         </select>
-
-        <label for="search_value">검색 값 입력:</label>
-        <input type="text" id="search_value" name="search_value" required>
-
-        <button type="submit">검색</button>
+        <input type="text" name="searchWord" placeholder="검색어를 입력하세요"/>
+        <button type="submit">조회</button>
     </form>
 
-    <h2>검색 결과</h2>
-    <c:if test="${empty employees}">
-        <p class="no-results">검색 결과가 없습니다.</p>
-    </c:if>
-    <c:if test="${!empty employees}">
-        <table>
-            <thead>
+ 
+    <table border="1">
+        <thead>
+            <tr>
+                <th>사번</th>
+                <th>부서</th>
+                <th>직책</th>
+                <th>이름</th>
+                <th>입사일</th>
+                <th>생년월일</th>
+                <th>성별</th>
+                <th>전화번호</th>
+                <th>주소</th>
+                <th>이메일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="employee" items="${employeeData}">
                 <tr>
-                    <th>직원 코드</th>
-                    <th>직원 이름</th>
-                    <th>부서 코드</th>
+                    <td>${employee.empCode}</td>                
+                    <td>${employee.depName}</td>
+                    <td>${employee.assignName}</td>
+                    <td>${employee.name}</td>
+                    <td>${employee.joinDate}</td>
+                    <td>${employee.birth}</td>
+                    <td>${employee.gender}</td>
+                    <td>${employee.phone}</td>
+                    <td>${employee.address}</td>
+                    <td>${employee.email}</td>
                 </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="employee" items="${employees}">
-                    <tr>
-                        <td>${employee.empCode}</td>
-                        <td>${employee.name}</td>
-                        <td>${employee.depCode}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </c:if>
+            </c:forEach>
 
+
+            <c:if test="${empty employeeData}">
+                <tr>
+                    <td colspan="8">검색된 직원이 없습니다.</td>
+                </tr>
+            </c:if>
+        </tbody>
+    </table>
+   <%@ include file="/WEB-INF/jsp/footer.jsp" %>
 </body>
 </html>
