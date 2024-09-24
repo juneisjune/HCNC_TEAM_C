@@ -7,7 +7,7 @@
     <title>직원 목록 조회</title>
 </head>
 <body>
-   <%@include file="/WEB-INF/jsp/header.jsp" %>
+  
     <h2>직원 목록 조회</h2>
 
     <form action="/employee/searchEmployee.do" method="post">
