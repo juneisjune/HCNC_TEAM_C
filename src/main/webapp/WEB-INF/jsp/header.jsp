@@ -30,8 +30,8 @@
         /* Banner style */
         .home .banner {
             flex: 1;
-            max-width: 700px;
-            margin-right: 20px;
+            max-width: 1200px;
+            margin-left: 150px;
             padding : 0;   
         }
         
@@ -46,6 +46,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            margin-right:  35px;
         }
 
         .home .btn input {
@@ -82,6 +83,9 @@
             margin: 5px 0;
             font-size: 16px;
         }
+        .logout_btn {
+        	width :130px;
+        }
 
         /* Navigation bar style */
         .navbar {
@@ -89,6 +93,7 @@
             border-bottom: 1px solid #ddd;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             height: 50px; 
+            margin-bottom: 100px;
        
         }
 
@@ -190,7 +195,7 @@
                         <c:if test="${not empty workEnd}">${workEnd}</c:if>
                     </div>
         	    </div>
-				    <input type="button" onclick="logout()" value="로그아웃">
+				    <input class="logout_btn" type="button" onclick="logout()" value="로그아웃">
 				</div>
 			</div>
          </div> <!-- home -->
@@ -317,5 +322,8 @@ setInterval(function() {
     }
 }, 1000);
 
+function logout(){
+	location.href ="/logout.do"
+}
 </script>
 </html>

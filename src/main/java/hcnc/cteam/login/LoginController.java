@@ -43,7 +43,6 @@ public class LoginController {
 		String msg = "";
 		
 		int result = loginService.userLogin(loginDTO);
-		int empCode = loginDTO.getEmpCode();
 		
 		 if (result == 1) {
 			 HttpSession session = request.getSession();
@@ -53,14 +52,17 @@ public class LoginController {
 			 session.setAttribute("userCode", userCode);
 			 session.setAttribute("userName", userName);
 			 
-			 AttenDTO workResult = loginService.selectWork(empCode);
+			 AttenDTO workResult = loginService.selectWork(userCode);
+			 System.out.println("workResult : " + workResult);
+			 System.out.println("startTime : " + workResult.getWorkStart());
+			 System.out.println("endTime : " + workResult.getWorkEnd());
 			 
 			 if (workResult != null) {
 				 LocalTime workStart = workResult.getWorkStart();
 				 LocalTime workEnd = workResult.getWorkEnd();
 				 
-				 session.setAttribute("start_time", workStart);
-				 session.setAttribute("end_time", workEnd);
+				 session.setAttribute("workStart", workStart);
+				 session.setAttribute("workEnd", workEnd);
 			 }
 			 
 	         msg = "ok";

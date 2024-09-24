@@ -64,9 +64,9 @@
 		   , reg_date
 		   , reg_name
 		) VALUES (
-		   #{emp_code}
+		   #{empCode}
 		   , CURDATE()
-		   , #{atten_code}
+		   , #{attenCode}
 		   , CURTIME()
 		   , CURTIME()
 		   , #{name}
@@ -82,16 +82,17 @@
 		                CASE 
 		                    WHEN 0 > TIMEDIFF(work_end, '18:00:00') THEN 0
 		                    WHEN work_end > '21:00:00' THEN TIMEDIFF('21:00:00', '18:00:00')
-		                    ELSE TIMEDIFF(work_end, '18:00:00')) 
+		                    ELSE TIMEDIFF(work_end, '18:00:00')
 		                END
 		            ) / 1800
 		        ) * 0.5
 		    ),
 		    upd_name = #{name}
 		WHERE 1=1
-		    AND emp_code = #{emp_code}
+		    AND emp_code = #{empCode}
 		    AND work_date = CURDATE();
     </update>
+   
     
      <!-- 로그인성공후 실행할 근태정보 가져오기  -->
      <!-- 로그인기능이 들어가는 컨트롤러에 옮길예정 -->

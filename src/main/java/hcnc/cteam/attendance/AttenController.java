@@ -3,6 +3,7 @@ package hcnc.cteam.attendance;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -19,12 +20,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import hcnc.cteam.login.LoginService;
+
 @Controller
 @RequestMapping(value="/atten")
 public class AttenController {
 	
 	@Autowired
     private AttenService attenService;
+	
+	@Resource(name = "loginService")
+	private LoginService loginService;
 	
 	// 직원 근태 목록 조회
 	@GetMapping(value = "/attenlist.do")
@@ -49,10 +55,11 @@ public class AttenController {
     public ResponseEntity<String> startWork(@RequestParam String start_time, 
     										AttenDTO attenDto, HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		int empCode = (int) session.getAttribute("userCode");
+		String name = (String) session.getAttribute("userName");
 		
-		//emp_code로 empDto(가져오기)
-		//가져온 Dto + 
-		//출근코드
+		attenDto.setEmpCode(empCode);
+		attenDto.setName(name);
 		attenDto.setAttenCode(1);
 		
 		//attenDto는 현재 료그인한 유저의 emp코드를 기준으로 입력
@@ -63,11 +70,16 @@ public class AttenController {
     @PostMapping(value="/endWork.do")
     public ResponseEntity<String> endWork(@RequestParam String end_time,
     										AttenDTO attenDto, HttpServletRequest request) {
-    	
-    	//session.getAttribute(emp_code);
-    	//emp_code로 empDto(가져오기)		
+    	HttpSession session = request.getSession();
+		int empCode = (int) session.getAttribute("userCode");
+		String name = (String) session.getAttribute("userName");
+		try {
+			attenDto = loginService.selectWork(empCode);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     	//attenDto는 현재 료그인한 유저의 emp코드를 기준으로 입력
-    	attenService.startWork(attenDto);
+    	attenService.endWork(attenDto);
         return ResponseEntity.ok("퇴근 시간 저장 완료");
     }
 }
