@@ -146,6 +146,9 @@ this.btn_Edit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	
 	alert("수정이 완료되었습니다.");
 	this.close('Close Popup');
-};]]></Script>
+	
+	this.opener.fnSearch();
+};
+]]></Script>
   </Form>
 </FDL>
