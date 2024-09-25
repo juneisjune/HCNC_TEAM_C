@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -62,6 +63,15 @@ public class DayoffController {
     			for(Map<String,Object> offRequest : param) {
     				System.out.println("승인");
     				dayoffService.updateConfirm(offRequest);
+
+    				Object assignCodeObj = offRequest.get("assign_code");
+    				String assignCode = assignCodeObj != null ? assignCodeObj.toString() : null;
+    				System.out.println(assignCode);
+    				
+    				//대표자가 최종승인시 연차개수 변경
+    				if(assignCode.equals("7")) {
+    					dayoffService.increaseDayoffCnt(offRequest);
+    				}
 	    		}
     		
     	}catch(Exception ee) {
@@ -87,13 +97,14 @@ public class DayoffController {
 	        result.setErrorMsg("데이터셋이 없습니다.");
 	        return result;
 	    }
-
+	    
 	    //System.out.println("데이터셋: " + param);  // 데이터셋 확인
 		
     	try {	
     		for(Map<String,Object> offRequest : param) {
 				System.out.println("반려");
 				dayoffService.updateReturn(offRequest);
+				
     		}
     		
     	}catch(Exception ee) {

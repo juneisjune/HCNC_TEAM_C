@@ -13,5 +13,5 @@ public interface DayoffMapper {
 	public void updateConfirm(Map<String, Object> param);
 	public void updateReturn(Map<String, Object> param);
 
-	
+	public void increaseDayoffCnt(Map<String, Object> param);
 }

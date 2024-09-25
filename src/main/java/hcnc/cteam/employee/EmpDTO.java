@@ -2,7 +2,7 @@ package hcnc.cteam.employee;
 
 import java.sql.Date;
 
-public class NgjEmpDTO {
+public class EmpDTO {
 
 	private int empCode;
 	private int assignCode;
@@ -18,6 +18,7 @@ public class NgjEmpDTO {
 	private String phone;
 	private String address;
 	private String email;
+	
 	private Date joinDate;
 	private Date resignDate;
 	private String account;

@@ -18,7 +18,7 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("ds_doRequestList", this);
-            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"start_date\" type=\"DATE\" size=\"256\"/><Column id=\"end_date\" type=\"DATE\" size=\"256\"/><Column id=\"off_type\" type=\"STRING\" size=\"256\"/><Column id=\"reason\" type=\"STRING\" size=\"256\"/><Column id=\"mng_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"md_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"ceo_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"start_date\" type=\"DATE\" size=\"256\"/><Column id=\"end_date\" type=\"DATE\" size=\"256\"/><Column id=\"off_type\" type=\"STRING\" size=\"256\"/><Column id=\"reason\" type=\"STRING\" size=\"256\"/><Column id=\"mng_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"md_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"ceo_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\"/><Column id=\"off_code\" type=\"INT\" size=\"256\"/><Column id=\"off_result\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -28,7 +28,7 @@
 
 
             obj = new Dataset("ds_doRequestListCopy", this);
-            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"start_date\" type=\"DATE\" size=\"256\"/><Column id=\"end_date\" type=\"DATE\" size=\"256\"/><Column id=\"off_type\" type=\"STRING\" size=\"256\"/><Column id=\"reason\" type=\"STRING\" size=\"256\"/><Column id=\"mng_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"md_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"ceo_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"mng_code\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"start_date\" type=\"DATE\" size=\"256\"/><Column id=\"end_date\" type=\"DATE\" size=\"256\"/><Column id=\"off_type\" type=\"STRING\" size=\"256\"/><Column id=\"reason\" type=\"STRING\" size=\"256\"/><Column id=\"mng_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"md_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"ceo_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"mng_code\" type=\"STRING\" size=\"256\"/><Column id=\"off_code\" type=\"INT\" size=\"256\"/><Column id=\"off_result\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -110,19 +110,6 @@
         
         // User Script
         this.registerScript("Form_dayoff_Confirm.xfdl", function() {
-        this.form_onload = function(obj, e) {
-            // application 변수에서 emp_code와 assign_code를 가져옴
-            var loginEmpCode = nexacro.getApplication().gv_emp_code;
-            var loginAssignCode = nexacro.getApplication().gv_assign_code;
-
-            // 새로운 행을 추가하고, emp_code와 assign_code 값을 설정
-            this.ds_offList.setColumn(0, "emp_code", loginEmpCode);
-            this.ds_offList.setColumn(0, "assign_code", loginAssignCode);
-
-
-        };
-
-
 
         // 조회 함수
         this.fnSearchList = function(){
@@ -130,9 +117,9 @@
             var loginEmpCode = nexacro.getApplication().gv_emp_code;
             var loginAssignCode = nexacro.getApplication().gv_assign_code;
 
-            this.ds_offList.setColumn(0, "emp_code", "1005");
+            this.ds_offList.setColumn(0, "emp_code", "7");
             this.ds_offList.setColumn(0, "assign_code", "7");
-
+        	console.log(this.ds_offList);
         	// 컨트롤러 호출
         	var strSvcId    = "dayoffList";                     // 콜백 서비스명
         	var strSvcUrl   = "svc::dayOffList.do";             // 호출 URL
@@ -174,6 +161,15 @@
         			this.ds_doRequestListCopy.setColumn(0, "assign_code", "7");
                 }
             }
+        	var off_result = this.ds_doRequestListCopy.getColumn(0,"off_result");
+        	console.log(off_result);
+
+        	// off_result 값이 '반 려', '승 인', '승인중'일 경우 함수 실행 중지 및 경고 메시지
+            if (off_result === "반 려" || off_result === "승 인" ) {
+                alert("결재가 완료된 건은 재결재 할 수 없습니다.");
+                return;  // 함수 실행 중지
+            }
+
 
         	console.log("전송할 데이터셋 확인:", this.ds_doRequestListCopy.saveXML());
 
@@ -214,6 +210,15 @@
             }
 
         	console.log("전송할 데이터셋 확인:", this.ds_doRequestListCopy.saveXML());
+
+        	var off_result = this.ds_doRequestListCopy.getColumn(0,"off_result");
+        	console.log(off_result);
+
+        	// off_result 값이 '반 려', '승 인', '승인중'일 경우 함수 실행 중지 및 경고 메시지
+            if (off_result === "반 려" || off_result === "승 인" ) {
+                alert("결재가 완료된 건은 재결재 할 수 없습니다.");
+                return;  // 함수 실행 중지
+            }
 
             // Transaction을 통해 서버로 전송
             var strSvcId = "returnDayoff";
