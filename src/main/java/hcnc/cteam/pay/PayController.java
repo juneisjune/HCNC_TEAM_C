@@ -42,8 +42,15 @@ public class PayController {
 	@RequestMapping("/viewPayslip.do")
 	public String viewPayslip(ModelMap model, HttpServletRequest request) throws Exception {
 		LocalDate currentDate = LocalDate.now();
-		int payYear = currentDate.getYear();
-		int payMonth = currentDate.getMonthValue() - 1;
+		
+		//신년 1월이면 작년 12월 급여 명세서를 조회함
+		int payMonth = (currentDate.getMonthValue() - 1) == 0 ? 12 : currentDate.getMonthValue() - 1;
+		int payYear;
+		if(payMonth == 12) {
+			payYear = currentDate.getYear() - 1;
+		} else {
+			payYear = currentDate.getYear();
+		}
 		
 		HttpSession session = request.getSession();
 		int empCode = (int) session.getAttribute("userCode");	

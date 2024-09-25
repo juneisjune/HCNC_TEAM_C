@@ -93,7 +93,6 @@
 </script>
 </head>
 <body>
- 	<%@ include file="/WEB-INF/jsp/header.jsp" %> 
     <form id="auth_form" method="post">
     <input type="text" id="hiddenAuthKey" >
     <input type="hidden" value="${email}" id="email" >
