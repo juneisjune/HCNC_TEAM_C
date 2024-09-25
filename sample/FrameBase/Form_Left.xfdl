@@ -2,7 +2,9 @@
 <FDL version="2.1">
   <Form id="Form_Left" width="200" height="670" titletext="Form_Left">
     <Layouts>
-      <Layout width="200" height="670" screenid=""/>
+      <Layout width="200" height="670" screenid="">
+        <Static id="Static00" taborder="0" text="LEFT" left="80" top="180" width="120" height="60"/>
+      </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[]]></Script>
   </Form>

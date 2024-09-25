@@ -158,48 +158,12 @@
 	                <td colspan="4" >
 	                    기간 선택
 	                    <select id="startYear"></select>
-	                  <!--   <select id="startYear">
-	                        <option value="2022">2022</option>
-	                        <option value="2023">2023</option>
-	                        <option value="2024">2024</option>
-	                    </select> -->
 	                    년 &nbsp;
-	                    <select id="startMonth">
-	                        <option value="1">1</option>
-	                        <option value="2">2</option>
-	                        <option value="3">3</option>
-	                        <option value="4">4</option>
-	                        <option value="5">5</option>
-	                        <option value="6">6</option>
-	                        <option value="7">7</option>
-	                        <option value="8">8</option>
-	                        <option value="9">9</option>
-	                        <option value="10">10</option>
-	                        <option value="11">11</option>
-	                        <option value="12">12</option>
-	                    </select>
+	                    <select id="startMonth"></select>
 	                    월 &nbsp; ~ 
 	                    <select id="endYear"></select>
-	                   <!--  <select id="endYear">
-	                        <option value="2022">2022</option>
-	                        <option value="2023">2023</option>
-	                        <option value="2024">2024</option>            
-	                    </select> -->
 	                    년 &nbsp;
-	                    <select id="endMonth">
-	                        <option value="1">1</option>
-	                        <option value="2">2</option>
-	                        <option value="3">3</option>
-	                        <option value="4">4</option>
-	                        <option value="5">5</option>
-	                        <option value="6">6</option>
-	                        <option value="7">7</option>
-	                        <option value="8">8</option>
-	                        <option value="9">9</option>
-	                        <option value="10">10</option>
-	                        <option value="11">11</option>
-	                        <option value="12">12</option>
-	                    </select> 
+	                    <select id="endMonth"></select> 
 	                    월 &nbsp;
 	                    <button id="searchBtn" type="button" >급여내역 조회</button>
 	                </td>
@@ -273,25 +237,36 @@
     </div> <!-- container -->
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>   	
 <script>
-    const currentYear = new Date().getFullYear(); 
-    const startYearSelect = document.getElementById('startYear');
-
-    for (let i = 0; i < 3; i++) {
-        const yearOption = document.createElement('option');
-        yearOption.value = currentYear - i;
-        yearOption.textContent = currentYear - i; 
-        startYearSelect.appendChild(yearOption); 
-    }
-    
-    const endYearSelect = document.getElementById('endYear');
-
-    for (let i = 0; i < 3; i++) {
-        const yearOption = document.createElement('option');
-        yearOption.value = currentYear - i; 
-        yearOption.textContent = currentYear - i; 
-        endYearSelect.appendChild(yearOption); 
-    }
+	const currentYear = new Date().getFullYear(); 
+	const startYearSelect = document.getElementById('startYear');
+	const endYearSelect = document.getElementById('endYear');
+	
+	for (let i = 0; i < 3; i++) {
+		const startOption = document.createElement('option');
+		startOption.value = currentYear - i;
+		startOption.textContent = currentYear - i; 
+		startYearSelect.appendChild(startOption); 
 		
+		const endOption = document.createElement('option');
+		endOption.value = currentYear - i;
+		endOption.textContent = currentYear - i; 
+		endYearSelect.appendChild(endOption); 
+	}
+	
+	const startMonthSelect = document.getElementById('startMonth');
+	const endMonthSelect = document.getElementById('endMonth');
+	
+	for(let i=1; i<=12; i++) {
+		const startOption = document.createElement('option');
+		startOption.value = i;
+		startOption.textContent = i;
+		startMonthSelect.appendChild(startOption);
+		
+		const endOption = document.createElement('option');
+		endOption.value = i;
+		endOption.textContent = i;
+		endMonthSelect.appendChild(endOption);
+	}			
 </script>
 </body>
 </html>

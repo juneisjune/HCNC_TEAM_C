@@ -1,10 +1,128 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_InsertPay" width="1280" height="720" titletext="New Form">
+  <Form id="Form_InsertPay" width="1280" height="720" titletext="급여 등록" onload="Form_InsertPay_onload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
-        <Static id="Static00" taborder="0" text="급여 등록" left="60" top="12" width="278" height="78"/>
+        <Static id="title" taborder="0" text="급여 등록" left="60" top="12" width="278" height="78"/>
+        <Static id="stc_Assign" taborder="1" text="직책" left="60" top="71" width="120" height="60"/>
+        <Combo id="cmb_Assign" taborder="2" text="" left="95" top="91" width="105" height="20" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged" onclick="Common_onclick" font="12pt/normal gulim"/>
+        <Static id="stc_Monthly" taborder="3" text="기본급" left="60" top="110" width="120" height="60" onclick="Static02_onclick"/>
+        <MaskEdit id="me_Monthly" taborder="4" left="105" top="132" width="125" height="20" onchanged="MaskEdit00_onchanged" format="#,##0" postfixtext="원"/>
+        <Button id="btn_Search" taborder="5" text="조회" left="215" top="91" width="43" height="20" onclick="Common_onclick"/>
+        <Static id="stc_tax" taborder="6" text="세금" left="263" top="110" width="120" height="60"/>
+        <MaskEdit id="me_Tax" taborder="7" left="298" top="132" width="125" height="20" postfixtext="%" format="0.0"/>
+        <Grid id="grd_Emp" taborder="8" left="60" top="175" width="800" height="270" binddataset="ds_Emp">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+                <Column size="88"/>
+                <Column size="104"/>
+                <Column size="80"/>
+                <Column size="107"/>
+                <Column size="125"/>
+                <Column size="247"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="사번"/>
+                <Cell col="2" text="이름"/>
+                <Cell col="3" text="직책"/>
+                <Cell col="4" text="부서"/>
+                <Cell col="5" text="입사일"/>
+                <Cell col="6" text="계좌번호"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" textAlign="center" text="bind:emp_code"/>
+                <Cell col="2" textAlign="center" text="bind:name"/>
+                <Cell col="3" textAlign="center" text="bind:assign_name"/>
+                <Cell col="4" text="bind:dep_name"/>
+                <Cell col="5" textAlign="center" displaytype="date" text="bind:join_date"/>
+                <Cell col="6" text="bind:account"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static04" taborder="9" text="지급일" left="540" top="445" width="120" height="60"/>
+        <Calendar id="cal_GiveDate" taborder="10" left="595" top="465" width="150" height="20"/>
+        <Button id="btn_Insert" taborder="11" text="등록" left="770" top="460" width="90" height="30"/>
       </Layout>
     </Layouts>
+    <Objects>
+      <Dataset id="ds_AssignType">
+        <ColumnInfo>
+          <Column id="assign_code" type="INT" size="256"/>
+          <Column id="assign_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="assign_code">1</Col>
+            <Col id="assign_name">사원</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">대리</Col>
+            <Col id="assign_code">2</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">과장</Col>
+            <Col id="assign_code">3</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">차장</Col>
+            <Col id="assign_code">4</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">부장</Col>
+            <Col id="assign_code">5</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">이사</Col>
+            <Col id="assign_code">6</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">대표</Col>
+            <Col id="assign_code">7</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Assign">
+        <ColumnInfo>
+          <Column id="assign_code" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Emp">
+        <ColumnInfo>
+          <Column id="emp_code" type="INT" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="assign_name" type="STRING" size="256"/>
+          <Column id="dep_name" type="STRING" size="256"/>
+          <Column id="join_date" type="DATE" size="256"/>
+          <Column id="account" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_InsertPay_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{	
+
+	
+
+};
+
+]]></Script>
+    <InitValue>
+      <Static id="title" font="24px/normal &quot;Gulim&quot;"/>
+    </InitValue>
+    <Bind>
+      <BindItem id="item0" compid="cmb_Assign" propid="value" datasetid="ds_Dep" columnid="assign_code"/>
+    </Bind>
   </Form>
 </FDL>

@@ -2,30 +2,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hcnc.cteam.pay.NexaPayMapper">
 
-	<!-- 직책에 따른 emp_code List 구하기  -->
-	<select id="selectEmpList" resultType="int" parameterType="int"> 
-		SELECT emp_code
-		FROM employee e JOIN `assignment` a
-		ON e.assign_code = a.assign_code
-		WHERE a.assign_code = #{assignCode}
+	<!-- 직책에 따른 monthly 조회 -->
+	<select id="selectMonthly" resultType="int" parameterType="int">
+		SELECT monthly 
+		FROM `assignment` 
+		WHERE assign_code = #{assignCode};
 	</select>
 	
-	<!-- 직책에 따른 tax 구하기 -->
+	<!-- 직책에 따른 tax 조회 -->
 	<select id="selectTax" resultType="int" parameterType="int">
 		SELECT tax 
 		FROM `assignment`
 		WHERE assign_code = #{assignCode}
 	</select>
+
+	<!-- 직책에 따른 emp List 조회  -->
+	<select id="selectEmpList" resultType="java.util.Map" parameterType="int"> 
+		SELECT emp_code, name, assign_name, dep_name, join_date, account 
+		FROM employee e JOIN `assignment` a
+		ON e.assign_code = a.assign_code
+		JOIN department d 
+		ON e.dep_code = d.dep_code 
+		WHERE a.assign_code = #{assignCode}
+	</select>
 	
-	<!-- work_over 구하기 -->
-	<select id="selectWorkOver" resultType="double" parameterType="int">
+	<!-- 저번달 work_over 조회 -->
+	<select id="selectWorkOver" resultType="double">
 		SELECT SUM(work_over)
 		FROM attendance a JOIN att_code ac 
 			ON a.atten_code = ac.atten_code 
 		JOIN employee e 
 			ON a.emp_code = e.emp_code 
-		WHERE a.emp_code = #{empCode}
+		WHERE a.emp_code = 1
 		AND a.atten_code = 1
+			<!-- 1월이면 작년 12월 데이터 조회 -->
 			<if test="MONTH(CURDATE()) == 1"> 
 				AND YEAR(work_date) = YEAR(CURDATE()) - 1
 				AND MONTH(work_date) = 12
@@ -36,32 +46,46 @@
 			</if>
 	</select>
 	
-	<!-- hourly 구하기 -->
-	<select id="selectHourly" resultType="int" parameterType="int">
+	<!-- hourly 조회 -->
+	<select id="selectHourly" resultType="int" >
 		SELECT DISTINCT hourly 
 		FROM `assignment` a  JOIN employee e 
 		ON a.assign_code  = e.assign_code 
-		WHERE e.emp_code = #{empCode}
-	</select>
-	
-	<!-- monthly 구하기 -->
-	<select id="selectMonthly" resultType="int" parameterType="int">
-		SELECT DISTINCT monthly 
-		FROM `assignment` a JOIN employee e 
-		ON a.assign_code = e.assign_code 
-		JOIN pay p 
-		ON p.emp_code = e.emp_code
-		WHERE e.emp_code = #{empCode};
+		WHERE e.emp_code = 1
 	</select>
 	
 	<!-- pay insert -->
-	<insert id="insertPay">
-		INSERT INTO pay(emp_code, pay_year, pay_month, give_date, pay_over, pay_amount,
-		income_tax, resident_tax, national_tax , emp_insurance, health_insurance, longcare_insurance, 
-		actual_pay, reg_name)
-		VALUES (#{empCode}, #{payYear}, #{payMonth}, #{giveDate}, #{payOver}, #{payAmount},
-		#{incomeTax}, #{residentTax}, #{nationalTax}, #{empInsurance}, #{healthInsurance}, #{longcareInsurance}, 
-		#{actualPay}, "오명진");
+	<insert id="insertPay" parameterType="payDTO">
+		INSERT INTO pay(emp_code
+			, pay_year
+			, pay_month
+			, give_date
+			, pay_over
+			, pay_amount
+			, income_tax
+			, resident_tax
+			, national_tax 
+			, emp_insurance
+			, health_insurance
+			, longcare_insurance
+			, actual_pay
+			, reg_name
+		)
+		VALUES (1
+			, IF(MONTH(CURDATE())-1 = 0, YEAR(CURDATE())-1, YEAR(CURDATE()) )
+			, IF(MONTH(CURDATE())-1 = 0, 12, MONTH(CURDATE())-1 )
+			, #{giveDate}
+			, #{payOver}
+			, #{payAmount}
+			, #{incomeTax}
+			, #{residentTax}
+			, #{nationalTax}
+			, #{empInsurance}
+			, #{healthInsurance}
+			, #{longcareInsurance}
+			, #{actualPay}
+			, "오명진"
+		);
 	</insert>
 	
 

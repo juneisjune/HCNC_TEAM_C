@@ -47,8 +47,8 @@
 	        <tr>
 	            <th class="section-header">성명</th>
 	            <td>${emp.name}</td>
-	            <th class="section-header">생년월일</th>
-	            <td>${emp.birth}</td>
+	            <th class="section-header">입사일</th>
+	            <td>${emp.joinDate}</td>
 	        </tr>
 	        <tr>
 	            <th class="section-header">부서</th>

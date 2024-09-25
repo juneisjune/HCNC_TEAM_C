@@ -20,7 +20,10 @@
 
             
             // UI Components Initialize
-
+            obj = new Static("Static00","630","-10","120","60",null,null,null,null,null,null,this);
+            obj.set_taborder("0");
+            obj.set_text("TOP");
+            this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
             obj = new Layout("default","",1280,50,this,function(p){});
