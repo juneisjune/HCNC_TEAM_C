@@ -125,6 +125,53 @@
 	        });
 	    });
 	});
+	
+	//년도,월을 현재기준 3개년 보는 스크립트
+	document.addEventListener("DOMContentLoaded", function() {
+        // 현재 연도 가져오기
+        var today = new Date();
+        var currentYear = today.getFullYear();
+
+        // 시작 연도는 2년 전부터 현재 연도까지
+        var startYear = currentYear - 2;
+
+        // startYear와 endYear select 요소 가져오기
+        var startYearSelect = document.getElementById("startYear");
+        var endYearSelect = document.getElementById("endYear");
+        
+        var startMonthSelect = document.getElementById("startMonth");
+        var endMonthSelect = document.getElementById("endMonth");
+
+        //연도 옵션 추가
+        for (var year = startYear; year <= currentYear; year++) {
+            var option = document.createElement("option");
+            option.value = year;
+            option.text = year;
+            startYearSelect.appendChild(option);
+            
+            var endOption = document.createElement("option");
+            endOption.value = year;
+            endOption.text = year;
+            endYearSelect.appendChild(endOption);
+        }
+        
+        // 월 옵션 추가
+        for (var month = 1; month <=12; month++){
+        	var option = document.createElement("option");
+        	option.value = month;
+        	option.text = month;
+        	startMonthSelect.appendChild(option);
+        	
+        	var endOption = document.createElement("option");
+        	endOption.value = month;
+        	endOption.text = month;
+        	endMonthSelect.appendChild(endOption);
+        	
+        }
+		
+        
+            
+    });
 	</script>
 </head>
   	
@@ -156,45 +203,11 @@
 	            <tr>
 	                <td colspan="4" >
 	                    기간 선택
-	                    <select id="startYear">
-	                        <option value="2022">2022</option>
-	                        <option value="2023">2023</option>
-	                        <option value="2024">2024</option>
-	                    </select>
-	                    년 &nbsp;
+	                    <select id="startYear"></select>년 &nbsp;
 	                    <select id="startMonth">
-	                        <option value="1">1</option>
-	                        <option value="2">2</option>
-	                        <option value="3">3</option>
-	                        <option value="4">4</option>
-	                        <option value="5">5</option>
-	                        <option value="6">6</option>
-	                        <option value="7">7</option>
-	                        <option value="8">8</option>
-	                        <option value="9">9</option>
-	                        <option value="10">10</option>
-	                        <option value="11">11</option>
-	                        <option value="12">12</option>
 	                    </select>
-	                    월 &nbsp; ~ <select id="endYear">
-	                        <option value="2022">2022</option>
-	                        <option value="2023">2023</option>
-	                        <option value="2024">2024</option>            
-	                    </select>
-	                    년 &nbsp;
+	                    월 &nbsp; ~ <select id="endYear"></select>	                    년 &nbsp;
 	                    <select id="endMonth">
-	                        <option value="1">1</option>
-	                        <option value="2">2</option>
-	                        <option value="3">3</option>
-	                        <option value="4">4</option>
-	                        <option value="5">5</option>
-	                        <option value="6">6</option>
-	                        <option value="7">7</option>
-	                        <option value="8">8</option>
-	                        <option value="9">9</option>
-	                        <option value="10">10</option>
-	                        <option value="11">11</option>
-	                        <option value="12">12</option>
 	                    </select> 
 	                    월 &nbsp;
 	                    <button id="searchBtn" type="button" >신청내역 조회</button>
