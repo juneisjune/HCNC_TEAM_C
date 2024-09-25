@@ -160,13 +160,13 @@ public class DayoffUserController {
 		
 		String result = "";
 		HttpSession session = request.getSession();
-		NgjEmpDTO empdto = (NgjEmpDTO) session.getAttribute("user");
+		int empCode = (int)session.getAttribute("userCode");
+		String name = (String)session.getAttribute("userName");
 		
 		try {
-			dayoff.setEmpCode(empdto.getEmpCode());
-			dayoff.setName(empdto.getName());
+			dayoff.setEmpCode(empCode);
+			dayoff.setName(name);
 			
-			System.out.println(dayoff);
 			List<DayoffDTO> requestList = doUserService.requestResult(dayoff);
 			mv.addObject("msg", "ok");
 			mv.addObject("requestList", requestList);
