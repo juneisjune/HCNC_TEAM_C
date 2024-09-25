@@ -128,12 +128,28 @@ form input[readonly] {
  	    const form = document.querySelector("form");
  	    const startDateInput = document.getElementById("startDate");
  	    const endDateInput = document.getElementById("endDate");
+ 	    
+       const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        // 시작일 선택 시 검증
+        startDateInput.addEventListener("change", function() {
+            
+            // 시작일이 오늘보다 이전일 경우 경고 메시지 표시 및 입력값 초기화
+            if (new Date(startDateInput.value) < today) {
+                alert("연차 시작일은 오늘보다 이전일 수 없습니다.");
+                startDateInput.value = "";  // 잘못된 날짜 선택 시 필드를 비움
+            }
+        });
 
  	    // 폼 제출 시 날짜 검증
  	    form.addEventListener("submit", function(event) {
  	        const startDate = new Date(startDateInput.value);
  	        const endDate = new Date(endDateInput.value);
+ 	        
+ 	    
 
+			
  	        // startDate가 endDate보다 클 경우 경고 메시지 표시 및 제출 중단
  	        if (startDate > endDate) {
  	            alert("날짜가 잘못됐습니다. 연차 시작일은 연차 종료일보다 이전이어야 합니다.");
