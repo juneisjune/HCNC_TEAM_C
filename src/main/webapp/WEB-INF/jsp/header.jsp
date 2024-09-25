@@ -214,14 +214,14 @@
                 <li class="nav-item">
                     <a class="nav-link">주소록</a>
                     <ul class="sub-menu">
-                        <li><a href="내정보 보기 URL">내 정보 보기</a></li>
-                        <li><a href="주소록 보기 URL">주소록</a></li>
+                        <li><a href="/employee/myPage.do">내 정보 보기</a></li>
+                        <li><a href="/employee/employee.do">주소록</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link">근태 관리</a>
                     <ul class="sub-menu">
-                        <li><a href="근태조회 URL">근태 조회</a></li>
+                        <li><a href="/atten/attenlist.do">근태 조회</a></li>
                         <li><a href="/dayoff/doRequest.do">휴가 신청</a></li>
                         <li><a href="/dayoff/requestList.do">휴가 신청 결과</a></li>
                     </ul>

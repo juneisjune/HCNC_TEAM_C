@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface EmpService {
 	
-    List<employeeDTO> getEmployeeData();
+    List<EmpDTO> getEmployeeData();
     
-    List<employeeDTO> employeeSearch(Map<String, Object> params);
-    employeeDTO getEmployeeByEmpCode(int empCode);
+    List<EmpDTO> employeeSearch(Map<String, Object> params);
+    EmpDTO getEmployeeByEmpCode(int empCode);
 }
