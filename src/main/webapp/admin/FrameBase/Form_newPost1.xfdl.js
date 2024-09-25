@@ -24,12 +24,11 @@
             this.addChild(obj.name, obj);
 
 
-            obj = new FileDialog("FileDialog00", this);
-            obj.getSetter("onclose").set("FileDialog00_onclose");
+            obj = new FileUpTransfer("FileUpTransfer00", this);
             this.addChild(obj.name, obj);
 
 
-            obj = new FileUpTransfer("FileUpTransfer00", this);
+            obj = new FileDialog("FileDialog00", this);
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -85,24 +84,27 @@
         this.registerScript("Form_newPost1.xfdl", function() {
         this.btn_open_onclick = function(obj,e)
         {
-        	this.FileDialog00.open('nexacro17', FileDialog.MULTILOAD);
+        	this.FileDialog00.open('nexacro17', FileDialog.LOAD);  // 단일 파일 선택 모드
         };
 
-        this.FileDialog00_onclose = function(obj,e)
-        {
-        	this.addFileList(e.virtualfiles);
+        this.FileDialog00_onclose = function(obj, e) {
+            if (e.virtualfiles && e.virtualfiles.length > 0) {
+                trace("Selected files: " + e.virtualfiles.length);  // 파일 선택 개수 확인
+                this.addFileList(e.virtualfiles);  // 파일 리스트 추가
+            } else {
+                trace("No files selected.");
+            }
         };
 
-        this.addFileList = function(filelist)
-        {
-        	for (var i = 0, len = filelist.length, vFile; i < len; i++)
-        	{
-        		vFile = filelist[i];
-        		vFile.addEventHandler("onsuccess", this.FileList_onsuccess, this);
-        		vFile.addEventHandler("onerror", this.FileList_onerror , this);
+        this.addFileList = function(filelist) {
+            for (var i = 0, len = filelist.length, vFile; i < len; i++) {
+                vFile = filelist[i];
+                trace("Opening file: " + vFile.filename);  // 파일 이름 확인
+                vFile.addEventHandler("onsuccess", this.FileList_onsuccess, this);
+                vFile.addEventHandler("onerror", this.FileList_onerror , this);
 
-        		vFile.open(null, 1);
-        	}
+                vFile.open(null, 1);  // 1 = 읽기 전용으로 파일 열기
+            }
         }
 
         this.FileList_onsuccess = function(obj, e)
@@ -172,13 +174,16 @@
         };
 
         this.FileUpTransfer00_onsuccess = function(obj,e)
-        {
+        {	if (e.reason === 9) {  // 파일 크기 반환
+                trace("File opened successfully: " + obj.filename);
+            }
+        	alert("파일 업로드 성공하였습니다!");
         	this.fn_addlog(e.code);
         	this.fn_addlog(e.message);
         };
 
         this.FileUpTransfer00_onerror = function(obj,e)
-        {
+        {	trace("Error while opening file: " + e.errormsg);  // 파일 처리 에러 메시지 출력
         	this.fn_addlog(e.errormsg);
         	this.fn_addlog(e.statuscode);
         };
@@ -187,6 +192,7 @@
         {
         	this.TextArea00.insertText(strMessage + '\n');
         }
+
 
 
 
@@ -201,9 +207,11 @@
             this.Grid00.addEventHandler("ondragleave",this.Grid00_ondragleave,this);
             this.Grid00.addEventHandler("ondrop",this.Grid00_ondrop,this);
             this.Button01.addEventHandler("onclick",this.Button01_onclick,this);
+            this.TextArea00.addEventHandler("onchanged",this.TextArea00_onchanged,this);
             this.FileUpTransfer00.addEventHandler("onprogress",this.FileUpTransfer00_onprogress,this);
             this.FileUpTransfer00.addEventHandler("onsuccess",this.FileUpTransfer00_onsuccess,this);
             this.FileUpTransfer00.addEventHandler("onerror",this.FileUpTransfer00_onerror,this);
+            this.FileDialog00.addEventHandler("onclose",this.FileDialog00_onclose,this);
         };
         this.loadIncludeScript("Form_newPost1.xfdl");
         this.loadPreloadList();

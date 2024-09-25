@@ -69,8 +69,8 @@ response.setHeader("Access-Control-Allow-Credentials", "true");
             }
 
          }
-		 resVarList.add("ErrorCode", 0);
-		 resVarList.add("ErrorMsg", "Success" );
+		 //resVarList.add("ErrorCode", 0);
+		 resVarList.add("ErrorMsg", "업로드 성공!" );
       } catch(Exception ex) {
 		 resVarList.add("ErrorCode", -1);
 		 resVarList.add("ErrorMsg", ex.getMessage() );		
