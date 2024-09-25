@@ -65,7 +65,7 @@
 		this.checkLicense("");
         
         this.loadPreloadList();
-
+        this.loadCss("xcssrc::temp_main.xcss");
     };
 }
 )();

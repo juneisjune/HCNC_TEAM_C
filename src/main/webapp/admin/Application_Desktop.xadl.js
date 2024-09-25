@@ -44,7 +44,7 @@
         this.mainframe_createBodyFrame = function()
         {
             var frame0 = new VFrameSet("VFrameSet00",null,null,null,null,null,null,this);
-            frame0.set_separatesize("50,*");
+            frame0.set_separatesize("0,0,*");
             this.addChild(frame0.name, frame0);
             this.frame=frame0;
 
@@ -56,21 +56,26 @@
 
 
             var frame2 = new HFrameSet("HFrameSet00",null,null,null,null,null,null,frame0);
-            frame2.set_separatesize("200,*");
+            frame2.set_separatesize("190,*");
             frame0.addChild(frame2.name, frame2);
 
             var frame3 = new ChildFrame("LeftFrame",null,null,null,null,null,null,"FrameBase::Form_Left.xfdl",frame2);
             frame3.set_showtitlebar("false");
             frame3.set_showstatusbar("false");
+            frame3.set_showcascadetitletext("true");
             frame2.addChild(frame3.name, frame3);
             frame3.set_formurl("FrameBase::Form_Left.xfdl");
 
 
-            var frame4 = new ChildFrame("WorkFrame",null,null,null,null,null,null,"FrameBase::Form_Attendance.xfdl",frame2);
+            var frame4 = new ChildFrame("WorkFrame",null,null,null,null,null,null,"",frame2);
             frame4.set_showtitlebar("false");
-            frame4.set_showstatusbar("false");
             frame2.addChild(frame4.name, frame4);
-            frame4.set_formurl("FrameBase::Form_Attendance.xfdl");
+
+            var frame5 = new ChildFrame("LoginFrame",null,null,null,null,null,null,"FrameBase::Form_Login.xfdl",frame0);
+            frame5.set_showcascadetitletext("true");
+            frame5.set_showtitlebar("false");
+            frame0.addChild(frame5.name, frame5);
+            frame5.set_formurl("FrameBase::Form_Login.xfdl");
         };
         
         this.on_initEvent = function()
@@ -83,7 +88,7 @@
         this.checkLicense("");
         
         this.loadPreloadList();
-
+        this.loadCss("xcssrc::temp_main.xcss");
         this.loadIncludeScript("Application_Desktop.xadl");
     };
 }
