@@ -24,6 +24,8 @@ public class PayDTO {
 	private int longcareInsurance;
 	private int actualPay;
 	private int etc;
+	
+	private double tax;
 
 	private LocalDateTime regDate;
 	private String regName;
@@ -144,7 +146,11 @@ public class PayDTO {
 	public void setEtc(int etc) {
 		this.etc = etc;
 	}
+	public double getTax() {
+		return tax;
+	}
+	public void setTax(double tax) {
+		this.tax = tax;
+	}
 	
-	
-
 }

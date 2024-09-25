@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_InsertPay" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Static id="Static00" taborder="0" text="급여 등록" left="60" top="12" width="278" height="78"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

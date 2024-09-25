@@ -157,11 +157,12 @@
 	            <tr>
 	                <td colspan="4" >
 	                    기간 선택
-	                    <select id="startYear">
+	                    <select id="startYear"></select>
+	                  <!--   <select id="startYear">
 	                        <option value="2022">2022</option>
 	                        <option value="2023">2023</option>
 	                        <option value="2024">2024</option>
-	                    </select>
+	                    </select> -->
 	                    년 &nbsp;
 	                    <select id="startMonth">
 	                        <option value="1">1</option>
@@ -177,11 +178,13 @@
 	                        <option value="11">11</option>
 	                        <option value="12">12</option>
 	                    </select>
-	                    월 &nbsp; ~ <select id="endYear">
+	                    월 &nbsp; ~ 
+	                    <select id="endYear"></select>
+	                   <!--  <select id="endYear">
 	                        <option value="2022">2022</option>
 	                        <option value="2023">2023</option>
 	                        <option value="2024">2024</option>            
-	                    </select>
+	                    </select> -->
 	                    년 &nbsp;
 	                    <select id="endMonth">
 	                        <option value="1">1</option>
@@ -269,5 +272,26 @@
 
     </div> <!-- container -->
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>   	
+<script>
+    const currentYear = new Date().getFullYear(); 
+    const startYearSelect = document.getElementById('startYear');
+
+    for (let i = 0; i < 3; i++) {
+        const yearOption = document.createElement('option');
+        yearOption.value = currentYear - i;
+        yearOption.textContent = currentYear - i; 
+        startYearSelect.appendChild(yearOption); 
+    }
+    
+    const endYearSelect = document.getElementById('endYear');
+
+    for (let i = 0; i < 3; i++) {
+        const yearOption = document.createElement('option');
+        yearOption.value = currentYear - i; 
+        yearOption.textContent = currentYear - i; 
+        endYearSelect.appendChild(yearOption); 
+    }
+		
+</script>
 </body>
 </html>
