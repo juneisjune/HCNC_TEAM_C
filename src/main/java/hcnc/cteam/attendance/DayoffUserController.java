@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import hcnc.cteam.employee.NgjEmpDTO;
+import hcnc.cteam.employee.NgjEmpService;
 
 @Controller
 @RequestMapping(value = "/dayoff")
@@ -32,6 +33,9 @@ public class DayoffUserController {
 	
 	@Autowired
 	private DayoffUserService doUserService;
+	
+	@Autowired
+	private NgjEmpService empService;
 	
 	@InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -61,9 +65,11 @@ public class DayoffUserController {
 	public String dayoffRequest(Model model,NgjEmpDTO emp, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		emp = (NgjEmpDTO) session.getAttribute("user");
-		model.addAttribute("emp",emp);
+		int empCode = (int)session.getAttribute("userCode");
 		
+		emp = empService.empInfo(empCode);
+		model.addAttribute("emp",emp);
+
 		return "dayoffRequest";
 	}
 	//내역 페이지
@@ -71,7 +77,9 @@ public class DayoffUserController {
 	public String requestList(Model model,NgjEmpDTO emp, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		emp = (NgjEmpDTO) session.getAttribute("user");
+		int empCode = (int)session.getAttribute("userCode");
+		
+		emp = empService.empInfo(empCode);
 		model.addAttribute("emp",emp);
 		
 		return "dayoffResult";
