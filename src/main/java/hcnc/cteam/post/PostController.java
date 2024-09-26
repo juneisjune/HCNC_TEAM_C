@@ -47,18 +47,11 @@ public class PostController {
     @RequestMapping(value = "/insertPost.do", method = RequestMethod.POST)
     public NexacroResult insertPost(
         @ParamDataSet(name = "ds_postInfo") Map<String, Object> param,
-        HttpServletRequest request
+        @ParamDataSet(name = "ds_fileInfo") List<Map<String, Object>> fileList
     ) {
         NexacroResult result = new NexacroResult();
 
         try {
-            // 파일 리스트 가져오기
-            List<MultipartFile> fileList = null;
-            if (request instanceof MultipartHttpServletRequest) {
-                MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-                fileList = multipartRequest.getFiles("file"); // "file"은 FileUpTransfer의 기본 파일 파라미터 이름
-            }
-
             // 공지사항 및 첨부파일 저장
             postService.insertPost(param, fileList);
 
@@ -67,8 +60,11 @@ public class PostController {
         } catch (Exception e) {
             result.setErrorCode(-1);
             result.setErrorMsg("공지사항 등록 중 오류 발생: " + e.getMessage());
+            e.printStackTrace();
         }
 
         return result;
     }
+
+
 }

@@ -1,15 +1,12 @@
 package hcnc.cteam.post;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 @Service("postService")
 public class PostServiceImpl implements PostService {
@@ -32,13 +29,9 @@ public class PostServiceImpl implements PostService {
         postMapper.increaseViewCount(postCode);
     }
     @Override
-    public void insertPost(Map<String, Object> param, List<MultipartFile> fileList) throws Exception {
+    public void insertPost(Map<String, Object> param, List<Map<String, Object>> fileList) throws Exception {
         // 공지사항 등록
-    	// 공지사항 등록
         postMapper.insertPost(param);
-
-        // param 맵에 post_code가 설정되었는지 확인
-        System.out.println("param: " + param);
 
         // 생성된 게시글 번호 가져오기
         Object postCodeObj = param.get("post_code");
@@ -47,31 +40,53 @@ public class PostServiceImpl implements PostService {
         }
         int postCode = Integer.parseInt(String.valueOf(postCodeObj));
 
-        // 첨부파일 저장
+        // 첨부파일 정보 저장
         if (fileList != null && !fileList.isEmpty()) {
-            for (MultipartFile file : fileList) {
-                String originalFileName = file.getOriginalFilename();
-                String savedFileName = UUID.randomUUID().toString() + "_" + originalFileName;
-                String uploadPath = "/upload/" + savedFileName; // 실제 업로드 경로 설정 필요
+            System.out.println("fileList size: " + fileList.size());
+            for (Map<String, Object> fileInfo : fileList) {
+                System.out.println("fileInfo: " + fileInfo);
 
-                // 파일 저장
-                File dest = new File(uploadPath);
-                file.transferTo(dest);
+                // 키 값을 대문자로 사용
+                String attachName = (String) fileInfo.get("filename");
+                System.out.println("attachName: " + attachName);
+                String attachUrl = (String) fileInfo.get("filename");
+                System.out.println("attachUrl: " + attachUrl);
+                
 
-             // 첨부파일 정보 저장
+                // 값이 null인지 확인
+                if (attachName == null || attachUrl == null) {
+                    throw new Exception("파일 정보가 올바르지 않습니다. ATTACH_NAME 또는 ATTACH_URL이 null입니다.");
+                }
+
+                // 파일 저장 경로 설정
+                String uploadPath = "D:\\upload\\" + attachUrl;
+
                 Map<String, Object> fileParam = new HashMap<>();
                 fileParam.put("post_code", postCode);
                 fileParam.put("emp_code", param.get("emp_code"));
-                fileParam.put("attach_name", originalFileName);
+                fileParam.put("attach_name", attachName);
                 fileParam.put("attach_url", uploadPath);
                 fileParam.put("reg_name", param.get("reg_name"));
                 fileParam.put("upd_name", param.get("upd_name"));
                 
-                //첨부파일 정보 저장 관련 
+             // 서비스 코드에서
+                System.out.println("fileInfo map:");
+                for (Map<String, Object> fileInfo1 : fileList) {
+                    for (Map.Entry<String, Object> entry : fileInfo1.entrySet()) {
+                        System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+                    }
+                }
+
+                // 첨부파일 정보 저장
                 postMapper.insertAttachment(fileParam);
             }
+        } else {
+            System.out.println("fileList is null or empty");
         }
     }
+
+
+
     //첨부파일 관련
     @Override
     public void saveAttachment(Map<String, Object> fileParam) throws Exception {

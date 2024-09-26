@@ -20,7 +20,7 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("Dataset00", this);
-            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"size\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"filename\" type=\"STRING\" size=\"256\"/><Column id=\"filesize\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -30,7 +30,7 @@
 
 
             obj = new Dataset("ds_fileInfo", this);
-            obj._setContents("<ColumnInfo><Column id=\"originalFileName\" type=\"STRING\" size=\"256\"/><Column id=\"savedFileName\" type=\"STRING\" size=\"256\"/><Column id=\"fileSize\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"ATTACH_NAME\" type=\"STRING\" size=\"256\"/><Column id=\"ATTACH_URL\" type=\"STRING\" size=\"256\"/><Column id=\"fileSize\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -61,7 +61,7 @@
             obj = new Grid("Grid00","20","80","482","160",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"size\"/></Band><Band id=\"body\"><Cell text=\"bind:name\"/><Cell col=\"1\" text=\"bind:size\" textAlign=\"right\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"size\"/></Band><Band id=\"body\"><Cell text=\"bind:filename\"/><Cell col=\"1\" text=\"bind:filesize\" textAlign=\"right\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button01","512","140","120","50",null,null,null,null,null,null,this);
@@ -203,7 +203,27 @@
             this.ds_postInfo.setColumn(0, "upd_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
             this.ds_postInfo.setColumn(0, "emp_code", nexacro.getApplication().ds_userInfo.getColumn(row, "emp_code"));
         	this.ds_postInfo.setColumn(0, "reg_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
-        	console.log(this.ds_postInfo.saveXML());
+
+
+        	trace("ds_fileInfo: " + this.ds_fileInfo.saveXML());
+
+
+        	console.log("for문 위");
+        	// Dataset00의 데이터를 ds_fileInfo로 복사하면서 컬럼명 매핑
+        	for (var i = 0; i < this.Dataset00.getRowCount(); i++) {
+        	console.log("for문 안");
+        		var nRow = this.ds_fileInfo.addRow();
+        		var originalFileName = this.Dataset00.getColumn(i, "filename");
+        		var fileSize = this.Dataset00.getColumn(i, "filesize");
+
+        		this.ds_fileInfo.setColumn(nRow, "ATTACH_NAME", originalFileName);
+        		this.ds_fileInfo.setColumn(nRow, "ATTACH_URL", originalFileName); // 저장된 파일 이름
+        		this.ds_fileInfo.setColumn(nRow, "fileSize", fileSize);
+
+        	}
+
+
+        	console.log("file info: "+this.ds_fileInfo.saveXML());
 
 
 
@@ -222,24 +242,18 @@
 
         this.FileUpTransfer00_onsuccess = function(obj, e)
         {
-            var objReceiveData = e.datasets; // e 객체에서 데이터를 가져옴
-            if (objReceiveData) {
-                var ds_fileInfo = objReceiveData["ds_fileInfo"]; // 서버에서 반환한 ds_fileInfo
-                this.ds_fileInfo.copyData(ds_fileInfo); // 클라이언트의 ds_fileInfo에 데이터 복사
+            // ds_fileInfo에 Dataset00의 데이터를 복사
+            this.ds_fileInfo.copyData(this.Dataset00);
 
-
-                // 파일 정보와 공지사항 데이터를 Controller로 전송
-                this.transaction(
-        			"insertPost", // transaction ID
-        			"svc::insertPost.do", // Controller URL
-        			"ds_postInfo=ds_postInfo ds_fileInfo=ds_fileInfo", // 입력 DataSet 매핑 수정
-        			"", // 출력 DataSet
-        			"", // 입력/출력 변수
-        			"fn_callback" // 콜백 함수
-        		);
-            } else {
-                alert("파일 업로드 후 서버로부터 파일 정보를 받지 못했습니다.");
-            }
+            // 파일 정보와 공지사항 데이터를 Controller로 전송
+            this.transaction(
+                "insertPost", // transaction ID
+                "svc::insertPost.do", // Controller URL
+                "ds_postInfo=ds_postInfo ds_fileInfo=ds_fileInfo", // 입력 DataSet 매핑
+                "", // 출력 DataSet
+                "", // 입력/출력 변수
+                "fn_callback" // 콜백 함수
+            );
         };
 
         this.fn_callback = function(strSvcID, nErrorCode, strErrorMsg) {

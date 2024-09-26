@@ -83,4 +83,5 @@ response.setHeader("Access-Control-Allow-Credentials", "true");
 	res.setCharset("UTF-8");
 	res.setData(resData);
 	res.sendData();   
+	
 %>

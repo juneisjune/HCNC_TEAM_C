@@ -14,7 +14,9 @@ public interface PostService {
     //조회수 증가 관련
     void increaseViewCount(int postCode);
     // 공지사항 등록 메서드
-    void insertPost(Map<String, Object> param, List<MultipartFile> fileList) throws Exception;
+    //void insertPost(Map<String, Object> param, List<MultipartFile> fileList) throws Exception;
+    void insertPost(Map<String, Object> param, List<Map<String, Object>> fileList) throws Exception;
+
     //파일 첨부 관련 메서드
     void saveAttachment(Map<String, Object> fileParam) throws Exception;
 
