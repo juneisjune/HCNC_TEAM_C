@@ -144,6 +144,7 @@
 		</if>
 	</select>
 	
+	<!-- 근태 정보 등록 -->
 	<insert id="attenRegister" parameterType="nexaAttenDTO">
 		INSERT INTO attendance 
 			(

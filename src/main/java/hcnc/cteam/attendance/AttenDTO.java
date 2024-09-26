@@ -14,7 +14,17 @@ public class AttenDTO {
 	private LocalTime workStart; // 출근 시간
 	private LocalTime workEnd; // 퇴근 시간
 	private double workOver; // 초과 근무 시간
-	
+	private int attenCode; //근태코드
+
+	public int getAttenCode() {
+		return attenCode;
+	}
+
+	public void setAttenCode(int attenCode) {
+		this.attenCode = attenCode;
+	}
+
+
 	public int getEmpCode() {
 		return empCode;
 	}
@@ -69,5 +79,7 @@ public class AttenDTO {
 	public void setWorkOver(double workOver) {
 		this.workOver = workOver;
 	}
+	
+	
 
 }

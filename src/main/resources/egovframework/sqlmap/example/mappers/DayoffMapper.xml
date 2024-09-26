@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hcnc.cteam.attendance.DayoffMapper">
+	<select id="offRequest" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT	'0' AS chk, 
+			e.emp_code,
+			name,
+			de.dep_name ,
+			start_date,
+			d.off_code,
+			off_type,
+			end_date,
+			reason,
+			mng_confirm,
+			md_confirm,
+			ceo_confirm,
+			off_result
+		FROM dayoff d JOIN employee e
+				ON d.emp_code = e.emp_code JOIN dayoff_code dc
+				ON d.off_code = dc.off_code JOIN department de
+				ON e.dep_code =de.dep_code 
+		WHERE 1=1
+		<if test="name != null ">
+			AND name LIKE CONCAT('%',#{name},'%')
+	   </if>
+	   <if test="start_date != null ">
+			AND start_date = #{start_date}
+	   </if>	   
+	    <!-- assign_code가 5일 경우: mng_code가 emp_code와 일치하는 경우 -->
+	    <if test="assign_code == 5">
+	        AND e.mng_code = #{emp_code}
+	    </if>
+	
+	    <!-- assign_code가 6일 경우: mng_confirm이 'Y'인 경우 -->
+	    <if test="assign_code == 6">
+	        AND mng_confirm = 'Y'
+	    </if>
+	
+	    <!-- assign_code가 7일 경우: md_confirm이 'Y'인 경우 -->
+	    
+	    <!-- <if test="assign_code == 7">
+	        AND md_confirm = 'Y'
+	     </if> -->
+	    
+	</select>
+	
+	<!-- assign_code에 따른 승인 -->
+	<update id="updateConfirm" parameterType="java.util.Map">
+	   UPDATE dayoff d 
+	   INNER JOIN employee e ON d.emp_code = e.emp_code 
+	   SET
+	   <!-- 세션으로 upd_name 넣을 예정  -->
+	       <!-- 부서장 승인 -->
+	       <if test="assign_code == 5 ">
+	           mng_confirm = 'Y', off_result = '승인중'
+	       </if>
+	       <!-- 이사 승인 -->
+	       <if test="assign_code == 6 ">
+	           md_confirm = 'Y', off_result = '승인중'
+	       </if>
+	       <!-- 대표 승인 -->
+	       <if test="assign_code == 7 ">
+	           ceo_confirm = 'Y', off_result = '승 인'
+	       </if>
+	   
+	    WHERE e.name = #{name} 
+	     	 AND d.start_date = #{start_date}
+	</update>
+	
+	<!-- assign_code에 따른 반려 -->
+	<update id="updateReturn" parameterType="java.util.Map">
+	   UPDATE dayoff d 
+	   	INNER JOIN employee e ON d.emp_code = e.emp_code 
+	   	INNER JOIN dayoff_count dc ON e.emp_code = dc.emp_code
+	   SET 
+	   <!-- 세션으로 upd_name 넣을 예정  -->
+	   	<!-- 부서장 반려 -->
+	       <if test="assign_code == 5">
+	           mng_confirm = 'N', off_result = '반 려'
+	       </if>
+		<!-- 이사 반려 -->
+	       <if test="assign_code == 6">
+	          md_confirm = 'N', off_result = '반 려'
+	       </if>
+		<!-- 대표 반려 -->
+	       <if test="assign_code == 7">
+	           ceo_confirm = 'N', off_result = '반 려'
+	       </if>
+        WHERE e.name = #{name} 
+     	 AND d.start_date = #{start_date}
+       
+	</update>
+	<update id="increaseDayoffCnt" parameterType="java.util.Map">
+		UPDATE dayoff_count dc
+			INNER JOIN dayoff d ON dc.emp_code = d.emp_code
+		SET used_cnt = 
+			CASE
+				WHEN #{off_code} = 2 THEN used_cnt
+				WHEN #{off_code} = 5 THEN used_cnt + 0.5 * (DATEDIFF(end_date,start_date) + 1)
+			ELSE used_cnt + 1 * (DATEDIFF(end_date,start_date) + 1)
+			END,
+		remain_cnt =
+		 	CASE
+				WHEN #{off_code} = 2 THEN remain_cnt
+				WHEN #{off_code} = 5 THEN remain_cnt - 0.5 * (DATEDIFF(end_date,start_date) + 1)
+			ELSE remain_cnt - 1 * (DATEDIFF(end_date,start_date) + 1)
+			END
+	    WHERE dc.emp_code = #{emp_code} 
+	      AND d.start_date = #{start_date}
+	</update>
+
+
+	<!-- 부서장  
+	승인
+	<update id="mngConfirm" parameterType = "java.util.Map">
+		UPDATE dayoff d INNER JOIN employee e
+			ON d.emp_code = e.emp_code
+		SET mng_confirm ='Y' , off_result = '승인중'
+		WHERE name = #{name} AND start_date = #{start_date}
+	</update>
+	반려 
+	<update id="mngReturn" parameterType = "java.util.Map">
+		UPDATE dayoff d INNER JOIN employee e
+			ON d.emp_code = e.emp_code 
+		SET mng_confirm = 'N', off_result = '반 려'
+		WHERE name = #{name} AND start_date = #{start_date}
+	</update>
+	
+	이사 
+	승인
+	<update id="mdConfirm" parameterType = "java.util.Map">
+		UPDATE dayoff d INNER JOIN employee e
+			ON d.emp_code = e.emp_code 
+		SET md_confirm ='Y' ,off_result = '승인중'
+		WHERE name = #{name} AND start_date = #{start_date}
+	</update>
+	반려 
+	<update id="mdReturn" parameterType = "java.util.Map">
+		UPDATE dayoff d INNER JOIN employee e
+			ON d.emp_code = e.emp_code 
+		SET md_confirm = 'N', off_result = '반 려'
+		WHERE name = #{name} AND start_date = #{start_date}
+	</update>
+	
+	대표
+	승인
+	<update id="ceoConfirm" parameterType = "java.util.Map">
+		UPDATE dayoff d INNER JOIN employee e
+				ON d.emp_code = e.emp_code 
+		SET ceo_confirm ='Y' , off_result = '승 인'
+		WHERE name = #{name} AND start_date = #{start_date}
+	</update>
+	반려 
+	<update id="ceoReturn" parameterType = "java.util.Map">
+		UPDATE dayoff 
+		SET ceo_confirm = 'N',off_result = '반 려'
+		WHERE name = #{name} AND start_date = #{start_date}
+	</update>
+ -->
+ 
+ 
+ 
+ </mapper>

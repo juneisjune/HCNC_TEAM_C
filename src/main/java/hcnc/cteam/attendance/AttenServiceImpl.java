@@ -22,5 +22,23 @@ public class AttenServiceImpl implements AttenService{
 		return attenMapper.getAttenListByCondition(params);
 	}
 
+	@Override
+	public int startWork(AttenDTO attenDto) {
+		// TODO Auto-generated method stub
+		return attenMapper.startWork(attenDto);
+	}
+
+	@Override
+	public int endWork(AttenDTO attenDto) {
+		// TODO Auto-generated method stub
+		return attenMapper.endWork(attenDto);
+	}
+
+	@Override
+	public AttenDTO userAttendanceInfo(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }
