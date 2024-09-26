@@ -25,20 +25,22 @@
             obj.set_taborder("0");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00","20","0","160","55",null,null,null,null,null,null,this);
-            obj.set_cssclass("sta_top_logo");
-            obj.set_taborder("1");
-            obj.set_text("인사관리시스템_C_TEAM");
-            this.addChild(obj.name, obj);
-
             obj = new Static("staHello","1375","0","160","55",null,null,null,null,null,null,this);
-            obj.set_taborder("2");
+            obj.set_taborder("1");
             obj.set_text("변수민님");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Logout","1450","10","70","32.5",null,null,null,null,null,null,this);
-            obj.set_taborder("3");
+            obj.set_taborder("2");
             obj.set_text("로그아웃");
+            this.addChild(obj.name, obj);
+
+            obj = new ImageViewer("img_HcncLogo","0","0","180","55",null,null,null,null,null,null,this);
+            obj.set_image("url(\'imagerc::hcnc_logo.png\')");
+            obj.set_imagealign("center");
+            obj.set_stretch("fixaspectratio");
+            obj.set_taborder("3");
+            obj.set_visible("true");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
