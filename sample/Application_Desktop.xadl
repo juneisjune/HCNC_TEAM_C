@@ -6,7 +6,7 @@
         <VFrameSet id="VFrameSet00" separatesize="0,0,*">
           <Frames>
             <ChildFrame id="TopFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Top.xfdl"/>
-            <HFrameSet id="HFrameSet00" separatesize="190,*">
+            <HFrameSet id="HFrameSet00" separatesize="200,*">
               <Frames>
                 <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Left.xfdl" showcascadetitletext="true"/>
                 <ChildFrame id="WorkFrame" showtitlebar="false"/>

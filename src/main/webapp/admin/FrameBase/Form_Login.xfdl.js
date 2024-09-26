@@ -44,12 +44,14 @@
         
         // User Script
         this.registerScript("Form_Login.xfdl", function() {
-
+        // 로그인 버튼
         this.btn_Login_onclick = function(obj,e)
         {
-        	//Top, HFrameSet00, Login 3개 영역에 대하여
-            //로그인 화면이 보이지 않도록 설정
-            nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("53,*,0");
+        	//로그인 성공 시에 workFrame 첫 화면
+        	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
+
+        	//Top, HFrameSet00, Login 3개 영역을 조정하여 로그인 화면이 보이지 않도록 설정
+            nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("55,*,0");
         };
         });
         

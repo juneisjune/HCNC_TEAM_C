@@ -56,7 +56,7 @@
 
 
             var frame2 = new HFrameSet("HFrameSet00",null,null,null,null,null,null,frame0);
-            frame2.set_separatesize("190,*");
+            frame2.set_separatesize("200,*");
             frame0.addChild(frame2.name, frame2);
 
             var frame3 = new ChildFrame("LeftFrame",null,null,null,null,null,null,"FrameBase::Form_Left.xfdl",frame2);

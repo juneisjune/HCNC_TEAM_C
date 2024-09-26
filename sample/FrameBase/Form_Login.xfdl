@@ -6,12 +6,14 @@
         <Button id="btn_Login" taborder="0" text="로그인" left="400" top="200" width="400" height="200" onclick="btn_Login_onclick"/>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[
+    <Script type="xscript5.1"><![CDATA[// 로그인 버튼
 this.btn_Login_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	//Top, HFrameSet00, Login 3개 영역에 대하여
-    //로그인 화면이 보이지 않도록 설정
-    nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("53,*,0");
+	//로그인 성공 시에 workFrame 첫 화면 
+	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
+	
+	//Top, HFrameSet00, Login 3개 영역을 조정하여 로그인 화면이 보이지 않도록 설정
+    nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("55,*,0");
 };]]></Script>
   </Form>
 </FDL>
