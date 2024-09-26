@@ -3,17 +3,44 @@
   <Form id="Form_Login" width="1280" height="720" titletext="New Form">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
-        <Button id="btn_Login" taborder="0" text="로그인" left="400" top="200" width="400" height="200" onclick="btn_Login_onclick"/>
+        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="400" top="200" width="400" height="200" onclick="btn_Login_onclick"/>
+        <Edit id="edt_emaildlqfur" taborder="1" left="407" top="446" width="203" height="44"/>
+        <Button id="btn_dlswmd" taborder="2" text="인증하기" left="654" top="436" width="152" height="66"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[// 로그인 버튼
 this.btn_Login_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	/*
+	
+		fn_LoginSuccess(); <- 로그인 시에 콜백으로 실행
+	
+	*/
+	this.fn_LoginSuccess();
+};
+
+
+this.fn_LoginSuccess = function() {
+	
 	//로그인 성공 시에 workFrame 첫 화면 
 	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
 	
 	//Top, HFrameSet00, Login 3개 영역을 조정하여 로그인 화면이 보이지 않도록 설정
     nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("55,*,0");
-};]]></Script>
+	
+}]]></Script>
+    <Objects>
+      <Dataset id="ds_login">
+        <ColumnInfo>
+          <Column id="user_id" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_email">
+        <ColumnInfo>
+          <Column id="email" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
   </Form>
 </FDL>

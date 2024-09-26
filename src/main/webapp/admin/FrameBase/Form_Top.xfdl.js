@@ -36,12 +36,19 @@
             this.addChild(obj.name, obj);
 
             obj = new ImageViewer("img_HcncLogo","0","0","180","55",null,null,null,null,null,null,this);
-            obj.set_image("url(\'imagerc::hcnc_logo.png\')");
+            obj.set_image("url(\'imagerc::img_hcnc_logo.png\')");
             obj.set_imagealign("center");
             obj.set_stretch("fixaspectratio");
+            obj.set_background("#");
             obj.set_taborder("3");
-            obj.set_fittocontents("none");
-            obj.set_background("");
+            obj.set_border("0px none");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_Title","575","0","400","55",null,null,null,null,null,null,this);
+            obj.set_taborder("4");
+            obj.set_text("인사관리시스템");
+            obj.set_font("bold 48px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_letterSpacing("10px");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

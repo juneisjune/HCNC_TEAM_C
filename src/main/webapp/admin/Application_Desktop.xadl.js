@@ -66,6 +66,7 @@
             frame2.addChild(frame3.name, frame3);
             frame3.set_formurl("FrameBase::Form_Left.xfdl");
 
+
             var frame4 = new ChildFrame("WorkFrame",null,null,null,null,null,null,"",frame2);
             frame4.set_showtitlebar("false");
             frame2.addChild(frame4.name, frame4);
