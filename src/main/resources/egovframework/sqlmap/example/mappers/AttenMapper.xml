@@ -4,56 +4,62 @@
 
 	<!-- 목록 조회 -->
 	<select id="getAttenList" resultType="attenDTO">
-		SELECT a.emp_code as empCode, b.name as name, a.work_date as workDate,
-		c.atten_type as attenType, a.work_start as workStart
-		, a.work_end as workEnd, a.work_over as workOver
-		FROM attendance a
-		JOIN employee b ON a.emp_code = b.emp_code
-		JOIN att_code c ON a.atten_code = c.atten_code
+		SELECT a.emp_code as empCode
+			, a.name as name
+			, d.assign_name as assignName
+			, e.dep_name as depName
+			, b.work_date as workDate
+			, c.atten_type as attenType
+			, b.work_start as workStart
+			, b.work_end as workEnd
+			, b.work_over as workOver
+		FROM employee a
+		JOIN attendance b ON a.emp_code = b.emp_code
+		JOIN att_code c ON b.atten_code = c.atten_code
+		JOIN assignment d ON a.assign_code = d.assign_code
+		JOIN department e ON a.dep_code = e.dep_code
+		WHERE 1=1
+			AND a.emp_Code = #{empCode}
+		ORDER BY b.work_date ASC
 	</select>
 
-	<!-- 조건에 따른 조회(검색) 쿼리 -->
+	<!-- 조건에 따른 조회(검색) -->
 	<select id="getAttenListByCondition"
 		resultType="attenDTO">
-		SELECT 
-		a.emp_code as empCode
-		, b.name as name
-		, a.work_date as workDate
-		, c.atten_type as attenType
-		, a.work_start as workStart
-		, a.work_end as workEnd
-		, a.work_over as workOver
-		FROM attendance a
-		JOIN employee b ON a.emp_code = b.emp_code
-		JOIN att_code c ON a.atten_code = c.atten_code
+		SELECT a.emp_code as empCode
+			, a.name as name
+			, d.assign_name as assignName
+			, e.dep_name as depName
+			, b.work_date as workDate
+			, c.atten_type as attenType
+			, b.work_start as workStart
+			, b.work_end as workEnd
+			, b.work_over as workOver
+		FROM employee a
+		JOIN attendance b ON a.emp_code = b.emp_code
+		JOIN att_code c ON b.atten_code = c.atten_code
+		JOIN assignment d ON a.assign_code = d.assign_code
+		JOIN department e ON a.dep_code = e.dep_code
 		WHERE 1=1
-		<if test="SEARCH_WORD != null and SEARCH_WORD != '' and SEARCH_TYPE != '' and SEARCH_TYPE != null">
-			<!-- 전체 조회 -->
-			<if test="SEARCH_TYPE == 'ALL'">
-				AND (a.emp_code LIKE CONCAT('%', #{SEARCH_WORD}, '%')
-				OR b.name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
-				OR a.work_date LIKE CONCAT('%', #{SEARCH_WORD}, '%')
-				OR c.atten_type LIKE CONCAT('%', #{SEARCH_WORD}, '%')
-				OR a.work_start LIKE CONCAT('%', #{SEARCH_WORD}, '%')
-				OR a.work_end LIKE CONCAT('%', #{SEARCH_WORD}, '%')
-				OR a.work_over LIKE CONCAT('%', #{SEARCH_WORD}, '%'))
-			</if>
-			<!-- 이름별 조회 -->
-			<if test="SEARCH_TYPE == 'NAME'">
-				AND b.name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
-			</if>
+			<!-- 로그인한 사용자의 근태 정보만 가져오기 -->
+				AND a.emp_Code = #{empCode}
 			<!-- 근무형태별 조회 -->
-			<if test="SEARCH_TYPE == 'WORK_TYPE'">
-				AND c.atten_type LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+			<if test="SEARCH_TYPE == 'ON'">
+				AND c.atten_type LIKE CONCAT('%', '출근', '%')
 			</if>
-		</if>
+			<if test="SEARCH_TYPE == 'OFF'">
+				AND c.atten_type LIKE CONCAT('%', '결근', '%')
+			</if>
+			<if test="SEARCH_TYPE == 'HOLI'">
+				AND c.atten_type LIKE CONCAT('%', '휴가', '%')
+			</if>
 		<!-- 근무일자에 따른 조회 -->
 		<if test="START_DATE != null and START_DATE != '' and END_DATE != null and END_DATE != ''">
-			AND a.work_date BETWEEN #{START_DATE} AND #{END_DATE}
+			AND b.work_date BETWEEN #{START_DATE} AND #{END_DATE}
 		</if>
+		ORDER BY b.work_date ASC
 	</select>
-	
-	<!--NGJ작성 옮겨온 부분  -->
+
  	<!-- 출근  -->
 	<insert id="startWork" parameterType="attenDTO">
 		INSERT INTO attendance (
