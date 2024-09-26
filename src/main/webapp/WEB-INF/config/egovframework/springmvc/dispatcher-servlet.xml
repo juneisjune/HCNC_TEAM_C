@@ -70,4 +70,9 @@
         <property name="messageSource" ref="messageSource" />   
     </bean>    
     <!-- /////////////////////////////////// 넥사크로플랫폼 UIADAPTER17 설정 끝 /////////////////////////////////// -->
+    <!-- DispatcherServlet 설정 파일에 추가 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="maxUploadSize" value="52428800"/> <!-- 최대 업로드 사이즈 설정 (예: 50MB) -->
+	</bean>
+    
 </beans>

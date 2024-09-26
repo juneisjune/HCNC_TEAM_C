@@ -411,14 +411,6 @@
 
 
 
-
-
-
-
-
-
-
-
         /******************************/
         /*   세부 코드 버튼 이벤트   */
         /******************************/
@@ -542,6 +534,16 @@
 
 
 
+        this.edt_Code_onchanged = function(obj,e)
+        {
+
+        };
+
+        this.cmb_Search_onitemchanged = function(obj,e)
+        {
+
+        };
+
         });
         
         // Regist UI Components Event
@@ -549,8 +551,10 @@
         {
             this.addEventHandler("onload",this.Form_Code_onload,this);
             this.edt_Search.addEventHandler("onchanged",this.edt_Search_onchanged,this);
+            this.cmb_Search.addEventHandler("onitemchanged",this.cmb_Search_onitemchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.btn_Add.addEventHandler("onclick",this.btn_Add_onclick,this);
+            this.edt_Code.addEventHandler("onchanged",this.edt_Code_onchanged,this);
             this.btn_Save.addEventHandler("onclick",this.btn_Save_onclick,this);
             this.btn_Delete.addEventHandler("onclick",this.btn_Delete_onclick,this);
             this.btn_SearchDtl.addEventHandler("onclick",this.btn_SearchDtl_onclick,this);

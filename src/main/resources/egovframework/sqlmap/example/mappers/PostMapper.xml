@@ -23,23 +23,30 @@
 		WHERE post_code =#{post_code}
 	</update>
 	<!-- 글 등록 관련 -->
-	<insert id="insertPost" parameterType="map" useGeneratedKeys="true" 
-												keyProperty="post_code">
-		INSERT INTO emp_code, title,content, view_count,
-					reg_date, reg_name, upd_date,upd_name
-		VALUES #{emp_code}, #{title}, #{content}, 0,
-				NOW(),#{reg_name}, NOW(), #{upd_name}
-	</insert>
-	<!-- 첨부파일 등록 관련-->
-	<insert id="insertAttachment" parameterType="map">
-	    INSERT INTO attachment (
-	        post_code, emp_code,attach_name, attach_url,
+	<insert id="insertPost" parameterType="map" useGeneratedKeys="true" keyProperty="post_code">
+	    INSERT INTO post (
+	        emp_code, title, content, view_count,
 	        reg_date, reg_name, upd_date, upd_name
 	    ) VALUES (
-	        #{post_code},#{emp_code},#{attach_name},#{attach_url},
-	        NOW(),#{reg_name},NOW(),#{upd_name}
+	        #{emp_code}, #{title}, #{content}, 0,
+	        NOW(), #{upd_name}, NOW(), #{upd_name}
 	    )
+	    <!-- 자동 생성된 키 가져오기 -->
+    <selectKey resultType="int" keyProperty="post_code" order="AFTER">
+        SELECT LAST_INSERT_ID()
+    </selectKey>
 	</insert>
+	<!-- 첨부파일 등록 -->
+	<insert id="insertAttachment" parameterType="map">
+	    INSERT INTO attachment (
+	        post_code, emp_code, attach_name, attach_url,
+	        reg_date, reg_name, upd_date, upd_name
+	    ) VALUES (
+	        #{post_code}, #{emp_code}, #{attach_name}, #{attach_url},
+	        NOW(), #{reg_name}, NOW(), #{upd_name}
+	    );
+	</insert>
+
 	
 </mapper>
 

@@ -7,8 +7,8 @@
 	    SELECT id, password, name, email, dep_code, emp_code, assign_code  
 	    FROM employee
 	    WHERE id = #{userId}
-	    AND password = SHA2(#{password}, 256)
-	    AND assign_code >= 5;
+		    AND password = SHA2(#{password}, 256)
+		    AND assign_code >= 5;
 	</select>
     <!-- 사용자 인증 상태 업데이트 -->
     <update id="updateUserVerificationStatus">

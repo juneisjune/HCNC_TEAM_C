@@ -56,11 +56,19 @@ public class PostServiceImpl implements PostService {
                 fileParam.put("attach_url", uploadPath);
                 fileParam.put("reg_name", param.get("reg_name"));
                 fileParam.put("upd_name", param.get("upd_name"));
-
+                
+                //첨부파일 정보 저장 관련 
                 postMapper.insertAttachment(fileParam);
             }
         }
     }
+    //첨부파일 관련
+    @Override
+    public void saveAttachment(Map<String, Object> fileParam) throws Exception {
+        postMapper.insertAttachment(fileParam);
+    }
+
+    
 
     
 }

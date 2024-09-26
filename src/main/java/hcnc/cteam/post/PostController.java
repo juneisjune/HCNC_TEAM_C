@@ -4,14 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.nexacro.uiadapter17.spring.core.annotation.ParamDataSet;
-import com.nexacro.uiadapter17.spring.core.annotation.ParamVariable;
 import com.nexacro.uiadapter17.spring.core.data.NexacroResult;
 
 
@@ -42,16 +43,25 @@ public class PostController {
         return result;
     }
     
- // 공지사항 등록 메서드 추가
+    // 공지사항 등록 메서드 추가
     @RequestMapping(value = "/insertPost.do", method = RequestMethod.POST)
     public NexacroResult insertPost(
-        @ParamDataSet(name = "ds_Post") Map<String, Object> param,
-        @ParamVariable(name = "fileList") List<MultipartFile> fileList
+        @ParamDataSet(name = "ds_postInfo") Map<String, Object> param,
+        HttpServletRequest request
     ) {
         NexacroResult result = new NexacroResult();
 
         try {
+            // 파일 리스트 가져오기
+            List<MultipartFile> fileList = null;
+            if (request instanceof MultipartHttpServletRequest) {
+                MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+                fileList = multipartRequest.getFiles("file"); // "file"은 FileUpTransfer의 기본 파일 파라미터 이름
+            }
+
+            // 공지사항 및 첨부파일 저장
             postService.insertPost(param, fileList);
+
             result.setErrorCode(0);
             result.setErrorMsg("공지사항이 성공적으로 등록되었습니다.");
         } catch (Exception e) {

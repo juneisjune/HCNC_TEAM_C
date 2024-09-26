@@ -95,7 +95,7 @@
         // 		console.log("email: " + email);
 
         		// 전역 데이터셋에 저장
-                var row = objApp.ds_userInfo.addRow();
+
         		var row2 = objApp.ds_userInfo.rowposition;
         		console.log("#####");
         		console.log(objApp.ds_userInfo.rowcount); // 2
@@ -108,12 +108,14 @@
         //         nexacro.getApplication().ds_userInfo.setColumn(row, "email", email);
 
         		// 저장된 값 확인하는 콘솔 로그
-        		console.log("저장된 ID: " + objApp.ds_userInfo.getColumn(row, "id"));
-        		console.log("저장된 Password: " + objApp.ds_userInfo.getColumn(row, "password"));
-        		console.log("저장된 Name: " + objApp.ds_userInfo.getColumn(row, "name"));
-        		console.log("저장된 Email: " + objApp.ds_userInfo.getColumn(row, "email"));
+
         		console.log(nexacro.getApplication().ds_userInfo.saveXML());
-        		console.log(nexacro.getApplication().ds_userInfo.getColumn(row,"name"));
+        		var row = nexacro.getApplication().ds_userInfo.rowposition;
+        		console.log("현재 rowposition: " + row);
+        		//var row = 0;  // 첫 번째 행
+        		console.log(nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
+        		console.log(nexacro.getApplication().ds_userInfo.getColumn(row, "emp_code"));
+
 
                 alert("로그인 성공! 사용자 정보가 저장되었습니다.");
 
@@ -125,8 +127,6 @@
 
         this.fnLogin_onclick = function(obj,e)
         {
-
-
             // ds_login에서 user_id와 password 값을 가져옴
             var user_id = this.ds_login.getColumn(0,"user_id"); // "emp_code" 대신 "user_id"를 사용
             var password = this.ds_login.getColumn(0,"password"); // Dataset에서 password 값을 가져옴
