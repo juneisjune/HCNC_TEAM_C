@@ -34,8 +34,18 @@ public class PostServiceImpl implements PostService {
     @Override
     public void insertPost(Map<String, Object> param, List<MultipartFile> fileList) throws Exception {
         // 공지사항 등록
+    	// 공지사항 등록
         postMapper.insertPost(param);
-        int postCode = Integer.parseInt(String.valueOf(param.get("postCode"))); // 생성된 게시글 코드 가져오기
+
+        // param 맵에 post_code가 설정되었는지 확인
+        System.out.println("param: " + param);
+
+        // 생성된 게시글 번호 가져오기
+        Object postCodeObj = param.get("post_code");
+        if (postCodeObj == null) {
+            throw new Exception("게시글 번호를 가져올 수 없습니다.");
+        }
+        int postCode = Integer.parseInt(String.valueOf(postCodeObj));
 
         // 첨부파일 저장
         if (fileList != null && !fileList.isEmpty()) {

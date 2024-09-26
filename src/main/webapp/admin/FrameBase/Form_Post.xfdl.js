@@ -143,7 +143,7 @@
 
         this.btn_newPost_onclick = function(obj,e)
         {
-        	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_newPost1.xfdl");
+        	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_NewPost.xfdl");
         };
 
         });

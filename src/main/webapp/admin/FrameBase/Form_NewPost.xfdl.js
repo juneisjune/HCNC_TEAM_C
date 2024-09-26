@@ -25,7 +25,7 @@
 
 
             obj = new Dataset("ds_postInfo", this);
-            obj._setContents("<ColumnInfo><Column id=\"title\" type=\"STRING\" size=\"256\"/><Column id=\"content\" type=\"STRING\" size=\"256\"/><Column id=\"upd_name\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"title\" type=\"STRING\" size=\"256\"/><Column id=\"content\" type=\"STRING\" size=\"256\"/><Column id=\"upd_name\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/><Column id=\"reg_name\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -110,7 +110,7 @@
         };
         
         // User Script
-        this.registerScript("Form_newPost1.xfdl", function() {
+        this.registerScript("Form_NewPost.xfdl", function() {
 
         //아래 첨부파일 관련 코드
         this.btn_open_onclick = function(obj,e)
@@ -202,6 +202,8 @@
             var row = nexacro.getApplication().ds_userInfo.rowposition;
             this.ds_postInfo.setColumn(0, "upd_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
             this.ds_postInfo.setColumn(0, "emp_code", nexacro.getApplication().ds_userInfo.getColumn(row, "emp_code"));
+        	this.ds_postInfo.setColumn(0, "reg_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
+        	console.log(this.ds_postInfo.saveXML());
 
 
 
@@ -279,7 +281,7 @@
             this.FileUpTransfer00.addEventHandler("onerror",this.FileUpTransfer00_onerror,this);
             this.FileDialog00.addEventHandler("onclose",this.FileDialog00_onclose,this);
         };
-        this.loadIncludeScript("Form_newPost1.xfdl");
+        this.loadIncludeScript("Form_NewPost.xfdl");
         this.loadPreloadList();
         
         // Remove Reference
