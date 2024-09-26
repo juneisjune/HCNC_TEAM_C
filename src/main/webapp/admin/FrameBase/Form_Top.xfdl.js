@@ -40,7 +40,8 @@
             obj.set_imagealign("center");
             obj.set_stretch("fixaspectratio");
             obj.set_taborder("3");
-            obj.set_visible("true");
+            obj.set_fittocontents("none");
+            obj.set_background("");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -67,6 +68,7 @@
         	//Top, HFrameSet00, Login 3개 영역을 조정하여 로그인 화면이 보이도록 설정
             nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("0,0,*");
         };
+
 
         });
         
