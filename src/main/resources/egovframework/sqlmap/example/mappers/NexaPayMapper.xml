@@ -3,30 +3,58 @@
 <mapper namespace="hcnc.cteam.pay.NexaPayMapper">
 
 	<!-- 직책에 따른 monthly 조회 -->
-	<select id="selectMonthly" resultType="int" parameterType="int">
-		SELECT monthly 
+	<!-- 퇴사 예정자는 기본급을 0으로 설정(일급으로 계산) -->
+	<select id="selectMonthly" resultType="int" parameterType="java.util.Map">
+		SELECT IF(resign_date IS NULL, 0, monthly) 
 		FROM `assignment` 
-		WHERE assign_code = #{assignCode};
+		WHERE assign_code = #{assign_code};
 	</select>
 	
 	<!-- 직책에 따른 tax 조회 -->
-	<select id="selectTax" resultType="int" parameterType="int">
+	<select id="selectTax" resultType="double" parameterType="java.util.Map">
 		SELECT tax 
 		FROM `assignment`
-		WHERE assign_code = #{assignCode}
+		WHERE assign_code = #{assign_code}
 	</select>
-
+	
+	<!-- 직책에 따른 일급 조회 -->
+	<select id="selectHourly"  resultType="int" parameterType="java.util.Map">
+		SELECT hourly 
+		FROM `assignment` a 
+		WHERE a.assign_code = #{assign_code}; 
+	</select>
+	
+	<!-- 사원의 지난달 결근 조회 -->
+	<select id="selectAbsence" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*) 
+		FROM attendance a JOIN att_code ac 
+			ON a.atten_code = ac.atten_code 
+		JOIN employee e 
+			ON a.emp_code = e.emp_code 
+		WHERE emp_code = 1
+		AND atten_code = 2
+			<!-- 1월이면 작년 12월 데이터 조회 -->
+			<if test="MONTH(CURDATE()) == 1"> 
+				AND YEAR(work_date) = YEAR(CURDATE()) - 1
+				AND MONTH(work_date) = 12
+			</if>
+			<if test="MONTH(CURDATE()) != 1"> 
+				AND YEAR(work_date) = YEAR(CURDATE())
+				AND MONTH(work_date) = MONTH(CURDATE()) - 1
+			</if>
+	</select>	
+	
 	<!-- 직책에 따른 emp List 조회  -->
-	<select id="selectEmpList" resultType="java.util.Map" parameterType="int"> 
-		SELECT emp_code, name, assign_name, dep_name, join_date, account 
+	<select id="selectEmpList" resultType="java.util.Map" parameterType="java.util.Map"> 
+		SELECT emp_code, name, assign_name, dep_name, join_date, IF(resign_date IS NULL, "", "퇴사예정") resign_date, account 
 		FROM employee e JOIN `assignment` a
 		ON e.assign_code = a.assign_code
 		JOIN department d 
 		ON e.dep_code = d.dep_code 
-		WHERE a.assign_code = #{assignCode}
+		WHERE a.assign_code = #{assign_code}
 	</select>
 	
-	<!-- 저번달 work_over 조회 -->
+	<!-- 사원의 지난달 work_over 조회 -->
 	<select id="selectWorkOver" resultType="double">
 		SELECT SUM(work_over)
 		FROM attendance a JOIN att_code ac 
@@ -46,16 +74,8 @@
 			</if>
 	</select>
 	
-	<!-- hourly 조회 -->
-	<select id="selectHourly" resultType="int" >
-		SELECT DISTINCT hourly 
-		FROM `assignment` a  JOIN employee e 
-		ON a.assign_code  = e.assign_code 
-		WHERE e.emp_code = 1
-	</select>
-	
 	<!-- pay insert -->
-	<insert id="insertPay" parameterType="payDTO">
+	<insert id="insertPay" parameterType="payEmpDTO" >
 		INSERT INTO pay(emp_code
 			, pay_year
 			, pay_month

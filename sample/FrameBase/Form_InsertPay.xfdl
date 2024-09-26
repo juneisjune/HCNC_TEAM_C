@@ -5,52 +5,51 @@
       <Layout height="720" mobileorientation="landscape" width="1280">
         <Static id="title" taborder="0" text="급여 등록" left="60" top="12" width="278" height="78"/>
         <Static id="stc_Assign" taborder="1" text="직책" left="60" top="71" width="120" height="60"/>
-        <Combo id="cmb_Assign" taborder="2" text="" left="95" top="91" width="105" height="20" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged" onclick="Common_onclick" font="12pt/normal gulim"/>
-        <Static id="stc_Monthly" taborder="3" text="기본급" left="60" top="110" width="120" height="60" onclick="Static02_onclick"/>
-        <MaskEdit id="me_Monthly" taborder="4" left="105" top="132" width="125" height="20" onchanged="MaskEdit00_onchanged" format="#,##0" postfixtext="원"/>
-        <Button id="btn_Search" taborder="5" text="조회" left="215" top="91" width="43" height="20" onclick="Common_onclick"/>
-        <Static id="stc_tax" taborder="6" text="세금" left="263" top="110" width="120" height="60"/>
-        <MaskEdit id="me_Tax" taborder="7" left="298" top="132" width="125" height="20" postfixtext="%" format="0.0"/>
-        <Grid id="grd_Emp" taborder="8" left="60" top="175" width="800" height="270" binddataset="ds_Emp">
+        <Combo id="cmb_Assign" taborder="2" text="" left="95" top="91" width="105" height="20" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged" font="12pt/normal gulim"/>
+        <Button id="btn_Search" taborder="3" text="조회" left="215" top="91" width="43" height="20" onclick="btn_Search_onclick"/>
+        <Grid id="grd_Emp" taborder="4" left="60" top="175" width="830" height="270" binddataset="ds_EmpList">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="48"/>
-                <Column size="88"/>
-                <Column size="104"/>
-                <Column size="80"/>
-                <Column size="107"/>
-                <Column size="125"/>
-                <Column size="247"/>
+                <Column size="67"/>
+                <Column size="92"/>
+                <Column size="70"/>
+                <Column size="97"/>
+                <Column size="121"/>
+                <Column size="119"/>
+                <Column size="213"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" onclick="headChkbox_onclick"/>
                 <Cell col="1" text="사번"/>
                 <Cell col="2" text="이름"/>
                 <Cell col="3" text="직책"/>
                 <Cell col="4" text="부서"/>
                 <Cell col="5" text="입사일"/>
-                <Cell col="6" text="계좌번호"/>
+                <Cell col="6" text="퇴사일"/>
+                <Cell col="7" text="계좌번호"/>
               </Band>
               <Band id="body">
-                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:checkFlag"/>
                 <Cell col="1" textAlign="center" text="bind:emp_code"/>
                 <Cell col="2" textAlign="center" text="bind:name"/>
                 <Cell col="3" textAlign="center" text="bind:assign_name"/>
-                <Cell col="4" text="bind:dep_name"/>
-                <Cell col="5" textAlign="center" displaytype="date" text="bind:join_date"/>
-                <Cell col="6" text="bind:account"/>
+                <Cell col="4" text="bind:dep_name" textAlign="center"/>
+                <Cell col="5" textAlign="center" text="bind:join_date" displaytype="date"/>
+                <Cell col="6" text="bind:resign_date" textAlign="center"/>
+                <Cell col="7" text="bind:account"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Static id="Static04" taborder="9" text="지급일" left="540" top="445" width="120" height="60"/>
-        <Calendar id="cal_GiveDate" taborder="10" left="595" top="465" width="150" height="20"/>
-        <Button id="btn_Insert" taborder="11" text="등록" left="770" top="460" width="90" height="30"/>
+        <Static id="Static04" taborder="5" text="지급일" left="670" top="445" width="120" height="60"/>
+        <Calendar id="cal_GiveDate" taborder="6" left="725" top="465" width="150" height="20"/>
+        <Button id="btn_Insert" taborder="7" text="등록" left="900" top="460" width="90" height="30"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -98,23 +97,68 @@
           <Row/>
         </Rows>
       </Dataset>
-      <Dataset id="ds_Emp">
+      <Dataset id="ds_EmpList">
         <ColumnInfo>
-          <Column id="emp_code" type="INT" size="256"/>
-          <Column id="name" type="STRING" size="256"/>
-          <Column id="assign_name" type="STRING" size="256"/>
-          <Column id="dep_name" type="STRING" size="256"/>
-          <Column id="join_date" type="DATE" size="256"/>
-          <Column id="account" type="STRING" size="256"/>
+          <Column id="checkFlag" type="INT" size="256" text="bind:checkFlag"/>
+          <Column id="emp_code" type="INT" size="256" text="bind:emp_code"/>
+          <Column id="name" type="STRING" size="256" text="bind:name"/>
+          <Column id="assign_name" type="STRING" size="256" text="bind:assign_name"/>
+          <Column id="dep_name" type="STRING" size="256" text="bind:dep_name"/>
+          <Column id="join_date" type="DATE" size="256" text="bind:join_date"/>
+          <Column id="resign_date" type="DATE" size="256" text="bind:resign_date"/>
+          <Column id="account" type="STRING" size="256" text="bind:account"/>
+          <Column id="monthly" type="INT" size="256"/>
         </ColumnInfo>
       </Dataset>
     </Objects>
-    <Script type="xscript5.1"><![CDATA[
-this.Form_InsertPay_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
-{	
-
+    <Script type="xscript5.1"><![CDATA[this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.ds_Assign.getColumn(0, "assign_code") == ''
+	|| this.ds_Assign.getColumn(0, "assign_code") == 'undefined'
+	|| this.ds_Assign.getColumn(0, "assign_code") == null) {
+		alert("직책을 선택하세요.");
+		return;
+	}
 	
+	var strSvcId    = "selectAssign"; 
+	var strSvcUrl   = "svc::selectAssign.do";
+	var inData      = "ds_Assign=ds_Assign";
+	var outData     = "ds_EmpList=ds_EmpList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync     = true;
+	
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+	    
+};
 
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	if(errorCode == -1)
+	{
+		this.alert(errorMsg);
+		return;
+	}
+
+	switch(svcID)
+	{
+		case "selectAssign":
+			break;
+
+		default :
+			break;
+	}
+};
+
+
+
+this.headChkbox_onclick = function(obj, e) {
+    var isChecked = (obj.value === true); // 헤더 체크박스의 체크 상태 가져오기
+    var rowCount = this.grd_Emp.getRowCount(); // Grid의 행 개수
+
+    for (var i = 0; i < rowCount; i++) {
+        this.grd_Emp.setCellValue(i, 0, isChecked); // 첫 번째 열 (체크박스 열)에 체크 상태 설정
+    }
 };
 
 ]]></Script>
@@ -122,7 +166,7 @@ this.Form_InsertPay_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
       <Static id="title" font="24px/normal &quot;Gulim&quot;"/>
     </InitValue>
     <Bind>
-      <BindItem id="item0" compid="cmb_Assign" propid="value" datasetid="ds_Dep" columnid="assign_code"/>
+      <BindItem id="item0" compid="cmb_Assign" propid="value" datasetid="ds_Assign" columnid="assign_code"/>
     </Bind>
   </Form>
 </FDL>

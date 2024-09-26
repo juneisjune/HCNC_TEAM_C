@@ -16,18 +16,28 @@ public class NexaPayServiceImpl extends EgovAbstractServiceImpl implements NexaP
 	private NexaPayMapper nexaPayMapper;
 	
 	@Override
-	public int selectMonthly(int assignCode) {
-		return nexaPayMapper.selectMonthly(assignCode);
+	public int selectMonthly(Map< String, Object> param) {
+		return nexaPayMapper.selectMonthly(param);
 	}
 
 	@Override
-	public int selectTax(int assignCode) {
-		return nexaPayMapper.selectTax(assignCode);
+	public double selectTax(Map< String, Object> param) {
+		return nexaPayMapper.selectTax(param);
 	}
 
 	@Override
-	public List<Map<String, Object>> selectEmpList(int assignCode) {
-		return nexaPayMapper.selectEmpList(assignCode);
+	public int selectHourly(Map<String, Object> param) {
+		return nexaPayMapper.selectHourly(param);
+	}
+	
+	@Override
+	public int selectAbsence(Map<String, Object> param) {
+		return nexaPayMapper.selectAbsence(param);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectEmpList(Map< String, Object> param) {
+		return nexaPayMapper.selectEmpList(param);
 	}
 
 	@Override
@@ -36,14 +46,9 @@ public class NexaPayServiceImpl extends EgovAbstractServiceImpl implements NexaP
 	}
 
 	@Override
-	public int selectHourly() {
-		return nexaPayMapper.selectHourly();
+	public void insertPay(PayEmpDTO payEmpDTO) {
+		nexaPayMapper.insertPay(payEmpDTO);
 	}
 
-	@Override
-	public void insertPay(PayDTO payDTO) {
-		
-	}
-	
 
 }

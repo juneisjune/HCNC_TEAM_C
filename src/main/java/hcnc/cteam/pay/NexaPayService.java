@@ -4,16 +4,18 @@ import java.util.List;
 import java.util.Map;
 
 public interface NexaPayService {
-	int selectMonthly(int assignCode);
+	int selectMonthly(Map< String, Object> param);
 	
-	int selectTax(int assignCode);
+	double selectTax(Map< String, Object> param);
 	
-	List<Map< String, Object>> selectEmpList (int assignCode);
+	int selectHourly(Map< String, Object> param); 
+	
+	int selectAbsence(Map< String, Object> param); 
+	
+	List<Map< String, Object>> selectEmpList (Map< String, Object> param);
 	
 	double selectWorkOver();
 	
-	int selectHourly();
-	
-	void insertPay(PayDTO payDTO); 
+	void insertPay(PayEmpDTO payEmpDTO); 
 
 }

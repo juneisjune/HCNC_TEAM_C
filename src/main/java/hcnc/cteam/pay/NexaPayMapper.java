@@ -8,20 +8,23 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 @Mapper("nexaPayMapper")
 public interface NexaPayMapper {
 	//직책별 기본급 조회 
-	int selectMonthly(int assignCode);
+	int selectMonthly(Map< String, Object> param);
 	
 	//직책별 tax 조회
-	int selectTax(int assignCode);
+	double selectTax(Map< String, Object> param);
+	
+	//직책별 일급 조회
+	int selectHourly(Map< String, Object> param); 
+	
+	//지난달 결근 조회
+	int selectAbsence(Map< String, Object> param); 
 	
 	//직책별 emp List 조회 
-	List<Map< String, Object>> selectEmpList (int assignCode);
+	List<Map< String, Object>> selectEmpList (Map< String, Object> param);
 	
-	//저번달 work_over 조회
+	//지난달 work_over 조회
 	double selectWorkOver();
 	
-	//hourly 조회
-	int selectHourly();
-	
 	//pay insert
-	void insertPay(PayDTO payDTO); 
+	void insertPay(PayEmpDTO payEmpDTO); 
 }
