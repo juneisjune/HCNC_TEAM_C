@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.context.support.HttpRequestHandlerServlet;
 
 import hcnc.cteam.login.LoginService;
 
@@ -32,11 +33,19 @@ public class AttenController {
 	@Resource(name = "loginService")
 	private LoginService loginService;
 	
-	// 직원 근태 목록 조회
-	@GetMapping(value = "/attenlist.do")
-    public String listAtten(Model model, HttpSession session) {
+	// 직원 근태 목록 페이지
+	@RequestMapping(value = "/attenlist.do", method = RequestMethod.GET)
+    public String listAtten(Map<String, Object> params, HttpServletRequest request, Model model) {
 		
-        List<AttenDTO> attenList = attenService.getAttenList();
+		HttpSession session = request.getSession();
+		
+		
+		int empCode = (int) session.getAttribute("userCode")  ; // 세션으로 empCode
+		
+		params.put("empCode", empCode);
+		
+        List<AttenDTO> attenList = attenService.getAttenList(params);
+        
         model.addAttribute("attenList", attenList);
         
         return "Atten/attenlist";
@@ -45,6 +54,11 @@ public class AttenController {
 	// 조건에 따른 직원 근태 목록 조회
 	@RequestMapping(value = "/searchAtten.do", method = RequestMethod.POST)
     public String searchAtten(@RequestParam Map<String, Object> params, Model model) {
+		
+		int empCode = 3;
+		
+		params.put("empCode", empCode);
+		
         List<AttenDTO> attenList = attenService.getAttenListByCondition(params);
         model.addAttribute("attenList", attenList);
         return "Atten/attenlist";
