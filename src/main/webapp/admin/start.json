@@ -101,7 +101,7 @@
         ],
         "screen" :
         [    
-        {"id":"Desktop_screen","type":"desktop","themeid":"theme::default"}
+        {"id":"Desktop_screen","type":"desktop","themeid":"theme::violet"}
         ],
         "xadl" :
         [
@@ -112,7 +112,7 @@
         	"form":[
         				"./FrameBase/Form_Top.xfdl.js",
         		"./FrameBase/Form_Left.xfdl.js",
-        		"./FrameBase/Form_InsertPay.xfdl.js"
+        		"./FrameBase/Form_Login.xfdl.js"
         	]
         }
         ],  

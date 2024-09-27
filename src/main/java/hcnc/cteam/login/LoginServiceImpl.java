@@ -5,8 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
-import hcnc.cteam.pay.PayMapper;
-import hcnc.cteam.pay.PayService;
+import hcnc.cteam.attendance.AttenDTO;
 
 @Service("loginService")
 public class LoginServiceImpl extends EgovAbstractServiceImpl implements LoginService {
@@ -29,7 +28,7 @@ public class LoginServiceImpl extends EgovAbstractServiceImpl implements LoginSe
 	}
 
 	@Override
-	public LoginDTO selectWork(int empCode) throws Exception {
+	public AttenDTO selectWork(int empCode) throws Exception {
 		return loginMapper.selectWork(empCode);
 	}
 

@@ -6,22 +6,20 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import hcnc.cteam.attendance.AttenDTO;
 
 @Controller
 public class LoginController {
@@ -54,6 +52,19 @@ public class LoginController {
 			 session.setAttribute("userCode", userCode);
 			 String userName = loginService.selectUser(loginDTO).getName();
 			 session.setAttribute("userName", userName);
+
+			 
+			 AttenDTO workResult = loginService.selectWork(userCode);
+			 
+			 
+			 if (workResult != null) {
+				 LocalTime workStart = workResult.getWorkStart();
+				 LocalTime workEnd = workResult.getWorkEnd();
+				 
+				 session.setAttribute("workStart", workStart);
+				 session.setAttribute("workEnd", workEnd);
+			 }
+			 
 
 	         msg = "ok";
 	        }

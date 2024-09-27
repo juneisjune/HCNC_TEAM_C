@@ -22,10 +22,12 @@
 		WHERE emp_code = #{empCode}
 	</select>
 	
-	<select id="selectWork" resultType="loginDTO" parameterType="int">
-		SELECT emp_code, work_date, work_start, work_end
-		FROM attendance a
-		WHERE emp_code = #{empCode} 
+	<select id="selectWork" resultType="attenDTO" parameterType="int">
+		SELECT a.emp_code, a.work_date, a.work_start, a.work_end
+			,  e.name 
+		FROM attendance a JOIN employee e 
+			ON a.emp_code = e.emp_code 
+		WHERE a.emp_code = #{empCode} 
 		AND work_date = CURDATE();
 	</select>
 </mapper>
