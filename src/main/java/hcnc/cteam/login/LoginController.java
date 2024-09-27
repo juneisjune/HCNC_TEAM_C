@@ -38,7 +38,7 @@ public class LoginController {
 		return "login/login";
 	}
 	
-	//로그인 
+	//1단계 로그인 
 	@ResponseBody
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String userLogin(LoginDTO loginDTO, HttpServletRequest request) throws Exception {
@@ -47,19 +47,13 @@ public class LoginController {
 		int result = loginService.userLogin(loginDTO);
 		
 		 if (result == 1) {
+			 
+			 //세션 생성
 			 HttpSession session = request.getSession();
 			 int userCode = loginService.selectUser(loginDTO).getEmpCode();
-			 String userName = loginService.selectUser(loginDTO).getName();
-			 
 			 session.setAttribute("userCode", userCode);
+			 String userName = loginService.selectUser(loginDTO).getName();
 			 session.setAttribute("userName", userName);
-			 
-
-//			 LocalTime workStart = loginService.selectWork(userCode).getWorkStart();
-//			 LocalTime workEnd = loginService.selectWork(userCode).getWorkEnd();
-			 
-//			 session.setAttribute("workStart", workStart);
-//			 session.setAttribute("workEnd", workEnd);
 
 	         msg = "ok";
 	        }

@@ -5,7 +5,7 @@
 	<!-- 직책에 따른 monthly 조회 -->
 	<!-- 퇴사 예정자는 기본급을 0으로 설정(일급으로 계산) -->
 	<select id="selectMonthly" resultType="int" parameterType="java.util.Map">
-		SELECT IF(resign_date IS NULL, 0, monthly) 
+		SELECT IF(#{resign_date} IS NULL, 0, monthly) 
 		FROM `assignment` 
 		WHERE assign_code = #{assign_code};
 	</select>
@@ -24,6 +24,26 @@
 		WHERE a.assign_code = #{assign_code}; 
 	</select>
 	
+		<!-- 사원의 지난달 work_over 조회 -->
+	<select id="selectWorkOver" resultType="double">
+		SELECT SUM(work_over)
+		FROM attendance a JOIN att_code ac 
+			ON a.atten_code = ac.atten_code 
+		JOIN employee e 
+			ON a.emp_code = e.emp_code 
+		WHERE a.emp_code = 1
+		AND a.atten_code = 1
+			<!-- 1월이면 작년 12월 데이터 조회 -->
+			<if test="curMon == 1"> 
+				AND YEAR(work_date) = YEAR(CURDATE()) - 1
+				AND MONTH(work_date) = 12
+			</if>
+			<if test="curMon == 1"> 
+				AND YEAR(work_date) = YEAR(CURDATE())
+				AND MONTH(work_date) = MONTH(CURDATE()) - 1
+			</if>
+	</select>
+	
 	<!-- 사원의 지난달 결근 조회 -->
 	<select id="selectAbsence" resultType="int" parameterType="java.util.Map">
 		SELECT COUNT(*) 
@@ -31,14 +51,14 @@
 			ON a.atten_code = ac.atten_code 
 		JOIN employee e 
 			ON a.emp_code = e.emp_code 
-		WHERE emp_code = 1
-		AND atten_code = 2
+		WHERE e.emp_code = 1
+		AND ac.atten_code = 2
 			<!-- 1월이면 작년 12월 데이터 조회 -->
-			<if test="MONTH(CURDATE()) == 1"> 
+			<if test="curMon == 1"> 
 				AND YEAR(work_date) = YEAR(CURDATE()) - 1
 				AND MONTH(work_date) = 12
 			</if>
-			<if test="MONTH(CURDATE()) != 1"> 
+			<if test="curMon != 1"> 
 				AND YEAR(work_date) = YEAR(CURDATE())
 				AND MONTH(work_date) = MONTH(CURDATE()) - 1
 			</if>
@@ -54,33 +74,15 @@
 		WHERE a.assign_code = #{assign_code}
 	</select>
 	
-	<!-- 사원의 지난달 work_over 조회 -->
-	<select id="selectWorkOver" resultType="double">
-		SELECT SUM(work_over)
-		FROM attendance a JOIN att_code ac 
-			ON a.atten_code = ac.atten_code 
-		JOIN employee e 
-			ON a.emp_code = e.emp_code 
-		WHERE a.emp_code = 1
-		AND a.atten_code = 1
-			<!-- 1월이면 작년 12월 데이터 조회 -->
-			<if test="MONTH(CURDATE()) == 1"> 
-				AND YEAR(work_date) = YEAR(CURDATE()) - 1
-				AND MONTH(work_date) = 12
-			</if>
-			<if test="MONTH(CURDATE()) != 1"> 
-				AND YEAR(work_date) = YEAR(CURDATE())
-				AND MONTH(work_date) = MONTH(CURDATE()) - 1
-			</if>
-	</select>
-	
 	<!-- pay insert -->
-	<insert id="insertPay" parameterType="payEmpDTO" >
+	<insert id="insertPay" parameterType="java.util.Map" >
 		INSERT INTO pay(emp_code
 			, pay_year
 			, pay_month
 			, give_date
-			, pay_over
+<!-- 			, pay_over
+			, pay_meal
+			, absence
 			, pay_amount
 			, income_tax
 			, resident_tax
@@ -88,22 +90,24 @@
 			, emp_insurance
 			, health_insurance
 			, longcare_insurance
-			, actual_pay
-			, reg_name
+			, actual_pay -->
+			, reg_name 
 		)
 		VALUES (1
 			, IF(MONTH(CURDATE())-1 = 0, YEAR(CURDATE())-1, YEAR(CURDATE()) )
 			, IF(MONTH(CURDATE())-1 = 0, 12, MONTH(CURDATE())-1 )
-			, #{giveDate}
-			, #{payOver}
-			, #{payAmount}
-			, #{incomeTax}
-			, #{residentTax}
-			, #{nationalTax}
-			, #{empInsurance}
-			, #{healthInsurance}
-			, #{longcareInsurance}
-			, #{actualPay}
+			, #{give_date}
+<!-- 			, #{pay_over}
+			, #{pay_meal}
+			, #{absence}
+			, #{pay_amount}
+			, #{income_tax}
+			, #{resident_tax}
+			, #{national_tax}
+			, #{emp_insurance}
+			, #{health_insurance}
+			, #{longcare_insurance}
+			, #{actual_pay} -->
 			, "오명진"
 		);
 	</insert>

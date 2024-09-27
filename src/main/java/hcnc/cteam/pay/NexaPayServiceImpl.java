@@ -31,6 +31,11 @@ public class NexaPayServiceImpl extends EgovAbstractServiceImpl implements NexaP
 	}
 	
 	@Override
+	public double selectWorkOver() {
+		return nexaPayMapper.selectWorkOver();
+	}
+	
+	@Override
 	public int selectAbsence(Map<String, Object> param) {
 		return nexaPayMapper.selectAbsence(param);
 	}
@@ -41,13 +46,8 @@ public class NexaPayServiceImpl extends EgovAbstractServiceImpl implements NexaP
 	}
 
 	@Override
-	public double selectWorkOver() {
-		return nexaPayMapper.selectWorkOver();
-	}
-
-	@Override
-	public void insertPay(PayEmpDTO payEmpDTO) {
-		nexaPayMapper.insertPay(payEmpDTO);
+	public void insertPay(Map< String, Object> param) {
+		nexaPayMapper.insertPay(param);
 	}
 
 

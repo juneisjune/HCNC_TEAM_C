@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_InsertPay" width="1280" height="720" titletext="급여 등록" onload="Form_InsertPay_onload">
+  <Form id="Form_InsertPay" width="1280" height="720" titletext="급여 등록" onload="Form_InsertPay_onload" onclick="fnSearch">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
         <Static id="title" taborder="0" text="급여 등록" left="60" top="12" width="278" height="78"/>
         <Static id="stc_Assign" taborder="1" text="직책" left="60" top="71" width="120" height="60"/>
         <Combo id="cmb_Assign" taborder="2" text="" left="95" top="91" width="105" height="20" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged" font="12pt/normal gulim"/>
         <Button id="btn_Search" taborder="3" text="조회" left="215" top="91" width="43" height="20" onclick="btn_Search_onclick"/>
-        <Grid id="grd_Emp" taborder="4" left="60" top="175" width="830" height="270" binddataset="ds_EmpList">
+        <Grid id="grd_Emp" taborder="4" left="60" top="125" width="830" height="270" binddataset="ds_EmpList">
           <Formats>
             <Format id="default">
               <Columns>
@@ -47,9 +47,9 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="Static04" taborder="5" text="지급일" left="670" top="445" width="120" height="60"/>
-        <Calendar id="cal_GiveDate" taborder="6" left="725" top="465" width="150" height="20"/>
-        <Button id="btn_Insert" taborder="7" text="등록" left="900" top="460" width="90" height="30"/>
+        <Static id="Static04" taborder="5" text="지급일" left="570" top="395" width="120" height="60"/>
+        <Calendar id="cal_GiveDate" taborder="6" left="625" top="415" width="150" height="20" dateformat="yyyy-MM-dd"/>
+        <Button id="btn_Insert" taborder="7" text="등록" left="800" top="410" width="90" height="30" onclick="btn_Insert_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -108,11 +108,45 @@
           <Column id="resign_date" type="DATE" size="256" text="bind:resign_date"/>
           <Column id="account" type="STRING" size="256" text="bind:account"/>
           <Column id="monthly" type="INT" size="256"/>
+          <Column id="pay_over" type="INT" size="256"/>
+          <Column id="pay_meal" type="INT" size="256"/>
+          <Column id="absence" type="INT" size="256"/>
+          <Column id="pay_amount" type="INT" size="256"/>
+          <Column id="income_tax" type="INT" size="256"/>
+          <Column id="resident_tax" type="INT" size="256"/>
+          <Column id="national_tax" type="INT" size="256"/>
+          <Column id="emp_insurance" type="INT" size="256"/>
+          <Column id="health_insurance" type="INT" size="256"/>
+          <Column id="longcare_insurance" type="INT" size="256"/>
+          <Column id="actual_pay" type="INT" size="256"/>
         </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_GiveDate">
+        <ColumnInfo>
+          <Column id="give_date" type="DATE" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
       </Dataset>
     </Objects>
     <Script type="xscript5.1"><![CDATA[this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.fnSearch();
+
+};
+
+this.headChkbox_onclick = function(obj, e) {
+    var isChecked = (obj.value === true); // 헤더 체크박스의 체크 상태 가져오기
+    var rowCount = this.grd_Emp.getRowCount(); // Grid의 행 개수
+
+    for (var i = 0; i < rowCount; i++) {
+        this.grd_Emp.setCellValue(i, 0, isChecked); // 첫 번째 열 (체크박스 열)에 체크 상태 설정
+    }
+};
+
+
+this.fnSearch = function() {
 	if(this.ds_Assign.getColumn(0, "assign_code") == ''
 	|| this.ds_Assign.getColumn(0, "assign_code") == 'undefined'
 	|| this.ds_Assign.getColumn(0, "assign_code") == null) {
@@ -129,44 +163,66 @@
 	var isAsync     = true;
 	
 	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
-	    
-};
+}
 
 this.fnCallback = function(svcID,errorCode,errorMsg)
-{
+{	
+		
 	if(errorCode == -1)
 	{
 		this.alert(errorMsg);
 		return;
 	}
+	
+	trace(this.ds_EmpList.getColumn(0,"absence"));
 
 	switch(svcID)
 	{
-		case "selectAssign":
+		case "selectAssign":			
+			this.alert("조회가 완료되었습니다.");
 			break;
-
+		
+		case "insertPay":
+			this.alert("등록이 완료되었습니다.");
+			break;
+		
 		default :
 			break;
 	}
 };
 
-
-
-this.headChkbox_onclick = function(obj, e) {
-    var isChecked = (obj.value === true); // 헤더 체크박스의 체크 상태 가져오기
-    var rowCount = this.grd_Emp.getRowCount(); // Grid의 행 개수
-
-    for (var i = 0; i < rowCount; i++) {
-        this.grd_Emp.setCellValue(i, 0, isChecked); // 첫 번째 열 (체크박스 열)에 체크 상태 설정
+this.btn_Insert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.ds_GiveDate.getColumn(0, "give_date") == '' 
+	|| this.ds_GiveDate.getColumn(0, "give_date") == 'undefined'
+	|| this.ds_GiveDate.getColumn(0, "give_date") == null){
+		alert("날짜를 입력하세요.");
+		return;
+	}
+	
+	if (this.ds_EmpList.getRowCount() < 1) {
+        this.alert("직원 데이터를 먼저 조회하세요.");
+        return;
     }
+	
+	var strSvcId    = "insertPay"; 
+	var strSvcUrl   = "svc::insertPay.do";
+	var inData      = "ds_EmpList=ds_EmpList, ds_GiveDate=ds_GiveDate";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync     = true;
+	
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
 };
-
 ]]></Script>
     <InitValue>
       <Static id="title" font="24px/normal &quot;Gulim&quot;"/>
+      <Calendar id="cal_GiveDate"/>
     </InitValue>
     <Bind>
       <BindItem id="item0" compid="cmb_Assign" propid="value" datasetid="ds_Assign" columnid="assign_code"/>
+      <BindItem id="item1" compid="cal_GiveDate" propid="value" datasetid="ds_GiveDate" columnid="give_date"/>
     </Bind>
   </Form>
 </FDL>

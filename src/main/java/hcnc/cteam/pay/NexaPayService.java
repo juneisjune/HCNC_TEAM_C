@@ -16,6 +16,6 @@ public interface NexaPayService {
 	
 	double selectWorkOver();
 	
-	void insertPay(PayEmpDTO payEmpDTO); 
+	void insertPay(Map< String, Object> param); 
 
 }

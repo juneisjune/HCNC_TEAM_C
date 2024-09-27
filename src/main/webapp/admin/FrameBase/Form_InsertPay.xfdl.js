@@ -28,7 +28,12 @@
 
 
             obj = new Dataset("ds_EmpList", this);
-            obj._setContents("<ColumnInfo><Column id=\"checkFlag\" type=\"INT\" size=\"256\" text=\"bind:checkFlag\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\" text=\"bind:emp_code\"/><Column id=\"name\" type=\"STRING\" size=\"256\" text=\"bind:name\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\" text=\"bind:assign_name\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\" text=\"bind:dep_name\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\" text=\"bind:join_date\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\" text=\"bind:resign_date\"/><Column id=\"account\" type=\"STRING\" size=\"256\" text=\"bind:account\"/><Column id=\"monthly\" type=\"INT\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"checkFlag\" type=\"INT\" size=\"256\" text=\"bind:checkFlag\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\" text=\"bind:emp_code\"/><Column id=\"name\" type=\"STRING\" size=\"256\" text=\"bind:name\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\" text=\"bind:assign_name\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\" text=\"bind:dep_name\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\" text=\"bind:join_date\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\" text=\"bind:resign_date\"/><Column id=\"account\" type=\"STRING\" size=\"256\" text=\"bind:account\"/><Column id=\"monthly\" type=\"INT\" size=\"256\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\"/><Column id=\"absence\" type=\"INT\" size=\"256\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\"/></ColumnInfo>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("ds_GiveDate", this);
+            obj._setContents("<ColumnInfo><Column id=\"give_date\" type=\"DATE\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -57,22 +62,23 @@
             obj.set_text("조회");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_Emp","60","175","830","270",null,null,null,null,null,null,this);
+            obj = new Grid("grd_Emp","60","125","830","270",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_binddataset("ds_EmpList");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"67\"/><Column size=\"92\"/><Column size=\"70\"/><Column size=\"97\"/><Column size=\"121\"/><Column size=\"119\"/><Column size=\"213\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" onclick=\"headChkbox_onclick\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/><Cell col=\"7\" text=\"계좌번호\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:checkFlag\"/><Cell col=\"1\" textAlign=\"center\" text=\"bind:emp_code\"/><Cell col=\"2\" textAlign=\"center\" text=\"bind:name\"/><Cell col=\"3\" textAlign=\"center\" text=\"bind:assign_name\"/><Cell col=\"4\" text=\"bind:dep_name\" textAlign=\"center\"/><Cell col=\"5\" textAlign=\"center\" text=\"bind:join_date\" displaytype=\"date\"/><Cell col=\"6\" text=\"bind:resign_date\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:account\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static04","670","445","120","60",null,null,null,null,null,null,this);
+            obj = new Static("Static04","570","395","120","60",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("지급일");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_GiveDate","725","465","150","20",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_GiveDate","625","415","150","20",null,null,null,null,null,null,this);
             obj.set_taborder("6");
+            obj.set_dateformat("yyyy-MM-dd");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Insert","900","460","90","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Insert","800","410","90","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("등록");
             this.addChild(obj.name, obj);
@@ -84,6 +90,10 @@
             
             // BindItem Information
             obj = new BindItem("item0","cmb_Assign","value","ds_Assign","assign_code");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item1","cal_GiveDate","value","ds_GiveDate","give_date");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -100,6 +110,21 @@
         this.registerScript("Form_InsertPay.xfdl", function() {
         this.btn_Search_onclick = function(obj,e)
         {
+        	this.fnSearch();
+
+        };
+
+        this.headChkbox_onclick = function(obj, e) {
+            var isChecked = (obj.value === true); // 헤더 체크박스의 체크 상태 가져오기
+            var rowCount = this.grd_Emp.getRowCount(); // Grid의 행 개수
+
+            for (var i = 0; i < rowCount; i++) {
+                this.grd_Emp.setCellValue(i, 0, isChecked); // 첫 번째 열 (체크박스 열)에 체크 상태 설정
+            }
+        };
+
+
+        this.fnSearch = function() {
         	if(this.ds_Assign.getColumn(0, "assign_code") == ''
         	|| this.ds_Assign.getColumn(0, "assign_code") == 'undefined'
         	|| this.ds_Assign.getColumn(0, "assign_code") == null) {
@@ -116,20 +141,27 @@
         	var isAsync     = true;
 
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
-
-        };
+        }
 
         this.fnCallback = function(svcID,errorCode,errorMsg)
         {
+
         	if(errorCode == -1)
         	{
         		this.alert(errorMsg);
         		return;
         	}
 
+        	trace(this.ds_EmpList.getColumn(0,"absence"));
+
         	switch(svcID)
         	{
         		case "selectAssign":
+        			this.alert("조회가 완료되었습니다.");
+        			break;
+
+        		case "insertPay":
+        			this.alert("등록이 완료되었습니다.");
         			break;
 
         		default :
@@ -137,17 +169,30 @@
         	}
         };
 
+        this.btn_Insert_onclick = function(obj,e)
+        {
+        	if(this.ds_GiveDate.getColumn(0, "give_date") == ''
+        	|| this.ds_GiveDate.getColumn(0, "give_date") == 'undefined'
+        	|| this.ds_GiveDate.getColumn(0, "give_date") == null){
+        		alert("날짜를 입력하세요.");
+        		return;
+        	}
 
-
-        this.headChkbox_onclick = function(obj, e) {
-            var isChecked = (obj.value === true); // 헤더 체크박스의 체크 상태 가져오기
-            var rowCount = this.grd_Emp.getRowCount(); // Grid의 행 개수
-
-            for (var i = 0; i < rowCount; i++) {
-                this.grd_Emp.setCellValue(i, 0, isChecked); // 첫 번째 열 (체크박스 열)에 체크 상태 설정
+        	if (this.ds_EmpList.getRowCount() < 1) {
+                this.alert("직원 데이터를 먼저 조회하세요.");
+                return;
             }
-        };
 
+        	var strSvcId    = "insertPay";
+        	var strSvcUrl   = "svc::insertPay.do";
+        	var inData      = "ds_EmpList=ds_EmpList, ds_GiveDate=ds_GiveDate";
+        	var outData     = "";
+        	var strArg      = "";
+        	var callBackFnc = "fnCallback";
+        	var isAsync     = true;
+
+        	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+        };
 
         });
         
@@ -155,8 +200,10 @@
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Form_InsertPay_onload,this);
+            this.addEventHandler("onclick",this.fnSearch,this);
             this.cmb_Assign.addEventHandler("onitemchanged",this.Combo00_onitemchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
+            this.btn_Insert.addEventHandler("onclick",this.btn_Insert_onclick,this);
         };
         this.loadIncludeScript("Form_InsertPay.xfdl");
         this.loadPreloadList();
