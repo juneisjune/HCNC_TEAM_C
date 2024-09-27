@@ -16,12 +16,16 @@ public class PayServiceImpl implements PayService {  // abstract 제거
     private PayMapper payMapper;
 
 
+    @Override
     public List<PayDTO> nexaGetPayListByCondition(Map<String, Object> param) {
-        return payMapper.nexaGetPayListByCondition(param);  
+        return payMapper.nexaGetPayListByCondition(param);
     }
+    
+    @Override
+    public void updatePayEtc(PayDTO payDTO) {
+        payMapper.updatePayEtc(payDTO);  // Mapper를 통해 DB에 수정된 값 저장
 
-	
+    }
 }
-
    
 

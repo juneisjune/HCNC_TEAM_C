@@ -7,7 +7,8 @@ public class PayDTO {
     private String assignName;     // 직책명
     private int payYear;           // 급여년도
     private int payMonth;          // 급여월
-    private int payAmount;         // 지급액
+    private int payAmount;         // 지급액 (원래 금액, 변경 없음)
+    private String etc;            // 수정된 금액 (etc에 반영)
 
     // Getters and Setters
     public String getEmpCode() {
@@ -64,6 +65,14 @@ public class PayDTO {
 
     public void setPayAmount(int payAmount) {
         this.payAmount = payAmount;
+    }
+
+    public String getEtc() {
+        return etc;
+    }
+
+    public void setEtc(String etc) {
+        this.etc = etc;
     }
 }
 

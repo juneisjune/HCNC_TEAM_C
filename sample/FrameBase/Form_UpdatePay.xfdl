@@ -1,16 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_ggg" width="1280" height="720" titletext="New Form">
+  <Form id="Form_UpdatePay" width="1280" height="720" titletext="New Form">
     <Layouts>
-      <Layout height="720" mobileorientation="landscape" width="1280" stepcount="0">
+      <Layout height="720" mobileorientation="landscape" width="1280">
         <Edit id="edt_Search" taborder="0" left="158" top="159" width="104" height="39" onchanged="edt_Search_onchanged"/>
         <Button id="btn_Search" taborder="1" text="조회" left="830" top="159" width="77" height="43" onclick="btn_Search_onclick"/>
         <Static id="emp_code" taborder="2" text="사번" left="105" top="596" width="65" height="45" onclick="emp_onclick" font="bold 10pt/normal &quot;Arial&quot;"/>
-        <Static id="nsme" taborder="3" text="이름" left="250" top="598" width="60" height="38" font="bold 12px/normal &quot;Gulim&quot;"/>
-        <Edit id="edt_Code" taborder="4" left="144" top="598" width="92" height="41"/>
+        <Static id="emp_nsme" taborder="3" text="이름" left="250" top="598" width="60" height="38" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Edit id="edt_Code" taborder="4" left="144" top="598" width="92" height="41" onchanged="edt_Code_onchanged"/>
         <Edit id="edt_CodeNm" taborder="5" left="284" top="600" width="106" height="40" onchanged="edt_CodeNm_onchanged"/>
-        <Button id="btn_Update" taborder="6" text="수정" left="620" top="594" width="90" height="51" onclick="btn_Save_onclick"/>
-        <Grid id="grd_CodeMst" taborder="7" left="30" top="210" width="885" height="381" binddataset="ds_Pay" oncelldblclick="grd_Pay_oncelldblclick">
+        <Button id="btn_Update" taborder="6" text="수정" left="620" top="594" width="90" height="51" onclick="btn_Update_onclick"/>
+        <Static id="Static00" text="~" left="534" top="169" width="33" height="28" taborder="7" font="bold 20px/normal &quot;Gulim&quot;" onclick="Static00_onclick"/>
+        <Combo id="com_year" taborder="8" text="" left="300" top="164" width="90" height="35" innerdataset="ds_Year" datacolumn="year" codecolumn="year" value="year" index="-1" onitemchanged="com_year_onitemchanged"/>
+        <Combo id="com_Month" taborder="9" text="" left="427" top="164" width="73" height="36" innerdataset="ds_Month" datacolumn="month" codecolumn="month" onitemchanged="com_Month_onitemchanged" value="month" index="-1"/>
+        <Combo id="com_year00" taborder="10" text="" left="567" top="165" width="83" height="35" innerdataset="ds_Year" datacolumn="year" codecolumn="year" value="year" index="-1" onitemchanged="com_year_onitemchanged"/>
+        <Edit id="edt_ModPay" taborder="11" left="498" top="601" width="104" height="40" onchanged="edt_ModPay_onchanged"/>
+        <Static id="Static01" taborder="12" text="년도" left="394" top="170" width="32" height="23" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static02" taborder="13" text="월" left="500" top="171" width="34" height="26" font="bold 12px/normal &quot;Gulim&quot;" onclick="Static02_onclick"/>
+        <Static id="Static03" taborder="14" text="년도" left="657" top="173" width="40" height="24" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static04" taborder="15" text="월" left="775" top="174" width="36" height="20" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Static id="emp_" taborder="16" text="수정액" left="450" top="602" width="67" height="31" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Static id="Static06" taborder="17" text="급여 관리" left="47" top="50" width="167" height="65" onclick="Static06_onclick" font="36px/normal &quot;Gulim&quot;"/>
+        <Combo id="com_Month00" taborder="18" text="" left="697" top="166" width="73" height="36" innerdataset="ds_Month" datacolumn="month" codecolumn="month" onitemchanged="com_Month_onitemchanged" value="month" index="-1"/>
+        <Combo id="cmb_SearType" taborder="19" text="전체" left="28" top="148" width="112" height="50" value="ALL" index="0" innerdataset="ds_SearchType" datacolumn="Name" codecolumn="Value" onitemchanged="cmb_SearType_onitemchanged"/>
+        <Button id="btn_Delete" taborder="20" text="삭제" left="775" top="595" width="90" height="52"/>
+        <Grid id="grd_CodeMst" taborder="21" left="30" top="210" width="885" height="381" binddataset="ds_Pay" oncelldblclick="grd_Pay_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -45,27 +59,24 @@
                 <Cell col="4" text="bind:payYear"/>
                 <Cell col="5" text="bind:payMonth"/>
                 <Cell col="6" text="bind:payAmount"/>
-                <Cell col="7"/>
+                <Cell col="7" text="bind:etc"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Static id="Static00" text="~" left="534" top="169" width="33" height="28" taborder="8" font="bold 20px/normal &quot;Gulim&quot;" onclick="Static00_onclick"/>
-        <Combo id="com_year" taborder="9" text="" left="300" top="164" width="90" height="35" innerdataset="ds_Year" datacolumn="year" codecolumn="year" value="year" index="-1" onitemchanged="com_year_onitemchanged"/>
-        <Combo id="com_Month" taborder="10" text="" left="430" top="161" width="73" height="36" innerdataset="ds_Month" datacolumn="month" codecolumn="month" onitemchanged="com_Month_onitemchanged" value="month" index="-1"/>
-        <Combo id="com_year00" taborder="11" text="" left="567" top="165" width="83" height="35" innerdataset="ds_Year" datacolumn="year" codecolumn="year" value="year" index="-1" onitemchanged="com_year_onitemchanged"/>
-        <Edit id="edt_ModPay" taborder="12" left="498" top="601" width="104" height="40"/>
-        <Static id="Static01" taborder="13" text="년도" left="394" top="170" width="32" height="23" font="bold 12px/normal &quot;Gulim&quot;"/>
-        <Static id="Static02" taborder="14" text="월" left="500" top="171" width="34" height="26" font="bold 12px/normal &quot;Gulim&quot;" onclick="Static02_onclick"/>
-        <Static id="Static03" taborder="15" text="년도" left="650" top="172" width="40" height="24" font="bold 12px/normal &quot;Gulim&quot;"/>
-        <Static id="Static04" taborder="16" text="월" left="775" top="174" width="36" height="20" font="bold 12px/normal &quot;Gulim&quot;"/>
-        <Static id="Static05" taborder="17" text="수정액" left="450" top="602" width="67" height="31" font="bold 12px/normal &quot;Gulim&quot;"/>
-        <Static id="Static06" taborder="18" text="급여 관리" left="47" top="50" width="167" height="65" onclick="Static06_onclick" font="36px/normal &quot;Gulim&quot;"/>
-        <Combo id="com_Month00" taborder="19" text="" left="690" top="166" width="73" height="36" innerdataset="ds_Month" datacolumn="month" codecolumn="month" onitemchanged="com_Month_onitemchanged" value="month" index="-1"/>
-        <Combo id="cmb_SearType" taborder="20" text="전체" left="28" top="148" width="112" height="50" value="ALL" index="0" innerdataset="ds_SearchType" datacolumn="Name" codecolumn="Value" onitemchanged="cmb_SearType_onitemchanged"/>
-        <Button id="btn_Delete" taborder="21" text="삭제" left="775" top="595" width="90" height="52"/>
       </Layout>
     </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="edt_Search" propid="value" datasetid="ds_Search" columnid="SEARCH_WORD"/>
+      <BindItem id="item1" compid="cmb_SearType" propid="value" datasetid="ds_Search" columnid="SEARCH_TYPE"/>
+      <BindItem id="item3" compid="com_year" propid="value" datasetid="ds_Search" columnid="START_YEAR"/>
+      <BindItem id="item4" compid="com_Month" propid="value" datasetid="ds_Search" columnid="START_MONTH"/>
+      <BindItem id="item5" compid="com_year00" propid="value" datasetid="ds_Search" columnid="END_YEAR"/>
+      <BindItem id="item6" compid="com_Month00" propid="value" datasetid="ds_Search" columnid="END_MONTH"/>
+      <BindItem id="item2" compid="edt_ModPay" propid="value" datasetid="ds_Pay" columnid="etc"/>
+      <BindItem id="item7" compid="edt_Code" propid="value" datasetid="ds_Search" columnid="SEARCH_EMP_CODE"/>
+      <BindItem id="item8" compid="edt_CodeNm" propid="value" datasetid="ds_Search" columnid="SEARCH_NAME"/>
+    </Bind>
     <Objects>
       <Dataset id="ds_SearchType">
         <ColumnInfo>
@@ -95,6 +106,12 @@
         <ColumnInfo>
           <Column id="SEARCH_TYPE" type="STRING" size="256"/>
           <Column id="SEARCH_WORD" type="STRING" size="256"/>
+          <Column id="START_YEAR" type="STRING" size="256"/>
+          <Column id="START_MONTH" type="STRING" size="256"/>
+          <Column id="END_YEAR" type="STRING" size="256"/>
+          <Column id="END_MONTH" type="STRING" size="256"/>
+          <Column id="SEARCH_EMP_CODE" type="STRING" size="256"/>
+          <Column id="SEARCH_NAME" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -186,10 +203,14 @@ this.btn_Search_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo)
 };
 
 // 화면이 로드될 때 호출되는 함수
-this.Form_ggg_onload = function(obj:nexacro.Form, e:nexacro.LoadEventInfo) {
+this.Form_UpdatePay_onload = function(obj:nexacro.Form, e:nexacro.LoadEventInfo) {
     // 검색 조건 콤보박스값 초기화
     this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
     
+	    if (!empCode && !name) {
+        this.alert("사번 또는 이름을 입력해주세요.");
+        return;
+		
     // 첫 조회 실행
     this.fnSearch();
 };
@@ -199,6 +220,8 @@ this.fnSearch = function() {
     // 검색 조건 확인 (필요하다면 조건 추가)
     console.log("SEARCH_TYPE = " + this.ds_Search.getColumn(0, "SEARCH_TYPE"));
     console.log("SEARCH_WORD = " + this.ds_Search.getColumn(0, "SEARCH_WORD"));
+	var empCode = this.ds_Search.getColumn(0, "SEARCH_EMP_CODE");
+    var name = this.ds_Search.getColumn(0, "SEARCH_NAME");
 
     var strSvcId    = "searchPay";
     var strSvcUrl   = "svc::selectPayList.do";
@@ -239,50 +262,58 @@ this.fnCallback = function(svcID,errorCode,errorMsg)
 ////////////////////////////////////////////////////////////////////////
 
 
-// 수정 버튼 클릭 시
 this.btn_Update_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo)
 {
-    // 선택된 행을 가져옴
-    var selectedRow = this.grd_CodeMst.getSelectedRow();
+    // 사번, 이름, 수정액을 입력했는지 확인
+    var empCode = this.edt_Code.value;
+    var name = this.edt_CodeNm.value;
+    var modPay = this.edt_ModPay.value;
 
-    // 선택된 행이 있는지 확인
-    if (selectedRow >= 0) {
-        // 그리드에서 수정한 값을 반영 (여기선 이미 그리드에서 수정했으므로 이 부분은 필요하지 않을 수도 있습니다)
-        var newModPay = this.grd_CodeMst.getCellText(selectedRow, "modPay");
-
-        // 필요하다면 데이터셋을 업데이트할 수 있음
-        this.ds_Pay.setColumn(selectedRow, "modPay", newModPay);
-
-        // 수정이 완료되었음을 사용자에게 알림
-        this.alert("수정이 완료되었습니다.");
-        
-        // 서버에 데이터 전송
-        var strSvcId    = "updatePayEtc";
-        var strSvcUrl   = "svc::updatePayEtc.do";
-        var inData      = "ds_Pay=ds_Pay";
-        var outData     = "ds_Pay=ds_Pay";  
-        var strArg      = "";
-        var callBackFnc = "fnCallback";
-        var isAsync     = true;
-
-        this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
-    } else {
-        this.alert("수정할 행을 먼저 선택해주세요.");
+    if (!empCode || !name || !modPay) {
+        this.alert("사번, 이름, 수정액을 모두 입력해주세요.");
+        return;
     }
+
+    // 선택한 행을 찾음 (사번과 이름 기준으로 그리드에서 찾음)
+    var selectedRow = this.ds_Pay.findRowExpr("empCode == '" + empCode + "' && name == '" + name + "'");
+    
+    if (selectedRow == -1) {
+        this.alert("해당 사번의 데이터를 찾을 수 없습니다.");
+        return;
+    }
+
+    // 지급총액(pay_amount)와 수정액(etc) 가져오기
+    var payAmount = this.ds_Pay.getColumn(selectedRow, "payAmount");  // 지급액
+    var currentEtc = this.ds_Pay.getColumn(selectedRow, "etc");      // 기존 수정액
+
+    // 수정액 반영 (기존 지급총액에 입력한 수정액을 더하거나 빼기)
+    var newPayAmount = payAmount + parseInt(modPay);
+
+    // 새로운 지급총액 반영
+    this.ds_Pay.setColumn(selectedRow, "payAmount", newPayAmount);  // 지급액 업데이트
+    this.ds_Pay.setColumn(selectedRow, "etc", modPay);              // 수정액 업데이트
+
+    // 서버에 수정된 값 반영
+    var strSvcId    = "updatePayEtc";
+    var strSvcUrl   = "svc::updatePayEtc.do";
+    var inData      = "ds_Pay=ds_Pay";
+    var outData     = "ds_Pay=ds_Pay";  
+    var strArg      = "";
+    var callBackFnc = "fnCallback";
+    var isAsync     = true;
+
+    this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 };
 
-
-// 처리 콜백 함수
+// 트랜잭션 완료 후 콜백 함수
 this.fnCallback = function(svcID, errorCode, errorMsg)
 {
-    if(errorCode == -1)
-    {
+    if (errorCode == -1) {
         this.alert("오류 발생: " + errorMsg);
         return;
     }
 
-    switch(svcID)
-    {
+    switch(svcID) {
         case "updatePayEtc":
             this.alert("수정이 성공적으로 완료되었습니다.");
             break;
@@ -290,10 +321,9 @@ this.fnCallback = function(svcID, errorCode, errorMsg)
             break;
     }
 };
+
+
+
 ]]></Script>
-    <Bind>
-      <BindItem id="item0" compid="edt_Search" propid="value" datasetid="ds_Search" columnid="SEARCH_WORD"/>
-      <BindItem id="item1" compid="cmb_SearType" propid="value" datasetid="ds_Search" columnid="SEARCH_TYPE"/>
-    </Bind>
   </Form>
 </FDL>

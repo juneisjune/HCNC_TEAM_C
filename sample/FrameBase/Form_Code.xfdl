@@ -35,12 +35,12 @@
         <Static id="stc_Code" text="코드" left="15" top="470" width="30" height="30"/>
         <Edit id="edt_Code" left="45" top="470" width="110" height="30"/>
         <Static id="stc_CodeNm" text="코드명" left="182" top="470" width="40" height="30"/>
-        <Edit id="edt_CodeNm" left="222" top="470" width="140" height="30"/>
+        <Edit id="edt_CodeNm" left="222" top="470" width="140" height="30" onchanged="edt_CodeNm_onchanged"/>
         <Button id="btn_Save" text="저장" left="365" top="470" width="50" height="30" onclick="btn_Save_onclick"/>
         <Button id="btn_Delete" text="삭제" left="420" top="470" width="50" height="30" onclick="btn_Delete_onclick"/>
         <!--세부코드-->
         <Static id="stc_TITLE2" text="세부 코드" left="565" top="10" width="120" height="60" font="28px/normal &quot;Gulim&quot;"/>
-        <Combo id="cmb_SearchDtl" text="코드명" left="560" top="80" width="150" height="30" innerdataset="ds_SearchType" codecolumn="CODE" datacolumn="CODE_NM" index="2" value="CODE_NM"/>
+        <Combo id="cmb_SearchDtl" text="코드명" left="560" top="80" width="150" height="30" innerdataset="ds_SearchType" codecolumn="CODE" datacolumn="CODE_NM" index="2" value="CODE_NM" onitemchanged="cmb_SearchDtl_onitemchanged"/>
         <Edit id="edt_SearchDtl" left="720" top="80" width="150" height="30"/>
         <Button id="btn_SearchDtl" text="조회" left="880" top="80" width="50" height="30" onclick="btn_SearchDtl_onclick"/>
         <Button id="btn_AddDtl" text="추가" left="935" top="80" width="50" height="30" onclick="btn_AddDtl_onclick"/>
@@ -395,8 +395,6 @@ this.ds_CodeDtlList_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexac
 	this.ds_CodeDtl.setColumn(0,"CODE",obj.getColumn(obj.rowposition,"CODE"));
 	this.ds_CodeDtl.setColumn(0,"CODE_NM",obj.getColumn(obj.rowposition,"CODE_NM"));
 };
-
-
 
 
 

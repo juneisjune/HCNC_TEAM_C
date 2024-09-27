@@ -533,8 +533,6 @@
 
 
 
-
-
         });
         
         // Regist UI Components Event
@@ -544,8 +542,10 @@
             this.cmb_Search.addEventHandler("onitemchanged",this.cmb_Search_onitemchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.btn_Add.addEventHandler("onclick",this.btn_Add_onclick,this);
+            this.edt_CodeNm.addEventHandler("onchanged",this.edt_CodeNm_onchanged,this);
             this.btn_Save.addEventHandler("onclick",this.btn_Save_onclick,this);
             this.btn_Delete.addEventHandler("onclick",this.btn_Delete_onclick,this);
+            this.cmb_SearchDtl.addEventHandler("onitemchanged",this.cmb_SearchDtl_onitemchanged,this);
             this.btn_SearchDtl.addEventHandler("onclick",this.btn_SearchDtl_onclick,this);
             this.btn_AddDtl.addEventHandler("onclick",this.btn_AddDtl_onclick,this);
             this.btn_SaveDtl.addEventHandler("onclick",this.btn_SaveDtl_onclick,this);

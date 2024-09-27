@@ -5,7 +5,11 @@ import java.util.Map;
 
 public interface PayService {
 
-    List<PayDTO> nexaGetPayListByCondition(Map<String, Object> param);
+	 List<PayDTO> nexaGetPayListByCondition(Map<String, Object> param);
+
+    void updatePayEtc(PayDTO payDTO);  // etc 업데이트 메서드 선언
+    
+    
 
 	}
 

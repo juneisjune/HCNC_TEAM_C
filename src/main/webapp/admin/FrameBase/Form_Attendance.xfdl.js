@@ -125,7 +125,6 @@
         
         // User Script
         this.registerScript("Form_Attendance.xfdl", function() {
-
         this.btn_Search_onclick = function(obj,e)
         {
         	this.fnSearch();
@@ -262,7 +261,6 @@
 
         }
 
-
         });
         
         // Regist UI Components Event
@@ -270,6 +268,7 @@
         {
             this.addEventHandler("onload",this.Form_Attendance_onload,this);
             this.cmb_SearchType.addEventHandler("onitemchanged",this.cmb_SearchType_onitemchanged,this);
+            this.edt_SearchWord.addEventHandler("onchanged",this.edt_SearchWord_onchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grid_Atten.addEventHandler("oncelldblclick",this.grid_Atten_oncelldblclick,this);
             this.btn_RegisterAtten.addEventHandler("onclick",this.btn_RegisterAtten_onclick,this);

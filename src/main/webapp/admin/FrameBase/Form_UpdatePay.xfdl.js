@@ -9,7 +9,7 @@
         
         this.on_create = function()
         {
-            this.set_name("Form_ggg");
+            this.set_name("Form_UpdatePay");
             this.set_titletext("New Form");
             if (Form == this.constructor)
             {
@@ -23,7 +23,7 @@
 
 
             obj = new Dataset("ds_Search", this);
-            obj._setContents("<ColumnInfo><Column id=\"SEARCH_TYPE\" type=\"STRING\" size=\"256\"/><Column id=\"SEARCH_WORD\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"SEARCH_TYPE\" type=\"STRING\" size=\"256\"/><Column id=\"SEARCH_WORD\" type=\"STRING\" size=\"256\"/><Column id=\"START_YEAR\" type=\"STRING\" size=\"256\"/><Column id=\"START_MONTH\" type=\"STRING\" size=\"256\"/><Column id=\"END_YEAR\" type=\"STRING\" size=\"256\"/><Column id=\"END_MONTH\" type=\"STRING\" size=\"256\"/><Column id=\"SEARCH_EMP_CODE\" type=\"STRING\" size=\"256\"/><Column id=\"SEARCH_NAME\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -57,7 +57,7 @@
             obj.set_font("bold 10pt/normal \"Arial\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("nsme","250","598","60","38",null,null,null,null,null,null,this);
+            obj = new Static("emp_nsme","250","598","60","38",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("이름");
             obj.set_font("bold 12px/normal \"Gulim\"");
@@ -76,20 +76,14 @@
             obj.set_text("수정");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_CodeMst","30","210","885","381",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
-            obj.set_binddataset("ds_Pay");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"115\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"급여년도\"/><Cell col=\"5\" text=\"급여월\"/><Cell col=\"6\" text=\"지급액\"/><Cell col=\"7\" text=\"수정액\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\"/><Cell col=\"1\" text=\"bind:name\"/><Cell col=\"2\" text=\"bind:depName\"/><Cell col=\"3\" text=\"bind:assignName\"/><Cell col=\"4\" text=\"bind:payYear\"/><Cell col=\"5\" text=\"bind:payMonth\"/><Cell col=\"6\" text=\"bind:payAmount\"/><Cell col=\"7\"/></Band></Format></Formats>");
-            this.addChild(obj.name, obj);
-
             obj = new Static("Static00","534","169","33","28",null,null,null,null,null,null,this);
             obj.set_text("~");
-            obj.set_taborder("8");
+            obj.set_taborder("7");
             obj.set_font("bold 20px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
             obj = new Combo("com_year","300","164","90","35",null,null,null,null,null,null,this);
-            obj.set_taborder("9");
+            obj.set_taborder("8");
             obj.set_innerdataset("ds_Year");
             obj.set_datacolumn("year");
             obj.set_codecolumn("year");
@@ -98,8 +92,8 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("com_Month","430","161","73","36",null,null,null,null,null,null,this);
-            obj.set_taborder("10");
+            obj = new Combo("com_Month","427","164","73","36",null,null,null,null,null,null,this);
+            obj.set_taborder("9");
             obj.set_innerdataset("ds_Month");
             obj.set_datacolumn("month");
             obj.set_codecolumn("month");
@@ -109,7 +103,7 @@
             this.addChild(obj.name, obj);
 
             obj = new Combo("com_year00","567","165","83","35",null,null,null,null,null,null,this);
-            obj.set_taborder("11");
+            obj.set_taborder("10");
             obj.set_innerdataset("ds_Year");
             obj.set_datacolumn("year");
             obj.set_codecolumn("year");
@@ -119,47 +113,47 @@
             this.addChild(obj.name, obj);
 
             obj = new Edit("edt_ModPay","498","601","104","40",null,null,null,null,null,null,this);
-            obj.set_taborder("12");
+            obj.set_taborder("11");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static01","394","170","32","23",null,null,null,null,null,null,this);
-            obj.set_taborder("13");
+            obj.set_taborder("12");
             obj.set_text("년도");
             obj.set_font("bold 12px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static02","500","171","34","26",null,null,null,null,null,null,this);
-            obj.set_taborder("14");
+            obj.set_taborder("13");
             obj.set_text("월");
             obj.set_font("bold 12px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static03","650","172","40","24",null,null,null,null,null,null,this);
-            obj.set_taborder("15");
+            obj = new Static("Static03","657","173","40","24",null,null,null,null,null,null,this);
+            obj.set_taborder("14");
             obj.set_text("년도");
             obj.set_font("bold 12px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static04","775","174","36","20",null,null,null,null,null,null,this);
-            obj.set_taborder("16");
+            obj.set_taborder("15");
             obj.set_text("월");
             obj.set_font("bold 12px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static05","450","602","67","31",null,null,null,null,null,null,this);
-            obj.set_taborder("17");
+            obj = new Static("emp_","450","602","67","31",null,null,null,null,null,null,this);
+            obj.set_taborder("16");
             obj.set_text("수정액");
             obj.set_font("bold 12px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static06","47","50","167","65",null,null,null,null,null,null,this);
-            obj.set_taborder("18");
+            obj.set_taborder("17");
             obj.set_text("급여 관리");
             obj.set_font("36px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("com_Month00","690","166","73","36",null,null,null,null,null,null,this);
-            obj.set_taborder("19");
+            obj = new Combo("com_Month00","697","166","73","36",null,null,null,null,null,null,this);
+            obj.set_taborder("18");
             obj.set_innerdataset("ds_Month");
             obj.set_datacolumn("month");
             obj.set_codecolumn("month");
@@ -169,7 +163,7 @@
             this.addChild(obj.name, obj);
 
             obj = new Combo("cmb_SearType","28","148","112","50",null,null,null,null,null,null,this);
-            obj.set_taborder("20");
+            obj.set_taborder("19");
             obj.set_innerdataset("ds_SearchType");
             obj.set_datacolumn("Name");
             obj.set_codecolumn("Value");
@@ -179,14 +173,19 @@
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Delete","775","595","90","52",null,null,null,null,null,null,this);
-            obj.set_taborder("21");
+            obj.set_taborder("20");
             obj.set_text("삭제");
+            this.addChild(obj.name, obj);
+
+            obj = new Grid("grd_CodeMst","30","210","885","381",null,null,null,null,null,null,this);
+            obj.set_taborder("21");
+            obj.set_binddataset("ds_Pay");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"115\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"급여년도\"/><Cell col=\"5\" text=\"급여월\"/><Cell col=\"6\" text=\"지급액\"/><Cell col=\"7\" text=\"수정액\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\"/><Cell col=\"1\" text=\"bind:name\"/><Cell col=\"2\" text=\"bind:depName\"/><Cell col=\"3\" text=\"bind:assignName\"/><Cell col=\"4\" text=\"bind:payYear\"/><Cell col=\"5\" text=\"bind:payMonth\"/><Cell col=\"6\" text=\"bind:payAmount\"/><Cell col=\"7\" text=\"bind:etc\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
             obj = new Layout("default","",1280,720,this,function(p){});
             obj.set_mobileorientation("landscape");
-            obj.set_stepcount("0");
             this.addLayout(obj.name, obj);
             
             // BindItem Information
@@ -195,6 +194,34 @@
             obj.bind();
 
             obj = new BindItem("item1","cmb_SearType","value","ds_Search","SEARCH_TYPE");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item3","com_year","value","ds_Search","START_YEAR");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item4","com_Month","value","ds_Search","START_MONTH");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item5","com_year00","value","ds_Search","END_YEAR");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item6","com_Month00","value","ds_Search","END_MONTH");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item2","edt_ModPay","value","ds_Pay","etc");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item7","edt_Code","value","ds_Search","SEARCH_EMP_CODE");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item8","edt_CodeNm","value","ds_Search","SEARCH_NAME");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -208,14 +235,14 @@
         };
         
         // User Script
-        this.registerScript("Form_ggg.xfdl", function() {
+        this.registerScript("Form_UpdatePay.xfdl", function() {
         // 조회 버튼 클릭 시 호출되는 함수
         this.btn_Search_onclick = function(obj, e) {
             this.fnSearch();
         };
 
         // 화면이 로드될 때 호출되는 함수
-        this.Form_ggg_onload = function(obj, e) {
+        this.Form_UpdatePay_onload = function(obj, e) {
             // 검색 조건 콤보박스값 초기화
             this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
 
@@ -268,50 +295,58 @@
         ////////////////////////////////////////////////////////////////////////
 
 
-        // 수정 버튼 클릭 시
         this.btn_Update_onclick = function(obj, e)
         {
-            // 선택된 행을 가져옴
-            var selectedRow = this.grd_CodeMst.getSelectedRow();
+            // 사번, 이름, 수정액을 입력했는지 확인
+            var empCode = this.edt_Code.value;
+            var name = this.edt_CodeNm.value;
+            var modPay = this.edt_ModPay.value;
 
-            // 선택된 행이 있는지 확인
-            if (selectedRow >= 0) {
-                // 그리드에서 수정한 값을 반영 (여기선 이미 그리드에서 수정했으므로 이 부분은 필요하지 않을 수도 있습니다)
-                var newModPay = this.grd_CodeMst.getCellText(selectedRow, "modPay");
-
-                // 필요하다면 데이터셋을 업데이트할 수 있음
-                this.ds_Pay.setColumn(selectedRow, "modPay", newModPay);
-
-                // 수정이 완료되었음을 사용자에게 알림
-                this.alert("수정이 완료되었습니다.");
-
-                // 서버에 데이터 전송
-                var strSvcId    = "updatePayEtc";
-                var strSvcUrl   = "svc::updatePayEtc.do";
-                var inData      = "ds_Pay=ds_Pay";
-                var outData     = "ds_Pay=ds_Pay";
-                var strArg      = "";
-                var callBackFnc = "fnCallback";
-                var isAsync     = true;
-
-                this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
-            } else {
-                this.alert("수정할 행을 먼저 선택해주세요.");
+            if (!empCode || !name || !modPay) {
+                this.alert("사번, 이름, 수정액을 모두 입력해주세요.");
+                return;
             }
+
+            // 선택한 행을 찾음 (사번과 이름 기준으로 그리드에서 찾음)
+            var selectedRow = this.ds_Pay.findRowExpr("empCode == '" + empCode + "' && name == '" + name + "'");
+
+            if (selectedRow == -1) {
+                this.alert("해당 사번의 데이터를 찾을 수 없습니다.");
+                return;
+            }
+
+            // 지급총액(pay_amount)와 수정액(etc) 가져오기
+            var payAmount = this.ds_Pay.getColumn(selectedRow, "payAmount");  // 지급액
+            var currentEtc = this.ds_Pay.getColumn(selectedRow, "etc");      // 기존 수정액
+
+            // 수정액 반영 (기존 지급총액에 입력한 수정액을 더하거나 빼기)
+            var newPayAmount = payAmount + parseInt(modPay);
+
+            // 새로운 지급총액 반영
+            this.ds_Pay.setColumn(selectedRow, "payAmount", newPayAmount);  // 지급액 업데이트
+            this.ds_Pay.setColumn(selectedRow, "etc", modPay);              // 수정액 업데이트
+
+            // 서버에 수정된 값 반영
+            var strSvcId    = "updatePayEtc";
+            var strSvcUrl   = "svc::updatePayEtc.do";
+            var inData      = "ds_Pay=ds_Pay";
+            var outData     = "ds_Pay=ds_Pay";
+            var strArg      = "";
+            var callBackFnc = "fnCallback";
+            var isAsync     = true;
+
+            this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
 
-
-        // 처리 콜백 함수
+        // 트랜잭션 완료 후 콜백 함수
         this.fnCallback = function(svcID, errorCode, errorMsg)
         {
-            if(errorCode == -1)
-            {
+            if (errorCode == -1) {
                 this.alert("오류 발생: " + errorMsg);
                 return;
             }
 
-            switch(svcID)
-            {
+            switch(svcID) {
                 case "updatePayEtc":
                     this.alert("수정이 성공적으로 완료되었습니다.");
                     break;
@@ -319,6 +354,9 @@
                     break;
             }
         };
+
+
+
 
         });
         
@@ -328,19 +366,21 @@
             this.edt_Search.addEventHandler("onchanged",this.edt_Search_onchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.emp_code.addEventHandler("onclick",this.emp_onclick,this);
+            this.edt_Code.addEventHandler("onchanged",this.edt_Code_onchanged,this);
             this.edt_CodeNm.addEventHandler("onchanged",this.edt_CodeNm_onchanged,this);
-            this.btn_Update.addEventHandler("onclick",this.btn_Save_onclick,this);
-            this.grd_CodeMst.addEventHandler("oncelldblclick",this.grd_Pay_oncelldblclick,this);
+            this.btn_Update.addEventHandler("onclick",this.btn_Update_onclick,this);
             this.Static00.addEventHandler("onclick",this.Static00_onclick,this);
             this.com_year.addEventHandler("onitemchanged",this.com_year_onitemchanged,this);
             this.com_Month.addEventHandler("onitemchanged",this.com_Month_onitemchanged,this);
             this.com_year00.addEventHandler("onitemchanged",this.com_year_onitemchanged,this);
+            this.edt_ModPay.addEventHandler("onchanged",this.edt_ModPay_onchanged,this);
             this.Static02.addEventHandler("onclick",this.Static02_onclick,this);
             this.Static06.addEventHandler("onclick",this.Static06_onclick,this);
             this.com_Month00.addEventHandler("onitemchanged",this.com_Month_onitemchanged,this);
             this.cmb_SearType.addEventHandler("onitemchanged",this.cmb_SearType_onitemchanged,this);
+            this.grd_CodeMst.addEventHandler("oncelldblclick",this.grd_Pay_oncelldblclick,this);
         };
-        this.loadIncludeScript("Form_ggg.xfdl");
+        this.loadIncludeScript("Form_UpdatePay.xfdl");
         this.loadPreloadList();
         
         // Remove Reference

@@ -5,7 +5,7 @@
       <Layout height="720" mobileorientation="landscape" width="1280">
         <Static id="Title" taborder="0" text="직원 출/퇴근 기록 관리" left="15" top="15" width="350" height="50" font="32px/normal &quot;Gulim&quot;"/>
         <Combo id="cmb_SearchType" taborder="1" text="전체" left="450" top="90" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL" onitemchanged="cmb_SearchType_onitemchanged"/>
-        <Edit id="edt_SearchWord" taborder="2" left="570" top="90" width="180" height="30"/>
+        <Edit id="edt_SearchWord" taborder="2" left="570" top="90" width="180" height="30" onchanged="edt_SearchWord_onchanged"/>
         <Calendar id="cal_Start" taborder="3" left="770" top="90" width="150" height="30"/>
         <Calendar id="cal_End" taborder="4" left="960" top="90" width="150" height="30"/>
         <Button id="btn_Search" taborder="5" text="검색" left="1120" top="90" width="70" height="30" onclick="btn_Search_onclick"/>
@@ -58,8 +58,7 @@
         <Button id="btn_EditAtten" taborder="10" text="수정" left="1080" top="600" width="80" height="40" onclick="btn_EditAtten_onclick"/>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[
-this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+    <Script type="xscript5.1"><![CDATA[this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.fnSearch();
 };
@@ -194,7 +193,6 @@ this.showRegisterAtten = function (objParam)
 	popup.form.style.set_border("1 solid #4c5a6f");
 	
 }
-
 ]]></Script>
     <Objects>
       <Dataset id="ds_AttenList">
