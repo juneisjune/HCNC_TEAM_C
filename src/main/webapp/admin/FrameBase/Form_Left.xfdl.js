@@ -22,7 +22,6 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-
             obj = new Grid("grid_LeftMenu","0","0","180","670",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_treeinitstatus("expand,all");
@@ -30,7 +29,6 @@
             obj.set_binddataset("ds_Left");
             obj.set_cssclass("grd_LF_treeMenu");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"180\"/></Columns><Rows><Row size=\"35\"/></Rows><Band id=\"body\"><Cell displaytype=\"treeitemcontrol\" edittype=\"tree\" text=\"bind:MENU_NAME\" treestartlevel=\"1\" treelevel=\"bind:MENU_LEVEL\"/></Band></Format></Formats>");
-
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

@@ -20,7 +20,6 @@
 
             
             // UI Components Initialize
-
             obj = new Static("staBack02","0","0","1535","55",null,null,null,null,null,null,this);
             obj.set_cssclass("sta_top_bg02");
             obj.set_taborder("0");
@@ -43,7 +42,6 @@
             obj.set_taborder("3");
             obj.set_fittocontents("none");
             obj.set_background("");
-
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
