@@ -17,7 +17,7 @@
         /* Container for the entire header */
         .header {
             width: 100%;
-            margin-bottom : 80px;
+            margin-bottom : 30px;
         }
         
         /* Home section style */
@@ -93,7 +93,7 @@
             border-bottom: 1px solid #ddd;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             height: 50px; 
-            margin-bottom: 100px;
+            margin-bottom: 30px;
        
         }
 
@@ -262,10 +262,10 @@ function getCurrentTime() {
 function startWork() {
     const currentTime = getCurrentTime();
     
-    document.getElementById("start_time").innerText = currentTime; // 출근 시간 표시
     
     
     if(confirm("출근 시간 등록하시겠습니까?")){ 
+    document.getElementById("start_time").innerText = currentTime; // 출근 시간 표시
 	    // 출근 시간을 DB에 저장하는 AJAX 호출
 	    $.ajax({
 	        type: "POST",
@@ -286,8 +286,8 @@ function startWork() {
 // 퇴근 버튼 클릭 시 실행
 function endWork() {
     const currentTime = getCurrentTime();
-    document.getElementById("end_time").innerText = currentTime; // 퇴근 시간 표시
    	if(confirm("퇴근 시간 등록하시겠습니까?")){
+	    document.getElementById("end_time").innerText = currentTime; // 퇴근 시간 표시
 	    // 퇴근 시간을 DB에 저장하는 AJAX 호출
 	    $.ajax({
 	        type: "POST",
