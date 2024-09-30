@@ -12,7 +12,7 @@
 	<licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <url>http://www.apache.orsg/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
 
@@ -207,23 +207,8 @@
 		    <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
 		    <version>1.16</version>
 		</dependency>
-<!--         <dependency> -->
-<!--             <groupId>com.googlecode.log4jdbc</groupId> -->
-<!--             <artifactId>log4jdbc</artifactId> -->
-<!--             <version>1.2</version> -->
-<!--             <exclusions> -->
-<!--                 <exclusion> -->
-<!--                     <artifactId>slf4j-api</artifactId> -->
-<!--                     <groupId>org.slf4j</groupId> -->
-<!--                 </exclusion> -->
-<!--             </exclusions> -->
-<!--         </dependency> -->
+		<!-- dsfsdf -->
 
-<!--         <dependency> -->
-<!--             <groupId>commons-dbcp</groupId> -->
-<!--             <artifactId>commons-dbcp</artifactId> -->
-<!--             <version>1.4</version> -->
-<!--         </dependency> -->
         
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -254,6 +239,33 @@
 		
 		
 		<!-- 양민준 파일추가 관련 주가 라이브러리 끝  -->
+    <!-- Spring Web MVC -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>${spring.maven.artifact.version}</version>
+    </dependency>
+    
+    <!-- 이미 추가된 다른 의존성들 -->
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>${spring.maven.artifact.version}</version>
+    </dependency>
+		<!-- jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		
+		<!-- jackson-core -->
+		<dependency>
+    		<groupId>com.fasterxml.jackson.core</groupId>
+    		<artifactId>jackson-databind</artifactId>
+    		<version>2.9.2</version>
+		</dependency>
+
 
 	</dependencies>
 

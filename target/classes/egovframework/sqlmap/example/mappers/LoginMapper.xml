@@ -10,11 +10,7 @@
 		    AND password = SHA2(#{password}, 256)
 		    AND assign_code >= 5;
 	</select>
-    <!-- 사용자 인증 상태 업데이트 -->
-    <update id="updateUserVerificationStatus">
-        UPDATE employee
-        SET verified = 1  <!-- 인증 상태를 1로 업데이트 -->
-        WHERE id = #{userId}
-    </update>
+    
+ 
 
 </mapper>

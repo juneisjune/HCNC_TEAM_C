@@ -21,4 +21,11 @@ public interface PostMapper {
 
     // 첨부파일 등록 메서드
     void insertAttachment(Map<String, Object> param);
+
+    //===================================//
+ // 첨부파일 목록 조회 메서드 추가
+    List<Map<String, Object>> selectAttachments(int postCode);
+ // 단일 첨부파일 조회 메서드 추가
+    Map<String, Object> selectAttachment(int attachCode);
+
 }

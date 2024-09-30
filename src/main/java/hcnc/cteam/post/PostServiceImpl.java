@@ -84,14 +84,21 @@ public class PostServiceImpl implements PostService {
             System.out.println("fileList is null or empty");
         }
     }
-
-
-
-    //첨부파일 관련
+    //첨부파일 관련 디비 관련
     @Override
     public void saveAttachment(Map<String, Object> fileParam) throws Exception {
         postMapper.insertAttachment(fileParam);
     }
+    //===================================//
+    @Override
+    public List<Map<String, Object>> selectAttachments(int postCode) {
+        return postMapper.selectAttachments(postCode);
+    }
+    @Override
+    public Map<String, Object> selectAttachment(int attachCode) {
+        return postMapper.selectAttachment(attachCode);
+    }
+    
 
     
 

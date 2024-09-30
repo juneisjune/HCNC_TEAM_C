@@ -19,6 +19,11 @@ public interface PostService {
 
     //파일 첨부 관련 메서드
     void saveAttachment(Map<String, Object> fileParam) throws Exception;
+    //===================================//
+ // 첨부파일 목록 조회 메서드 추가
+    List<Map<String, Object>> selectAttachments(int postCode);
+
+	Map<String, Object> selectAttachment(int attachCode);
 
 	
 }

@@ -46,7 +46,40 @@
 	        NOW(), #{reg_name}, NOW(), #{upd_name}
 	    );
 	</insert>
-
+	<!-- 다움 관련 -->
+	<select id="selectAttachments" parameterType="int" resultType="map">
+	    SELECT
+	        attach_code,
+	        post_code,
+	        emp_code,
+	        attach_name,
+	        attach_url,
+	        reg_date,
+	        reg_name,
+	        upd_date,
+	        upd_name
+	    FROM
+	        attachment
+	    WHERE
+	        post_code = #{postCode}
+	</select>
+	<select id="selectAttachment" parameterType="int" resultType="map">
+	    SELECT
+	        attach_code,
+	        post_code,
+	        emp_code,
+	        attach_name,
+	        attach_url,
+	        reg_date,
+	        reg_name,
+	        upd_date,
+	        upd_name
+	    FROM
+	        attachment
+	    WHERE
+	        attach_code = #{attachCode}
+	</select>
 	
+
 </mapper>
 

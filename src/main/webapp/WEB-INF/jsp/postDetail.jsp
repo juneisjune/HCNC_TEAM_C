@@ -100,9 +100,29 @@
             <td>${postDetail.name}</td>
         </tr>
         <tr>
-            <th>첨부파일</th>
-            <td colspan="3">없음</td>
-        </tr>
+    <th>첨부파일</th>
+	    <td colspan="3">
+	        <c:choose>
+	            <c:when test="${not empty attachments}">
+	                <ul>
+	                    <c:forEach var="file" items="${attachments}">
+	                     <li>
+						    <a href="/post/downloadAttachment.do?attach_code=${file.attach_code}">
+						        ${file.attach_name} 
+						    </a>
+						</li>
+
+	                    </c:forEach>
+	                </ul>
+	            </c:when>
+	            <c:otherwise>
+	                	없음
+	            </c:otherwise>
+	        </c:choose>
+	    </td>
+	</tr>
+
+
     </table>
 
     <div class="content-area">
