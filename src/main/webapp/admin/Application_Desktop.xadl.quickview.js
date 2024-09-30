@@ -9,7 +9,9 @@
 			// global dataobject
 		
             // global dataset
-
+            obj = new Dataset("ds_userInfo", this);
+            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/><Column id=\"dep_code\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            this._addDataset(obj.name, obj);
             
             // global variable
 
@@ -31,7 +33,7 @@
             var mainframe = this.createMainFrame("mainframe","15","15","1280","720",null,null,this);
             mainframe.set_showtitlebar("true");
             mainframe.set_showstatusbar("true");
-            mainframe.set_titletext("TopLeftFrame");
+            mainframe.set_titletext("HCNC 인사관리시스템");
             mainframe.on_createBodyFrame = this.mainframe_createBodyFrame;
             // tray
 

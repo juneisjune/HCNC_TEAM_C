@@ -1,5 +1,7 @@
 package hcnc.cteam.login;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -31,5 +33,26 @@ public class LoginServiceImpl extends EgovAbstractServiceImpl implements LoginSe
 	public AttenDTO selectWork(int empCode) throws Exception {
 		return loginMapper.selectWork(empCode);
 	}
+	
+	@Override
+    public Map<String, Object> getUserInfoByUserId(String userId) {
+        return loginMapper.getUserByUserId(userId);
+    }
+
+	@Override
+    public boolean authenticate(String userId, String password) {
+        Map<String, Object> user = loginMapper.getUserByUserId(userId);
+        
+        // 입력받은 비밀번호를 SHA-256으로 해시화
+        String hashedPassword = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
+        
+        // 사용자 입력 비밀번호와 DB 비밀번호 비교
+        if (user != null && user.get("password").equals(hashedPassword)) {
+            return true;  // 로그인 성공
+        }
+        return false;  // 로그인 실패
+    }
+
+
 
 }

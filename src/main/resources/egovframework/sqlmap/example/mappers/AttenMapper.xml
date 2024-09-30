@@ -20,7 +20,7 @@
 		JOIN department e ON a.dep_code = e.dep_code
 		WHERE 1=1
 			AND a.emp_Code = #{empCode}
-		ORDER BY b.work_date ASC
+		ORDER BY b.work_date DESC
 	</select>
 
 	<!-- 조건에 따른 조회(검색) -->
@@ -44,20 +44,20 @@
 			<!-- 로그인한 사용자의 근태 정보만 가져오기 -->
 				AND a.emp_Code = #{empCode}
 			<!-- 근무형태별 조회 -->
-			<if test="SEARCH_TYPE == 'ON'">
+			<if test="WORK_TYPE == 'ON'">
 				AND c.atten_type LIKE CONCAT('%', '출근', '%')
 			</if>
-			<if test="SEARCH_TYPE == 'OFF'">
+			<if test="WORK_TYPE == 'OFF'">
 				AND c.atten_type LIKE CONCAT('%', '결근', '%')
 			</if>
-			<if test="SEARCH_TYPE == 'HOLI'">
+			<if test="WORK_TYPE == 'HOLI'">
 				AND c.atten_type LIKE CONCAT('%', '휴가', '%')
 			</if>
 		<!-- 근무일자에 따른 조회 -->
 		<if test="START_DATE != null and START_DATE != '' and END_DATE != null and END_DATE != ''">
 			AND b.work_date BETWEEN #{START_DATE} AND #{END_DATE}
 		</if>
-		ORDER BY b.work_date ASC
+		ORDER BY b.work_date DESC
 	</select>
 
  	<!-- 출근  -->

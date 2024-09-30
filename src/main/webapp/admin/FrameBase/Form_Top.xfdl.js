@@ -72,6 +72,16 @@
         // 로그아웃 버튼
         this.btn_Logout_onclick = function(obj,e)
         {
+        	//사용자 전역변수 초기화
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "name", '');
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "email", '');
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "emp_code", '');
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "dep_code", '');
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "assign_code", '');
+
+        	//확인
+        	//console.log(nexacro.getApplication().ds_userInfo.saveXML());
+
         	//Top, HFrameSet00, Login 3개 영역을 조정하여 로그인 화면이 보이도록 설정
             nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("0,0,*");
         };
