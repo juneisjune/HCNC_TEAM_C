@@ -40,6 +40,7 @@ public class LoginController {
 	@ResponseBody
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String userLogin(LoginDTO loginDTO, HttpServletRequest request) throws Exception {
+		
 		String msg = "";
 		
 		int result = loginService.userLogin(loginDTO);
@@ -55,7 +56,6 @@ public class LoginController {
 
 			 
 			 AttenDTO workResult = loginService.selectWork(userCode);
-			 
 			 
 			 if (workResult != null) {
 				 LocalTime workStart = workResult.getWorkStart();

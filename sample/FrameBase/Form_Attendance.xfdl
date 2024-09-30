@@ -255,5 +255,6 @@ this.showRegisterAtten = function (objParam)
       <BindItem id="item2" compid="cal_Start" propid="value" datasetid="ds_Search" columnid="START_DATE"/>
       <BindItem id="item3" compid="cal_End" propid="value" datasetid="ds_Search" columnid="END_DATE"/>
     </Bind>
+    <InitValue/>
   </Form>
 </FDL>
