@@ -24,6 +24,12 @@ public interface PostService {
     List<Map<String, Object>> selectAttachments(int postCode);
 
 	Map<String, Object> selectAttachment(int attachCode);
+	//=======여기까지 이상무=//
+	// 게시글 삭제
+    void deletePost(int postCode) throws Exception;
+ // 첨부파일 삭제 메서드 추가
+    void deleteAttachment(int postCode) throws Exception;
+
 
 	
 }

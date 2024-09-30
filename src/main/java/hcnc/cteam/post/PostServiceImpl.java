@@ -98,6 +98,17 @@ public class PostServiceImpl implements PostService {
     public Map<String, Object> selectAttachment(int attachCode) {
         return postMapper.selectAttachment(attachCode);
     }
+  //=======여기까지 이상무=//
+    @Override
+    public void deletePost(int postCode) throws Exception {
+    	// 게시글에 연결된 첨부파일 먼저 삭제
+        postMapper.deleteAttachment(postCode);
+        postMapper.deletePost(postCode);
+    }
+    @Override
+    public void deleteAttachment(int postCode) throws Exception {
+        postMapper.deleteAttachment(postCode);
+    }
     
 
     

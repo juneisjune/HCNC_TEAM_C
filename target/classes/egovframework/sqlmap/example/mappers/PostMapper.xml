@@ -79,6 +79,15 @@
 	    WHERE
 	        attach_code = #{attachCode}
 	</select>
+	<!-- 여기까지 이상무 -->
+	<!-- 게시글 삭제 쿼리 -->
+    <delete id="deletePost" parameterType="int">
+        DELETE FROM post WHERE post_code = #{postCode}
+    </delete>
+    <!-- 게시글에 관련된 첨부파일 삭제 -->
+	<delete id="deleteAttachment" parameterType="int">
+	    DELETE FROM attachment WHERE post_code = #{post_code}
+	</delete>
 	
 
 </mapper>

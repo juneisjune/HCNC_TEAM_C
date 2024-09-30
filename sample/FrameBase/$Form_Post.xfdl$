@@ -4,36 +4,47 @@
     <Layouts>
       <Layout height="720" width="1280">
         <Static id="Static00" taborder="0" text="공지사항조회관리" left="10" top="10" width="400" height="30" onclick="Static00_onclick" textAlign="left" font="bold 26px/normal &quot;Gulim&quot;" background="blue" color="white"/>
-        <Grid id="grd_notice" binddataset="ds_Post" left="8" top="50" width="972" height="400" taborder="1">
+        <Grid id="grd_notice" binddataset="ds_Post" left="8" top="50" width="1092" height="410" taborder="1" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
+                <Column size="48"/>
                 <Column size="85"/>
-                <Column size="188"/>
-                <Column size="300"/>
+                <Column size="144"/>
+                <Column size="258"/>
                 <Column size="150"/>
                 <Column size="100"/>
                 <Column size="100"/>
+                <Column size="94"/>
+                <Column size="48"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell text="게시글 번호"/>
-                <Cell col="1" text="제목"/>
-                <Cell col="2" text="내용"/>
-                <Cell col="3" text="작성일자"/>
-                <Cell col="4" text="작성자"/>
-                <Cell col="5" text="조회수"/>
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text=""/>
+                <!-- 헤더 체크박스 -->
+                <Cell col="1" text="게시글 번호"/>
+                <Cell col="2" text="제목"/>
+                <Cell col="3" text="내용"/>
+                <Cell col="4" text="작성일자"/>
+                <Cell col="5" text="작성자"/>
+                <Cell col="6" text="조회수"/>
+                <Cell col="7" text="수정 하기"/>
+                <Cell col="8" text="삭제"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:post_code"/>
-                <Cell col="1" text="bind:title"/>
-                <Cell col="2" text="bind:content"/>
-                <Cell col="3" text="bind:reg_date" displaytype="date" mask="####-##-##"/>
-                <Cell col="4" text="bind:emp_name"/>
-                <Cell col="5" text="bind:view_count"/>
+                <Cell edittype="checkbox" displaytype="checkboxcontrol" text="bind:checked"/>
+                <!-- 체크박스 -->
+                <Cell col="1" text="bind:post_code"/>
+                <Cell col="2" text="bind:title"/>
+                <Cell col="3" text="bind:content"/>
+                <Cell col="4" text="bind:reg_date" displaytype="date" mask="####-##-##"/>
+                <Cell col="5" text="bind:emp_name"/>
+                <Cell col="6" text="bind:view_count"/>
+                <Cell col="7" displaytype="buttoncontrol" text="수정 하기"/>
+                <Cell col="8" displaytype="buttoncontrol" text="삭제" edittype="button"/>
               </Band>
             </Format>
           </Formats>
@@ -44,6 +55,7 @@
         <Button id="btn_prev" text="이전" left="350" top="520" width="50" height="30" taborder="5"/>
         <Button id="btn_next" text="다음" left="450" top="520" width="50" height="30" taborder="6"/>
         <Button id="btn_newPost" taborder="7" text="새 공지사항 등록" left="830" top="16" width="110" height="28" onclick="btn_newPost_onclick"/>
+        <Button id="Button00" taborder="8" text="Button00" left="612" top="580" width="92" height="52" onclick="newEdit_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.Form_Post_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
@@ -58,13 +70,7 @@ this.btn_addNotice_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInf
 };
 
 this.fnSearch = function (){
-// 	var strSvcId	="selectPost";
-// 	var strSvcUrl	="svc::selectPost.do"
-// 	var inData     	= "ds_Search=ds_Search";       // 요청할 데이터셋
-// 	var outData     = "ds_Page=ds_Page";			// 응답받을 데이터셋(내가 만들었던 데이터 셋)
-// 	var strArg 		="";
-// 	var callBackFnc ="fnCallback";
-// 	var isAsync		= true; 
+
 	
 	var strSvcId    = "selectPost";                     // 콜백 서비스명
     var strSvcUrl   = "svc::selectPost.do";             // 호출 URL
@@ -100,12 +106,84 @@ this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
 	
  };
 
-
-
 this.btn_newPost_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_NewPost.xfdl");
 };
+//위에는 조회관련
+this.grd_notice_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	 var clickedCol = e.col;  // 클릭한 컬럼 인덱스
+    var postCode = obj.getCellText(e.row, 1);  // 클릭한 행의 게시글 번호
+
+    // 삭제 버튼이 있는 셀 클릭 시
+    if (clickedCol == 8) {  // 삭제 버튼이 있는 컬럼 (8번 컬럼)
+        if (confirm("정말로 삭제하시겠습니까?")) {
+            console.log("삭제 클릭됨. 게시글 번호: " + postCode);
+			 var nRow = this.ds_deleteCode.addRow();
+			this.ds_deleteCode.setColumn(nRow, "post_code", postCode);
+            this.fnDeletePost(postCode);  // 삭제 처리 함수 호출
+        }
+    }
+};
+this.fnDeletePost = function(postCode) {
+    // 데이터셋 초기화
+    this.ds_deleteCode.clearData();
+    
+    // 데이터셋에 게시글 번호 추가
+    var nRow = this.ds_deleteCode.addRow();
+    this.ds_deleteCode.setColumn(nRow, "post_code", postCode);
+	console.log("ds_deleteCode: "+this.ds_deleteCode.saveXML());
+
+    // 트랜잭션 설정
+    var strSvcId    = "deletePost";
+    var strSvcUrl   = "svc::deletePost.do";
+    var inData      = "ds_deleteCode=ds_deleteCode";  // 서버로 전송할 데이터셋
+    var outData     = "";
+    var strArg      = "";
+    var fnCallback1  = "fnCallback1";
+    var isAsync     = true;
+
+    // 삭제 트랜잭션 실행
+    this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, fnCallback1, isAsync);
+};
+
+this.fnCallback1 = function(strSvcId, nErrorCode, strErrorMsg) {
+    if (nErrorCode < 0) {
+        alert("삭제 중 오류가 발생했습니다: " + strErrorMsg);
+    } else {
+        alert("게시글이 성공적으로 삭제되었습니다.");
+        // 삭제 후 그리드를 다시 조회하여 갱신
+        this.fnSearch();
+    }
+};
+
+
+this.newEdit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	console.log("ds_post:" + this.ds_Post.saveXML());
+		var objParam = {title:this.ds_Post.getColumn(this.ds_Post.rowposition, "title")
+						, content:this.ds_Post.getColumn(this.ds_Post.rowposition, "content")
+				  };
+
+				  
+	this.showPopup(objParam);
+};
+this.showPopup = function (objParam) 
+{		  
+	popup = new nexacro.ChildFrame;
+	popup.init("popupWork", 0, 0, 800, 700, null, null, "FrameBase::Popup_editPost.xfdl");
+	popup.set_dragmovetype("all");
+	popup.set_layered("true");
+	popup.set_autosize(true);
+	popup.set_showtitlebar("Popup Title");
+	popup.set_showstatusbar(false);
+	popup.set_resizable(true);
+	popup.set_openalign("center middle");
+	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
+	popup.style.set_overlaycolor("#6666664C");
+	popup.form.style.set_border("1 solid #4c5a6f");
+}
 ]]></Script>
     <Objects>
       <Dataset id="ds_Post">
@@ -117,6 +195,15 @@ this.btn_newPost_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
           <Column id="date" type="DATE" size="256"/>
           <Column id="view_count" type="INT" size="256"/>
         </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_deleteCode">
+        <ColumnInfo>
+          <Column id="post_code" type="STRING" size="256"/>
+          <Column id="checked" type="STRING" size="1"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
       </Dataset>
     </Objects>
   </Form>

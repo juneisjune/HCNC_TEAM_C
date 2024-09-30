@@ -27,5 +27,10 @@ public interface PostMapper {
     List<Map<String, Object>> selectAttachments(int postCode);
  // 단일 첨부파일 조회 메서드 추가
     Map<String, Object> selectAttachment(int attachCode);
+    //=======여기까지 이상무=//
+ // 게시글 삭제 메서드
+    void deletePost(int postCode);
+ // 게시글에 연결된 첨부파일 삭제
+    void deleteAttachment(int postCode);
 
 }
