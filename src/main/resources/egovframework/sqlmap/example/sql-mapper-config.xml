@@ -17,6 +17,7 @@
 		<typeAlias alias="attenDTO" type="hcnc.cteam.attendance.AttenDTO"/>
 		<typeAlias alias="nexaAttenDTO" type="hcnc.cteam.attendance.NexaAttenDTO"/>	
 		<typeAlias alias="loginDTO" type="hcnc.cteam.login.LoginDTO" />
+		<typeAlias alias="nexaPayDTO" type="hcnc.cteam.pay.NexaPayDTO"/>
     </typeAliases>
     
   <!-- myBatis Inteceptor for get column information  -->

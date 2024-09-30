@@ -28,7 +28,7 @@
 
 
             obj = new Dataset("ds_EmpList", this);
-            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\" text=\"bind:chkVal\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\" text=\"bind:emp_code\"/><Column id=\"name\" type=\"STRING\" size=\"256\" text=\"bind:name\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\" text=\"bind:assign_name\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\" text=\"bind:dep_name\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\" text=\"bind:join_date\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\" text=\"bind:resign_date\"/><Column id=\"account\" type=\"STRING\" size=\"256\" text=\"bind:account\"/><Column id=\"monthly\" type=\"INT\" size=\"256\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\"/><Column id=\"absence\" type=\"INT\" size=\"256\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\" text=\"bind:chkVal\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\" text=\"bind:emp_code\"/><Column id=\"name\" type=\"STRING\" size=\"256\" text=\"bind:name\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\" text=\"bind:assign_code\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\" text=\"bind:assign_name\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\" text=\"bind:dep_name\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\" text=\"bind:join_date\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\" text=\"bind:resign_date\"/><Column id=\"account\" type=\"STRING\" size=\"256\" text=\"bind:account\"/><Column id=\"monthly\" type=\"INT\" size=\"256\" text=\"bind:monthly\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\" text=\"bind:pay_over\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\" text=\"bind:pay_meal\"/><Column id=\"absence\" type=\"INT\" size=\"256\" text=\"bind:absence\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\" text=\"bind:pay_amount\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\" text=\"bind:income_tax\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\" text=\"bind:resident_tax\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\" text=\"bind:national_tax\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\" text=\"bind:emp_insurance\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\" text=\"bind:health_insurance\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\" text=\"bind:longcare_insurance\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\" text=\"bind:actual_pay\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -38,7 +38,7 @@
 
 
             obj = new Dataset("ds_EmpListCopy", this);
-            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"INT\" size=\"256\" text=\"bind:checkFlag\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\" text=\"bind:emp_code\"/><Column id=\"name\" type=\"STRING\" size=\"256\" text=\"bind:name\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\" text=\"bind:assign_name\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\" text=\"bind:dep_name\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\" text=\"bind:join_date\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\" text=\"bind:resign_date\"/><Column id=\"account\" type=\"STRING\" size=\"256\" text=\"bind:account\"/><Column id=\"monthly\" type=\"INT\" size=\"256\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\"/><Column id=\"absence\" type=\"INT\" size=\"256\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\" text=\"bind:chkVal\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\" text=\"bind:emp_code\"/><Column id=\"name\" type=\"STRING\" size=\"256\" text=\"bind:name\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\" text=\"bind:assign_code\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\" text=\"bind:assign_name\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\" text=\"bind:dep_name\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\" text=\"bind:join_date\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\" text=\"bind:resign_date\"/><Column id=\"account\" type=\"STRING\" size=\"256\" text=\"bind:account\"/><Column id=\"monthly\" type=\"INT\" size=\"256\" text=\"bind:monthly\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\" text=\"bind:pay_over\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\" text=\"bind:pay_meal\"/><Column id=\"absence\" type=\"INT\" size=\"256\" text=\"bind:absence\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\" text=\"bind:pay_amount\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\" text=\"bind:income_tax\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\" text=\"bind:resident_tax\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\" text=\"bind:national_tax\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\" text=\"bind:emp_insurance\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\" text=\"bind:health_insurance\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\" text=\"bind:longcare_insurance\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\" text=\"bind:actual_pay\"/><Column id=\"give_date\" type=\"DATE\" size=\"256\" text=\"bind:give_date\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -169,8 +169,6 @@
         		return;
         	}
 
-        	trace(this.ds_EmpList.getColumn(0,"absence"));
-
         	switch(svcID)
         	{
         		case "selectAssign":
@@ -204,17 +202,20 @@
         	this.ds_EmpListCopy.clearData();
 
         	//체크된 데이터를 새로운 Dataset에 추가
-            for (var i = 0; i < this.ds_EmpListCopy.getRowCount(); i++) {
-                var isChecked = this.ds_EmpListCopy.getColumn(i, "chkVal");
+            for (var i = 0; i < this.ds_EmpList.getRowCount(); i++) {
+                var isChecked = this.ds_EmpList.getColumn(i, "chkVal");
                 if (isChecked == 1) {
                     var newRow = this.ds_EmpListCopy.addRow();
-                    this.ds_EmpListCopy.copyRow(newRow, this.ds_EmpListCopy, i);
+                    this.ds_EmpListCopy.copyRow(newRow, this.ds_EmpList, i);
+        			this.ds_EmpListCopy.setColumn(i,"give_date", this.ds_GiveDate.getColumn(0, "give_date"));
                 }
             }
 
+        	console.log(this.ds_EmpListCopy.saveXML());
+
         	var strSvcId    = "insertPay";
         	var strSvcUrl   = "svc::insertPay.do";
-        	var inData      = "ds_EmpList=ds_EmpListCopy, ds_GiveDate=ds_GiveDate";
+        	var inData      = "ds_EmpListCopy=ds_EmpListCopy";
         	var outData     = "";
         	var strArg      = "";
         	var callBackFnc = "fnCallback";
@@ -229,7 +230,6 @@
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Form_InsertPay_onload,this);
-            this.addEventHandler("onclick",this.fnSearch,this);
             this.cmb_Assign.addEventHandler("onitemchanged",this.Combo00_onitemchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grd_Emp.addEventHandler("onheadclick",this.grd_Emp_onheadclick,this);

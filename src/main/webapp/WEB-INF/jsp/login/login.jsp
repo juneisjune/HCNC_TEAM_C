@@ -58,7 +58,7 @@
 							location.href = "/viewAuth.do";
 							
 						} else {
-							alert("아이디 또는 비밀번호를 확인하세요.");
+							alert("잘못된 아이디 또는 비밀번호입니다.");
 						}
 					},
 					error : function(xhr, status, error) {

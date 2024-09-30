@@ -6,7 +6,8 @@
 		SELECT COUNT(*)
 		FROM employee e 
 		WHERE id = #{id}
-		AND password = SHA2(#{password}, 256);
+		AND password = SHA2(#{password}, 256)
+		AND (resign_date IS NULL OR resign_date >= CURDATE()); 
 	</select>
 	
 	<select id="selectUser" resultType="loginDTO" >

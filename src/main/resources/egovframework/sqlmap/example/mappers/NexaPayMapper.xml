@@ -1,44 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hcnc.cteam.pay.NexaPayMapper">
-
-	<!-- 직책에 따른 monthly 조회 -->
-	<!-- 퇴사 예정자는 기본급을 0으로 설정(일급으로 계산) -->
-	<select id="selectMonthly" resultType="int" parameterType="java.util.Map">
-		SELECT IF(#{resign_date} IS NULL, 0, monthly) 
-		FROM `assignment` 
-		WHERE assign_code = #{assign_code};
-	</select>
 	
+	<!-- 직책에 따른 시급 조회 -->
+	<select id="selectHourly"  resultType="int" parameterType="java.util.Map">
+		SELECT hourly 
+		FROM `assignment` a 
+		WHERE a.assign_code = #{assign_code}; 
+	</select>
+
 	<!-- 직책에 따른 tax 조회 -->
 	<select id="selectTax" resultType="double" parameterType="java.util.Map">
 		SELECT tax 
 		FROM `assignment`
 		WHERE assign_code = #{assign_code}
 	</select>
-	
-	<!-- 직책에 따른 일급 조회 -->
-	<select id="selectHourly"  resultType="int" parameterType="java.util.Map">
-		SELECT hourly 
-		FROM `assignment` a 
-		WHERE a.assign_code = #{assign_code}; 
+
+	<!-- 직책에 따른 emp List 조회  -->
+	<select id="selectEmpList" resultType="java.util.Map" parameterType="java.util.Map"> 
+		SELECT emp_code, name, assign_name, dep_name, join_date, IF(resign_date IS NULL, "", "전월 퇴사") resign_date, account 
+		FROM employee e JOIN `assignment` a
+		ON e.assign_code = a.assign_code
+		JOIN department d 
+		ON e.dep_code = d.dep_code 
+		WHERE a.assign_code = #{assign_code}
 	</select>
-	
-		<!-- 사원의 지난달 work_over 조회 -->
-	<select id="selectWorkOver" resultType="double">
-		SELECT SUM(work_over)
+
+	<!-- 직책에 따른 monthly 조회 -->
+	<!-- 퇴사자는 기본급을 0으로 설정하고 일급으로 계산 -->
+	<select id="selectMonthly" resultType="int" parameterType="java.util.Map">
+		SELECT IF(e.resign_date IS NULL
+				, a.monthly 
+				, (SELECT	
+					(SELECT COUNT(*)
+						FROM attendance a JOIN att_code ac 
+						ON a.atten_code = ac.atten_code 
+						JOIN employee e 
+						ON a.emp_code = e.emp_code 
+						WHERE a.emp_code =  #{emp_code}
+						AND (a.atten_code = 1 OR a.atten_code = 3)
+							<if test="curMon == 1"> 
+								AND YEAR(work_date) = YEAR(CURDATE()) - 1
+								AND MONTH(work_date) = 12
+							</if>
+							<if test="curMon != 1"> 
+								AND YEAR(work_date) = YEAR(CURDATE())
+								AND MONTH(work_date) = MONTH(CURDATE()) - 1
+							</if> 
+					) 
+					* 8 * a.hourly
+				)		
+		) monthly
+		FROM `assignment` a JOIN employee e 
+		ON a.assign_code = e.assign_code 
+		WHERE a.assign_code = #{assign_code}	
+		AND emp_code = #{emp_code};	
+	</select>
+
+	<!-- 사원의 지난달 work_over 조회 -->
+	<select id="selectWorkOver" resultType="double" parameterType="java.util.Map">
+		SELECT IFNULL(SUM(work_over), 0) workOver
 		FROM attendance a JOIN att_code ac 
 			ON a.atten_code = ac.atten_code 
 		JOIN employee e 
 			ON a.emp_code = e.emp_code 
-		WHERE a.emp_code = 1
+		WHERE a.emp_code = #{emp_code}
 		AND a.atten_code = 1
 			<!-- 1월이면 작년 12월 데이터 조회 -->
 			<if test="curMon == 1"> 
 				AND YEAR(work_date) = YEAR(CURDATE()) - 1
 				AND MONTH(work_date) = 12
 			</if>
-			<if test="curMon == 1"> 
+			<if test="curMon != 1"> 
 				AND YEAR(work_date) = YEAR(CURDATE())
 				AND MONTH(work_date) = MONTH(CURDATE()) - 1
 			</if>
@@ -46,12 +79,12 @@
 	
 	<!-- 사원의 지난달 결근 조회 -->
 	<select id="selectAbsence" resultType="int" parameterType="java.util.Map">
-		SELECT COUNT(*) 
+		SELECT COUNT(*) absence
 		FROM attendance a JOIN att_code ac 
 			ON a.atten_code = ac.atten_code 
 		JOIN employee e 
 			ON a.emp_code = e.emp_code 
-		WHERE e.emp_code = 1
+		WHERE e.emp_code = #{emp_code}
 		AND ac.atten_code = 2
 			<!-- 1월이면 작년 12월 데이터 조회 -->
 			<if test="curMon == 1"> 
@@ -64,16 +97,21 @@
 			</if>
 	</select>	
 	
-	<!-- 직책에 따른 emp List 조회  -->
-	<select id="selectEmpList" resultType="java.util.Map" parameterType="java.util.Map"> 
-		SELECT emp_code, name, assign_name, dep_name, join_date, IF(resign_date IS NULL, "", "퇴사예정") resign_date, account 
-		FROM employee e JOIN `assignment` a
-		ON e.assign_code = a.assign_code
-		JOIN department d 
-		ON e.dep_code = d.dep_code 
-		WHERE a.assign_code = #{assign_code}
+	<select id="duplidacatedPay" resultType="int" parameterType="java.util.Map" >
+		SELECT COUNT(*)
+		FROM pay p
+		WHERE emp_code = #{emp_code}
+		<!-- 1월이면 작년 12월 데이터 조회 -->
+			<if test="curMon == 1"> 
+				AND pay_year = YEAR(CURDATE()) - 1
+				AND pay_month = 12
+			</if>
+			<if test="curMon != 1"> 
+				AND pay_year = YEAR(CURDATE())
+				AND pay_month = MONTH(CURDATE()) - 1
+			</if>
 	</select>
-	
+
 	<!-- pay insert -->
 	<insert id="insertPay" parameterType="java.util.Map" >
 		INSERT INTO pay(emp_code
@@ -93,7 +131,7 @@
 			, actual_pay 
 			, reg_name 
 		)
-		VALUES (1
+		VALUES (#{emp_code}
 			, IF(MONTH(CURDATE())-1 = 0, YEAR(CURDATE())-1, YEAR(CURDATE()) )
 			, IF(MONTH(CURDATE())-1 = 0, 12, MONTH(CURDATE())-1 )
 			, #{give_date}
