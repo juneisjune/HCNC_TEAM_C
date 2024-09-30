@@ -26,24 +26,20 @@ public class NexaPayController {
 		int curMon = cal.get(Calendar.MONTH) + 1; // Calendar.MONTH는 0부터 시작하므로 +1 필요
 		param.put("curMon", curMon);
 		
-		//직책에 따른 시급
-		int hourly = nexaPayService.selectHourly(param);
-		
-		//직책에 따른 세금(비율)
-		double tax = nexaPayService.selectTax(param);
-		
 		try {
 			//직책코드로 사원 목록 조회
 			List<Map<String, Object>> ds_EmpList = nexaPayService.selectEmpList(param);
 			
 			for (Map<String, Object> emp : ds_EmpList) {
 				emp.put("chkVal", "1");
-				emp.put("assign_code", param.get("assign_code"));
-
+				
 				// 기본급
 				int monthly = nexaPayService.selectMonthly(emp);
 				emp.put("monthly", monthly);
 
+				//직책에 따른 시급
+				int hourly = nexaPayService.selectHourly(emp);
+				
 				// 연장근로수당
 				int pay_over = (int) (hourly * nexaPayService.selectWorkOver(emp));
 				emp.put("pay_over", pay_over);
@@ -59,6 +55,9 @@ public class NexaPayController {
 				// 지급액 = 기본급 or 일급 + 연장근로수당 + 식대 - 결근
 				int pay_amount = monthly + pay_over + pay_meal - absence;
 				emp.put("pay_amount", pay_amount);
+				
+				//직책에 따른 세금(비율)
+				double tax = nexaPayService.selectTax(emp);
 
 				// 공제액
 				int income_tax = (int) (pay_amount * tax);

@@ -18,12 +18,18 @@
 
 	<!-- 직책에 따른 emp List 조회  -->
 	<select id="selectEmpList" resultType="java.util.Map" parameterType="java.util.Map"> 
-		SELECT emp_code, name, assign_name, dep_name, join_date, IF(resign_date IS NULL, "", "전월 퇴사") resign_date, account 
+		SELECT emp_code, name, a.assign_code, assign_name, dep_name, join_date, 
+			IF(resign_date IS NULL, "", "전월 퇴사") resign_date, account 
 		FROM employee e JOIN `assignment` a
 		ON e.assign_code = a.assign_code
 		JOIN department d 
 		ON e.dep_code = d.dep_code 
-		WHERE a.assign_code = #{assign_code}
+		WHERE 1=1
+			<if test="assign_code == 100">
+			</if>
+			<if test="assign_code != 100">
+				AND a.assign_code = #{assign_code}
+			</if>
 	</select>
 
 	<!-- 직책에 따른 monthly 조회 -->

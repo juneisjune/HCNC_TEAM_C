@@ -18,7 +18,7 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("ds_AssignType", this);
-            obj._setContents("<ColumnInfo><Column id=\"assign_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"assign_code\">1</Col><Col id=\"assign_name\">사원</Col></Row><Row><Col id=\"assign_name\">대리</Col><Col id=\"assign_code\">2</Col></Row><Row><Col id=\"assign_name\">과장</Col><Col id=\"assign_code\">3</Col></Row><Row><Col id=\"assign_name\">차장</Col><Col id=\"assign_code\">4</Col></Row><Row><Col id=\"assign_name\">부장</Col><Col id=\"assign_code\">5</Col></Row><Row><Col id=\"assign_name\">이사</Col><Col id=\"assign_code\">6</Col></Row><Row><Col id=\"assign_name\">대표</Col><Col id=\"assign_code\">7</Col></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"assign_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"assign_code\">100</Col><Col id=\"assign_name\">전체</Col></Row><Row><Col id=\"assign_code\">1</Col><Col id=\"assign_name\">사원</Col></Row><Row><Col id=\"assign_name\">대리</Col><Col id=\"assign_code\">2</Col></Row><Row><Col id=\"assign_name\">과장</Col><Col id=\"assign_code\">3</Col></Row><Row><Col id=\"assign_name\">차장</Col><Col id=\"assign_code\">4</Col></Row><Row><Col id=\"assign_name\">부장</Col><Col id=\"assign_code\">5</Col></Row><Row><Col id=\"assign_name\">이사</Col><Col id=\"assign_code\">6</Col></Row><Row><Col id=\"assign_name\">대표</Col><Col id=\"assign_code\">7</Col></Row></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -67,23 +67,23 @@
             obj.set_text("조회");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_Emp","60","125","830","270",null,null,null,null,null,null,this);
+            obj = new Grid("grd_Emp","60","125","830","330",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_binddataset("ds_EmpList");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"67\"/><Column size=\"92\"/><Column size=\"70\"/><Column size=\"97\"/><Column size=\"121\"/><Column size=\"119\"/><Column size=\"213\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/><Cell col=\"7\" text=\"계좌번호\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chkVal\"/><Cell col=\"1\" textAlign=\"center\" text=\"bind:emp_code\"/><Cell col=\"2\" textAlign=\"center\" text=\"bind:name\"/><Cell col=\"3\" textAlign=\"center\" text=\"bind:assign_name\"/><Cell col=\"4\" textAlign=\"center\" text=\"bind:dep_name\"/><Cell col=\"5\" textAlign=\"center\" text=\"bind:join_date\" displaytype=\"date\"/><Cell col=\"6\" text=\"bind:resign_date\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:account\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static04","570","395","120","60",null,null,null,null,null,null,this);
+            obj = new Static("Static04","570","455","120","60",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("지급일");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_GiveDate","625","415","150","20",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_GiveDate","625","475","150","20",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_dateformat("yyyy-MM-dd");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Insert","800","410","90","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Insert","800","470","90","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("등록");
             this.addChild(obj.name, obj);
@@ -113,6 +113,12 @@
         
         // User Script
         this.registerScript("Form_InsertPay.xfdl", function() {
+        this.Form_InsertPay_onload = function(obj,e)
+        {
+        	this.ds_Assign.setColumn(0, "assign_code", "100");
+        };
+
+
         this.btn_Search_onclick = function(obj,e)
         {
         	this.fnSearch();
@@ -223,6 +229,7 @@
 
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
+
 
         });
         

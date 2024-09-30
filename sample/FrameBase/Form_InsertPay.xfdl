@@ -7,7 +7,7 @@
         <Static id="stc_Assign" taborder="1" text="직책" left="60" top="71" width="120" height="60"/>
         <Combo id="cmb_Assign" taborder="2" text="" left="95" top="91" width="105" height="20" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged" font="12pt/normal gulim"/>
         <Button id="btn_Search" taborder="3" text="조회" left="215" top="91" width="43" height="20" onclick="btn_Search_onclick"/>
-        <Grid id="grd_Emp" taborder="4" left="60" top="125" width="830" height="270" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick">
+        <Grid id="grd_Emp" taborder="4" left="60" top="125" width="830" height="330" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -47,9 +47,9 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="Static04" taborder="5" text="지급일" left="570" top="395" width="120" height="60"/>
-        <Calendar id="cal_GiveDate" taborder="6" left="625" top="415" width="150" height="20" dateformat="yyyy-MM-dd"/>
-        <Button id="btn_Insert" taborder="7" text="등록" left="800" top="410" width="90" height="30" onclick="btn_Insert_onclick"/>
+        <Static id="Static04" taborder="5" text="지급일" left="570" top="455" width="120" height="60"/>
+        <Calendar id="cal_GiveDate" taborder="6" left="625" top="475" width="150" height="20" dateformat="yyyy-MM-dd"/>
+        <Button id="btn_Insert" taborder="7" text="등록" left="800" top="470" width="90" height="30" onclick="btn_Insert_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -59,6 +59,10 @@
           <Column id="assign_name" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
+          <Row>
+            <Col id="assign_code">100</Col>
+            <Col id="assign_name">전체</Col>
+          </Row>
           <Row>
             <Col id="assign_code">1</Col>
             <Col id="assign_name">사원</Col>
@@ -157,7 +161,13 @@
         </ColumnInfo>
       </Dataset>
     </Objects>
-    <Script type="xscript5.1"><![CDATA[this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+    <Script type="xscript5.1"><![CDATA[this.Form_InsertPay_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_Assign.setColumn(0, "assign_code", "100");
+};
+
+
+this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.fnSearch();
 
@@ -267,6 +277,7 @@ this.btn_Insert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	
 	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
 };
+
 ]]></Script>
     <InitValue>
       <Static id="title" font="24px/normal &quot;Gulim&quot;"/>
