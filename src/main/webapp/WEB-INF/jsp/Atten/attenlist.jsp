@@ -44,12 +44,12 @@
     <h1>직원 근태 목록</h1> <br>
     
     <form action="/atten/searchAtten.do" method="post">
-   		<select name="SEARCH_TYPE">
+   		<select name="WORK_TYPE">
             <option value="ALL">전체</option>
-            <option value="NAME">이름</option>
-            <option value="WORK_TYPE">근무 형태</option>
+            <option value="ON">출근</option>
+            <option value="OFF">결근</option>
+            <option value="HOLI">휴가</option>
         </select>
-        <input type="text" name="SEARCH_WORD" placeholder="Search"/>
         <input type="date" name="START_DATE"/>
         ~
         <input type="date" name="END_DATE"/>

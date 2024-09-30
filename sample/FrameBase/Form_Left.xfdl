@@ -3,7 +3,7 @@
   <Form id="Form_Left" width="180" height="670" titletext="Form_Left">
     <Layouts>
       <Layout width="180" height="670" screenid="">
-        <Grid id="grid_LeftMenu" taborder="0" left="0" top="0" width="180" height="670" treeinitstatus="expand,all" treeusecheckbox="false" binddataset="ds_Left" oncellclick="grid_LeftMenu_oncellclick" cssclass="grd_LF_treeMenu">
+        <Grid id="grid_LeftMenu" taborder="0" left="0" top="0" width="180" height="670" treeinitstatus="collapse,null" treeusecheckbox="false" binddataset="ds_Left" oncellclick="grid_LeftMenu_oncellclick" cssclass="grd_LF_treeMenu" scrolltype="both">
           <Formats>
             <Format id="default">
               <Columns>
@@ -59,7 +59,7 @@
           </Row>
           <Row>
             <Col id="MENU_ID">0102</Col>
-            <Col id="MENU_NAME">직원 부서 관리</Col>
+            <Col id="MENU_NAME">직원 인사 관리</Col>
             <Col id="MENU_LEVEL">2</Col>
             <Col id="MENU_PATH">FrameBase::Form_EmpDep.xfdl</Col>
           </Row>
@@ -106,7 +106,7 @@
             <Col id="MENU_ID">0501</Col>
             <Col id="MENU_NAME">평가 등록</Col>
             <Col id="MENU_LEVEL">2</Col>
-            <Col id="MENU_PATH">FrameBase::Form_EvalRegister.xfdl</Col>
+            <Col id="MENU_PATH">FrameBase::Form_EvalEmployee.xfdl</Col>
           </Row>
           <Row>
             <Col id="MENU_LEVEL">2</Col>
