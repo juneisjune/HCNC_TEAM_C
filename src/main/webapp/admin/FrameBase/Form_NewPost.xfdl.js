@@ -221,6 +221,9 @@
         		this.ds_fileInfo.setColumn(nRow, "fileSize", fileSize);
 
         	}
+        	// ds_fileInfo의 내용을 로그로 출력하여 확인
+        	trace("ds_fileInfo 데이터 확인:");
+        	trace(this.ds_fileInfo.saveXML());
 
 
         	console.log("file info: "+this.ds_fileInfo.saveXML());

@@ -88,6 +88,16 @@
 	<delete id="deleteAttachment" parameterType="int">
 	    DELETE FROM attachment WHERE post_code = #{post_code}
 	</delete>
+	<!-- 게시글 제목 및 내용 수정 -->
+	<update id="updatePost" parameterType="map">
+	    UPDATE post
+	    SET title = #{title},
+	        content = #{content},
+	        upd_date = NOW(),
+	        upd_name = #{upd_name}
+	    WHERE post_code = #{post_code}
+	</update>
+	
 	
 
 </mapper>

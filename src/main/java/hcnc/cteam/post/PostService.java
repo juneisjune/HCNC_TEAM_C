@@ -29,6 +29,7 @@ public interface PostService {
     void deletePost(int postCode) throws Exception;
  // 첨부파일 삭제 메서드 추가
     void deleteAttachment(int postCode) throws Exception;
+    void updatePost(Map<String, Object> postInfo, List<Map<String, Object>> fileList) throws Exception;
 
 
 	

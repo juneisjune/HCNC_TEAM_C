@@ -10,7 +10,4 @@
 		    AND password = SHA2(#{password}, 256)
 		    AND assign_code >= 5;
 	</select>
-    
- 
-
 </mapper>

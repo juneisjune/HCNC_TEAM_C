@@ -162,6 +162,24 @@
                     this.fnDeletePost(postCode);  // 삭제 처리 함수 호출
                 }
             }
+        	    // 수정하기 버튼이 있는 셀 클릭 시
+            if (clickedCol == 7) {
+                if (confirm("정말 수정하시겠습니까?")) {
+                    var title = this.ds_Post.getColumn(this.ds_Post.rowposition, "title");
+                    var content = this.ds_Post.getColumn(this.ds_Post.rowposition, "content");
+
+                    console.log("수정할 데이터 - 제목: " + title + ", 내용: " + content);
+
+                    var objParam = {
+                        post_code: postCode,  // 게시글 번호도 함께 전달
+                        title: title,
+                        content: content
+                    };
+
+                    // 팝업 호출
+                    this.showPopup(objParam);
+                }
+            }
         };
         this.fnDeletePost = function(postCode) {
             // 데이터셋 초기화
@@ -198,7 +216,7 @@
 
         this.newEdit_onclick = function(obj,e)
         {
-        	console.log("ds_post:" + this.ds_Post.saveXML());
+        	console.log("ds_post(inFormpost):" + this.ds_Post.saveXML());
         		var objParam = {title:this.ds_Post.getColumn(this.ds_Post.rowposition, "title")
         						, content:this.ds_Post.getColumn(this.ds_Post.rowposition, "content")
         				  };

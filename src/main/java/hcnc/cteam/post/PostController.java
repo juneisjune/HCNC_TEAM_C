@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nexacro.uiadapter17.spring.core.annotation.ParamDataSet;
 import com.nexacro.uiadapter17.spring.core.data.NexacroResult;
@@ -90,7 +89,42 @@ public class PostController {
         
         return result;
     }
+    //=============================
+    @RequestMapping(value = "/selectAttachments.do", method = RequestMethod.POST)
+    public NexacroResult selectAttachments(@ParamDataSet(name = "ds_post") Map<String, Object> postParam) {
+        NexacroResult result = new NexacroResult();
 
+        try {
+            int postCode = Integer.parseInt((String) postParam.get("post_code"));
+            List<Map<String, Object>> attachmentList = postService.selectAttachments(postCode);  // 첨부파일 정보 조회
+            result.addDataSet("Dataset00", attachmentList);  // 첨부파일 정보 추가
+        } catch (Exception e) {
+            result.setErrorCode(-1);
+            result.setErrorMsg("첨부파일 조회 중 오류 발생: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+    @RequestMapping(value = "/updatePost.do", method = RequestMethod.POST)
+    public NexacroResult updatePost(
+        @ParamDataSet(name = "ds_postInfo") Map<String, Object> postInfo,
+        @ParamDataSet(name = "ds_fileInfo") List<Map<String, Object>> fileList) {
+
+        NexacroResult result = new NexacroResult();
+
+        try {
+            postService.updatePost(postInfo, fileList);  // 서비스 메서드를 호출하여 업데이트 처리
+            result.setErrorCode(0);
+            result.setErrorMsg("수정 사항이 성공적으로 반영되었습니다.");
+        } catch (Exception e) {
+            result.setErrorCode(-1);
+            result.setErrorMsg("게시글 수정 중 오류 발생: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 
 
 

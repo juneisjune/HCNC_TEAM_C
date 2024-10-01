@@ -92,6 +92,8 @@ public class PostServiceImpl implements PostService {
     //===================================//
     @Override
     public List<Map<String, Object>> selectAttachments(int postCode) {
+    	List<Map<String, Object>> attachments = postMapper.selectAttachments(postCode);
+    	System.out.println("Attachments fetched: " + attachments);
         return postMapper.selectAttachments(postCode);
     }
     @Override
@@ -109,6 +111,24 @@ public class PostServiceImpl implements PostService {
     public void deleteAttachment(int postCode) throws Exception {
         postMapper.deleteAttachment(postCode);
     }
+    @Override
+    public void updatePost(Map<String, Object> postInfo, List<Map<String, Object>> fileList) throws Exception {
+        // 게시글 제목 및 내용 수정
+        postMapper.updatePost(postInfo);
+
+        int postCode = Integer.parseInt((String) postInfo.get("post_code"));
+
+        // 기존 첨부파일 삭제 후 새 첨부파일 저장
+        postMapper.deleteAttachment(postCode);
+
+        if (fileList != null && !fileList.isEmpty()) {
+            for (Map<String, Object> fileInfo : fileList) {
+                fileInfo.put("post_code", postCode);
+                postMapper.insertAttachment(fileInfo);
+            }
+        }
+    }
+  
     
 
     

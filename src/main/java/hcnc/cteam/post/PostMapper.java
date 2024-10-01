@@ -32,5 +32,7 @@ public interface PostMapper {
     void deletePost(int postCode);
  // 게시글에 연결된 첨부파일 삭제
     void deleteAttachment(int postCode);
+ // 게시글 수정 메서드 (추가)
+    void updatePost(Map<String, Object> param);  // 제목과 내용을 업데이트하는 메서드
 
 }
