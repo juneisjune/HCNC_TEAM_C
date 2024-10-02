@@ -112,7 +112,7 @@
     </div>
     
     <div class="navbar">
-        <a href="/notice">공지사항</a>
+        <a href="/post/viewPost.do">공지사항</a>
         <a href="/employee/myPage.do">내 정보 보기</a>
         <a href="/employee/employee.do">주소록</a>
         <a href="/atten/attenlist.do">근태 조회</a>
