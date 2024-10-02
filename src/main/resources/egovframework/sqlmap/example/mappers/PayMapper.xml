@@ -155,15 +155,19 @@
 	    ORDER BY b.pay_year ASC, b.pay_month ASC
 	</select>
 
-	<update id="updatePayEtc" parameterType="payDTO">
-	    UPDATE pay
-	    SET etc = #{etc},  
-	        actual_pay = #{actualPay}
-	    WHERE emp_code = #{empCode}
-	    AND pay_year = #{payYear}
-	    AND pay_month = #{payMonth};
-	</update>
-	
+<update id="updatePayEtc" parameterType="payDTO">
+    UPDATE pay
+    SET 
+        etc = CASE WHEN #{etc} IS NOT NULL THEN #{etc} ELSE 0 END,  -- null이면 0으로 처리
+        actual_pay = #{actualPay}
+    WHERE emp_code = #{empCode}
+    AND pay_year = #{payYear}
+    AND pay_month = #{payMonth};
+</update>
+
+
+
+
 	<delete id="deletePay" parameterType="payDTO">
 	    DELETE FROM pay
 	    WHERE emp_code = #{empCode}

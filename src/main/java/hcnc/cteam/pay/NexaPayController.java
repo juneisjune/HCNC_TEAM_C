@@ -170,11 +170,12 @@ public class NexaPayController {
 	            for (PayDTO payDTO : ds_Pay) {
 	                // 로그 추가
 	                logger.info("수정 요청 - empCode: {}, payYear: {}, payMonth: {}, etc: {}");
-	                
-	                // 필수 값 확인
-	                if (payDTO.getEmpCode() == null || payDTO.getPayYear() == 0 || payDTO.getPayMonth() == 0 || payDTO.getEtc() == null) {
+
+	                // 필수 값 확인 (int 타입은 0 체크)
+	                if (payDTO.getPayYear() == 0 || payDTO.getPayMonth() == 0 || payDTO.getEtc() == 0) {
 	                    result.setErrorCode(-1);
-	                    String missingField = (payDTO.getEmpCode() == null) ? "사번" : (payDTO.getPayYear() == 0) ? "급여년도" : (payDTO.getPayMonth() == 0) ? "급여월" : "수정액";
+	                    String missingField = (payDTO.getPayYear() == 0) ? "급여년도" : 
+	                                          (payDTO.getPayMonth() == 0) ? "급여월" : "수정액";
 	                    result.setErrorMsg(missingField + "이(가) 누락되었습니다.");
 	                    return result;
 	                }
@@ -191,6 +192,9 @@ public class NexaPayController {
 	        }
 	        return result;
 	    }
+
+
+
 	    
 	    @RequestMapping(value = "/deletePayData.do")
 	    public NexacroResult deletePayData(@ParamDataSet(name = "ds_Pay") List<PayDTO> ds_Pay) {
