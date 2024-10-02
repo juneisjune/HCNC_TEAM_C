@@ -52,8 +52,8 @@ public class NexaPayController {
 				int absence = hourly * 8 * nexaPayService.selectAbsence(emp);
 				emp.put("absence", absence);
 
-				// 지급액 = 기본급 or 일급 + 연장근로수당 + 식대 - 결근
-				int pay_amount = month + pay_over + pay_meal;
+				// 지급액 = (기본급 or 일급) - 결근 + 연장근로수당 + 식대 
+				int pay_amount = month - absence + pay_over + pay_meal;
 				emp.put("pay_amount", pay_amount);
 				
 				//직책에 따른 세금(비율)
