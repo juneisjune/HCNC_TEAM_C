@@ -27,12 +27,12 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="Button01" taborder="3" text="upload" left="130" top="285" width="120" height="50" onclick="Button01_onclick"/>
+        <Button id="Button01" taborder="3" text="수정하기" left="130" top="285" width="120" height="50" onclick="Button01_onclick"/>
         <TextArea id="TextArea00" taborder="4" left="642" top="80" width="482" height="120" onchanged="TextArea00_onchanged"/>
         <Static id="title" taborder="5" text="제목" left="24" top="28" width="69" height="41"/>
         <Edit id="Edit_title" taborder="6" left="52" top="31" width="578" height="39" onchanged="Edit_title_onchanged"/>
         <Edit id="Edit_coment" taborder="7" left="24" top="181" width="460" height="79"/>
-        <Button id="btn_close" taborder="8" text="Button00" left="276" top="288" width="93" height="44" ondblclick="btn_close_ondblclick" onclick="btn_close_onclick"/>
+        <Button id="btn_close" taborder="8" text="닫기" left="276" top="288" width="93" height="44" ondblclick="btn_close_ondblclick" onclick="btn_close_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[// 팝업 로드 시 게시글 정보와 첨부파일 정보를 불러옴

@@ -71,7 +71,7 @@
 
             obj = new Button("Button01","130","285","120","50",null,null,null,null,null,null,this);
             obj.set_taborder("3");
-            obj.set_text("upload");
+            obj.set_text("수정하기");
             this.addChild(obj.name, obj);
 
             obj = new TextArea("TextArea00","642","80","482","120",null,null,null,null,null,null,this);
@@ -93,7 +93,7 @@
 
             obj = new Button("btn_close","276","288","93","44",null,null,null,null,null,null,this);
             obj.set_taborder("8");
-            obj.set_text("Button00");
+            obj.set_text("닫기");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

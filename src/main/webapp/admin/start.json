@@ -109,11 +109,7 @@
         	"screenid":"Desktop_screen",
         	"launch":"./Application_Desktop.xadl.js",
         	"quickview":"./Application_Desktop.xadl.quickview.js",
-        	"form":[
-        				"./FrameBase/Form_Top.xfdl.js",
-        		"./FrameBase/Form_Left.xfdl.js",
-        		"./FrameBase/Form_Login.xfdl.js"
-        	]
+        	"form":[]
         }
         ],  
         "protocol" :
