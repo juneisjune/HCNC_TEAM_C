@@ -13,8 +13,10 @@ public class PayDTO {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date giveDate;
 	
-	private int payMeal = 100000;
+	private int month;
 	private int payOver;
+	private int payMeal = 100000;
+	private int absence;
 	private int payAmount;
 	private int incomeTax;
 	private int residentTax;
@@ -24,6 +26,8 @@ public class PayDTO {
 	private int longcareInsurance;
 	private int actualPay;
 	private int etc;
+	
+	private double tax;
 
 	private LocalDateTime regDate;
 	private String regName;
@@ -54,6 +58,13 @@ public class PayDTO {
 	public void setGiveDate(Date giveDate) {
 		this.giveDate = giveDate;
 	}
+	
+	public int getMonth() {
+		return month;
+	}
+	public void setMonth(int month) {
+		this.month = month;
+	}
 	public int getPayOver() {
 		return payOver;
 	}
@@ -65,6 +76,12 @@ public class PayDTO {
 	}
 	public void setPayMeal(int payMeal) {
 		this.payMeal = payMeal;
+	}
+	public int getAbsence() {
+		return absence;
+	}
+	public void setAbsence(int absence) {
+		this.absence = absence;
 	}
 	public int getPayAmount() {
 		return payAmount;
@@ -144,7 +161,11 @@ public class PayDTO {
 	public void setEtc(int etc) {
 		this.etc = etc;
 	}
+	public double getTax() {
+		return tax;
+	}
+	public void setTax(double tax) {
+		this.tax = tax;
+	}
 	
-	
-
 }

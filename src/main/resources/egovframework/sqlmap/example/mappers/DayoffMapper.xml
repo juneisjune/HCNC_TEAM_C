@@ -7,6 +7,7 @@
 			name,
 			de.dep_name ,
 			start_date,
+			d.off_code,
 			off_type,
 			end_date,
 			reason,
@@ -36,9 +37,11 @@
 	    </if>
 	
 	    <!-- assign_code가 7일 경우: md_confirm이 'Y'인 경우 -->
-	    <if test="assign_code == 7">
+	    
+	    <!-- <if test="assign_code == 7">
 	        AND md_confirm = 'Y'
-	    </if>
+	     </if> -->
+	    
 	</select>
 	
 	<!-- assign_code에 따른 승인 -->
@@ -68,6 +71,7 @@
 	<update id="updateReturn" parameterType="java.util.Map">
 	   UPDATE dayoff d 
 	   	INNER JOIN employee e ON d.emp_code = e.emp_code 
+	   	INNER JOIN dayoff_count dc ON e.emp_code = dc.emp_code
 	   SET 
 	   <!-- 세션으로 upd_name 넣을 예정  -->
 	   	<!-- 부서장 반려 -->
@@ -76,65 +80,58 @@
 	       </if>
 		<!-- 이사 반려 -->
 	       <if test="assign_code == 6">
-	           md_confirm = 'N', off_result = '반 려'
+	          md_confirm = 'N', off_result = '반 려'
 	       </if>
 		<!-- 대표 반려 -->
 	       <if test="assign_code == 7">
 	           ceo_confirm = 'N', off_result = '반 려'
 	       </if>
-	    WHERE e.name = #{name} 
+        WHERE e.name = #{name} 
+     	 AND d.start_date = #{start_date}
+       
+	</update>
+	<update id="increaseDayoffCnt" parameterType="java.util.Map">
+		UPDATE dayoff_count dc
+			INNER JOIN dayoff d ON dc.emp_code = d.emp_code
+		SET used_cnt = 
+			CASE
+				WHEN #{off_code} = 2 THEN used_cnt
+				WHEN #{off_code} = 5 THEN used_cnt + 0.5 * (DATEDIFF(end_date,start_date) + 1)
+			ELSE used_cnt + 1 * (DATEDIFF(end_date,start_date) + 1)
+			END,
+		remain_cnt =
+		 	CASE
+				WHEN #{off_code} = 2 THEN remain_cnt
+				WHEN #{off_code} = 5 THEN remain_cnt - 0.5 * (DATEDIFF(end_date,start_date) + 1)
+			ELSE remain_cnt - 1 * (DATEDIFF(end_date,start_date) + 1)
+			END
+	    WHERE dc.emp_code = #{emp_code} 
 	      AND d.start_date = #{start_date}
 	</update>
-
-
-	<!-- 부서장  
-	승인
-	<update id="mngConfirm" parameterType = "java.util.Map">
-		UPDATE dayoff d INNER JOIN employee e
-			ON d.emp_code = e.emp_code
-		SET mng_confirm ='Y' , off_result = '승인중'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
-	반려 
-	<update id="mngReturn" parameterType = "java.util.Map">
-		UPDATE dayoff d INNER JOIN employee e
-			ON d.emp_code = e.emp_code 
-		SET mng_confirm = 'N', off_result = '반 려'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
-	
-	이사 
-	승인
-	<update id="mdConfirm" parameterType = "java.util.Map">
-		UPDATE dayoff d INNER JOIN employee e
-			ON d.emp_code = e.emp_code 
-		SET md_confirm ='Y' ,off_result = '승인중'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
-	반려 
-	<update id="mdReturn" parameterType = "java.util.Map">
-		UPDATE dayoff d INNER JOIN employee e
-			ON d.emp_code = e.emp_code 
-		SET md_confirm = 'N', off_result = '반 려'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
-	
-	대표
-	승인
-	<update id="ceoConfirm" parameterType = "java.util.Map">
-		UPDATE dayoff d INNER JOIN employee e
-				ON d.emp_code = e.emp_code 
-		SET ceo_confirm ='Y' , off_result = '승 인'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
-	반려 
-	<update id="ceoReturn" parameterType = "java.util.Map">
-		UPDATE dayoff 
-		SET ceo_confirm = 'N',off_result = '반 려'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
- -->
- 
+	 <!--  직원등록 후에 실행될 연차발생   -->
+	 <!-- 관리자 Mapper 통합이후 머지예정  -->
+	 <insert id="insertDayoffCount" parameterType="java.util.Map">
+	 	INSERT INTO dayoff_count (create_date, emp_code, drop_date, dayoff_cnt, used_cnt, remain_cnt,reg_name)
+		SELECT 
+		    CURDATE() AS create_date,
+		    #{empCode} AS e.emp_code,
+		    CURDATE() + INTERVAL 364 DAY AS drop_date,   
+		    CASE 
+		        WHEN e.assign_code = 1 THEN 0
+		        ELSE 
+		           ROUND(a.total_cnt * (1-(MONTH(CURDATE())/12)))
+		    END AS dayoff_cnt,
+		    0 AS used_cnt, 
+		    CASE 
+		        WHEN e.assign_code = 1 THEN 0
+		        ELSE 
+		           ROUND(a.total_cnt * (1-(MONTH(CURDATE())/12)))
+		    END AS remain_cnt,
+		    -- 로그인세션자 이름
+		    #{name} AS reg_name
+		FROM employee e LEFT JOIN assignment a 
+		    ON e.assign_code = a.assign_code
+	 </insert>
  
  
  </mapper>
