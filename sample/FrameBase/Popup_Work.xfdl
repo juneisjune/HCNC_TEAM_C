@@ -5,11 +5,11 @@
       <Layout height="160" mobileorientation="landscape" width="1050">
         <GroupBox id="GroupBox00" taborder="0" text="상세정보" left="20" bottom="29" height="70" width="1005"/>
         <Static id="Static00_00" taborder="1" text="TEXT" left="40" height="30" onclick="Static00_onclick" bottom="46" width="30"/>
-        <Edit id="edt_COL_TXT" taborder="2" left="85" width="161" height="35" bottom="43" maxlength="50" displaynulltext="입력하세요!"/>
+        <Edit id="edt_COL_TXT" taborder="2" left="85" width="161" height="35" bottom="43" maxlength="50" displaynulltext="입력하세요!" onchanged="edt_COL_TXT_onchanged"/>
         <Static id="Static00_00_00" taborder="3" text="Check" left="286" width="49" height="30" onclick="Static00_onclick" bottom="46"/>
         <CheckBox id="chk_COL_CHK" taborder="4" left="350" width="60" height="30" bottom="46" falsevalue="N" truevalue="Y"/>
         <Static id="Static00_00_00_00" taborder="5" text="Number" left="410" width="50" height="30" onclick="Static00_onclick" bottom="46"/>
-        <Spin id="spe_COL_NUM" taborder="6" left="475" width="115" height="30" bottom="46"/>
+        <Spin id="spe_COL_NUM" taborder="6" left="475" width="115" height="30" bottom="46" onchanged="spe_COL_NUM_onchanged"/>
         <Static id="Static00_00_00_00_00" taborder="7" text="Date" left="630" width="30" height="30" onclick="Static00_onclick" bottom="46"/>
         <Calendar id="cal_COL_DTE" taborder="8" left="675" width="105" height="30" bottom="46" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
         <Static id="Static00_00_00_00_00_00" taborder="9" text="Date" left="820" width="30" height="30" onclick="Static00_onclick" bottom="46"/>
@@ -82,6 +82,11 @@ this.fnSearchCombo = function ()
 this.Popup_Work_onbeforeclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
 {
 	this.opener.fn_parent(this.ds_dtl);
+};
+
+this.spe_COL_NUM_onchanged = function(obj:nexacro.Spin,e:nexacro.ChangeEventInfo)
+{
+	
 };
 ]]></Script>
   </Form>

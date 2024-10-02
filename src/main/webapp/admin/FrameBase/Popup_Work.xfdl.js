@@ -165,6 +165,11 @@
         	this.opener.fn_parent(this.ds_dtl);
         };
 
+        this.spe_COL_NUM_onchanged = function(obj,e)
+        {
+
+        };
+
         });
         
         // Regist UI Components Event
@@ -173,8 +178,10 @@
             this.addEventHandler("onload",this.Popup_Work_onload,this);
             this.addEventHandler("onbeforeclose",this.Popup_Work_onbeforeclose,this);
             this.Static00_00.addEventHandler("onclick",this.Static00_onclick,this);
+            this.edt_COL_TXT.addEventHandler("onchanged",this.edt_COL_TXT_onchanged,this);
             this.Static00_00_00.addEventHandler("onclick",this.Static00_onclick,this);
             this.Static00_00_00_00.addEventHandler("onclick",this.Static00_onclick,this);
+            this.spe_COL_NUM.addEventHandler("onchanged",this.spe_COL_NUM_onchanged,this);
             this.Static00_00_00_00_00.addEventHandler("onclick",this.Static00_onclick,this);
             this.Static00_00_00_00_00_00.addEventHandler("onclick",this.Static00_onclick,this);
             this.btn_close.addEventHandler("onclick",this.btn_close_onclick,this);

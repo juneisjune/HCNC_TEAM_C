@@ -222,6 +222,11 @@
         	// 컴포넌트 속성 초기화
         	this.fnInitMst();
         	this.fnInitDtl();
+        	this.mainFrame_onload = function() {
+            // EmployeeManagement 폼을 로드
+            this.mainFrame.set_formurl("Form/EmployeeManagement.xfdl");  // 폼 경로
+        };
+
         };
 
         this.fnInitMst = function(){

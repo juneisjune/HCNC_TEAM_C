@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Pop_RegisterEmp" width="560" height="340" titletext="직원 정보 등록" background="whitesmoke" onload="Pop_RegisterEmp_onload">
+    <Objects>
+      <!-- 직원 정보를 저장할 데이터셋 -->
+      <Dataset id="ds_employee">
+        <ColumnInfo>
+          <Column id="Name" type="STRING" size="256"/>
+          <Column id="Birth" type="STRING" size="256"/>
+          <Column id="Gender" type="STRING" size="256"/>
+          <Column id="Phone" type="STRING" size="256"/>
+          <Column id="Address" type="STRING" size="256"/>
+          <Column id="Email" type="STRING" size="256"/>
+          <Column id="JoinDate" type="STRING" size="256"/>
+          <Column id="Account" type="STRING" size="256"/>
+          <Column id="ID" type="STRING" size="256"/>
+          <Column id="Password" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <!-- 성별 데이터를 저장할 데이터셋 -->
+      <Dataset id="ds_gender">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="value">남성</Col>
+            <Col id="text">남성</Col>
+          </Row>
+          <Row>
+            <Col id="value">여성</Col>
+            <Col id="text">여성</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Layouts>
+      <Layout width="560" height="340">
+        <!-- 직원 정보 등록 UI 구성 -->
+        <Static id="Title" text="직원 정보 등록" left="-10" top="10" width="560" height="40" textAlign="center" font="bold 18pt/normal 'Arial'" background="whitesmoke"/>
+        <!-- 첫 번째 행: 이름, 생년월일 -->
+        <Static id="lblName" text="이름" left="50" top="80" width="80" height="25" textAlign="left"/>
+        <Edit id="edtName" left="90" top="80" width="110" height="25" binddataset="ds_employee" text="bind:Name"/>
+        <Static id="lblBirth" text="생년월일" left="310" top="80" width="80" height="25" textAlign="left"/>
+        <Calendar id="calBirth" left="370" top="80" width="110" height="25" binddataset="ds_employee" datecolumn="Birth" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
+        <!-- 두 번째 행: 성별, 전화번호 -->
+        <Static id="lblGender" text="성별" left="50" top="120" width="80" height="25" textAlign="left"/>
+        <Combo id="cmbGender" left="90" top="125" width="110" height="25" innerdataset="ds_gender" codecolumn="value" datacolumn="text" binddataset="ds_employee" value="bind:Gender" text="" onitemchanged="cmbGender_onitemchanged"/>
+        <Static id="lblPhone" text="전화번호" left="310" top="125" width="80" height="25" textAlign="left"/>
+        <Edit id="edtPhone" left="370" top="125" width="110" height="25" binddataset="ds_employee" text="bind:Phone"/>
+        <!-- 세 번째 행: 주소, 이메일 -->
+        <Static id="lblAddress" text="주소" left="50" top="165" width="80" height="25" textAlign="left"/>
+        <Edit id="edtAddress" left="90" top="165" width="110" height="25" binddataset="ds_employee" text="bind:Address"/>
+        <Static id="lblEmail" text="이메일" left="320" top="210" width="80" height="25" textAlign="left"/>
+        <Edit id="edtEmail" left="370" top="210" width="110" height="25" binddataset="ds_employee" text="bind:Email"/>
+        <!-- 네 번째 행: 입사일, 계좌번호 -->
+        <Static id="lblJoinDate" text="입사일" left="320" top="168" width="80" height="25" textAlign="left"/>
+        <Calendar id="calJoinDate" left="370" top="168" width="110" height="25" binddataset="ds_employee" datecolumn="JoinDate" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
+        <Static id="lblAccount" text="계좌번호" left="40" top="210" width="80" height="25" textAlign="left"/>
+        <Edit id="edtAccount" left="90" top="210" width="110" height="25" binddataset="ds_employee" text="bind:Account"/>
+        <!-- 마지막 행: 아이디, 비밀번호 -->
+        <Static id="lblID" text="아이디" left="40" top="253" width="80" height="25" textAlign="left"/>
+        <Edit id="edtID" left="90" top="252" width="110" height="25" binddataset="ds_employee" text="bind:ID"/>
+        <Static id="lblPassword" text="비밀번호" left="320" top="253" width="80" height="25" textAlign="left"/>
+        <Edit id="edtPassword" left="370" top="252" width="110" height="25" binddataset="ds_employee" text="bind:Password"/>
+        <!-- 버튼 -->
+        <Button id="btnRegister" text="등록" left="180" top="310" width="80" height="30" background="green" color="white" borderRadius="5px" cursor="pointer" onclick="btnRegister_onclick"/>
+        <Button id="btnClose" text="닫기" left="280" top="310" width="80" height="30" background="gray" color="white" borderRadius="5px" cursor="pointer" onclick="btnClose_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.Pop_RegisterEmp_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+};
+
+
+// 등록 버튼 클릭 시 데이터 저장 로직 추가
+this.btnRegister_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+      var strSvcId = "selectEmployee";
+    var strSvcUrl = "svc::selectEmployeeData.do";  // 서버의 URL과 매핑
+    var inData = "ds_employee=ds_employee";  // 전송할 데이터셋
+    var outData = "";  // 서버에서 받아올 데이터가 없을 경우 빈 문자열
+    var strArg = "";  // 추가 인자가 필요 없을 경우 빈 문자열
+    var callBackFnc = "fnCallback";  // 콜백 함수 호출
+    var isAsync = true;  // 비동기 처리
+    
+	
+	console.log(this.ds_employee.saveXML());
+    // transaction 호출
+    this.transaction(strSvcId, strSvcUrl, inData, outData, callBackFnc, isAsync);
+	
+	alert("등록완료");
+	this.close("등록 완료");
+    
+	this.opener.fnSearch();
+};
+
+// 닫기 버튼 클릭 시 팝업 닫기
+this.btnClose_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+    
+
+    this.close('팝업닫기');
+	
+};
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="edtID" propid="value" datasetid="ds_employee" columnid="ID"/>
+      <BindItem id="item1" compid="edtPassword" propid="value" datasetid="ds_employee" columnid="Password"/>
+      <BindItem id="item2" compid="edtName" propid="value" datasetid="ds_employee" columnid="Name"/>
+      <BindItem id="item3" compid="calBirth" propid="value" datasetid="ds_employee" columnid="Birth"/>
+      <BindItem id="item4" compid="cmbGender" propid="value" datasetid="ds_employee" columnid="Gender"/>
+      <BindItem id="item5" compid="edtPhone" propid="value" datasetid="ds_employee" columnid="Phone"/>
+      <BindItem id="item6" compid="edtAddress" propid="value" datasetid="ds_employee" columnid="Address"/>
+      <BindItem id="item7" compid="calJoinDate" propid="value" datasetid="ds_employee" columnid="JoinDate"/>
+      <BindItem id="item8" compid="edtEmail" propid="value" datasetid="ds_employee" columnid="Email"/>
+      <BindItem id="item9" compid="edtAccount" propid="value" datasetid="ds_employee" columnid="Account"/>
+    </Bind>
+  </Form>
+</FDL>
