@@ -114,7 +114,11 @@ public class PostController {
         NexacroResult result = new NexacroResult();
 
         try {
-            postService.updatePost(postInfo, fileList);  // 서비스 메서드를 호출하여 업데이트 처리
+            // 로그 출력
+            System.out.println("postInfo: " + postInfo);
+            System.out.println("fileList: " + fileList);
+
+            postService.updatePost(postInfo, fileList);  // 게시글과 첨부파일 업데이트 처리
             result.setErrorCode(0);
             result.setErrorMsg("수정 사항이 성공적으로 반영되었습니다.");
         } catch (Exception e) {
@@ -125,6 +129,8 @@ public class PostController {
 
         return result;
     }
+
+
 
 
 

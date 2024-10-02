@@ -30,7 +30,7 @@
 
 
             obj = new Dataset("ds_fileInfo", this);
-            obj._setContents("<ColumnInfo><Column id=\"ATTACH_NAME\" type=\"STRING\" size=\"256\"/><Column id=\"ATTACH_URL\" type=\"STRING\" size=\"256\"/><Column id=\"fileSize\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"attach_name\" type=\"STRING\" size=\"256\"/><Column id=\"attach_url\" type=\"STRING\" size=\"256\"/><Column id=\"fileSize\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/><Column id=\"reg_name\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -127,6 +127,7 @@
         	this.ds_post.setColumn(0, "content", this.parent.content);
         	console.log("postInfo data:" + this.ds_postInfo.saveXML());
         	console.log("post dataafaf:" + this.ds_post.saveXML());
+        	console.log("dbset" + this.Dataset00.saveXML());
 
 
         	// Edit 및 TextArea에 게시글 정보 설정
@@ -216,22 +217,45 @@
             }
 
             var row = nexacro.getApplication().ds_userInfo.rowposition;
-            this.ds_postInfo.setColumn(0, "upd_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
-            this.ds_postInfo.setColumn(0, "emp_code", nexacro.getApplication().ds_userInfo.getColumn(row, "emp_code"));
-            this.ds_postInfo.setColumn(0, "reg_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
-            this.ds_postInfo.setColumn(0, "post_code", this.parent.post_code); // 주석 해제
+            var empCode = nexacro.getApplication().ds_userInfo.getColumn(row, "emp_code");
 
-            // 수정 데이터 로그 확인
-            console.log("ds_postInfo data: " + this.ds_postInfo.saveXML());
-
-            // Dataset00의 데이터를 ds_fileInfo로 복사
-            for (var i = 0; i < this.Dataset00.getRowCount(); i++) {
-                var nRow = this.ds_fileInfo.addRow();
-                this.ds_fileInfo.setColumn(nRow, "attach_name", this.Dataset00.getColumn(i, "attach_name"));
-                this.ds_fileInfo.setColumn(nRow, "attach_url", this.Dataset00.getColumn(i, "attach_name")); // 파일 이름 설정
+            if (!empCode) {
+                console.log("emp_code is null or undefined");  // emp_code가 비었는지 확인
             }
 
-            // 트랜잭션 호출 - 게시글 수정 및 첨부파일 처리
+            this.ds_postInfo.setColumn(0, "upd_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
+            this.ds_postInfo.setColumn(0, "emp_code", nexacro.getApplication().ds_userInfo.getColumn(row, "emp_code"))
+            this.ds_postInfo.setColumn(0, "reg_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
+            //this.ds_postInfo.setColumn(0, "post_code", this.parent.post_code);  // 주석 해제
+
+            console.log("ds_postInfo data: " + this.ds_postInfo.saveXML());
+
+        	this.ds_fileInfo.setColumn(0, "emp_code", nexacro.getApplication().ds_userInfo.getColumn(row, "emp_code"));
+
+
+            // Dataset00의 데이터를 ds_fileInfo로 복사하면서 컬럼명 매핑
+        	for (var i = 0; i < this.Dataset00.getRowCount(); i++) {
+        	console.log("for문 안");
+        		var uploadPath = "D:\\upload\\";  // 경로를 명시적으로 설정
+        		var nRow = this.ds_fileInfo.addRow();
+        		var originalFileName = this.Dataset00.getColumn(i, "attach_name");
+        		var fileSize = this.Dataset00.getColumn(i, "filesize");
+        		var fullFilePath = uploadPath + originalFileName;  // 경로와 파일 이름을 합침
+
+        		console.log("데이터셋 인포: "+this.Dataset00.saveXML());
+
+        		this.ds_fileInfo.setColumn(nRow, "attach_name", originalFileName);
+        		this.ds_fileInfo.setColumn(nRow, "attach_url", fullFilePath); // 저장된 파일 이름
+        		//this.ds_fileInfo.setColumn(nRow, "fileSize", fileSize);
+        		this.ds_fileInfo.setColumn(i, "emp_code", nexacro.getApplication().ds_userInfo.getColumn(row, "emp_code"));
+        		this.ds_fileInfo.setColumn(i, "reg_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
+        		console.log("파일 인포: "+this.ds_fileInfo.saveXML());
+
+        	}
+
+        	trace("ds_postInfo: " + this.ds_postInfo.saveXML());
+            trace("ds_fileInfo: " + this.ds_fileInfo.saveXML());
+
             var strSvcId = "updatePost";
             var strSvcUrl = "svc::updatePost.do";
             var inData = "ds_postInfo=ds_postInfo ds_fileInfo=ds_fileInfo";
@@ -246,7 +270,6 @@
             this.FileUpTransfer00.upload('http://localhost:8080/fileUpload/fileUpload.jsp');
         };
 
-
         // 트랜잭션 콜백 처리
         this.fn_callbackUpdatePost = function(svcID, errorCode, errorMsg){
             if (errorCode < 0) {
@@ -256,6 +279,7 @@
                 this.close();
             }
         };
+
 
 
 

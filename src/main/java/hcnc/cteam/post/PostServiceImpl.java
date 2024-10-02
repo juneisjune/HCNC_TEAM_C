@@ -119,15 +119,28 @@ public class PostServiceImpl implements PostService {
         int postCode = Integer.parseInt((String) postInfo.get("post_code"));
 
         // 기존 첨부파일 삭제 후 새 첨부파일 저장
-        postMapper.deleteAttachment(postCode);
+        postMapper.deleteAttachment(postCode);  // 기존 첨부파일 삭제
 
         if (fileList != null && !fileList.isEmpty()) {
             for (Map<String, Object> fileInfo : fileList) {
+                System.out.println("File Info: " + fileInfo);  // 파일 정보 출력
+                
+                if (fileInfo.get("attach_name") == null) {
+                    throw new Exception("첨부파일 정보가 누락되었습니다. ATTACH_NAME이 null입니다.");
+                }
+                if (fileInfo.get("emp_code") == null) {
+                    throw new Exception("첨부파일 정보가 누락되었습니다. emp_code가 null입니다.");
+                }
+
+                // 파일 정보를 저장
                 fileInfo.put("post_code", postCode);
+                System.out.println("이클립스 안 파일인포확인" + fileInfo);
                 postMapper.insertAttachment(fileInfo);
             }
         }
     }
+
+
   
     
 

@@ -97,6 +97,9 @@
 	        upd_name = #{upd_name}
 	    WHERE post_code = #{post_code}
 	</update>
+
+
+	
 	
 	
 
