@@ -28,7 +28,7 @@ WHERE 1=1
     </if>
     <if test="SEARCH_TYPE == 'DEP'">
         AND b.dep_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
-    </if>
+    </if> 
     <if test="SEARCH_TYPE == 'ASSIGN'">
         AND c.assign_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
     </if>
