@@ -12,7 +12,7 @@
                 <ChildFrame id="WorkFrame" showtitlebar="false"/>
               </Frames>
             </HFrameSet>
-            <ChildFrame id="LoginFrame" formurl="FrameBase::Form_InsertPay.xfdl" showcascadetitletext="true" showtitlebar="false"/>
+            <ChildFrame id="LoginFrame" formurl="FrameBase::Form_Login.xfdl" showcascadetitletext="true" showtitlebar="false"/>
           </Frames>
         </VFrameSet>
       </MainFrame>
