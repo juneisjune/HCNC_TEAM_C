@@ -15,6 +15,6 @@ public interface LoginMapper {
 	
 	AttenDTO selectWork(int empCode) throws Exception;
 
-	Map<String, Object> getUserByUserId(String userId);
+	Map<String, Object> getUserByUserId(Map<String, Object> loginInfo);
 	
 }	
