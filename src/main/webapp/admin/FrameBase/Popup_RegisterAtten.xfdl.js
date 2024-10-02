@@ -232,6 +232,11 @@
         	this.opener.fnSearch();
         };
 
+        this.cmb_SearchType_onitemchanged = function(obj,e)
+        {
+
+        };
+
         });
         
         // Regist UI Components Event
@@ -241,6 +246,7 @@
             this.grid_SearchEmp.addEventHandler("oncellposchanged",this.grid_SearchEmp_oncellposchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.btn_SearchReset.addEventHandler("onclick",this.btn_SearchReset_onclick,this);
+            this.cmb_SearchType.addEventHandler("onitemchanged",this.cmb_SearchType_onitemchanged,this);
             this.btn_close.addEventHandler("onclick",this.btn_close_onclick,this);
             this.btn_Register.addEventHandler("onclick",this.btn_Register_onclick,this);
         };

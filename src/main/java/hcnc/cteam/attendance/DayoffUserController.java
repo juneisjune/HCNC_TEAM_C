@@ -1,6 +1,7 @@
 package hcnc.cteam.attendance;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -63,7 +64,7 @@ public class DayoffUserController {
 		HttpSession session = request.getSession();
 		int empCode = (int)session.getAttribute("userCode");
 		
-		emp = empService.getEmployeeByEmpCode(empCode);
+		emp = empService.getEmployeeByEmpCode(empCode);	
 		model.addAttribute("emp",emp);
 
 		return "dayoffRequest";

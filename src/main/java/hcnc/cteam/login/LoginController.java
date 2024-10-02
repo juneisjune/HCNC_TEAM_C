@@ -32,7 +32,8 @@ public class LoginController {
 	
 	//로그인 화면 
 	@RequestMapping(value="/login.do", method = RequestMethod.GET)
-	public String viewLogin() {
+	public String viewLogin(HttpSession session) {
+		session.invalidate();
 		return "login/login";
 	}
 	

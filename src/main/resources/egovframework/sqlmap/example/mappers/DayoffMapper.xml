@@ -108,7 +108,30 @@
 	    WHERE dc.emp_code = #{emp_code} 
 	      AND d.start_date = #{start_date}
 	</update>
- 
+	 <!--  직원등록 후에 실행될 연차발생   -->
+	 <!-- 관리자 Mapper 통합이후 머지예정  -->
+	 <insert id="insertDayoffCount" parameterType="java.util.Map">
+	 	INSERT INTO dayoff_count (create_date, emp_code, drop_date, dayoff_cnt, used_cnt, remain_cnt,reg_name)
+		SELECT 
+		    CURDATE() AS create_date,
+		    #{empCode} AS e.emp_code,
+		    CURDATE() + INTERVAL 364 DAY AS drop_date,   
+		    CASE 
+		        WHEN e.assign_code = 1 THEN 0
+		        ELSE 
+		           ROUND(a.total_cnt * (1-(MONTH(CURDATE())/12)))
+		    END AS dayoff_cnt,
+		    0 AS used_cnt, 
+		    CASE 
+		        WHEN e.assign_code = 1 THEN 0
+		        ELSE 
+		           ROUND(a.total_cnt * (1-(MONTH(CURDATE())/12)))
+		    END AS remain_cnt,
+		    -- 로그인세션자 이름
+		    #{name} AS reg_name
+		FROM employee e LEFT JOIN assignment a 
+		    ON e.assign_code = a.assign_code
+	 </insert>
  
  
  </mapper>

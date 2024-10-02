@@ -10,6 +10,7 @@
             a.emp_code,
             b.dep_name,
             a.name,
+            c.assign_name,
             a.join_date,
             a.birth,
             a.gender,
@@ -18,6 +19,7 @@
             a.email
         FROM employee a
         JOIN department b ON a.dep_code = b.dep_code
+        JOIN assignment c ON a.assign_code = c.assign_code
     </select>
     
     <!-- 직원 코드로 직원 조회 (여기만 남겨두세요) -->
@@ -37,11 +39,18 @@
             a.email,
 			a.id,
 			a.password,
-			a.mng_code 
+			a.mng_code,
+            dc.dayoff_cnt,
+            dc.remain_cnt
         FROM employee a JOIN department b 
         		ON a.dep_code = b.dep_code JOIN assignment c 
-        		ON a.assign_code = c.assign_code
-        WHERE a.emp_code = #{empCode}
+        		ON a.assign_code = c.assign_code JOIN dayoff_count dc
+        		ON a.emp_code = dc.emp_code
+        WHERE a.emp_code = #{empCode} 
+       		AND dc.create_date = (
+			    SELECT MAX(dc2.create_date)
+			    FROM dayoff_count dc2
+			    WHERE dc2.emp_code = a.emp_code)
     </select>
 
     <!-- 조건에 따른 직원 목록 검색 -->

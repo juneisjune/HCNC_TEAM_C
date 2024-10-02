@@ -15,4 +15,7 @@ public interface AttenService {
 		public int endWork(AttenDTO attenDto);
 	//로그인기능
 		public AttenDTO userAttendanceInfo(Map<String, Object> param);
+		
+		public AttenDTO getAttendance(int empCode);
+
 }

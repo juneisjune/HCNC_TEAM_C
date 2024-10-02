@@ -61,7 +61,7 @@
             <Col id="MENU_ID">0102</Col>
             <Col id="MENU_NAME">직원 부서 관리</Col>
             <Col id="MENU_LEVEL">2</Col>
-            <Col id="MENU_PATH">FrameBase::Form_EmpDep.xfdl</Col>
+            <Col id="MENU_PATH">FrameBase::Form_HRD.xfdl</Col>
           </Row>
           <Row>
             <Col id="MENU_ID">03</Col>

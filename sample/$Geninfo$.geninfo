@@ -9,7 +9,7 @@
       <Script rule_version="1.02"/>
     </Rule>
     <Info project="C:\EDU_NEXA\workspace\HCNC_TEAM_C\sample\" generated="C:\EDU_NEXA\workspace\HCNC_TEAM_C\src\main\webapp\admin\">
-      <File url="environment.xml" checksum="20240909095116" errormsg=""/>
+      <File url="environment.xml" checksum="20240927121621" errormsg=""/>
       <File url="typedefinition.xml" checksum="20240909155120" errormsg=""/>
       <File url="appvariables.xml" checksum="20240924161706" errormsg=""/>
       <File url="_resource_\_theme_\default\theme.xcss" checksum="20240909095116" errormsg=""/>
@@ -24,11 +24,18 @@
       <File url="FrameBase\Form_dayoff.xfdl" checksum="20240909142027" errormsg=""/>
       <File url="FrameBase\Form_dayoff_Confirm.xfdl" checksum="20240925152511" errormsg=""/>
       <File url="FrameBase\Form_dayoff_Confirm.xfdl" checksum="20240909142800" errormsg=""/>
-      <File url="Application_Desktop.xadl" checksum="20240924161706" errormsg=""/>
+      <File url="Application_Desktop.xadl" checksum="20240927121621" errormsg=""/>
       <File url="FrameBase\Form_dayoff_Result.xfdl" checksum="20240909135635" errormsg=""/>
       <File url="FrameBase\Form_Code_copy0.xfdl" checksum="20240910094057" errormsg=""/>
       <File url="FrameBase\Form_dayoff_Result_copy0.xfdl" checksum="20240909135635" errormsg=""/>
       <File url="FrameBase\Form_adminLogin.xfdl" checksum="20240910094057" errormsg=""/>
+      <File url="_resource_\_theme_\violet\theme.xcss" checksum="20240927121621" errormsg=""/>
+      <File url="_resource_\_xcss_\temp_main.xcss" checksum="20240927121621" errormsg=""/>
+      <File url="FrameBase\Form_dep_assign.xfdl" checksum="20240927175925" errormsg=""/>
+      <File url="FrameBase\Popup_RegisterAtten.xfdl" checksum="20240927175925" errormsg=""/>
+      <File url="FrameBase\Form_HRD.xfdl" checksum="20241002082809" errormsg=""/>
+      <File url="FrameBase\Form_Left.xfdl" checksum="20240930151105" errormsg=""/>
+      <File url="FrameBase\Form_Attendance.xfdl" checksum="20240930164355" errormsg=""/>
     </Info>
   </GenInfo>
 </root>
