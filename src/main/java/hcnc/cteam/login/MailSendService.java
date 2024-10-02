@@ -9,10 +9,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 
@@ -27,7 +24,7 @@ public class MailSendService {
 		Random random = new Random(); 
 		String sixDigitNumber = String.valueOf(100000 + random.nextInt(900000)); 
 		
-		return sixDigitNumber;  	
+		return sixDigitNumber;
         
     }
     
@@ -42,9 +39,11 @@ public class MailSendService {
         mailMessage.setText(mailContent, "utf-8");  
         mailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(mail)); //이메일 수신자 지정
         
+        // 메일 발송
         mailSender.send(mailMessage);
-        
+
         return authKey;
     }
+    
+    
 }
-

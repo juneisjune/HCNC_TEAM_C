@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -86,7 +87,7 @@
 </head>
 <body>
     <div class="header">
-        <a href=""><img src="../images/banner/bannerNew.png" alt="배너 이미지"></a>
+        <a href=""><img src="${pageContext.request.contextPath}/images/banner/bannerNew.png" alt="배너 이미지"></a>
         <div class="btn">
             <!-- 출근 버튼과 출근 시간 표시 -->
             <div style="display: flex; align-items: center;">
@@ -144,7 +145,6 @@ function getCurrentTime() {
 // 출근 버튼 클릭 시 실행
 function startWork() {
     const currentTime = getCurrentTime();
-    
     if(confirm("출근 시간 등록하시겠습니까?")){ 
     document.getElementById("start_time").innerText = currentTime; // 출근 시간 표시
 	    // 출근 시간을 DB에 저장하는 AJAX 호출

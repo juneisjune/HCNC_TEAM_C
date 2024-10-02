@@ -2,20 +2,33 @@
 <FDL version="2.1">
   <Form id="Form_Top" width="1535" height="55" titletext="Form_Top">
     <Layouts>
+
       <Layout width="1535" height="55" screenid="">
         <Static id="staBack02" taborder="0" left="0" top="0" width="1535" height="55"/>
         <Static id="staHello" taborder="1" text="변수민님" left="1375" top="0" width="160" height="55"/>
         <Button id="btn_Logout" taborder="2" text="로그아웃" left="1450" top="10" width="70" height="32.5" onclick="btn_Logout_onclick"/>
-        <ImageViewer id="img_HcncLogo" taborder="3" left="0" top="0" width="180" height="55" stretch="fixaspectratio" fittocontents="none" background="" image="url('imagerc::hcnc_logo.png')"/>
+
+        <ImageViewer id="img_HcncLogo" taborder="3" left="0" top="0" width="180" height="55" image="url('imagerc::img_hcnc_logo.png')" border="0px none"/>
+        <Static id="sta_Title" taborder="4" text="인사관리시스템" left="575" top="0" width="400" height="55" font="bold 48px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" letterSpacing="10px"/>
       </Layout>
     </Layouts>
     <InitValue>
       <Static id="staBack02" cssclass="sta_top_bg02"/>
-      <ImageViewer id="img_HcncLogo" image="url('imagerc::hcnc_logo.png')" imagealign="center" stretch="fixaspectratio"/>
+      <ImageViewer id="img_HcncLogo" image="url('imagerc::img_hcnc_logo.png')" imagealign="center" stretch="fixaspectratio" background="#"/>
     </InitValue>
     <Script type="xscript5.1"><![CDATA[// 로그아웃 버튼
 this.btn_Logout_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	//사용자 전역변수 초기화
+	nexacro.getApplication().ds_userInfo.setColumn(0, "name", '');
+	nexacro.getApplication().ds_userInfo.setColumn(0, "email", '');
+	nexacro.getApplication().ds_userInfo.setColumn(0, "emp_code", '');
+	nexacro.getApplication().ds_userInfo.setColumn(0, "dep_code", '');
+	nexacro.getApplication().ds_userInfo.setColumn(0, "assign_code", '');
+	
+	//확인
+	//console.log(nexacro.getApplication().ds_userInfo.saveXML());
+
 	//Top, HFrameSet00, Login 3개 영역을 조정하여 로그인 화면이 보이도록 설정
     nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("0,0,*");
 };

@@ -12,9 +12,6 @@ public interface PayMapper {
 	//해당 직원 정보 조회 
 	PayEmpDTO selectEmp(int empCode) throws Exception;
 	
-	//기본급 조회
-	Integer selectMonthly(int empCode) throws Exception;
-	
 	//공제총액 조회
 	Integer selectMinus(PaySearchDTO paySearchDTO) throws Exception;
 	

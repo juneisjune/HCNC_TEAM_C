@@ -42,8 +42,15 @@ public class PayController {
 	@RequestMapping("/viewPayslip.do")
 	public String viewPayslip(ModelMap model, HttpServletRequest request) throws Exception {
 		LocalDate currentDate = LocalDate.now();
-		int payYear = currentDate.getYear();
-		int payMonth = currentDate.getMonthValue() - 1;
+		
+		//신년 1월이면 작년 12월 급여 명세서를 조회함
+		int payMonth = (currentDate.getMonthValue() - 1) == 0 ? 12 : currentDate.getMonthValue() - 1;
+		int payYear;
+		if(payMonth == 12) {
+			payYear = currentDate.getYear() - 1;
+		} else {
+			payYear = currentDate.getYear();
+		}
 		
 		HttpSession session = request.getSession();
 		int empCode = (int) session.getAttribute("userCode");	
@@ -55,9 +62,6 @@ public class PayController {
 
 		PayEmpDTO emp = payService.selectEmp(empCode);
 		model.addAttribute("emp", emp);
-
-		Integer monthly = payService.selectMonthly(empCode);
-		model.addAttribute("monthly", monthly);
 
 		Integer minus = payService.selectMinus(paySearchDTO);
 		model.addAttribute("minus", minus);
@@ -87,9 +91,6 @@ public class PayController {
 
 		PayEmpDTO emp = payService.selectEmp(empCode);
 		model.addAttribute("emp", emp);
-
-		Integer monthly = payService.selectMonthly(empCode);
-		model.addAttribute("monthly", monthly);
 
 		Integer minus = payService.selectMinus(paySearchDTO);
 		model.addAttribute("minus", minus);
@@ -121,9 +122,6 @@ public class PayController {
 
 		if (payList != null && !payList.isEmpty()) {
 			model.addAttribute("payList", payList);
-
-			Integer monthly = payService.selectMonthly(empCode);
-			model.addAttribute("monthly", monthly);
 		}
 
 		return "pay/searchPay";
@@ -143,11 +141,9 @@ public class PayController {
 
 		try {
 			List<PayDTO> searchList = payService.selectPeriod(paySearchDTO);
-			Integer monthly = payService.selectMonthly(empCode);
 
 			map.put("msg", "ok");
 			map.put("searchList", searchList);
-			map.put("monthly", monthly);
 
 		} catch (Exception e) {
 			e.printStackTrace();

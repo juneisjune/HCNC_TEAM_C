@@ -37,24 +37,26 @@ public class LoginController {
 		return "login/login";
 	}
 	
-	//로그인 
+	//1단계 로그인 
 	@ResponseBody
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
 	public String userLogin(LoginDTO loginDTO, HttpServletRequest request) throws Exception {
+		
 		String msg = "";
 		
 		int result = loginService.userLogin(loginDTO);
 		
 		 if (result == 1) {
+			 
+			 //세션 생성
 			 HttpSession session = request.getSession();
 			 int userCode = loginService.selectUser(loginDTO).getEmpCode();
-			 String userName = loginService.selectUser(loginDTO).getName();
-			 
 			 session.setAttribute("userCode", userCode);
+			 String userName = loginService.selectUser(loginDTO).getName();
 			 session.setAttribute("userName", userName);
+
 			 
 			 AttenDTO workResult = loginService.selectWork(userCode);
-			 
 			 
 			 if (workResult != null) {
 				 LocalTime workStart = workResult.getWorkStart();
@@ -64,6 +66,7 @@ public class LoginController {
 				 session.setAttribute("workEnd", workEnd);
 			 }
 			 
+
 	         msg = "ok";
 	        }
 		 
@@ -89,12 +92,15 @@ public class LoginController {
 			
 			StringBuilder markedId = new StringBuilder();
 			
-		    for (int i = 0; i < id.length() - 1; i++) {
-		        markedId.append('*');
-		    }
-
-		    //@앞 한자리 문자만 추가
-		    markedId.append(id.charAt(id.length() - 1));
+		        // 앞 1자리
+		        markedId.append(id.substring(0, 1));
+		        // 중간 부분 마스킹 
+		        for (int i = 1; i < id.length() - 1; i++) {
+		            markedId.append('*');
+		        }    
+		        // 끝 1자리 추가
+		        markedId.append(id.substring(id.length() - 1));
+		  
 			
 			model.addAttribute("markedEmail", markedId + email.substring(index));		
 		}

@@ -30,10 +30,13 @@
             font-weight: bold;
             border-radius: 5px; 
             transition: background-color 0.3s ease;
+            transition: font-size 0.3s ease;
         }
         
         .navbar a:hover {
             background-color: #2980b9;
+            font-size: 40px;
+            transition: font-size 0.3s ease;
         }
 
         .btn {

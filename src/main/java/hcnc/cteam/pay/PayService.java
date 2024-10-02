@@ -8,8 +8,6 @@ public interface PayService {
 
 	PayEmpDTO selectEmp(int empCode) throws Exception;
 	
-	Integer selectMonthly(int empCode) throws Exception;
-		
 	Integer selectMinus(PaySearchDTO paySearchDTO) throws Exception;
 	
 	Integer selectTotalDay(PaySearchDTO paySearchDTO) throws Exception;

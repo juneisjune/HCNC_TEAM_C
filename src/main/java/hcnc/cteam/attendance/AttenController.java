@@ -57,14 +57,18 @@ public class AttenController {
 	
 	// 조건에 따른 직원 근태 목록 조회
 	@RequestMapping(value = "/searchAtten.do", method = RequestMethod.POST)
-    public String searchAtten(@RequestParam Map<String, Object> params, Model model) {
+    public String searchAtten(@RequestParam Map<String, Object> params, HttpServletRequest request, Model model) {
 		
-		int empCode = 3;
+		HttpSession session = request.getSession();
+		
+		int empCode = (int) session.getAttribute("userCode")  ;
 		
 		params.put("empCode", empCode);
 		
         List<AttenDTO> attenList = attenService.getAttenListByCondition(params);
+        
         model.addAttribute("attenList", attenList);
+        
         return "Atten/attenlist";
     }
 	
