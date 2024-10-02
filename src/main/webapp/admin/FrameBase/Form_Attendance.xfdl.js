@@ -32,13 +32,23 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("sta_Title","15","45","350","50",null,null,null,null,null,null,this);
-            obj.set_taborder("0");
-            obj.set_text("직원 출/퇴근 기록 관리");
-            obj.set_font("32px/normal \"Gulim\"");
+            obj = new GroupBox("GroupBox_Search","440","90","820","60",null,null,null,null,null,null,this);
+            obj.set_taborder("11");
+            obj.set_text("검색");
+            obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_visible("true");
+            obj.set_opacity("1");
+            obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearchType","450","120","100","30",null,null,null,null,null,null,this);
+            obj = new Static("sta_Title","15","15","350","50",null,null,null,null,null,null,this);
+            obj.set_taborder("0");
+            obj.set_text("직원 출/퇴근 기록 관리");
+            obj.set_font("bold 32px/normal \"Gulim\",\"Arial Black\"");
+            obj.set_textAlign("left");
+            this.addChild(obj.name, obj);
+
+            obj = new Combo("cmb_SearchType","450","110","100","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_innerdataset("ds_SearchType");
             obj.set_codecolumn("Value");
@@ -48,24 +58,25 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_SearchWord","570","120","180","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_SearchWord","559","110","180","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_Start","770","120","150","30",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_Start","759","110","150","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_End","960","120","150","30",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_End","949","110","150","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","1120","120","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","1109","110","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
-            obj.set_text("검색");
+            obj.set_text("  검색");
+            obj.set_icon("url(\'imagerc::img_WF_search01.png\')");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static01","930","120","20","30",null,null,null,null,null,null,this);
+            obj = new Static("Static01","919","110","20","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("~");
             obj.set_font("24px/normal \"Gulim\"");
@@ -82,7 +93,7 @@
             obj.set_text("+ 등록");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_SearchReset","1200","120","60","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_SearchReset","1189","110","60","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("초기화");
             this.addChild(obj.name, obj);

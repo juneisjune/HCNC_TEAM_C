@@ -3,7 +3,7 @@
   <Form id="Popup_EditAtten" width="1050" height="200" titletext="출/퇴근 정보 수정" onload="Popup_EditAtten_onload">
     <Layouts>
       <Layout height="200" mobileorientation="landscape" width="1050">
-        <Button id="btn_Close" taborder="0" text="닫기" left="930" top="20" width="100" height="50" onclick="btn_Close_onclick"/>
+        <Button id="btn_Close" taborder="0" text="   닫기" left="930" top="20" width="100" height="50" onclick="btn_Close_onclick" icon="url('imagerc::btn_mdi_close2.png')"/>
         <Grid id="Grid_Edit" taborder="1" left="20" top="20" width="890" height="130" binddataset="ds_AttenList">
           <Formats>
             <Format id="default">

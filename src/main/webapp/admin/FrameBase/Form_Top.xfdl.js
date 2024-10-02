@@ -11,48 +11,47 @@
         {
             this.set_name("Form_Top");
             this.set_titletext("Form_Top");
+            this.set_background("#000033");
             if (Form == this.constructor)
             {
-                this._setFormPosition(1535,55);
+                this._setFormPosition(1535,65);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
 
             
             // UI Components Initialize
-            obj = new Static("staBack02","0","0","1535","55",null,null,null,null,null,null,this);
-            obj.set_cssclass("sta_top_bg02");
+            obj = new Static("staHello","1375","0","80","65",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("staHello","1375","0","160","55",null,null,null,null,null,null,this);
-            obj.set_taborder("1");
             obj.set_text("변수민님");
+            obj.set_color("#ffffff");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Logout","1450","10","70","32.5",null,null,null,null,null,null,this);
-            obj.set_taborder("2");
-            obj.set_text("로그아웃");
+            obj = new Button("btn_Logout","1440","15","80","32.5",null,null,null,null,null,null,this);
+            obj.set_taborder("1");
+            obj.set_text(" 로그아웃");
+            obj.set_icon("url(\'imagerc::img_top_logout2.png\')");
             this.addChild(obj.name, obj);
 
-            obj = new ImageViewer("img_HcncLogo","0","0","180","55",null,null,null,null,null,null,this);
+            obj = new ImageViewer("img_HcncLogo","0","0","180","65",null,null,null,null,null,null,this);
             obj.set_image("url(\'imagerc::img_hcnc_logo.png\')");
             obj.set_imagealign("center");
             obj.set_stretch("fixaspectratio");
-            obj.set_background("#");
-            obj.set_taborder("3");
+            obj.set_background("#000033");
+            obj.set_taborder("2");
             obj.set_border("0px none");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_Title","575","0","400","55",null,null,null,null,null,null,this);
-            obj.set_taborder("4");
+            obj = new Static("sta_Title","575","0","400","65",null,null,null,null,null,null,this);
+            obj.set_taborder("3");
             obj.set_text("인사관리시스템");
             obj.set_font("bold 48px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             obj.set_letterSpacing("10px");
+            obj.set_color("#ffffff");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",1535,55,this,function(p){});
+            obj = new Layout("default","",1535,65,this,function(p){});
             this.addLayout(obj.name, obj);
             
             // BindItem Information
@@ -69,7 +68,7 @@
         
         // User Script
         this.registerScript("Form_Top.xfdl", function() {
-        // 로그아웃 버튼
+        // 로그아웃 버튼 클릭 시
         this.btn_Logout_onclick = function(obj,e)
         {
         	//사용자 전역변수 초기화

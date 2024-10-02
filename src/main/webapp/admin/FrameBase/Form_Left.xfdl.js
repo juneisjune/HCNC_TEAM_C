@@ -9,11 +9,13 @@
         
         this.on_create = function()
         {
+            this.set_scrolltype("vertical");
+            this.set_scrollbartype("auto");
             this.set_name("Form_Left");
             this.set_titletext("Form_Left");
             if (Form == this.constructor)
             {
-                this._setFormPosition(180,670);
+                this._setFormPosition(180,665);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -22,18 +24,19 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Grid("grid_LeftMenu","0","0","180","670",null,null,null,null,null,null,this);
+            obj = new Grid("grid_LeftMenu","0","0","180","665",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_treeinitstatus("collapse,null");
             obj.set_treeusecheckbox("false");
             obj.set_binddataset("ds_Left");
-            obj.set_cssclass("grd_LF_treeMenu");
             obj.set_scrolltype("both");
+            obj.set_treeuseline("false");
+            obj.set_cssclass("grd_LF_treeMenu");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"180\"/></Columns><Rows><Row size=\"35\"/></Rows><Band id=\"body\"><Cell displaytype=\"treeitemcontrol\" edittype=\"tree\" text=\"bind:MENU_NAME\" treestartlevel=\"1\" treelevel=\"bind:MENU_LEVEL\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",180,670,this,function(p){});
+            obj = new Layout("default","",180,665,this,function(p){});
             this.addLayout(obj.name, obj);
             
             // BindItem Information
@@ -59,15 +62,18 @@
 
         this.grid_LeftMenu_oncellclick = function(obj,e)
         {
-
         	// 클릭한 행(row)의 인덱스
-            var rowIndex = e.row;
+        	var rowIndex = e.row;
+
+        	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") != 1) {
 
             var value = this.ds_Left.getColumn(rowIndex, "MENU_PATH");
 
         	trace(value);
 
+        	//WorkFrame 이동
         	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl(value);
+        	}
         };
 
         });
