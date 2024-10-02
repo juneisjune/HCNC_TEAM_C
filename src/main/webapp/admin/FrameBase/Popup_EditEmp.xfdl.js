@@ -126,7 +126,7 @@
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtAccount","70","305","105","30",null,null,null,null,null,null,this);
+            obj = new Edit("edtAccount","70","305","110","30",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:account");
             this.addChild(obj.name, obj);
@@ -199,10 +199,9 @@
         
         // User Script
         this.registerScript("Popup_EditEmp.xfdl", function() {
-        // 팝업이 로드될 때 실행되는 함수
         this.Popup_EditEmp_onload = function(obj, e)
         {
-        	console.log("수정 팝업 오픈");
+        	console.log("수정 팝업 열기");
 
         	this.ds_employee.clearData()
         	this.ds_employee.addRow();
@@ -251,12 +250,12 @@
         	console.log("수정 화면 닫음");
         	this.opener.fnSearch();
         };
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
-            this.addEventHandler("onclick",this.Popup_EditEmp_onclick,this);
             this.addEventHandler("onload",this.Popup_EditEmp_onload,this);
             this.lblID.addEventHandler("onclick",this.lblID_onclick,this);
             this.lblBirth.addEventHandler("onclick",this.lblBirth_onclick,this);

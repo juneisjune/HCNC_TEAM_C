@@ -132,61 +132,15 @@
             var callBackFnc = "fnCallback";  // 콜백 함수
             var isAsync     = true;  // 비동기 처리
 
-            // 트랜잭션 호출 로그
-            console.log("트랜잭션 시작. 서비스 ID: " + strSvcId + ", URL: " + strSvcUrl);
-            console.log("입력 데이터셋: " + inData);
-            console.log("출력 데이터셋: " + outData);
-            console.log(this.ds_search.saveXML());
-
             // 트랜잭션 호출
-            this.transaction(strSvcId, strSvcUrl, inData, outData, callBackFnc, isAsync);
+            console.log("트랜잭션 시작. 서비스 ID: " + strSvcId + ", URL: " + strSvcUrl);
+            this.transaction(strSvcId, strSvcUrl, inData, outData, "", callBackFnc, isAsync);
         };
 
         // 등록 버튼 클릭 이벤트
         this.btn_Register_onclick = function(obj, e) {
             console.log("등록 팝업 호출");
             this.showRegisterPopup();  // 등록 팝업 호출 함수 호출
-        };
-
-        // 수정 버튼 클릭 이벤트
-        this.btn_Edit_onclick = function(obj, e) {
-
-
-            var objParam =
-                {
-        		id: this.ds_empList.getColumn(this.ds_empList.rowposition, "id"),
-                name: this.ds_empList.getColumn(this.ds_empList.rowposition, "name"),
-                password: this.ds_empList.getColumn(this.ds_empList.rowposition, "password"),
-                birth: this.ds_empList.getColumn(this.ds_empList.rowposition, "birth"),
-                gender: this.ds_empList.getColumn(this.ds_empList.rowposition, "gender"),
-                phone: this.ds_empList.getColumn(this.ds_empList.rowposition, "phone"),
-                email: this.ds_empList.getColumn(this.ds_empList.rowposition, "email"),
-                address: this.ds_empList.getColumn(this.ds_empList.rowposition, "address"),
-                account: this.ds_empList.getColumn(this.ds_empList.rowposition, "account")
-
-        		};
-
-
-            this.showEditPopup(objParam);
-        };
-
-        // 삭제 버튼 클릭 이벤트
-        this.btn_Delete_onclick = function(obj, e) {
-
-
-            if (selectedRow < 0) {
-                this.alert("삭제할 직원을 선택하세요.");
-                return;
-            }
-
-            var employeeId = this.ds_empList.getColumn(selectedRow, "id");
-
-            // 삭제 확인 메시지
-            if (this.confirm("선택한 직원을 삭제하시겠습니까?")) {
-                // 삭제 트랜잭션 호출
-                this.fnDelete(employeeId);
-        		}
-
         };
 
         // 등록 팝업 호출 함수
@@ -202,10 +156,23 @@
             popup.set_showstatusbar(false);
             popup.set_resizable(true);
             popup.set_openalign("center middle");
-
-            // 팝업 호출
             popup.showModal(this.getOwnerFrame(), null, this, "fn_popupCallback", true);
+        };
 
+        // 수정 버튼 클릭 이벤트
+        this.btn_Edit_onclick = function(obj, e) {
+            var objParam = {
+                id: this.ds_empList.getColumn(this.ds_empList.rowposition, "id"),
+                name: this.ds_empList.getColumn(this.ds_empList.rowposition, "name"),
+                password: this.ds_empList.getColumn(this.ds_empList.rowposition, "password"),
+                birth: this.ds_empList.getColumn(this.ds_empList.rowposition, "birth"),
+                gender: this.ds_empList.getColumn(this.ds_empList.rowposition, "gender"),
+                phone: this.ds_empList.getColumn(this.ds_empList.rowposition, "phone"),
+                email: this.ds_empList.getColumn(this.ds_empList.rowposition, "email"),
+                address: this.ds_empList.getColumn(this.ds_empList.rowposition, "address"),
+                account: this.ds_empList.getColumn(this.ds_empList.rowposition, "account")
+            };
+            this.showEditPopup(objParam);
         };
 
         // 수정 팝업 호출 함수
@@ -213,36 +180,28 @@
             console.log("수정 팝업 열기");
 
             var popup = new nexacro.ChildFrame;
-            popup.init("popupEditEmp", 100, 100, 800, 700, null, null, "FrameBase::Popup_EditEmp.xfdl");
-            popup.set_dragmovetype("all");
-            popup.set_layered(true);
-            popup.set_autosize(true);
-            popup.set_showtitlebar(true);
-            popup.set_showstatusbar(false);
-            popup.set_resizable(true);
-            popup.set_openalign("center middle");
-
-            // 팝업 호출
+            popup.init("Emppopupd", 100, 100, 800, 700, null, null, "FrameBase::Popup_EditEmp.xfdl");
+            popup.set_dragmovetype("all"); // 팝업이 드래그로 움직일 수 있도록 설정
+            popup.set_layered(true); // 팝업을 레이어 위에 표시
+            popup.set_autosize(true); // 팝업 크기를 자동으로 조절
+            popup.set_showtitlebar("직원 수정 화면");
+            popup.set_showtitlebar(true); // 제목 표시줄 표시
+            popup.set_showstatusbar(false); // 상태 표시줄 숨김
+            popup.set_resizable(true); // 크기 조절 가능
+            popup.set_openalign("center middle"); // 화면 중앙에 팝업을 정렬
             popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
-
         };
 
         // 삭제 함수
         this.fnDelete = function(employeeId) {
             var strSvcId    = "deleteEmployee";  // 서비스 ID
             var strSvcUrl   = "svc::deleteEmployee.do";  // 서비스 URL
-            var inData      = "";  // 입력 데이터셋 없음
-            var outData     = "";  // 출력 데이터셋 없음
             var strArg      = "employeeId=" + nexacro.wrapQuote(employeeId);  // 전달할 파라미터
             var callBackFnc = "fnCallbackDelete";  // 콜백 함수
             var isAsync     = true;  // 비동기 처리
 
-            // 트랜잭션 호출 로그
             console.log("삭제 트랜잭션 시작. 서비스 ID: " + strSvcId + ", URL: " + strSvcUrl);
-            console.log("삭제 대상 직원 ID: " + employeeId);
-
-            // 트랜잭션 호출
-            this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+            this.transaction(strSvcId, strSvcUrl, "", "", strArg, callBackFnc, isAsync);
         };
 
         // 삭제 콜백 함수
@@ -251,12 +210,25 @@
                 this.alert("직원 삭제에 실패하였습니다: " + strErrorMsg);
             } else {
                 this.alert("직원 삭제가 완료되었습니다.");
-                // 삭제 후 목록 새로고침
-                this.fnSearch();
+                this.fnSearch();  // 삭제 후 목록 새로고침
             }
         };
 
+        // 삭제 버튼 클릭 이벤트
+        this.btn_Delete_onclick = function(obj, e) {
+            var selectedRow = this.ds_empList.rowposition;
 
+            if (selectedRow < 0) {
+                this.alert("삭제할 직원을 선택하세요.");
+                return;
+            }
+
+            var employeeId = this.ds_empList.getColumn(selectedRow, "id");
+
+            if (this.confirm("선택한 직원을 삭제하시겠습니까?")) {
+                this.fnDelete(employeeId);  // 삭제 트랜잭션 호출
+            }
+        };
 
         });
         
@@ -267,7 +239,6 @@
             this.edt_SearchWord.addEventHandler("onchanged",this.edt_SearchWord_onchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.btn_Register.addEventHandler("onclick",this.btn_Register_onclick,this);
-            this.btn_Edit.addEventHandler("onclick",this.btn_Edit_onclick,this);
             this.btn_Delete.addEventHandler("onclick",this.btn_Delete_onclick,this);
         };
         this.loadIncludeScript("Form_Employee.xfdl");

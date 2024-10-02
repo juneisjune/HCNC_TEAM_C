@@ -19,7 +19,7 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("ds_employee", this);
-            obj._setContents("<ColumnInfo><Column id=\"Name\" type=\"STRING\" size=\"256\"/><Column id=\"Birth\" type=\"STRING\" size=\"256\"/><Column id=\"Gender\" type=\"STRING\" size=\"256\"/><Column id=\"Phone\" type=\"STRING\" size=\"256\"/><Column id=\"Address\" type=\"STRING\" size=\"256\"/><Column id=\"Email\" type=\"STRING\" size=\"256\"/><Column id=\"JoinDate\" type=\"STRING\" size=\"256\"/><Column id=\"Account\" type=\"STRING\" size=\"256\"/><Column id=\"ID\" type=\"STRING\" size=\"256\"/><Column id=\"Password\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"birth\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"phone\" type=\"STRING\" size=\"256\"/><Column id=\"address\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"joinDate\" type=\"STRING\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"password\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -164,43 +164,43 @@
             this.addLayout(obj.name, obj);
             
             // BindItem Information
-            obj = new BindItem("item0","edtID","value","ds_employee","ID");
+            obj = new BindItem("item0","edtID","value","ds_employee","id");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item1","edtPassword","value","ds_employee","Password");
+            obj = new BindItem("item1","edtPassword","value","ds_employee","password");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item2","edtName","value","ds_employee","Name");
+            obj = new BindItem("item2","edtName","value","ds_employee","name");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item3","calBirth","value","ds_employee","Birth");
+            obj = new BindItem("item3","calBirth","value","ds_employee","birth");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item4","cmbGender","value","ds_employee","Gender");
+            obj = new BindItem("item4","cmbGender","value","ds_employee","gender");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item5","edtPhone","value","ds_employee","Phone");
+            obj = new BindItem("item5","edtPhone","value","ds_employee","phone");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item6","edtAddress","value","ds_employee","Address");
+            obj = new BindItem("item6","edtAddress","value","ds_employee","address");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item7","calJoinDate","value","ds_employee","JoinDate");
+            obj = new BindItem("item7","calJoinDate","value","ds_employee","joinDate");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item8","edtEmail","value","ds_employee","Email");
+            obj = new BindItem("item8","edtEmail","value","ds_employee","email");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item9","edtAccount","value","ds_employee","Account");
+            obj = new BindItem("item9","edtAccount","value","ds_employee","account");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -223,7 +223,7 @@
 
         // 등록 버튼 클릭 시 데이터 저장 로직 추가
         this.btnRegister_onclick = function(obj, e) {
-              var strSvcId = "selectEmployee";
+            var strSvcId = "selectEmployee";
             var strSvcUrl = "svc::selectEmployeeData.do";  // 서버의 URL과 매핑
             var inData = "ds_employee=ds_employee";  // 전송할 데이터셋
             var outData = "";  // 서버에서 받아올 데이터가 없을 경우 빈 문자열

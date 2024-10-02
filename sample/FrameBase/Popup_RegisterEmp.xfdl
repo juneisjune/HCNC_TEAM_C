@@ -5,16 +5,16 @@
       <!-- 직원 정보를 저장할 데이터셋 -->
       <Dataset id="ds_employee">
         <ColumnInfo>
-          <Column id="Name" type="STRING" size="256"/>
-          <Column id="Birth" type="STRING" size="256"/>
-          <Column id="Gender" type="STRING" size="256"/>
-          <Column id="Phone" type="STRING" size="256"/>
-          <Column id="Address" type="STRING" size="256"/>
-          <Column id="Email" type="STRING" size="256"/>
-          <Column id="JoinDate" type="STRING" size="256"/>
-          <Column id="Account" type="STRING" size="256"/>
-          <Column id="ID" type="STRING" size="256"/>
-          <Column id="Password" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="gender" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="joinDate" type="STRING" size="256"/>
+          <Column id="account" type="STRING" size="256"/>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -80,7 +80,7 @@
 
 // 등록 버튼 클릭 시 데이터 저장 로직 추가
 this.btnRegister_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
-      var strSvcId = "selectEmployee";
+    var strSvcId = "selectEmployee";
     var strSvcUrl = "svc::selectEmployeeData.do";  // 서버의 URL과 매핑
     var inData = "ds_employee=ds_employee";  // 전송할 데이터셋
     var outData = "";  // 서버에서 받아올 데이터가 없을 경우 빈 문자열
@@ -110,16 +110,16 @@ this.btnClose_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
 
 ]]></Script>
     <Bind>
-      <BindItem id="item0" compid="edtID" propid="value" datasetid="ds_employee" columnid="ID"/>
-      <BindItem id="item1" compid="edtPassword" propid="value" datasetid="ds_employee" columnid="Password"/>
-      <BindItem id="item2" compid="edtName" propid="value" datasetid="ds_employee" columnid="Name"/>
-      <BindItem id="item3" compid="calBirth" propid="value" datasetid="ds_employee" columnid="Birth"/>
-      <BindItem id="item4" compid="cmbGender" propid="value" datasetid="ds_employee" columnid="Gender"/>
-      <BindItem id="item5" compid="edtPhone" propid="value" datasetid="ds_employee" columnid="Phone"/>
-      <BindItem id="item6" compid="edtAddress" propid="value" datasetid="ds_employee" columnid="Address"/>
-      <BindItem id="item7" compid="calJoinDate" propid="value" datasetid="ds_employee" columnid="JoinDate"/>
-      <BindItem id="item8" compid="edtEmail" propid="value" datasetid="ds_employee" columnid="Email"/>
-      <BindItem id="item9" compid="edtAccount" propid="value" datasetid="ds_employee" columnid="Account"/>
+      <BindItem id="item0" compid="edtID" propid="value" datasetid="ds_employee" columnid="id"/>
+      <BindItem id="item1" compid="edtPassword" propid="value" datasetid="ds_employee" columnid="password"/>
+      <BindItem id="item2" compid="edtName" propid="value" datasetid="ds_employee" columnid="name"/>
+      <BindItem id="item3" compid="calBirth" propid="value" datasetid="ds_employee" columnid="birth"/>
+      <BindItem id="item4" compid="cmbGender" propid="value" datasetid="ds_employee" columnid="gender"/>
+      <BindItem id="item5" compid="edtPhone" propid="value" datasetid="ds_employee" columnid="phone"/>
+      <BindItem id="item6" compid="edtAddress" propid="value" datasetid="ds_employee" columnid="address"/>
+      <BindItem id="item7" compid="calJoinDate" propid="value" datasetid="ds_employee" columnid="joinDate"/>
+      <BindItem id="item8" compid="edtEmail" propid="value" datasetid="ds_employee" columnid="email"/>
+      <BindItem id="item9" compid="edtAccount" propid="value" datasetid="ds_employee" columnid="account"/>
     </Bind>
   </Form>
 </FDL>

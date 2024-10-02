@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Popup_EditEmp" width="530" height="440" titletext="직원 정보 수정" background="whitesmoke" onclick="Popup_EditEmp_onclick" onload="Popup_EditEmp_onload">
+  <Form id="Popup_EditEmp" width="530" height="440" titletext="직원 정보 수정" background="whitesmoke" onload="Popup_EditEmp_onload">
     <Objects>
       <Dataset id="ds_employee">
         <ColumnInfo>
@@ -59,7 +59,7 @@
         <!-- 여섯 번째 행: 입사일, 퇴사일 -->
         <!-- 일곱 번째 행: 계좌번호, 부서장코드 -->
         <Static id="lblAccount" text="계좌번호" left="20" top="305" width="80" height="25" textAlign="left"/>
-        <Edit id="edtAccount" left="70" top="305" width="105" height="30" binddataset="ds_employee" text="bind:account"/>
+        <Edit id="edtAccount" left="70" top="305" width="110" height="30" binddataset="ds_employee" text="bind:account"/>
         <!-- 수정 버튼 -->
         <Button id="btnUpdate" text="수정" left="180" top="400" width="80" height="30" background="green" color="white" borderRadius="5px" cursor="pointer" onclick="btnUpdate_onclick"/>
         <Button id="btnClose" text="닫기" left="280" top="400" width="80" height="30" background="gray" color="white" borderRadius="5px" cursor="pointer" onclick="btnClose_onclick"/>
@@ -76,10 +76,9 @@
       <BindItem id="item10" compid="edtEmail" propid="value" datasetid="ds_employee" columnid="email"/>
       <BindItem id="item13" compid="edtAccount" propid="value" datasetid="ds_employee" columnid="account"/>
     </Bind>
-    <Script type="xscript5.1"><![CDATA[// 팝업이 로드될 때 실행되는 함수
-this.Popup_EditEmp_onload = function(obj:nexacro.Form, e:nexacro.LoadEventInfo)
+    <Script type="xscript5.1"><![CDATA[this.Popup_EditEmp_onload = function(obj:nexacro.Form, e:nexacro.LoadEventInfo)
 {
-	console.log("수정 팝업 오픈");
+	console.log("수정 팝업 열기");
 
 	this.ds_employee.clearData()
 	this.ds_employee.addRow();
@@ -127,6 +126,7 @@ this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	this.ds_employee.clearData()
 	console.log("수정 화면 닫음");
 	this.opener.fnSearch();
-};]]></Script>
+};
+]]></Script>
   </Form>
 </FDL>
