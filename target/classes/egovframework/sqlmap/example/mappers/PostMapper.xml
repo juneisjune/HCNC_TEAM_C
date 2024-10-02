@@ -4,9 +4,10 @@
     <!-- 게시글 목록 조회 -->
     <select id="selectPost" parameterType="map" resultType="map">
 	    SELECT a.post_code, a.title, a.content, a.reg_date, b.name AS emp_name, a.view_count
-	    	FROM post a
+	    FROM post a
 	    INNER JOIN employee b 
 	      ON a.emp_code = b.emp_code
+	    ORDER BY a.post_code DESC  -- 게시글 번호를 내림차순으로 정렬
 	</select>
 	<!-- 게시글 상세 조회 관련 쿼리 -->	
 	<select id="selectPostDetail" parameterType="int" resultType="map">
