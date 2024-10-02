@@ -18,7 +18,7 @@ public interface NexaPayMapper {
 	List<Map< String, Object>> selectEmpList (Map< String, Object> param);
 	
 	//직책별 기본급 조회 
-	int selectMonthly(Map< String, Object> param);
+	int selectMonth(Map< String, Object> param);
 	
 	//지난달 work_over 조회
 	double selectWorkOver(Map< String, Object> param);

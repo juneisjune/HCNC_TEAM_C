@@ -32,8 +32,8 @@ public class NexaPayServiceImpl extends EgovAbstractServiceImpl implements NexaP
 	}
 	
 	@Override
-	public int selectMonthly(Map< String, Object> param) {
-		return nexaPayMapper.selectMonthly(param);
+	public int selectMonth(Map< String, Object> param) {
+		return nexaPayMapper.selectMonth(param);
 	}
 
 	@Override

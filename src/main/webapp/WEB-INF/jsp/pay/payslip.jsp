@@ -64,7 +64,7 @@
 	        </tr>
 	        <tr>
 	            <td>기본급</td>
-	            <td style="text-align: right;"><fmt:formatNumber value="${monthly}" type="number" groupingUsed="true"/>원</td>
+	            <td style="text-align: right;"><fmt:formatNumber value="${myPay.month - myPay.absence}" type="number" groupingUsed="true"/>원</td>
 	            <td>소득세</td>
 	            <td style="text-align: right;"><fmt:formatNumber value="${myPay.incomeTax}" type="number" groupingUsed="true"/>원</td>
 	        </tr>

@@ -95,7 +95,7 @@
 	                         var row = "<tr>"
 	                             + "<td>" + "<a href='/pay/viewPayslip/" + pay.payYear + "/" + pay.payMonth + ".do'>" + pay.payYear + "." + pay.payMonth + "</a>" + "</td>"
 	                             + "<td>" + pay.giveDate + "</td>"
-	                             + "<td>" + Number(monthly).toLocaleString() + "원" + "</td>" 
+	                             + "<td>" + (pay.month - pay.absence).toLocaleString() + "원" + "</td>" 
 	                             + "<td>" + pay.payMeal.toLocaleString() + "원" + "</td>"
 	                             + "<td>" + pay.payOver.toLocaleString() + "원" + "</td>"
 	                             + "<td>" + pay.payAmount.toLocaleString() + "원" + "</td>"
@@ -201,7 +201,7 @@
 		            <tr>
 		                <td><a href="/pay/viewPayslip/${pay.payYear}/${pay.payMonth}.do">${pay.payYear}.${pay.payMonth}</a></td>
 		                <td>${pay.giveDate}</td>
-		                <td><fmt:formatNumber value="${monthly}" type="number" groupingUsed="true"/>원</td>
+		                <td><fmt:formatNumber value="${pay.month - pay.absence}" type="number" groupingUsed="true"/>원</td>
 		                <td><fmt:formatNumber value="${pay.payMeal}" type="number" groupingUsed="true"/>원</td>
 		                <td><fmt:formatNumber value="${pay.payOver}" type="number" groupingUsed="true"/>원</td>
 		                <td><fmt:formatNumber value="${pay.payAmount}" type="number" groupingUsed="true"/>원</td>

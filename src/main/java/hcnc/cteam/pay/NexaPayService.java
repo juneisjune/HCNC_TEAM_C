@@ -10,7 +10,7 @@ public interface NexaPayService {
 	
 	List<Map< String, Object>> selectEmpList (Map< String, Object> param);
 	
-	int selectMonthly(Map< String, Object> param);
+	int selectMonth(Map< String, Object> param);
 	
 	double selectWorkOver(Map< String, Object> param);
 	

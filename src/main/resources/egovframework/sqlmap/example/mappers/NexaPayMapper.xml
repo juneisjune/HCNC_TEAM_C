@@ -18,25 +18,25 @@
 
 	<!-- 직책에 따른 emp List 조회  -->
 	<select id="selectEmpList" resultType="java.util.Map" parameterType="java.util.Map"> 
-		SELECT emp_code, name, a.assign_code, assign_name, dep_name, join_date, 
-			IF(resign_date IS NULL, "", "전월 퇴사") resign_date, account 
+		SELECT emp_code, name, a.assign_code, assign_name, dep_name, join_date, IFNULL(resign_date, "") resign_date, account 
 		FROM employee e JOIN `assignment` a
 		ON e.assign_code = a.assign_code
 		JOIN department d 
 		ON e.dep_code = d.dep_code 
-		WHERE 1=1
-			<if test="assign_code == 100">
-			</if>
-			<if test="assign_code != 100">
+		<!-- 이번달 입사자들은 조회하지 않음 -->
+		WHERE join_date &lt; DATE_FORMAT(CURDATE(), '%Y-%m-01')
+		<!-- 저번달 퇴사자부터 퇴사 예정자까지 조회함 -->
+		AND (resign_date >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')  OR resign_date IS NULL);
+			<if test="assign_code != null and assign_code != 100">
 				AND a.assign_code = #{assign_code}
 			</if>
 	</select>
 
 	<!-- 직책에 따른 monthly 조회 -->
 	<!-- 퇴사자는 기본급을 0으로 설정하고 일급으로 계산 -->
-	<select id="selectMonthly" resultType="int" parameterType="java.util.Map">
+	<select id="selectMonth" resultType="int" parameterType="java.util.Map">
 		SELECT IF(e.resign_date IS NULL
-				, a.monthly 
+				, a.monthly as month 
 				, (SELECT	
 					(SELECT COUNT(*)
 						FROM attendance a JOIN att_code ac 
@@ -45,18 +45,12 @@
 						ON a.emp_code = e.emp_code 
 						WHERE a.emp_code =  #{emp_code}
 						AND (a.atten_code = 1 OR a.atten_code = 3)
-							<if test="curMon == 1"> 
-								AND YEAR(work_date) = YEAR(CURDATE()) - 1
-								AND MONTH(work_date) = 12
-							</if>
-							<if test="curMon != 1"> 
-								AND YEAR(work_date) = YEAR(CURDATE())
-								AND MONTH(work_date) = MONTH(CURDATE()) - 1
-							</if> 
+						AND YEAR(work_date) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+						AND MONTH(work_date) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
 					) 
 					* 8 * a.hourly
 				)		
-		) monthly
+		) month
 		FROM `assignment` a JOIN employee e 
 		ON a.assign_code = e.assign_code 
 		WHERE a.assign_code = #{assign_code}	
@@ -72,15 +66,8 @@
 			ON a.emp_code = e.emp_code 
 		WHERE a.emp_code = #{emp_code}
 		AND a.atten_code = 1
-			<!-- 1월이면 작년 12월 데이터 조회 -->
-			<if test="curMon == 1"> 
-				AND YEAR(work_date) = YEAR(CURDATE()) - 1
-				AND MONTH(work_date) = 12
-			</if>
-			<if test="curMon != 1"> 
-				AND YEAR(work_date) = YEAR(CURDATE())
-				AND MONTH(work_date) = MONTH(CURDATE()) - 1
-			</if>
+		AND YEAR(work_date) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+		AND MONTH(work_date) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
 	</select>
 	
 	<!-- 사원의 지난달 결근 조회 -->
@@ -92,30 +79,16 @@
 			ON a.emp_code = e.emp_code 
 		WHERE e.emp_code = #{emp_code}
 		AND ac.atten_code = 2
-			<!-- 1월이면 작년 12월 데이터 조회 -->
-			<if test="curMon == 1"> 
-				AND YEAR(work_date) = YEAR(CURDATE()) - 1
-				AND MONTH(work_date) = 12
-			</if>
-			<if test="curMon != 1"> 
-				AND YEAR(work_date) = YEAR(CURDATE())
-				AND MONTH(work_date) = MONTH(CURDATE()) - 1
-			</if>
+		AND YEAR(work_date) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+		AND MONTH(work_date) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
 	</select>	
 	
 	<select id="duplidacatedPay" resultType="int" parameterType="java.util.Map" >
 		SELECT COUNT(*)
 		FROM pay p
 		WHERE emp_code = #{emp_code}
-		<!-- 1월이면 작년 12월 데이터 조회 -->
-			<if test="curMon == 1"> 
-				AND pay_year = YEAR(CURDATE()) - 1
-				AND pay_month = 12
-			</if>
-			<if test="curMon != 1"> 
-				AND pay_year = YEAR(CURDATE())
-				AND pay_month = MONTH(CURDATE()) - 1
-			</if>
+		AND pay_year = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+		AND pay_month = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
 	</select>
 
 	<!-- pay insert -->
@@ -124,6 +97,7 @@
 			, pay_year
 			, pay_month
 			, give_date
+			, month
  			, pay_over
 			, pay_meal
 			, absence
@@ -138,9 +112,10 @@
 			, reg_name 
 		)
 		VALUES (#{emp_code}
-			, IF(MONTH(CURDATE())-1 = 0, YEAR(CURDATE())-1, YEAR(CURDATE()) )
-			, IF(MONTH(CURDATE())-1 = 0, 12, MONTH(CURDATE())-1 )
+			, YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+			, MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
 			, #{give_date}
+			, #{month}
  			, #{pay_over}
 			, #{pay_meal}
 			, #{absence}

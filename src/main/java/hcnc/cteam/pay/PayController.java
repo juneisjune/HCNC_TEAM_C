@@ -63,9 +63,6 @@ public class PayController {
 		PayEmpDTO emp = payService.selectEmp(empCode);
 		model.addAttribute("emp", emp);
 
-		Integer monthly = payService.selectMonthly(empCode);
-		model.addAttribute("monthly", monthly);
-
 		Integer minus = payService.selectMinus(paySearchDTO);
 		model.addAttribute("minus", minus);
 
@@ -94,9 +91,6 @@ public class PayController {
 
 		PayEmpDTO emp = payService.selectEmp(empCode);
 		model.addAttribute("emp", emp);
-
-		Integer monthly = payService.selectMonthly(empCode);
-		model.addAttribute("monthly", monthly);
 
 		Integer minus = payService.selectMinus(paySearchDTO);
 		model.addAttribute("minus", minus);
@@ -128,9 +122,6 @@ public class PayController {
 
 		if (payList != null && !payList.isEmpty()) {
 			model.addAttribute("payList", payList);
-
-			Integer monthly = payService.selectMonthly(empCode);
-			model.addAttribute("monthly", monthly);
 		}
 
 		return "pay/searchPay";
@@ -150,11 +141,9 @@ public class PayController {
 
 		try {
 			List<PayDTO> searchList = payService.selectPeriod(paySearchDTO);
-			Integer monthly = payService.selectMonthly(empCode);
 
 			map.put("msg", "ok");
 			map.put("searchList", searchList);
-			map.put("monthly", monthly);
 
 		} catch (Exception e) {
 			e.printStackTrace();

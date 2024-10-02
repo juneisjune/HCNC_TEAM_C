@@ -25,11 +25,6 @@ public class PayServiceImpl extends EgovAbstractServiceImpl implements PayServic
 	}
 
 	@Override
-	public Integer selectMonthly(int empCode) throws Exception {
-		return payMapper.selectMonthly(empCode);
-	}
-
-	@Override
 	public Integer selectMinus(PaySearchDTO paySearchDTO) throws Exception {
 		return payMapper.selectMinus(paySearchDTO);
 	}

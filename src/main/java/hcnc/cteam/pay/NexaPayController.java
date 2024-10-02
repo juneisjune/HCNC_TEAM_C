@@ -33,9 +33,8 @@ public class NexaPayController {
 			for (Map<String, Object> emp : ds_EmpList) {
 				emp.put("chkVal", "1");
 				
-				// 기본급
-				int monthly = nexaPayService.selectMonthly(emp);
-				emp.put("monthly", monthly);
+				//월지급액
+				int month = nexaPayService.selectMonth(emp);
 
 				//직책에 따른 시급
 				int hourly = nexaPayService.selectHourly(emp);
@@ -50,10 +49,11 @@ public class NexaPayController {
 
 				// 결근
 				int absence = hourly * 8 * nexaPayService.selectAbsence(emp);
+				emp.put("month", month - absence);
 				emp.put("absence", absence);
 
 				// 지급액 = 기본급 or 일급 + 연장근로수당 + 식대 - 결근
-				int pay_amount = monthly + pay_over + pay_meal - absence;
+				int pay_amount = month + pay_over + pay_meal;
 				emp.put("pay_amount", pay_amount);
 				
 				//직책에 따른 세금(비율)
