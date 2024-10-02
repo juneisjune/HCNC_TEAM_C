@@ -9,7 +9,7 @@
             <HFrameSet id="HFrameSet00" separatesize="200,*">
               <Frames>
                 <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Left.xfdl" showcascadetitletext="true"/>
-                <ChildFrame id="WorkFrame" showtitlebar="false"/>
+                <ChildFrame id="WorkFrame" showtitlebar="false" formurl="FrameBase::Form_Post.xfdl"/>
               </Frames>
             </HFrameSet>
             <ChildFrame id="LoginFrame" formurl="FrameBase::Form_Login.xfdl" showcascadetitletext="true" showtitlebar="false"/>

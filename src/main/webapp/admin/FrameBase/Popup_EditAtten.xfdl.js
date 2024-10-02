@@ -29,7 +29,8 @@
             // UI Components Initialize
             obj = new Button("btn_Close","930","20","100","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("닫기");
+            obj.set_text("   닫기");
+            obj.set_icon("url(\'imagerc::btn_mdi_close2.png\')");
             this.addChild(obj.name, obj);
 
             obj = new Grid("Grid_Edit","20","20","890","130",null,null,null,null,null,null,this);

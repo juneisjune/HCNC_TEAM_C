@@ -11,6 +11,7 @@
         {
             this.set_name("Form_Login");
             this.set_titletext("New Form");
+            this.set_color("#000000");
             if (Form == this.constructor)
             {
                 this._setFormPosition(1280,720);
@@ -180,7 +181,7 @@
         	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
 
         	//Top, HFrameSet00, Login 3개 영역을 조정하여 로그인 화면이 보이지 않도록 설정
-            nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("55,*,0");
+            nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("65,*,0");
 
         	//로그인 폼의 edt 모두 초기화
         	this.ds_login.setColumn(0, "user_id", '');
