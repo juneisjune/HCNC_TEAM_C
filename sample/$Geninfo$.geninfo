@@ -24,25 +24,27 @@
       <File url="FrameBase\Form_dayoff.xfdl" checksum="20240926114154" errormsg=""/>
       <File url="FrameBase\Form_dayoff_Confirm.xfdl" checksum="20240926114154" errormsg=""/>
       <File url="FrameBase\Form_dayoff_Confirm.xfdl" checksum="20240909142800" errormsg=""/>
-      <File url="Application_Desktop.xadl" checksum="20240927121425" errormsg=""/>
+      <File url="Application_Desktop.xadl" checksum="20241002142232" errormsg=""/>
       <File url="FrameBase\Form_dayoff_Result.xfdl" checksum="20240909135635" errormsg=""/>
       <File url="FrameBase\Form_Code_copy0.xfdl" checksum="20240910094057" errormsg=""/>
       <File url="FrameBase\Form_dayoff_Result_copy0.xfdl" checksum="20240909135635" errormsg=""/>
       <File url="FrameBase\Form_adminLogin.xfdl" checksum="20240910094057" errormsg=""/>
       <File url="_resource_\_theme_\violet\theme.xcss" checksum="20220720125456" errormsg=""/>
       <File url="_resource_\_xcss_\temp_main.xcss" checksum="20220621102739" errormsg=""/>
-      <File url="FrameBase\Form_Top.xfdl" checksum="20241002134253" errormsg=""/>
-      <File url="FrameBase\Form_Left.xfdl" checksum="20241002103403" errormsg=""/>
-      <File url="FrameBase\Form_Attendance.xfdl" checksum="20241002104835" errormsg=""/>
+      <File url="FrameBase\Form_Top.xfdl" checksum="20241002140847" errormsg=""/>
+      <File url="FrameBase\Form_Left.xfdl" checksum="20241002140752" errormsg=""/>
+      <File url="FrameBase\Form_Attendance.xfdl" checksum="20241002140441" errormsg=""/>
       <File url="FrameBase\Form_Code.xfdl" checksum="20240911094313" errormsg=""/>
-      <File url="FrameBase\Form_Login.xfdl" checksum="20241002091930" errormsg=""/>
+      <File url="FrameBase\Form_Login.xfdl" checksum="20241002140441" errormsg=""/>
       <File url="FrameBase\Form_Report.xfdl" checksum="20240909085639" errormsg=""/>
       <File url="FrameBase\Form_Welcome.xfdl" checksum="20240909085639" errormsg=""/>
       <File url="FrameBase\Form_Work.xfdl" checksum="20240924101554" errormsg=""/>
-      <File url="FrameBase\Popup_EditAtten.xfdl" checksum="20241002105749" errormsg=""/>
-      <File url="FrameBase\Popup_RegisterAtten.xfdl" checksum="20240930144327" errormsg=""/>
+      <File url="FrameBase\Popup_EditAtten.xfdl" checksum="20241002140441" errormsg=""/>
+      <File url="FrameBase\Popup_RegisterAtten.xfdl" checksum="20241002140630" errormsg=""/>
       <File url="FrameBase\Popup_Work.xfdl" checksum="20240909085639" errormsg=""/>
       <File url="FrameBase\test.xfdl" checksum="20240926114154" errormsg=""/>
+      <File url="FrameBase\Form_HRD.xfdl" checksum="20241002140630" errormsg=""/>
+      <File url="FrameBase\Form_InsertPay.xfdl" checksum="20241002140630" errormsg=""/>
     </Info>
   </GenInfo>
 </root>

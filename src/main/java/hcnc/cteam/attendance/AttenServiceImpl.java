@@ -36,8 +36,13 @@ public class AttenServiceImpl implements AttenService{
 
 	@Override
 	public AttenDTO userAttendanceInfo(Map<String, Object> param) {
+		return attenMapper.userAttendanceInfo(param);
+	}
+
+	@Override
+	public AttenDTO getAttendance(int empCode) {
 		// TODO Auto-generated method stub
-		return null;
+		return attenMapper.getAttendance(empCode);
 	}
 
 	

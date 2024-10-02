@@ -3,6 +3,9 @@ package hcnc.cteam.employee;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,8 +36,9 @@ public class EmpController {
     }
     
     @RequestMapping(value = "/myPage.do")
-    public String myPage(Model model) {
-        int empCode = 1;
+    public String myPage(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+    	int empCode = (int)session.getAttribute("userCode");
         EmpDTO employee = empService.getEmployeeByEmpCode(empCode);
         model.addAttribute("employee", employee);
         return "employee/myPage";
