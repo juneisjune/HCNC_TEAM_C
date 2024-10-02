@@ -74,6 +74,7 @@
             frame2.addChild(frame4.name, frame4);
             frame4.set_formurl("FrameBase::Form_Post.xfdl");
 
+
             var frame5 = new ChildFrame("LoginFrame",null,null,null,null,null,null,"FrameBase::Form_Login.xfdl",frame0);
             frame5.set_showcascadetitletext("true");
             frame5.set_showtitlebar("false");
