@@ -38,7 +38,7 @@
 
 
             obj = new Dataset("ds_Pay", this);
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"payYear\" type=\"STRING\" size=\"256\"/><Column id=\"payMonth\" type=\"STRING\" size=\"256\"/><Column id=\"payAmount\" type=\"STRING\" size=\"256\"/><Column id=\"etc\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"payYear\" type=\"STRING\" size=\"256\"/><Column id=\"payMonth\" type=\"STRING\" size=\"256\"/><Column id=\"actualPay\" type=\"STRING\" size=\"256\"/><Column id=\"etc\" type=\"STRING\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -162,7 +162,7 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearType","28","148","112","50",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_SearType","38","148","112","50",null,null,null,null,null,null,this);
             obj.set_taborder("19");
             obj.set_innerdataset("ds_SearchType");
             obj.set_datacolumn("Name");
@@ -177,10 +177,10 @@
             obj.set_text("삭제");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_CodeMst","30","210","885","381",null,null,null,null,null,null,this);
+            obj = new Grid("grd_CodeMst","30","207","885","381",null,null,null,null,null,null,this);
             obj.set_taborder("21");
             obj.set_binddataset("ds_Pay");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"115\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"급여년도\"/><Cell col=\"5\" text=\"급여월\"/><Cell col=\"6\" text=\"지급액\"/><Cell col=\"7\" text=\"수정액\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\"/><Cell col=\"1\" text=\"bind:name\"/><Cell col=\"2\" text=\"bind:depName\"/><Cell col=\"3\" text=\"bind:assignName\"/><Cell col=\"4\" text=\"bind:payYear\"/><Cell col=\"5\" text=\"bind:payMonth\"/><Cell col=\"6\" text=\"bind:payAmount\"/><Cell col=\"7\" text=\"bind:etc\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"115\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"0\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"부서\"/><Cell col=\"4\" text=\"직책\"/><Cell col=\"5\" text=\"급여년도\"/><Cell col=\"6\" text=\"급여월\"/><Cell col=\"7\" text=\"지급액\"/><Cell col=\"8\" text=\"수정액\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chk\"/><Cell col=\"1\" text=\"bind:empCode\"/><Cell col=\"2\" text=\"bind:name\"/><Cell col=\"3\" text=\"bind:depName\"/><Cell col=\"4\" text=\"bind:assignName\"/><Cell col=\"5\" text=\"bind:payYear\"/><Cell col=\"6\" text=\"bind:payMonth\"/><Cell col=\"7\" text=\"bind:actualPay\"/><Cell col=\"8\" text=\"bind:etc\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -243,7 +243,7 @@
 
         // 화면이 로드될 때 호출되는 함수
         this.Form_UpdatePay_onload = function(obj, e) {
-            // 검색 조건 콤보박스값 초기화
+            // 검색 조건 콤보박스 값 초기화
             this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
 
             // 첫 조회 실행
@@ -256,6 +256,9 @@
             console.log("SEARCH_TYPE = " + this.ds_Search.getColumn(0, "SEARCH_TYPE"));
             console.log("SEARCH_WORD = " + this.ds_Search.getColumn(0, "SEARCH_WORD"));
 
+            var empCode = this.ds_Search.getColumn(0, "SEARCH_EMP_CODE");
+            var name = this.ds_Search.getColumn(0, "SEARCH_NAME");
+
             var strSvcId    = "searchPay";
             var strSvcUrl   = "svc::selectPayList.do";
             var inData      = "ds_Search=ds_Search";
@@ -264,35 +267,72 @@
             var callBackFnc = "fnCallback";
             var isAsync     = true;
 
+            // 데이터 트랜잭션 시작
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
 
+        // 처리콜백 함수
+        this.fnCallback = function(svcID, errorCode, errorMsg) {
+            // 에러 시 화면 처리 내역
+            if (errorCode == -1) {
+                this.alert(errorMsg);
+                return;
+            }
 
-        //처리콜백 함수
-        this.fnCallback = function(svcID,errorCode,errorMsg)
-        {
-        	// 에러 시 화면 처리 내역
-        	if(errorCode == -1)
-        	{
-        		this.alert(errorMsg);
-        		return;
-        	}
+            switch (svcID) {
+                case "searchPay":
+                    // 조회된 데이터에서 chk 컬럼 값이 제대로 설정되었는지 확인
+                    for (var i = 0; i < this.ds_Pay.getRowCount(); i++) {
+                        var chkValue = this.ds_Pay.getColumn(i, "chk");
+                        console.log("Row " + i + ": chk = " + chkValue);
 
-        	switch(svcID)
-        	{
-        		case "selectPayList":
-        			break;
-        		default :
-        		// 위 서비스 ID에 해당하지 않을 경우
-        			break;
-        	}
+                        // 만약 chk 값이 없다면 기본값 설정
+                        if (chkValue == null || chkValue === "") {
+                            this.ds_Pay.setColumn(i, "chk", "0");  // 기본적으로 체크 해제
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        };
+
+        // 그리드 헤더 클릭 시 체크박스 전체 선택/해제 처리
+        this.grd_CodeMst_onheadclick = function(obj, e) {
+            // 그리드의 첫 번째 열(체크박스 열)의 헤더 체크박스 상태 확인
+            var chkVal = obj.getCellProperty("head", 0, "text");
+
+            if (chkVal == "1") {
+                chkVal = "0"; // 체크 해제
+                obj.setCellProperty("head", 0, "text", chkVal); // 헤더의 체크 해제
+                for (var i = 0; i < this.ds_Pay.getRowCount(); i++) {
+                    this.ds_Pay.setColumn(i, "chk", "0"); // 모든 행 체크 해제
+                }
+            } else {
+                chkVal = "1"; // 체크
+                obj.setCellProperty("head", 0, "text", chkVal); // 헤더의 체크 설정
+                for (var i = 0; i < this.ds_Pay.getRowCount(); i++) {
+                    this.ds_Pay.setColumn(i, "chk", "1"); // 모든 행 체크 설정
+                }
+            }
+        };
+
+        // 그리드의 개별 체크박스 클릭 시 체크 상태 변경
+        this.grd_CodeMst_oncelldblclick = function(obj, e) {
+            var colId = obj.getCellProperty("body", e.cell, "text");
+
+            // 클릭한 셀이 'chk' 컬럼인지 확인
+            if (colId === "bind:chk") {
+                var isChecked = this.ds_Pay.getColumn(e.row, "chk");
+                // 체크 상태를 반대로 변경
+                this.ds_Pay.setColumn(e.row, "chk", isChecked == "1" ? "0" : "1");
+            }
         };
 
 
 
 
-
-        ////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////수정
 
 
         this.btn_Update_onclick = function(obj, e)
@@ -316,14 +356,14 @@
             }
 
             // 지급총액(pay_amount)와 수정액(etc) 가져오기
-            var payAmount = this.ds_Pay.getColumn(selectedRow, "payAmount");  // 지급액
+            var payAmount = this.ds_Pay.getColumn(selectedRow, "actualPay");  // 지급액
             var currentEtc = this.ds_Pay.getColumn(selectedRow, "etc");      // 기존 수정액
 
             // 수정액 반영 (기존 지급총액에 입력한 수정액을 더하거나 빼기)
             var newPayAmount = payAmount + parseInt(modPay);
 
             // 새로운 지급총액 반영
-            this.ds_Pay.setColumn(selectedRow, "payAmount", newPayAmount);  // 지급액 업데이트
+            this.ds_Pay.setColumn(selectedRow, "actualPay", newPayAmount);  // 지급액 업데이트
             this.ds_Pay.setColumn(selectedRow, "etc", modPay);              // 수정액 업데이트
 
             // 서버에 수정된 값 반영
@@ -358,6 +398,51 @@
 
 
 
+
+        ////////////////////////////////////////////////////////////삭제
+
+
+        this.btn_Delete_onclick = function(obj, e) {
+            var deleteList = [];
+
+            // 체크된 데이터 수집
+            for (var i = 0; i < this.ds_Pay.getRowCount(); i++) {
+                if (this.ds_Pay.getColumn(i, "chk") == "1") {  // 체크된 경우
+                    deleteList.push(this.ds_Pay.getColumn(i, "empCode"));  // 사번을 기준으로 삭제할 데이터를 수집
+                }
+            }
+
+            if (deleteList.length > 0) {
+                // 서버로 삭제 요청 (삭제할 데이터 전송)
+                var strSvcId    = "deletePayData";
+                var strSvcUrl   = "svc::deletePayData.do";
+                var inData      = "ds_Pay=ds_Pay";  // 삭제할 데이터를 포함하는 데이터셋 전송
+                var outData     = "";
+                var strArg      = "deleteList=" + deleteList.join(",");  // 삭제할 데이터 리스트 (사번 기준)
+                var callBackFnc = "fnCallback";
+                var isAsync     = true;
+
+                if (confirm("선택된 데이터를 삭제하시겠습니까?")) {
+                    this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+                }
+            } else {
+                alert("삭제할 데이터를 선택하세요.");
+            }
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         });
         
         // Regist UI Components Event
@@ -378,7 +463,8 @@
             this.Static06.addEventHandler("onclick",this.Static06_onclick,this);
             this.com_Month00.addEventHandler("onitemchanged",this.com_Month_onitemchanged,this);
             this.cmb_SearType.addEventHandler("onitemchanged",this.cmb_SearType_onitemchanged,this);
-            this.grd_CodeMst.addEventHandler("oncelldblclick",this.grd_Pay_oncelldblclick,this);
+            this.btn_Delete.addEventHandler("onclick",this.btn_Delete_onclick,this);
+            this.grd_CodeMst.addEventHandler("onheadclick",this.grd_CodeMst_onheadclick,this);
         };
         this.loadIncludeScript("Form_UpdatePay.xfdl");
         this.loadPreloadList();

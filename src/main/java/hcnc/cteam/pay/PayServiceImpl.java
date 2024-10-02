@@ -26,6 +26,19 @@ public class PayServiceImpl implements PayService {  // abstract 제거
         payMapper.updatePayEtc(payDTO);  // Mapper를 통해 DB에 수정된 값 저장
 
     }
+    @Override
+    public void deletePay(PayDTO payDTO) {
+        payMapper.deletePay(payDTO);
+
+		
+	}
+
+    
 }
-   
+		
+	
+
+		
+
+
 

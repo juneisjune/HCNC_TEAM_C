@@ -3,6 +3,8 @@ package hcnc.cteam.pay;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 
 @Mapper
@@ -13,12 +15,8 @@ public interface PayMapper {
 
     void updatePayEtc(PayDTO payDTO);  // DB에 수정된 값 반영하는 쿼리
 
-
+    void deletePay(PayDTO payDTO);
 	
 
-	
 }
-
-
-
 

@@ -1,16 +1,16 @@
 package hcnc.cteam.pay;
 
 public class PayDTO {
-    private String empCode;        // 사번
+	private String empCode;        // 사번
     private String name;           // 이름
     private String depName;        // 부서명
     private String assignName;     // 직책명
     private int payYear;           // 급여년도
     private int payMonth;          // 급여월
-    private int payAmount;         // 지급액 (원래 금액, 변경 없음)
+    private int actualPay;         // 지급액 (원래 금액, 변경 없음)
     private String etc;            // 수정된 금액 (etc에 반영)
-
-    // Getters and Setters
+    private String chk; 
+    
     public String getEmpCode() {
         return empCode;
     }
@@ -59,12 +59,12 @@ public class PayDTO {
         this.assignName = assignName;
     }
 
-    public int getPayAmount() {
-        return payAmount;
+    public int getActualPay() {
+        return actualPay;
     }
 
-    public void setPayAmount(int payAmount) {
-        this.payAmount = payAmount;
+    public void setActualPay(int actualPay) {
+        this.actualPay = actualPay;
     }
 
     public String getEtc() {
@@ -74,5 +74,19 @@ public class PayDTO {
     public void setEtc(String etc) {
         this.etc = etc;
     }
-}
+
+    public String getChk() {
+        return chk;
+    }
+
+    public void setChk(String chk) {
+        this.chk = chk;
+		
+	}
+
+
+	}
+
+
+
 
