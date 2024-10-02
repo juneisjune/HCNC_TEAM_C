@@ -214,7 +214,7 @@
 
             //console.log(this.ds_login.saveXML());  // DataSet 내용 확인
 
-            var strSvcId = "NexaloginS";
+            var strSvcId = "Nexalogin";
             var strSvcUrl = "svc::Nexalogin.do";
             var inData = "ds_login=ds_login";
             var outData = "ds_userInfo=ds_userInfo";  // 서버로부터 받아온 데이터를 받을 데이터셋
@@ -223,6 +223,8 @@
             var isAsync = true;
 
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+
+        	console.log(this.ds_login.saveXML());
         };
 
         // 로그인 함수 콜백
