@@ -213,7 +213,7 @@
                 if (isChecked == 1) {
                     var newRow = this.ds_EmpListCopy.addRow();
                     this.ds_EmpListCopy.copyRow(newRow, this.ds_EmpList, i);
-        			this.ds_EmpListCopy.setColumn(i,"give_date", this.ds_GiveDate.getColumn(0, "give_date"));
+        			this.ds_EmpListCopy.setColumn(i, "give_date", this.ds_GiveDate.getColumn(0, "give_date"));
                 }
             }
 

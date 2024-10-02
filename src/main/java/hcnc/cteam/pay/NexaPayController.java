@@ -35,6 +35,7 @@ public class NexaPayController {
 				
 				//월지급액
 				int month = nexaPayService.selectMonth(emp);
+				emp.put("month", month);
 
 				//직책에 따른 시급
 				int hourly = nexaPayService.selectHourly(emp);
@@ -49,7 +50,6 @@ public class NexaPayController {
 
 				// 결근
 				int absence = hourly * 8 * nexaPayService.selectAbsence(emp);
-				emp.put("month", month - absence);
 				emp.put("absence", absence);
 
 				// 지급액 = 기본급 or 일급 + 연장근로수당 + 식대 - 결근

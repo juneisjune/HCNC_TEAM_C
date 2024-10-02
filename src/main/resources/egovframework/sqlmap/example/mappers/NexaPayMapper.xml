@@ -35,8 +35,8 @@
 	<!-- 직책에 따른 monthly 조회 -->
 	<!-- 퇴사자는 기본급을 0으로 설정하고 일급으로 계산 -->
 	<select id="selectMonth" resultType="int" parameterType="java.util.Map">
-		SELECT IF(e.resign_date IS NULL
-				, a.monthly as month 
+		SELECT IF(e.resign_date IS NULL OR MONTH(resign_date) >= MONTH(CURDATE())
+				, a.monthly 
 				, (SELECT	
 					(SELECT COUNT(*)
 						FROM attendance a JOIN att_code ac 
