@@ -2,6 +2,7 @@
 <FDL version="2.1">
   <Form id="Form_Left" width="180" height="670" titletext="Form_Left">
     <Layouts>
+
       <Layout width="180" height="670" screenid="">
         <Grid id="grid_LeftMenu" taborder="0" left="0" top="0" width="180" height="670" treeinitstatus="collapse,null" treeusecheckbox="false" binddataset="ds_Left" oncellclick="grid_LeftMenu_oncellclick" cssclass="grd_LF_treeMenu" scrolltype="both">
           <Formats>
@@ -18,6 +19,7 @@
             </Format>
           </Formats>
         </Grid>
+
       </Layout>
     </Layouts>
     <Objects>

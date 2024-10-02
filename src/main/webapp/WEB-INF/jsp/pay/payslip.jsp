@@ -47,8 +47,8 @@
 	        <tr>
 	            <th class="section-header">성명</th>
 	            <td>${emp.name}</td>
-	            <th class="section-header">생년월일</th>
-	            <td>${emp.birth}</td>
+	            <th class="section-header">입사일</th>
+	            <td>${emp.joinDate}</td>
 	        </tr>
 	        <tr>
 	            <th class="section-header">부서</th>
@@ -64,7 +64,7 @@
 	        </tr>
 	        <tr>
 	            <td>기본급</td>
-	            <td style="text-align: right;"><fmt:formatNumber value="${monthly}" type="number" groupingUsed="true"/>원</td>
+	            <td style="text-align: right;"><fmt:formatNumber value="${myPay.month - myPay.absence}" type="number" groupingUsed="true"/>원</td>
 	            <td>소득세</td>
 	            <td style="text-align: right;"><fmt:formatNumber value="${myPay.incomeTax}" type="number" groupingUsed="true"/>원</td>
 	        </tr>

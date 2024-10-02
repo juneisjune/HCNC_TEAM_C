@@ -10,7 +10,9 @@ public class PayEmpDTO {
 	private String depName;
 	private String id;
 	private String name;
-	private Date birth;
+	private Date joinDate;
+	private Date resignDate;
+	private String account;
 	
 	public int getEmpCode() {
 		return empCode;
@@ -54,11 +56,27 @@ public class PayEmpDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirth() {
-		return birth;
+	
+	public Date getJoinDate() {
+		return joinDate;
 	}
-	public void setBirth(Date birth) {
-		this.birth = birth;
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
 	}
+	
+	public Date getResignDate() {
+		return resignDate;
+	}
+	public void setResignDate(Date resignDate) {
+		this.resignDate = resignDate;
+	}
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	
+	
 
 }

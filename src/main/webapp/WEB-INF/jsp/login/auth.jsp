@@ -95,7 +95,7 @@
 <body>
  	<%@ include file="/WEB-INF/jsp/header.jsp" %> 
     <form id="auth_form" method="post">
-    <input type="text" id="hiddenAuthKey" >
+    <input type="hidden" id="hiddenAuthKey" >
     <input type="hidden" value="${email}" id="email" >
         <table>
             <caption><h1>로그인 2단계 인증</h1></caption>

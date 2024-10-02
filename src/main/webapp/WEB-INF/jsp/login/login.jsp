@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,10 +55,10 @@
 					
 					success : function(result){
 						if(result == "ok") {
-							location.href = "/pay/searchPay.do";
+							location.href = "/viewAuth.do";
 							
 						} else {
-							alert("아이디 또는 비밀번호를 확인하세요.");
+							alert("잘못된 아이디 또는 비밀번호입니다.");
 						}
 					},
 					error : function(xhr, status, error) {
@@ -71,10 +72,9 @@
 				
 			});
 			
+			
+			
 		});
-		
-		
-		 
 </script>
 </head>
 <body>
@@ -100,4 +100,16 @@
      </form>    
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>           
 </body>
+<script>
+function showAlerts() {        
+    var successMsg = '<c:out value="${successMsg}" />';
+    
+    if (successMsg) {
+        alert(successMsg);
+    }
+    
+}
+
+window.onload = showAlerts;
+</script>
 </html>
