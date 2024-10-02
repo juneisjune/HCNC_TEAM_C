@@ -18,7 +18,7 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("ds_AttenList", this);
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"workDate\" type=\"DATE\" size=\"256\"/><Column id=\"attenType\" type=\"STRING\" size=\"256\"/><Column id=\"workStart\" type=\"STRING\" size=\"256\"/><Column id=\"workEnd\" type=\"STRING\" size=\"256\"/><Column id=\"workOver\" type=\"INT\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"workDate\" type=\"STRING\" size=\"256\"/><Column id=\"attenType\" type=\"STRING\" size=\"256\"/><Column id=\"workStart\" type=\"STRING\" size=\"256\"/><Column id=\"workEnd\" type=\"STRING\" size=\"256\"/><Column id=\"workOver\" type=\"INT\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -32,13 +32,23 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Title","15","15","350","50",null,null,null,null,null,null,this);
-            obj.set_taborder("0");
-            obj.set_text("직원 출/퇴근 기록 관리");
-            obj.set_font("32px/normal \"Gulim\"");
+            obj = new GroupBox("GroupBox_Search","440","90","820","60",null,null,null,null,null,null,this);
+            obj.set_taborder("11");
+            obj.set_text("검색");
+            obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_visible("true");
+            obj.set_opacity("1");
+            obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearchType","450","90","100","30",null,null,null,null,null,null,this);
+            obj = new Static("sta_Title","15","15","350","50",null,null,null,null,null,null,this);
+            obj.set_taborder("0");
+            obj.set_text("직원 출/퇴근 기록 관리");
+            obj.set_font("bold 32px/normal \"Gulim\",\"Arial Black\"");
+            obj.set_textAlign("left");
+            this.addChild(obj.name, obj);
+
+            obj = new Combo("cmb_SearchType","450","110","100","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_innerdataset("ds_SearchType");
             obj.set_codecolumn("Value");
@@ -48,46 +58,47 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_SearchWord","570","90","180","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_SearchWord","559","110","180","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_Start","770","90","150","30",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_Start","759","110","150","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_End","960","90","150","30",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_End","949","110","150","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","1120","90","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","1109","110","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
-            obj.set_text("검색");
+            obj.set_text("  검색");
+            obj.set_icon("url(\'imagerc::img_WF_search01.png\')");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static01","930","90","20","30",null,null,null,null,null,null,this);
+            obj = new Static("Static01","919","110","20","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("~");
             obj.set_font("24px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grid_Atten","30","130","1240","460",null,null,null,null,null,null,this);
+            obj = new Grid("grid_Atten","20","160","1240","460",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_binddataset("ds_AttenList");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"120\"/><Column size=\"130\"/><Column size=\"120\"/><Column size=\"160\"/><Column size=\"240\"/><Column size=\"130\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"138\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"부서명\"/><Cell col=\"4\" text=\"근무 일자\"/><Cell col=\"5\" text=\"근무 형태\"/><Cell col=\"6\" text=\"출근 시간\"/><Cell col=\"7\" text=\"퇴근 시간\"/><Cell col=\"8\" text=\"초과 근무 시간\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:workDate\" calendardateformat=\"yyyy년 MM월 dd일\" displaytype=\"date\"/><Cell col=\"5\" text=\"bind:attenType\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:workStart\" textAlign=\"center\" displaytype=\"normal\"/><Cell col=\"7\" text=\"bind:workEnd\" textAlign=\"center\"/><Cell col=\"8\" text=\"bind:workOver\" textAlign=\"center\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"120\"/><Column size=\"130\"/><Column size=\"120\"/><Column size=\"160\"/><Column size=\"240\"/><Column size=\"130\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"138\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"부서명\"/><Cell col=\"4\" text=\"근무 일자\"/><Cell col=\"5\" text=\"근무 형태\"/><Cell col=\"6\" text=\"출근 시간\"/><Cell col=\"7\" text=\"퇴근 시간\"/><Cell col=\"8\" text=\"초과 근무 시간\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:workDate\" calendardateformat=\"yyyy년 MM월 dd일\" displaytype=\"date\"/><Cell col=\"5\" text=\"bind:attenType\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:workStart\" textAlign=\"center\" displaytype=\"normal\"/><Cell col=\"7\" text=\"bind:workEnd\" textAlign=\"center\"/><Cell col=\"8\" text=\"bind:workOver\" textAlign=\"center\" maskeditformat=\"##0.0\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_RegisterAtten","1180","600","80","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_RegisterAtten","1180","630","80","40",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_text("+ 등록");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_SearchReset","1200","90","60","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_SearchReset","1189","110","60","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("초기화");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_EditAtten","1080","600","80","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_EditAtten","1080","630","80","40",null,null,null,null,null,null,this);
             obj.set_taborder("10");
             obj.set_text("수정");
             this.addChild(obj.name, obj);
@@ -125,6 +136,7 @@
         
         // User Script
         this.registerScript("Form_Attendance.xfdl", function() {
+
         this.btn_Search_onclick = function(obj,e)
         {
         	this.fnSearch();
@@ -267,8 +279,6 @@
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Form_Attendance_onload,this);
-            this.cmb_SearchType.addEventHandler("onitemchanged",this.cmb_SearchType_onitemchanged,this);
-            this.edt_SearchWord.addEventHandler("onchanged",this.edt_SearchWord_onchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grid_Atten.addEventHandler("oncelldblclick",this.grid_Atten_oncelldblclick,this);
             this.btn_RegisterAtten.addEventHandler("onclick",this.btn_RegisterAtten_onclick,this);

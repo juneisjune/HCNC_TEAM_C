@@ -38,7 +38,7 @@
 
 
             obj = new Dataset("ds_Pay", this);
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"payYear\" type=\"STRING\" size=\"256\"/><Column id=\"payMonth\" type=\"STRING\" size=\"256\"/><Column id=\"actualPay\" type=\"STRING\" size=\"256\"/><Column id=\"etc\" type=\"STRING\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"payYear\" type=\"STRING\" size=\"256\"/><Column id=\"payMonth\" type=\"STRING\" size=\"256\"/><Column id=\"actualPay\" type=\"STRING\" size=\"256\"/><Column id=\"etc\" type=\"INT\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -347,6 +347,13 @@
                 return;
             }
 
+            // 입력된 수정액이 숫자인지 확인
+            modPay = parseInt(modPay, 10);
+            if (isNaN(modPay)) {
+                this.alert("수정액은 숫자여야 합니다.");
+                return;
+            }
+
             // 선택한 행을 찾음 (사번과 이름 기준으로 그리드에서 찾음)
             var selectedRow = this.ds_Pay.findRowExpr("empCode == '" + empCode + "' && name == '" + name + "'");
 
@@ -355,12 +362,12 @@
                 return;
             }
 
-            // 지급총액(pay_amount)와 수정액(etc) 가져오기
+            // 지급총액(actualPay)와 수정액(etc) 가져오기
             var payAmount = this.ds_Pay.getColumn(selectedRow, "actualPay");  // 지급액
-            var currentEtc = this.ds_Pay.getColumn(selectedRow, "etc");      // 기존 수정액
+            var currentEtc = this.ds_Pay.getColumn(selectedRow, "etc");       // 기존 수정액
 
             // 수정액 반영 (기존 지급총액에 입력한 수정액을 더하거나 빼기)
-            var newPayAmount = payAmount + parseInt(modPay);
+            var newPayAmount = payAmount + modPay;
 
             // 새로운 지급총액 반영
             this.ds_Pay.setColumn(selectedRow, "actualPay", newPayAmount);  // 지급액 업데이트
@@ -394,6 +401,7 @@
                     break;
             }
         };
+
 
 
 

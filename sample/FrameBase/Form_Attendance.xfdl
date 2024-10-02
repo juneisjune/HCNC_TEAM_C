@@ -3,14 +3,15 @@
   <Form id="Form_Attendance" width="1280" height="720" titletext="출/퇴근 목록" onload="Form_Attendance_onload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
-        <Static id="Title" taborder="0" text="직원 출/퇴근 기록 관리" left="15" top="15" width="350" height="50" font="32px/normal &quot;Gulim&quot;"/>
-        <Combo id="cmb_SearchType" taborder="1" text="전체" left="450" top="90" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL" onitemchanged="cmb_SearchType_onitemchanged"/>
-        <Edit id="edt_SearchWord" taborder="2" left="570" top="90" width="180" height="30" onchanged="edt_SearchWord_onchanged"/>
-        <Calendar id="cal_Start" taborder="3" left="770" top="90" width="150" height="30"/>
-        <Calendar id="cal_End" taborder="4" left="960" top="90" width="150" height="30"/>
-        <Button id="btn_Search" taborder="5" text="검색" left="1120" top="90" width="70" height="30" onclick="btn_Search_onclick"/>
-        <Static id="Static01" taborder="6" text="~" left="930" top="90" width="20" height="30" font="24px/normal &quot;Gulim&quot;"/>
-        <Grid id="grid_Atten" taborder="7" left="30" top="130" width="1240" height="460" binddataset="ds_AttenList" oncelldblclick="grid_Atten_oncelldblclick">
+		<GroupBox id="GroupBox_Search" taborder="11" text="검색" left="440" top="90" width="820" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
+        <Static id="sta_Title" taborder="0" text="직원 출/퇴근 기록 관리" left="15" top="15" width="350" height="50" font="bold 32px/normal &quot;Gulim&quot;,&quot;Arial Black&quot;" textAlign="left"/>
+        <Combo id="cmb_SearchType" taborder="1" text="전체" left="450" top="110" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL"/>
+        <Edit id="edt_SearchWord" taborder="2" left="559" top="110" width="180" height="30"/>
+        <Calendar id="cal_Start" taborder="3" left="759" top="110" width="150" height="30"/>
+        <Calendar id="cal_End" taborder="4" left="949" top="110" width="150" height="30"/>
+        <Button id="btn_Search" taborder="5" text="  검색" left="1109" top="110" width="70" height="30" onclick="btn_Search_onclick" icon="url('imagerc::img_WF_search01.png')"/>
+        <Static id="Static01" taborder="6" text="~" left="919" top="110" width="20" height="30" font="24px/normal &quot;Gulim&quot;"/>
+        <Grid id="grid_Atten" taborder="7" left="20" top="160" width="1240" height="460" binddataset="ds_AttenList" oncelldblclick="grid_Atten_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -48,17 +49,18 @@
                 <Cell col="5" text="bind:attenType" textAlign="center"/>
                 <Cell col="6" text="bind:workStart" textAlign="center" displaytype="normal"/>
                 <Cell col="7" text="bind:workEnd" textAlign="center"/>
-                <Cell col="8" text="bind:workOver" textAlign="center"/>
+                <Cell col="8" text="bind:workOver" textAlign="center" maskeditformat="##0.0"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_RegisterAtten" taborder="8" text="+ 등록" left="1180" top="600" width="80" height="40" onclick="btn_RegisterAtten_onclick"/>
-        <Button id="btn_SearchReset" taborder="9" text="초기화" left="1200" top="90" width="60" height="30" onclick="btn_SearchReset_onclick"/>
-        <Button id="btn_EditAtten" taborder="10" text="수정" left="1080" top="600" width="80" height="40" onclick="btn_EditAtten_onclick"/>
+        <Button id="btn_RegisterAtten" taborder="8" text="+ 등록" left="1180" top="630" width="80" height="40" onclick="btn_RegisterAtten_onclick"/>
+        <Button id="btn_SearchReset" taborder="9" text="초기화" left="1189" top="110" width="60" height="30" onclick="btn_SearchReset_onclick"/>
+        <Button id="btn_EditAtten" taborder="10" text="수정" left="1080" top="630" width="80" height="40" onclick="btn_EditAtten_onclick"/>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+    <Script type="xscript5.1"><![CDATA[
+this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.fnSearch();
 };
@@ -201,7 +203,7 @@ this.showRegisterAtten = function (objParam)
           <Column id="name" type="STRING" size="256"/>
           <Column id="assignName" type="STRING" size="256"/>
           <Column id="depName" type="STRING" size="256"/>
-          <Column id="workDate" type="DATE" size="256"/>
+          <Column id="workDate" type="STRING" size="256"/>
           <Column id="attenType" type="STRING" size="256"/>
           <Column id="workStart" type="STRING" size="256"/>
           <Column id="workEnd" type="STRING" size="256"/>
@@ -254,5 +256,6 @@ this.showRegisterAtten = function (objParam)
       <BindItem id="item2" compid="cal_Start" propid="value" datasetid="ds_Search" columnid="START_DATE"/>
       <BindItem id="item3" compid="cal_End" propid="value" datasetid="ds_Search" columnid="END_DATE"/>
     </Bind>
+    <InitValue/>
   </Form>
 </FDL>

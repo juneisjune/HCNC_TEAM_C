@@ -1,5 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <AppVariables version="2.0">
-  <Datasets/>
+  <Datasets>
+    <Dataset id="ds_userInfo">
+      <ColumnInfo>
+        <Column id="name" type="STRING" size="256"/>
+        <Column id="emp_code" type="STRING" size="256"/>
+        <Column id="dep_code" type="STRING" size="256"/>
+        <Column id="assign_code" type="STRING" size="256"/>
+        <Column id="email" type="STRING" size="256"/>
+      </ColumnInfo>
+      <Rows>
+        <Row/>
+      </Rows>
+    </Dataset>
+  </Datasets>
   <Variables/>
+  <DataObjects/>
 </AppVariables>

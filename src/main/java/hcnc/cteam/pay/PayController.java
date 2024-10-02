@@ -1,108 +1,163 @@
 package hcnc.cteam.pay;
 
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.transaction.Transactional;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.nexacro.uiadapter17.spring.core.annotation.ParamDataSet;
-import com.nexacro.uiadapter17.spring.core.data.NexacroResult;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
+import hcnc.cteam.login.LoginDTO;
+import oracle.sql.DATE;
 
 @Controller
+@RequestMapping("/pay")
 public class PayController {
 
-    private Logger logger = LoggerFactory.getLogger(PayController.class);
-    
-    @Resource(name="txManager")
-    PlatformTransactionManager transactionManager;
-    
-    @Autowired
-    private PayService payService;  // 소문자로 변수명 유지
-    
-    @RequestMapping(value = "/selectPayList.do")
-    public NexacroResult nexaSearchPay(@ParamDataSet(name = "ds_Search", required = false) Map<String, Object> param) {
-        NexacroResult result = new NexacroResult();
-        try {
-            // 서비스에서 데이터를 가져오며 'chk' 컬럼을 기본값 '0'으로 설정
-            List<PayDTO> ds_Pay = payService.nexaGetPayListByCondition(param);
+	private static final RequestMethod[] POST = null;
 
-            // 조회된 데이터에 대해 chk 기본값 설정
-            for (PayDTO pay : ds_Pay) {
-                if (pay.getClass() == null) {
-                    pay.setChk("0");  // 체크박스 기본값을 '0'으로 설정 (해제 상태)
-                }
-            }
+	@Resource(name = "payService")
+	private PayService payService;
+	
+	//최근 급여명세서 조회 
+	@RequestMapping("/viewPayslip.do")
+	public String viewPayslip(ModelMap model, HttpServletRequest request) throws Exception {
+		LocalDate currentDate = LocalDate.now();
+		
+		//신년 1월이면 작년 12월 급여 명세서를 조회함
+		int payMonth = (currentDate.getMonthValue() - 1) == 0 ? 12 : currentDate.getMonthValue() - 1;
+		int payYear;
+		if(payMonth == 12) {
+			payYear = currentDate.getYear() - 1;
+		} else {
+			payYear = currentDate.getYear();
+		}
+		
+		HttpSession session = request.getSession();
+		int empCode = (int) session.getAttribute("userCode");	
 
-            result.addDataSet("ds_Pay", ds_Pay);  // Nexacro에 데이터셋 추가
-        } catch (Exception ee) {
-            logger.error("급여 목록 조회 중 오류 발생: ", ee);
-            result.setErrorCode(-1);
-            result.setErrorMsg("급여 조회 오류 발생");
-        }
-        return result;
-    }
-    
-    @Transactional(rollbackOn = Exception.class)
-    @RequestMapping(value = "/updatePayEtc.do")
-    public NexacroResult updatePayEtc(@ParamDataSet(name = "ds_Pay") List<PayDTO> ds_Pay) {
-        NexacroResult result = new NexacroResult();
-        try {
-            for (PayDTO payDTO : ds_Pay) {
-                // 로그 추가
-                logger.info("수정 요청 - empCode: {}, payYear: {}, payMonth: {}, etc: {}");
-                
-                // 필수 값 확인
-                if (payDTO.getEmpCode() == null || payDTO.getPayYear() == 0 || payDTO.getPayMonth() == 0 || payDTO.getEtc() == null) {
-                    result.setErrorCode(-1);
-                    String missingField = (payDTO.getEmpCode() == null) ? "사번" : (payDTO.getPayYear() == 0) ? "급여년도" : (payDTO.getPayMonth() == 0) ? "급여월" : "수정액";
-                    result.setErrorMsg(missingField + "이(가) 누락되었습니다.");
-                    return result;
-                }
+		PaySearchDTO paySearchDTO = new PaySearchDTO(empCode, payYear, payMonth);
 
-                // 수정 처리
-                payService.updatePayEtc(payDTO);
-            }
-            result.setErrorCode(0);
-            result.setErrorMsg("수정이 성공적으로 완료되었습니다.");
-        } catch (Exception e) {
-            logger.error("수정 중 오류 발생: ", e);
-            result.setErrorCode(-1);
-            result.setErrorMsg("데이터베이스 오류 또는 잘못된 데이터입니다.");
-        }
-        return result;
-    }
-    
-    @RequestMapping(value = "/deletePayData.do")
-    public NexacroResult deletePayData(@ParamDataSet(name = "ds_Pay") List<PayDTO> ds_Pay) {
-        NexacroResult result = new NexacroResult();
-        try {
-            for (PayDTO payDTO : ds_Pay) {
-                if ("1".equals(payDTO.getChk())) {  // 체크된 데이터만 삭제
-                    payService.deletePay(payDTO);  // PayService에서 삭제 처리
-                }
-            }
-            result.setErrorCode(0);
-            result.setErrorMsg("선택된 데이터가 삭제되었습니다.");
-        } catch (Exception e) {
-            result.setErrorCode(-1);
-            result.setErrorMsg("삭제 중 오류 발생: " + e.getMessage());
-        }
-        return result;
-    }
-    
-    
+		PayDTO myPay = payService.selectMyPay(paySearchDTO);
+		model.addAttribute("myPay", myPay);
 
+		PayEmpDTO emp = payService.selectEmp(empCode);
+		model.addAttribute("emp", emp);
 
-   
+		Integer minus = payService.selectMinus(paySearchDTO);
+		model.addAttribute("minus", minus);
+
+		Integer totalDay = payService.selectTotalDay(paySearchDTO);
+		model.addAttribute("totalDay", totalDay);
+
+		Integer totalTime = payService.selectTotalTime(paySearchDTO);
+		model.addAttribute("totalTime", totalTime);
+
+		Double overTime = payService.selectWorkOver(paySearchDTO);
+		model.addAttribute("overTime", overTime);
+
+		return "pay/payslip";
+	}
+
+	//해당 년,월 급여 조회
+	@RequestMapping("/viewPayslip/{payYear}/{payMonth}.do")
+	public String viewPayMonth(@PathVariable int payYear, @PathVariable int payMonth, ModelMap model, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		int empCode = (int) session.getAttribute("userCode");	
+		
+		PaySearchDTO paySearchDTO = new PaySearchDTO(empCode, payYear, payMonth);
+
+		PayDTO myPay = payService.selectMyPay(paySearchDTO);
+		model.addAttribute("myPay", myPay);
+
+		PayEmpDTO emp = payService.selectEmp(empCode);
+		model.addAttribute("emp", emp);
+
+		Integer minus = payService.selectMinus(paySearchDTO);
+		model.addAttribute("minus", minus);
+
+		Integer totalDay = payService.selectTotalDay(paySearchDTO);
+		model.addAttribute("totalDay", totalDay);
+
+		Integer totalTime = payService.selectTotalTime(paySearchDTO);
+		model.addAttribute("totalTime", totalTime);
+
+		Double overTime = payService.selectWorkOver(paySearchDTO);
+		overTime = (overTime != null) ? overTime : 0.0;
+		model.addAttribute("overTime", overTime);
+
+		return "pay/payslip";
+	}
+
+	//해당 직원 급여 내역 모두 조회
+	@RequestMapping("/searchPay.do")
+	public String searchPayView(ModelMap model, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		int empCode = (int) session.getAttribute("userCode");	
+		
+		PayEmpDTO emp = payService.selectEmp(empCode);
+		
+		model.addAttribute("emp", emp);
+
+		List<PayDTO> payList = payService.selectPayList(emp.getEmpCode());
+
+		if (payList != null && !payList.isEmpty()) {
+			model.addAttribute("payList", payList);
+		}
+
+		return "pay/searchPay";
+	}
+
+	//해당 기간 급여 조회 
+	@RequestMapping(value = "/searchPay.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String searchPay1(PaySearchDTO paySearchDTO, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		int empCode = (int) session.getAttribute("userCode");	
+		paySearchDTO.setEmpCode(empCode);
+
+		String result = "";
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		try {
+			List<PayDTO> searchList = payService.selectPeriod(paySearchDTO);
+
+			map.put("msg", "ok");
+			map.put("searchList", searchList);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			result = new ObjectMapper().writeValueAsString(map);
+		} catch (Exception e) {
+			result = "{'msg':'error'}";
+		}
+
+		return result;
+	}
+
 
 }
 

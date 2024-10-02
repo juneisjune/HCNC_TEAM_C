@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "ComComp",
   "version": "17.1.3.1600",
   "description": "nexacro platform 17 Unified Framework Library",
@@ -12,8 +12,8 @@
     "ComComp/Edit.js",
     "ComComp/MaskEdit.js",
     "ComComp/TextArea.js",
-    "ComComp/lang/ko/ime.js",
-    "ComComp/lang/ja/ime.js",
+    "ComComp/lang/ko/ime.js",    
+    "ComComp/lang/ja/ime.js",    
     "ComComp/ImageViewer.js",
     "ComComp/CheckBox.js",
     "ComComp/Radio.js",
@@ -207,4 +207,3 @@
     "ComComp/Design/DesignVirtualFile.js"
   ]
 }
-

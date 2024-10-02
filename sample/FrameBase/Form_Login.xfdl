@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Login" width="1280" height="720" titletext="New Form" color="#000000">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="650" top="270" width="150" height="140" onclick="btn_Login_onclick"/>
+        <Edit id="edt_AuthCheck" taborder="1" left="430" top="430" width="200" height="60"/>
+        <Button id="btn_AuthCheck" taborder="2" text="인증하기" left="650" top="430" width="150" height="60" onclick="btn_AuthCheck_onclick"/>
+        <Static id="sta_AuthCheck" taborder="3" text="인증번호 입력 :" left="310" top="430" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_Id" taborder="4" text="아이디 입력 :" left="325" top="270" width="90" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_Password" taborder="5" text="비밀번호 입력 :" left="310" top="350" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Edit id="edt_Id" taborder="6" left="430" top="270" width="200" height="60"/>
+        <Edit id="edt_Password" taborder="7" left="430" top="350" width="200" height="60"/>
+        <Button id="btn_Pass" taborder="8" text="넘어가기" left="84" top="256" width="136" height="124" onclick="btn_Pass_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[// 인증번호 발송(로그인) 버튼
+this.btn_Login_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo) {
+
+    var userId = this.ds_login.getColumn(0, "user_id");
+    var password = this.ds_login.getColumn(0, "password");
+
+    // 아이디 유효성 검사
+    if(userId == null || userId == '' || typeof userId === 'undefined') {
+        alert("아이디를 입력하세요.");
+        return;
+    }
+
+    // 비밀번호 유효성 검사
+    if(password == null || password == '' || typeof password === 'undefined') {
+        alert("비밀번호를 입력하세요.");
+        return;
+    }
+
+    // 로그인 함수 호출
+    this.fnLogin();
+};
+
+
+// 인증번호 발송 함수
+this.fn_Auth = function() {
+
+    var email = nexacro.getApplication().ds_userInfo.getColumn(0, "email");
+    this.ds_email.setColumn(0, "email", email);  // 데이터셋에 이메일 설정
+
+    var strSvcId    = "NexaAuth";
+    var strSvcUrl   = "svc::NexaAuth.do";
+    var inData      = "ds_email=ds_email";  // 입력 데이터셋
+    var outData     = "ds_Auth=ds_Auth";  // 출력 데이터셋 (서버에서 응답받을 데이터)
+    var strArg      = "";  // 추가적인 파라미터 (필요시 사용)
+    var callBackFnc = "fnCallback";  // 콜백 함수 이름
+    var isAsync     = true;  // 비동기 설정
+
+	console.log(this.ds_email.getColumn(0, "email"));
+
+    // 서버와의 트랜잭션 호출
+    this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+// 서버 응답 처리 콜백 함수
+this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
+    // 통신 성공 시 처리
+    if (nErrorCode == 0) {
+        console.log("Success: " + strSvcId);
+		
+		alert("인증 번호가 발송되었습니다.");
+
+        // 서버에서 넘어온 인증 키(authKey)를 확인
+        var authKey = this.ds_Auth.getColumn(0, "authKey");
+        console.log("Received AuthKey: " + authKey);
+        
+    } else {
+        // 통신 실패 시 에러 처리
+        console.log("Error: " + strErrorMsg);
+        alert("Error occurred: " + strErrorMsg);
+    }
+};
+
+// 로그인 성공 시 메인 화면으로 전환
+this.fn_LoginSuccess = function() {
+	
+	//로그인 성공 시에 workFrame 첫 화면 
+	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
+	
+	//Top, HFrameSet00, Login 3개 영역을 조정하여 로그인 화면이 보이지 않도록 설정
+    nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("65,*,0");
+	
+	//로그인 폼의 edt 모두 초기화
+	this.ds_login.setColumn(0, "user_id", '');
+	this.ds_login.setColumn(0, "password", '');
+	this.ds_Auth.setColumn(0, "authKey", '');
+	this.ds_AuthCheck.setColumn(0, "authCheck", '');
+}
+
+//인증하기
+this.btn_AuthCheck_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.ds_Auth.getColumn(0, "authKey") == '' || this.ds_Auth.getColumn(0, "authKey") == null || this.ds_Auth.getColumn(0, "authKey") == 'undefined') {
+		alert("인증번호를 먼저 발급받으세요.");
+		return;
+	}
+
+	if(this.ds_Auth.getColumn(0, "authKey") != this.ds_AuthCheck.getColumn(0, "authCheck")) {
+		alert("인증번호가 일치하지 않습니다.");
+		return;
+	}
+	
+	if(this.ds_Auth.getColumn(0, "authKey") == this.ds_AuthCheck.getColumn(0, "authCheck")) {
+		alert("인증번호가 확인되었습니다.");
+		this.fn_LoginSuccess();
+	}
+};
+
+// 로그인 함수
+this.fnLogin = function() {
+
+    //console.log(this.ds_login.saveXML());  // DataSet 내용 확인
+    
+    var strSvcId = "NexaloginS";
+    var strSvcUrl = "svc::Nexalogin.do";
+    var inData = "ds_login=ds_login";
+    var outData = "ds_userInfo=ds_userInfo";  // 서버로부터 받아온 데이터를 받을 데이터셋
+    var strArg = "";
+    var callBackFnc = "fnLoginCallback";  // 콜백 함수
+    var isAsync = true;
+    
+    this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+// 로그인 함수 콜백
+this.fnLoginCallback = function(strSvcId, nErrorCode, strErrorMsg) {
+   objApp=nexacro.getApplication();
+   
+    if (nErrorCode < 0) {
+        alert("로그인 실패");
+    }
+    else {
+      
+      // 저장된 값 확인하는 콘솔 로그
+//       console.log("값 확인 : " + nexacro.getApplication().ds_userInfo.saveXML());
+//       var row = nexacro.getApplication().ds_userInfo.rowposition;
+//       console.log("현재 rowposition: " + row);
+//       //var row = 0;  // 첫 번째 행
+//       console.log(nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
+//       console.log(nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code"));
+		
+	  // 인증번호 발송
+	  this.fn_Auth();
+		
+      
+      
+    }
+};
+
+//임시로 넘어가기 버튼
+this.btn_Pass_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_LoginSuccess()
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_login">
+        <ColumnInfo>
+          <Column id="user_id" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_email">
+        <ColumnInfo>
+          <Column id="email" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Auth">
+        <ColumnInfo>
+          <Column id="authKey" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_AuthCheck">
+        <ColumnInfo>
+          <Column id="authCheck" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edt_AuthCheck" propid="value" datasetid="ds_AuthCheck" columnid="authCheck"/>
+      <BindItem id="item1" compid="edt_Id" propid="value" datasetid="ds_login" columnid="user_id"/>
+      <BindItem id="item2" compid="edt_Password" propid="value" datasetid="ds_login" columnid="password"/>
+    </Bind>
+  </Form>
+</FDL>

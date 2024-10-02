@@ -45,10 +45,17 @@
 		</property>
 	</bean>
 	
+	<!-- MapperConfigurer setup for MyBatis Database Layer with @Mapper("deptMapper") in DeptMapper Interface -->
+ 	<bean class="egovframework.rte.psl.dataaccess.mapper.MapperConfigurer">
+		<property name="basePackage" value="hcnc" />
+	</bean>
+	
 	<bean id="antPathMater" class="org.springframework.util.AntPathMatcher" />
 	<bean id="defaultTraceHandler" class="egovframework.rte.fdl.cmmn.trace.handler.DefaultTraceHandler" />
 	 
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 	  <constructor-arg ref="dataSource" />
 	</bean>
+	
+	
 </beans>

@@ -1,6 +1,7 @@
 package hcnc.cteam.pay;
 
 import java.util.List;
+
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -8,15 +9,62 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class PayServiceImpl implements PayService {  // abstract 제거
-    private Logger logger = LoggerFactory.getLogger(PayServiceImpl.class);
+import javax.annotation.Resource;
 
-    @Autowired
-    private PayMapper payMapper;
+import org.springframework.stereotype.Service;
+
+import egovframework.rte.fdl.cmmn.EgovAbstractServiceImpl;
 
 
-    @Override
+@Service("payService")
+public class PayServiceImpl extends EgovAbstractServiceImpl implements PayService {
+	
+	 private Logger logger = LoggerFactory.getLogger(PayServiceImpl.class);
+
+	@Resource(name = "payMapper")
+	private PayMapper payMapper;
+
+	@Override
+	public PayDTO selectMyPay(PaySearchDTO paySearchDTO) throws Exception {
+		return payMapper.selectMyPay(paySearchDTO);
+	}
+
+	@Override
+	public PayEmpDTO selectEmp(int empCode) throws Exception {
+		return payMapper.selectEmp(empCode);
+	}
+
+	@Override
+	public Integer selectMinus(PaySearchDTO paySearchDTO) throws Exception {
+		return payMapper.selectMinus(paySearchDTO);
+	}
+
+	@Override
+	public Integer selectTotalDay(PaySearchDTO paySearchDTO) throws Exception {
+		return payMapper.selectTotalDay(paySearchDTO);
+	}
+	
+	@Override
+	public Integer selectTotalTime(PaySearchDTO paySearchDTO) throws Exception {
+		return payMapper.selectTotalTime(paySearchDTO);
+	}
+	
+	@Override
+	public Double selectWorkOver(PaySearchDTO paySearchDTO) throws Exception {
+		return payMapper.selectWorkOver(paySearchDTO);
+	}
+	
+	@Override
+	public List<PayDTO> selectPayList(int empCode) throws Exception {
+		return payMapper.selectPayList(empCode);
+	}
+
+	@Override
+	public List<PayDTO> selectPeriod(PaySearchDTO paySearchDTO) throws Exception {
+		return payMapper.selectPeriod(paySearchDTO);
+	}
+
+	@Override
     public List<PayDTO> nexaGetPayListByCondition(Map<String, Object> param) {
         return payMapper.nexaGetPayListByCondition(param);
     }
@@ -33,12 +81,6 @@ public class PayServiceImpl implements PayService {  // abstract 제거
 		
 	}
 
-    
-}
-		
 	
-
-		
-
-
-
+	
+}
