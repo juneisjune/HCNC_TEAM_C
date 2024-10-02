@@ -24,6 +24,22 @@ public class EmpDTO {
 	private String account;
 	private int mngCode;
 	
+	private double dayoffCnt;
+	private double remainCnt;
+	
+	
+	public double getDayoffCnt() {
+		return dayoffCnt;
+	}
+	public void setDayoffCnt(double dayoffCnt) {
+		this.dayoffCnt = dayoffCnt;
+	}
+	public double getRemainCnt() {
+		return remainCnt;
+	}
+	public void setRemainCnt(double remainCnt) {
+		this.remainCnt = remainCnt;
+	}
 	public String getAssignName() {
 		return assignName;
 	}

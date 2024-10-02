@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_HRD" width="1280" height="720" titletext="New Form" onload="Form_HRD_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00" taborder="0" text="인 사 관 리" left="56" top="13" width="722" height="67" font="bold 36px/normal &quot;Gulim&quot;" textAlign="center"/>
+        <Edit id="edt_SearchWord" taborder="1" left="164" top="104" width="504" height="44"/>
+        <Button id="btn_HrdListSearch" taborder="2" text="조회" left="678" top="103" width="100" height="44" onclick="btn_HrdListSearch_onclick"/>
+        <Grid id="grd_HrdList" taborder="3" left="28" top="160" width="750" height="460" binddataset="ds_Hrdlist" oncellclick="grd_HrdList_oncellclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="75"/>
+                <Column size="92"/>
+                <Column size="130"/>
+                <Column size="91"/>
+                <Column size="130"/>
+                <Column size="115"/>
+                <Column size="115"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사번"/>
+                <Cell col="1" text="이름"/>
+                <Cell col="2" text="부서" calendardateformat="yyyy-MM-dd" displaytype="normal"/>
+                <Cell col="3" text="직책" calendardateformat="yyyy-MM-dd"/>
+                <Cell col="4" text="부서장"/>
+                <Cell col="5" text="입사일"/>
+                <Cell col="6" text="퇴사일"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:emp_code"/>
+                <Cell col="1" text="bind:name"/>
+                <Cell col="2" calendardateformat="yyyy-MM-dd" displaytype="text" edittype="combo" calendardisplayinvalidtype="none" calendardisplaynulltype="none" calendarpopuptype="none" text="bind:dep_name" combodataset="ds_Department" combocodecol="dep_name" combodatacol="dep_name"/>
+                <Cell col="3" calendardateformat="yyyy-MM-dd" displaytype="text" text="bind:assign_name" edittype="combo" combodataset="ds_Assignment" combocodecol="assign_name" combodatacol="assign_name"/>
+                <Cell col="4" text="bind:mng_name"/>
+                <Cell col="5" text="bind:join_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date"/>
+                <Cell col="6" text="bind:resign_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date" calendardisplaynulltype="none"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Combo id="cmb_SearchType" taborder="4" left="30" top="104" width="120" height="41" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SerachType" text="전체" index="0"/>
+        <Button id="btn_Savehrd" taborder="5" text="저장" left="660" top="629" width="117" height="41" onclick="btn_Savehrd_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_SerachType">
+        <ColumnInfo>
+          <Column id="Value" type="STRING" size="256"/>
+          <Column id="Name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Value">all</Col>
+            <Col id="Name">전체</Col>
+          </Row>
+          <Row>
+            <Col id="Value">emp_code</Col>
+            <Col id="Name">사번</Col>
+          </Row>
+          <Row>
+            <Col id="Value">name</Col>
+            <Col id="Name">이름</Col>
+          </Row>
+          <Row>
+            <Col id="Value">dep_name</Col>
+            <Col id="Name">부서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Serach">
+        <ColumnInfo>
+          <Column id="SEARCH_TYPE" type="STRING" size="256"/>
+          <Column id="SEARCH_WORD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Hrdlist" oncolumnchanged="ds_Hrdlist_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="emp_code" type="INT" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="dep_name" type="STRING" size="256"/>
+          <Column id="assign_name" type="STRING" size="256"/>
+          <Column id="mng_name" type="STRING" size="256"/>
+          <Column id="join_date" type="DATE" size="256"/>
+          <Column id="resign_date" type="DATE" size="256"/>
+          <Column id="mng_code" type="INT" size="256"/>
+          <Column id="admin_name" type="STRING" size="256"/>
+          <Column id="assign_code" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_Department">
+        <ColumnInfo>
+          <Column id="dep_code" type="STRING" size="256"/>
+          <Column id="dep_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="dep_code">1</Col>
+            <Col id="dep_name">경영지원부</Col>
+          </Row>
+          <Row>
+            <Col id="dep_code">2</Col>
+            <Col id="dep_name">SI사업부</Col>
+          </Row>
+          <Row>
+            <Col id="dep_code">3</Col>
+            <Col id="dep_name">솔루션개발부</Col>
+          </Row>
+          <Row>
+            <Col id="dep_code">4</Col>
+            <Col id="dep_name">기술개발부</Col>
+          </Row>
+          <Row>
+            <Col id="dep_code">5</Col>
+            <Col id="dep_name">자동화사업부</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Assignment">
+        <ColumnInfo>
+          <Column id="assign_code" type="STRING" size="256"/>
+          <Column id="assign_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="assign_code">1</Col>
+            <Col id="assign_name">사원</Col>
+          </Row>
+          <Row>
+            <Col id="assign_code">2</Col>
+            <Col id="assign_name">대리</Col>
+          </Row>
+          <Row>
+            <Col id="assign_code">3</Col>
+            <Col id="assign_name">과장</Col>
+          </Row>
+          <Row>
+            <Col id="assign_code">4</Col>
+            <Col id="assign_name">차장</Col>
+          </Row>
+          <Row>
+            <Col id="assign_code">5</Col>
+            <Col id="assign_name">부장</Col>
+          </Row>
+          <Row>
+            <Col id="assign_code">6</Col>
+            <Col id="assign_name">이사</Col>
+          </Row>
+          <Row>
+            <Col id="assign_code">7</Col>
+            <Col id="assign_name">대표</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_UpdateHrdlist" onvaluechanged="ds_Hrdlist_onvaluechanged">
+        <ColumnInfo>
+          <Column id="emp_code" type="INT" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="dep_name" type="STRING" size="256"/>
+          <Column id="assign_name" type="STRING" size="256"/>
+          <Column id="mng_name" type="STRING" size="256"/>
+          <Column id="join_date" type="DATE" size="256"/>
+          <Column id="resign_date" type="DATE" size="256"/>
+          <Column id="mng_code" type="INT" size="256"/>
+          <Column id="admin_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edt_SearchWord" propid="value" datasetid="ds_Serach" columnid="SEARCH_WORD"/>
+      <BindItem id="item1" compid="cmb_SearchType" propid="value" datasetid="ds_Serach" columnid="SEARCH_TYPE"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[// 조회 함수
+this.fnSearchList = function(){
+	// application 변수에서 emp_code와 assign_code를 가져옴
+    
+	var loginAdminName = nexacro.getApplication().gv_name;
+	this.ds_Hrdlist.setColumn(0,"admin_name","관리나경진")
+    
+	// 컨트롤러 호출
+	var strSvcId    = "hrdList";                     // 콜백 서비스명
+	var strSvcUrl   = "svc::hrdList.do";             // 호출 URL
+	var inData      = "ds_Search=ds_Search";               // Request Dataset 파라미터 (AAA=BBB) AAA = 컨트롤러에서 받을 파라미터명, BBB = 보낼 데이터셋명
+	var outData     = "ds_Hrdlist=ds_Hrdlist";     // Response Dataset 파라미터 (AAA=BBB) AAA = 데이터를 저장할 데이터셋명, BBB = 응답받은 데이터
+	var strArg      = ""                                   // Request 문자 파라미터
+	var callBackFnc = "fn_Callback";                        // 콜백 후 실행 할 함수
+	var isAsync     = true;                                // 동기/비동기
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+	console.log(this.ds_Hrdlist);
+}
+
+this.btn_HrdListSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearchList();
+};
+
+this.Form_HRD_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_Serach.setColumn(0,"SEARCH_TYPE","all");
+	this.fnSearchList();
+};
+
+//저장 버튼
+this.btn_Savehrd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// application 변수에서 emp_code와 assign_code를 가져옴
+    
+	var loginAdminName = nexacro.getApplication().gv_name;
+	this.ds_Hrdlist.setColumn(0,"admin_name","관리나경진")
+    
+	console.log(this.changedData.saveXML());
+	
+	
+	// 컨트롤러 호출
+	var strSvcId    = "hrdListUpdate";                     // 콜백 서비스명
+	var strSvcUrl   = "svc::hrdListUpdate.do";             // 호출 URL
+	var inData      = "ds_Hrdlist=ds_Hrdlist";               // Request Dataset 파라미터 (AAA=BBB) AAA = 컨트롤러에서 받을 파라미터명, BBB = 보낼 데이터셋명
+	var outData     = "";     // Response Dataset 파라미터 (AAA=BBB) AAA = 데이터를 저장할 데이터셋명, BBB = 응답받은 데이터
+	var strArg      = ""                                   // Request 문자 파라미터
+	var callBackFnc = "fn_Callback";                        // 콜백 후 실행 할 함수
+	var isAsync     = true;                                // 동기/비동기
+	if(confirm("변경사항 저장하시겠습니까 ?")){
+		this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+	}
+};
+
+
+
+this.grd_HrdList_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	
+};
+
+this.ds_Hrdlist_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

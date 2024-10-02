@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Login" width="1280" height="720" titletext="New Form">
+  <Form id="Form_Login" width="1280" height="720" titletext="New Form" color="#000000">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
         <Button id="btn_Login" taborder="0" text="인증번호 발송" left="650" top="270" width="150" height="140" onclick="btn_Login_onclick"/>
@@ -83,7 +83,7 @@ this.fn_LoginSuccess = function() {
 	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
 	
 	//Top, HFrameSet00, Login 3개 영역을 조정하여 로그인 화면이 보이지 않도록 설정
-    nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("55,*,0");
+    nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("65,*,0");
 	
 	//로그인 폼의 edt 모두 초기화
 	this.ds_login.setColumn(0, "user_id", '');

@@ -32,7 +32,8 @@ public class LoginController {
 	
 	//로그인 화면 
 	@RequestMapping(value="/login.do", method = RequestMethod.GET)
-	public String viewLogin() {
+	public String viewLogin(HttpSession session) {
+		session.invalidate();
 		return "login/login";
 	}
 	
@@ -91,12 +92,15 @@ public class LoginController {
 			
 			StringBuilder markedId = new StringBuilder();
 			
-		    for (int i = 0; i < id.length() - 1; i++) {
-		        markedId.append('*');
-		    }
-
-		    //@앞 한자리 문자만 추가
-		    markedId.append(id.charAt(id.length() - 1));
+		        // 앞 1자리
+		        markedId.append(id.substring(0, 1));
+		        // 중간 부분 마스킹 
+		        for (int i = 1; i < id.length() - 1; i++) {
+		            markedId.append('*');
+		        }    
+		        // 끝 1자리 추가
+		        markedId.append(id.substring(id.length() - 1));
+		  
 			
 			model.addAttribute("markedEmail", markedId + email.substring(index));		
 		}

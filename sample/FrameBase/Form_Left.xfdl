@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Left" width="180" height="670" titletext="Form_Left">
+  <Form id="Form_Left" width="180" height="665" titletext="Form_Left">
     <Layouts>
-
-      <Layout width="180" height="670" screenid="">
-        <Grid id="grid_LeftMenu" taborder="0" left="0" top="0" width="180" height="670" treeinitstatus="collapse,null" treeusecheckbox="false" binddataset="ds_Left" oncellclick="grid_LeftMenu_oncellclick" cssclass="grd_LF_treeMenu" scrolltype="both">
+      <Layout width="180" height="665" screenid="">
+        <Grid id="grid_LeftMenu" taborder="0" left="0" top="0" width="180" height="665" treeinitstatus="collapse,null" treeusecheckbox="false" binddataset="ds_Left" oncellclick="grid_LeftMenu_oncellclick" scrolltype="both" treeuseline="false" cssclass="grd_LF_treeMenu">
           <Formats>
             <Format id="default">
               <Columns>
@@ -63,7 +62,7 @@
             <Col id="MENU_ID">0102</Col>
             <Col id="MENU_NAME">직원 인사 관리</Col>
             <Col id="MENU_LEVEL">2</Col>
-            <Col id="MENU_PATH">FrameBase::Form_EmpDep.xfdl</Col>
+            <Col id="MENU_PATH">FrameBase::Form_HRD.xfdl</Col>
           </Row>
           <Row>
             <Col id="MENU_ID">03</Col>
@@ -134,16 +133,20 @@ nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl
 
 this.grid_LeftMenu_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
-	
 	// 클릭한 행(row)의 인덱스
-    var rowIndex = e.row;
+	var rowIndex = e.row;
+	
+	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") != 1) {
     
     var value = this.ds_Left.getColumn(rowIndex, "MENU_PATH");
 	
 	trace(value);
 	
+	//WorkFrame 이동
 	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl(value);
+	}
 };
 ]]></Script>
+    <InitValue scrolltype="vertical" scrollbartype="auto"/>
   </Form>
 </FDL>

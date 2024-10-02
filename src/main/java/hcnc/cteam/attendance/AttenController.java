@@ -1,5 +1,7 @@
 package hcnc.cteam.attendance;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +31,8 @@ public class AttenController {
 	
 	@Autowired
     private AttenService attenService;
+	
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 	
 	@Resource(name = "loginService")
 	private LoginService loginService;
@@ -80,8 +84,15 @@ public class AttenController {
 		attenDto.setName(name);
 		attenDto.setAttenCode(1);
 		
+		
 		//attenDto는 현재 료그인한 유저의 emp코드를 기준으로 입력
 		attenService.startWork(attenDto);
+		LocalTime workStartTime = LocalTime.now(); 
+
+        // workEnd를 포맷터를 사용해 문자열로 변환
+        String workStart = workStartTime.format(formatter);
+        
+		session.setAttribute("workStart", workStart);
         return ResponseEntity.ok("출근 시간 저장 완료");
     }
 	
@@ -93,11 +104,20 @@ public class AttenController {
 		String name = (String) session.getAttribute("userName");
 		try {
 			attenDto = loginService.selectWork(empCode);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
     	//attenDto는 현재 료그인한 유저의 emp코드를 기준으로 입력
     	attenService.endWork(attenDto);
+    	LocalTime workEndTime = LocalTime.now();
+
+        // workEnd를 포맷터를 사용해 문자열로 변환
+        String workEnd = workEndTime.format(formatter);
+    	
+    	session.setAttribute("workEnd", workEnd);
         return ResponseEntity.ok("퇴근 시간 저장 완료");
     }
+    
+
 }
