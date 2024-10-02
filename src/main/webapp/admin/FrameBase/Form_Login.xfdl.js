@@ -24,7 +24,7 @@
 
 
             obj = new Dataset("ds_email", this);
-            obj._setContents("<ColumnInfo><Column id=\"email\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"maskedEmail\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -38,49 +38,62 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Button("btn_Login","650","270","150","140",null,null,null,null,null,null,this);
+            obj = new Button("btn_Login","780","190","150","140",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("인증번호 발송");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_AuthCheck","430","430","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_AuthCheck","560","430","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_AuthCheck","650","430","150","60",null,null,null,null,null,null,this);
+            obj = new Button("btn_AuthCheck","780","430","150","60",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("인증하기");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_AuthCheck","310","430","115","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_AuthCheck","440","430","115","60",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("인증번호 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_Id","325","270","90","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_Id","455","190","90","60",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("아이디 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_Password","310","350","115","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_Password","440","270","115","60",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("비밀번호 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Id","430","270","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Id","560","190","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Password","430","350","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Password","560","270","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("7");
+            obj.set_password("true");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Pass","84","256","136","124",null,null,null,null,null,null,this);
+            obj = new Button("btn_Pass","217","176","136","124",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_text("넘어가기");
+            this.addChild(obj.name, obj);
+
+            obj = new Edit("Edit00","560","350","200","60",null,null,null,null,null,null,this);
+            obj.set_taborder("9");
+            obj.set_readonly("true");
+            obj.set_background("#ffffff");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_MaskEmail","430","350","120","60",null,null,null,null,null,null,this);
+            obj.set_taborder("10");
+            obj.set_text("발송받은 이메일 :");
+            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -98,6 +111,10 @@
             obj.bind();
 
             obj = new BindItem("item2","edt_Password","value","ds_login","password");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item3","Edit00","value","ds_email","maskedEmail");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -162,6 +179,8 @@
                 console.log("Success: " + strSvcId);
 
         		alert("인증 번호가 발송되었습니다.");
+
+        		this.ds_email.setColumn(0, "maskedEmail", this.maskEmail(this.ds_email.getColumn(0, "email")));
 
                 // 서버에서 넘어온 인증 키(authKey)를 확인
                 var authKey = this.ds_Auth.getColumn(0, "authKey");
@@ -251,6 +270,47 @@
 
             }
         };
+
+        this.maskEmail = function(email) {
+            // '@'의 위치 찾기
+            var index = email.indexOf("@");
+
+            if (index > 0) {
+                // '@' 앞의 부분 추출
+                var id = email.substring(0, index);
+
+                var markedId = "";
+
+                // 아이디 길이가 1 이상이면 마스킹 처리 시작
+                if (id.length > 1) {
+                    // 첫 글자는 그대로
+                    markedId += id.substring(0, 1);
+
+                    // 중간 부분 마스킹
+                    for (var i = 1; i < id.length - 1; i++) {
+                        markedId += '*';
+                    }
+
+                    // 마지막 글자 추가
+                    markedId += id.substring(id.length - 1);
+                } else {
+                    // 길이가 1인 경우는 그냥 그대로 사용
+                    markedId = id;
+                }
+
+                // 전체 마스킹된 이메일 반환
+                return markedId + email.substring(index);
+            }
+
+            // '@'가 없는 경우 원래 이메일 반환
+            return email;
+        };
+
+        // 사용 예시
+        var email = "user1234@domain.com";
+        var maskedEmail = this.maskEmail(email);
+        trace("마스킹된 이메일: " + maskedEmail);  // 결과: u*****4@domain.com
+
 
         //임시로 넘어가기 버튼
         this.btn_Pass_onclick = function(obj,e)

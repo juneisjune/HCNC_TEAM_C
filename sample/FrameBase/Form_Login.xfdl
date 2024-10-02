@@ -3,15 +3,17 @@
   <Form id="Form_Login" width="1280" height="720" titletext="New Form" color="#000000">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
-        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="650" top="270" width="150" height="140" onclick="btn_Login_onclick"/>
-        <Edit id="edt_AuthCheck" taborder="1" left="430" top="430" width="200" height="60"/>
-        <Button id="btn_AuthCheck" taborder="2" text="인증하기" left="650" top="430" width="150" height="60" onclick="btn_AuthCheck_onclick"/>
-        <Static id="sta_AuthCheck" taborder="3" text="인증번호 입력 :" left="310" top="430" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_Id" taborder="4" text="아이디 입력 :" left="325" top="270" width="90" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_Password" taborder="5" text="비밀번호 입력 :" left="310" top="350" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Edit id="edt_Id" taborder="6" left="430" top="270" width="200" height="60"/>
-        <Edit id="edt_Password" taborder="7" left="430" top="350" width="200" height="60"/>
-        <Button id="btn_Pass" taborder="8" text="넘어가기" left="84" top="256" width="136" height="124" onclick="btn_Pass_onclick"/>
+        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="780" top="190" width="150" height="140" onclick="btn_Login_onclick"/>
+        <Edit id="edt_AuthCheck" taborder="1" left="560" top="430" width="200" height="60"/>
+        <Button id="btn_AuthCheck" taborder="2" text="인증하기" left="780" top="430" width="150" height="60" onclick="btn_AuthCheck_onclick"/>
+        <Static id="sta_AuthCheck" taborder="3" text="인증번호 입력 :" left="440" top="430" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_Id" taborder="4" text="아이디 입력 :" left="455" top="190" width="90" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_Password" taborder="5" text="비밀번호 입력 :" left="440" top="270" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Edit id="edt_Id" taborder="6" left="560" top="190" width="200" height="60"/>
+        <Edit id="edt_Password" taborder="7" left="560" top="270" width="200" height="60" password="true"/>
+        <Button id="btn_Pass" taborder="8" text="넘어가기" left="217" top="176" width="136" height="124" onclick="btn_Pass_onclick"/>
+        <Edit id="Edit00" taborder="9" left="560" top="350" width="200" height="60" readonly="true" background="#ffffff"/>
+        <Static id="sta_MaskEmail" taborder="10" text="발송받은 이메일 :" left="430" top="350" width="120" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[// 인증번호 발송(로그인) 버튼
@@ -64,6 +66,8 @@ this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
         console.log("Success: " + strSvcId);
 		
 		alert("인증 번호가 발송되었습니다.");
+		
+		this.ds_email.setColumn(0, "maskedEmail", this.maskEmail(this.ds_email.getColumn(0, "email")));
 
         // 서버에서 넘어온 인증 키(authKey)를 확인
         var authKey = this.ds_Auth.getColumn(0, "authKey");
@@ -154,6 +158,47 @@ this.fnLoginCallback = function(strSvcId, nErrorCode, strErrorMsg) {
     }
 };
 
+this.maskEmail = function(email) {
+    // '@'의 위치 찾기
+    var index = email.indexOf("@");
+    
+    if (index > 0) {
+        // '@' 앞의 부분 추출
+        var id = email.substring(0, index);
+        
+        var markedId = "";
+        
+        // 아이디 길이가 1 이상이면 마스킹 처리 시작
+        if (id.length > 1) {
+            // 첫 글자는 그대로
+            markedId += id.substring(0, 1);
+            
+            // 중간 부분 마스킹
+            for (var i = 1; i < id.length - 1; i++) {
+                markedId += '*';
+            }
+            
+            // 마지막 글자 추가
+            markedId += id.substring(id.length - 1);
+        } else {
+            // 길이가 1인 경우는 그냥 그대로 사용
+            markedId = id;
+        }
+        
+        // 전체 마스킹된 이메일 반환
+        return markedId + email.substring(index);
+    }
+    
+    // '@'가 없는 경우 원래 이메일 반환
+    return email;
+};
+
+// 사용 예시
+var email = "user1234@domain.com";
+var maskedEmail = this.maskEmail(email);
+trace("마스킹된 이메일: " + maskedEmail);  // 결과: u*****4@domain.com
+
+
 //임시로 넘어가기 버튼
 this.btn_Pass_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
@@ -173,6 +218,7 @@ this.btn_Pass_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
       <Dataset id="ds_email">
         <ColumnInfo>
           <Column id="email" type="STRING" size="256"/>
+          <Column id="maskedEmail" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -199,6 +245,7 @@ this.btn_Pass_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
       <BindItem id="item0" compid="edt_AuthCheck" propid="value" datasetid="ds_AuthCheck" columnid="authCheck"/>
       <BindItem id="item1" compid="edt_Id" propid="value" datasetid="ds_login" columnid="user_id"/>
       <BindItem id="item2" compid="edt_Password" propid="value" datasetid="ds_login" columnid="password"/>
+      <BindItem id="item3" compid="Edit00" propid="value" datasetid="ds_email" columnid="maskedEmail"/>
     </Bind>
   </Form>
 </FDL>
