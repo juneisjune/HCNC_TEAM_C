@@ -77,6 +77,44 @@
     </repositories>
 
 	<dependencies>
+	<!-- 레이아웃을 사용하기위함 -->
+	
+	<!-- jackson 사용위해 필요 -->
+      <dependency>
+	      <groupId>com.fasterxml.jackson.core</groupId>
+	      <artifactId>jackson-databind</artifactId>
+	      <version>2.9.3</version>
+      </dependency>
+      <dependency>
+	      <groupId>com.fasterxml.jackson.core</groupId>
+	      <artifactId>jackson-core</artifactId>
+	      <version>2.9.3</version>
+      </dependency>
+      <dependency>
+	      <groupId>com.fasterxml.jackson.core</groupId>
+	      <artifactId>jackson-annotations</artifactId>
+	      <version>2.9.3</version>
+      </dependency>
+	
+		<!-- email -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>javax.mail-api</artifactId>
+		    <version>1.5.0</version> 
+		</dependency>
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.5.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>4.3.25.RELEASE</version>
+		</dependency>
+		
 <!-- ############  NEXACROPLATFORM UIADAPTER17 LIBRARY  ############ -->
 		<dependency>
 		  <groupId>com.nexacro.uiadapter17.spring</groupId>
@@ -136,6 +174,26 @@
 		  </exclusions>
 		</dependency>
 	
+	
+		<!-- jackson 사용위해 필요 -->
+		<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>2.9.3</version>
+		</dependency>
+		<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-core</artifactId>
+		<version>2.9.3</version>
+		</dependency>
+		<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-annotations</artifactId>
+		<version>2.9.3</version>
+		</dependency>
+		
+
+		
 		<!-- 표준프레임워크 실행환경 -->
         <dependency>
 		    <groupId>egovframework.rte</groupId>

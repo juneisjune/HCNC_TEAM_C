@@ -9,7 +9,7 @@
 		
             // global dataset
             obj = new Dataset("ds_userInfo", this);
-            obj._setContents("<ColumnInfo><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"password\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"dep_code\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"email\"/></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/><Column id=\"dep_code\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this._addDataset(obj.name, obj);
             
             // global variable
@@ -29,10 +29,10 @@
             	return;
         
             // frame
-            var mainframe = this.createMainFrame("mainframe","0","0","1280","720",null,null,this);
+            var mainframe = this.createMainFrame("mainframe","15","15","1280","720",null,null,this);
             mainframe.set_showtitlebar("true");
             mainframe.set_showstatusbar("true");
-            mainframe.set_titletext("TopLeftFrame");
+            mainframe.set_titletext("HCNC 인사관리시스템");
             mainframe.on_createBodyFrame = this.mainframe_createBodyFrame;        
             // tray
 
@@ -46,7 +46,7 @@
         this.mainframe_createBodyFrame = function()
         {
             var frame0 = new VFrameSet("VFrameSet00",null,null,null,null,null,null,this);
-            frame0.set_separatesize("50,*");
+            frame0.set_separatesize("0,0,*");
             this.addChild(frame0.name, frame0);
             this.frame=frame0;
 
@@ -64,15 +64,22 @@
             var frame3 = new ChildFrame("LeftFrame",null,null,null,null,null,null,"FrameBase::Form_Left.xfdl",frame2);
             frame3.set_showtitlebar("false");
             frame3.set_showstatusbar("false");
+            frame3.set_showcascadetitletext("true");
             frame2.addChild(frame3.name, frame3);
             frame3.set_formurl("FrameBase::Form_Left.xfdl");
 
 
-            var frame4 = new ChildFrame("WorkFrame",null,null,null,null,null,null,"FrameBase::Form_Login.xfdl",frame2);
+            var frame4 = new ChildFrame("WorkFrame",null,null,null,null,null,null,"FrameBase::Form_Post.xfdl",frame2);
             frame4.set_showtitlebar("false");
-            frame4.set_showstatusbar("false");
             frame2.addChild(frame4.name, frame4);
-            frame4.set_formurl("FrameBase::Form_Login.xfdl");
+            frame4.set_formurl("FrameBase::Form_Post.xfdl");
+
+
+            var frame5 = new ChildFrame("LoginFrame",null,null,null,null,null,null,"FrameBase::Form_Login.xfdl",frame0);
+            frame5.set_showcascadetitletext("true");
+            frame5.set_showtitlebar("false");
+            frame0.addChild(frame5.name, frame5);
+            frame5.set_formurl("FrameBase::Form_Login.xfdl");
         };
         
         this.on_initEvent = function()
@@ -85,7 +92,7 @@
         this.checkLicense("");
         
         this.loadPreloadList();
-
+        this.loadCss("xcssrc::temp_main.xcss");
         this.loadIncludeScript("Application_Desktop.xadl");
     };
 }

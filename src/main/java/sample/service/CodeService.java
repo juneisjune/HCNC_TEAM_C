@@ -3,6 +3,9 @@ package sample.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface CodeService {
 	/**
 	 * 마스터 코드 리스트 조회

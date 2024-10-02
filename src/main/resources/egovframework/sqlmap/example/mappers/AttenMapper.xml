@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hcnc.cteam.attendance.AttenMapper">
+
+	<!-- 목록 조회 -->
+	<select id="getAttenList" resultType="attenDTO">
+		SELECT a.emp_code as empCode
+			, a.name as name
+			, d.assign_name as assignName
+			, e.dep_name as depName
+			, b.work_date as workDate
+			, c.atten_type as attenType
+			, b.work_start as workStart
+			, b.work_end as workEnd
+			, b.work_over as workOver
+		FROM employee a
+		JOIN attendance b ON a.emp_code = b.emp_code
+		JOIN att_code c ON b.atten_code = c.atten_code
+		JOIN assignment d ON a.assign_code = d.assign_code
+		JOIN department e ON a.dep_code = e.dep_code
+		WHERE 1=1
+			AND a.emp_Code = #{empCode}
+		ORDER BY b.work_date DESC
+	</select>
+
+	<!-- 조건에 따른 조회(검색) -->
+	<select id="getAttenListByCondition"
+		resultType="attenDTO">
+		SELECT a.emp_code as empCode
+			, a.name as name
+			, d.assign_name as assignName
+			, e.dep_name as depName
+			, b.work_date as workDate
+			, c.atten_type as attenType
+			, b.work_start as workStart
+			, b.work_end as workEnd
+			, b.work_over as workOver
+		FROM employee a
+		JOIN attendance b ON a.emp_code = b.emp_code
+		JOIN att_code c ON b.atten_code = c.atten_code
+		JOIN assignment d ON a.assign_code = d.assign_code
+		JOIN department e ON a.dep_code = e.dep_code
+		WHERE 1=1
+			<!-- 로그인한 사용자의 근태 정보만 가져오기 -->
+				AND a.emp_Code = #{empCode}
+			<!-- 근무형태별 조회 -->
+			<if test="WORK_TYPE == 'ON'">
+				AND c.atten_type LIKE CONCAT('%', '출근', '%')
+			</if>
+			<if test="WORK_TYPE == 'OFF'">
+				AND c.atten_type LIKE CONCAT('%', '결근', '%')
+			</if>
+			<if test="WORK_TYPE == 'HOLI'">
+				AND c.atten_type LIKE CONCAT('%', '휴가', '%')
+			</if>
+		<!-- 근무일자에 따른 조회 -->
+		<if test="START_DATE != null and START_DATE != '' and END_DATE != null and END_DATE != ''">
+			AND b.work_date BETWEEN #{START_DATE} AND #{END_DATE}
+		</if>
+		ORDER BY b.work_date DESC
+	</select>
+
+ 	<!-- 출근  -->
+	<insert id="startWork" parameterType="attenDTO">
+		INSERT INTO attendance (
+		   emp_code
+		   , work_date 
+		   , atten_code
+		   , work_start
+		   , reg_date
+		   , reg_name
+		) VALUES (
+		   #{empCode}
+		   , CURDATE()
+		   , #{attenCode}
+		   , CURTIME()
+		   , CURTIME()
+		   , #{name}
+		);
+		</insert>
+	<!-- 퇴근  -->
+	<update id="endWork" parameterType="attenDTO">
+		UPDATE attendance 
+		SET work_end = CURTIME(),
+		    work_over = (
+		        FLOOR(
+		            TIME_TO_SEC(
+		                CASE 
+		                    WHEN 0 > TIMEDIFF(work_end, '18:00:00') THEN 0
+		                    WHEN work_end > '21:00:00' THEN TIMEDIFF('21:00:00', '18:00:00')
+		                    ELSE TIMEDIFF(work_end, '18:00:00')
+		                END
+		            ) / 1800
+		        ) * 0.5
+		    ),
+		    upd_name = #{name}
+		WHERE 1=1
+		    AND emp_code = #{empCode}
+		    AND work_date = CURDATE();
+    </update>
+   
+    
+     <!-- 로그인성공후 실행할 근태정보 가져오기  -->
+     <!-- 로그인기능이 들어가는 컨트롤러에 옮길예정 -->
+     <select id="userAttendanceInfo" parameterType="java.util.Map" resultType="attenDTO">
+     	SELECT a.emp_code , a.work_start, a.work_end 
+		FROM employee e JOIN attendance a 
+			ON e.emp_code  = a.emp_code 
+		WHERE id = #{id} 
+			AND password = SHA2(#{password},256)
+			AND work_date = CURDATE(); 
+     </select>
+	<!-- 출퇴근 시간 가져오기 -->
+	
+</mapper>

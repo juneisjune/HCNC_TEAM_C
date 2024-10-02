@@ -10,7 +10,7 @@
 		
             // global dataset
             obj = new Dataset("ds_userInfo", this);
-            obj._setContents("<ColumnInfo><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"password\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"dep_code\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"email\"/></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/><Column id=\"dep_code\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this._addDataset(obj.name, obj);
             
             // global variable
@@ -30,10 +30,10 @@
             	return;
             
             // frame
-            var mainframe = this.createMainFrame("mainframe","0","0","1280","720",null,null,this);
+            var mainframe = this.createMainFrame("mainframe","15","15","1280","720",null,null,this);
             mainframe.set_showtitlebar("true");
             mainframe.set_showstatusbar("true");
-            mainframe.set_titletext("TopLeftFrame");
+            mainframe.set_titletext("HCNC 인사관리시스템");
             mainframe.on_createBodyFrame = this.mainframe_createBodyFrame;
             // tray
 
@@ -67,7 +67,7 @@
 		this.checkLicense("");
         
         this.loadPreloadList();
-
+        this.loadCss("xcssrc::temp_main.xcss");
     };
 }
 )();
