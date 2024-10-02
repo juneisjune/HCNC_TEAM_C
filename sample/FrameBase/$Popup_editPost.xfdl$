@@ -3,9 +3,9 @@
   <Form id="Popup_edit_page" left="0" top="0" width="1024" height="768" titletext="New Form" border="" background="" onload="Popup_edit_page_onload">
     <Layouts>
       <Layout height="768" width="1024" stepcount="0">
-        <Static id="Static00" taborder="2" text="Drop Files Here" left="28" top="80" width="482" height="140" visible="true" background="aliceblue" color="dodgerblue" font="normal 30pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>
-        <Button id="open" taborder="0" text="open" left="512" top="80" width="120" height="50" onclick="btn_open_onclick"/>
-        <Grid id="Grid00" taborder="1" left="20" top="80" width="482" height="160" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop">
+        <Static id="Static00" taborder="2" text="Drop Files Here" left="28" top="80" width="482" height="90" visible="true" background="aliceblue" color="dodgerblue" font="normal 30pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>
+        <Button id="open" taborder="0" text="open" left="512" top="80" width="120" height="80" onclick="btn_open_onclick"/>
+        <Grid id="attach_grid" taborder="1" left="20" top="80" width="480" height="90" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop" oncellclick="attach_grid_oncellclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -18,20 +18,21 @@
               </Rows>
               <Band id="head">
                 <Cell text="name"/>
-                <Cell col="1" text="size"/>
+                <Cell col="1" text="삭제"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:attach_name"/>
-                <Cell col="1" text="" textAlign="right"/>
+                <Cell col="1" text="삭제" textAlign="right" edittype="button" displaytype="buttoncontrol"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="Button01" taborder="3" text="upload" left="512" top="140" width="120" height="50" onclick="Button01_onclick"/>
+        <Button id="Button01" taborder="3" text="upload" left="130" top="285" width="120" height="50" onclick="Button01_onclick"/>
         <TextArea id="TextArea00" taborder="4" left="642" top="80" width="482" height="120" onchanged="TextArea00_onchanged"/>
         <Static id="title" taborder="5" text="제목" left="24" top="28" width="69" height="41"/>
-        <Edit id="Edit_title" taborder="6" left="52" top="31" width="460" height="39" onchanged="Edit_title_onchanged"/>
-        <Edit id="Edit_coment" taborder="7" left="20" top="251" width="460" height="79"/>
+        <Edit id="Edit_title" taborder="6" left="52" top="31" width="578" height="39" onchanged="Edit_title_onchanged"/>
+        <Edit id="Edit_coment" taborder="7" left="24" top="181" width="460" height="79"/>
+        <Button id="btn_close" taborder="8" text="Button00" left="276" top="288" width="93" height="44" ondblclick="btn_close_ondblclick" onclick="btn_close_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[// 팝업 로드 시 게시글 정보와 첨부파일 정보를 불러옴
@@ -197,15 +198,26 @@ this.fn_callbackUpdatePost = function(svcID, errorCode, errorMsg){
         this.close();
     }
 };
-
-
-
-
-
 this.btn_open_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.FileDialog00.open('nexacro17', FileDialog.LOAD);  // 단일 파일 선택 모드
 };
+
+this.attach_grid_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var clickedCol = e.col;  // 클릭한 컬럼 인덱스
+	if(clickedCol == 1){
+		if(confirm("정말 삭제하시겠습니까?")){
+			this.Dataset00.deleteRow(e.row); 
+		}
+	}
+};
+
+this.btn_close_ondblclick = function(obj:nexacro.Button,e:nexacro.MouseEventInfo)
+{
+	this.close('Close Popup');
+};
+
 ]]></Script>
     <Objects>
       <Dataset id="Dataset00">

@@ -47,7 +47,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static00","28","80","482","140",null,null,null,null,null,null,this);
+            obj = new Static("Static00","28","80","482","90",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("Drop Files Here");
             obj.set_visible("true");
@@ -58,18 +58,18 @@
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
 
-            obj = new Button("open","512","80","120","50",null,null,null,null,null,null,this);
+            obj = new Button("open","512","80","120","80",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("open");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("Grid00","20","80","482","160",null,null,null,null,null,null,this);
+            obj = new Grid("attach_grid","20","80","480","90",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"size\"/></Band><Band id=\"body\"><Cell text=\"bind:attach_name\"/><Cell col=\"1\" text=\"\" textAlign=\"right\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"삭제\"/></Band><Band id=\"body\"><Cell text=\"bind:attach_name\"/><Cell col=\"1\" text=\"삭제\" textAlign=\"right\" edittype=\"button\" displaytype=\"buttoncontrol\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button01","512","140","120","50",null,null,null,null,null,null,this);
+            obj = new Button("Button01","130","285","120","50",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("upload");
             this.addChild(obj.name, obj);
@@ -83,12 +83,17 @@
             obj.set_text("제목");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_title","52","31","460","39",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_title","52","31","578","39",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_coment","20","251","460","79",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_coment","24","181","460","79",null,null,null,null,null,null,this);
             obj.set_taborder("7");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btn_close","276","288","93","44",null,null,null,null,null,null,this);
+            obj.set_taborder("8");
+            obj.set_text("Button00");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -279,15 +284,26 @@
                 this.close();
             }
         };
-
-
-
-
-
         this.btn_open_onclick = function(obj,e)
         {
         	this.FileDialog00.open('nexacro17', FileDialog.LOAD);  // 단일 파일 선택 모드
         };
+
+        this.attach_grid_oncellclick = function(obj,e)
+        {
+        	var clickedCol = e.col;  // 클릭한 컬럼 인덱스
+        	if(clickedCol == 1){
+        		if(confirm("정말 삭제하시겠습니까?")){
+        			this.Dataset00.deleteRow(e.row);
+        		}
+        	}
+        };
+
+        this.btn_close_ondblclick = function(obj,e)
+        {
+        	this.close('Close Popup');
+        };
+
 
         });
         
@@ -297,12 +313,15 @@
             this.addEventHandler("onload",this.Popup_edit_page_onload,this);
             this.Static00.addEventHandler("onclick",this.Static00_onclick,this);
             this.open.addEventHandler("onclick",this.btn_open_onclick,this);
-            this.Grid00.addEventHandler("ondragenter",this.Grid00_ondragenter,this);
-            this.Grid00.addEventHandler("ondragleave",this.Grid00_ondragleave,this);
-            this.Grid00.addEventHandler("ondrop",this.Grid00_ondrop,this);
+            this.attach_grid.addEventHandler("ondragenter",this.Grid00_ondragenter,this);
+            this.attach_grid.addEventHandler("ondragleave",this.Grid00_ondragleave,this);
+            this.attach_grid.addEventHandler("ondrop",this.Grid00_ondrop,this);
+            this.attach_grid.addEventHandler("oncellclick",this.attach_grid_oncellclick,this);
             this.Button01.addEventHandler("onclick",this.Button01_onclick,this);
             this.TextArea00.addEventHandler("onchanged",this.TextArea00_onchanged,this);
             this.Edit_title.addEventHandler("onchanged",this.Edit_title_onchanged,this);
+            this.btn_close.addEventHandler("ondblclick",this.btn_close_ondblclick,this);
+            this.btn_close.addEventHandler("onclick",this.btn_close_onclick,this);
             this.FileUpTransfer00.addEventHandler("onprogress",this.FileUpTransfer00_onprogress,this);
             this.FileUpTransfer00.addEventHandler("onsuccess",this.FileUpTransfer00_onsuccess,this);
             this.FileUpTransfer00.addEventHandler("onerror",this.FileUpTransfer00_onerror,this);
