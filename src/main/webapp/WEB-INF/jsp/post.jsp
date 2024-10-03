@@ -77,6 +77,30 @@
             margin-top: 20px;
         }
 
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            padding: 8px 16px;
+            background-color: #ff7f50;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 0 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .pagination a:hover {
+            background-color: #e67e22;
+        }
+
+        .pagination .active {
+            background-color: #e67e22;
+            cursor: default;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .container {
@@ -129,6 +153,13 @@
                 </c:forEach>
             </tbody>
         </table>
+
+        <!-- 페이징 네비게이션 -->
+        <div class="pagination">
+            <c:forEach var="i" begin="1" end="${totalPages}">
+                <a href="?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+            </c:forEach>
+        </div>
     </div>
 
     <%@ include file="/WEB-INF/jsp/footer.jsp" %>

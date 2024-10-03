@@ -80,7 +80,7 @@
 	    WHERE
 	        attach_code = #{attachCode}
 	</select>
-	<!-- 여기까지 이상무 -->
+	
 	<!-- 게시글 삭제 쿼리 -->
     <delete id="deletePost" parameterType="int">
         DELETE FROM post WHERE post_code = #{postCode}
@@ -98,6 +98,21 @@
 	        upd_name = #{upd_name}
 	    WHERE post_code = #{post_code}
 	</update>
+	<!-- 여기까지 이상무 -->
+	<!-- 게시글 목록 페이징 처리 조회 -->
+	<select id="selectPostWithPaging" resultType="map">
+	    SELECT a.post_code, a.title, a.content, a.reg_date, b.name AS emp_name, a.view_count
+	    FROM post a
+	    INNER JOIN employee b ON a.emp_code = b.emp_code
+	    ORDER BY a.post_code DESC
+	    LIMIT #{offset}, #{pageSize}
+	</select>
+	
+	<!-- 전체 게시글 수 조회 -->
+	<select id="getTotalPostCount" resultType="int">
+	    SELECT COUNT(*) FROM post
+	</select>
+	
 
 
 	

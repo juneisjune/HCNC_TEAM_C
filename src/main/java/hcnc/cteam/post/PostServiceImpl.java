@@ -139,6 +139,17 @@ public class PostServiceImpl implements PostService {
             }
         }
     }
+    //======================
+    @Override
+    public List<Map<String, Object>> selectPostWithPaging(int offset, int pageSize) {
+        return postMapper.selectPostWithPaging(offset, pageSize);
+    }
+
+    @Override
+    public int getTotalPostCount() {
+        return postMapper.getTotalPostCount();
+    }
+
 
 
   

@@ -24,12 +24,14 @@ public interface PostService {
     List<Map<String, Object>> selectAttachments(int postCode);
 
 	Map<String, Object> selectAttachment(int attachCode);
-	//=======여기까지 이상무=//
 	// 게시글 삭제
     void deletePost(int postCode) throws Exception;
  // 첨부파일 삭제 메서드 추가
     void deleteAttachment(int postCode) throws Exception;
     void updatePost(Map<String, Object> postInfo, List<Map<String, Object>> fileList) throws Exception;
+    //===========================
+    List<Map<String, Object>> selectPostWithPaging(int offset, int pageSize); // 페이징 적용된 게시글 조회
+    int getTotalPostCount(); // 전체 게시글 수 조회
 
 
 	
