@@ -42,7 +42,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static00","28","80","482","140",null,null,null,null,null,null,this);
+            obj = new Static("Static00","28","80","482","80",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("Drop Files Here");
             obj.set_visible("true");
@@ -53,37 +53,38 @@
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
 
-            obj = new Button("open","512","80","120","50",null,null,null,null,null,null,this);
+            obj = new Button("open","512","80","120","90",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("open");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("Grid00","20","80","482","160",null,null,null,null,null,null,this);
+            obj = new Grid("Grid00","30","80","482","90",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"size\"/></Band><Band id=\"body\"><Cell text=\"bind:filename\"/><Cell col=\"1\" text=\"bind:filesize\" textAlign=\"right\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button01","512","140","120","50",null,null,null,null,null,null,this);
+            obj = new Button("Button01","150","375","120","50",null,null,null,null,null,null,this);
             obj.set_taborder("3");
-            obj.set_text("upload");
-            this.addChild(obj.name, obj);
-
-            obj = new TextArea("TextArea00","642","80","482","120",null,null,null,null,null,null,this);
-            obj.set_taborder("4");
+            obj.set_text("공지사항 등록");
             this.addChild(obj.name, obj);
 
             obj = new Static("title","24","28","69","41",null,null,null,null,null,null,this);
-            obj.set_taborder("5");
+            obj.set_taborder("4");
             obj.set_text("제목");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_title","52","31","460","39",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_title","52","31","580","39",null,null,null,null,null,null,this);
+            obj.set_taborder("5");
+            this.addChild(obj.name, obj);
+
+            obj = new TextArea("TextArea01","30","198","606","144",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_coment","20","251","460","79",null,null,null,null,null,null,this);
+            obj = new Button("btn_close","322","376","142","61",null,null,null,null,null,null,this);
             obj.set_taborder("7");
+            obj.set_text("목록 조회");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -96,7 +97,7 @@
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item1","Edit_coment","value","ds_postInfo","content");
+            obj = new BindItem("item2","TextArea01","value","ds_postInfo","content");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -235,6 +236,9 @@
 
             // 파일 업로드 실행
             this.FileUpTransfer00.upload('http://localhost:8080/fileUpload/fileUpload.jsp');
+        	//alert("공지사항 업로드에 성공하였습니다!");
+        	//nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
+
         };
 
 
@@ -264,6 +268,8 @@
                 alert("공지사항 등록 중 오류 발생: " + strErrorMsg);
             } else {
                 alert("공지사항이 성공적으로 등록되었습니다.");
+        		//alert("공지사항 업로드에 성공하였습니다!");
+        	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
                 // 필요한 경우 화면 초기화 등 추가 작업 수행
             }
         };
@@ -281,6 +287,11 @@
 
 
 
+        this.btn_close_onclick = function(obj,e)
+        {
+        	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
+        };
+
         });
         
         // Regist UI Components Event
@@ -292,7 +303,8 @@
             this.Grid00.addEventHandler("ondragleave",this.Grid00_ondragleave,this);
             this.Grid00.addEventHandler("ondrop",this.Grid00_ondrop,this);
             this.Button01.addEventHandler("onclick",this.Button01_onclick,this);
-            this.TextArea00.addEventHandler("onchanged",this.TextArea00_onchanged,this);
+            this.Edit_title.addEventHandler("onchanged",this.Edit_title_onchanged,this);
+            this.btn_close.addEventHandler("onclick",this.btn_close_onclick,this);
             this.FileUpTransfer00.addEventHandler("onprogress",this.FileUpTransfer00_onprogress,this);
             this.FileUpTransfer00.addEventHandler("onsuccess",this.FileUpTransfer00_onsuccess,this);
             this.FileUpTransfer00.addEventHandler("onerror",this.FileUpTransfer00_onerror,this);

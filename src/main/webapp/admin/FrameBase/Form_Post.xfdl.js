@@ -27,54 +27,52 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static00","10","10","400","30",null,null,null,null,null,null,this);
-            obj.set_taborder("0");
-            obj.set_text("공지사항조회관리");
-            obj.set_textAlign("left");
-            obj.set_font("bold 26px/normal \"Gulim\"");
-            obj.set_background("blue");
-            obj.set_color("white");
-            this.addChild(obj.name, obj);
-
-            obj = new Grid("grd_notice","8","50","1092","410",null,null,null,null,null,null,this);
+            obj = new Grid("grd_notice","10","65","1092","410",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Post");
-            obj.set_taborder("1");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"85\"/><Column size=\"144\"/><Column size=\"258\"/><Column size=\"150\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"94\"/><Column size=\"48\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell/><Cell col=\"1\" text=\"게시글 번호\"/><Cell col=\"2\" text=\"제목\"/><Cell col=\"3\" text=\"내용\"/><Cell col=\"4\" text=\"작성일자\"/><Cell col=\"5\" text=\"작성자\"/><Cell col=\"6\" text=\"조회수\"/><Cell col=\"7\" text=\"수정 하기\"/><Cell col=\"8\" text=\"삭제\"/></Band><Band id=\"body\"><Cell/><Cell col=\"1\" text=\"bind:post_code\"/><Cell col=\"2\" text=\"bind:title\"/><Cell col=\"3\" text=\"bind:content\"/><Cell col=\"4\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"5\" text=\"bind:emp_name\"/><Cell col=\"6\" text=\"bind:view_count\"/><Cell col=\"7\" displaytype=\"buttoncontrol\" text=\"수정 하기\"/><Cell col=\"8\" displaytype=\"buttoncontrol\" text=\"삭제\" edittype=\"button\"/></Band></Format></Formats>");
+            obj.set_taborder("0");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"85\"/><Column size=\"144\"/><Column size=\"258\"/><Column size=\"150\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"94\"/><Column size=\"48\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"23\"/></Rows><Band id=\"head\"><Cell/><Cell col=\"1\" text=\"게시글 번호\"/><Cell col=\"2\" text=\"제목\"/><Cell col=\"3\" text=\"내용\"/><Cell col=\"4\" text=\"작성일자\"/><Cell col=\"5\" text=\"작성자\"/><Cell col=\"6\" text=\"조회수\"/><Cell col=\"7\" text=\"수정 하기\"/><Cell col=\"8\" text=\"삭제\"/></Band><Band id=\"body\"><Cell/><Cell col=\"1\" text=\"bind:post_code\"/><Cell col=\"2\" text=\"bind:title\"/><Cell col=\"3\" text=\"bind:content\"/><Cell col=\"4\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"5\" text=\"bind:emp_name\"/><Cell col=\"6\" text=\"bind:view_count\"/><Cell col=\"7\" displaytype=\"buttoncontrol\" text=\"수정 하기\"/><Cell col=\"8\" displaytype=\"buttoncontrol\" text=\"삭제\" edittype=\"button\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","760","16","50","28",null,null,null,null,null,null,this);
-            obj.set_taborder("2");
+            obj = new Button("btn_Search","920","12","50","28",null,null,null,null,null,null,this);
+            obj.set_taborder("1");
             obj.set_text("조회");
             this.addChild(obj.name, obj);
 
-            obj = new Static("st_selectedCount","10","470","150","30",null,null,null,null,null,null,this);
+            obj = new Static("st_selectedCount","10","510","150","30",null,null,null,null,null,null,this);
             obj.set_text("0건 선택됨");
-            obj.set_taborder("3");
+            obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_delete","590","470","100","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_delete","970","510","100","30",null,null,null,null,null,null,this);
             obj.set_text("삭제");
-            obj.set_taborder("4");
+            obj.set_taborder("3");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_prev","350","520","50","30",null,null,null,null,null,null,this);
             obj.set_text("이전");
-            obj.set_taborder("5");
+            obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_next","450","520","50","30",null,null,null,null,null,null,this);
             obj.set_text("다음");
-            obj.set_taborder("6");
+            obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_newPost","830","16","110","28",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
+            obj = new Button("btn_newPost","990","12","110","28",null,null,null,null,null,null,this);
+            obj.set_taborder("6");
             obj.set_text("새 공지사항 등록");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button00","612","580","92","52",null,null,null,null,null,null,this);
-            obj.set_taborder("8");
+            obj.set_taborder("7");
             obj.set_text("Button00");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static00_00","140","3","722","67",null,null,null,null,null,null,this);
+            obj.set_taborder("8");
+            obj.set_text("공지사항조회관리");
+            obj.set_font("bold 36px/normal \"Gulim\"");
+            obj.set_textAlign("center");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -240,19 +238,24 @@
         	popup.form.style.set_border("1 solid #4c5a6f");
         }
 
+        this.Static00_00_onclick = function(obj,e)
+        {
+
+        };
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Form_Post_onload,this);
-            this.Static00.addEventHandler("onclick",this.Static00_onclick,this);
             this.grd_notice.addEventHandler("oncellclick",this.grd_notice_oncellclick,this);
             this.grd_notice.addEventHandler("onheadclick",this.grd_notice_onheadclick,this);
             this.btn_Search.addEventHandler("onclick",this.Button00_onclick,this);
             this.btn_delete.addEventHandler("onclick",this.btn_delete_onclick,this);
             this.btn_newPost.addEventHandler("onclick",this.btn_newPost_onclick,this);
             this.Button00.addEventHandler("onclick",this.newEdit_onclick,this);
+            this.Static00_00.addEventHandler("onclick",this.Static00_00_onclick,this);
         };
         this.loadIncludeScript("Form_Post.xfdl");
         this.loadPreloadList();

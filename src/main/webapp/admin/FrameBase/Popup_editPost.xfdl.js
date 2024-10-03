@@ -87,13 +87,13 @@
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_coment","24","181","460","79",null,null,null,null,null,null,this);
+            obj = new Button("btn_close","276","288","93","44",null,null,null,null,null,null,this);
             obj.set_taborder("7");
+            obj.set_text("닫기");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_close","276","288","93","44",null,null,null,null,null,null,this);
+            obj = new TextArea("TextArea01","20","176","482","112",null,null,null,null,null,null,this);
             obj.set_taborder("8");
-            obj.set_text("닫기");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -106,7 +106,7 @@
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item1","Edit_coment","value","ds_postInfo","content");
+            obj = new BindItem("item2","TextArea01","value","ds_postInfo","content");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -137,7 +137,7 @@
 
         	// Edit 및 TextArea에 게시글 정보 설정
         	this.Edit_title.set_value(this.ds_post.getColumn(0, "title"));
-        	this.Edit_coment.set_value(this.ds_post.getColumn(0, "content"));
+        	this.TextArea01.set_value(this.ds_post.getColumn(0, "content"));
 
         	// 첨부파일 정보 조회
         	var postCode = this.ds_post.getColumn(0, "post_code");
@@ -303,6 +303,7 @@
         {
         	this.close('Close Popup');
         };
+
 
 
         });

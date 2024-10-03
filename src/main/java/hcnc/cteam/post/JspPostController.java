@@ -45,23 +45,31 @@ public class JspPostController {
 	}
 	
 	@RequestMapping("/postDetail.do")
-    public String getPostDetail(@RequestParam("post_code") int postCode, Model model) {
-		//조회수 1증가
-		postService.increaseViewCount(postCode);
-        // 게시글 상세 정보 조회
-        Map<String, Object> postDetail = postService.selectPostDetail(postCode);
-        
-     // 첨부파일 목록 조회(아래 추가
-        List<Map<String, Object>> attachments = postService.selectAttachments(postCode);
+	public String getPostDetail(@RequestParam("post_code") int postCode, Model model) {
+	    // 조회수 1증가
+	    postService.increaseViewCount(postCode);
+	    
+	    // 게시글 상세 정보 조회
+	    Map<String, Object> postDetail = postService.selectPostDetail(postCode);
+	    
+	    // 줄바꿈 문자를 <br> 태그로 변환
+	    String content = (String) postDetail.get("content");
+	    if (content != null) {
+	        content = content.replace("\r\n", "<br>").replace("\n", "<br>").replace("\r", "<br>");
+	        postDetail.put("content", content);
+	    }
 
-        // 모델에 상세 정보 및 첨부파일 목록 추가
-        model.addAttribute("postDetail", postDetail);
-        //아래 추가
-        model.addAttribute("attachments", attachments);
-        
-        // postDetail.jsp로 이동
-        return "postDetail";
-    }
+	    // 첨부파일 목록 조회
+	    List<Map<String, Object>> attachments = postService.selectAttachments(postCode);
+
+	    // 모델에 상세 정보 및 첨부파일 목록 추가
+	    model.addAttribute("postDetail", postDetail);
+	    model.addAttribute("attachments", attachments);
+	    
+	    // postDetail.jsp로 이동
+	    return "postDetail";
+	}
+
 	//==========================================//
 	// 파일 다운로드 메서드 추가
 	
@@ -132,6 +140,8 @@ public class JspPostController {
 	        writer.close();
 	    }
 	}
+	
+	
 
 
 

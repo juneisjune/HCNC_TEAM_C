@@ -31,8 +31,8 @@
         <TextArea id="TextArea00" taborder="4" left="642" top="80" width="482" height="120" onchanged="TextArea00_onchanged"/>
         <Static id="title" taborder="5" text="제목" left="24" top="28" width="69" height="41"/>
         <Edit id="Edit_title" taborder="6" left="52" top="31" width="578" height="39" onchanged="Edit_title_onchanged"/>
-        <Edit id="Edit_coment" taborder="7" left="24" top="181" width="460" height="79"/>
-        <Button id="btn_close" taborder="8" text="닫기" left="276" top="288" width="93" height="44" ondblclick="btn_close_ondblclick" onclick="btn_close_onclick"/>
+        <Button id="btn_close" taborder="7" text="닫기" left="276" top="288" width="93" height="44" ondblclick="btn_close_ondblclick" onclick="btn_close_onclick"/>
+        <TextArea id="TextArea01" taborder="8" left="20" top="176" width="482" height="112"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[// 팝업 로드 시 게시글 정보와 첨부파일 정보를 불러옴
@@ -51,7 +51,7 @@ this.Popup_edit_page_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 
 	// Edit 및 TextArea에 게시글 정보 설정
 	this.Edit_title.set_value(this.ds_post.getColumn(0, "title"));
-	this.Edit_coment.set_value(this.ds_post.getColumn(0, "content"));
+	this.TextArea01.set_value(this.ds_post.getColumn(0, "content"));
 
 	// 첨부파일 정보 조회
 	var postCode = this.ds_post.getColumn(0, "post_code");
@@ -218,6 +218,7 @@ this.btn_close_ondblclick = function(obj:nexacro.Button,e:nexacro.MouseEventInfo
 	this.close('Close Popup');
 };
 
+
 ]]></Script>
     <Objects>
       <Dataset id="Dataset00">
@@ -260,7 +261,7 @@ this.btn_close_ondblclick = function(obj:nexacro.Button,e:nexacro.MouseEventInfo
     </Objects>
     <Bind>
       <BindItem id="item0" compid="Edit_title" propid="value" datasetid="ds_postInfo" columnid="title"/>
-      <BindItem id="item1" compid="Edit_coment" propid="value" datasetid="ds_postInfo" columnid="content"/>
+      <BindItem id="item2" compid="TextArea01" propid="value" datasetid="ds_postInfo" columnid="content"/>
     </Bind>
   </Form>
 </FDL>
