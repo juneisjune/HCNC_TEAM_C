@@ -3,7 +3,7 @@
   <Form id="btn_Post" width="1280" height="720" titletext="New Form" onload="Form_Post_onload">
     <Layouts>
       <Layout height="720" width="1280">
-        <Grid id="grd_notice" binddataset="ds_Post" left="10" top="65" width="1092" height="410" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick">
+        <Grid id="grd_notice" binddataset="ds_Post" left="10" top="65" width="1092" height="410" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -19,7 +19,7 @@
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
-                <Row size="23"/>
+                <Row size="42"/>
               </Rows>
               <Band id="head">
                 <Cell/>
@@ -52,7 +52,7 @@
         <Button id="btn_prev" text="이전" left="350" top="520" width="50" height="30" taborder="4"/>
         <Button id="btn_next" text="다음" left="450" top="520" width="50" height="30" taborder="5"/>
         <Button id="btn_newPost" taborder="6" text="새 공지사항 등록" left="990" top="12" width="110" height="28" onclick="btn_newPost_onclick"/>
-        <Button id="Button00" taborder="7" text="Button00" left="612" top="580" width="92" height="52" onclick="newEdit_onclick"/>
+        <Button id="Button00" taborder="7" text="상세 보기" left="614" top="520" width="92" height="52" onclick="newEdit_onclick"/>
         <Static id="Static00_00" taborder="8" text="공지사항조회관리" left="140" top="3" width="722" height="67" font="bold 36px/normal &quot;Gulim&quot;" textAlign="center" onclick="Static00_00_onclick"/>
       </Layout>
     </Layouts>
@@ -216,7 +216,16 @@ this.showPopup_Detail = function (objParam1)
 	popup.style.set_overlaycolor("#6666664C");
 	popup.form.style.set_border("1 solid #4c5a6f");
 }
-//=====명준님 예시
+
+this.grd_notice_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	console.log("ds_post(inFormpost):" + this.ds_Post.saveXML());
+		var objParam1 = 
+			{post_code:this.ds_Post.getColumn(this.ds_Post.rowposition, "post_code")};
+
+				  
+	this.showPopup_Detail(objParam1);
+};
 ]]></Script>
     <Objects>
       <Dataset id="ds_Post">

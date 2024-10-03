@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,6 +76,13 @@
             margin-top: 20px;
         }
 
+        /* 제목 부분에 대한 스타일 */
+        th.title, td.title {
+            font-size: 18px; /* 제목 크기를 키움 */
+            font-weight: bold; /* 제목을 더 두껍게 */
+            width: 500px;
+        }
+
         .pagination {
             text-align: center;
             margin-top: 20px;
@@ -125,9 +131,9 @@
             <thead>
                 <tr>
                     <th>게시글 코드</th>
-                    <th>제목</th>
-                    <th>내용</th>
                     <th>작성자 이름</th>
+                    <th class="title">제목</th> <!-- 제목 부분에 클래스 추가 -->
+                    
                     <th>등록일</th>
                     <th>조회수</th>
                     <th>상세 조회</th> <!-- 버튼을 위한 열 추가 -->
@@ -137,9 +143,9 @@
                 <c:forEach var="post" items="${postList}">
                     <tr>
                         <td>${post.post_code}</td> <!-- 게시글 번호-->
-                        <td>${post.title}</td> <!-- 제목 출력 -->
-                        <td>${post.content}</td> <!-- 내용 -->
                         <td>${post.emp_name}</td> <!-- 작성자-->
+                        <td class="title">${post.title}</td> <!-- 제목 부분에 클래스 추가 -->
+                        
                         <td>${post.reg_date}</td> <!-- 작성일-->
                         <td>${post.view_count}</td> <!-- 조회수 출력 -->
                         <td>
