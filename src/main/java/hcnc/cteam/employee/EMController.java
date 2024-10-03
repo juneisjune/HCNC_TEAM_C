@@ -72,6 +72,22 @@ public class EMController {
         
         
     }
-}
+        @RequestMapping(value = "/deleteEmployee.do")
+        public NexacroResult deleteEmployee(@ParamDataSet(name = "ds_empList") Map<String, Object> empData) {
+            NexacroResult result = new NexacroResult();
+            try {
+                System.out.println("삭제 요청 들어옴: " + empData);
+                // 서비스 레이어에 직원 삭제 요청
+                EMService.deleteEmployee(empData);
+                result.setErrorCode(0);
+                result.setErrorMsg("직원 삭제 완료");
+            } catch (Exception ee) {
+                System.out.println(ee);
+                result.setErrorCode(-1);
+                result.setErrorMsg("삭제 오류 발생");
+            }
+            return result;
+ }
 
+}
 

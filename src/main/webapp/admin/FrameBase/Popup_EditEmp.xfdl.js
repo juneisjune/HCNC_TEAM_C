@@ -19,7 +19,7 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("ds_employee", this);
-            obj._setContents("<ColumnInfo><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"password\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"birth\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"phone\" type=\"STRING\" size=\"256\"/><Column id=\"address\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"upd_name\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"password\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"birth\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"phone\" type=\"STRING\" size=\"256\"/><Column id=\"address\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"upd_name\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -215,6 +215,7 @@
             this.ds_employee.setColumn(0, "email", this.parent.email);
             this.ds_employee.setColumn(0, "address", this.parent.address);
             this.ds_employee.setColumn(0, "account", this.parent.account);
+        	this.ds_employee.setColumn(0, "emp_code", this.parent.emp_code);
 
         	console.log(this.ds_employee.saveXML());
 
@@ -234,13 +235,10 @@
             console.log(this.ds_employee.saveXML());
 
             // transaction 호출
-            this.transaction(strSvcId, strSvcUrl, inData, outData, callBackFnc, isAsync);
+            this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 
             alert("수정 완료");
             this.close("수정 완료");
-            this.ds_employee.clearData()
-            // 부모창의 검색 함수 호출
-            this.opener.fnSearch();
         };
 
         this.btnClose_onclick = function(obj,e)

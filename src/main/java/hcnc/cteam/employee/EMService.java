@@ -10,6 +10,8 @@ public interface EMService {
     void selectEmployeeData(Map<String, Object> param);
     
     void updateEmployeeData(Map<String, Object> param);
+    
+    void deleteEmployee(Map<String, Object> param); 
    }
 
 

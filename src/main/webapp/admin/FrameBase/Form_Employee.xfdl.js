@@ -18,12 +18,12 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("ds_empList", this);
-            obj._setContents("<ColumnInfo><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"phone\" type=\"STRING\" size=\"256\"/><Column id=\"birth\" type=\"STRING\" size=\"256\"/><Column id=\"address\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"id\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"STRING\" size=\"256\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"phone\" type=\"STRING\" size=\"256\"/><Column id=\"birth\" type=\"STRING\" size=\"256\"/><Column id=\"address\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"id\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
             obj = new Dataset("ds_employee", this);
-            obj._setContents("<ColumnInfo><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"password\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"birth\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"phone\" type=\"STRING\" size=\"256\"/><Column id=\"address\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"joinDate\" type=\"STRING\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"password\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"birth\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"phone\" type=\"STRING\" size=\"256\"/><Column id=\"address\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"joinDate\" type=\"STRING\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -67,7 +67,7 @@
             obj = new Grid("grd_employee","15","160","785","330",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_binddataset("ds_empList");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"55\"/><Column size=\"75\"/><Column size=\"60\"/><Column size=\"70\"/><Column size=\"41\"/><Column size=\"91\"/><Column size=\"145\"/><Column size=\"84\"/><Column size=\"156\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"부서명\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"이름\"/><Cell col=\"4\" text=\"성별\"/><Cell col=\"5\" text=\"전화번호\"/><Cell col=\"6\" text=\"생년월일\"/><Cell col=\"7\" text=\"주소\"/><Cell col=\"8\" text=\"이메일\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\"/><Cell col=\"1\" text=\"bind:depName\"/><Cell col=\"2\" text=\"bind:assignName\"/><Cell col=\"3\" text=\"bind:name\"/><Cell col=\"4\" text=\"bind:gender\"/><Cell col=\"5\" text=\"bind:phone\"/><Cell col=\"6\" text=\"bind:birth\" displaytype=\"date\" calendardateformat=\"yyyy년 MM일 dd월\"/><Cell col=\"7\" text=\"bind:address\"/><Cell col=\"8\" text=\"bind:email\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"55\"/><Column size=\"75\"/><Column size=\"60\"/><Column size=\"70\"/><Column size=\"41\"/><Column size=\"91\"/><Column size=\"145\"/><Column size=\"84\"/><Column size=\"156\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"부서명\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"이름\"/><Cell col=\"4\" text=\"성별\"/><Cell col=\"5\" text=\"전화번호\"/><Cell col=\"6\" text=\"생년월일\"/><Cell col=\"7\" text=\"주소\"/><Cell col=\"8\" text=\"이메일\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\"/><Cell col=\"1\" text=\"bind:depName\"/><Cell col=\"2\" text=\"bind:assignName\"/><Cell col=\"3\" text=\"bind:name\"/><Cell col=\"4\" text=\"bind:gender\"/><Cell col=\"5\" text=\"bind:phone\"/><Cell col=\"6\" text=\"bind:birth\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\" calendareditformat=\"yyyy-MM-dd\"/><Cell col=\"7\" text=\"bind:address\"/><Cell col=\"8\" text=\"bind:email\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Register","15","500","80","50",null,null,null,null,null,null,this);
@@ -159,74 +159,88 @@
             popup.showModal(this.getOwnerFrame(), null, this, "fn_popupCallback", true);
         };
 
-        // 수정 버튼 클릭 이벤트
-        this.btn_Edit_onclick = function(obj, e) {
-            var objParam = {
-                id: this.ds_empList.getColumn(this.ds_empList.rowposition, "id"),
-                name: this.ds_empList.getColumn(this.ds_empList.rowposition, "name"),
-                password: this.ds_empList.getColumn(this.ds_empList.rowposition, "password"),
-                birth: this.ds_empList.getColumn(this.ds_empList.rowposition, "birth"),
-                gender: this.ds_empList.getColumn(this.ds_empList.rowposition, "gender"),
-                phone: this.ds_empList.getColumn(this.ds_empList.rowposition, "phone"),
-                email: this.ds_empList.getColumn(this.ds_empList.rowposition, "email"),
-                address: this.ds_empList.getColumn(this.ds_empList.rowposition, "address"),
-                account: this.ds_empList.getColumn(this.ds_empList.rowposition, "account")
-            };
-            this.showEditPopup(objParam);
-        };
 
-        // 수정 팝업 호출 함수
+
+        // 수정팝업 호출 함수
         this.showEditPopup = function(objParam) {
-            console.log("수정 팝업 열기");
+            // 고유한 팝업 ID를 생성
+            var popupId = "popupEditEmp_" + new Date().getTime();  // 시간을 기반으로 고유한 ID 생성
 
+            // 1. 새로운 팝업 생성
             var popup = new nexacro.ChildFrame;
-            popup.init("Emppopupd", 100, 100, 800, 700, null, null, "FrameBase::Popup_EditEmp.xfdl");
-            popup.set_dragmovetype("all"); // 팝업이 드래그로 움직일 수 있도록 설정
-            popup.set_layered(true); // 팝업을 레이어 위에 표시
-            popup.set_autosize(true); // 팝업 크기를 자동으로 조절
-            popup.set_showtitlebar("직원 수정 화면");
-            popup.set_showtitlebar(true); // 제목 표시줄 표시
-            popup.set_showstatusbar(false); // 상태 표시줄 숨김
-            popup.set_resizable(true); // 크기 조절 가능
-            popup.set_openalign("center middle"); // 화면 중앙에 팝업을 정렬
+            popup.init(popupId, 100, 100, 800, 700, null, null, "FrameBase::Popup_EditEmp.xfdl");
+            popup.set_dragmovetype("all");
+            popup.set_layered(true);
+            popup.set_autosize(true);
+            popup.set_showtitlebar(true);
+            popup.set_showstatusbar(false);
+            popup.set_resizable(true);
+            popup.set_openalign("center middle");
+
+            // 2. 팝업을 호출 (고유한 ID 사용)
             popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
         };
 
-        // 삭제 함수
-        this.fnDelete = function(employeeId) {
-            var strSvcId    = "deleteEmployee";  // 서비스 ID
-            var strSvcUrl   = "svc::deleteEmployee.do";  // 서비스 URL
-            var strArg      = "employeeId=" + nexacro.wrapQuote(employeeId);  // 전달할 파라미터
-            var callBackFnc = "fnCallbackDelete";  // 콜백 함수
-            var isAsync     = true;  // 비동기 처리
 
-            console.log("삭제 트랜잭션 시작. 서비스 ID: " + strSvcId + ", URL: " + strSvcUrl);
-            this.transaction(strSvcId, strSvcUrl, "", "", strArg, callBackFnc, isAsync);
+
+
+
+        this.btn_Edit_onclick = function(obj,e)
+        {
+        	var objParam = {id:this.ds_empList.getColumn(this.ds_empList.rowposition, "id")
+                          , name:this.ds_empList.getColumn(this.ds_empList.rowposition, "name")
+                          , birth:this.ds_empList.getColumn(this.ds_empList.rowposition, "birth")
+                      , gender:this.ds_empList.getColumn(this.ds_empList.rowposition, "gender")
+                      , phone:this.ds_empList.getColumn(this.ds_empList.rowposition, "phone")
+                      , address:this.ds_empList.getColumn(this.ds_empList.rowposition, "address")
+                      , email:this.ds_empList.getColumn(this.ds_empList.rowposition, "email")
+                      , account:this.ds_empList.getColumn(this.ds_empList.rowposition, "account")
+                      , emp_code:this.ds_empList.getColumn(this.ds_empList.rowposition, "empCode")};
+
+        			  console.log(this.ds_empList.saveXML());
+           this.showEditPopup(objParam);
         };
 
-        // 삭제 콜백 함수
-        this.fnCallbackDelete = function(strSvcId, nErrorCode, strErrorMsg) {
-            if (nErrorCode < 0) {
-                this.alert("직원 삭제에 실패하였습니다: " + strErrorMsg);
-            } else {
-                this.alert("직원 삭제가 완료되었습니다.");
-                this.fnSearch();  // 삭제 후 목록 새로고침
+
+
+
+        this.btn_Delete_onclick = function(obj,e)
+        {
+            if (!this.confirm("정말로 삭제하시겠습니까?", "")) {
+                return;  // 취소 시 동작 중단
             }
-        };
 
-        // 삭제 버튼 클릭 이벤트
-        this.btn_Delete_onclick = function(obj, e) {
-            var selectedRow = this.ds_empList.rowposition;
-
-            if (selectedRow < 0) {
-                this.alert("삭제할 직원을 선택하세요.");
+            // 현재 선택된 행이 있는지 확인
+            var nRow = this.ds_empList.rowposition;
+            if (nRow < 0) {
+                this.alert("삭제할 데이터를 선택해 주세요.");
                 return;
             }
 
-            var employeeId = this.ds_empList.getColumn(selectedRow, "id");
+            // 삭제 처리 함수 호출
+            this.fnDeleteEmployee();
+        }
 
-            if (this.confirm("선택한 직원을 삭제하시겠습니까?")) {
-                this.fnDelete(employeeId);  // 삭제 트랜잭션 호출
+        this.fnDeleteEmployee = function()
+        {
+
+            // 트랜잭션을 통해 삭제 요청
+            var strSvcId    = "deleteEmployee";  // 서비스 ID
+            var strSvcUrl   = "svc::deleteEmployee.do";  // 서비스 URL
+            var inData      = "ds_empList=ds_empList";  // 입력 데이터셋
+            var outData     = "";  // 출력 데이터셋 없음
+            var callBackFnc = "fnCallbackDelete";  // 콜백 함수
+            var isAsync     = true;  // 비동기 처리
+
+            this.transaction(strSvcId, strSvcUrl, inData, outData, "", callBackFnc, isAsync);
+        };
+        this.fnCallbackDelete = function(svcID, errorCode, errorMsg)
+        {
+            if (errorCode == 0) {
+                this.alert("삭제가 완료되었습니다.");
+                this.fnSearch();  // 삭제 후 재조회
+            } else {
+                this.alert("삭제 중 오류가 발생하였습니다: " + errorMsg);
             }
         };
 
@@ -239,6 +253,7 @@
             this.edt_SearchWord.addEventHandler("onchanged",this.edt_SearchWord_onchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.btn_Register.addEventHandler("onclick",this.btn_Register_onclick,this);
+            this.btn_Edit.addEventHandler("onclick",this.btn_Edit_onclick,this);
             this.btn_Delete.addEventHandler("onclick",this.btn_Delete_onclick,this);
         };
         this.loadIncludeScript("Form_Employee.xfdl");

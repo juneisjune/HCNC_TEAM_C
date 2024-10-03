@@ -78,14 +78,19 @@ VALUES (
 UPDATE employee
 SET 
     id = #{id},
-    password = SHA(#{password}, 256),
+    password = SHA2(#{password}, 256),
     name = #{name},
-    birth = #{birth},
+    birth = SUBSTRING(#{birth}, 1, 8),
     gender = #{gender},
     phone = #{phone},
     address = #{address},
     email = #{email},
-    account = #{account},
-    where emp_code = #{empCode};
+    account = #{account}
+    WHERE emp_code = #{emp_code};
     </update>
+    
+    <delete id="deleteEmployee" parameterType="map">
+        DELETE FROM employee
+        WHERE emp_code = #{empCode};  <!-- 사번(emp_code)을 기준으로 직원 정보 삭제 -->
+    </delete>
 </mapper>

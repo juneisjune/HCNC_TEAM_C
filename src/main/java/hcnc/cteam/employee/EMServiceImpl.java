@@ -31,4 +31,10 @@ public class EMServiceImpl implements EMService {
     public void updateEmployeeData(Map<String, Object> param) {
         EMMapper.updateEmployeeData(param);  // Mapper에서 직원 정보 수정
  }
+    
+    @Override
+    public void deleteEmployee(Map<String, Object> param) {
+        EMMapper.deleteEmployee(param);  // 삭제 기능 구현
+}
+
 }
