@@ -29,7 +29,7 @@
           <Column id="email" type="STRING" size="256"/>
           <Column id="joinDate" type="STRING" size="256"/>
           <Column id="account" type="STRING" size="256"/>
-          <Column id="emp_code" type="STRING" size="256"/>
+          <Column id="empCode" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -75,7 +75,7 @@
         <Combo id="cmb_SearchType" taborder="1" text="전체" left="20" top="110" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL"/>
         <Edit id="edt_SearchWord" taborder="2" left="130" top="110" width="180" height="30" binddataset="ds_search" text="bind:SEARCH_WORD" onchanged="edt_SearchWord_onchanged"/>
         <Button id="btn_Search" taborder="3" text="조회" left="320" top="110" width="70" height="30" onclick="btn_Search_onclick"/>
-        <Grid id="grd_employee" taborder="4" left="15" top="160" width="785" height="330" binddataset="ds_empList">
+        <Grid id="grd_employee" taborder="4" left="15" top="160" width="785" height="330" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged">
           <Formats>
             <Format id="default">
               <Columns>
@@ -223,17 +223,16 @@ this.btn_Delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
     if (!this.confirm("정말로 삭제하시겠습니까?", "")) {
         return;  // 취소 시 동작 중단
     }
-
-    // 현재 선택된 행이 있는지 확인
-    var nRow = this.ds_empList.rowposition;
+	
+  var nRow = this.ds_empList.rowposition;
     if (nRow < 0) {
-        this.alert("삭제할 데이터를 선택해 주세요.");
+        this.alert("삭제할 데이터를 선택하세요.");
         return;
     }
 
     // 삭제 처리 함수 호출
     this.fnDeleteEmployee();
-}
+}	
 	
 this.fnDeleteEmployee = function() 
 {
@@ -241,7 +240,7 @@ this.fnDeleteEmployee = function()
     // 트랜잭션을 통해 삭제 요청
     var strSvcId    = "deleteEmployee";  // 서비스 ID
     var strSvcUrl   = "svc::deleteEmployee.do";  // 서비스 URL
-    var inData      = "ds_empList=ds_empList";  // 입력 데이터셋
+    var inData      = "ds_employee=ds_employee";  // 입력 데이터셋
     var outData     = "";  // 출력 데이터셋 없음
     var callBackFnc = "fnCallbackDelete";  // 콜백 함수
     var isAsync     = true;  // 비동기 처리
@@ -256,6 +255,14 @@ this.fnCallbackDelete = function(svcID, errorCode, errorMsg)
     } else {
         this.alert("삭제 중 오류가 발생하였습니다: " + errorMsg);
     }
+};
+
+this.grd_employee_oncellposchanged = function(obj:nexacro.Grid,e:nexacro.GridSelectEventInfo)
+{
+
+	this.ds_employee.setColumn(0, "empCode", this.ds_empList.getColumn(this.ds_empList.rowposition, "empCode"));
+	
+	console.log(this.ds_employee.saveXML());
 };
 ]]></Script>
     <Bind>

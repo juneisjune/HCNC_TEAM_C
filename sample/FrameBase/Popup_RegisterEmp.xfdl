@@ -59,7 +59,7 @@
         <Edit id="edtEmail" left="370" top="210" width="110" height="25" binddataset="ds_employee" text="bind:Email"/>
         <!-- 네 번째 행: 입사일, 계좌번호 -->
         <Static id="lblJoinDate" text="입사일" left="320" top="168" width="80" height="25" textAlign="left"/>
-        <Calendar id="calJoinDate" left="370" top="168" width="110" height="25" binddataset="ds_employee" datecolumn="JoinDate" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
+        <Calendar id="calJoinDate" left="370" top="168" width="110" height="25" binddataset="ds_employee" datecolumn="joinDate" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
         <Static id="lblAccount" text="계좌번호" left="40" top="210" width="80" height="25" textAlign="left"/>
         <Edit id="edtAccount" left="90" top="210" width="110" height="25" binddataset="ds_employee" text="bind:Account"/>
         <!-- 마지막 행: 아이디, 비밀번호 -->
@@ -68,18 +68,17 @@
         <Static id="lblPassword" text="비밀번호" left="320" top="253" width="80" height="25" textAlign="left"/>
         <Edit id="edtPassword" left="370" top="252" width="110" height="25" binddataset="ds_employee" text="bind:Password"/>
         <!-- 버튼 -->
-        <Button id="btnRegister" text="등록" left="180" top="310" width="80" height="30" background="green" color="white" borderRadius="5px" cursor="pointer" onclick="btnRegister_onclick"/>
+        <Button id="btnRegister" text="등록" left="170" top="310" width="80" height="30" background="green" color="white" borderRadius="5px" cursor="pointer" onclick="btnRegister_onclick"/>
         <Button id="btnClose" text="닫기" left="280" top="310" width="80" height="30" background="gray" color="white" borderRadius="5px" cursor="pointer" onclick="btnClose_onclick"/>
       </Layout>
     </Layouts>
-    <Script type="xscript5.1"><![CDATA[this.Pop_RegisterEmp_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
-{
-	
-};
-
-
-// 등록 버튼 클릭 시 데이터 저장 로직 추가
+    <Script type="xscript5.1"><![CDATA[// 등록 버튼 클릭 시 데이터 저장 로직 추가
 this.btnRegister_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+  
+    if (!this.validateEmployeeData()) {
+        return; 
+    }
+
     var strSvcId = "selectEmployee";
     var strSvcUrl = "svc::selectEmployeeData.do";  // 서버의 URL과 매핑
     var inData = "ds_employee=ds_employee";  // 전송할 데이터셋
@@ -87,27 +86,111 @@ this.btnRegister_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo
     var strArg = "";  // 추가 인자가 필요 없을 경우 빈 문자열
     var callBackFnc = "fnCallback";  // 콜백 함수 호출
     var isAsync = true;  // 비동기 처리
-    
-	
-	console.log(this.ds_employee.saveXML());
+
+    console.log(this.ds_employee.saveXML());  // 데이터 전송 전 확인용 로그
+
     // transaction 호출
-    this.transaction(strSvcId, strSvcUrl, inData, outData, callBackFnc, isAsync);
-	
-	alert("등록완료");
-	this.close("등록 완료");
-    
-	this.opener.fnSearch();
+    this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+// 유효성 검사 함수
+this.validateEmployeeData = function() {
+    var name = this.ds_employee.getColumn(0, "name");
+    var birth = this.ds_employee.getColumn(0, "birth");
+    var gender = this.ds_employee.getColumn(0, "gender");
+    var phone = this.ds_employee.getColumn(0, "phone");
+    var address = this.ds_employee.getColumn(0, "address");
+    var joinDate = this.ds_employee.getColumn(0, "joinDate");
+    var account = this.ds_employee.getColumn(0, "account");
+    var email = this.ds_employee.getColumn(0, "email");
+    var id = this.ds_employee.getColumn(0, "id");
+    var password = this.ds_employee.getColumn(0, "password");
+
+    // 이름 검사
+    if (!name || name.trim() === "") {
+        alert("이름을 입력해 주세요.");
+        return false;  
+    }
+
+    // 생년월일 검사 (YYYYMMDD 형식)
+    var birthPattern = /^[0-9]{8}$/;  
+    if (!birth || !birthPattern.test(birth)) {
+        alert("올바른 생년월일을 입력해 주세요. ");
+        return false;  
+    }
+
+    // 성별 검사
+    if (!gender || gender.trim() === "") {
+        alert("성별을 입력해 주세요.");
+        return false;
+    }
+
+    // 전화번호 검사 (숫자, 최소 10자리)
+    var phonePattern = /^[0-9]{10,}$/; 
+    if (!phone || !phonePattern.test(phone)) {
+        alert("유효한 전화번호를 입력해 주세요. 최소 10자리의 숫자여야 합니다.");
+        return false;
+    }
+
+    // 주소 검사
+    if (!address || address.trim() === "") {
+        alert("주소를 입력해 주세요.");
+        return false;  
+    }
+
+    // 입사일 검사 (YYYYMMDD 형식)
+    var joinDatePattern = /^[0-9]{8}$/;  
+    if (!joinDate || !joinDatePattern.test(joinDate)) {
+		console.log(this.ds_employee.saveXML());
+        alert("올바른 입사일을 입력해 주세요.");
+        return false;  
+    }
+
+    // 계좌번호 검사 (숫자만)
+    var accountPattern = /^[0-9]+$/;  
+    if (!account || !accountPattern.test(account)) {
+        alert("유효한 계좌번호를 입력해 주세요. 숫자만 입력 가능합니다.");
+        return false;  
+    }
+
+    // 이메일 검사 (간단한 이메일 형식 검사)
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  
+    if (!email || !emailPattern.test(email)) {
+        alert("유효한 이메일을 입력해 주세요.");
+        return false;  
+    }
+
+    // 아이디 검사
+    if (!id || id.trim() === "") {
+        alert("아이디를 입력해 주세요.");
+        return false;  
+    }
+
+    // 비밀번호 검사 (최소 6자 이상)
+    if (!password || password.length < 6) {
+        alert("비밀번호는 최소 6자 이상이어야 합니다.");
+        return false; 
+    }
+
+    // 모든 유효성 검사를 통과하면 true 반환
+    return true;
+};
+
+// 콜백 함수 (transaction 완료 후 호출)
+this.fnCallback = function(svcID, errorCode, errorMsg) {
+    if (errorCode == 0) {  // 성공 시
+        alert("등록 완료");
+        this.close("등록 완료");
+        this.opener.fnSearch();  // 부모 창에서 검색 함수 호출
+    } else {
+        alert("등록 실패: " + errorMsg);  // 오류 시 메시지 출력
+    }
 };
 
 // 닫기 버튼 클릭 시 팝업 닫기
 this.btnClose_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
-    
-
-    this.close('팝업닫기');
-	
+    this.close('팝업 닫기');
 };
-
-
 ]]></Script>
     <Bind>
       <BindItem id="item0" compid="edtID" propid="value" datasetid="ds_employee" columnid="id"/>

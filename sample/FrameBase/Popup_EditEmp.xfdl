@@ -102,6 +102,11 @@
 
 // 수정 버튼 클릭 시 호출되는 함수 (수정된 데이터 저장)
 this.btnUpdate_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+
+	if (!this.validateEmployeeData()) {
+        return; 
+    }
+
     var strSvcId = "updateEmployeeData";  // 서비스 ID
     var strSvcUrl = "svc::updateEmployeeData.do";  // 서버의 URL과 매핑
     var inData = "ds_employee=ds_employee";  // 전송할 데이터셋
@@ -114,10 +119,87 @@ this.btnUpdate_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) 
 
     // transaction 호출
     this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
-    
+	
     alert("수정 완료");
     this.close("수정 완료");
+	
+	this.opener.fnSearch();
 };
+
+	// 유효성 검사 함수
+this.validateEmployeeData = function() {
+    var name = this.ds_employee.getColumn(0, "name");
+    var birth = this.ds_employee.getColumn(0, "birth");
+    var gender = this.ds_employee.getColumn(0, "gender");
+    var phone = this.ds_employee.getColumn(0, "phone");
+    var address = this.ds_employee.getColumn(0, "address");
+    var account = this.ds_employee.getColumn(0, "account");
+    var email = this.ds_employee.getColumn(0, "email");
+    var id = this.ds_employee.getColumn(0, "id");
+    var password = this.ds_employee.getColumn(0, "password");
+
+	// 아이디 검사
+    if (!id || id.trim() === "") {
+        alert("아이디를 입력해 주세요.");
+        return false;  
+    }
+
+    // 비밀번호 검사 (최소 6자 이상)
+    if (!password || password.length < 6) {
+        alert("비밀번호는 최소 6자 이상이어야 합니다.");
+        return false; 
+    }
+
+    // 이름 검사
+    if (!name || name.trim() === "") {
+        alert("이름을 입력해 주세요.");
+        return false;  
+    }
+
+    // 생년월일 검사 (YYYYMMDD 형식)
+    var birthPattern = /^[0-9]{8}$/;  
+    if (!birth || !birthPattern.test(birth)) {
+        alert("올바른 생년월일을 입력해 주세요. ");
+        return false;  
+    }
+
+    // 성별 검사
+    if (!gender || gender.trim() === "") {
+        alert("성별을 입력해 주세요.");
+        return false;
+    }
+
+    // 전화번호 검사 (숫자, 최소 10자리)
+    var phonePattern = /^[0-9]{10,}$/; 
+    if (!phone || !phonePattern.test(phone)) {
+        alert("유효한 전화번호를 입력해 주세요. 최소 10자리의 숫자여야 합니다.");
+        return false;
+    }
+
+    // 주소 검사
+    if (!address || address.trim() === "") {
+        alert("주소를 입력해 주세요.");
+        return false;  
+    }
+
+    // 이메일 검사 (간단한 이메일 형식 검사)
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  
+    if (!email || !emailPattern.test(email)) {
+        alert("유효한 이메일을 입력해 주세요.");
+        return false;  
+    }
+   
+    // 계좌번호 검사 (숫자만)
+    var accountPattern = /^[0-9]+$/;  
+    if (!account || !accountPattern.test(account)) {
+        alert("유효한 계좌번호를 입력해 주세요. 숫자만 입력 가능합니다.");
+        return false;  
+    }
+
+    // 모든 유효성 검사를 통과하면 true 반환
+    return true;
+};
+
 
 this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {

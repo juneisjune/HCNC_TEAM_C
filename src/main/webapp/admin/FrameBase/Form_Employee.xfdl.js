@@ -23,7 +23,7 @@
 
 
             obj = new Dataset("ds_employee", this);
-            obj._setContents("<ColumnInfo><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"password\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"birth\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"phone\" type=\"STRING\" size=\"256\"/><Column id=\"address\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"joinDate\" type=\"STRING\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"id\" type=\"STRING\" size=\"256\"/><Column id=\"password\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"birth\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"phone\" type=\"STRING\" size=\"256\"/><Column id=\"address\" type=\"STRING\" size=\"256\"/><Column id=\"email\" type=\"STRING\" size=\"256\"/><Column id=\"joinDate\" type=\"STRING\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"empCode\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -210,10 +210,9 @@
                 return;  // 취소 시 동작 중단
             }
 
-            // 현재 선택된 행이 있는지 확인
-            var nRow = this.ds_empList.rowposition;
+          var nRow = this.ds_empList.rowposition;
             if (nRow < 0) {
-                this.alert("삭제할 데이터를 선택해 주세요.");
+                this.alert("삭제할 데이터를 선택하세요.");
                 return;
             }
 
@@ -227,7 +226,7 @@
             // 트랜잭션을 통해 삭제 요청
             var strSvcId    = "deleteEmployee";  // 서비스 ID
             var strSvcUrl   = "svc::deleteEmployee.do";  // 서비스 URL
-            var inData      = "ds_empList=ds_empList";  // 입력 데이터셋
+            var inData      = "ds_employee=ds_employee";  // 입력 데이터셋
             var outData     = "";  // 출력 데이터셋 없음
             var callBackFnc = "fnCallbackDelete";  // 콜백 함수
             var isAsync     = true;  // 비동기 처리
@@ -244,6 +243,14 @@
             }
         };
 
+        this.grd_employee_oncellposchanged = function(obj,e)
+        {
+
+        	this.ds_employee.setColumn(0, "empCode", this.ds_empList.getColumn(this.ds_empList.rowposition, "empCode"));
+
+        	console.log(this.ds_employee.saveXML());
+        };
+
         });
         
         // Regist UI Components Event
@@ -252,6 +259,7 @@
             this.addEventHandler("onload",this.Form_employee_onload,this);
             this.edt_SearchWord.addEventHandler("onchanged",this.edt_SearchWord_onchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
+            this.grd_employee.addEventHandler("oncellposchanged",this.grd_employee_oncellposchanged,this);
             this.btn_Register.addEventHandler("onclick",this.btn_Register_onclick,this);
             this.btn_Edit.addEventHandler("onclick",this.btn_Edit_onclick,this);
             this.btn_Delete.addEventHandler("onclick",this.btn_Delete_onclick,this);

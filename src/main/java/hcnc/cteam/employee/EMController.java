@@ -73,7 +73,7 @@ public class EMController {
         
     }
         @RequestMapping(value = "/deleteEmployee.do")
-        public NexacroResult deleteEmployee(@ParamDataSet(name = "ds_empList") Map<String, Object> empData) {
+        public NexacroResult deleteEmployee(@ParamDataSet(name = "ds_employee") Map<String, Object> empData) {
             NexacroResult result = new NexacroResult();
             try {
                 System.out.println("삭제 요청 들어옴: " + empData);
