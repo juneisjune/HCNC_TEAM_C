@@ -212,16 +212,7 @@
         };
 
 
-        this.newEdit_onclick = function(obj,e)
-        {
-        	console.log("ds_post(inFormpost):" + this.ds_Post.saveXML());
-        		var objParam = {title:this.ds_Post.getColumn(this.ds_Post.rowposition, "title")
-        						, content:this.ds_Post.getColumn(this.ds_Post.rowposition, "content")
-        				  };
 
-
-        	this.showPopup(objParam);
-        };
         this.showPopup = function (objParam)
         {
         	popup = new nexacro.ChildFrame;
@@ -238,10 +229,31 @@
         	popup.form.style.set_border("1 solid #4c5a6f");
         }
 
-        this.Static00_00_onclick = function(obj,e)
+        this.newEdit_onclick = function(obj,e)
         {
+        	console.log("ds_post(inFormpost):" + this.ds_Post.saveXML());
+        		var objParam1 =
+        			{post_code:this.ds_Post.getColumn(this.ds_Post.rowposition, "post_code")};
 
+
+        	this.showPopup_Detail(objParam1);
         };
+        this.showPopup_Detail = function (objParam1)
+        {
+        	popup = new nexacro.ChildFrame;
+        	popup.init("popupWork", 0, 0, 800, 700, null, null, "FrameBase::Popup_DetailPost.xfdl");
+        	popup.set_dragmovetype("all");
+        	popup.set_layered("true");
+        	popup.set_autosize(true);
+        	popup.set_showtitlebar("Popup Title");
+        	popup.set_showstatusbar(false);
+        	popup.set_resizable(true);
+        	popup.set_openalign("center middle");
+        	popup.showModal(this.getOwnerFrame(), objParam1, this, "fn_popupCallback", true);
+        	popup.style.set_overlaycolor("#6666664C");
+        	popup.form.style.set_border("1 solid #4c5a6f");
+        }
+        //=====명준님 예시
 
         });
         

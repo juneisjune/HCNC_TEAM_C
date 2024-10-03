@@ -64,7 +64,7 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"size\"/></Band><Band id=\"body\"><Cell text=\"bind:filename\"/><Cell col=\"1\" text=\"bind:filesize\" textAlign=\"right\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button01","220","420","120","65",null,null,null,null,null,null,this);
+            obj = new Button("Button01","236","420","130","70",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("공지사항 등록");
             this.addChild(obj.name, obj);
@@ -82,7 +82,7 @@
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_close","400","430","122","60",null,null,null,null,null,null,this);
+            obj = new Button("btn_close","400","420","122","70",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("목록 조회");
             this.addChild(obj.name, obj);

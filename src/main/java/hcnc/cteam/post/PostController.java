@@ -1,5 +1,6 @@
 package hcnc.cteam.post;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -127,6 +128,37 @@ public class PostController {
             e.printStackTrace();
         }
 
+        return result;
+    }
+    @RequestMapping(value = "/postDetail.do")
+    public NexacroResult getPostDetail(@ParamDataSet(name = "ds_Post") Map<String, Object> param) {
+        NexacroResult result = new NexacroResult();
+
+        try {
+            int postCode = Integer.parseInt(String.valueOf(param.get("post_code")));
+
+            // 조회수 증가
+            postService.increaseViewCount(postCode);
+
+            // 게시글 상세 정보 조회
+            Map<String, Object> postDetail = postService.selectPostDetail(postCode);
+
+          
+
+            // 첨부파일 목록 조회
+            List<Map<String, Object>> attachments = postService.selectAttachments(postCode);
+
+            // 결과를 NexacroResult에 담기
+            List<Map<String, Object>> postDetailList = new ArrayList<>();
+            postDetailList.add(postDetail);
+
+            result.addDataSet("ds_Post", postDetailList);
+            result.addDataSet("ds_Attachments", attachments);
+
+        } catch (Exception e) {
+            result.setErrorCode(-1);
+            result.setErrorMsg("게시글 상세 조회 중 오류 발생: " + e.getMessage());
+        }
         return result;
     }
 
