@@ -91,6 +91,6 @@ SET
     
     <delete id="deleteEmployee" parameterType="map">
         DELETE FROM employee
-        WHERE emp_code = #{empCode};  <!-- 사번(emp_code)을 기준으로 직원 정보 삭제 -->
+        WHERE emp_code = #{empCode}; 
     </delete>
 </mapper>

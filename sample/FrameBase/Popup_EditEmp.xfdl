@@ -103,6 +103,8 @@
 // 수정 버튼 클릭 시 호출되는 함수 (수정된 데이터 저장)
 this.btnUpdate_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
 
+
+
 	if (!this.validateEmployeeData()) {
         return; 
     }
@@ -145,8 +147,8 @@ this.validateEmployeeData = function() {
     }
 
     // 비밀번호 검사 (최소 6자 이상)
-    if (!password || password.length < 6) {
-        alert("비밀번호는 최소 6자 이상이어야 합니다.");
+    if (!password || password.length < 5) {
+        alert("비밀번호는 최소 5자 이상이어야 합니다.");
         return false; 
     }
 
@@ -157,10 +159,10 @@ this.validateEmployeeData = function() {
     }
 
     // 생년월일 검사 (YYYYMMDD 형식)
-    var birthPattern = /^[0-9]{8}$/;  
-    if (!birth || !birthPattern.test(birth)) {
-        alert("올바른 생년월일을 입력해 주세요. ");
-        return false;  
+	var birth = this.ds_employee.getColumn(0, "birth");
+	if (birth) {
+    birth = birth.toString().trim();  // 데이터 타입을 문자열로 변환하고 공백 제거
+
     }
 
     // 성별 검사
@@ -169,10 +171,10 @@ this.validateEmployeeData = function() {
         return false;
     }
 
-    // 전화번호 검사 (숫자, 최소 10자리)
-    var phonePattern = /^[0-9]{10,}$/; 
+     // 전화번호 검사 (010-XXXX-XXXX 형식)
+    var phonePattern = /^010-[0-9]{4}-[0-9]{4}$/; 
     if (!phone || !phonePattern.test(phone)) {
-        alert("유효한 전화번호를 입력해 주세요. 최소 10자리의 숫자여야 합니다.");
+        alert("유효한 전화번호를 입력해 주세요. 형식: 010-XXXX-XXXX");
         return false;
     }
 
@@ -189,10 +191,9 @@ this.validateEmployeeData = function() {
         return false;  
     }
    
-    // 계좌번호 검사 (숫자만)
-    var accountPattern = /^[0-9]+$/;  
+     var accountPattern = /^[가-힣]+[0-9]+$/;  
     if (!account || !accountPattern.test(account)) {
-        alert("유효한 계좌번호를 입력해 주세요. 숫자만 입력 가능합니다.");
+        alert("유효한 계좌번호를 입력해 주세요. 예: 국민은행12345678");
         return false;  
     }
 

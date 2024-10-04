@@ -40,7 +40,7 @@
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtName","90","80","110","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtName","100","80","110","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Name");
             this.addChild(obj.name, obj);
@@ -62,7 +62,7 @@
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmbGender","90","125","110","25",null,null,null,null,null,null,this);
+            obj = new Combo("cmbGender","100","125","110","25",null,null,null,null,null,null,this);
             obj.set_innerdataset("ds_gender");
             obj.set_codecolumn("value");
             obj.set_datacolumn("text");
@@ -86,7 +86,7 @@
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtAddress","90","165","110","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtAddress","100","165","110","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Address");
             this.addChild(obj.name, obj);
@@ -113,22 +113,22 @@
             obj.set_editformat("yyyy.MM.dd");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblAccount","40","210","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblAccount","50","210","80","25",null,null,null,null,null,null,this);
             obj.set_text("계좌번호");
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtAccount","90","210","110","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtAccount","100","210","110","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Account");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblID","40","253","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblID","50","253","80","25",null,null,null,null,null,null,this);
             obj.set_text("아이디");
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtID","90","252","110","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtID","100","250","110","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:ID");
             this.addChild(obj.name, obj);
@@ -268,11 +268,12 @@
                 return false;
             }
 
-            // 전화번호 검사 (숫자, 최소 10자리)
-            var phonePattern = /^[0-9]{10,}$/;
-            if (!phone || !phonePattern.test(phone)) {
-                alert("유효한 전화번호를 입력해 주세요. 최소 10자리의 숫자여야 합니다.");
-                return false;
+        	var phonePattern = /^010-[0-9]{4}-[0-9]{4}$/;
+        	if (!phone || !phonePattern.test(phone)) {
+            alert("유효한 전화번호를 입력해 주세요. 형식: 010-XXXX-XXXX");
+            return false;
+
+
             }
 
             // 주소 검사
@@ -290,10 +291,10 @@
             }
 
             // 계좌번호 검사 (숫자만)
-            var accountPattern = /^[0-9]+$/;
-            if (!account || !accountPattern.test(account)) {
-                alert("유효한 계좌번호를 입력해 주세요. 숫자만 입력 가능합니다.");
-                return false;
+            var accountPattern = /^[가-힣]+[0-9]+$/;
+        	if (!account || !accountPattern.test(account)) {
+            alert("유효한 계좌번호를 입력해 주세요. 예: 국민은행12345678");
+            return false;
             }
 
             // 이메일 검사 (간단한 이메일 형식 검사)
