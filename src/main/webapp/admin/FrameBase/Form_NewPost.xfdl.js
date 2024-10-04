@@ -15,7 +15,7 @@
             this.set_background("");
             if (Form == this.constructor)
             {
-                this._setFormPosition(1024,768);
+                this._setFormPosition(770,530);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -42,7 +42,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static00","60","155","482","80",null,null,null,null,null,null,this);
+            obj = new Static("Static00","108","322","482","80",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("Drop Files Here");
             obj.set_visible("true");
@@ -53,12 +53,12 @@
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
 
-            obj = new Button("open","560","155","120","90",null,null,null,null,null,null,this);
+            obj = new Button("open","602","320","88","87",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("open");
+            obj.set_text("폴더 열기");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("Grid00","59","155","482","90",null,null,null,null,null,null,this);
+            obj = new Grid("Grid00","108","317","482","90",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"size\"/></Band><Band id=\"body\"><Cell text=\"bind:filename\"/><Cell col=\"1\" text=\"bind:filesize\" textAlign=\"right\"/></Band></Format></Formats>");
@@ -69,33 +69,49 @@
             obj.set_text("공지사항 등록");
             this.addChild(obj.name, obj);
 
-            obj = new Static("title","56","101","69","41",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_title","100","101","590","39",null,null,null,null,null,null,this);
             obj.set_taborder("4");
-            obj.set_text("제목");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_title","100","101","580","39",null,null,null,null,null,null,this);
+            obj = new TextArea("TextArea01","104","160","586","144",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
-            obj = new TextArea("TextArea01","60","260","606","144",null,null,null,null,null,null,this);
-            obj.set_taborder("6");
-            this.addChild(obj.name, obj);
-
             obj = new Button("btn_close","400","420","122","70",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
+            obj.set_taborder("6");
             obj.set_text("목록 조회");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00_00","140","3","722","67",null,null,null,null,null,null,this);
-            obj.set_taborder("8");
+            obj = new Static("Static00_00","8","13","722","67",null,null,null,null,null,null,this);
+            obj.set_taborder("7");
             obj.set_text("공지사항등록");
             obj.set_font("bold 36px/normal \"Gulim\"");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
+
+            obj = new Static("Static_Label_Attachments","-10","320","100","30",null,null,null,null,null,null,this);
+            obj.set_text("첨부파일:");
+            obj.set_font("bold 14px \'Gulim\'");
+            obj.set_textAlign("right");
+            obj.set_taborder("8");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static_Label_Content","-10","170","100","30",null,null,null,null,null,null,this);
+            obj.set_text("내용:");
+            obj.set_font("bold 14px \'Gulim\'");
+            obj.set_textAlign("right");
+            obj.set_taborder("9");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static_Label_Title","-10","105","100","30",null,null,null,null,null,null,this);
+            obj.set_text("제목:");
+            obj.set_font("bold 14px \'Gulim\'");
+            obj.set_textAlign("right");
+            obj.set_taborder("10");
+            this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",1024,768,this,function(p){});
+            obj = new Layout("default","",770,530,this,function(p){});
             obj.set_stepcount("0");
             this.addLayout(obj.name, obj);
             
@@ -311,7 +327,6 @@
             this.Grid00.addEventHandler("ondragleave",this.Grid00_ondragleave,this);
             this.Grid00.addEventHandler("ondrop",this.Grid00_ondrop,this);
             this.Button01.addEventHandler("onclick",this.Button01_onclick,this);
-            this.title.addEventHandler("onclick",this.title_onclick,this);
             this.Edit_title.addEventHandler("onchanged",this.Edit_title_onchanged,this);
             this.btn_close.addEventHandler("onclick",this.btn_close_onclick,this);
             this.Static00_00.addEventHandler("onclick",this.Static00_00_onclick,this);

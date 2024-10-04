@@ -15,7 +15,7 @@
             this.set_background("");
             if (Form == this.constructor)
             {
-                this._setFormPosition(1024,768);
+                this._setFormPosition(750,470);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -47,7 +47,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static00","28","80","482","90",null,null,null,null,null,null,this);
+            obj = new Static("Static00","79","270","482","70",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("Drop Files Here");
             obj.set_visible("true");
@@ -58,46 +58,69 @@
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
 
-            obj = new Button("open","512","80","120","80",null,null,null,null,null,null,this);
+            obj = new Button("open","579","250","120","80",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("open");
+            obj.set_text("폴더 열기");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("attach_grid","20","80","480","90",null,null,null,null,null,null,this);
+            obj = new Grid("attach_grid","81","250","480","90",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"삭제\"/></Band><Band id=\"body\"><Cell text=\"bind:attach_name\"/><Cell col=\"1\" text=\"삭제\" textAlign=\"right\" edittype=\"button\" displaytype=\"buttoncontrol\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button01","130","285","120","50",null,null,null,null,null,null,this);
+            obj = new Button("Button01","330","370","120","50",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("수정하기");
             this.addChild(obj.name, obj);
 
-            obj = new TextArea("TextArea00","642","80","482","120",null,null,null,null,null,null,this);
+            obj = new TextArea("TextArea00","1038","60","482","120",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Static("title","24","28","69","41",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_title","80","70","620","39",null,null,null,null,null,null,this);
             obj.set_taborder("5");
-            obj.set_text("제목");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_title","52","31","578","39",null,null,null,null,null,null,this);
+            obj = new Button("btn_close","490","370","110","50",null,null,null,null,null,null,this);
             obj.set_taborder("6");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_close","276","288","93","44",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
             obj.set_text("닫기");
             this.addChild(obj.name, obj);
 
-            obj = new TextArea("TextArea01","20","176","482","112",null,null,null,null,null,null,this);
+            obj = new TextArea("TextArea01","80","120","619","112",null,null,null,null,null,null,this);
+            obj.set_taborder("7");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static_Label_Title","-50","69","100","30",null,null,null,null,null,null,this);
+            obj.set_text("제목:");
+            obj.set_font("bold 14px \'Gulim\'");
+            obj.set_textAlign("right");
             obj.set_taborder("8");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static_Label_Attachments","-39","255","100","30",null,null,null,null,null,null,this);
+            obj.set_text("첨부파일:");
+            obj.set_font("bold 14px \'Gulim\'");
+            obj.set_textAlign("right");
+            obj.set_taborder("9");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static_Label_Content","-50","119","100","30",null,null,null,null,null,null,this);
+            obj.set_text("내용:");
+            obj.set_font("bold 14px \'Gulim\'");
+            obj.set_textAlign("right");
+            obj.set_taborder("10");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static_Title","60","10","400","40",null,null,null,null,null,null,this);
+            obj.set_text("공지사항 수정하기");
+            obj.set_font("bold 24px \'Gulim\'");
+            obj.set_textAlign("left");
+            obj.set_taborder("11");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",1024,768,this,function(p){});
+            obj = new Layout("default","",750,470,this,function(p){});
             obj.set_stepcount("0");
             this.addLayout(obj.name, obj);
             
