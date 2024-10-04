@@ -35,7 +35,7 @@
             obj = new Grid("grd_notice","10","65","1050","410",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Post");
             obj.set_taborder("0");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"85\"/><Column size=\"144\"/><Column size=\"258\"/><Column size=\"190\"/><Column size=\"85\"/><Column size=\"64\"/><Column size=\"94\"/><Column size=\"48\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"0\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"게시글 번호\"/><Cell col=\"2\" text=\"제목\"/><Cell col=\"3\" text=\"내용\"/><Cell col=\"4\" text=\"작성일자\"/><Cell col=\"5\" text=\"작성자\"/><Cell col=\"6\" text=\"조회수\"/><Cell col=\"7\" text=\"수정 하기\"/><Cell col=\"8\" text=\"삭제\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:checked\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"bind:post_code\"/><Cell col=\"2\" text=\"bind:title\"/><Cell col=\"3\" text=\"bind:content\"/><Cell col=\"4\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"5\" text=\"bind:emp_name\"/><Cell col=\"6\" text=\"bind:view_count\"/><Cell col=\"7\" displaytype=\"buttoncontrol\" text=\"수정 하기\"/><Cell col=\"8\" displaytype=\"buttoncontrol\" text=\"삭제\" edittype=\"button\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"85\"/><Column size=\"144\"/><Column size=\"258\"/><Column size=\"190\"/><Column size=\"85\"/><Column size=\"64\"/><Column size=\"94\"/><Column size=\"48\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell displaytype=\"none\" edittype=\"none\" text=\"0\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"게시글 번호\"/><Cell col=\"2\" text=\"제목\"/><Cell col=\"3\" text=\"내용\"/><Cell col=\"4\" text=\"작성일자\"/><Cell col=\"5\" text=\"작성자\"/><Cell col=\"6\" text=\"조회수\"/><Cell col=\"7\" text=\"수정 하기\"/><Cell col=\"8\" text=\"삭제\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:checked\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"bind:post_code\"/><Cell col=\"2\" text=\"bind:title\"/><Cell col=\"3\" text=\"bind:content\"/><Cell col=\"4\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"5\" text=\"bind:emp_name\"/><Cell col=\"6\" text=\"bind:view_count\"/><Cell col=\"7\" displaytype=\"buttoncontrol\" text=\"수정 하기\"/><Cell col=\"8\" displaytype=\"buttoncontrol\" text=\"삭제\" edittype=\"button\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Search","882","12","50","28",null,null,null,null,null,null,this);
@@ -102,7 +102,11 @@
         {
         	console.log("onload페이지 들엉몸");
         	this.fnSearch();
-        }
+
+        	// ds_Post의 onvaluechanged 이벤트 핸들러 등록
+            this.ds_Post.addEventHandler("onvaluechanged", this.ds_Post_onvaluechanged, this);
+        };
+
 
         this.btn_addNotice_onclick = function(obj,e)
         {
@@ -271,7 +275,7 @@
         //다중 선택시
         this.btn_delete_onclick = function(obj,e)
         {
-        	    var arrDeleteCodes = [];
+        	var arrDeleteCodes = [];
 
             // 데이터셋을 순회하면서 체크된 행의 게시글 코드를 배열에 추가
             for (var i = 0; i < this.ds_Post.rowcount; i++) {
@@ -339,6 +343,40 @@
         // 데이터셋의 onvaluechanged 이벤트 핸들러 추가
 
 
+
+        this.ds_Post_onvaluechanged = function(obj,e)
+        {
+        	// 변경된 컬럼이 'checked' 컬럼인지 확인
+            if (e.columnid == "checked") {
+                // 선택된 게시글 수 계산
+                var selectedCount = 0;
+                for (var i = 0; i < this.ds_Post.rowcount; i++) {
+                    var checked = this.ds_Post.getColumn(i, "checked");
+                    if (checked == "1") {
+                        selectedCount++;
+                    }
+                }
+
+                // 선택된 게시글 수를 st_selectedCount에 표시
+                this.st_selectedCount.set_text(selectedCount + "건 선택됨");
+            }
+        };
+
+        this.grd_notice_onheadclick = function(obj,e)
+        {
+        	// 체크박스가 있는 첫 번째 컬럼의 헤더를 클릭했을 때
+            if (e.cell == 0) {
+                // 헤더의 체크 상태를 가져옴
+                var isChecked = obj.getCellProperty("head", e.cell, "text") == "1" ? true : false;
+
+                // 선택된 게시글 수 계산
+                var selectedCount = isChecked ? this.ds_Post.rowcount : 0;
+
+                // 선택된 게시글 수를 st_selectedCount에 표시
+                this.st_selectedCount.set_text(selectedCount + "건 선택됨");
+            }
+        };
+
         });
         
         // Regist UI Components Event
@@ -349,10 +387,12 @@
             this.grd_notice.addEventHandler("onheadclick",this.grd_notice_onheadclick,this);
             this.grd_notice.addEventHandler("oncelldblclick",this.grd_notice_oncelldblclick,this);
             this.btn_Search.addEventHandler("onclick",this.Button00_onclick,this);
+            this.st_selectedCount.addEventHandler("onclick",this.st_selectedCount_onclick,this);
             this.btn_delete.addEventHandler("onclick",this.btn_delete_onclick,this);
             this.btn_newPost.addEventHandler("onclick",this.btn_newPost_onclick,this);
             this.Button00.addEventHandler("onclick",this.newEdit_onclick,this);
             this.Static00_00.addEventHandler("onclick",this.Static00_00_onclick,this);
+            this.ds_Post.addEventHandler("onvaluechanged",this.ds_Post_onvaluechanged,this);
         };
         this.loadIncludeScript("Form_Post.xfdl");
         this.loadPreloadList();
