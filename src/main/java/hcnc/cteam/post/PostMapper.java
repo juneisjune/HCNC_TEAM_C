@@ -40,5 +40,12 @@ public interface PostMapper {
 
     // 전체 게시글 수 조회
     int getTotalPostCount();
+    // 다중 게시글 삭제 메서드 추가
+    void deletePosts(List<Integer> postCodes);
+    // 다중 게시글에 해당하는 첨부파일 삭제 메서드 추가
+    void deleteAttachments(List<Integer> postCodes);
+    
+
+
 
 }

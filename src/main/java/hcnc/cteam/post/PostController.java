@@ -161,6 +161,41 @@ public class PostController {
         }
         return result;
     }
+    
+    //버튼 삭제 관련
+    @RequestMapping(value = "/deletePosts.do", method = RequestMethod.POST)
+    public NexacroResult deletePosts(@ParamDataSet(name = "ds_Delete") List<Map<String, Object>> paramList) {
+        NexacroResult result = new NexacroResult();
+
+        try {
+            List<Integer> postCodes = new ArrayList<>();
+            for (Map<String, Object> param : paramList) {
+                Object postCodeObj = param.get("post_code");
+                if (postCodeObj == null) {
+                    System.out.println("post_code 값이 null입니다.");
+                    continue; // 또는 예외 처리
+                }
+                int postCode = Integer.parseInt(postCodeObj.toString());
+                postCodes.add(postCode);
+            }
+            // 서비스 메서드 호출
+            postService.deletePosts(postCodes);
+
+            result.setErrorCode(0);
+            result.setErrorMsg("게시글이 성공적으로 삭제되었습니다.");
+        } catch (Exception e) {
+            result.setErrorCode(-1);
+            result.setErrorMsg("게시글 삭제 중 오류 발생: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+
+
+
+
 
 
 

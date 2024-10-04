@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("postService")
 public class PostServiceImpl implements PostService {
@@ -149,6 +150,18 @@ public class PostServiceImpl implements PostService {
     public int getTotalPostCount() {
         return postMapper.getTotalPostCount();
     }
+    @Override
+    @Transactional  // 트랜잭션 설정
+    public void deletePosts(List<Integer> postCodes) throws Exception {
+    	
+        
+    	// 게시글 목록에 해당하는 첨부파일 삭제
+        postMapper.deleteAttachments(postCodes);
+        // 게시글 삭제
+        postMapper.deletePosts(postCodes);
+    }
+
+
 
 
 

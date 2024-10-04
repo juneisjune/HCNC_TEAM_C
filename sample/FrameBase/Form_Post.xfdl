@@ -3,7 +3,7 @@
   <Form id="btn_Post" width="1280" height="720" titletext="New Form" onload="Form_Post_onload">
     <Layouts>
       <Layout height="720" width="1280">
-        <Grid id="grd_notice" binddataset="ds_Post" left="10" top="65" width="1092" height="410" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick">
+        <Grid id="grd_notice" binddataset="ds_Post" left="10" top="65" width="1050" height="410" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -11,18 +11,18 @@
                 <Column size="85"/>
                 <Column size="144"/>
                 <Column size="258"/>
-                <Column size="150"/>
-                <Column size="100"/>
-                <Column size="100"/>
+                <Column size="190"/>
+                <Column size="85"/>
+                <Column size="64"/>
                 <Column size="94"/>
                 <Column size="48"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
-                <Row size="42"/>
+                <Row size="34"/>
               </Rows>
               <Band id="head">
-                <Cell/>
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="0" checkboxtruevalue="1" checkboxfalsevalue="0"/>
                 <Cell col="1" text="게시글 번호"/>
                 <Cell col="2" text="제목"/>
                 <Cell col="3" text="내용"/>
@@ -33,7 +33,7 @@
                 <Cell col="8" text="삭제"/>
               </Band>
               <Band id="body">
-                <Cell/>
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:checked" checkboxtruevalue="1" checkboxfalsevalue="0"/>
                 <Cell col="1" text="bind:post_code"/>
                 <Cell col="2" text="bind:title"/>
                 <Cell col="3" text="bind:content"/>
@@ -46,12 +46,12 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Search" taborder="1" text="조회" left="920" top="12" width="50" height="28" onclick="Button00_onclick"/>
+        <Button id="btn_Search" taborder="1" text="조회" left="882" top="12" width="50" height="28" onclick="Button00_onclick"/>
         <Static id="st_selectedCount" text="0건 선택됨" left="10" top="510" width="150" height="30" taborder="2"/>
         <Button id="btn_delete" text="삭제" left="970" top="510" width="100" height="30" onclick="btn_delete_onclick" taborder="3"/>
         <Button id="btn_prev" text="이전" left="350" top="520" width="50" height="30" taborder="4"/>
         <Button id="btn_next" text="다음" left="450" top="520" width="50" height="30" taborder="5"/>
-        <Button id="btn_newPost" taborder="6" text="새 공지사항 등록" left="990" top="12" width="110" height="28" onclick="btn_newPost_onclick"/>
+        <Button id="btn_newPost" taborder="6" text="새 공지사항 등록" left="952" top="12" width="110" height="28" onclick="btn_newPost_onclick"/>
         <Button id="Button00" taborder="7" text="상세 보기" left="614" top="520" width="92" height="52" onclick="newEdit_onclick"/>
         <Static id="Static00_00" taborder="8" text="공지사항조회관리" left="140" top="3" width="722" height="67" font="bold 36px/normal &quot;Gulim&quot;" textAlign="center" onclick="Static00_00_onclick"/>
       </Layout>
@@ -226,6 +226,76 @@ this.grd_notice_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEv
 				  
 	this.showPopup_Detail(objParam1);
 };
+//다중 선택시
+this.btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	    var arrDeleteCodes = [];
+
+    // 데이터셋을 순회하면서 체크된 행의 게시글 코드를 배열에 추가
+    for (var i = 0; i < this.ds_Post.rowcount; i++) {
+        var checked = this.ds_Post.getColumn(i, "checked");
+        if (checked == "1") {
+            var postCode = this.ds_Post.getColumn(i, "post_code"); // 컬럼 이름 확인
+            arrDeleteCodes.push(postCode);
+        }
+    }
+
+    if (arrDeleteCodes.length == 0) {
+        alert("삭제할 게시글을 선택하세요.");
+        return;
+    }
+
+    if (confirm("선택한 " + arrDeleteCodes.length + "개의 게시글을 삭제하시겠습니까?")) {
+        // 삭제 처리 함수 호출
+        this.fnDeletePosts(arrDeleteCodes);
+    }
+};
+this.fnDeletePosts = function(arrDeleteCodes)
+{
+    // 데이터셋 초기화
+    this.ds_Delete.clearData();
+
+    // 선택된 게시글 코드들을 데이터셋에 추가
+    for (var i = 0; i < arrDeleteCodes.length; i++) {
+        var postCode = arrDeleteCodes[i];
+
+        if (postCode == null || postCode == undefined || postCode == "") {
+            trace("유효하지 않은 postCode: " + postCode);
+            continue;
+        }
+
+        var nRow = this.ds_Delete.addRow();
+        this.ds_Delete.setColumn(nRow, "post_code", postCode);
+    }
+
+    // ds_Delete 데이터셋 출력
+    trace("ds_Delete 데이터셋 내용:");
+    trace(this.ds_Delete.saveXML());
+
+    // 트랜잭션 설정
+    var strSvcId    = "deletePosts";
+    var strSvcUrl   = "svc::deletePosts.do";
+    var inData      = "ds_Delete=ds_Delete";
+    var outData     = "";
+    var strArg      = "";
+    var fnCallback  = "fnCallbackDelete";
+    var isAsync     = true;
+
+    // 삭제 트랜잭션 실행
+    this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, fnCallback, isAsync);
+};
+this.fnCallbackDelete = function(strSvcId, nErrorCode, strErrorMsg)
+{
+    if (nErrorCode < 0) {
+        alert("삭제 중 오류가 발생했습니다: " + strErrorMsg);
+    } else {
+        alert("선택한 게시글이 성공적으로 삭제되었습니다.");
+        // 삭제 후 그리드를 다시 조회하여 갱신
+        this.fnSearch();
+    }
+};
+// 데이터셋의 onvaluechanged 이벤트 핸들러 추가
+
 ]]></Script>
     <Objects>
       <Dataset id="ds_Post">
@@ -236,16 +306,21 @@ this.grd_notice_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEv
           <Column id="author" type="STRING" size="256"/>
           <Column id="date" type="DATE" size="256"/>
           <Column id="view_count" type="INT" size="256"/>
+          <Column id="checked" type="STRING" size="1" default="0"/>
         </ColumnInfo>
       </Dataset>
-      <Dataset id="ds_deleteCode">
+      <Dataset id="ds_Delete">
         <ColumnInfo>
           <Column id="post_code" type="STRING" size="256"/>
-          <Column id="checked" type="STRING" size="1"/>
         </ColumnInfo>
         <Rows>
           <Row/>
         </Rows>
+      </Dataset>
+      <Dataset id="ds_deleteCode">
+        <ColumnInfo>
+          <Column id="post_code" type="STRING" size="256"/>
+        </ColumnInfo>
       </Dataset>
     </Objects>
   </Form>

@@ -18,22 +18,27 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("ds_Post", this);
-            obj._setContents("<ColumnInfo><Column id=\"number\" type=\"INT\" size=\"256\"/><Column id=\"title\" type=\"STRING\" size=\"256\"/><Column id=\"author\" type=\"STRING\" size=\"256\"/><Column id=\"date\" type=\"DATE\" size=\"256\"/><Column id=\"view_count\" type=\"INT\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"number\" type=\"INT\" size=\"256\"/><Column id=\"title\" type=\"STRING\" size=\"256\"/><Column id=\"author\" type=\"STRING\" size=\"256\"/><Column id=\"date\" type=\"DATE\" size=\"256\"/><Column id=\"view_count\" type=\"INT\" size=\"256\"/><Column id=\"checked\" type=\"STRING\" size=\"1\" default=\"0\"/></ColumnInfo>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("ds_Delete", this);
+            obj._setContents("<ColumnInfo><Column id=\"post_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
             obj = new Dataset("ds_deleteCode", this);
-            obj._setContents("<ColumnInfo><Column id=\"post_code\" type=\"STRING\" size=\"256\"/><Column id=\"checked\" type=\"STRING\" size=\"1\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"post_code\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Grid("grd_notice","10","65","1092","410",null,null,null,null,null,null,this);
+            obj = new Grid("grd_notice","10","65","1050","410",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Post");
             obj.set_taborder("0");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"85\"/><Column size=\"144\"/><Column size=\"258\"/><Column size=\"150\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"94\"/><Column size=\"48\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"42\"/></Rows><Band id=\"head\"><Cell/><Cell col=\"1\" text=\"게시글 번호\"/><Cell col=\"2\" text=\"제목\"/><Cell col=\"3\" text=\"내용\"/><Cell col=\"4\" text=\"작성일자\"/><Cell col=\"5\" text=\"작성자\"/><Cell col=\"6\" text=\"조회수\"/><Cell col=\"7\" text=\"수정 하기\"/><Cell col=\"8\" text=\"삭제\"/></Band><Band id=\"body\"><Cell/><Cell col=\"1\" text=\"bind:post_code\"/><Cell col=\"2\" text=\"bind:title\"/><Cell col=\"3\" text=\"bind:content\"/><Cell col=\"4\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"5\" text=\"bind:emp_name\"/><Cell col=\"6\" text=\"bind:view_count\"/><Cell col=\"7\" displaytype=\"buttoncontrol\" text=\"수정 하기\"/><Cell col=\"8\" displaytype=\"buttoncontrol\" text=\"삭제\" edittype=\"button\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"85\"/><Column size=\"144\"/><Column size=\"258\"/><Column size=\"190\"/><Column size=\"85\"/><Column size=\"64\"/><Column size=\"94\"/><Column size=\"48\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"0\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"게시글 번호\"/><Cell col=\"2\" text=\"제목\"/><Cell col=\"3\" text=\"내용\"/><Cell col=\"4\" text=\"작성일자\"/><Cell col=\"5\" text=\"작성자\"/><Cell col=\"6\" text=\"조회수\"/><Cell col=\"7\" text=\"수정 하기\"/><Cell col=\"8\" text=\"삭제\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:checked\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"bind:post_code\"/><Cell col=\"2\" text=\"bind:title\"/><Cell col=\"3\" text=\"bind:content\"/><Cell col=\"4\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"5\" text=\"bind:emp_name\"/><Cell col=\"6\" text=\"bind:view_count\"/><Cell col=\"7\" displaytype=\"buttoncontrol\" text=\"수정 하기\"/><Cell col=\"8\" displaytype=\"buttoncontrol\" text=\"삭제\" edittype=\"button\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","920","12","50","28",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","882","12","50","28",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("조회");
             this.addChild(obj.name, obj);
@@ -58,7 +63,7 @@
             obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_newPost","990","12","110","28",null,null,null,null,null,null,this);
+            obj = new Button("btn_newPost","952","12","110","28",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("새 공지사항 등록");
             this.addChild(obj.name, obj);
@@ -263,6 +268,76 @@
 
         	this.showPopup_Detail(objParam1);
         };
+        //다중 선택시
+        this.btn_delete_onclick = function(obj,e)
+        {
+        	    var arrDeleteCodes = [];
+
+            // 데이터셋을 순회하면서 체크된 행의 게시글 코드를 배열에 추가
+            for (var i = 0; i < this.ds_Post.rowcount; i++) {
+                var checked = this.ds_Post.getColumn(i, "checked");
+                if (checked == "1") {
+                    var postCode = this.ds_Post.getColumn(i, "post_code"); // 컬럼 이름 확인
+                    arrDeleteCodes.push(postCode);
+                }
+            }
+
+            if (arrDeleteCodes.length == 0) {
+                alert("삭제할 게시글을 선택하세요.");
+                return;
+            }
+
+            if (confirm("선택한 " + arrDeleteCodes.length + "개의 게시글을 삭제하시겠습니까?")) {
+                // 삭제 처리 함수 호출
+                this.fnDeletePosts(arrDeleteCodes);
+            }
+        };
+        this.fnDeletePosts = function(arrDeleteCodes)
+        {
+            // 데이터셋 초기화
+            this.ds_Delete.clearData();
+
+            // 선택된 게시글 코드들을 데이터셋에 추가
+            for (var i = 0; i < arrDeleteCodes.length; i++) {
+                var postCode = arrDeleteCodes[i];
+
+                if (postCode == null || postCode == undefined || postCode == "") {
+                    trace("유효하지 않은 postCode: " + postCode);
+                    continue;
+                }
+
+                var nRow = this.ds_Delete.addRow();
+                this.ds_Delete.setColumn(nRow, "post_code", postCode);
+            }
+
+            // ds_Delete 데이터셋 출력
+            trace("ds_Delete 데이터셋 내용:");
+            trace(this.ds_Delete.saveXML());
+
+            // 트랜잭션 설정
+            var strSvcId    = "deletePosts";
+            var strSvcUrl   = "svc::deletePosts.do";
+            var inData      = "ds_Delete=ds_Delete";
+            var outData     = "";
+            var strArg      = "";
+            var fnCallback  = "fnCallbackDelete";
+            var isAsync     = true;
+
+            // 삭제 트랜잭션 실행
+            this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, fnCallback, isAsync);
+        };
+        this.fnCallbackDelete = function(strSvcId, nErrorCode, strErrorMsg)
+        {
+            if (nErrorCode < 0) {
+                alert("삭제 중 오류가 발생했습니다: " + strErrorMsg);
+            } else {
+                alert("선택한 게시글이 성공적으로 삭제되었습니다.");
+                // 삭제 후 그리드를 다시 조회하여 갱신
+                this.fnSearch();
+            }
+        };
+        // 데이터셋의 onvaluechanged 이벤트 핸들러 추가
+
 
         });
         
