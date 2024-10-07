@@ -58,12 +58,11 @@
         parameterType="map"
         resultType="empDto">
         SELECT
-            a.emp_code, 
-
-            b.dep_name ,
-            c.assign_name ,
+            a.emp_code,
+            b.dep_name,
+            c.assign_name, 
             a.name,
-            a.join_date ,
+            a.join_date, 
             a.birth,
             a.gender,
             a.phone,
@@ -82,8 +81,8 @@
                 <when test="searchType == 'name'">
                     AND a.name LIKE CONCAT('%', #{searchWord}, '%')
                 </when>
-                <when test="searchType == 'address'">
-                    AND a.address LIKE CONCAT('%', #{searchWord}, '%')
+                <when test="searchType == 'assignName'">
+                    AND c.assign_name LIKE CONCAT('%', #{searchWord}, '%')
                 </when>
             </choose>
         </if>

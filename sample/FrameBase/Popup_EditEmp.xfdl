@@ -15,6 +15,7 @@
           <Column id="account" type="STRING" size="256"/>
           <Column id="upd_name" type="STRING" size="256"/>
           <Column id="emp_code" type="STRING" size="256"/>
+          <Column id="admin_name" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_gender">
@@ -108,6 +109,8 @@ this.btnUpdate_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) 
 	if (!this.validateEmployeeData()) {
         return; 
     }
+	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
+	this.ds_employee.setColumn(0,"admin_name",loginAdminName);
 
     var strSvcId = "updateEmployeeData";  // 서비스 ID
     var strSvcUrl = "svc::updateEmployeeData.do";  // 서버의 URL과 매핑

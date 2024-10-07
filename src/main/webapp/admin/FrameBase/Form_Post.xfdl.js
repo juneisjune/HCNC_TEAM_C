@@ -95,7 +95,7 @@
         this.registerScript("Form_Post.xfdl", function() {
         this.Form_Post_onload = function(obj,e)
         {
-        	console.log("onload페이지 들엉몸");
+        	console.log("onload페이지 들어옴");
         	this.fnSearch();
 
         	// ds_Post의 onvaluechanged 이벤트 핸들러 등록

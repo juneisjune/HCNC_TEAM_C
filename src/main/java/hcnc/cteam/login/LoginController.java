@@ -46,6 +46,12 @@ public class LoginController {
 		
 		int result = loginService.userLogin(loginDTO);
 		
+		if(loginService.selectUser(loginDTO).getAssignCode() == null || loginService.selectUser(loginDTO).getAssignCode().equals("") 
+				|| loginService.selectUser(loginDTO).getDepCode() == null || loginService.selectUser(loginDTO).getDepCode().equals("") ){
+			msg = "empty";
+			return msg;
+		 } 
+		
 		 if (result == 1) {
 			 
 			 //세션 생성
@@ -121,6 +127,7 @@ public class LoginController {
 		try {
 		    String authKey = mailSendService.sendAuthMail(email); 
 		    map.put("authKey", authKey);
+		    System.out.println("인증번호 : " + authKey);
 		    map.put("msg", "ok");
 		    
 		} catch(Exception e) {

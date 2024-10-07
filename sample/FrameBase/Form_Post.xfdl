@@ -57,7 +57,7 @@
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.Form_Post_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
-	console.log("onload페이지 들엉몸");
+	console.log("onload페이지 들어옴");
 	this.fnSearch();
 	
 	// ds_Post의 onvaluechanged 이벤트 핸들러 등록

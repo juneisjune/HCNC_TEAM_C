@@ -1,22 +1,29 @@
 package hcnc.cteam.employee;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nexacro.uiadapter17.spring.core.annotation.ParamDataSet;
 import com.nexacro.uiadapter17.spring.core.data.NexacroResult;
 
+import hcnc.cteam.attendance.DayoffService;
+
 @Controller
 public class EMController {
 
     @Resource(name = "EMService")
     private EMService EMService;
-
+    
+    @Autowired
+    private DayoffService doService;
+    
     // 직원 정보 검색 기능
     @RequestMapping(value = "/selectEmployeeList.do")
     public NexacroResult selectEmployeeList(@ParamDataSet(name = "ds_search", required = false) Map<String, Object> param) {
@@ -37,15 +44,19 @@ public class EMController {
         
        
     }
+    //직원등록 컨트롤러
     @RequestMapping(value = "/selectEmployeeData.do")
     public NexacroResult selectEmployeeData(@ParamDataSet(name = "ds_employee") Map<String, Object> empData) {
         NexacroResult result = new NexacroResult();
+        
+        // String adminName = empData.get("admin_name");
+        
         try {
         	System.out.println("이거 들어오나?"+ empData);
             // 서비스 레이어에 직원 등록 요청
             EMService.selectEmployeeData(empData);
-            result.setErrorCode(0);
-            result.setErrorMsg("직원 등록 완료");
+            	result.setErrorCode(0);
+            	result.setErrorMsg("직원 등록 완료");
         } catch (Exception ee) {
             System.out.println(ee);
             result.setErrorCode(-1);

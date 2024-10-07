@@ -22,8 +22,8 @@ public class EMServiceImpl implements EMService {
     
     }
     @Override
-    public void selectEmployeeData(Map<String, Object> param) {
-        EMMapper.selectEmployeeData(param);
+    public int selectEmployeeData(Map<String, Object> param) {
+        return EMMapper.selectEmployeeData(param);
         
  
     }
@@ -42,9 +42,10 @@ public class EMServiceImpl implements EMService {
         String id = (String) param.get("id");
         int count = EMMapper.countEmployeeById(id);  // DB에서 해당 ID로 직원 수를 조회
         return count > 0;  // 0보다 크면 중복된 것으로 판단
-    
-   
-    
 }
+	@Override
+	public EMDTO findEmp(Map<String, Object> param) {
+		return EMMapper.findEmp(param);
+	}
     
 }

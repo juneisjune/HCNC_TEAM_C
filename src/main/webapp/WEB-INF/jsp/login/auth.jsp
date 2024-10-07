@@ -134,7 +134,7 @@
 
                 if (authNum === authKey) {
                     alert("로그인을 환영합니다.");
-                    location.href = "/pay/searchPay.do";
+                    location.href = "/post/viewPost.do";
                 } else {
                     alert("인증번호가 일치하지 않습니다.");
                 }

@@ -15,6 +15,7 @@
           <Column id="account" type="STRING" size="256"/>
           <Column id="id" type="STRING" size="256"/>
           <Column id="password" type="STRING" size="256"/>
+          <Column id="admin_name" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -75,10 +76,12 @@
     </Layouts>
     <Script type="xscript5.1"><![CDATA[// 등록 버튼 클릭 시 데이터 저장 로직 추가
 this.btnRegister_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
-
+	
     if (!this.validateEmployeeData()) {
         return; 
     }
+	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
+	this.ds_employee.setColumn(0,"admin_name",loginAdminName);
 
     var strSvcId = "selectEmployee";
     var strSvcUrl = "svc::selectEmployeeData.do";  // 서버의 URL과 매핑

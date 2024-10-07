@@ -24,12 +24,14 @@
 	      ON a.emp_code = b.emp_code
 	    WHERE post_code = #{postCode}
 	</select>	
+	
 	<!-- 조회수 1 증가 관련 -->
 	<update id ="increaseViewCount" parameterType="int">
 		UPDATE post
 			SET view_count =view_count +1
 		WHERE post_code =#{post_code}
 	</update>
+	
 	<!-- 글 등록 관련 -->
 	<insert id="insertPost" parameterType="map" keyProperty="post_code">
 	    INSERT INTO post (
@@ -54,6 +56,7 @@
 	        NOW(), #{reg_name}, NOW(), #{upd_name}
 	    );
 	</insert>
+	
 	<!-- 다움 관련 -->
 	<select id="selectAttachments" parameterType="int" resultType="map">
 	    SELECT
@@ -71,6 +74,7 @@
 	    WHERE
 	        post_code = #{postCode}
 	</select>
+	
 	<select id="selectAttachment" parameterType="int" resultType="map">
 	    SELECT
 	        attach_code,
@@ -92,10 +96,12 @@
     <delete id="deletePost" parameterType="int">
         DELETE FROM post WHERE post_code = #{postCode}
     </delete>
+    
     <!-- 게시글에 관련된 첨부파일 삭제 -->
 	<delete id="deleteAttachment" parameterType="int">
 	    DELETE FROM attachment WHERE post_code = #{post_code}
 	</delete>
+	
 	<!-- 게시글 제목 및 내용 수정 -->
 	<update id="updatePost" parameterType="map">
 	    UPDATE post
@@ -105,6 +111,7 @@
 	        upd_name = #{upd_name}
 	    WHERE post_code = #{post_code}
 	</update>
+	
 	<!-- 여기까지 이상무 -->
 	<!-- 게시글 목록 페이징 처리 조회 -->
 	<select id="selectPostWithPaging" resultType="map">
@@ -119,6 +126,7 @@
 	<select id="getTotalPostCount" resultType="int">
 	    SELECT COUNT(*) FROM post
 	</select>
+	
 	<!-- 다중 게시글 삭제 -->
 	<delete id="deletePosts" parameterType="list">
 	    DELETE FROM post WHERE post_code IN
@@ -126,6 +134,7 @@
 	        #{post_code}
 	    </foreach>
 	</delete>
+	
 	<!-- 다중 게시글에 해당하는 첨부파일 삭제 쿼리 추가 -->
 	<delete id="deleteAttachments" parameterType="list">
 	    DELETE FROM attachment WHERE post_code IN
@@ -134,11 +143,6 @@
 	    </foreach>
 	</delete>
 
-	
-	
-
-
-	
 
 </mapper>
 
