@@ -32,7 +32,7 @@ public class EmpController {
     public String searchEmployee(@RequestParam Map<String, Object> params, Model model) {
         List<EmpDTO> employeeData = empService.employeeSearch(params);
         model.addAttribute("employeeData", employeeData);
-        return "employee/employee"; 
+        return "employee/employee";
     }
     
     @RequestMapping(value = "/myPage.do")
