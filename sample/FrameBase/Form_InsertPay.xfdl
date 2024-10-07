@@ -165,6 +165,7 @@
     <Script type="xscript5.1"><![CDATA[this.Form_InsertPay_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.ds_Assign.setColumn(0, "assign_code", "100");
+	this.fnSearch();
 };
 
 
@@ -278,6 +279,8 @@ this.btn_Insert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	
 	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
 };
+
+
 
 ]]></Script>
     <InitValue>

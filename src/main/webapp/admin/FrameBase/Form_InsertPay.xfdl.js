@@ -116,6 +116,7 @@
         this.Form_InsertPay_onload = function(obj,e)
         {
         	this.ds_Assign.setColumn(0, "assign_code", "100");
+        	this.fnSearch();
         };
 
 
@@ -229,6 +230,8 @@
 
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
+
+
 
 
         });
