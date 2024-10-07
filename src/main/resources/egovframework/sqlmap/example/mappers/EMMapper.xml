@@ -46,33 +46,33 @@ WHERE 1=1
     <!-- 직원 등록 -->
     <insert id="selectEmployeeData" parameterType="map">
        INSERT INTO employee (
-    id,
-    name,
-    password,
-    birth,
-    gender,
-    phone,
-    address,
-    email,
-    join_date,
-    account,
-    reg_date,
-    reg_name
-)
-VALUES (
-    #{id},
-    #{name},
-    SHA2(#{password}, 256),
-    #{birth},
-    #{gender},
-    #{phone},
-    #{address},
-    #{email},
-    #{joinDate},
-    #{account},
-    CURTIME(),
-    '김명준'
-);    
+	    id,
+	    name,
+	    password,
+	    birth,
+	    gender,
+	    phone,
+	    address,
+	    email,
+	    join_date,
+	    account,
+	    reg_date,
+	    reg_name
+	)
+	VALUES (
+	    #{id},
+	    #{name},
+	    SHA2(#{password}, 256),
+	    #{birth},
+	    #{gender},
+	    #{phone},
+	    #{address},
+	    #{email},
+	    #{joinDate},
+	    #{account},
+	    CURTIME(),
+	    #{admin_name}
+	);    
     </insert>
  <update id="updateEmployeeData" parameterType="map">
 UPDATE employee
@@ -85,7 +85,8 @@ SET
     phone = #{phone},
     address = #{address},
     email = #{email},
-    account = #{account}
+    account = #{account},
+    upd_name = #{admin_name}
     WHERE emp_code = #{emp_code};
     </update>
     
