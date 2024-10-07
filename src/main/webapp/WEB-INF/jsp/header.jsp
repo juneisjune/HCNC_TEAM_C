@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -87,7 +86,8 @@
 </head>
 <body>
     <div class="header">
-        <a href=""><img src="${pageContext.request.contextPath}/images/banner/bannerNew.png" alt="배너 이미지"></a>
+                <a href=""><img src="${pageContext.request.contextPath}/images/banner/bannerNew.png" alt="배너 이미지"></a>
+                
         <div class="btn">
             <!-- 출근 버튼과 출근 시간 표시 -->
             <div style="display: flex; align-items: center;">
@@ -113,7 +113,7 @@
     </div>
     
     <div class="navbar">
-        <a href="/notice">공지사항</a>
+        <a href="/post/viewPost.do">공지사항</a>
         <a href="/employee/myPage.do">내 정보 보기</a>
         <a href="/employee/employee.do">주소록</a>
         <a href="/atten/attenlist.do">근태 조회</a>

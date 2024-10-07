@@ -26,7 +26,7 @@
 		<!-- 이번달 입사자들은 조회하지 않음 -->
 		WHERE join_date &lt; DATE_FORMAT(CURDATE(), '%Y-%m-01')
 		<!-- 저번달 퇴사자부터 퇴사 예정자까지 조회함 -->
-		AND (resign_date >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')  OR resign_date IS NULL);
+		AND (resign_date &gt;= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')  OR resign_date IS NULL)
 			<if test="assign_code != null and assign_code != 100">
 				AND a.assign_code = #{assign_code}
 			</if>
@@ -35,8 +35,8 @@
 	<!-- 직책에 따른 monthly 조회 -->
 	<!-- 퇴사자는 기본급을 0으로 설정하고 일급으로 계산 -->
 	<select id="selectMonth" resultType="int" parameterType="java.util.Map">
-		SELECT IF(e.resign_date IS NULL
-				, a.monthly as month 
+		SELECT IF(e.resign_date IS NULL OR MONTH(resign_date) >= MONTH(CURDATE())
+				, a.monthly 
 				, (SELECT	
 					(SELECT COUNT(*)
 						FROM attendance a JOIN att_code ac 

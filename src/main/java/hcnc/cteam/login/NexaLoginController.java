@@ -25,15 +25,12 @@ public class NexaLoginController {
     public NexacroResult login(@ParamDataSet(name = "ds_login") Map<String, Object> loginInfo) {
         NexacroResult result = new NexacroResult();
         
-        String userId = (String) loginInfo.get("user_id");
-        String password = (String) loginInfo.get("password");
+              
+        Map<String, Object> ds_userInfo = loginService.getUserInfoByUserId(loginInfo);
         
-        // 서비스 레이어에서 인증 처리
-        boolean isAuthenticated = loginService.authenticate(userId, password);
-        
-        if (isAuthenticated) {
+        if (ds_userInfo != null) {
             // 사용자 정보를 가져와서 반환 (아이디, 비밀번호, 관리자 이름, 이메일)
-            Map<String, Object> ds_userInfo = loginService.getUserInfoByUserId(userId);
+            
 
             // 디버깅용 출력
             System.out.println("ds_userInfo: " + ds_userInfo);

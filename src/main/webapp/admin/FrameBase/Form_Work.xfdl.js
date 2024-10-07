@@ -308,13 +308,6 @@
         
         // User Script
         this.registerScript("Form_Work.xfdl", function() {
-        /* 화면 초기화 */
-        this.Form_Work_oninit = function(obj,e)
-        {
-        	this.fnSearchCombo();
-        };
-
-
         /* 버튼 이벤트 */
 
         // 조회버튼 클릭
@@ -611,8 +604,6 @@
         		this.ds_dtl.setColumn(i, "CHK", yn);
         	obj.set_enableevent(true);
         };
-
-
         });
         
         // Regist UI Components Event

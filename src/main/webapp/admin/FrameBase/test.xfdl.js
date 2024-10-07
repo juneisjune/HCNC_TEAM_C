@@ -44,7 +44,7 @@
             obj.set_value("empName");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_SearchWordLabel","525","85","50","30",null,null,null,null,null,null,this);
+            obj = new Static("stc_SearchWordLabel","510","85","50","30",null,null,null,null,null,null,this);
             obj.set_text("검색어");
             this.addChild(obj.name, obj);
 

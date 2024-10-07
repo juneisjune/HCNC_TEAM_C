@@ -14,7 +14,7 @@
             this.set_scrollbartype("none");
             if (Form == this.constructor)
             {
-                this._setFormPosition(1280,720);
+                this._setFormPosition(1490,720);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize

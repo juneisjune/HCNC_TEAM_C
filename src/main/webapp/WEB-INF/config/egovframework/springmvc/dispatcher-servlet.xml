@@ -8,7 +8,13 @@
                 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 	
 	<mvc:default-servlet-handler/>
-	<mvc:annotation-driven/>
+	<!-- 파일 다운로드 관련 -->
+	<mvc:annotation-driven>
+	<!--  -->
+	    <mvc:message-converters>
+	        <bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
+	    </mvc:message-converters>
+	</mvc:annotation-driven>
   
 	<context:component-scan base-package="sample,hcnc">
 	    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
@@ -57,7 +63,7 @@
 	    <property name="contentType" value="application/json;charset=UTF-8"></property>
 	</bean>
     <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" 
-    	p:order="1"
+    	p:order="0"
 	    p:viewClass="org.springframework.web.servlet.view.JstlView"
 	    p:prefix="/WEB-INF/jsp/" 
 	    p:suffix=".jsp"/>
@@ -71,6 +77,7 @@
     </bean>
     
     <!-- 넥사크로플랫폼 RequestMappingHandlerAdapter 구현체 등록 -->
+
     <bean class="com.nexacro.uiadapter17.spring.core.resolve.NexacroRequestMappingHandlerAdapter" p:order="2">
         <property name="customArgumentResolvers">
             <list><bean class="com.nexacro.uiadapter17.spring.core.resolve.NexacroMethodArgumentResolver" /></list>
@@ -88,6 +95,7 @@
     
     
     <!-- 넥사크로플랫폼 EXCEPTION-RESOLVER 등록 -->
+
     <bean id="exceptionResolver" class="com.nexacro.uiadapter17.spring.core.resolve.NexacroMappingExceptionResolver" p:order="3">
         <property name="view" ref="nexacroView" />   
         <property name="shouldLogStackTrace" value="true" />   
@@ -98,4 +106,9 @@
         <property name="messageSource" ref="messageSource" />   
     </bean>    
     <!-- /////////////////////////////////// 넥사크로플랫폼 UIADAPTER17 설정 끝 /////////////////////////////////// -->
+    <!-- DispatcherServlet 설정 파일에 추가 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="maxUploadSize" value="52428800"/> <!-- 최대 업로드 사이즈 설정 (예: 50MB) -->
+	</bean>
+    
 </beans>

@@ -11,6 +11,9 @@ public interface EmpService {
 	
     List<EmpDTO> getEmployeeData();
     
+
     List<EmpDTO> employeeSearch(Map<String, Object> params);
     EmpDTO getEmployeeByEmpCode(int empCode);
+
 }
+

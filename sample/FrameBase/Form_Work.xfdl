@@ -154,14 +154,15 @@
         </ColumnInfo>
       </Dataset>
     </Objects>
-    <Script type="xscript5.1"><![CDATA[/* 화면 초기화 */
-this.Form_Work_oninit = function(obj:nexacro.Form,e:nexacro.EventInfo)
-{
-	this.fnSearchCombo();
-};
-
-
-/* 버튼 이벤트 */
+    <Bind>
+      <BindItem id="item0" compid="Edit00" propid="value" datasetid="ds_search" columnid="TXT"/>
+      <BindItem id="item1" compid="edt_COL_TXT" propid="value" datasetid="ds_dtl" columnid="COL_TXT"/>
+      <BindItem id="item2" compid="chk_COL_CHK" propid="value" datasetid="ds_dtl" columnid="COL_CHK"/>
+      <BindItem id="item3" compid="spe_COL_NUM" propid="value" datasetid="ds_dtl" columnid="COL_NUM"/>
+      <BindItem id="item4" compid="cal_COL_DTE" propid="value" datasetid="ds_dtl" columnid="COL_DTE"/>
+      <BindItem id="item5" compid="cbo_COL_CBO" propid="value" datasetid="ds_dtl" columnid="COL_CBO"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/* 버튼 이벤트 */
 
 // 조회버튼 클릭
 this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
@@ -456,16 +457,6 @@ this.Grid00_00_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventI
 	for (var i = 0; i < this.ds_dtl.getRowCount(); i++)
 		this.ds_dtl.setColumn(i, "CHK", yn);
 	obj.set_enableevent(true);
-};
-
-]]></Script>
-    <Bind>
-      <BindItem id="item0" compid="Edit00" propid="value" datasetid="ds_search" columnid="TXT"/>
-      <BindItem id="item1" compid="edt_COL_TXT" propid="value" datasetid="ds_dtl" columnid="COL_TXT"/>
-      <BindItem id="item2" compid="chk_COL_CHK" propid="value" datasetid="ds_dtl" columnid="COL_CHK"/>
-      <BindItem id="item3" compid="spe_COL_NUM" propid="value" datasetid="ds_dtl" columnid="COL_NUM"/>
-      <BindItem id="item4" compid="cal_COL_DTE" propid="value" datasetid="ds_dtl" columnid="COL_DTE"/>
-      <BindItem id="item5" compid="cbo_COL_CBO" propid="value" datasetid="ds_dtl" columnid="COL_CBO"/>
-    </Bind>
+};]]></Script>
   </Form>
 </FDL>

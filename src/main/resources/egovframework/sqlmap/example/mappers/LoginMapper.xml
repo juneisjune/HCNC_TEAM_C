@@ -33,10 +33,10 @@
 	</select>
 	
 	<!-- 아이디로 사용자 정보 조회 -->
-    <select id="getUserByUserId" parameterType="map" resultType="map">
+    <select id="getUserByUserId" parameterType="java.util.Map" resultType="java.util.Map">
        SELECT id, password, name, email, dep_code, emp_code, assign_code  
        FROM employee
-       WHERE id = #{userId}
+       WHERE id = #{user_id}
           AND password = SHA2(#{password}, 256)
           AND assign_code >= 5
 		  AND (resign_date IS NULL OR resign_date >= CURDATE()); 

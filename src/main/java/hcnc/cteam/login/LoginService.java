@@ -14,7 +14,6 @@ public interface LoginService {
 	
 	AttenDTO selectWork(int empCode) throws Exception;
 	
-	boolean authenticate(String userId, String password);
 	
-	Map<String, Object> getUserInfoByUserId(String userId);
+	Map<String, Object> getUserInfoByUserId(Map<String, Object> loginInfo);
 }

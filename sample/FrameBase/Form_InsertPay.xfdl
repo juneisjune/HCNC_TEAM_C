@@ -226,7 +226,7 @@ this.fnCallback = function(svcID,errorCode,errorMsg)
 	switch(svcID)
 	{
 		case "selectAssign":			
-			this.alert("조회가 완료되었습니다.");
+			this.alert("조회가 완료되었습니다.");		
 			break;
 		
 		case "insertPay":
@@ -261,7 +261,7 @@ this.btn_Insert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
         if (isChecked == 1) {  
             var newRow = this.ds_EmpListCopy.addRow(); 
             this.ds_EmpListCopy.copyRow(newRow, this.ds_EmpList, i);  
-			this.ds_EmpListCopy.setColumn(i,"give_date", this.ds_GiveDate.getColumn(0, "give_date"));
+			this.ds_EmpListCopy.setColumn(i, "give_date", this.ds_GiveDate.getColumn(0, "give_date"));
         }
     }
 	
