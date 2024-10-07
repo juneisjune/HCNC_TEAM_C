@@ -58,9 +58,9 @@
         parameterType="map"
         resultType="empDto">
         SELECT
-            a.emp_code 
-            b.dep_name 
-            c.assign_name 
+            a.emp_code, 
+            b.dep_name, 
+            c.assign_name, 
             a.name,
             a.join_date 
             a.birth,
@@ -87,5 +87,4 @@
             </choose>
         </if>
     </select>
-
 </mapper>

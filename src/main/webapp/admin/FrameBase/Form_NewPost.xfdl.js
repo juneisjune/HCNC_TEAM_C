@@ -309,18 +309,17 @@
         }
 
 
-
         this.btn_close_onclick = function(obj,e)
         {
         	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
         };
-
 
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
+            this.addEventHandler("onload",this.sample_fileuptransfer_01_onload,this);
             this.Static00.addEventHandler("onclick",this.Static00_onclick,this);
             this.open.addEventHandler("onclick",this.btn_open_onclick,this);
             this.Grid00.addEventHandler("ondragenter",this.Grid00_ondragenter,this);
