@@ -62,7 +62,7 @@
 	       <if test="assign_code == 7 ">
 	           ceo_confirm = 'Y', off_result = '승 인'
 	       </if>
-	   
+	   ,upd_name = #{admin_name}
 	    WHERE e.name = #{name} 
 	     	 AND d.start_date = #{start_date}
 	</update>
@@ -86,6 +86,7 @@
 	       <if test="assign_code == 7">
 	           ceo_confirm = 'N', off_result = '반 려'
 	       </if>
+	       ,upd_name = #{admin_name}
         WHERE e.name = #{name} 
      	 AND d.start_date = #{start_date}
        
@@ -105,16 +106,18 @@
 				WHEN #{off_code} = 5 THEN remain_cnt - 0.5 * (DATEDIFF(end_date,start_date) + 1)
 			ELSE remain_cnt - 1 * (DATEDIFF(end_date,start_date) + 1)
 			END
+			,upd_name = #{admin_name}
 	    WHERE dc.emp_code = #{emp_code} 
 	      AND d.start_date = #{start_date}
 	</update>
+	
+	
 	 <!--  직원등록 후에 실행될 연차발생   -->
-	 <!-- 관리자 Mapper 통합이후 머지예정  -->
 	 <insert id="insertDayoffCount" parameterType="java.util.Map">
 	 	INSERT INTO dayoff_count (create_date, emp_code, drop_date, dayoff_cnt, used_cnt, remain_cnt,reg_name)
 		SELECT 
 		    CURDATE() AS create_date,
-		    #{empCode} AS e.emp_code,
+		    e.emp_code,
 		    CURDATE() + INTERVAL 364 DAY AS drop_date,   
 		    CASE 
 		        WHEN e.assign_code = 1 THEN 0
@@ -127,11 +130,17 @@
 		        ELSE 
 		           ROUND(a.total_cnt * (1-(MONTH(CURDATE())/12)))
 		    END AS remain_cnt,
-		    -- 로그인세션자 이름
-		    #{name} AS reg_name
+		    #{admin_name} AS reg_name
 		FROM employee e LEFT JOIN assignment a 
 		    ON e.assign_code = a.assign_code
+		    WHERE e.emp_code = #{emp_code}
 	 </insert>
  
+ 	<!-- emp_code로 연차갯수 조회 -->
+ 	<select id="findDayoff" parameterType="java.util.Map" resultType="int">
+	 	SELECT COUNT(*)
+		FROM dayoff_count dc 
+		WHERE YEAR(dc.create_date) = YEAR(CURDATE()) AND emp_code = #{emp_code}
+ 	</select>
  
  </mapper>

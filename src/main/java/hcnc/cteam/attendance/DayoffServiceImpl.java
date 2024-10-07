@@ -36,6 +36,17 @@ public class DayoffServiceImpl implements DayoffService{
 		dayoffMapper.increaseDayoffCnt(param);
 	}
 
+	@Override
+	public void insertDayoffCount(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		dayoffMapper.insertDayoffCount(param);
+	}
+
+	@Override
+	public int findDayoff(Map<String, Object> param) {
+		return dayoffMapper.findDayoff(param);
+	}
+
 	
 	
 	
