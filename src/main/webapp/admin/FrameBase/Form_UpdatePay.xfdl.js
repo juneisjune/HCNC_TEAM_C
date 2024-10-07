@@ -38,7 +38,7 @@
 
 
             obj = new Dataset("ds_Pay", this);
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"payYear\" type=\"STRING\" size=\"256\"/><Column id=\"payMonth\" type=\"STRING\" size=\"256\"/><Column id=\"actualPay\" type=\"STRING\" size=\"256\"/><Column id=\"etc\" type=\"INT\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"payYear\" type=\"STRING\" size=\"256\"/><Column id=\"payMonth\" type=\"STRING\" size=\"256\"/><Column id=\"actualPay\" type=\"STRING\" size=\"256\"/><Column id=\"etc\" type=\"INT\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"updName\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -273,7 +273,6 @@
 
         // 처리콜백 함수
         this.fnCallback = function(svcID, errorCode, errorMsg) {
-            // 에러 시 화면 처리 내역
             if (errorCode == -1) {
                 this.alert(errorMsg);
                 return;
@@ -297,8 +296,8 @@
             }
         };
 
-
         ////////////////////////////////////////////////////////////삭제
+
 
 
         this.btn_Delete_onclick = function(obj, e) {
@@ -359,6 +358,7 @@
         ////////////////////////////////////////////////////////////////////////수정
 
 
+
         this.btn_Update_onclick = function(obj, e)
         {
             // 사번, 이름, 수정액을 입력했는지 확인
@@ -379,16 +379,12 @@
                 return;
             }
 
-            // 지급총액(pay_amount)와 수정액(etc) 가져오기
-            var payAmount = this.ds_Pay.getColumn(selectedRow, "payAmount");  // 지급액
-            var currentEtc = this.ds_Pay.getColumn(selectedRow, "etc");      // 기존 수정액
+            // 수정액 반영
+            this.ds_Pay.setColumn(selectedRow, "etc", modPay);  // 수정액 업데이트
 
-            // 수정액 반영 (기존 지급총액에 입력한 수정액을 더하거나 빼기)
-            var newPayAmount = payAmount + parseInt(modPay);
-
-            // 새로운 지급총액 반영
-            this.ds_Pay.setColumn(selectedRow, "payAmount", newPayAmount);  // 지급액 업데이트
-            this.ds_Pay.setColumn(selectedRow, "etc", modPay);              // 수정액 업데이트
+            // 로그인된 사용자 ID를 `updName` 컬럼에 반영
+            var updName = this.application.gds_user.getColumn(0, "userName");  // 로그인한 사용자 이름을 가져옴
+            this.ds_Pay.setColumn(selectedRow, "updName", updName);  // 업데이트한 사용자 이름 저장
 
             // 서버에 수정된 값 반영
             var strSvcId    = "updatePayEtc";
@@ -402,9 +398,9 @@
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
 
+
         // 트랜잭션 완료 후 콜백 함수
-        this.fnCallback = function(svcID, errorCode, errorMsg)
-        {
+        this.fnCallback = function(svcID, errorCode, errorMsg) {
             if (errorCode == -1) {
                 this.alert("오류 발생: " + errorMsg);
                 return;
@@ -418,22 +414,6 @@
                     break;
             }
         };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

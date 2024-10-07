@@ -114,18 +114,20 @@
 	</select>
 	
 	<select id="nexaGetPayListByCondition" resultType="payDTO">
-	    SELECT a.emp_code as empCode,       
-	           a.name as name,              
-	           d.assign_name as assignName, 
-	           e.dep_name as depName,       
-	           b.pay_year as payYear,       
-	           b.pay_month as payMonth,     
-	           b.actual_pay as actualPay,
-	           b.etc as etc  
-	    FROM employee a
-	    JOIN pay b ON a.emp_code = b.emp_code
-	    JOIN assignment d ON a.assign_code = d.assign_code
-	    JOIN department e ON a.dep_code = e.dep_code
+ SELECT a.emp_code as empCode,       
+           a.name as name,              
+           d.assign_name as assignName, 
+           e.dep_name as depName,       
+           b.pay_year as payYear,       
+           b.pay_month as payMonth,     
+           b.actual_pay as actualPay,
+           b.etc as etc,
+           b.upd_name as updName  <!-- 수정한 사용자 이름 추가 -->
+    FROM employee a
+    JOIN pay b ON a.emp_code = b.emp_code
+    JOIN assignment d ON a.assign_code = d.assign_code
+    JOIN department e ON a.dep_code = e.dep_code
+
 	        
 	    <!-- 검색 조건 -->
 	    <if test="SEARCH_WORD != null and SEARCH_WORD != '' and SEARCH_TYPE != null">
@@ -155,15 +157,20 @@
 	    ORDER BY b.pay_year ASC, b.pay_month ASC
 	</select>
 
+
+
 <update id="updatePayEtc" parameterType="payDTO">
     UPDATE pay
     SET 
-        etc = CASE WHEN #{etc} IS NOT NULL THEN #{etc} ELSE 0 END,  -- null이면 0으로 처리
-        actual_pay = #{actualPay}
+        etc = CASE WHEN #{etc} IS NOT NULL THEN #{etc} ELSE 0 END,  
+        actual_pay = #{actualPay},
+        upd_name = #{updName}  <!-- 로그인한 사용자 이름을 업데이트 -->
     WHERE emp_code = #{empCode}
     AND pay_year = #{payYear}
     AND pay_month = #{payMonth};
 </update>
+
+
 
 
 
@@ -174,5 +181,6 @@
 	    AND pay_year = #{payYear}
 	    AND pay_month = #{payMonth};
 	</delete>
-		
+
+
 </mapper>
