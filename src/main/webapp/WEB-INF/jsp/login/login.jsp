@@ -106,6 +106,8 @@
                     success: function (result) {
                         if (result === "ok") {
                             location.href = "/viewAuth.do";
+                        } else if(result === "empty") { 
+                        	$(".error-message").text("관리자에게 문의하세요.").show();
                         } else {
                             $(".error-message").text("아이디 또는 비밀번호를 확인하세요.").show();
                         }
