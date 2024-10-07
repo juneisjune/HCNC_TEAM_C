@@ -14,5 +14,7 @@ public interface EMMapper {
     void updateEmployeeData(Map<String, Object> param);
     
     void deleteEmployee(Map<String, Object> param); 
+    
+    int countEmployeeById(String id);
 }
 

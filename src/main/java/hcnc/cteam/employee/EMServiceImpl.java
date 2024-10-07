@@ -37,4 +37,14 @@ public class EMServiceImpl implements EMService {
         EMMapper.deleteEmployee(param);  // 삭제 기능 구현
 }
 
+    @Override
+    public boolean checkDuplicateId(Map<String, Object> param) {
+        String id = (String) param.get("id");
+        int count = EMMapper.countEmployeeById(id);  // DB에서 해당 ID로 직원 수를 조회
+        return count > 0;  // 0보다 크면 중복된 것으로 판단
+    
+   
+    
+}
+    
 }

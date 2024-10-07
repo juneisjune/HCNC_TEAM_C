@@ -89,5 +89,30 @@ public class EMController {
             return result;
  }
 
-}
+        
+        
+        @RequestMapping(value = "/checkDuplicateId.do")
+        public NexacroResult checkDuplicateId(@ParamDataSet(name = "ds_employee") Map<String, Object> empData) {
+            NexacroResult result = new NexacroResult();
+            try {
+                System.out.println("중복 체크 요청 들어옴: " + empData);
+                // 서비스 레이어에 ID 중복 여부를 확인하는 메서드를 호출
+                boolean isDuplicate = EMService.checkDuplicateId(empData);
+                
+                // 중복 여부 결과 반환
+                if (isDuplicate) {
+                    result.setErrorCode(1);  // 중복된 경우
+                    result.setErrorMsg("중복된 아이디입니다.");
+                } else {
+                    result.setErrorCode(0);  // 중복되지 않은 경우
+                    result.setErrorMsg("아이디 사용 가능");
+                }
+            } catch (Exception ee) {
+                System.out.println(ee);
+                result.setErrorCode(-1);
+                result.setErrorMsg("아이디 중복 체크 오류 발생");
+            }
+            return result;
+ }
 
+}

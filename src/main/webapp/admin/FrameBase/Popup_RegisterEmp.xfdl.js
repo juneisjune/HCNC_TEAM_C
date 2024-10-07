@@ -45,24 +45,24 @@
             obj.set_text("bind:Name");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblBirth","310","80","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblBirth","320","80","80","25",null,null,null,null,null,null,this);
             obj.set_text("생년월일");
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calBirth","370","80","110","25",null,null,null,null,null,null,this);
+            obj = new Calendar("calBirth","380","80","110","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_datecolumn("Birth");
             obj.set_dateformat("yyyy.MM.dd");
             obj.set_editformat("yyyy.MM.dd");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblGender","50","120","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblGender","50","258","80","25",null,null,null,null,null,null,this);
             obj.set_text("성별");
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmbGender","100","125","110","25",null,null,null,null,null,null,this);
+            obj = new Combo("cmbGender","100","260","110","25",null,null,null,null,null,null,this);
             obj.set_innerdataset("ds_gender");
             obj.set_codecolumn("value");
             obj.set_datacolumn("text");
@@ -71,12 +71,12 @@
             obj.set_value("bind:Gender");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblPhone","310","125","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblPhone","320","255","80","25",null,null,null,null,null,null,this);
             obj.set_text("전화번호");
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtPhone","370","125","110","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtPhone","380","255","110","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Phone");
             this.addChild(obj.name, obj);
@@ -96,7 +96,7 @@
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtEmail","370","210","110","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtEmail","380","210","110","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Email");
             this.addChild(obj.name, obj);
@@ -106,14 +106,14 @@
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calJoinDate","370","168","110","25",null,null,null,null,null,null,this);
+            obj = new Calendar("calJoinDate","380","168","110","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_datecolumn("joinDate");
             obj.set_dateformat("yyyy.MM.dd");
             obj.set_editformat("yyyy.MM.dd");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblAccount","50","210","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblAccount","40","208","80","25",null,null,null,null,null,null,this);
             obj.set_text("계좌번호");
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
@@ -123,22 +123,22 @@
             obj.set_text("bind:Account");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblID","50","253","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblID","43","125","95","25",null,null,null,null,null,null,this);
             obj.set_text("아이디");
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtID","100","250","110","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtID","100","125","110","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:ID");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblPassword","320","253","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblPassword","320","128","80","25",null,null,null,null,null,null,this);
             obj.set_text("비밀번호");
             obj.set_textAlign("left");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtPassword","370","252","110","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtPassword","380","125","110","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Password");
             this.addChild(obj.name, obj);
@@ -157,6 +157,11 @@
             obj.set_color("white");
             obj.set_borderRadius("5px");
             obj.set_cursor("pointer");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("Button00","220","125","60","25",null,null,null,null,null,null,this);
+            obj.set_taborder("23");
+            obj.set_text("중복 확인");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -268,12 +273,10 @@
                 return false;
             }
 
-        	var phonePattern = /^010-[0-9]{4}-[0-9]{4}$/;
-        	if (!phone || !phonePattern.test(phone)) {
-            alert("유효한 전화번호를 입력해 주세요. 형식: 010-XXXX-XXXX");
-            return false;
-
-
+            var phonePattern = /^010-[0-9]{4}-[0-9]{4}$/;
+            if (!phone || !phonePattern.test(phone)) {
+                alert("유효한 전화번호를 입력해 주세요. 형식: 010-XXXX-XXXX");
+                return false;
             }
 
             // 주소 검사
@@ -285,16 +288,16 @@
             // 입사일 검사 (YYYYMMDD 형식)
             var joinDatePattern = /^[0-9]{8}$/;
             if (!joinDate || !joinDatePattern.test(joinDate)) {
-        		console.log(this.ds_employee.saveXML());
+                console.log(this.ds_employee.saveXML());
                 alert("올바른 입사일을 입력해 주세요.");
                 return false;
             }
 
             // 계좌번호 검사 (숫자만)
             var accountPattern = /^[가-힣]+[0-9]+$/;
-        	if (!account || !accountPattern.test(account)) {
-            alert("유효한 계좌번호를 입력해 주세요. 예: 국민은행12345678");
-            return false;
+            if (!account || !accountPattern.test(account)) {
+                alert("유효한 계좌번호를 입력해 주세요. 예: 국민은행12345678");
+                return false;
             }
 
             // 이메일 검사 (간단한 이메일 형식 검사)
@@ -336,6 +339,47 @@
             this.close('팝업 닫기');
         };
 
+        // 중복 체크 버튼 클릭 시 호출되는 함수
+        this.Button00_onclick = function(obj, e) {
+            var id = this.ds_employee.getColumn(0, "id");
+
+            if (!id || id.trim() === "") {
+                alert("아이디를 입력해 주세요.");
+                return;
+            }
+
+            var strSvcId = "checkDuplicateId";
+            var strSvcUrl = "svc::checkDuplicateId.do";  // 서버의 URL과 매핑
+            var inData = "ds_employee=ds_employee";  // 전송할 데이터셋
+            var outData = "";  // 서버에서 받아올 데이터가 없을 경우 빈 문자열
+            var strArg = "";  // 추가 인자가 필요 없을 경우 빈 문자열
+            var callBackFnc = "fnCheckDuplicateIdCallback";  // 콜백 함수 호출
+            var isAsync = true;  // 비동기 처리
+
+            this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+        };
+
+        // 아이디 중복 체크 콜백 함수
+        this.fnCheckDuplicateIdCallback = function(svcID, errorCode, errorMsg) {
+            if (errorCode == 0) {  // 성공 시
+                var isDuplicate = this.ds_employee.getColumn(0, "isDuplicate");
+
+                if (isDuplicate == "true") {
+                    alert("중복된 아이디입니다. 다른 아이디를 입력해 주세요.");
+                } else {
+        			this.edtID.enable=false;
+                    alert("아이디 입력 성공!");
+
+
+                }
+            } else {
+                alert("아이디 중복 체크 실패: " + errorMsg);
+            }
+
+
+
+        };
+
         });
         
         // Regist UI Components Event
@@ -343,8 +387,10 @@
         {
             this.addEventHandler("onload",this.Pop_RegisterEmp_onload,this);
             this.cmbGender.addEventHandler("onitemchanged",this.cmbGender_onitemchanged,this);
+            this.edtID.addEventHandler("onchanged",this.edtID_onchanged,this);
             this.btnRegister.addEventHandler("onclick",this.btnRegister_onclick,this);
             this.btnClose.addEventHandler("onclick",this.btnClose_onclick,this);
+            this.Button00.addEventHandler("onclick",this.Button00_onclick,this);
         };
         this.loadIncludeScript("Popup_RegisterEmp.xfdl");
         this.loadPreloadList();

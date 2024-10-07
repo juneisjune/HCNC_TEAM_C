@@ -93,4 +93,11 @@ SET
         DELETE FROM employee
         WHERE emp_code = #{empCode}; 
     </delete>
+       
+    <!-- 아이디 중복 체크 쿼리 -->
+    <select id="countEmployeeById" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+        FROM employee
+        WHERE id = #{id}
+    </select>
 </mapper>

@@ -12,7 +12,10 @@ public interface EMService {
     void updateEmployeeData(Map<String, Object> param);
     
     void deleteEmployee(Map<String, Object> param); 
-   }
+
+    boolean checkDuplicateId(Map<String, Object> param);
+    
+}
 
 
 

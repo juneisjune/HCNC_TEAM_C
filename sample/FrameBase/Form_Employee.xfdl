@@ -75,12 +75,12 @@
         <Combo id="cmb_SearchType" taborder="1" text="전체" left="20" top="110" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL"/>
         <Edit id="edt_SearchWord" taborder="2" left="130" top="110" width="180" height="30" binddataset="ds_search" text="bind:SEARCH_WORD" onchanged="edt_SearchWord_onchanged"/>
         <Button id="btn_Search" taborder="3" text="조회" left="320" top="110" width="70" height="30" onclick="btn_Search_onclick"/>
-        <Grid id="grd_employee" taborder="4" left="15" top="160" width="785" height="330" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged">
+        <Grid id="grd_employee" taborder="4" left="15" top="160" width="795" height="330" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="55"/>
-                <Column size="75"/>
+                <Column size="84"/>
                 <Column size="60"/>
                 <Column size="70"/>
                 <Column size="41"/>
