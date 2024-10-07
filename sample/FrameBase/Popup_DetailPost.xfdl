@@ -148,6 +148,7 @@ this.FileDownTransfer00_onerror = function(obj:nexacro.FileDownTransfer, e:nexac
         <Edit id="Edit_ViewCount" left="780" top="110" width="100" height="30" readonly="true" font="14px 'Gulim'"/>
         <!-- Content -->
         <Static id="Static_Label_Content" text="내용:" left="10" top="150" width="100" height="30" font="bold 14px 'Gulim'" textAlign="right"/>
+        <WebBrowser id="WebBrowser_Content" left="120" top="150" width="820" height="400"/>
         <TextArea id="TextArea_Content" left="120" top="150" width="820" height="400" readonly="true" font="14px 'Gulim'"/>
         <!-- Attachments -->
         <Static id="Static_Label_Attachments" text="첨부파일:" left="10" top="570" width="100" height="30" font="bold 14px 'Gulim'" textAlign="right"/>

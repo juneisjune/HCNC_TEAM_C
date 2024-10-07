@@ -82,6 +82,9 @@
             obj.set_textAlign("right");
             this.addChild(obj.name, obj);
 
+            obj = new WebBrowser("WebBrowser_Content","120","150","820","400",null,null,null,null,null,null,this);
+            this.addChild(obj.name, obj);
+
             obj = new TextArea("TextArea_Content","120","150","820","400",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
