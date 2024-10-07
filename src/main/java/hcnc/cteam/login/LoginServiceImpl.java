@@ -1,5 +1,7 @@
 package hcnc.cteam.login;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -31,5 +33,16 @@ public class LoginServiceImpl extends EgovAbstractServiceImpl implements LoginSe
 	public AttenDTO selectWork(int empCode) throws Exception {
 		return loginMapper.selectWork(empCode);
 	}
+	
+	@Override
+    public Map<String, Object> getUserInfoByUserId(Map<String, Object> loginInfo) {
+        return loginMapper.getUserByUserId(loginInfo);
+    }
+
+	
+
+	
+
+
 
 }

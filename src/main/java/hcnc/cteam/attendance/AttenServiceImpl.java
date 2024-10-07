@@ -13,8 +13,8 @@ public class AttenServiceImpl implements AttenService{
 	private AttenMapper attenMapper;
 	
 	@Override
-	public List<AttenDTO> getAttenList() {
-		return attenMapper.getAttenList();
+	public List<AttenDTO> getAttenList(Map<String, Object> params) {
+		return attenMapper.getAttenList(params);
 	}
 
 	@Override
@@ -36,8 +36,13 @@ public class AttenServiceImpl implements AttenService{
 
 	@Override
 	public AttenDTO userAttendanceInfo(Map<String, Object> param) {
+		return attenMapper.userAttendanceInfo(param);
+	}
+
+	@Override
+	public AttenDTO getAttendance(int empCode) {
 		// TODO Auto-generated method stub
-		return null;
+		return attenMapper.getAttendance(empCode);
 	}
 
 	

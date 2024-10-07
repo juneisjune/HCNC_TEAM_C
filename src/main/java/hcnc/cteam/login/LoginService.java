@@ -1,5 +1,7 @@
 package hcnc.cteam.login;
 
+import java.util.Map;
+
 import hcnc.cteam.attendance.AttenDTO;
 
 public interface LoginService {
@@ -12,4 +14,6 @@ public interface LoginService {
 	
 	AttenDTO selectWork(int empCode) throws Exception;
 	
+	
+	Map<String, Object> getUserInfoByUserId(Map<String, Object> loginInfo);
 }

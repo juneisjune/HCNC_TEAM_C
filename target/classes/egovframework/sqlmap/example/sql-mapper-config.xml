@@ -3,6 +3,7 @@
 
 
 <configuration>
+
 	
 	   <settings>
            <setting name="mapUnderscoreToCamelCase" value="true"/>
@@ -10,7 +11,7 @@
     <typeAliases>
 		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 		<typeAlias alias="dayoffDto" type="hcnc.cteam.attendance.DayoffDTO"/>
-		<typeAlias alias="empDto" type="hcnc.cteam.employee.NgjEmpDTO"/>
+		<typeAlias alias="empDto" type="hcnc.cteam.employee.EmpDTO"/>
 		<typeAlias alias="payDTO" type="hcnc.cteam.pay.PayDTO" />
 		<typeAlias alias="payEmpDTO" type="hcnc.cteam.pay.PayEmpDTO" />
 		<typeAlias alias="paySearchDTO" type="hcnc.cteam.pay.PaySearchDTO"/>

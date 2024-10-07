@@ -13,17 +13,17 @@ public class EmpServiceImpl implements EmpService {
     private EmployeeMapper employeeMapper;
 
     @Override
-    public List<employeeDTO> getEmployeeData() {
+    public List<EmpDTO> getEmployeeData() {
         return employeeMapper.getAllEmployees();
     }
 
     @Override
-    public List<employeeDTO> employeeSearch(Map<String, Object> params) {
+    public List<EmpDTO> employeeSearch(Map<String, Object> params) {
         return employeeMapper.getEmployeeListByCondition(params);
     }
     
     @Override
-    public employeeDTO getEmployeeByEmpCode(int empCode) {
+    public EmpDTO getEmployeeByEmpCode(int empCode) {
         return employeeMapper.getEmployeeByEmpCode(empCode);
     
     }

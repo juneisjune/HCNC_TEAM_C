@@ -3,6 +3,9 @@ package hcnc.cteam.employee;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +22,7 @@ public class EmpController {
 
     @RequestMapping(value = "/employee.do" , method = RequestMethod.GET) 
     public String employee(Model model) {
-        List<employeeDTO> employeeData = empService.getEmployeeData();
+        List<EmpDTO> employeeData = empService.getEmployeeData();
         model.addAttribute("employeeData", employeeData); 
         
         return "employee/employee";  
@@ -27,15 +30,16 @@ public class EmpController {
     
     @RequestMapping(value = "/searchEmployee.do", method = RequestMethod.POST)
     public String searchEmployee(@RequestParam Map<String, Object> params, Model model) {
-        List<employeeDTO> employeeData = empService.employeeSearch(params);
+        List<EmpDTO> employeeData = empService.employeeSearch(params);
         model.addAttribute("employeeData", employeeData);
         return "employee/employee";
     }
     
     @RequestMapping(value = "/myPage.do")
-    public String myPage(Model model) {
-        int empCode = 1;
-        employeeDTO employee = empService.getEmployeeByEmpCode(empCode);
+    public String myPage(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+    	int empCode = (int)session.getAttribute("userCode");
+        EmpDTO employee = empService.getEmployeeByEmpCode(empCode);
         model.addAttribute("employee", employee);
         return "employee/myPage";
     }

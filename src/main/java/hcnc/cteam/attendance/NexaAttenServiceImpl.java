@@ -1,6 +1,7 @@
 package hcnc.cteam.attendance;
 
 import java.util.List;
+
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -18,6 +19,21 @@ public class NexaAttenServiceImpl implements NexaAttenService {
 	@Override
 	public List<NexaAttenDTO> nexaGetAttenListByCondition(Map<String, Object> param) {
 		return mapper.nexaGetAttenListByCondition(param);
+	}
+	
+	@Override
+	public void editAttenList(Map<String, Object> param) {
+		mapper.editAttenList(param);
+	}
+
+	@Override
+	public List<NexaAttenDTO> nexaGetEmpListByCondition(Map<String, Object> param) {
+		return mapper.nexaGetEmpListByCondition(param);
+	}
+
+	@Override
+	public void attenRegister(Map<String, Object> param) {
+		mapper.attenRegister(param);
 	}
 	
 }

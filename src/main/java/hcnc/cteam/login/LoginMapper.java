@@ -1,5 +1,7 @@
 package hcnc.cteam.login;
 
+import java.util.Map;
+
 import egovframework.rte.psl.dataaccess.mapper.Mapper;
 import hcnc.cteam.attendance.AttenDTO;
 
@@ -12,5 +14,7 @@ public interface LoginMapper {
 	String selectEmail(int empCode) throws Exception;
 	
 	AttenDTO selectWork(int empCode) throws Exception;
+
+	Map<String, Object> getUserByUserId(Map<String, Object> loginInfo);
 	
 }	

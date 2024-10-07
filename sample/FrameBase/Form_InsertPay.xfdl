@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_InsertPay" width="1280" height="720" titletext="급여 등록" onload="Form_InsertPay_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Static id="title" taborder="0" text="급여 등록" left="60" top="12" width="278" height="78"/>
+        <Static id="stc_Assign" taborder="1" text="직책" left="60" top="71" width="120" height="60"/>
+        <Combo id="cmb_Assign" taborder="2" text="" left="95" top="91" width="105" height="20" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged" font="12pt/normal gulim"/>
+        <Button id="btn_Search" taborder="3" text="조회" left="215" top="91" width="43" height="20" onclick="btn_Search_onclick"/>
+        <Grid id="grd_Emp" taborder="4" left="60" top="125" width="830" height="330" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48"/>
+                <Column size="67"/>
+                <Column size="92"/>
+                <Column size="70"/>
+                <Column size="97"/>
+                <Column size="121"/>
+                <Column size="119"/>
+                <Column size="213"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="사번"/>
+                <Cell col="2" text="이름"/>
+                <Cell col="3" text="직책"/>
+                <Cell col="4" text="부서"/>
+                <Cell col="5" text="입사일"/>
+                <Cell col="6" text="퇴사일"/>
+                <Cell col="7" text="계좌번호"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:chkVal"/>
+                <Cell col="1" textAlign="center" text="bind:emp_code"/>
+                <Cell col="2" textAlign="center" text="bind:name"/>
+                <Cell col="3" textAlign="center" text="bind:assign_name"/>
+                <Cell col="4" textAlign="center" text="bind:dep_name"/>
+                <Cell col="5" textAlign="center" text="bind:join_date" displaytype="date"/>
+                <Cell col="6" text="bind:resign_date" textAlign="center"/>
+                <Cell col="7" text="bind:account"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static04" taborder="5" text="지급일" left="570" top="455" width="120" height="60"/>
+        <Calendar id="cal_GiveDate" taborder="6" left="625" top="475" width="150" height="20" dateformat="yyyy-MM-dd"/>
+        <Button id="btn_Insert" taborder="7" text="등록" left="800" top="470" width="90" height="30" onclick="btn_Insert_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_AssignType">
+        <ColumnInfo>
+          <Column id="assign_code" type="INT" size="256"/>
+          <Column id="assign_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="assign_code">100</Col>
+            <Col id="assign_name">전체</Col>
+          </Row>
+          <Row>
+            <Col id="assign_code">1</Col>
+            <Col id="assign_name">사원</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">대리</Col>
+            <Col id="assign_code">2</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">과장</Col>
+            <Col id="assign_code">3</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">차장</Col>
+            <Col id="assign_code">4</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">부장</Col>
+            <Col id="assign_code">5</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">이사</Col>
+            <Col id="assign_code">6</Col>
+          </Row>
+          <Row>
+            <Col id="assign_name">대표</Col>
+            <Col id="assign_code">7</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Assign">
+        <ColumnInfo>
+          <Column id="assign_code" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_EmpList">
+        <ColumnInfo>
+          <Column id="chkVal" type="STRING" size="256" text="bind:chkVal"/>
+          <Column id="emp_code" type="INT" size="256" text="bind:emp_code"/>
+          <Column id="name" type="STRING" size="256" text="bind:name"/>
+          <Column id="assign_code" type="INT" size="256" text="bind:assign_code"/>
+          <Column id="assign_name" type="STRING" size="256" text="bind:assign_name"/>
+          <Column id="dep_name" type="STRING" size="256" text="bind:dep_name"/>
+          <Column id="join_date" type="DATE" size="256" text="bind:join_date"/>
+          <Column id="resign_date" type="DATE" size="256" text="bind:resign_date"/>
+          <Column id="account" type="STRING" size="256" text="bind:account"/>
+          <Column id="month" type="INT" size="256" text="bind:month"/>
+          <Column id="pay_meal" type="INT" size="256" text="bind:pay_over"/>
+          <Column id="pay_over" type="INT" size="256" text="bind:pay_meal"/>
+          <Column id="absence" type="INT" size="256" text="bind:absence"/>
+          <Column id="pay_amount" type="INT" size="256" text="bind:pay_amount"/>
+          <Column id="income_tax" type="INT" size="256" text="bind:income_tax"/>
+          <Column id="resident_tax" type="INT" size="256" text="bind:resident_tax"/>
+          <Column id="national_tax" type="INT" size="256" text="bind:national_tax"/>
+          <Column id="emp_insurance" type="INT" size="256" text="bind:emp_insurance"/>
+          <Column id="health_insurance" type="INT" size="256" text="bind:health_insurance"/>
+          <Column id="longcare_insurance" type="INT" size="256" text="bind:longcare_insurance"/>
+          <Column id="actual_pay" type="INT" size="256" text="bind:actual_pay"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_GiveDate">
+        <ColumnInfo>
+          <Column id="give_date" type="DATE" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_EmpListCopy">
+        <ColumnInfo>
+          <Column id="chkVal" type="STRING" size="256" text="bind:chkVal"/>
+          <Column id="emp_code" type="INT" size="256" text="bind:emp_code"/>
+          <Column id="name" type="STRING" size="256" text="bind:name"/>
+          <Column id="assign_code" type="INT" size="256" text="bind:assign_code"/>
+          <Column id="assign_name" type="STRING" size="256" text="bind:assign_name"/>
+          <Column id="dep_name" type="STRING" size="256" text="bind:dep_name"/>
+          <Column id="join_date" type="DATE" size="256" text="bind:join_date"/>
+          <Column id="resign_date" type="DATE" size="256" text="bind:resign_date"/>
+          <Column id="account" type="STRING" size="256" text="bind:account"/>
+          <Column id="month" type="INT" size="256" text="bind:month"/>
+          <Column id="pay_meal" type="INT" size="256" text="bind:pay_over"/>
+          <Column id="pay_over" type="INT" size="256" text="bind:pay_meal"/>
+          <Column id="absence" type="INT" size="256" text="bind:absence"/>
+          <Column id="pay_amount" type="INT" size="256" text="bind:pay_amount"/>
+          <Column id="income_tax" type="INT" size="256" text="bind:income_tax"/>
+          <Column id="resident_tax" type="INT" size="256" text="bind:resident_tax"/>
+          <Column id="national_tax" type="INT" size="256" text="bind:national_tax"/>
+          <Column id="emp_insurance" type="INT" size="256" text="bind:emp_insurance"/>
+          <Column id="health_insurance" type="INT" size="256" text="bind:health_insurance"/>
+          <Column id="longcare_insurance" type="INT" size="256" text="bind:longcare_insurance"/>
+          <Column id="actual_pay" type="INT" size="256" text="bind:actual_pay"/>
+          <Column id="give_date" type="DATE" size="256" text="bind:give_date"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.Form_InsertPay_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_Assign.setColumn(0, "assign_code", "100");
+};
+
+
+this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+
+};
+
+this.grd_Emp_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//grid의 head에서 0번째 셀의 값을 가져옴 
+	var chkVal = obj.getCellProperty("head", 0, "text"); 
+	
+	if (chkVal == "1") { // 이미 체크된 상태라면 체크 해지로 변환
+		chkVal	= "0";
+		obj.setCellProperty("head", 0, "text", chkVal); 
+		for (var i=0; i<this.ds_EmpList.rowcount; i++) { 
+			this.ds_EmpList.setColumn(i,"chkVal","0");
+		}
+	} else {
+		chkVal	= "1";
+		obj.setCellProperty("head", 0, "text", chkVal); 
+		for (var i=0; i<this.ds_EmpList.rowcount; i++) { 
+			this.ds_EmpList.setColumn(i,"chkVal","1");
+		}
+		
+	}
+};
+
+
+this.fnSearch = function() {
+	if(this.ds_Assign.getColumn(0, "assign_code") == ''
+	|| this.ds_Assign.getColumn(0, "assign_code") == 'undefined'
+	|| this.ds_Assign.getColumn(0, "assign_code") == null) {
+		alert("직책을 선택하세요.");
+		return;
+	}
+	
+	var strSvcId    = "selectAssign"; 
+	var strSvcUrl   = "svc::selectAssign.do";
+	var inData      = "ds_Assign=ds_Assign";
+	var outData     = "ds_EmpList=ds_EmpList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync     = true;
+	
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+}
+
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{	
+		
+	if(errorCode == -1)
+	{
+		this.alert(errorMsg);
+		return;
+	}
+
+	switch(svcID)
+	{
+		case "selectAssign":			
+			this.alert("조회가 완료되었습니다.");		
+			break;
+		
+		case "insertPay":
+			this.alert("등록이 완료되었습니다.");
+			break;
+		
+		default :
+			break;
+	}
+};
+
+this.btn_Insert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.ds_GiveDate.getColumn(0, "give_date") == '' 
+	|| this.ds_GiveDate.getColumn(0, "give_date") == 'undefined'
+	|| this.ds_GiveDate.getColumn(0, "give_date") == null){
+		alert("날짜를 입력하세요.");
+		return;
+	}
+	
+	if (this.ds_EmpList.getRowCount() < 1) {
+        this.alert("직원 데이터를 먼저 조회하세요.");
+        return;
+    }
+	
+	//ds_EmpListCopy 데이터셋 모든 row 삭제
+	this.ds_EmpListCopy.clearData();
+	
+	//체크된 데이터를 새로운 Dataset에 추가
+    for (var i = 0; i < this.ds_EmpList.getRowCount(); i++) {
+        var isChecked = this.ds_EmpList.getColumn(i, "chkVal"); 
+        if (isChecked == 1) {  
+            var newRow = this.ds_EmpListCopy.addRow(); 
+            this.ds_EmpListCopy.copyRow(newRow, this.ds_EmpList, i);  
+			this.ds_EmpListCopy.setColumn(i, "give_date", this.ds_GiveDate.getColumn(0, "give_date"));
+        }
+    }
+	
+	console.log(this.ds_EmpListCopy.saveXML());
+	
+	var strSvcId    = "insertPay"; 
+	var strSvcUrl   = "svc::insertPay.do";
+	var inData      = "ds_EmpListCopy=ds_EmpListCopy";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync     = true;
+	
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+};
+
+]]></Script>
+    <InitValue>
+      <Static id="title" font="24px/normal &quot;Gulim&quot;"/>
+      <Calendar id="cal_GiveDate"/>
+    </InitValue>
+    <Bind>
+      <BindItem id="item0" compid="cmb_Assign" propid="value" datasetid="ds_Assign" columnid="assign_code"/>
+      <BindItem id="item1" compid="cal_GiveDate" propid="value" datasetid="ds_GiveDate" columnid="give_date"/>
+    </Bind>
+  </Form>
+</FDL>

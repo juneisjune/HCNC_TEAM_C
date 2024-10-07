@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hcnc.cteam.pay.NexaPayMapper">
+	
+	<!-- 직책에 따른 시급 조회 -->
+	<select id="selectHourly"  resultType="int" parameterType="java.util.Map">
+		SELECT hourly 
+		FROM `assignment` a 
+		WHERE a.assign_code = #{assign_code}; 
+	</select>
+
+	<!-- 직책에 따른 tax 조회 -->
+	<select id="selectTax" resultType="double" parameterType="java.util.Map">
+		SELECT tax 
+		FROM `assignment`
+		WHERE assign_code = #{assign_code}
+	</select>
+
+	<!-- 직책에 따른 emp List 조회  -->
+	<select id="selectEmpList" resultType="java.util.Map" parameterType="java.util.Map"> 
+		SELECT emp_code, name, a.assign_code, assign_name, dep_name, join_date, IFNULL(resign_date, "") resign_date, account 
+		FROM employee e JOIN `assignment` a
+		ON e.assign_code = a.assign_code
+		JOIN department d 
+		ON e.dep_code = d.dep_code 
+		<!-- 이번달 입사자들은 조회하지 않음 -->
+		WHERE join_date &lt; DATE_FORMAT(CURDATE(), '%Y-%m-01')
+		<!-- 저번달 퇴사자부터 퇴사 예정자까지 조회함 -->
+		AND (resign_date &gt;= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')  OR resign_date IS NULL)
+			<if test="assign_code != null and assign_code != 100">
+				AND a.assign_code = #{assign_code}
+			</if>
+	</select>
+
+	<!-- 직책에 따른 monthly 조회 -->
+	<!-- 퇴사자는 기본급을 0으로 설정하고 일급으로 계산 -->
+	<select id="selectMonth" resultType="int" parameterType="java.util.Map">
+		SELECT IF(e.resign_date IS NULL OR MONTH(resign_date) >= MONTH(CURDATE())
+				, a.monthly 
+				, (SELECT	
+					(SELECT COUNT(*)
+						FROM attendance a JOIN att_code ac 
+						ON a.atten_code = ac.atten_code 
+						JOIN employee e 
+						ON a.emp_code = e.emp_code 
+						WHERE a.emp_code =  #{emp_code}
+						AND (a.atten_code = 1 OR a.atten_code = 3)
+						AND YEAR(work_date) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+						AND MONTH(work_date) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+					) 
+					* 8 * a.hourly
+				)		
+		) month
+		FROM `assignment` a JOIN employee e 
+		ON a.assign_code = e.assign_code 
+		WHERE a.assign_code = #{assign_code}	
+		AND emp_code = #{emp_code};	
+	</select>
+
+	<!-- 사원의 지난달 work_over 조회 -->
+	<select id="selectWorkOver" resultType="double" parameterType="java.util.Map">
+		SELECT IFNULL(SUM(work_over), 0) workOver
+		FROM attendance a JOIN att_code ac 
+			ON a.atten_code = ac.atten_code 
+		JOIN employee e 
+			ON a.emp_code = e.emp_code 
+		WHERE a.emp_code = #{emp_code}
+		AND a.atten_code = 1
+		AND YEAR(work_date) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+		AND MONTH(work_date) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+	</select>
+	
+	<!-- 사원의 지난달 결근 조회 -->
+	<select id="selectAbsence" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*) absence
+		FROM attendance a JOIN att_code ac 
+			ON a.atten_code = ac.atten_code 
+		JOIN employee e 
+			ON a.emp_code = e.emp_code 
+		WHERE e.emp_code = #{emp_code}
+		AND ac.atten_code = 2
+		AND YEAR(work_date) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+		AND MONTH(work_date) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+	</select>	
+	
+	<select id="duplidacatedPay" resultType="int" parameterType="java.util.Map" >
+		SELECT COUNT(*)
+		FROM pay p
+		WHERE emp_code = #{emp_code}
+		AND pay_year = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+		AND pay_month = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+	</select>
+
+	<!-- pay insert -->
+	<insert id="insertPay" parameterType="java.util.Map" >
+		INSERT INTO pay(emp_code
+			, pay_year
+			, pay_month
+			, give_date
+			, month
+ 			, pay_over
+			, pay_meal
+			, absence
+			, pay_amount
+			, income_tax
+			, resident_tax
+			, national_tax 
+			, emp_insurance
+			, health_insurance
+			, longcare_insurance
+			, actual_pay 
+			, reg_name 
+		)
+		VALUES (#{emp_code}
+			, YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+			, MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
+			, #{give_date}
+			, #{month}
+ 			, #{pay_over}
+			, #{pay_meal}
+			, #{absence}
+			, #{pay_amount}
+			, #{income_tax}
+			, #{resident_tax}
+			, #{national_tax}
+			, #{emp_insurance}
+			, #{health_insurance}
+			, #{longcare_insurance}
+			, #{actual_pay} 
+			, "오명진"
+		);
+	</insert>
+	
+
+
+</mapper>	

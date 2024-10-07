@@ -8,9 +8,11 @@ import egovframework.rte.psl.dataaccess.mapper.Mapper;
 @Mapper
 public interface EmployeeMapper {
 	
-    List<employeeDTO> getAllEmployees();
+    List<EmpDTO> getAllEmployees();
     
-    List<employeeDTO> getEmployeeListByCondition(Map<String, Object> params);
+    List<EmpDTO> getEmployeeListByCondition(Map<String, Object> params);
     
-    employeeDTO getEmployeeByEmpCode(int empCode);
+    EmpDTO getEmployeeByEmpCode(int empCode);
+    
+    
 }
