@@ -12,7 +12,6 @@
             this.set_name("Form_Top");
             this.set_titletext("Form_Top");
             this.set_background("#000033");
-            this.set_scrollbartype("none");
             if (Form == this.constructor)
             {
                 this._setFormPosition(1535,65);
@@ -24,7 +23,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("staHello","1375","0","55","65",null,null,null,null,null,null,this);
+            obj = new Static("staHello","1260","0","160","65",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_color("#ffffff");
             this.addChild(obj.name, obj);
@@ -92,9 +91,15 @@
         // 폼의 크기가 변경되었을 때
         this.Form_Top_onsize = function(obj,e)
         {
-        	var userName = nexacro.getApplication().ds_userInfo.getColumn(0, "name").concat("", "님");
+        	var userName = nexacro.getApplication().ds_userInfo.getColumn(0, "name").concat("님");
 
-        	this.ds_UserName.setColumn(0, "userName", userName);
+            // ds_UserName에 데이터가 없을 경우 행 추가
+            if (this.ds_UserName.getRowCount() == 0) {
+                this.ds_UserName.addRow();
+            }
+
+            // 첫 번째 행에 userName 설정
+            this.ds_UserName.setColumn(0, "userName", userName);
         };
 
         });
@@ -102,7 +107,9 @@
         // Regist UI Components Event
         this.on_initEvent = function()
         {
+            this.addEventHandler("onload",this.Form_Top_onload,this);
             this.addEventHandler("onsize",this.Form_Top_onsize,this);
+            this.staHello.addEventHandler("onclick",this.staHello_onclick,this);
             this.btn_Logout.addEventHandler("onclick",this.btn_Logout_onclick,this);
         };
         this.loadIncludeScript("Form_Top.xfdl");
