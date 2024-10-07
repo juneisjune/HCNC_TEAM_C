@@ -10,7 +10,7 @@
         this.on_create = function()
         {
             this.set_scrolltype("vertical");
-            this.set_scrollbartype("auto");
+            this.set_scrollbartype("none");
             this.set_name("Form_Left");
             this.set_titletext("Form_Left");
             if (Form == this.constructor)
@@ -32,6 +32,7 @@
             obj.set_scrolltype("both");
             obj.set_treeuseline("false");
             obj.set_cssclass("grd_LF_treeMenu");
+            obj.set_treeuseimage("false");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"180\"/></Columns><Rows><Row size=\"35\"/></Rows><Band id=\"body\"><Cell displaytype=\"treeitemcontrol\" edittype=\"tree\" text=\"bind:MENU_NAME\" treestartlevel=\"1\" treelevel=\"bind:MENU_LEVEL\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
             // Layout Functions

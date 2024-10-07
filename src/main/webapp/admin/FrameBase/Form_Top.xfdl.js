@@ -12,18 +12,20 @@
             this.set_name("Form_Top");
             this.set_titletext("Form_Top");
             this.set_background("#000033");
+            this.set_scrollbartype("none");
             if (Form == this.constructor)
             {
                 this._setFormPosition(1535,65);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
-
+            obj = new Dataset("ds_UserName", this);
+            obj._setContents("<ColumnInfo><Column id=\"userName\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("staHello","1375","0","80","65",null,null,null,null,null,null,this);
+            obj = new Static("staHello","1375","0","55","65",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("변수민님");
             obj.set_color("#ffffff");
             this.addChild(obj.name, obj);
 
@@ -55,7 +57,9 @@
             this.addLayout(obj.name, obj);
             
             // BindItem Information
-
+            obj = new BindItem("item0","staHello","text","ds_UserName","userName");
+            this.addChild(obj.name, obj);
+            obj.bind();
             
             // TriggerItem Information
 
@@ -85,12 +89,20 @@
             nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("0,0,*");
         };
 
+        // 폼의 크기가 변경되었을 때
+        this.Form_Top_onsize = function(obj,e)
+        {
+        	var userName = nexacro.getApplication().ds_userInfo.getColumn(0, "name").concat("", "님");
+
+        	this.ds_UserName.setColumn(0, "userName", userName);
+        };
 
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
+            this.addEventHandler("onsize",this.Form_Top_onsize,this);
             this.btn_Logout.addEventHandler("onclick",this.btn_Logout_onclick,this);
         };
         this.loadIncludeScript("Form_Top.xfdl");

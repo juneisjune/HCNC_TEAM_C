@@ -12,6 +12,8 @@
             this.set_name("Form_Login");
             this.set_titletext("New Form");
             this.set_color("#000000");
+            this.set_background("#000033");
+            this.set_scrollbartype("none");
             if (Form == this.constructor)
             {
                 this._setFormPosition(1280,720);
@@ -38,59 +40,74 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Button("btn_Login","780","190","150","140",null,null,null,null,null,null,this);
+            obj = new Div("div_AuthForm","680","160","380","370",null,null,null,null,null,null,this);
+            obj.set_taborder("12");
+            obj.set_background("#ffffff");
+            this.addChild(obj.name, obj);
+
+            obj = new Div("div_LoginForm","262","160","380","370",null,null,null,null,null,null,this);
+            obj.set_taborder("11");
+            obj.set_background("#ffffff");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_FindLoginInfo","218","275","135","25",null,null,null,null,null,null,this.div_LoginForm.form);
+            obj.set_taborder("0");
+            obj.set_text("아이디 및 비밀번호 찾기");
+            this.div_LoginForm.addChild(obj.name, obj);
+
+            obj = new Button("btn_Login","465","360","150","60",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("인증번호 발송");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_AuthCheck","560","430","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_AuthCheck","840","290","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_AuthCheck","780","430","150","60",null,null,null,null,null,null,this);
+            obj = new Button("btn_AuthCheck","890","360","150","60",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("인증하기");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_AuthCheck","440","430","115","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_AuthCheck","720","290","115","60",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("인증번호 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_Id","455","190","90","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_Id","310","210","90","60",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("아이디 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_Password","440","270","115","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_Password","295","290","115","60",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("비밀번호 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Id","560","190","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Id","415","210","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Password","560","270","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Password","415","290","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_password("true");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Pass","217","176","136","124",null,null,null,null,null,null,this);
+            obj = new Button("btn_Pass","9","10","143","124",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_text("넘어가기");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit00","560","350","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_MaskedEmail","840","210","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_readonly("true");
             obj.set_background("#ffffff");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_MaskEmail","430","350","120","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_MaskEmail","710","210","120","60",null,null,null,null,null,null,this);
             obj.set_taborder("10");
             obj.set_text("발송받은 이메일 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
@@ -114,7 +131,7 @@
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item3","Edit00","value","ds_email","maskedEmail");
+            obj = new BindItem("item3","edt_MaskedEmail","value","ds_email","maskedEmail");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -207,6 +224,8 @@
         	this.ds_login.setColumn(0, "password", '');
         	this.ds_Auth.setColumn(0, "authKey", '');
         	this.ds_AuthCheck.setColumn(0, "authCheck", '');
+        	this.ds_email.setColumn(0, "email", '');
+        	this.ds_email.setColumn(0, "maskedEmail", '');
         }
 
         //인증하기
@@ -255,18 +274,8 @@
             }
             else {
 
-              // 저장된 값 확인하는 콘솔 로그
-        //       console.log("값 확인 : " + nexacro.getApplication().ds_userInfo.saveXML());
-        //       var row = nexacro.getApplication().ds_userInfo.rowposition;
-        //       console.log("현재 rowposition: " + row);
-        //       //var row = 0;  // 첫 번째 행
-        //       console.log(nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
-        //       console.log(nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code"));
-
         	  // 인증번호 발송
         	  this.fn_Auth();
-
-
 
             }
         };
@@ -306,23 +315,54 @@
             return email;
         };
 
-        // 사용 예시
-        var email = "user1234@domain.com";
-        var maskedEmail = this.maskEmail(email);
-        trace("마스킹된 이메일: " + maskedEmail);  // 결과: u*****4@domain.com
-
-
-        //임시로 넘어가기 버튼
+        // 임시로 넘어가기 버튼
         this.btn_Pass_onclick = function(obj,e)
         {
         	this.fn_LoginSuccess()
         };
 
+        // 아이디 및 비밀번호 static영역에 들어왔을 때
+        this.div_LoginForm_sta_FindLoginInfo_onmouseenter = function(obj,e)
+        {
+
+        };
+        // 아이디 및 비밀번호 static영역에서 나갔을 때
+        this.div_LoginForm_sta_FindLoginInfo_onmouseleave = function(obj,e)
+        {
+
+        };
+
+        // 아이디 및 비밀번호를 클릭했을 때
+        this.div_LoginForm_sta_FindLoginInfo_onclick = function(obj,e)
+        {
+        	this.showFindLoginInfo();
+        };
+
+        // FindLoginInfo 팝업 호출 함수
+        this.showFindLoginInfo = function (objParam)
+        {
+        	popup = new nexacro.ChildFrame;
+        	popup.init("popupFindLoginInfo", 0, 0, 600, 500, null, null, "FrameBase::Popup_FindLoginInfo.xfdl");
+        	popup.set_dragmovetype("all");
+        	popup.set_layered("true");
+        	popup.set_autosize(true);
+        	popup.set_showtitlebar("아이디 및 비밀번호 찾기");
+        	popup.set_showstatusbar(false);
+        	popup.set_resizable(true);
+        	popup.set_openalign("center middle");
+        	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
+        	popup.style.set_overlaycolor("#6666664C");
+        	popup.form.style.set_border("1 solid #4c5a6f");
+
+        }
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
+            this.div_LoginForm.form.sta_FindLoginInfo.addEventHandler("onmouseleave",this.div_LoginForm_sta_FindLoginInfo_onmouseleave,this);
+            this.div_LoginForm.form.sta_FindLoginInfo.addEventHandler("onmouseenter",this.div_LoginForm_sta_FindLoginInfo_onmouseenter,this);
+            this.div_LoginForm.form.sta_FindLoginInfo.addEventHandler("onclick",this.div_LoginForm_sta_FindLoginInfo_onclick,this);
             this.btn_Login.addEventHandler("onclick",this.btn_Login_onclick,this);
             this.btn_AuthCheck.addEventHandler("onclick",this.btn_AuthCheck_onclick,this);
             this.btn_Pass.addEventHandler("onclick",this.btn_Pass_onclick,this);
