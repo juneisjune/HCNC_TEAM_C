@@ -150,11 +150,5 @@ public class JspPostController {
 	        writer.close();
 	    }
 	}
-	
-	
-
-
-
-	
 
 }

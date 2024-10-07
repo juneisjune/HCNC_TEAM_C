@@ -109,7 +109,7 @@
 	<!-- 게시글 목록 페이징 처리 조회 -->
 	<select id="selectPostWithPaging" resultType="map">
 	    SELECT a.post_code, a.title, a.content, a.reg_date, b.name AS emp_name, a.view_count
-	    FROM post a
+	    	FROM post a
 	    INNER JOIN employee b ON a.emp_code = b.emp_code
 	    ORDER BY a.post_code DESC
 	    LIMIT #{offset}, #{pageSize}

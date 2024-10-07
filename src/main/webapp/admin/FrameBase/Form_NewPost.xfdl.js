@@ -56,30 +56,44 @@
             obj = new Button("open","602","320","88","87",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("폴더 열기");
+            obj.set_borderRadius("5px");
+            obj.set_cursor("pointer");
+            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
             obj = new Grid("Grid00","108","317","482","90",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
+            obj.set_borderRadius("5px");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"size\"/></Band><Band id=\"body\"><Cell text=\"bind:filename\"/><Cell col=\"1\" text=\"bind:filesize\" textAlign=\"right\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button01","236","420","130","70",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("공지사항 등록");
+            obj.set_borderRadius("5px");
+            obj.set_background("green");
+            obj.set_color("white");
+            obj.set_cursor("pointer");
+            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_title","100","101","590","39",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_title","103","101","590","39",null,null,null,null,null,null,this);
             obj.set_taborder("4");
+            obj.set_borderRadius("5px");
             this.addChild(obj.name, obj);
 
             obj = new TextArea("TextArea01","104","160","586","144",null,null,null,null,null,null,this);
             obj.set_taborder("5");
+            obj.set_borderRadius("5px");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_close","400","420","122","70",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("목록 조회");
+            obj.set_borderRadius("5px");
+            obj.set_cursor("pointer");
+            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static00_00","8","13","722","67",null,null,null,null,null,null,this);

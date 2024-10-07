@@ -46,6 +46,7 @@
             obj = new Edit("Edit_Title","120","70","600","30",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
+            obj.set_borderRadius("5px");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static_Label_Author","10","110","100","30",null,null,null,null,null,null,this);
@@ -57,6 +58,7 @@
             obj = new Edit("Edit_Author","120","110","200","30",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
+            obj.set_borderRadius("5px");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static_Label_Date","340","110","100","30",null,null,null,null,null,null,this);
@@ -74,6 +76,7 @@
             obj = new Edit("Edit_ViewCount","780","110","100","30",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
+            obj.set_borderRadius("5px");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static_Label_Content","10","150","100","30",null,null,null,null,null,null,this);
@@ -88,6 +91,7 @@
             obj = new TextArea("TextArea_Content","120","150","820","400",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
+            obj.set_borderRadius("5px");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static_Label_Attachments","10","570","100","30",null,null,null,null,null,null,this);
@@ -98,15 +102,18 @@
 
             obj = new Grid("Grid_Attachments","120","570","600","100",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Attachments");
+            obj.set_borderRadius("5px");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"50\"/><Column size=\"550\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"번호\"/><Cell col=\"1\" text=\"파일명\"/></Band><Band id=\"body\"><Cell text=\"expr:currow + 1\"/><Cell col=\"1\" text=\"bind:attach_name\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button_Download","730","570","100","30",null,null,null,null,null,null,this);
             obj.set_text("다운로드");
+            obj.set_borderRadius("5px");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button_Close","840","570","100","30",null,null,null,null,null,null,this);
             obj.set_text("닫기");
+            obj.set_borderRadius("5px");
             this.addChild(obj.name, obj);
 
             obj = new MaskEdit("MaskEdit00","450","108","213","34",null,null,null,null,null,null,this);
@@ -114,6 +121,7 @@
             obj.set_format("@@@@년 @@월 @@일");
             obj.set_type("string");
             obj.set_readonly("true");
+            obj.set_borderRadius("5px");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

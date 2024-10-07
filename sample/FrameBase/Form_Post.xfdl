@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="btn_Post" width="1280" height="720" titletext="New Form" onload="Form_Post_onload">
+  <Form id="btn_Post" width="1280" height="720" titletext="New Form" onload="Form_Post_onload" borderRadius="5px">
     <Layouts>
       <Layout height="720" width="1280">
-        <Grid id="grd_notice" binddataset="ds_Post" left="10" top="65" width="1020" height="410" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick">
+        <Grid id="grd_notice" binddataset="ds_Post" left="10" top="65" width="1020" height="410" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick" borderRadius="5px">
           <Formats>
             <Format id="default">
               <Columns>
@@ -38,7 +38,7 @@
                 <Cell col="2" text="bind:title"/>
                 <Cell col="3" text="bind:content"/>
                 <Cell col="4" text="bind:reg_date" displaytype="date" mask="####-##-##"/>
-                <Cell col="5" text="bind:emp_name"/>
+                <Cell col="5" text="bind:emp_name" textAlign="center"/>
                 <Cell col="6" text="bind:view_count"/>
                 <Cell col="7" displaytype="buttoncontrol" text="수정 하기"/>
                 <Cell col="8" displaytype="buttoncontrol" text="삭제" edittype="button"/>
@@ -46,13 +46,14 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Search" taborder="1" text="조회" left="882" top="12" width="50" height="28" onclick="Button00_onclick"/>
-        <Static id="st_selectedCount" text="0건 선택됨" left="25" top="500" width="150" height="30" taborder="2" onclick="st_selectedCount_onclick" color="#6f0520"/>
-        <Button id="btn_delete" text="삭제" left="960" top="495" width="100" height="30" onclick="btn_delete_onclick" taborder="3"/>
-        <Button id="btn_newPost" taborder="4" text="새 공지사항 등록" left="952" top="12" width="110" height="28" onclick="btn_newPost_onclick"/>
-        <Button id="Button00" taborder="5" text="상세 보기" left="844" top="495" width="92" height="30" onclick="newEdit_onclick"/>
+        <Button id="btn_Search" taborder="1" text="조회" left="850" top="16" width="50" height="28" onclick="Button00_onclick" borderRadius="5px" font="bold 12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="st_selectedCount" text="0건 선택됨" left="15" top="35" width="150" height="30" taborder="2" onclick="st_selectedCount_onclick" color="#6f0520" font="bold 20px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Button id="btn_delete" text="삭제" left="930" top="500" width="100" height="30" onclick="btn_delete_onclick" taborder="3" borderRadius="5px" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Button id="btn_newPost" taborder="4" text="새 공지사항 등록" left="920" top="16" width="110" height="28" onclick="btn_newPost_onclick" borderRadius="5px" font="bold 12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Button id="Button00" taborder="5" text="상세 보기" left="814" top="500" width="92" height="30" onclick="newEdit_onclick" borderRadius="5px" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
         <Static id="Static00_00" taborder="6" text="공지사항조회관리" left="140" top="3" width="722" height="67" font="bold 36px/normal &quot;Gulim&quot;" textAlign="center" onclick="Static00_00_onclick"/>
         <Menu id="Menu00" taborder="7" left="252" top="168" width="76" height="152"/>
+        <Button id="Button01" taborder="8" text="Button01" left="232" top="568" width="112" height="88" onclick="Button01_onclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.Form_Post_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
@@ -334,6 +335,15 @@ this.grd_notice_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEvent
     }
 };
 
+
+this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// JSP 페이지 URL을 지정
+    var url = "http://localhost:8080/post/viewPost.do";
+    
+    // 윈도우 창에서 열기
+    system.execBrowser(url);
+};
 ]]></Script>
     <Objects>
       <Dataset id="ds_Post" onvaluechanged="ds_Post_onvaluechanged">

@@ -137,22 +137,22 @@ this.FileDownTransfer00_onerror = function(obj:nexacro.FileDownTransfer, e:nexac
         <Static id="Static_Title" text="공지사항 상세보기" left="356" top="20" width="400" height="40" font="bold 24px 'Gulim'" textAlign="left"/>
         <!-- Post Title -->
         <Static id="Static_Label_Title" text="제목:" left="10" top="70" width="100" height="30" font="bold 14px 'Gulim'" textAlign="right"/>
-        <Edit id="Edit_Title" left="120" top="70" width="600" height="30" readonly="true" font="14px 'Gulim'"/>
+        <Edit id="Edit_Title" left="120" top="70" width="600" height="30" readonly="true" font="14px 'Gulim'" borderRadius="5px"/>
         <!-- Author -->
         <Static id="Static_Label_Author" text="작성자:" left="10" top="110" width="100" height="30" font="bold 14px 'Gulim'" textAlign="right"/>
-        <Edit id="Edit_Author" left="120" top="110" width="200" height="30" readonly="true" font="14px 'Gulim'" onchanged="Edit_Author_onchanged"/>
+        <Edit id="Edit_Author" left="120" top="110" width="200" height="30" readonly="true" font="14px 'Gulim'" onchanged="Edit_Author_onchanged" borderRadius="5px"/>
         <!-- Date -->
         <Static id="Static_Label_Date" text="작성일:" left="340" top="110" width="100" height="30" font="bold 14px 'Gulim'" textAlign="right"/>
         <!-- View Count -->
         <Static id="Static_Label_ViewCount" text="조회수:" left="670" top="110" width="100" height="30" font="bold 14px 'Gulim'" textAlign="right"/>
-        <Edit id="Edit_ViewCount" left="780" top="110" width="100" height="30" readonly="true" font="14px 'Gulim'"/>
+        <Edit id="Edit_ViewCount" left="780" top="110" width="100" height="30" readonly="true" font="14px 'Gulim'" borderRadius="5px"/>
         <!-- Content -->
         <Static id="Static_Label_Content" text="내용:" left="10" top="150" width="100" height="30" font="bold 14px 'Gulim'" textAlign="right"/>
         <WebBrowser id="WebBrowser_Content" left="120" top="150" width="820" height="400"/>
-        <TextArea id="TextArea_Content" left="120" top="150" width="820" height="400" readonly="true" font="14px 'Gulim'"/>
+        <TextArea id="TextArea_Content" left="120" top="150" width="820" height="400" readonly="true" font="14px 'Gulim'" borderRadius="5px"/>
         <!-- Attachments -->
         <Static id="Static_Label_Attachments" text="첨부파일:" left="10" top="570" width="100" height="30" font="bold 14px 'Gulim'" textAlign="right"/>
-        <Grid id="Grid_Attachments" left="120" top="570" width="600" height="100" binddataset="ds_Attachments">
+        <Grid id="Grid_Attachments" left="120" top="570" width="600" height="100" binddataset="ds_Attachments" borderRadius="5px">
           <Formats>
             <Format id="default">
               <Columns>
@@ -175,10 +175,10 @@ this.FileDownTransfer00_onerror = function(obj:nexacro.FileDownTransfer, e:nexac
           </Formats>
         </Grid>
         <!-- Download Button -->
-        <Button id="Button_Download" text="다운로드" left="730" top="570" width="100" height="30" onclick="Button_Download_onclick"/>
+        <Button id="Button_Download" text="다운로드" left="730" top="570" width="100" height="30" onclick="Button_Download_onclick" borderRadius="5px"/>
         <!-- Close Button -->
-        <Button id="Button_Close" text="닫기" left="840" top="570" width="100" height="30" onclick="Button_Close_onclick"/>
-        <MaskEdit id="MaskEdit00" taborder="15" left="450" top="108" width="213" height="34" format="@@@@년 @@월 @@일" type="string" readonly="true"/>
+        <Button id="Button_Close" text="닫기" left="840" top="570" width="100" height="30" onclick="Button_Close_onclick" borderRadius="5px"/>
+        <MaskEdit id="MaskEdit00" taborder="15" left="450" top="108" width="213" height="34" format="@@@@년 @@월 @@일" type="string" readonly="true" borderRadius="5px"/>
       </Layout>
     </Layouts>
     <Bind>
