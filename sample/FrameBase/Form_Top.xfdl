@@ -29,9 +29,26 @@ this.btn_Logout_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
     nexacro.getApplication().mainframe.VFrameSet00.set_separatesize("0,0,*");
 };
 
+// 폼의 크기가 변경되었을 때
+this.Form_Top_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	var userName = nexacro.getApplication().ds_userInfo.getColumn(0, "name").concat("", "님");
 
-
-
+	this.ds_UserName.setColumn(0, "userName", userName);
+};
 ]]></Script>
+    <Objects>
+      <Dataset id="ds_UserName">
+        <ColumnInfo>
+          <Column id="userName" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="staHello" propid="text" datasetid="ds_UserName" columnid="userName"/>
+    </Bind>
   </Form>
 </FDL>
