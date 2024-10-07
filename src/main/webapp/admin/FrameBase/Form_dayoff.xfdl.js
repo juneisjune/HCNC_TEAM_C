@@ -117,12 +117,19 @@
         };
         
         // User Script
+        this.registerScript("Form_dayoff.xfdl", function() {
 
+        this.btn_Save_onclick = function(obj,e)
+        {
+
+        };
+
+        });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
-
+            this.btn_Save.addEventHandler("onclick",this.btn_Save_onclick,this);
         };
         this.loadIncludeScript("Form_dayoff.xfdl");
         this.loadPreloadList();

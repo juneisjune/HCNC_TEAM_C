@@ -54,35 +54,25 @@
             obj.set_taborder("3");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_prev","985","645","50","30",null,null,null,null,null,null,this);
-            obj.set_text("이전");
-            obj.set_taborder("4");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_next","1085","645","50","30",null,null,null,null,null,null,this);
-            obj.set_text("다음");
-            obj.set_taborder("5");
-            this.addChild(obj.name, obj);
-
             obj = new Button("btn_newPost","952","12","110","28",null,null,null,null,null,null,this);
-            obj.set_taborder("6");
+            obj.set_taborder("4");
             obj.set_text("새 공지사항 등록");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button00","844","495","92","30",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
+            obj.set_taborder("5");
             obj.set_text("상세 보기");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static00_00","140","3","722","67",null,null,null,null,null,null,this);
-            obj.set_taborder("8");
+            obj.set_taborder("6");
             obj.set_text("공지사항조회관리");
             obj.set_font("bold 36px/normal \"Gulim\"");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
             obj = new Menu("Menu00","252","168","76","152",null,null,null,null,null,null,this);
-            obj.set_taborder("9");
+            obj.set_taborder("7");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

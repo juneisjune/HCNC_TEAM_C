@@ -59,10 +59,11 @@
         resultType="empDto">
         SELECT
             a.emp_code, 
-            b.dep_name, 
-            c.assign_name, 
+
+            b.dep_name ,
+            c.assign_name ,
             a.name,
-            a.join_date 
+            a.join_date ,
             a.birth,
             a.gender,
             a.phone,
