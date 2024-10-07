@@ -35,7 +35,7 @@ public class HrdController {
 	
 	//변경사항 저장
 	@RequestMapping(value = "/hrdListUpdate.do")
-    public NexacroResult confirmOff(@ParamDataSet(name = "ds_Hrdlist", required = false) List<Map<String,Object>> param){
+    public NexacroResult confirmOff(@ParamDataSet(name = "ds_UpdateHrdlist", required = false) List<Map<String,Object>> param){
 		
 		NexacroResult result = new NexacroResult();
 		System.out.println("저장 컨트롤러 진입");

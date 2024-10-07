@@ -11,4 +11,6 @@ public interface HrdService {
 	public List<Map<String, Object>> getHrdList(Map<String,Object> param);
 	
 	public void updateHRD(Map<String,Object> param);
+	
+	public void updateMng();
 }
