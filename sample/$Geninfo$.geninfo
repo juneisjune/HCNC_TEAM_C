@@ -23,12 +23,8 @@
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\Grid.json" checksum="20230829134030" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\ListView.json" checksum="20230829134032" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\DeviceAPI.json" checksum="20230829134030" errormsg=""/>
-      <File url="Application_Desktop.xadl" checksum="20241007141546" errormsg=""/>
-      <File url="FrameBase\Form_HRD.xfdl" checksum="20241007155415" errormsg=""/>
-      <File url="FrameBase\Form_dayoff_Confirm.xfdl" checksum="20241007161555" errormsg=""/>
-      <File url="FrameBase\Popup_RegisterEmp.xfdl" checksum="20241007162657" errormsg=""/>
-      <File url="FrameBase\Popup_EditEmp.xfdl" checksum="20241007162948" errormsg=""/>
-      <File url="FrameBase\Form_Top.xfdl" checksum="20241007170539" errormsg=""/>
+      <File url="FrameBase\Form_Top.xfdl" checksum="20241007171943" errormsg=""/>
+      <File url="Application_Desktop.xadl" checksum="20241007171210" errormsg=""/>
     </Info>
   </GenInfo>
 </root>

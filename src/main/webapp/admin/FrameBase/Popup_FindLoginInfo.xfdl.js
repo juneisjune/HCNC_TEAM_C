@@ -38,7 +38,7 @@
             obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_EmailForId","226","80","64","40",null,null,null,null,null,null,this);
+            obj = new Static("sta_EmailForId","246","80","64","40",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("이메일 : ");
             obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
@@ -50,7 +50,7 @@
             obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_EmailForPassword","225","300","64","40",null,null,null,null,null,null,this);
+            obj = new Static("sta_EmailForPassword","245","300","64","40",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("이메일 : ");
             obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");

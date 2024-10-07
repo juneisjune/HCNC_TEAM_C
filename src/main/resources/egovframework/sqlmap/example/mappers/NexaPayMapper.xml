@@ -135,7 +135,7 @@
 			, #{health_insurance}
 			, #{longcare_insurance}
 			, #{actual_pay} 
-			, "오명진"
+			, #{adm_name}
 		);
 	</insert>
 	

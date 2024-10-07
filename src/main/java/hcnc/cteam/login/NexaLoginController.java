@@ -24,7 +24,6 @@ public class NexaLoginController {
 	@RequestMapping("/Nexalogin.do")
     public NexacroResult login(@ParamDataSet(name = "ds_login") Map<String, Object> loginInfo) {
         NexacroResult result = new NexacroResult();
-        
               
         Map<String, Object> ds_userInfo = loginService.getUserInfoByUserId(loginInfo);
         

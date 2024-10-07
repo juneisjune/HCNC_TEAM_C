@@ -77,7 +77,8 @@
 		   , CURTIME()
 		   , #{name}
 		);
-		</insert>
+	</insert>
+	
 	<!-- 퇴근  -->
 	<update id="endWork" parameterType="attenDTO">
 		UPDATE attendance 
