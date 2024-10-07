@@ -5889,7 +5889,7 @@
         		imgcache[nexacro._getImageLocation("imagerc::img_WF_pagingPrev_O.png")] = { width:6, height:11 };
         		imgcache[nexacro._getImageLocation("imagerc::img_WF_pagingPrev_D.png")] = { width:6, height:11 };
         		imgcache[nexacro._getImageLocation("imagerc::btn_mdi_close.png")] = { width:13, height:13 };
-        		imgcache[nexacro._getImageLocation("imagerc::btn_WF_Tabextra.png")] = { width:9, height:9 };
+        		imgcache[nexacro._getImageLocation("imagerc::btn_WF_Tabextra.png")] = { width:14, height:16 };
         		imgcache[nexacro._getImageLocation("imagerc::img_RT_shadow.png")] = { width:15, height:70 };
         		imgcache[nexacro._getImageLocation("imagerc::img_RT_titleLine.png")] = { width:2, height:2 };
         		imgcache[nexacro._getImageLocation("imagerc::btn_RT_fold.png")] = { width:15, height:70 };

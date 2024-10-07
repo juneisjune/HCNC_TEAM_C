@@ -81,11 +81,10 @@
                 <when test="searchType == 'name'">
                     AND a.name LIKE CONCAT('%', #{searchWord}, '%')
                 </when>
-                <when test="searchType == 'address'">
-                    AND a.c.assign_name  LIKE CONCAT('%', #{searchWord}, '%')
+                <when test="searchType == 'assignName'">
+                    AND c.assign_name LIKE CONCAT('%', #{searchWord}, '%')
                 </when>
             </choose>
         </if>
     </select>
-
 </mapper>

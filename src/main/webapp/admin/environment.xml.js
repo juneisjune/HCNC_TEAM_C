@@ -22,6 +22,7 @@ if (nexacro.Environment)
         nexacro._addService("Base", "form", "./Base/", "session", null, "", "0", "0");
         nexacro._addService("FrameBase", "form", "./FrameBase/", "session", null, "", "0", "0");
         nexacro._addService("svc", "JSP", "http://localhost:8080/", "none", null, "", "0", "0");
+        nexacro._addService("Svc", "JSP", "http://localhost:8080/fileUpload/fileUpload.jsp", "session", null, "", "0", "0");
     	nexacro._component_uri = (nexacro._arg_compurl ? nexacro._arg_compurl : "./nexacro17lib/component/");
     	nexacro._theme_uri = "./_resource_/_theme_/";
     	// load components
@@ -49,7 +50,12 @@ if (nexacro.Environment)
         		{"id":"Plugin", "classname":"nexacro.Plugin", "type":"JavaScript"},
         		{"id":"Dataset", "classname":"nexacro.NormalDataset", "type":"JavaScript"},
         		{"id":"ListView", "classname":"nexacro.ListView", "type":"JavaScript"},
-        		{"id":"DataObject", "classname":"nexacro.DataObject", "type":"JavaScript"}
+        		{"id":"DataObject", "classname":"nexacro.DataObject", "type":"JavaScript"},
+        		{"id":"FileDownload", "classname":"nexacro.FileDownload", "type":"JavaScript"},
+        		{"id":"FileUpload", "classname":"nexacro.FileUpload", "type":"JavaScript"},
+        		{"id":"FileUpTransfer", "classname":"nexacro.FileUpTransfer", "type":"JavaScript"},
+        		{"id":"FileDialog", "classname":"nexacro.FileDialog", "type":"JavaScript"},
+        		{"id":"FileDownTransfer", "classname":"nexacro.FileDownTransfer", "type":"JavaScript"}
         ];
     	nexacro._addClasses(registerclass);
     };

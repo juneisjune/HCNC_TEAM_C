@@ -28,7 +28,7 @@
 
 
             obj = new Dataset("ds_EmpList", this);
-            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\" text=\"bind:chkVal\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\" text=\"bind:emp_code\"/><Column id=\"name\" type=\"STRING\" size=\"256\" text=\"bind:name\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\" text=\"bind:assign_code\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\" text=\"bind:assign_name\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\" text=\"bind:dep_name\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\" text=\"bind:join_date\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\" text=\"bind:resign_date\"/><Column id=\"account\" type=\"STRING\" size=\"256\" text=\"bind:account\"/><Column id=\"month\" type=\"INT\" size=\"256\" text=\"bind:month\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\" text=\"bind:pay_over\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\" text=\"bind:pay_meal\"/><Column id=\"absence\" type=\"INT\" size=\"256\" text=\"bind:absence\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\" text=\"bind:pay_amount\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\" text=\"bind:income_tax\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\" text=\"bind:resident_tax\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\" text=\"bind:national_tax\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\" text=\"bind:emp_insurance\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\" text=\"bind:health_insurance\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\" text=\"bind:longcare_insurance\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\" text=\"bind:actual_pay\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\" text=\"bind:chkVal\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\" text=\"bind:emp_code\"/><Column id=\"name\" type=\"STRING\" size=\"256\" text=\"bind:name\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\" text=\"bind:assign_code\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\" text=\"bind:assign_name\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\" text=\"bind:dep_name\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\" text=\"bind:join_date\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\" text=\"bind:resign_date\"/><Column id=\"account\" type=\"STRING\" size=\"256\" text=\"bind:account\"/><Column id=\"month\" type=\"INT\" size=\"256\" text=\"bind:month\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\" text=\"bind:pay_over\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\" text=\"bind:pay_meal\"/><Column id=\"absence\" type=\"INT\" size=\"256\" text=\"bind:absence\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\" text=\"bind:pay_amount\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\" text=\"bind:income_tax\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\" text=\"bind:resident_tax\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\" text=\"bind:national_tax\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\" text=\"bind:emp_insurance\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\" text=\"bind:health_insurance\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\" text=\"bind:longcare_insurance\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\" text=\"bind:actual_pay\"/><Column id=\"give_date\" type=\"DATE\" size=\"256\" text=\"bind:give_date\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -116,6 +116,7 @@
         this.Form_InsertPay_onload = function(obj,e)
         {
         	this.ds_Assign.setColumn(0, "assign_code", "100");
+        	this.fnSearch();
         };
 
 
@@ -213,7 +214,7 @@
                 if (isChecked == 1) {
                     var newRow = this.ds_EmpListCopy.addRow();
                     this.ds_EmpListCopy.copyRow(newRow, this.ds_EmpList, i);
-        			this.ds_EmpListCopy.setColumn(i,"give_date", this.ds_GiveDate.getColumn(0, "give_date"));
+        			this.ds_EmpListCopy.setColumn(newRow, "give_date", this.ds_GiveDate.getColumn(0, "give_date"));
                 }
             }
 
@@ -229,6 +230,8 @@
 
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
+
+
 
 
         });

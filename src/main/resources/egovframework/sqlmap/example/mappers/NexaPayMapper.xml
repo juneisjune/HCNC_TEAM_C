@@ -26,7 +26,7 @@
 		<!-- 이번달 입사자들은 조회하지 않음 -->
 		WHERE join_date &lt; DATE_FORMAT(CURDATE(), '%Y-%m-01')
 		<!-- 저번달 퇴사자부터 퇴사 예정자까지 조회함 -->
-		AND (resign_date >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')  OR resign_date IS NULL);
+		AND (resign_date &gt;= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')  OR resign_date IS NULL)
 			<if test="assign_code != null and assign_code != 100">
 				AND a.assign_code = #{assign_code}
 			</if>
@@ -35,26 +35,34 @@
 	<!-- 직책에 따른 monthly 조회 -->
 	<!-- 퇴사자는 기본급을 0으로 설정하고 일급으로 계산 -->
 	<select id="selectMonth" resultType="int" parameterType="java.util.Map">
-		SELECT IF(e.resign_date IS NULL
-				, a.monthly as month 
-				, (SELECT	
-					(SELECT COUNT(*)
+		SELECT IF(e.resign_date IS NULL OR e.resign_date >= DATE_FORMAT(CURDATE(), '%Y-%m-01') 
+				, IF(e.join_date > DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')   
+					 , (SELECT COUNT(*)
+							FROM attendance a JOIN att_code ac 
+							ON a.atten_code = ac.atten_code 
+							JOIN employee e 
+							ON a.emp_code = e.emp_code 
+							WHERE a.emp_code =  #{emp_code}
+							AND (a.atten_code = 1 OR a.atten_code = 3)
+							AND work_date BETWEEN join_date AND DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-31')
+						) * 8 * a.hourly
+			         , a.monthly 
+			      )
+				, (SELECT COUNT(*) 
 						FROM attendance a JOIN att_code ac 
 						ON a.atten_code = ac.atten_code 
 						JOIN employee e 
 						ON a.emp_code = e.emp_code 
-						WHERE a.emp_code =  #{emp_code}
+						WHERE a.emp_code =   #{emp_code}
 						AND (a.atten_code = 1 OR a.atten_code = 3)
-						AND YEAR(work_date) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
-						AND MONTH(work_date) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
-					) 
-					* 8 * a.hourly
-				)		
-		) month
+						AND work_date BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01') AND resign_date
+				  ) 
+				* 8 * a.hourly
+		) month			
 		FROM `assignment` a JOIN employee e 
 		ON a.assign_code = e.assign_code 
-		WHERE a.assign_code = #{assign_code}	
-		AND emp_code = #{emp_code};	
+		WHERE a.assign_code = #{assign_code}
+		AND e.emp_code = #{emp_code}
 	</select>
 
 	<!-- 사원의 지난달 work_over 조회 -->
