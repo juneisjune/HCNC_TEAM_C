@@ -28,7 +28,7 @@
 
 
             obj = new Dataset("ds_doRequestListCopy", this);
-            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"start_date\" type=\"DATE\" size=\"256\"/><Column id=\"end_date\" type=\"DATE\" size=\"256\"/><Column id=\"off_type\" type=\"STRING\" size=\"256\"/><Column id=\"reason\" type=\"STRING\" size=\"256\"/><Column id=\"mng_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"md_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"ceo_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"mng_code\" type=\"STRING\" size=\"256\"/><Column id=\"off_code\" type=\"INT\" size=\"256\"/><Column id=\"off_result\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"start_date\" type=\"DATE\" size=\"256\"/><Column id=\"end_date\" type=\"DATE\" size=\"256\"/><Column id=\"off_type\" type=\"STRING\" size=\"256\"/><Column id=\"reason\" type=\"STRING\" size=\"256\"/><Column id=\"mng_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"md_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"ceo_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"mng_code\" type=\"STRING\" size=\"256\"/><Column id=\"off_code\" type=\"INT\" size=\"256\"/><Column id=\"off_result\" type=\"STRING\" size=\"256\"/><Column id=\"admin_name\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -110,16 +110,16 @@
         
         // User Script
         this.registerScript("Form_dayoff_Confirm.xfdl", function() {
-
         // 조회 함수
         this.fnSearchList = function(){
         	// application 변수에서 emp_code와 assign_code를 가져옴
-            var loginEmpCode = nexacro.getApplication().gv_emp_code;
-            var loginAssignCode = nexacro.getApplication().gv_assign_code;
+            var loginEmpCode = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
+            var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
 
-            this.ds_offList.setColumn(0, "emp_code", "7");
-            this.ds_offList.setColumn(0, "assign_code", "7");
+            this.ds_offList.setColumn(0, "emp_code", loginEmpCode);
+            this.ds_offList.setColumn(0, "assign_code", loginAssign_code);
         	console.log(this.ds_offList);
+
         	// 컨트롤러 호출
         	var strSvcId    = "dayoffList";                     // 콜백 서비스명
         	var strSvcUrl   = "svc::dayOffList.do";             // 호출 URL
@@ -144,10 +144,9 @@
         this.btn_confirm_onclick = function(obj,e)
         {
         	console.log("승인 함수 실행");
-        	// application 변수에서 emp_code와 assign_code를 가져옴
-
-            var loginAssignCode = nexacro.getApplication().gv_assign_code;
-
+        	// application 변수에서assign_code를 가져옴
+            var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
+        	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 
             // 체크된 데이터를 새로운 Dataset에 추가
         	this.ds_doRequestListCopy.clearData();
@@ -156,9 +155,8 @@
                 if (isChecked == 1) {  // 체크된 경우
                     var newRow = this.ds_doRequestListCopy.addRow();  // 새로운 행 추가
                     this.ds_doRequestListCopy.copyRow(newRow, this.ds_doRequestList, i);  // 기존 데이터에서 해당 행 복사
-
-        			//로그인한 assign_code 가져올예정
-        			this.ds_doRequestListCopy.setColumn(0, "assign_code", "7");
+        			this.ds_doRequestListCopy.setColumn(newRow, "assign_code", loginAssignCode);
+        			this.ds_doRequestListCopy.setColumn(newRow, "admin_name", loginAdminName);
                 }
             }
         	var off_result = this.ds_doRequestListCopy.getColumn(0,"off_result");
@@ -192,9 +190,11 @@
         {
         	console.log("반려 함수 실행");
 
-        	var loginAssignCode = nexacro.getApplication().gv_assign_code;
+        	// application 변수에서 emp_code와 assign_code를 가져옴
+            var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
+        	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 
-            this.ds_offList.setColumn(0, "assign_code", "7");
+            this.ds_offList.setColumn(0, "assign_code", loginAssignCode);
 
             // 체크된 데이터를 새로운 Dataset에 추가
         	this.ds_doRequestListCopy.clearData();
@@ -203,9 +203,8 @@
                 if (isChecked == 1) {  // 체크된 경우
                     var newRow = this.ds_doRequestListCopy.addRow();  // 새로운 행 추가
                     this.ds_doRequestListCopy.copyRow(newRow, this.ds_doRequestList, i);  // 기존 데이터에서 해당 행 복사
-
-        			//로그인한 assign_code 가져올예정
-        			this.ds_doRequestListCopy.setColumn(0, "assign_code", "7");
+        			this.ds_doRequestListCopy.setColumn(newRow, "assign_code", loginAssignCode);
+        			this.ds_doRequestListCopy.setColumn(newRow, "admin_name", loginAdminName);
                 }
             }
 

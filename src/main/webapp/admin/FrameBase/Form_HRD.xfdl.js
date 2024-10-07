@@ -44,6 +44,7 @@
 
 
             obj = new Dataset("ds_UpdateHrdlist", this);
+            obj.set_useclientlayout("true");
             obj._setContents("<ColumnInfo><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\"/><Column id=\"mng_code\" type=\"INT\" size=\"256\"/><Column id=\"admin_name\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"dep_code\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
@@ -161,13 +162,17 @@
         {
         	this.ds_Search.setColumn(0,"SEARCH_TYPE","ALL");
         	this.fnSearchList();
+        	trace("제발 .. " + nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
         };
 
         //저장 버튼
         this.btn_Savehrd_onclick = function(obj,e)
         {
         	this.ds_UpdateHrdlist.clearData();  // 이전 데이터 초기화
+        	// application 변수에서 emp_code와 assign_code를 가져옴
+        	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 
+            console.log(this.ds_UpdateHrdlist.saveXML());
             for (var i = 0; i < this.ds_Hrdlist.getRowCount(); i++) {
                 var rowType = this.ds_Hrdlist.getRowType(i);
 
@@ -175,13 +180,11 @@
                 if (rowType == Dataset.ROWTYPE_UPDATE) {
                     var newRow = this.ds_UpdateHrdlist.addRow();  // UpdateHrdlist에 새 행 추가
                     this.ds_UpdateHrdlist.copyRow(newRow, this.ds_Hrdlist, i);  // Hrdlist의 i번째 행을 복사
+        			this.ds_UpdateHrdlist.setColumn(newRow,"admin_name",loginAdminName);
                 }
             }
 
-        	// application 변수에서 emp_code와 assign_code를 가져옴
-        	var loginAdminName = nexacro.getApplication().gv_name;
-        	this.ds_UpdateHrdlist.setColumn(0,"admin_name","관리나경진")
-            console.log(this.ds_UpdateHrdlist.saveXML());
+
 
                 // 변경된 데이터가 있을 경우 저장 로직 실행
                 var strSvcId    = "hrdListUpdate";                     // 콜백 서비스명
