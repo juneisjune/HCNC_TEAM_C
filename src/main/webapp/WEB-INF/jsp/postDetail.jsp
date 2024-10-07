@@ -9,15 +9,24 @@
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            margin: 0 auto;
-            max-width: 1200px;
-            padding: 20px;
+            background-color: #f4f6f9;
+            color: #333;
         }
 
         h1 {
-            font-size: 24px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
+            color: #2c3e50;
+            text-align: center;
+            font-size: 35px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 30px;
         }
 
         .detail-table {
@@ -34,8 +43,12 @@
         }
 
         .detail-table th {
-            background-color: #f9f9f9;
-            font-weight: bold;
+            background-color: #34495e;
+            color: white;
+        }
+
+        .detail-table td {
+            background-color: #ffffff;
         }
 
         .content-area {
@@ -45,25 +58,6 @@
             background-color: #f9f9f9;
         }
 
-        .meta-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .meta-info div {
-            margin-right: 10px;
-        }
-
-        .meta-info th, .meta-info td {
-            border: none;
-        }
-
-        .meta-info th {
-            width: 80px;
-            text-align: right;
-        }
-
         .btn-area {
             text-align: right;
             margin-top: 20px;
@@ -71,66 +65,78 @@
 
         .btn-area a {
             padding: 10px 20px;
-            background-color: gray;
-            color: #fff;
+            background-color: #ff7f50; /* 귤색 */
+            color: white;
             text-decoration: none;
             border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
 
         .btn-area a:hover {
-            background-color: #0056b3;
+            background-color: #e67e22;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
         }
     </style>
 </head>
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
 <body>
-    <h1>공지사항</h1>
+    <div class="container">
+        <h1>공지사항</h1>
 
-    <table class="detail-table">
-        <tr>
-            <th>제목</th>
-            <td>${postDetail.title}</td>
-            <th>조회수</th>
-            <td>${postDetail.view_count}</td>
-        </tr>
-        <tr>
-            <th>작성일자</th>
-            <td>${postDetail.reg_date}</td>
-            <th>작성자</th>
-            <td>${postDetail.name}</td>
-        </tr>
-        <tr>
-    <th>첨부파일</th>
-	    <td colspan="3">
-	        <c:choose>
-	            <c:when test="${not empty attachments}">
-	                <ul>
-	                    <c:forEach var="file" items="${attachments}">
-	                     <li>
-						    <a href="/post/downloadAttachment.do?attach_code=${file.attach_code}">
-						        ${file.attach_name} 
-						    </a>
-						</li>
+        <table class="detail-table">
+            <tr>
+                <th>제목</th>
+                <td>${postDetail.title}</td>
+                <th>조회수</th>
+                <td>${postDetail.view_count}</td>
+            </tr>
+            <tr>
+                <th>작성일자</th>
+                <td>${postDetail.reg_date}</td>
+                <th>작성자</th>
+                <td>${postDetail.name}</td>
+            </tr>
+            <tr>
+                <th>첨부파일</th>
+                <td colspan="3">
+                    <c:choose>
+                        <c:when test="${not empty attachments}">
+                            <ul>
+                                <c:forEach var="file" items="${attachments}">
+                                    <li>
+                                        <a href="/post/downloadAttachment.do?attach_code=${file.attach_code}">
+                                            ${file.attach_name} 
+                                        </a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            없음
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+            </tr>
+        </table>
 
-	                    </c:forEach>
-	                </ul>
-	            </c:when>
-	            <c:otherwise>
-	                	없음
-	            </c:otherwise>
-	        </c:choose>
-	    </td>
-	</tr>
+        <div class="content-area">
+            <c:out value="${postDetail.content}" escapeXml="false" />
+        </div>
 
-
-    </table>
-
-    <div class="content-area">
-        ${postDetail.content}
-    </div>
-
-    <div class="btn-area">
-        <a href="/post/viewPost.do">목록으로 돌아가기</a>
+        <div class="btn-area">
+            <a href="/post/viewPost.do">목록으로 돌아가기</a>
+        </div>
     </div>
 </body>
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>

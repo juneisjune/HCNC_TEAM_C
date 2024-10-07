@@ -23,8 +23,8 @@
             // UI Components Initialize
             obj = new Static("staHello","1375","0","80","65",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("변수민님");
             obj.set_color("#ffffff");
+            obj.set_text("변수민님");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Logout","1440","15","80","32.5",null,null,null,null,null,null,this);
@@ -86,11 +86,16 @@
         };
 
 
+
+
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
+            this.addEventHandler("onload",this.Form_Top_onload,this);
+            this.staHello.addEventHandler("onclick",this.staHello_onclick,this);
             this.btn_Logout.addEventHandler("onclick",this.btn_Logout_onclick,this);
         };
         this.loadIncludeScript("Form_Top.xfdl");

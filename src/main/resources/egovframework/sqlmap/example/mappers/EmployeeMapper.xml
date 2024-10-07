@@ -59,6 +59,7 @@
         resultType="empDto">
         SELECT
             a.emp_code, 
+
             b.dep_name ,
             c.assign_name ,
             a.name,
@@ -87,5 +88,4 @@
             </choose>
         </if>
     </select>
-
 </mapper>
