@@ -72,7 +72,6 @@ public class AttenController {
         return "Atten/attenlist";
     }
 	
-	//Atten으로 옮길예정
 	@RequestMapping(value="/startWork.do", method= RequestMethod.POST)
     public ResponseEntity<String> startWork(@RequestParam String start_time, 
     										AttenDTO attenDto, HttpServletRequest request) {
@@ -85,7 +84,7 @@ public class AttenController {
 		attenDto.setAttenCode(1);
 		
 		
-		//attenDto는 현재 료그인한 유저의 emp코드를 기준으로 입력
+		//attenDto는 현재 로그인한 유저의 emp코드를 기준으로 입력
 		attenService.startWork(attenDto);
 		LocalTime workStartTime = LocalTime.now(); 
 
@@ -102,6 +101,7 @@ public class AttenController {
     	HttpSession session = request.getSession();
 		int empCode = (int) session.getAttribute("userCode");
 		String name = (String) session.getAttribute("userName");
+		
 		try {
 			attenDto = loginService.selectWork(empCode);
 			

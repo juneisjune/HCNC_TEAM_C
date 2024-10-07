@@ -159,12 +159,14 @@
           <Column id="longcare_insurance" type="INT" size="256" text="bind:longcare_insurance"/>
           <Column id="actual_pay" type="INT" size="256" text="bind:actual_pay"/>
           <Column id="give_date" type="DATE" size="256" text="bind:give_date"/>
+          <Column id="adm_name" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
     </Objects>
     <Script type="xscript5.1"><![CDATA[this.Form_InsertPay_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.ds_Assign.setColumn(0, "assign_code", "100");
+	 
 	this.fnSearch();
 };
 
@@ -242,6 +244,9 @@ this.fnCallback = function(svcID,errorCode,errorMsg)
 
 this.btn_Insert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	
+	var adm_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
+	
 	if(this.ds_GiveDate.getColumn(0, "give_date") == '' 
 	|| this.ds_GiveDate.getColumn(0, "give_date") == 'undefined'
 	|| this.ds_GiveDate.getColumn(0, "give_date") == null){
@@ -264,6 +269,7 @@ this.btn_Insert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
             var newRow = this.ds_EmpListCopy.addRow(); 
             this.ds_EmpListCopy.copyRow(newRow, this.ds_EmpList, i);  
 			this.ds_EmpListCopy.setColumn(newRow, "give_date", this.ds_GiveDate.getColumn(0, "give_date"));
+			this.ds_EmpListCopy.setColumn(newRow, "adm_name", adm_name);
         }
     }
 	
