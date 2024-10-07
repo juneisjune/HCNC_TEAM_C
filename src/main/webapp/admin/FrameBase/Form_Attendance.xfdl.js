@@ -11,9 +11,10 @@
         {
             this.set_name("Form_Attendance");
             this.set_titletext("출/퇴근 목록");
+            this.set_scrollbartype("none");
             if (Form == this.constructor)
             {
-                this._setFormPosition(1280,720);
+                this._setFormPosition(1490,720);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
