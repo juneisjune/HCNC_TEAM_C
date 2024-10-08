@@ -91,7 +91,7 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Savehrd","669","579","117","41",null,null,null,null,null,null,this);
+            obj = new Button("btn_Savehrd","660","578","117","41",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("저장");
             this.addChild(obj.name, obj);

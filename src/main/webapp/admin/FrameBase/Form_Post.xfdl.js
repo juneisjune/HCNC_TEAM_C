@@ -43,7 +43,7 @@
             obj.set_text("조회");
             this.addChild(obj.name, obj);
 
-            obj = new Static("st_selectedCount","30","550","150","30",null,null,null,null,null,null,this);
+            obj = new Static("st_selectedCount","40","535","150","30",null,null,null,null,null,null,this);
             obj.set_text("0건 선택됨");
             obj.set_taborder("2");
             obj.set_color("#6f0520");

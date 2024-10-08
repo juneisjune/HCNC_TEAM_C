@@ -109,7 +109,7 @@
             this.addChild(obj.name, obj);
 
             obj = new Static("Static_Title","180","20","400","40",null,null,null,null,null,null,this);
-            obj.set_text("공지사항 수정하기");
+            obj.set_text("공지사항 수정");
             obj.set_taborder("10");
             obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);

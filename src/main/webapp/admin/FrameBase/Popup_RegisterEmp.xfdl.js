@@ -28,9 +28,8 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Title","140","20","560","40",null,null,null,null,null,null,this);
+            obj = new Static("Static","140","20","560","40",null,null,null,null,null,null,this);
             obj.set_text("직원 정보 등록");
-            obj.set_textAlign("center");
             obj.set_background("whitesmoke");
             obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);
