@@ -1,17 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Login" width="1280" height="720" titletext="New Form" color="#000000">
+  <Form id="Form_Login" width="1280" height="720" titletext="New Form" color="#000000" background="#000033" scrollbartype="none">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
-        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="650" top="270" width="150" height="140" onclick="btn_Login_onclick"/>
-        <Edit id="edt_AuthCheck" taborder="1" left="430" top="430" width="200" height="60"/>
-        <Button id="btn_AuthCheck" taborder="2" text="인증하기" left="650" top="430" width="150" height="60" onclick="btn_AuthCheck_onclick"/>
-        <Static id="sta_AuthCheck" taborder="3" text="인증번호 입력 :" left="310" top="430" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_Id" taborder="4" text="아이디 입력 :" left="325" top="270" width="90" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_Password" taborder="5" text="비밀번호 입력 :" left="310" top="350" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Edit id="edt_Id" taborder="6" left="430" top="270" width="200" height="60"/>
-        <Edit id="edt_Password" taborder="7" left="430" top="350" width="200" height="60"/>
-        <Button id="btn_Pass" taborder="8" text="넘어가기" left="84" top="256" width="136" height="124" onclick="btn_Pass_onclick"/>
+        <Div id="div_AuthForm" taborder="12" left="680" top="160" width="380" height="370" background="#ffffff"/>
+        <Div id="div_LoginForm" taborder="11" left="262" top="160" width="380" height="370" background="#ffffff">
+          <Layouts>
+            <Layout>
+              <Static id="sta_FindLoginInfo" taborder="0" text="아이디 및 비밀번호 찾기" left="218" top="275" width="135" height="25" onmouseleave="div_LoginForm_sta_FindLoginInfo_onmouseleave" onmouseenter="div_LoginForm_sta_FindLoginInfo_onmouseenter" onclick="div_LoginForm_sta_FindLoginInfo_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="465" top="360" width="150" height="60" onclick="btn_Login_onclick"/>
+        <Edit id="edt_AuthCheck" taborder="1" left="840" top="290" width="200" height="60"/>
+        <Button id="btn_AuthCheck" taborder="2" text="인증하기" left="890" top="360" width="150" height="60" onclick="btn_AuthCheck_onclick"/>
+        <Static id="sta_AuthCheck" taborder="3" text="인증번호 입력 :" left="720" top="290" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_Id" taborder="4" text="아이디 입력 :" left="310" top="210" width="90" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_Password" taborder="5" text="비밀번호 입력 :" left="295" top="290" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Edit id="edt_Id" taborder="6" left="415" top="210" width="200" height="60"/>
+        <Edit id="edt_Password" taborder="7" left="415" top="290" width="200" height="60" password="true"/>
+        <Button id="btn_Pass" taborder="8" text="넘어가기" left="9" top="10" width="143" height="124" onclick="btn_Pass_onclick"/>
+        <Edit id="edt_MaskedEmail" taborder="9" left="840" top="210" width="200" height="60" readonly="true" background="#ffffff"/>
+        <Static id="sta_MaskEmail" taborder="10" text="발송받은 이메일 :" left="710" top="210" width="120" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[// 인증번호 발송(로그인) 버튼
@@ -64,6 +74,8 @@ this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
         console.log("Success: " + strSvcId);
 		
 		alert("인증 번호가 발송되었습니다.");
+		
+		this.ds_email.setColumn(0, "maskedEmail", this.maskEmail(this.ds_email.getColumn(0, "email")));
 
         // 서버에서 넘어온 인증 키(authKey)를 확인
         var authKey = this.ds_Auth.getColumn(0, "authKey");
@@ -90,6 +102,8 @@ this.fn_LoginSuccess = function() {
 	this.ds_login.setColumn(0, "password", '');
 	this.ds_Auth.setColumn(0, "authKey", '');
 	this.ds_AuthCheck.setColumn(0, "authCheck", '');
+	this.ds_email.setColumn(0, "email", '');
+	this.ds_email.setColumn(0, "maskedEmail", '');
 }
 
 //인증하기
@@ -116,7 +130,7 @@ this.fnLogin = function() {
 
     //console.log(this.ds_login.saveXML());  // DataSet 내용 확인
     
-    var strSvcId = "NexaloginS";
+    var strSvcId = "Nexalogin";
     var strSvcUrl = "svc::Nexalogin.do";
     var inData = "ds_login=ds_login";
     var outData = "ds_userInfo=ds_userInfo";  // 서버로부터 받아온 데이터를 받을 데이터셋
@@ -125,6 +139,8 @@ this.fnLogin = function() {
     var isAsync = true;
     
     this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+	
+	console.log(this.ds_login.saveXML());
 };
 
 // 로그인 함수 콜백
@@ -135,29 +151,88 @@ this.fnLoginCallback = function(strSvcId, nErrorCode, strErrorMsg) {
         alert("로그인 실패");
     }
     else {
-      
-      // 저장된 값 확인하는 콘솔 로그
-//       console.log("값 확인 : " + nexacro.getApplication().ds_userInfo.saveXML());
-//       var row = nexacro.getApplication().ds_userInfo.rowposition;
-//       console.log("현재 rowposition: " + row);
-//       //var row = 0;  // 첫 번째 행
-//       console.log(nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
-//       console.log(nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code"));
-		
+	
 	  // 인증번호 발송
 	  this.fn_Auth();
-		
-      
-      
+	  
     }
 };
 
-//임시로 넘어가기 버튼
+this.maskEmail = function(email) {
+    // '@'의 위치 찾기
+    var index = email.indexOf("@");
+    
+    if (index > 0) {
+        // '@' 앞의 부분 추출
+        var id = email.substring(0, index);
+        
+        var markedId = "";
+        
+        // 아이디 길이가 1 이상이면 마스킹 처리 시작
+        if (id.length > 1) {
+            // 첫 글자는 그대로
+            markedId += id.substring(0, 1);
+            
+            // 중간 부분 마스킹
+            for (var i = 1; i < id.length - 1; i++) {
+                markedId += '*';
+            }
+            
+            // 마지막 글자 추가
+            markedId += id.substring(id.length - 1);
+        } else {
+            // 길이가 1인 경우는 그냥 그대로 사용
+            markedId = id;
+        }
+        
+        // 전체 마스킹된 이메일 반환
+        return markedId + email.substring(index);
+    }
+    
+    // '@'가 없는 경우 원래 이메일 반환
+    return email;
+};
+
+// 임시로 넘어가기 버튼
 this.btn_Pass_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.fn_LoginSuccess()
 };
-]]></Script>
+
+// 아이디 및 비밀번호 static영역에 들어왔을 때
+this.div_LoginForm_sta_FindLoginInfo_onmouseenter = function(obj:nexacro.Static,e:nexacro.MouseEventInfo)
+{
+	
+};
+// 아이디 및 비밀번호 static영역에서 나갔을 때
+this.div_LoginForm_sta_FindLoginInfo_onmouseleave = function(obj:nexacro.Static,e:nexacro.MouseEventInfo)
+{
+	
+};
+
+// 아이디 및 비밀번호를 클릭했을 때
+this.div_LoginForm_sta_FindLoginInfo_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	this.showFindLoginInfo();
+};
+
+// FindLoginInfo 팝업 호출 함수
+this.showFindLoginInfo = function (objParam) 
+{		  
+	popup = new nexacro.ChildFrame;
+	popup.init("popupFindLoginInfo", 0, 0, 600, 500, null, null, "FrameBase::Popup_FindLoginInfo.xfdl");
+	popup.set_dragmovetype("all");
+	popup.set_layered("true");
+	popup.set_autosize(true);
+	popup.set_showtitlebar("아이디 및 비밀번호 찾기");
+	popup.set_showstatusbar(false);
+	popup.set_resizable(true);
+	popup.set_openalign("center middle");
+	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
+	popup.style.set_overlaycolor("#6666664C");
+	popup.form.style.set_border("1 solid #4c5a6f");
+	
+}]]></Script>
     <Objects>
       <Dataset id="ds_login">
         <ColumnInfo>
@@ -171,6 +246,7 @@ this.btn_Pass_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
       <Dataset id="ds_email">
         <ColumnInfo>
           <Column id="email" type="STRING" size="256"/>
+          <Column id="maskedEmail" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -197,6 +273,7 @@ this.btn_Pass_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
       <BindItem id="item0" compid="edt_AuthCheck" propid="value" datasetid="ds_AuthCheck" columnid="authCheck"/>
       <BindItem id="item1" compid="edt_Id" propid="value" datasetid="ds_login" columnid="user_id"/>
       <BindItem id="item2" compid="edt_Password" propid="value" datasetid="ds_login" columnid="password"/>
+      <BindItem id="item3" compid="edt_MaskedEmail" propid="value" datasetid="ds_email" columnid="maskedEmail"/>
     </Bind>
   </Form>
 </FDL>

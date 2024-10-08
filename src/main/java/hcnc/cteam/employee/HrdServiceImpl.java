@@ -20,6 +20,12 @@ public class HrdServiceImpl implements HrdService{
 	@Override
 	public void updateHRD(Map<String, Object> param) {
 		hrdm.updateHRD(param);
+		hrdm.updateMng();
+	}
+
+	@Override
+	public void updateMng() {
+		
 	}
 	
 }

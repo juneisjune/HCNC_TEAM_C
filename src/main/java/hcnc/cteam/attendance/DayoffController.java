@@ -38,7 +38,6 @@ public class DayoffController {
     		result.setErrorCode(-1);
     		result.setErrorMsg("catch 조회 오류");
     	}
-    	System.out.println("조회 완료");
     	return result;
     }
 	
@@ -48,7 +47,6 @@ public class DayoffController {
     public NexacroResult confirmOff(@ParamDataSet(name = "checkedDataset", required = false) List<Map<String,Object>> param){
 		
 		NexacroResult result = new NexacroResult();
-		System.out.println("저장 컨트롤러 진입");
 		
 		// param이 null인지 확인
 	    if (param == null || param.isEmpty()) {
@@ -56,26 +54,20 @@ public class DayoffController {
 	        result.setErrorMsg("데이터셋이 없습니다.");
 	        return result;
 	    }
-
-	    System.out.println("데이터셋: " + param);  // 데이터셋 확인
-		
     	try {	
     			for(Map<String,Object> offRequest : param) {
-    				System.out.println("승인");
     				dayoffService.updateConfirm(offRequest);
 
     				Object assignCodeObj = offRequest.get("assign_code");
     				String assignCode = assignCodeObj != null ? assignCodeObj.toString() : null;
-    				System.out.println(assignCode);
     				
     				//대표자가 최종승인시 연차개수 변경
     				if(assignCode.equals("7")) {
-    					dayoffService.increaseDayoffCnt(offRequest);
+    					dayoffService.updateDayoffCnt(offRequest);
     				}
 	    		}
     		
     	}catch(Exception ee) {
-    		System.out.println(ee);
     		result.setErrorCode(-1);
     		result.setErrorMsg("catch 조회 오류");
     	}
@@ -89,7 +81,6 @@ public class DayoffController {
 
 		//로그인정보에서 직책코드 가져올 예정
 		NexacroResult result = new NexacroResult();
-		System.out.println("반려 컨트롤러 진입");
 		
 		// param이 null인지 확인
 	    if (param == null || param.isEmpty()) {
@@ -97,27 +88,15 @@ public class DayoffController {
 	        result.setErrorMsg("데이터셋이 없습니다.");
 	        return result;
 	    }
-	    
-	    //System.out.println("데이터셋: " + param);  // 데이터셋 확인
-		
     	try {	
     		for(Map<String,Object> offRequest : param) {
-				System.out.println("반려");
 				dayoffService.updateReturn(offRequest);
-				
     		}
     		
     	}catch(Exception ee) {
-    		System.out.println(ee);
     		result.setErrorCode(-1);
     		result.setErrorMsg("catch 조회 오류");
     	}
     	return result;
     }
-	
-	
-    
-    
-
-
 }

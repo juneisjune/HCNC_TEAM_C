@@ -3,17 +3,18 @@
   <Form id="Form_HRD" width="1280" height="720" titletext="New Form" onload="Form_HRD_onload">
     <Layouts>
       <Layout height="720" width="1280">
-        <Static id="Static00" taborder="0" text="인 사 관 리" left="56" top="13" width="722" height="67" font="bold 36px/normal &quot;Gulim&quot;" textAlign="center"/>
-        <Edit id="edt_SearchWord" taborder="1" left="164" top="104" width="504" height="44"/>
-        <Button id="btn_HrdListSearch" taborder="2" text="조회" left="678" top="103" width="100" height="44" onclick="btn_HrdListSearch_onclick"/>
-        <Grid id="grd_HrdList" taborder="3" left="28" top="160" width="750" height="460" binddataset="ds_Hrdlist" oncellclick="grd_HrdList_oncellclick">
+        <GroupBox id="GroupBox_Search" taborder="6" text="조회" left="290" top="83" width="490" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
+        <Static id="Static00" taborder="0" text="인사관리" left="36" top="23" width="174" height="50" cssclass="stc_title"/>
+        <Edit id="edt_SearchWord" taborder="1" left="474" top="104" width="208" height="30" onchanged="edt_SearchWord_onchanged"/>
+        <Button id="btn_HrdListSearch" taborder="2" text="조회" left="691" top="104" width="78" height="30" onclick="btn_HrdListSearch_onclick"/>
+        <Grid id="grd_HrdList" taborder="3" left="36" top="160" width="742" height="400" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="75"/>
-                <Column size="92"/>
-                <Column size="130"/>
-                <Column size="91"/>
+                <Column size="122"/>
+                <Column size="106"/>
+                <Column size="77"/>
                 <Column size="130"/>
                 <Column size="115"/>
                 <Column size="115"/>
@@ -32,47 +33,47 @@
                 <Cell col="6" text="퇴사일"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:emp_code"/>
-                <Cell col="1" text="bind:name"/>
-                <Cell col="2" calendardateformat="yyyy-MM-dd" displaytype="text" edittype="combo" calendardisplayinvalidtype="none" calendardisplaynulltype="none" calendarpopuptype="none" text="bind:dep_name" combodataset="ds_Department" combocodecol="dep_name" combodatacol="dep_name"/>
-                <Cell col="3" calendardateformat="yyyy-MM-dd" displaytype="text" text="bind:assign_name" edittype="combo" combodataset="ds_Assignment" combocodecol="assign_name" combodatacol="assign_name"/>
-                <Cell col="4" text="bind:mng_name"/>
-                <Cell col="5" text="bind:join_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date"/>
-                <Cell col="6" text="bind:resign_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date" calendardisplaynulltype="none"/>
+                <Cell text="bind:emp_code" textAlign="center"/>
+                <Cell col="1" text="bind:name" textAlign="center"/>
+                <Cell col="2" calendardateformat="yyyy-MM-dd" displaytype="combotext" edittype="combo" calendardisplayinvalidtype="none" calendardisplaynulltype="none" calendarpopuptype="none" text="bind:dep_code" combodataset="ds_Department" combocodecol="dep_code" combodatacol="dep_name" textAlign="center"/>
+                <Cell col="3" calendardateformat="yyyy-MM-dd" displaytype="combotext" text="bind:assign_code" edittype="combo" combodataset="ds_Assignment" combocodecol="assign_code" combodatacol="assign_name" textAlign="center"/>
+                <Cell col="4" text="bind:mng_name" textAlign="center"/>
+                <Cell col="5" text="bind:join_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date" calendarshowmonthspin="true" calendarshowyearspin="true" calendardisplaynulltype="none" calendarautoselect="true" textAlign="center"/>
+                <Cell col="6" text="bind:resign_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date" calendarshowmonthspin="true" calendarshowyearspin="true" calendardisplaynulltype="none" textAlign="center"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Combo id="cmb_SearchType" taborder="4" left="30" top="104" width="120" height="41" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SerachType" text="전체" index="0"/>
-        <Button id="btn_Savehrd" taborder="5" text="저장" left="660" top="629" width="117" height="41" onclick="btn_Savehrd_onclick"/>
+        <Combo id="cmb_SearchType" taborder="4" left="354" top="104" width="110" height="30" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0" onitemchanged="cmb_SearchType_onitemchanged"/>
+        <Button id="btn_Savehrd" taborder="5" text="저장" left="669" top="579" width="117" height="41" onclick="btn_Savehrd_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
-      <Dataset id="ds_SerachType">
+      <Dataset id="ds_SearchType">
         <ColumnInfo>
           <Column id="Value" type="STRING" size="256"/>
           <Column id="Name" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row>
-            <Col id="Value">all</Col>
+            <Col id="Value">ALL</Col>
             <Col id="Name">전체</Col>
           </Row>
           <Row>
-            <Col id="Value">emp_code</Col>
+            <Col id="Value">EMP_CODE</Col>
             <Col id="Name">사번</Col>
           </Row>
           <Row>
-            <Col id="Value">name</Col>
+            <Col id="Value">NAME</Col>
             <Col id="Name">이름</Col>
           </Row>
           <Row>
-            <Col id="Value">dep_name</Col>
+            <Col id="Value">DEP_NAME</Col>
             <Col id="Name">부서</Col>
           </Row>
         </Rows>
       </Dataset>
-      <Dataset id="ds_Serach">
+      <Dataset id="ds_Search">
         <ColumnInfo>
           <Column id="SEARCH_TYPE" type="STRING" size="256"/>
           <Column id="SEARCH_WORD" type="STRING" size="256"/>
@@ -81,7 +82,7 @@
           <Row/>
         </Rows>
       </Dataset>
-      <Dataset id="ds_Hrdlist" oncolumnchanged="ds_Hrdlist_oncolumnchanged">
+      <Dataset id="ds_Hrdlist" useclientlayout="true">
         <ColumnInfo>
           <Column id="emp_code" type="INT" size="256"/>
           <Column id="name" type="STRING" size="256"/>
@@ -93,6 +94,7 @@
           <Column id="mng_code" type="INT" size="256"/>
           <Column id="admin_name" type="STRING" size="256"/>
           <Column id="assign_code" type="STRING" size="256"/>
+          <Column id="dep_code" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_Department">
@@ -159,31 +161,51 @@
           </Row>
         </Rows>
       </Dataset>
-      <Dataset id="ds_UpdateHrdlist" onvaluechanged="ds_Hrdlist_onvaluechanged">
+      <Dataset id="ds_UpdateHrdlist" useclientlayout="true">
         <ColumnInfo>
           <Column id="emp_code" type="INT" size="256"/>
           <Column id="name" type="STRING" size="256"/>
-          <Column id="dep_name" type="STRING" size="256"/>
-          <Column id="assign_name" type="STRING" size="256"/>
-          <Column id="mng_name" type="STRING" size="256"/>
           <Column id="join_date" type="DATE" size="256"/>
           <Column id="resign_date" type="DATE" size="256"/>
           <Column id="mng_code" type="INT" size="256"/>
           <Column id="admin_name" type="STRING" size="256"/>
+          <Column id="assign_code" type="STRING" size="256"/>
+          <Column id="dep_code" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
     </Objects>
     <Bind>
-      <BindItem id="item0" compid="edt_SearchWord" propid="value" datasetid="ds_Serach" columnid="SEARCH_WORD"/>
-      <BindItem id="item1" compid="cmb_SearchType" propid="value" datasetid="ds_Serach" columnid="SEARCH_TYPE"/>
+      <BindItem id="item0" compid="edt_SearchWord" propid="value" datasetid="ds_Search" columnid="SEARCH_WORD"/>
+      <BindItem id="item1" compid="cmb_SearchType" propid="value" datasetid="ds_Search" columnid="SEARCH_TYPE"/>
     </Bind>
-    <Script type="xscript5.1"><![CDATA[// 조회 함수
+    <Script type="xscript5.1"><![CDATA[
+//처리콜백 함수
+this.fn_Callback = function(svcID,errorCode,errorMsg)
+{
+	// 에러 시 화면 처리 내역
+	if(errorCode == -1)
+	{
+		this.alert(errorMsg);
+		return;
+	}
+
+	switch(svcID)
+	{
+		case "hrdList":
+			console.log(this.ds_Hrdlist.saveXML());
+			break;  
+		case "hrdListUpdate":
+			this.fnSearchList();
+			break;
+		default : 
+			break;
+	}
+};
+
+
+// 조회 함수
 this.fnSearchList = function(){
-	// application 변수에서 emp_code와 assign_code를 가져옴
-    
-	var loginAdminName = nexacro.getApplication().gv_name;
-	this.ds_Hrdlist.setColumn(0,"admin_name","관리나경진")
-    
+	
 	// 컨트롤러 호출
 	var strSvcId    = "hrdList";                     // 콜백 서비스명
 	var strSvcUrl   = "svc::hrdList.do";             // 호출 URL
@@ -193,7 +215,7 @@ this.fnSearchList = function(){
 	var callBackFnc = "fn_Callback";                        // 콜백 후 실행 할 함수
 	var isAsync     = true;                                // 동기/비동기
 	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
-	console.log(this.ds_Hrdlist);
+	
 }
 
 this.btn_HrdListSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
@@ -203,42 +225,92 @@ this.btn_HrdListSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEven
 
 this.Form_HRD_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
-	this.ds_Serach.setColumn(0,"SEARCH_TYPE","all");
+	this.ds_Search.setColumn(0,"SEARCH_TYPE","ALL");
 	this.fnSearchList();
 };
 
+
 //저장 버튼
 this.btn_Savehrd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	
+	 // 유효성 검사를 먼저 수행
+    if (!this.validateBeforeUpdate()) {
+        return;
+    }
+	
+	this.ds_UpdateHrdlist.clearData();  // 이전 데이터 초기화
+	
 	// application 변수에서 emp_code와 assign_code를 가져옴
-    
-	var loginAdminName = nexacro.getApplication().gv_name;
-	this.ds_Hrdlist.setColumn(0,"admin_name","관리나경진")
-    
-	console.log(this.changedData.saveXML());
+	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 	
+    
+    for (var i = 0; i < this.ds_Hrdlist.getRowCount(); i++) {
+        var rowType = this.ds_Hrdlist.getRowType(i);
+        
+        // 변경된 데이터(ROWTYPE_UPDATE)만 처리
+        if (rowType == Dataset.ROWTYPE_UPDATE) {
+            var newRow = this.ds_UpdateHrdlist.addRow();  // UpdateHrdlist에 새 행 추가
+            this.ds_UpdateHrdlist.copyRow(newRow, this.ds_Hrdlist, i);  // Hrdlist의 i번째 행을 복사
+			this.ds_UpdateHrdlist.setColumn(newRow,"admin_name",loginAdminName);
+        }
+    }
+	console.log("업뎃리스트" + this.ds_UpdateHrdlist.saveXML());
 	
-	// 컨트롤러 호출
-	var strSvcId    = "hrdListUpdate";                     // 콜백 서비스명
-	var strSvcUrl   = "svc::hrdListUpdate.do";             // 호출 URL
-	var inData      = "ds_Hrdlist=ds_Hrdlist";               // Request Dataset 파라미터 (AAA=BBB) AAA = 컨트롤러에서 받을 파라미터명, BBB = 보낼 데이터셋명
-	var outData     = "";     // Response Dataset 파라미터 (AAA=BBB) AAA = 데이터를 저장할 데이터셋명, BBB = 응답받은 데이터
-	var strArg      = ""                                   // Request 문자 파라미터
-	var callBackFnc = "fn_Callback";                        // 콜백 후 실행 할 함수
-	var isAsync     = true;                                // 동기/비동기
-	if(confirm("변경사항 저장하시겠습니까 ?")){
-		this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
-	}
+        // 변경된 데이터가 있을 경우 저장 로직 실행
+        var strSvcId    = "hrdListUpdate";                     // 콜백 서비스명
+        var strSvcUrl   = "svc::hrdListUpdate.do";             // 호출 URL
+        var inData      = "ds_UpdateHrdlist=ds_UpdateHrdlist";           // Request Dataset 파라미터, ':u'는 업데이트된 데이터만 전송
+        var outData     = "";                                  // Response Dataset 파라미터
+        var strArg      = "";                                  // Request 문자 파라미터
+        var callBackFnc = "fn_Callback";                       // 콜백 후 실행 할 함수
+        var isAsync     = true;                                // 동기/비동기 여부
+        
+        if(confirm("변경된 데이터를 저장하시겠습니까?")){
+            this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+        }	
 };
 
+// 유효성 검사 함수 (Update 전)
+this.validateBeforeUpdate = function() {
 
+    var dsHrdlist = this.lookup("ds_Hrdlist");
 
-this.grd_HrdList_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
-{
-	
+    // ds_Hrdlist의 모든 행을 검사
+    for (var i = 0; i < dsHrdlist.getRowCount(); i++) {
+        var joinDate = dsHrdlist.getColumn(i, "join_date"); // 입사일
+        var resignDate = dsHrdlist.getColumn(i, "resign_date"); // 퇴사일
+
+        // 퇴사일이 입사일 이전인지 확인
+        if (resignDate && resignDate < joinDate) {
+            alert("퇴사일은 입사일 이전일 수 없습니다.");
+            return false;
+        }
+
+        // assign_code가 5인 경우 중복 여부 확인
+        var assignCode = dsHrdlist.getColumn(i, "assign_code");
+        var depCode = dsHrdlist.getColumn(i, "dep_code");
+
+        if (assignCode == "5" || assignCode == 5) {
+            // ds_Hrdlist의 다른 행을 검사하여 동일한 부서에 assign_code 5가 있는지 확인
+            for (var j = 0; j < dsHrdlist.getRowCount(); j++) {
+                if (i === j) continue; // 동일한 행은 건너뜀
+
+                var hrdListDepCode = dsHrdlist.getColumn(j, "dep_code");
+                var hrdListAssignCode = dsHrdlist.getColumn(j, "assign_code");
+
+                // 동일한 부서에서 assign_code가 5인 데이터가 있는지 확인
+                if (hrdListDepCode == depCode && (hrdListAssignCode == "5" || hrdListAssignCode == 5)) {
+                    console.log("부서코드: " + hrdListDepCode);
+                    console.log("직책코드: " + hrdListAssignCode);
+                    alert("이미 해당 부서에 직책 코드 5(부장)가 존재합니다.");
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
 };
-
-this.ds_Hrdlist_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+this.cmb_SearchType_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
 {
 	
 };

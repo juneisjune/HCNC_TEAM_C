@@ -67,7 +67,7 @@ public class DayoffUserController {
 		emp = empService.getEmployeeByEmpCode(empCode);	
 		model.addAttribute("emp",emp);
 
-		return "dayoffRequest";
+		return "atten/dayoffRequest";
 	}
 	//내역 페이지
 	@RequestMapping(value="/requestList.do")
@@ -79,7 +79,7 @@ public class DayoffUserController {
 		emp = empService.getEmployeeByEmpCode(empCode);
 		model.addAttribute("emp",emp);
 		
-		return "dayoffResult";
+		return "atten/dayoffResult";
 	}
 	
 	//휴가신청
@@ -89,8 +89,6 @@ public class DayoffUserController {
 		
 		//휴가신청 insert문
 		int result = doUserService.sendRequest(dayoff);
-	
-		
 		if(result == 0) {
 			model.addAttribute("dayoffMsg","휴가신청에 실패했습니다. 다시신청해주세요");
 			return "redirect: /dayoff/doRequest.do";

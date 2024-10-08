@@ -18,4 +18,7 @@ public interface EMService {
 
     // ID 중복 체크 메서드: 직원 ID가 중복되는지 여부를 확인
     boolean checkDuplicateId(Map<String, Object> param);
+    
+    EMDTO findEmp (Map<String, Object> param);
+    
 }

@@ -67,24 +67,6 @@
             color: white;
         }
 
-        .logout_btn {
-        	color: white;
-            position: absolute; /* Position logout button absolutely */
-            top: 20px; /* Adjust top position */
-            right: 20px; /* Adjust right position */
-            background-color: #e74c3c; /* Example color for logout button */
-            border: none;
-            border-radius: 5px; /* Rounded corners */
-            
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .time-display {
-        	color: white;
-            width: 100px; /* Increased space for time display */
-            font-size: 16px; /* Increase font size for better visibility */
-        }
     </style>
 </head>
 <body>

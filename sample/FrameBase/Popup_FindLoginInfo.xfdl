@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Popup_FindLoginInfo" width="600" height="500" titletext="아이디 및 비밀번호 찾기">
+    <Layouts>
+      <Layout height="500" mobileorientation="landscape" width="600">
+        <Static id="sta_FindId" taborder="0" text="아이디 찾기" left="20" top="20" width="170" height="40" font="24px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_FindPassword" taborder="1" text="비밀번호 찾기" left="20" top="240" width="170" height="40" font="24px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_NameForId" taborder="2" text="이름 : " left="21" top="80" width="49" height="40" font="18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_EmailForId" taborder="3" text="이메일 : " left="246" top="80" width="64" height="40" font="18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_IdForPassword" taborder="4" text="ID : " left="20" top="300" width="49" height="40" font="18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_EmailForPassword" taborder="5" text="이메일 : " left="245" top="300" width="64" height="40" font="18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

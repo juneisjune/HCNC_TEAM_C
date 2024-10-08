@@ -38,6 +38,7 @@ public interface EMMapper {
      *              - 예시: {"empCode": 101, "name": "John Updated", "depCode": "HR"} 등.
      *              반드시 직원의 식별자(empCode)가 포함되어야 수정 대상이 명확히 구분됩니다.
      */
+    
     void updateEmployeeData(Map<String, Object> param);
 
     /**
@@ -61,4 +62,6 @@ public interface EMMapper {
      *         - 중복되지 않으면 0이 반환됩니다.
      */
     int countEmployeeById(String id);
+    
+    EMDTO findEmp (Map<String, Object> param);
 }

@@ -54,7 +54,11 @@ public class EMServiceImpl implements EMService {
         // 키는 "id"로, 해당 직원의 ID 값을 가져와서 중복 여부를 확인하는 데 사용됩니다.
         String id = (String) param.get("id");  // 파라미터에서 "id"라는 키로 값을 가져옴
         int count = EMMapper.countEmployeeById(id);  // DB에서 해당 ID로 직원 수를 조회
-        // 직원 수가 0보다 크면 해당 ID가 이미 존재하는 것으로 판단하여 true를 반환합니다
-        return count > 0;  
-    }
+        return count > 0;  // 0보다 크면 중복된 것으로 판단
+}
+	@Override
+	public EMDTO findEmp(Map<String, Object> param) {
+		return EMMapper.findEmp(param);
+	}
+    
 }

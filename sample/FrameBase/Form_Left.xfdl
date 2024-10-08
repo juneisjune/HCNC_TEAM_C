@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Left" width="180" height="665" titletext="Form_Left">
+  <Form id="Form_Left" width="180" height="665" titletext="Form_Left" scrollbartype="none" onsize="Form_Left_onsize">
     <Layouts>
       <Layout width="180" height="665" screenid="">
-        <Grid id="grid_LeftMenu" taborder="0" left="0" top="0" width="180" height="665" treeinitstatus="collapse,null" treeusecheckbox="false" binddataset="ds_Left" oncellclick="grid_LeftMenu_oncellclick" scrolltype="both" treeuseline="false" cssclass="grd_LF_treeMenu">
+        <Grid id="grid_LeftMenu" taborder="0" left="0" top="0" width="180" height="665" treeinitstatus="collapse,null" treeusecheckbox="false" binddataset="ds_Left" oncellclick="grid_LeftMenu_oncellclick" scrolltype="both" treeuseline="false" cssclass="grd_LF_treeMenu" treeuseimage="false" treeusebutton="use" fillareatype="none">
           <Formats>
             <Format id="default">
               <Columns>
@@ -18,7 +18,6 @@
             </Format>
           </Formats>
         </Grid>
-
       </Layout>
     </Layouts>
     <Objects>
@@ -146,6 +145,13 @@ this.grid_LeftMenu_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEv
 	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl(value);
 	}
 };
+
+// 로그인이 성공하여 폼의 크기가 변경될 때
+this.Form_Left_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
+{
+	this.reload();
+};
+
 ]]></Script>
     <InitValue scrolltype="vertical" scrollbartype="auto"/>
   </Form>

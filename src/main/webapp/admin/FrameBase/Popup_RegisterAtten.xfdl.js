@@ -42,10 +42,10 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("sta_SearchTitle","50","30","120","40",null,null,null,null,null,null,this);
+            obj = new Static("sta_SearchTitle","30","30","170","40",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("직원 검색");
-            obj.set_font("28px/normal \"Gulim\"");
+            obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grid_SearchEmp","50","90","810","260",null,null,null,null,null,null,this);
@@ -54,10 +54,10 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"100\"/><Column size=\"120\"/><Column size=\"120\"/><Column size=\"160\"/><Column size=\"200\"/><Column size=\"108\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"부서명\"/><Cell col=\"4\" text=\"생년월일\"/><Cell col=\"5\" text=\"성별\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:birth\" textAlign=\"center\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\"/><Cell col=\"5\" text=\"bind:gender\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_RegisterTitle","50","370","120","40",null,null,null,null,null,null,this);
+            obj = new Static("sta_RegisterTitle","30","370","170","40",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("근태 입력");
-            obj.set_font("28px/normal \"Gulim\"");
+            obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Search","720","40","70","30",null,null,null,null,null,null,this);

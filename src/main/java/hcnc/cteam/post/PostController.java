@@ -1,5 +1,6 @@
 package hcnc.cteam.post;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -129,9 +130,67 @@ public class PostController {
 
         return result;
     }
+    @RequestMapping(value = "/postDetail.do")
+    public NexacroResult getPostDetail(@ParamDataSet(name = "ds_Post") Map<String, Object> param) {
+        NexacroResult result = new NexacroResult();
 
+        try {
+            int postCode = Integer.parseInt(String.valueOf(param.get("post_code")));
 
+            // 조회수 증가
+            postService.increaseViewCount(postCode);
 
+            // 게시글 상세 정보 조회
+            Map<String, Object> postDetail = postService.selectPostDetail(postCode);
+
+          
+
+            // 첨부파일 목록 조회
+            List<Map<String, Object>> attachments = postService.selectAttachments(postCode);
+
+            // 결과를 NexacroResult에 담기
+            List<Map<String, Object>> postDetailList = new ArrayList<>();
+            postDetailList.add(postDetail);
+
+            result.addDataSet("ds_Post", postDetailList);
+            result.addDataSet("ds_Attachments", attachments);
+
+        } catch (Exception e) {
+            result.setErrorCode(-1);
+            result.setErrorMsg("게시글 상세 조회 중 오류 발생: " + e.getMessage());
+        }
+        return result;
+    }
+    
+    //버튼 삭제 관련
+    @RequestMapping(value = "/deletePosts.do", method = RequestMethod.POST)
+    public NexacroResult deletePosts(@ParamDataSet(name = "ds_Delete") List<Map<String, Object>> paramList) {
+        NexacroResult result = new NexacroResult();
+
+        try {
+            List<Integer> postCodes = new ArrayList<>();
+            for (Map<String, Object> param : paramList) {
+                Object postCodeObj = param.get("post_code");
+                if (postCodeObj == null) {
+                    System.out.println("post_code 값이 null입니다.");
+                    continue; // 또는 예외 처리
+                }
+                int postCode = Integer.parseInt(postCodeObj.toString());
+                postCodes.add(postCode);
+            }
+            // 서비스 메서드 호출
+            postService.deletePosts(postCodes);
+
+            result.setErrorCode(0);
+            result.setErrorMsg("게시글이 성공적으로 삭제되었습니다.");
+        } catch (Exception e) {
+            result.setErrorCode(-1);
+            result.setErrorMsg("게시글 삭제 중 오류 발생: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 
 
 }

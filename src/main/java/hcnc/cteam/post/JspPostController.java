@@ -32,36 +32,54 @@ public class JspPostController {
 	
 	
 	
-	@RequestMapping(value="/viewPost.do")
-	public String getPostList(Model model) {
-		// 게시글 목록 조회
-        List<Map<String, Object>> postList = postService.selectPost(null);
-        
-        // 모델에 게시글 목록 추가
-        model.addAttribute("postList", postList);
-        
-        // post.jsp로 이동
-        return "post";
+	@RequestMapping(value = "/viewPost.do")
+	public String getPostList(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+	    int pageSize = 10; // 한 페이지당 보여줄 게시글 수
+	    int offset = (page - 1) * pageSize;
+
+	    // 게시글 목록 조회 (페이징 적용)
+	    List<Map<String, Object>> postList = postService.selectPostWithPaging(offset, pageSize);
+
+	    // 전체 게시글 수 조회
+	    int totalPostCount = postService.getTotalPostCount();
+	    int totalPages = (int) Math.ceil((double) totalPostCount / pageSize); // 전체 페이지 수 계산
+
+	    // 모델에 게시글 목록 및 페이징 정보 추가
+	    model.addAttribute("postList", postList);
+	    model.addAttribute("currentPage", page);
+	    model.addAttribute("totalPages", totalPages);
+
+	    // post.jsp로 이동
+	    return "post";
 	}
+
 	
 	@RequestMapping("/postDetail.do")
-    public String getPostDetail(@RequestParam("post_code") int postCode, Model model) {
-		//조회수 1증가
-		postService.increaseViewCount(postCode);
-        // 게시글 상세 정보 조회
-        Map<String, Object> postDetail = postService.selectPostDetail(postCode);
-        
-     // 첨부파일 목록 조회(아래 추가
-        List<Map<String, Object>> attachments = postService.selectAttachments(postCode);
+	public String getPostDetail(@RequestParam("post_code") int postCode, Model model) {
+	    // 조회수 1증가
+	    postService.increaseViewCount(postCode);
+	    
+	    // 게시글 상세 정보 조회
+	    Map<String, Object> postDetail = postService.selectPostDetail(postCode);
+	    
+	    // 줄바꿈 문자를 <br> 태그로 변환
+	    String content = (String) postDetail.get("content");
+	    if (content != null) {
+	        content = content.replace("\r\n", "<br>").replace("\n", "<br>").replace("\r", "<br>");
+	        postDetail.put("content", content);
+	    }
 
-        // 모델에 상세 정보 및 첨부파일 목록 추가
-        model.addAttribute("postDetail", postDetail);
-        //아래 추가
-        model.addAttribute("attachments", attachments);
-        
-        // postDetail.jsp로 이동
-        return "postDetail";
-    }
+	    // 첨부파일 목록 조회
+	    List<Map<String, Object>> attachments = postService.selectAttachments(postCode);
+
+	    // 모델에 상세 정보 및 첨부파일 목록 추가
+	    model.addAttribute("postDetail", postDetail);
+	    model.addAttribute("attachments", attachments);
+	    
+	    // postDetail.jsp로 이동
+	    return "postDetail";
+	}
+
 	//==========================================//
 	// 파일 다운로드 메서드 추가
 	
@@ -132,6 +150,8 @@ public class JspPostController {
 	        writer.close();
 	    }
 	}
+	
+	
 
 
 

@@ -10,7 +10,7 @@
         this.on_create = function()
         {
             this.set_scrolltype("vertical");
-            this.set_scrollbartype("auto");
+            this.set_scrollbartype("none");
             this.set_name("Form_Left");
             this.set_titletext("Form_Left");
             if (Form == this.constructor)
@@ -32,6 +32,9 @@
             obj.set_scrolltype("both");
             obj.set_treeuseline("false");
             obj.set_cssclass("grd_LF_treeMenu");
+            obj.set_treeuseimage("false");
+            obj.set_treeusebutton("use");
+            obj.set_fillareatype("none");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"180\"/></Columns><Rows><Row size=\"35\"/></Rows><Band id=\"body\"><Cell displaytype=\"treeitemcontrol\" edittype=\"tree\" text=\"bind:MENU_NAME\" treestartlevel=\"1\" treelevel=\"bind:MENU_LEVEL\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
             // Layout Functions
@@ -76,11 +79,19 @@
         	}
         };
 
+        // 로그인이 성공하여 폼의 크기가 변경될 때
+        this.Form_Left_onsize = function(obj,e)
+        {
+        	this.reload();
+        };
+
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
+            this.addEventHandler("onsize",this.Form_Left_onsize,this);
             this.grid_LeftMenu.addEventHandler("oncellclick",this.grid_LeftMenu_oncellclick,this);
         };
         this.loadIncludeScript("Form_Left.xfdl");
