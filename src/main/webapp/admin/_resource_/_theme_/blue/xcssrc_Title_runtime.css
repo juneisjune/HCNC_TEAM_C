@@ -81,9 +81,17 @@
 .Static.stc_popup
 {
 	color : #000000;
-	font : bold 30px/1.2 "Arial";
+	font : bold 12px/1.2 "Arial";
 }
 .Static.stc_popup .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.stc_stc
+{
+	font : normal 14px/normal "Arial";
+}
+.Static.stc_stc .nexacontentsbox
 {
 	text-align : center;
 }

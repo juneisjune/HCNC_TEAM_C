@@ -31,7 +31,19 @@
             								"enabled" :
             								{
             									"color" : nexacro.ColorObject("#000000"),
-            									"font" : nexacro.FontObject("bold 30px/1.2 \"Arial\"")
+            									"font" : nexacro.FontObject("bold 12px/1.2 \"Arial\"")
+            								}
+            							}
+            						}
+            					},
+            					{
+            						"stc_stc" :
+            						{
+            							"self" :
+            							{
+            								"enabled" :
+            								{
+            									"font" : nexacro.FontObject("normal 14px/normal \"Arial\"")
             								}
             							}
             						}

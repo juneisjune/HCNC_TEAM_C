@@ -48,12 +48,12 @@
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_Assign","30","101","120","60",null,null,null,null,null,null,this);
+            obj = new Static("stc_Assign","31","111","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("직책");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_Assign","65","121","105","20",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_Assign","65","111","105","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_innerdataset("ds_AssignType");
             obj.set_codecolumn("assign_code");
@@ -61,7 +61,7 @@
             obj.set_font("12pt/normal gulim");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","185","121","43","20",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","185","111","43","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
             this.addChild(obj.name, obj);
@@ -72,12 +72,12 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"67\"/><Column size=\"92\"/><Column size=\"70\"/><Column size=\"97\"/><Column size=\"121\"/><Column size=\"119\"/><Column size=\"213\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/><Cell col=\"7\" text=\"계좌번호\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chkVal\"/><Cell col=\"1\" textAlign=\"center\" text=\"bind:emp_code\"/><Cell col=\"2\" textAlign=\"center\" text=\"bind:name\"/><Cell col=\"3\" textAlign=\"center\" text=\"bind:assign_name\"/><Cell col=\"4\" textAlign=\"center\" text=\"bind:dep_name\"/><Cell col=\"5\" textAlign=\"center\" text=\"bind:join_date\" displaytype=\"date\"/><Cell col=\"6\" text=\"bind:resign_date\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:account\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static04","540","485","120","60",null,null,null,null,null,null,this);
+            obj = new Static("Static04","540","500","120","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("지급일");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_GiveDate","595","505","150","20",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_GiveDate","595","500","150","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_dateformat("yyyy-MM-dd");
             this.addChild(obj.name, obj);
