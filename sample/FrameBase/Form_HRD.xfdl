@@ -45,7 +45,7 @@
           </Formats>
         </Grid>
         <Combo id="cmb_SearchType" taborder="4" left="354" top="104" width="110" height="30" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0" onitemchanged="cmb_SearchType_onitemchanged"/>
-        <Button id="btn_Savehrd" taborder="5" text="저장" left="669" top="579" width="117" height="41" onclick="btn_Savehrd_onclick"/>
+        <Button id="btn_Savehrd" taborder="5" text="저장" left="660" top="578" width="117" height="41" onclick="btn_Savehrd_onclick"/>
       </Layout>
     </Layouts>
     <Objects>

@@ -90,23 +90,23 @@
 
             obj = new Static("Static_Label_Attachments","30","320","60","30",null,null,null,null,null,null,this);
             obj.set_text("첨부파일");
-            obj.set_font("bold 14px \'Gulim\'");
             obj.set_textAlign("right");
             obj.set_taborder("8");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static_Label_Content","-10","170","100","30",null,null,null,null,null,null,this);
             obj.set_text("내용");
-            obj.set_font("bold 14px \'Gulim\'");
             obj.set_textAlign("right");
             obj.set_taborder("9");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static_Label_Title","-10","105","100","30",null,null,null,null,null,null,this);
             obj.set_text("제목");
-            obj.set_font("bold 14px \'Gulim\'");
             obj.set_textAlign("right");
             obj.set_taborder("10");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

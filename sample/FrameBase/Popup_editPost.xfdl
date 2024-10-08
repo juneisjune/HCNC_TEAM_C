@@ -34,7 +34,7 @@
         <Static id="Static_Label_Title" text="제목:" left="-30" top="79" width="100" height="30" font="bold 14px 'Gulim'" textAlign="right" taborder="7"/>
         <Static id="Static_Label_Attachments" text="첨부파일:" left="-19" top="265" width="100" height="30" font="bold 14px 'Gulim'" textAlign="right" taborder="8"/>
         <Static id="Static_Label_Content" text="내용:" left="-30" top="129" width="100" height="30" font="bold 14px 'Gulim'" textAlign="right" taborder="9"/>
-        <Static id="Static_Title" text="공지사항 수정하기" left="180" top="20" width="400" height="40" taborder="10" cssclass="stc_popup"/>
+        <Static id="Static_Title" text="공지사항 수정" left="180" top="20" width="400" height="40" taborder="10" cssclass="stc_popup"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[// 팝업 로드 시 게시글 정보와 첨부파일 정보를 불러옴
