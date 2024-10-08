@@ -91,7 +91,9 @@
      	 AND d.start_date = #{start_date}
        
 	</update>
-	<update id="increaseDayoffCnt" parameterType="java.util.Map">
+	
+	<!-- 연차 최종 승인시 갯수 차감 -->
+	<update id="updateDayoffCnt" parameterType="java.util.Map">
 		UPDATE dayoff_count dc
 			INNER JOIN dayoff d ON dc.emp_code = d.emp_code
 		SET used_cnt = 
