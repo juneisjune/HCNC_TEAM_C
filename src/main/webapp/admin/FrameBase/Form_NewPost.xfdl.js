@@ -84,7 +84,7 @@
 
             obj = new Static("Static00_00","30","23","220","50",null,null,null,null,null,null,this);
             obj.set_taborder("7");
-            obj.set_text("공지사항등록");
+            obj.set_text("공지사항 등록");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
