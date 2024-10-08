@@ -3,10 +3,10 @@
   <Form id="Form_HRD" width="1280" height="720" titletext="New Form" onload="Form_HRD_onload">
     <Layouts>
       <Layout height="720" width="1280">
-        <Static id="Static00" taborder="0" text="인 사 관 리" left="56" top="13" width="722" height="67" font="bold 36px/normal &quot;Gulim&quot;" textAlign="center"/>
-        <Edit id="edt_SearchWord" taborder="1" left="164" top="104" width="504" height="44" onchanged="edt_SearchWord_onchanged"/>
-        <Button id="btn_HrdListSearch" taborder="2" text="조회" left="678" top="103" width="100" height="44" onclick="btn_HrdListSearch_onclick"/>
-        <Grid id="grd_HrdList" taborder="3" left="28" top="170" width="750" height="460" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none">
+        <Static id="Static00" taborder="0" text="인사관리" left="36" top="23" width="174" height="50" cssclass="stc_title"/>
+        <Edit id="edt_SearchWord" taborder="1" left="166" top="104" width="504" height="44" onchanged="edt_SearchWord_onchanged"/>
+        <Button id="btn_HrdListSearch" taborder="2" text="조회" left="686" top="104" width="100" height="44" onclick="btn_HrdListSearch_onclick"/>
+        <Grid id="grd_HrdList" taborder="3" left="36" top="160" width="750" height="460" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none">
           <Formats>
             <Format id="default">
               <Columns>
@@ -43,8 +43,8 @@
             </Format>
           </Formats>
         </Grid>
-        <Combo id="cmb_SearchType" taborder="4" left="30" top="104" width="120" height="41" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0"/>
-        <Button id="btn_Savehrd" taborder="5" text="저장" left="660" top="629" width="117" height="41" onclick="btn_Savehrd_onclick"/>
+        <Combo id="cmb_SearchType" taborder="4" left="36" top="104" width="120" height="41" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0"/>
+        <Button id="btn_Savehrd" taborder="5" text="저장" left="669" top="629" width="117" height="41" onclick="btn_Savehrd_onclick"/>
       </Layout>
     </Layouts>
     <Objects>

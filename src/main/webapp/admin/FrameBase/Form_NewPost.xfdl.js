@@ -53,12 +53,12 @@
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
 
-            obj = new Button("open","602","320","88","87",null,null,null,null,null,null,this);
+            obj = new Button("open","598","320","88","87",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("폴더 열기");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("Grid00","108","317","482","90",null,null,null,null,null,null,this);
+            obj = new Grid("Grid00","100","317","482","90",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"size\"/></Band><Band id=\"body\"><Cell text=\"bind:filename\"/><Cell col=\"1\" text=\"bind:filesize\" textAlign=\"right\"/></Band></Format></Formats>");
@@ -69,11 +69,11 @@
             obj.set_text("공지사항 등록");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_title","100","101","590","39",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_title","100","101","586","39",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new TextArea("TextArea01","104","160","586","144",null,null,null,null,null,null,this);
+            obj = new TextArea("TextArea01","100","160","586","144",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
@@ -82,29 +82,28 @@
             obj.set_text("목록 조회");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00_00","8","13","722","67",null,null,null,null,null,null,this);
+            obj = new Static("Static00_00","30","23","220","50",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("공지사항등록");
-            obj.set_font("bold 36px/normal \"Gulim\"");
-            obj.set_textAlign("center");
+            obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Attachments","-10","320","100","30",null,null,null,null,null,null,this);
-            obj.set_text("첨부파일:");
+            obj = new Static("Static_Label_Attachments","30","320","60","30",null,null,null,null,null,null,this);
+            obj.set_text("첨부파일");
             obj.set_font("bold 14px \'Gulim\'");
             obj.set_textAlign("right");
             obj.set_taborder("8");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static_Label_Content","-10","170","100","30",null,null,null,null,null,null,this);
-            obj.set_text("내용:");
+            obj.set_text("내용");
             obj.set_font("bold 14px \'Gulim\'");
             obj.set_textAlign("right");
             obj.set_taborder("9");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static_Label_Title","-10","105","100","30",null,null,null,null,null,null,this);
-            obj.set_text("제목:");
+            obj.set_text("제목");
             obj.set_font("bold 14px \'Gulim\'");
             obj.set_textAlign("right");
             obj.set_taborder("10");

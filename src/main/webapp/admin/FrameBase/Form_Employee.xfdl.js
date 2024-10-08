@@ -37,13 +37,13 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Title","15","15","350","50",null,null,null,null,null,null,this);
+            obj = new Static("Title","25","25","235","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("직원 정보 관리");
-            obj.set_font("32px/normal \"Gulim\"");
+            obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearchType","20","110","100","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_SearchType","25","110","100","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_innerdataset("ds_SearchType");
             obj.set_codecolumn("Value");
@@ -53,34 +53,34 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_SearchWord","130","110","180","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_SearchWord","135","110","180","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.getSetter("binddataset").set("ds_search");
             obj.set_text("bind:SEARCH_WORD");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","320","110","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","325","110","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_employee","15","160","795","330",null,null,null,null,null,null,this);
+            obj = new Grid("grd_employee","25","160","795","330",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_binddataset("ds_empList");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"55\"/><Column size=\"84\"/><Column size=\"60\"/><Column size=\"70\"/><Column size=\"41\"/><Column size=\"91\"/><Column size=\"145\"/><Column size=\"84\"/><Column size=\"156\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"부서명\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"이름\"/><Cell col=\"4\" text=\"성별\"/><Cell col=\"5\" text=\"전화번호\"/><Cell col=\"6\" text=\"생년월일\"/><Cell col=\"7\" text=\"주소\"/><Cell col=\"8\" text=\"이메일\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\"/><Cell col=\"1\" text=\"bind:depName\"/><Cell col=\"2\" text=\"bind:assignName\"/><Cell col=\"3\" text=\"bind:name\"/><Cell col=\"4\" text=\"bind:gender\"/><Cell col=\"5\" text=\"bind:phone\"/><Cell col=\"6\" text=\"bind:birth\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\" calendareditformat=\"yyyy-MM-dd\"/><Cell col=\"7\" text=\"bind:address\"/><Cell col=\"8\" text=\"bind:email\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Register","15","500","80","50",null,null,null,null,null,null,this);
+            obj = new Button("btn_Register","25","500","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("등록");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Edit","110","500","80","50",null,null,null,null,null,null,this);
+            obj = new Button("btn_Edit","115","500","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("수정");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Delete","200","500","80","50",null,null,null,null,null,null,this);
+            obj = new Button("btn_Delete","205","500","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("삭제");
             this.addChild(obj.name, obj);

@@ -12,7 +12,6 @@
             this.set_name("Form_Top");
             this.set_titletext("Form_Top");
             this.set_background("#000033");
-            this.set_scrollbartype("none");
             if (Form == this.constructor)
             {
                 this._setFormPosition(1535,65);
@@ -24,9 +23,10 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("staHello","1375","0","55","65",null,null,null,null,null,null,this);
+            obj = new Static("staHello","1375","0","80","65",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_color("#ffffff");
+            obj.set_text("변수민님");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Logout","1440","15","80","32.5",null,null,null,null,null,null,this);
@@ -102,7 +102,8 @@
         // Regist UI Components Event
         this.on_initEvent = function()
         {
-            this.addEventHandler("onsize",this.Form_Top_onsize,this);
+            this.addEventHandler("onload",this.Form_Top_onload,this);
+            this.staHello.addEventHandler("onclick",this.staHello_onclick,this);
             this.btn_Logout.addEventHandler("onclick",this.btn_Logout_onclick,this);
         };
         this.loadIncludeScript("Form_Top.xfdl");

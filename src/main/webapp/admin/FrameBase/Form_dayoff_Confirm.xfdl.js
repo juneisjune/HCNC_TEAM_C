@@ -32,11 +32,10 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static00","56","13","842","67",null,null,null,null,null,null,this);
+            obj = new Static("Static00","28","23","154","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("휴 가 승 인");
-            obj.set_font("bold 36px/normal \"Gulim\"");
-            obj.set_textAlign("center");
+            obj.set_text("휴가승인");
+            obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edt_Confirm","180","105","216","40",null,null,null,null,null,null,this);
