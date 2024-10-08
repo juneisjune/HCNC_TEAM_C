@@ -89,8 +89,6 @@ public class DayoffUserController {
 		
 		//휴가신청 insert문
 		int result = doUserService.sendRequest(dayoff);
-	
-		
 		if(result == 0) {
 			model.addAttribute("dayoffMsg","휴가신청에 실패했습니다. 다시신청해주세요");
 			return "redirect: /dayoff/doRequest.do";
