@@ -13,7 +13,7 @@ public interface DayoffMapper {
 	public void updateConfirm(Map<String, Object> param);
 	public void updateReturn(Map<String, Object> param);
 
-	public void increaseDayoffCnt(Map<String, Object> param);
+	public void updateDayoffCnt(Map<String, Object> param);
 	public void insertDayoffCount(Map<String, Object> param);
 	
 	public int findDayoff(Map<String, Object> param);

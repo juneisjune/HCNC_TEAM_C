@@ -2,7 +2,7 @@
 <ENV version="2.1">
   <Environment themeid="theme::default" datatyperule="2.0">
     <ScreenDefinition>
-      <Screen id="Desktop_screen" type="desktop" themeid="theme::violet"/>
+      <Screen id="Desktop_screen" type="desktop" themeid="theme::blue"/>
     </ScreenDefinition>
     <Variables/>
     <Cookies/>

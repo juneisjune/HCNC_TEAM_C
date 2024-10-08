@@ -133,16 +133,12 @@
 
         this.btn_offListSearch_onclick = function(obj,e)
         {
-        	// 바인딩 된 값 콘솔로그로 찍어서 조회
-        	console.log("edt_confirm = " + this.ds_offList.getColumn(0,"name"));
-        	console.log("cal_confirm = " + this.ds_offList.getColumn(0,"start_date"));
         	this.fnSearchList();
         };
 
         //승인 함수
         this.btn_confirm_onclick = function(obj,e)
         {
-        	console.log("승인 함수 실행");
         	// application 변수에서assign_code를 가져옴
             var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
         	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
@@ -159,7 +155,7 @@
                 }
             }
         	var off_result = this.ds_doRequestListCopy.getColumn(0,"off_result");
-        	console.log(off_result);
+
 
         	// off_result 값이 '반 려', '승 인', '승인중'일 경우 함수 실행 중지 및 경고 메시지
             if (off_result === "반 려" || off_result === "승 인" ) {
@@ -184,10 +180,10 @@
         		this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         	}
         };
+
         //반려함수
         this.btn_return_onclick = function(obj,e)
         {
-        	console.log("반려 함수 실행");
 
         	// application 변수에서 emp_code와 assign_code를 가져옴
             var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
@@ -206,11 +202,8 @@
         			this.ds_doRequestListCopy.setColumn(newRow, "admin_name", loginAdminName);
                 }
             }
-
-        	console.log("전송할 데이터셋 확인:", this.ds_doRequestListCopy.saveXML());
-
         	var off_result = this.ds_doRequestListCopy.getColumn(0,"off_result");
-        	console.log(off_result);
+
 
         	// off_result 값이 '반 려', '승 인', '승인중'일 경우 함수 실행 중지 및 경고 메시지
             if (off_result === "반 려" || off_result === "승 인" ) {

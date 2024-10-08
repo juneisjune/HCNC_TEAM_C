@@ -125,7 +125,10 @@
         	switch(svcID)
         	{
         		case "hrdList":
-        		console.log(this.ds_Hrdlist.saveXML());
+        			console.log(this.ds_Hrdlist.saveXML());
+        			break;
+        		case "hrdListUpdate":
+        			this.fnSearchList();
         			break;
         		default :
         			break;
@@ -135,10 +138,6 @@
 
         // 조회 함수
         this.fnSearchList = function(){
-        	// application 변수에서 emp_code와 assign_code를 가져옴
-
-        	var loginAdminName = nexacro.getApplication().gv_name;
-        	this.ds_Hrdlist.setColumn(0,"admin_name","관리나경진")
 
         	// 컨트롤러 호출
         	var strSvcId    = "hrdList";                     // 콜백 서비스명
@@ -161,17 +160,23 @@
         {
         	this.ds_Search.setColumn(0,"SEARCH_TYPE","ALL");
         	this.fnSearchList();
-        	trace("제발 .. " + nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
         };
+
 
         //저장 버튼
         this.btn_Savehrd_onclick = function(obj,e)
         {
+        	 // 유효성 검사를 먼저 수행
+            if (!this.validateBeforeUpdate()) {
+                return;
+            }
+
         	this.ds_UpdateHrdlist.clearData();  // 이전 데이터 초기화
+
         	// application 변수에서 emp_code와 assign_code를 가져옴
         	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 
-            console.log(this.ds_UpdateHrdlist.saveXML());
+
             for (var i = 0; i < this.ds_Hrdlist.getRowCount(); i++) {
                 var rowType = this.ds_Hrdlist.getRowType(i);
 
@@ -182,8 +187,7 @@
         			this.ds_UpdateHrdlist.setColumn(newRow,"admin_name",loginAdminName);
                 }
             }
-
-
+        	console.log("업뎃리스트" + this.ds_UpdateHrdlist.saveXML());
 
                 // 변경된 데이터가 있을 경우 저장 로직 실행
                 var strSvcId    = "hrdListUpdate";                     // 콜백 서비스명
@@ -197,9 +201,48 @@
                 if(confirm("변경된 데이터를 저장하시겠습니까?")){
                     this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
                 }
-
         };
 
+        // 유효성 검사 함수 (Update 전)
+        this.validateBeforeUpdate = function() {
+
+            var dsHrdlist = this.lookup("ds_Hrdlist");
+
+            // ds_Hrdlist의 모든 행을 검사
+            for (var i = 0; i < dsHrdlist.getRowCount(); i++) {
+                var joinDate = dsHrdlist.getColumn(i, "join_date"); // 입사일
+                var resignDate = dsHrdlist.getColumn(i, "resign_date"); // 퇴사일
+
+                // 퇴사일이 입사일 이전인지 확인
+                if (resignDate && resignDate < joinDate) {
+                    alert("퇴사일은 입사일 이전일 수 없습니다.");
+                    return false;
+                }
+
+                // assign_code가 5인 경우 중복 여부 확인
+                var assignCode = dsHrdlist.getColumn(i, "assign_code");
+                var depCode = dsHrdlist.getColumn(i, "dep_code");
+
+                if (assignCode == "5" || assignCode == 5) {
+                    // ds_Hrdlist의 다른 행을 검사하여 동일한 부서에 assign_code 5가 있는지 확인
+                    for (var j = 0; j < dsHrdlist.getRowCount(); j++) {
+                        if (i === j) continue; // 동일한 행은 건너뜀
+
+                        var hrdListDepCode = dsHrdlist.getColumn(j, "dep_code");
+                        var hrdListAssignCode = dsHrdlist.getColumn(j, "assign_code");
+
+                        // 동일한 부서에서 assign_code가 5인 데이터가 있는지 확인
+                        if (hrdListDepCode == depCode && (hrdListAssignCode == "5" || hrdListAssignCode == 5)) {
+                            console.log("부서코드: " + hrdListDepCode);
+                            console.log("직책코드: " + hrdListAssignCode);
+                            alert("이미 해당 부서에 직책 코드 5(부장)가 존재합니다.");
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        };
         });
         
         // Regist UI Components Event
