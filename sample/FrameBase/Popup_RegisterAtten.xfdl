@@ -3,7 +3,7 @@
   <Form id="Popup_RegisterAtten" width="1100" height="600" titletext="출/퇴근 정보 등록" onload="Popup_RegisterAtten_onload">
     <Layouts>
       <Layout height="600" mobileorientation="landscape" width="1100">
-        <Static id="sta_SearchTitle" taborder="0" text="직원 검색" left="50" top="30" width="120" height="40" font="28px/normal &quot;Gulim&quot;"/>
+        <Static id="sta_SearchTitle" taborder="0" text="직원 검색" left="30" top="30" width="170" height="40" cssclass="stc_popup"/>
         <Grid id="grid_SearchEmp" taborder="1" left="50" top="90" width="810" height="260" binddataset="ds_EmpList" oncellposchanged="grid_SearchEmp_oncellposchanged">
           <Formats>
             <Format id="default">
@@ -38,7 +38,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="sta_RegisterTitle" taborder="2" text="근태 입력" left="50" top="370" width="120" height="40" font="28px/normal &quot;Gulim&quot;"/>
+        <Static id="sta_RegisterTitle" taborder="2" text="근태 입력" left="30" top="370" width="170" height="40" cssclass="stc_popup"/>
         <Button id="btn_Search" taborder="3" text="검색" left="720" top="40" width="70" height="30" onclick="btn_Search_onclick"/>
         <Button id="btn_SearchReset" taborder="4" text="초기화" left="800" top="40" width="60" height="30" onclick="btn_SearchReset_onclick"/>
         <Combo id="cmb_SearchType" taborder="5" text="전체" left="410" top="40" width="100" height="30" value="ALL" index="0" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" onitemchanged="cmb_SearchType_onitemchanged"/>
