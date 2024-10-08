@@ -42,26 +42,34 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
+            obj = new GroupBox("GroupBox_Search","560","81","300","60",null,null,null,null,null,null,this);
+            obj.set_taborder("8");
+            obj.set_text("조회");
+            obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_visible("true");
+            obj.set_opacity("1");
+            obj.set_tooltiptype("default");
+            this.addChild(obj.name, obj);
+
             obj = new Static("Static00","31","20","154","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("급여 등록");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_Assign","31","111","70","30",null,null,null,null,null,null,this);
+            obj = new Static("stc_Assign","605","100","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("직책");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_Assign","65","111","105","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_Assign","649","100","130","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_innerdataset("ds_AssignType");
             obj.set_codecolumn("assign_code");
             obj.set_datacolumn("assign_name");
-            obj.set_font("12pt/normal gulim");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","185","111","43","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","790","100","43","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
             this.addChild(obj.name, obj);

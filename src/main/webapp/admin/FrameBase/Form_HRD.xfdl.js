@@ -49,30 +49,39 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
+            obj = new GroupBox("GroupBox_Search","290","83","490","60",null,null,null,null,null,null,this);
+            obj.set_taborder("6");
+            obj.set_text("조회");
+            obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_visible("true");
+            obj.set_opacity("1");
+            obj.set_tooltiptype("default");
+            this.addChild(obj.name, obj);
+
             obj = new Static("Static00","36","23","174","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("인사관리");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_SearchWord","166","104","504","44",null,null,null,null,null,null,this);
+            obj = new Edit("edt_SearchWord","474","104","208","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_HrdListSearch","686","104","100","44",null,null,null,null,null,null,this);
+            obj = new Button("btn_HrdListSearch","691","104","78","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("조회");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_HrdList","36","160","750","460",null,null,null,null,null,null,this);
+            obj = new Grid("grd_HrdList","36","160","742","400",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_binddataset("ds_Hrdlist");
             obj.set_autoenter("none");
             obj.set_autoupdatetype("none");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"75\"/><Column size=\"92\"/><Column size=\"130\"/><Column size=\"91\"/><Column size=\"130\"/><Column size=\"115\"/><Column size=\"115\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"normal\"/><Cell col=\"3\" text=\"직책\" calendardateformat=\"yyyy-MM-dd\"/><Cell col=\"4\" text=\"부서장\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/></Band><Band id=\"body\"><Cell text=\"bind:emp_code\"/><Cell col=\"1\" text=\"bind:name\"/><Cell col=\"2\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"combotext\" edittype=\"combo\" calendardisplayinvalidtype=\"none\" calendardisplaynulltype=\"none\" calendarpopuptype=\"none\" text=\"bind:dep_code\" combodataset=\"ds_Department\" combocodecol=\"dep_code\" combodatacol=\"dep_name\"/><Cell col=\"3\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"combotext\" text=\"bind:assign_code\" edittype=\"combo\" combodataset=\"ds_Assignment\" combocodecol=\"assign_code\" combodatacol=\"assign_name\"/><Cell col=\"4\" text=\"bind:mng_name\"/><Cell col=\"5\" text=\"bind:join_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"date\" calendarshowmonthspin=\"true\" calendarshowyearspin=\"true\" calendardisplaynulltype=\"none\" calendarautoselect=\"true\"/><Cell col=\"6\" text=\"bind:resign_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"date\" calendarshowmonthspin=\"true\" calendarshowyearspin=\"true\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"75\"/><Column size=\"122\"/><Column size=\"106\"/><Column size=\"77\"/><Column size=\"130\"/><Column size=\"115\"/><Column size=\"115\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"normal\"/><Cell col=\"3\" text=\"직책\" calendardateformat=\"yyyy-MM-dd\"/><Cell col=\"4\" text=\"부서장\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/></Band><Band id=\"body\"><Cell text=\"bind:emp_code\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"combotext\" edittype=\"combo\" calendardisplayinvalidtype=\"none\" calendardisplaynulltype=\"none\" calendarpopuptype=\"none\" text=\"bind:dep_code\" combodataset=\"ds_Department\" combocodecol=\"dep_code\" combodatacol=\"dep_name\" textAlign=\"center\"/><Cell col=\"3\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"combotext\" text=\"bind:assign_code\" edittype=\"combo\" combodataset=\"ds_Assignment\" combocodecol=\"assign_code\" combodatacol=\"assign_name\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:mng_name\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:join_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"date\" calendarshowmonthspin=\"true\" calendarshowyearspin=\"true\" calendardisplaynulltype=\"none\" calendarautoselect=\"true\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:resign_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"date\" calendarshowmonthspin=\"true\" calendarshowyearspin=\"true\" calendardisplaynulltype=\"none\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearchType","36","104","120","41",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_SearchType","354","104","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_codecolumn("Value");
             obj.set_datacolumn("Name");
@@ -82,7 +91,7 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Savehrd","669","629","117","41",null,null,null,null,null,null,this);
+            obj = new Button("btn_Savehrd","669","579","117","41",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("저장");
             this.addChild(obj.name, obj);
@@ -243,6 +252,11 @@
             }
             return true;
         };
+        this.cmb_SearchType_onitemchanged = function(obj,e)
+        {
+
+        };
+
         });
         
         // Regist UI Components Event
@@ -251,6 +265,7 @@
             this.addEventHandler("onload",this.Form_HRD_onload,this);
             this.edt_SearchWord.addEventHandler("onchanged",this.edt_SearchWord_onchanged,this);
             this.btn_HrdListSearch.addEventHandler("onclick",this.btn_HrdListSearch_onclick,this);
+            this.cmb_SearchType.addEventHandler("onitemchanged",this.cmb_SearchType_onitemchanged,this);
             this.btn_Savehrd.addEventHandler("onclick",this.btn_Savehrd_onclick,this);
         };
         this.loadIncludeScript("Form_HRD.xfdl");
