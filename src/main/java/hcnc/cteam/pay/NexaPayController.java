@@ -5,7 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +21,8 @@ public class NexaPayController {
 
 	@Resource(name = "nexaPayService")
 	private NexaPayService nexaPayService;
+	
+	private Logger logger = LoggerFactory.getLogger(PayController.class);
 
 	@RequestMapping("/selectAssign.do")
 	public NexacroResult selectAssign(@ParamDataSet(name = "ds_Assign", required = false) Map<String, Object> param) {
@@ -77,10 +83,14 @@ public class NexaPayController {
 
 				int longcare_insurance = (int) (health_insurance * 0.1);
 				emp.put("longcare_insurance", longcare_insurance);
+				
+				Integer etc = hourly * 8 * nexaPayService.selectEtc(param);
+				emp.put("etc", etc);
 
 				// 실지급액 = 지급액 - 공제액
 				int actual_pay = pay_amount - (income_tax + resident_tax + national_tax + emp_insurance
-						+ health_insurance + longcare_insurance);
+						+ health_insurance + longcare_insurance) + etc;
+						
 				// 1의 자리에서 올림
 				actual_pay = (int) Math.ceil(actual_pay / 10.0) * 10;
 				emp.put("actual_pay", actual_pay);
@@ -110,7 +120,6 @@ public class NexaPayController {
 					return result;
 				}
 			}
-			////////////////////////////추후 세션 받아와서 reg_name 넣기//////////////////////////////
 			
 		} catch (Exception ee) {
 			System.out.println(ee);
@@ -119,5 +128,75 @@ public class NexaPayController {
 		}
 		return result;
 	}
+	
+	@RequestMapping(value = "/selectPayList.do")
+	   public NexacroResult nexaSearchPay(@ParamDataSet(name = "ds_Search", required = false) Map<String, Object> param) {
+	       NexacroResult result = new NexacroResult();
+	       try {
+	           // 검색 조건에 맞는 데이터를 가져옵니다.
+	           List<PayDTO> ds_Pay = nexaPayService.nexaGetPayListByCondition(param);
+
+	           result.addDataSet("ds_Pay", ds_Pay);
+	       } catch (Exception ee) {
+	           logger.error("급여 목록 조회 중 오류 발생: ", ee);
+	           result.setErrorCode(-1);
+	           result.setErrorMsg("급여 조회 오류 발생");
+	       }
+	       return result;
+	   }
+
+	   @Transactional(rollbackOn = Exception.class)
+	   @RequestMapping(value = "/updatePayEtc.do")
+	   public NexacroResult updatePayEtc(@ParamDataSet(name = "ds_Pay") List<PayDTO> ds_Pay) {
+	       NexacroResult result = new NexacroResult();
+	       try {
+
+	           for (PayDTO payDTO : ds_Pay) {
+	               // 로그 추가
+	               logger.info("수정 요청 - empCode: {}, payYear: {}, payMonth: {}, etc: {}");
+
+	               // 필수 값 확인 (int 타입은 0 체크)
+	               if (payDTO.getPayYear() == 0 || payDTO.getPayMonth() == 0) {
+	                   result.setErrorCode(-1);
+	                   String missingField = (payDTO.getPayYear() == 0) ? "급여년도" : 
+	                                         (payDTO.getPayMonth() == 0) ? "급여월" : "수정액";
+	                   result.setErrorMsg(missingField + "이(가) 누락되었습니다.");
+	                   return result;
+	               }
+
+
+	               // 수정 처리 - 지급액 계산은 쿼리문에서 처리
+	               nexaPayService.updatePayEtc(payDTO);
+	           }
+	           result.setErrorCode(0);
+	           result.setErrorMsg("수정이 성공적으로 완료되었습니다.");
+	       } catch (Exception e) {
+	           logger.error("수정 중 오류 발생: ", e);
+	           result.setErrorCode(-1);
+	           result.setErrorMsg("데이터베이스 오류 또는 잘못된 데이터입니다.");
+	           
+	       }
+	       return result;
+	   }
+	    
+	    @RequestMapping(value = "/deletePayData.do")
+	    public NexacroResult deletePayData(@ParamDataSet(name = "ds_Pay") List<PayDTO> ds_Pay) {
+	        NexacroResult result = new NexacroResult();
+	        try {
+	            for (PayDTO payDTO : ds_Pay) {
+	                if ("1".equals(payDTO.getChk())) {  // 체크된 데이터만 삭제
+	                    nexaPayService.deletePay(payDTO);  // PayService에서 삭제 처리
+	                }
+	            }
+	            result.setErrorCode(0);
+	            result.setErrorMsg("선택된 데이터가 삭제되었습니다.");
+	        } catch (Exception e) {
+	            result.setErrorCode(-1);
+	            result.setErrorMsg("삭제 중 오류 발생: " + e.getMessage());
+	        }
+	        return result;
+	    }
+	    
+	
 
 }

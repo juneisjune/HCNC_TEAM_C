@@ -47,6 +47,11 @@ public class NexaPayServiceImpl extends EgovAbstractServiceImpl implements NexaP
 	}
 	
 	@Override
+	public Integer selectEtc(Map<String, Object> param) {
+		return nexaPayMapper.selectEtc(param);
+	}
+	
+	@Override
 	public int duplidacatedPay(Map<String, Object> param) {
 		return nexaPayMapper.duplidacatedPay(param);
 	}
@@ -55,5 +60,21 @@ public class NexaPayServiceImpl extends EgovAbstractServiceImpl implements NexaP
 	public void insertPay(Map< String, Object> param) {
 		nexaPayMapper.insertPay(param);
 	}
+	
+	@Override
+    public List<PayDTO> nexaGetPayListByCondition(Map<String, Object> param) {
+        return nexaPayMapper.nexaGetPayListByCondition(param);
+    }
+	    
+    @Override
+    public void updatePayEtc(PayDTO payDTO) {
+    	nexaPayMapper.updatePayEtc(payDTO);  // Mapper를 통해 DB에 수정된 값 저장
+
+    }
+	    
+    @Override
+    public void deletePay(PayDTO payDTO) {
+    	nexaPayMapper.deletePay(payDTO);
+   }
 
 }
