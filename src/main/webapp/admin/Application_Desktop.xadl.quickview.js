@@ -68,7 +68,6 @@
         
         this.loadPreloadList();
         this.loadCss("xcssrc::temp_main.xcss");
-        this.loadCss("xcssrc::GridMadeBySumin.xcss");
     };
 }
 )();
