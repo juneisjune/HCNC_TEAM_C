@@ -84,12 +84,13 @@ public class NexaPayController {
 				int longcare_insurance = (int) (health_insurance * 0.1);
 				emp.put("longcare_insurance", longcare_insurance);
 				
-				Integer etc = hourly * 8 * nexaPayService.selectEtc(param);
-				emp.put("etc", etc);
+				//Integer etc = hourly * 8 * nexaPayService.selectEtc(param);
+				//emp.put("etc", etc);
 
 				// 실지급액 = 지급액 - 공제액
 				int actual_pay = pay_amount - (income_tax + resident_tax + national_tax + emp_insurance
-						+ health_insurance + longcare_insurance) + etc;
+						+ health_insurance + longcare_insurance);
+				//+ etc;
 						
 				// 1의 자리에서 올림
 				actual_pay = (int) Math.ceil(actual_pay / 10.0) * 10;
