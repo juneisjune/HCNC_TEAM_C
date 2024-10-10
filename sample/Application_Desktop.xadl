@@ -9,7 +9,12 @@
             <HFrameSet id="HFrameSet00" separatesize="200,*">
               <Frames>
                 <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Left.xfdl" showcascadetitletext="true"/>
+<<<<<<< HEAD
                 <ChildFrame id="WorkFrame" showtitlebar="false" formurl="FrameBase::Form_UpdatePay.xfdl"/>
+=======
+
+                <ChildFrame id="WorkFrame" showtitlebar="false"/>
+>>>>>>> 96d6bd9659a5b30d875f2b254605517b173c07f5
               </Frames>
             </HFrameSet>
             <ChildFrame id="LoginFrame" formurl="FrameBase::Form_Login.xfdl" showcascadetitletext="true" showtitlebar="false"/>
@@ -18,5 +23,6 @@
       </MainFrame>
     </Layout>
     <Style url="xcssrc::temp_main.xcss"/>
+    <Style url="xcssrc::Title.xcss"/>
   </Application>
 </ADL>
