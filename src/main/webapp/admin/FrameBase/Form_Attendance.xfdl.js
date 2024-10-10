@@ -73,6 +73,7 @@
             obj.set_taborder("5");
             obj.set_text("  검색");
             obj.set_icon("url(\'imagerc::img_WF_search01.png\')");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static01","779","110","20","30",null,null,null,null,null,null,this);
@@ -95,6 +96,7 @@
             obj = new Button("btn_SearchReset","1049","110","60","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("초기화");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_EditAtten","950","630","80","40",null,null,null,null,null,null,this);
@@ -137,7 +139,7 @@
         this.registerScript("Form_Attendance.xfdl", function() {
 
         this.btn_Search_onclick = function(obj,e)
-        {
+        {	this.grid_Atten.setFocus();
         	this.fnSearch();
         };
 

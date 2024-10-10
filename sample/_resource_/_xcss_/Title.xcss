@@ -62,4 +62,80 @@
 	opacity : ;
 	word-spacing : ;
 }
+.Button.btn_check
+{
+	-nexa-text-align: center;
+	font : normal bold  12pt/normal "Arial";
+	background :  #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+	-nexa-icon : url('theme://images/chk_WF_Box_F.png');
+	-nexa-text-padding : 0px 0px 0px 5px;
+}
+.Button.btn_delete
+{
+-nexa-text-align: center;
+	font : normal bold  12pt/normal "Arial";
+	background :  #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+	-nexa-icon : url('imagerc::btn_mdi_close2.png');
+	-nexa-text-padding : 0px 0px 0px 5px;
+}
+.Button.btn_download
+{
+	-nexa-text-align: center;
+	font : normal bold  12pt/normal "Arial";
+	background :  #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+	-nexa-text-padding : 0px 0px 0px 5px;
+	-nexa-icon : url('imagerc::img_WF_save01.png');
+}
+.Button.btn_edit
+{
+	-nexa-text-align: center;
+	font : normal 700 12pt /normal "Arial";
+	background :  #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+	-nexa-text-padding : 0px 0px 0px 5px;
+	-nexa-icon : url('imagerc::edit.png');
+}
+.Button.btn_normal
+{
+	-nexa-text-align: center;
+	font : normal 700 12pt /normal "Arial";
+	background :  #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+}
+.Button.btn_regist
+{
+	-nexa-text-align: center;
+	font : normal bold  12pt/normal "Arial";
+	background :  #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+	-nexa-text-padding : 0px 0px 0px 5px;
+	-nexa-icon : url('imagerc::plus1.png');
+}
+.Button.btn_search
+{
+		-nexa-icon : url('imagerc::img_WF_search01.png');
+	-nexa-icon-position : left;
+	-nexa-text-align: center;
+	background :  #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+	-nexa-text-padding : 0px 0px 0px 5px;
+	font : normal bold  10pt/normal "Arial";
+}
 ]]></XCSS>
