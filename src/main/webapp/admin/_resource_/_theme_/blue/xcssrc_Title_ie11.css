@@ -288,3 +288,94 @@ input::-ms-clear,input::-ms-reveal
 	text-align : center;
 	background-position-x : center;
 }
+.Button.btn_check
+{
+	font : normal bold  12pt/normal "Arial";
+	background : #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+}
+.Button.btn_check .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.Button.btn_delete
+{
+	font : normal bold  12pt/normal "Arial";
+	background : #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+}
+.Button.btn_delete .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.Button.btn_download
+{
+	font : normal bold  12pt/normal "Arial";
+	background : #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+}
+.Button.btn_download .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.Button.btn_edit
+{
+	font : normal 700 12pt /normal "Arial";
+	background : #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+}
+.Button.btn_edit .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.Button.btn_normal
+{
+	font : normal 700 12pt /normal "Arial";
+	background : #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+}
+.Button.btn_normal .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.Button.btn_regist
+{
+	font : normal bold  12pt/normal "Arial";
+	background : #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+}
+.Button.btn_regist .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.Button.btn_search
+{
+	background : #A1C4E8;
+	color : #121212;
+	cursor : pointer;
+	border-radius : 8px;
+	font : normal bold  10pt/normal "Arial";
+}
+.Button.btn_search .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
