@@ -37,7 +37,7 @@
     </Objects>
     <Layouts>
       <Layout width="790" height="420">
-        <Static id="Title" text="직원 정보 수정" left="180" top="25" width="420" height="50" background="whitesmoke" cssclass="stc_popup"/>
+        <Static id="Static00_00" text="직원 정보 수정" left="180" top="25" width="420" height="50" background="whitesmoke" cssclass="stc_popup"/>
         <!-- 두 번째 행: ID, 비밀번호 -->
         <Static id="lblPassword" text="새로운 비밀번호" left="380" top="198" width="90" height="30" textAlign="left"/>
         <Edit id="edtPassword" left="490" top="200" width="250" height="30" binddataset="ds_employee" text="bind:password" password="true"/>

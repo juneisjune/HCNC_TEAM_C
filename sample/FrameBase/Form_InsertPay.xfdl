@@ -3,10 +3,11 @@
   <Form id="Form_InsertPay" width="1280" height="720" titletext="급여 등록" onload="Form_InsertPay_onload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
+        <GroupBox id="GroupBox_Search" taborder="8" text="조회" left="560" top="81" width="300" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
         <Static id="Static00" taborder="0" text="급여 등록" left="31" top="20" width="154" height="50" cssclass="stc_title" onclick="title_onclick"/>
-        <Static id="stc_Assign" taborder="1" text="직책" left="31" top="111" width="70" height="30"/>
-        <Combo id="cmb_Assign" taborder="2" left="65" top="111" width="105" height="30" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged" font="12pt/normal gulim"/>
-        <Button id="btn_Search" taborder="3" text="조회" left="185" top="111" width="43" height="30" onclick="btn_Search_onclick"/>
+        <Static id="stc_Assign" taborder="1" text="직책" left="605" top="100" width="70" height="30"/>
+        <Combo id="cmb_Assign" taborder="2" left="649" top="100" width="130" height="30" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged"/>
+        <Button id="btn_Search" taborder="3" text="조회" left="790" top="100" width="43" height="30" onclick="btn_Search_onclick"/>
         <Grid id="grd_Emp" taborder="4" left="30" top="155" width="830" height="330" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick">
           <Formats>
             <Format id="default">

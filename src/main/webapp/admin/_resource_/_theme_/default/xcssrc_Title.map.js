@@ -31,7 +31,7 @@
             								"enabled" :
             								{
             									"color" : nexacro.ColorObject("#000000"),
-            									"font" : nexacro.FontObject("bold 12px/1.2 \"Arial\"")
+            									"font" : nexacro.FontObject("bold 22px/1.2 \"Arial\"")
             								}
             							}
             						}

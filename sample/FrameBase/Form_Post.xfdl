@@ -3,15 +3,15 @@
   <Form id="btn_Post" width="1280" height="720" titletext="New Form" onload="Form_Post_onload">
     <Layouts>
       <Layout height="720" width="1280">
-        <Grid id="grd_notice" binddataset="ds_Post" left="30" top="95" width="1020" height="410" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick">
+        <Grid id="grd_notice" binddataset="ds_Post" left="30" top="120" width="1096" height="400" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="48"/>
                 <Column size="85"/>
-                <Column size="144"/>
-                <Column size="258"/>
-                <Column size="190"/>
+                <Column size="244"/>
+                <Column size="297"/>
+                <Column size="129"/>
                 <Column size="85"/>
                 <Column size="64"/>
                 <Column size="94"/>
@@ -34,25 +34,25 @@
               </Band>
               <Band id="body">
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:checked" checkboxtruevalue="1" checkboxfalsevalue="0"/>
-                <Cell col="1" text="bind:post_code"/>
-                <Cell col="2" text="bind:title"/>
+                <Cell col="1" text="bind:post_code" textAlign="center"/>
+                <Cell col="2" text="bind:title" textAlign="center"/>
                 <Cell col="3" text="bind:content"/>
                 <Cell col="4" text="bind:reg_date" displaytype="date" mask="####-##-##"/>
-                <Cell col="5" text="bind:emp_name"/>
-                <Cell col="6" text="bind:view_count"/>
+                <Cell col="5" text="bind:emp_name" textAlign="center"/>
+                <Cell col="6" text="bind:view_count" textAlign="center"/>
                 <Cell col="7" displaytype="buttoncontrol" text="수정 하기"/>
                 <Cell col="8" displaytype="buttoncontrol" text="삭제" edittype="button"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Search" taborder="1" text="조회" left="862" top="52" width="50" height="28" onclick="Button00_onclick"/>
-        <Static id="st_selectedCount" text="0건 선택됨" left="30" top="520" width="150" height="30" taborder="2" onclick="st_selectedCount_onclick" color="#6f0520"/>
-        <Button id="btn_delete" text="삭제" left="950" top="525" width="100" height="30" onclick="btn_delete_onclick" taborder="3"/>
-        <Button id="btn_newPost" taborder="4" text="새 공지사항 등록" left="940" top="52" width="110" height="28" onclick="btn_newPost_onclick"/>
-        <Button id="Button00" taborder="5" text="상세 보기" left="833" top="525" width="92" height="30" onclick="newEdit_onclick"/>
+        <Button id="btn_Search" taborder="1" text="조회" left="942" top="82" width="50" height="28" onclick="Button00_onclick"/>
+        <Static id="st_selectedCount" text="0건 선택됨" left="40" top="535" width="150" height="30" taborder="2" onclick="st_selectedCount_onclick" color="#6f0520"/>
+        <Button id="btn_delete" text="삭제" left="1030" top="545" width="100" height="30" onclick="btn_delete_onclick" taborder="3"/>
+        <Button id="btn_newPost" taborder="4" text="새 공지사항 등록" left="1016" top="82" width="110" height="28" onclick="btn_newPost_onclick"/>
+        <Button id="Button00" taborder="5" text="상세 보기" left="913" top="545" width="92" height="30" onclick="newEdit_onclick"/>
         <Static id="Static00_00" taborder="6" text="공지사항 관리" left="30" top="23" width="222" height="50" onclick="Static00_00_onclick" cssclass="stc_title"/>
-        <Menu id="Menu00" taborder="7" left="252" top="168" width="76" height="152"/>
+        <Menu id="Menu00" taborder="7" left="252" top="198" width="76" height="152" onmenuclick="Menu00_onmenuclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.Form_Post_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
