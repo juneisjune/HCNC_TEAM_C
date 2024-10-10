@@ -144,23 +144,18 @@
 
             obj = new Button("btnRegister","320","330","80","30",null,null,null,null,null,null,this);
             obj.set_text("등록");
-            obj.set_background("green");
-            obj.set_color("white");
-            obj.set_borderRadius("5px");
-            obj.set_cursor("pointer");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
             obj = new Button("btnClose","430","330","80","30",null,null,null,null,null,null,this);
             obj.set_text("닫기");
-            obj.set_background("gray");
-            obj.set_color("white");
-            obj.set_borderRadius("5px");
-            obj.set_cursor("pointer");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button00","370","130","60","25",null,null,null,null,null,null,this);
             obj.set_taborder("23");
             obj.set_text("중복 확인");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

@@ -40,11 +40,11 @@
           </Formats>
         </Grid>
         <Static id="sta_RegisterTitle" taborder="2" text="근태 입력" left="10" top="420" width="170" height="40" cssclass="stc_popup"/>
-        <Button id="btn_Search" taborder="3" text="검색" left="665" top="70" width="70" height="30" onclick="btn_Search_onclick"/>
-        <Button id="btn_SearchReset" taborder="4" text="초기화" left="755" top="70" width="70" height="30" onclick="btn_SearchReset_onclick"/>
+        <Button id="btn_Search" taborder="3" text="검색" left="665" top="70" width="70" height="30" onclick="btn_Search_onclick" cssclass="btn_search"/>
+        <Button id="btn_SearchReset" taborder="4" text="초기화" left="755" top="70" width="70" height="30" onclick="btn_SearchReset_onclick" cssclass="btn_normal"/>
         <Combo id="cmb_SearchType" taborder="5" text="전체" left="355" top="70" width="100" height="30" value="ALL" index="0" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" onitemchanged="cmb_SearchType_onitemchanged"/>
         <Edit id="Edit00" taborder="6" left="465" top="70" width="180" height="30"/>
-        <Button id="btn_close" taborder="7" text="닫기" left="970" top="30" width="100" height="50" onclick="btn_close_onclick"/>
+        <Button id="btn_close" taborder="7" text="닫기" left="970" top="30" width="100" height="50" onclick="btn_close_onclick" cssclass="btn_delete"/>
         <Grid id="grid_Register" taborder="8" left="50" top="470" width="1000" height="87" binddataset="ds_AttenList">
           <Formats>
             <Format id="default">
@@ -85,7 +85,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Register" taborder="9" text="등록하기" left="950" top="420" width="100" height="40" onclick="btn_Register_onclick"/>
+        <Button id="btn_Register" taborder="9" text="등록하기" left="950" top="420" width="100" height="40" onclick="btn_Register_onclick" cssclass="btn_regist"/>
       </Layout>
     </Layouts>
     <Objects>

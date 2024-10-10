@@ -49,6 +49,7 @@
             obj.set_text("승인");
             obj.set_font("16px/normal \"Gulim\"");
             obj.set_textAlign("center");
+            obj.set_cssclass("btn_check");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_return","870","634","98","33",null,null,null,null,null,null,this);
@@ -56,6 +57,7 @@
             obj.set_text("반려");
             obj.set_font("16px/normal \"Gulim\"");
             obj.set_textAlign("center");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new GroupBox("GroupBox_Search","310","90","660","60",null,null,null,null,null,null,this);
@@ -90,6 +92,7 @@
             obj = new Button("btn_offListSearch","870","109","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("조회");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

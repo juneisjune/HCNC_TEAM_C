@@ -41,6 +41,7 @@
             obj = new Button("btn_Search","942","82","50","28",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("조회");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
             obj = new Static("st_selectedCount","40","535","150","30",null,null,null,null,null,null,this);
@@ -52,16 +53,19 @@
             obj = new Button("btn_delete","1030","545","100","30",null,null,null,null,null,null,this);
             obj.set_text("삭제");
             obj.set_taborder("3");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_newPost","1016","82","110","28",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("새 공지사항 등록");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button00","913","545","92","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("상세 보기");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static00_00","30","23","222","50",null,null,null,null,null,null,this);

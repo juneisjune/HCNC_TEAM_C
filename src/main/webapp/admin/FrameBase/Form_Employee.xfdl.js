@@ -52,16 +52,19 @@
             obj = new Button("btn_Register","900","580","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("등록");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Edit","1005","580","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("수정");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Delete","1107","580","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("삭제");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new GroupBox("GroupBox_Search","720","85","470","60",null,null,null,null,null,null,this);
@@ -91,6 +94,7 @@
             obj = new Button("btn_Search","1095","105","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_text("조회");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

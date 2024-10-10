@@ -6,7 +6,7 @@
         <GroupBox id="GroupBox_Search" taborder="6" text="조회" left="290" top="83" width="490" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
         <Static id="Static00" taborder="0" text="인사관리" left="36" top="23" width="174" height="50" cssclass="stc_title"/>
         <Edit id="edt_SearchWord" taborder="1" left="474" top="104" width="208" height="30" onchanged="edt_SearchWord_onchanged"/>
-        <Button id="btn_HrdListSearch" taborder="2" text="조회" left="691" top="104" width="78" height="30" onclick="btn_HrdListSearch_onclick"/>
+        <Button id="btn_HrdListSearch" taborder="2" text="조회" left="691" top="104" width="78" height="30" onclick="btn_HrdListSearch_onclick" cssclass="btn_search"/>
         <Grid id="grd_HrdList" taborder="3" left="36" top="160" width="742" height="400" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none">
           <Formats>
             <Format id="default">
@@ -45,7 +45,7 @@
           </Formats>
         </Grid>
         <Combo id="cmb_SearchType" taborder="4" left="354" top="104" width="110" height="30" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0" onitemchanged="cmb_SearchType_onitemchanged"/>
-        <Button id="btn_Savehrd" taborder="5" text="저장" left="660" top="578" width="117" height="41" onclick="btn_Savehrd_onclick"/>
+        <Button id="btn_Savehrd" taborder="5" text="저장" left="660" top="578" width="117" height="41" onclick="btn_Savehrd_onclick" cssclass="btn_check"/>
       </Layout>
     </Layouts>
     <Objects>

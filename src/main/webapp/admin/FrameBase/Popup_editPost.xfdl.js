@@ -61,6 +61,7 @@
             obj = new Button("open","599","260","120","80",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("폴더 열기");
+            obj.set_cssclass("btn_download");
             this.addChild(obj.name, obj);
 
             obj = new Grid("attach_grid","101","260","480","90",null,null,null,null,null,null,this);
@@ -72,6 +73,7 @@
             obj = new Button("Button01","250","380","120","50",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("수정하기");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
             obj = new Edit("Edit_title","100","80","620","39",null,null,null,null,null,null,this);
@@ -81,6 +83,7 @@
             obj = new Button("btn_close","410","380","110","50",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("닫기");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new TextArea("TextArea01","100","130","619","112",null,null,null,null,null,null,this);

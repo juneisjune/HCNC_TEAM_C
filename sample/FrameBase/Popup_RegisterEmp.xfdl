@@ -69,9 +69,9 @@
         <Static id="lblPassword" text="비밀번호" left="460" top="130" width="80" height="25" textAlign="left"/>
         <Edit id="edtPassword" left="520" top="130" width="250" height="25" binddataset="ds_employee" text="bind:Password"/>
         <!-- 버튼 -->
-        <Button id="btnRegister" text="등록" left="320" top="330" width="80" height="30" background="green" color="white" borderRadius="5px" cursor="pointer" onclick="btnRegister_onclick"/>
-        <Button id="btnClose" text="닫기" left="430" top="330" width="80" height="30" background="gray" color="white" borderRadius="5px" cursor="pointer" onclick="btnClose_onclick"/>
-        <Button id="Button00" taborder="23" text="중복 확인" left="370" top="130" width="60" height="25" onclick="Button00_onclick"/>
+        <Button id="btnRegister" text="등록" left="320" top="330" width="80" height="30" onclick="btnRegister_onclick" cssclass="btn_regist"/>
+        <Button id="btnClose" text="닫기" left="430" top="330" width="80" height="30" onclick="btnClose_onclick" cssclass="btn_delete"/>
+        <Button id="Button00" taborder="23" text="중복 확인" left="370" top="130" width="60" height="25" onclick="Button00_onclick" cssclass="btn_normal"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
