@@ -53,14 +53,14 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_confirm" taborder="2" text="승인" left="762" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_confirm_onclick"/>
-        <Button id="btn_return" taborder="3" text="반려" left="870" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_return_onclick"/>
+        <Button id="btn_confirm" taborder="2" text="승인" left="762" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_confirm_onclick" cssclass="btn_check"/>
+        <Button id="btn_return" taborder="3" text="반려" left="870" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_return_onclick" cssclass="btn_delete"/>
         <GroupBox id="GroupBox_Search" taborder="4" text="조회" left="310" top="90" width="660" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
         <Calendar id="cal_Confirm" taborder="5" left="662" top="109" width="190" height="30"/>
         <Static id="Static01_00" taborder="6" text="시작일" left="582" top="109" width="84" height="30" cssclass="stc_stc"/>
         <Edit id="edt_Confirm" taborder="7" left="392" top="109" width="190" height="30"/>
         <Static id="Static01" taborder="8" text="이 름" left="318" top="109" width="84" height="30" cssclass="stc_stc"/>
-        <Button id="btn_offListSearch" taborder="9" text="조회" left="870" top="109" width="80" height="30" onclick="btn_offListSearch_onclick"/>
+        <Button id="btn_offListSearch" taborder="9" text="조회" left="870" top="109" width="80" height="30" onclick="btn_offListSearch_onclick" cssclass="btn_search"/>
       </Layout>
     </Layouts>
     <Objects>

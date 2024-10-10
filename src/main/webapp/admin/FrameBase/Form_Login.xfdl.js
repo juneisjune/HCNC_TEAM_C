@@ -58,6 +58,7 @@
             obj = new Button("btn_Login","465","360","150","60",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("인증번호 발송");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edt_AuthCheck","840","290","200","60",null,null,null,null,null,null,this);
@@ -67,6 +68,7 @@
             obj = new Button("btn_AuthCheck","890","360","150","60",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("인증하기");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_AuthCheck","720","290","115","60",null,null,null,null,null,null,this);

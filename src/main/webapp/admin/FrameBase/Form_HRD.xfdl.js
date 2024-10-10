@@ -71,6 +71,7 @@
             obj = new Button("btn_HrdListSearch","691","104","78","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("조회");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grd_HrdList","36","160","742","400",null,null,null,null,null,null,this);
@@ -94,6 +95,7 @@
             obj = new Button("btn_Savehrd","660","578","117","41",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("저장");
+            obj.set_cssclass("btn_check");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

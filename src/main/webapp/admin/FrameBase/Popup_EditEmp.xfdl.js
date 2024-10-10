@@ -122,18 +122,13 @@
 
             obj = new Button("btnUpdate","310","360","80","30",null,null,null,null,null,null,this);
             obj.set_text("수정");
-            obj.set_background("green");
-            obj.set_color("white");
-            obj.set_borderRadius("5px");
-            obj.set_cursor("pointer");
+            obj.set_cursor("none");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
             obj = new Button("btnClose","410","360","80","30",null,null,null,null,null,null,this);
             obj.set_text("닫기");
-            obj.set_background("gray");
-            obj.set_color("white");
-            obj.set_borderRadius("5px");
-            obj.set_cursor("pointer");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

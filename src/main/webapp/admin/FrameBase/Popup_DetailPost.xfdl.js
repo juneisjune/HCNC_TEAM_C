@@ -93,10 +93,12 @@
 
             obj = new Button("Button_Download","730","620","100","30",null,null,null,null,null,null,this);
             obj.set_text("다운로드");
+            obj.set_cssclass("btn_download");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button_Close","840","620","100","30",null,null,null,null,null,null,this);
             obj.set_text("닫기");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new MaskEdit("MaskEdit00","430","128","213","34",null,null,null,null,null,null,this);

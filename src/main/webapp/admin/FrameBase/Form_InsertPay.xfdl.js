@@ -73,6 +73,7 @@
             obj = new Button("btn_Search","850","100","43","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grd_Emp","30","155","890","425",null,null,null,null,null,null,this);
@@ -94,6 +95,7 @@
             obj = new Button("btn_Insert","830","600","90","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("등록");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

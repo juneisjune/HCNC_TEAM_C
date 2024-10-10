@@ -4,7 +4,7 @@
     <Layouts>
       <Layout height="530" width="770" stepcount="0">
         <Static id="Static00" taborder="2" text="Drop Files Here" left="108" top="322" width="482" height="80" visible="true" background="aliceblue" color="dodgerblue" font="normal 30pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>
-        <Button id="open" taborder="0" text="폴더 열기" left="598" top="320" width="88" height="87" onclick="btn_open_onclick"/>
+        <Button id="open" taborder="0" text="폴더 열기" left="598" top="320" width="88" height="87" onclick="btn_open_onclick" cssclass="btn_download"/>
         <Grid id="Grid00" taborder="1" left="100" top="317" width="482" height="90" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop">
           <Formats>
             <Format id="default">
@@ -27,10 +27,10 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="Button01" taborder="3" text="공지사항 등록" left="236" top="420" width="130" height="70" onclick="Button01_onclick"/>
+        <Button id="Button01" taborder="3" text="공지사항 등록" left="236" top="420" width="130" height="70" onclick="Button01_onclick" cssclass="btn_regist"/>
         <Edit id="Edit_title" taborder="4" left="100" top="101" width="586" height="39" onchanged="Edit_title_onchanged"/>
         <TextArea id="TextArea01" taborder="5" left="100" top="160" width="586" height="144"/>
-        <Button id="btn_close" taborder="6" text="목록 조회" left="400" top="420" width="122" height="70" onclick="btn_close_onclick"/>
+        <Button id="btn_close" taborder="6" text="닫기" left="400" top="420" width="122" height="70" onclick="btn_close_onclick" cssclass="btn_delete"/>
         <Static id="Static00_00" taborder="7" text="공지사항 등록" left="30" top="23" width="220" height="50" onclick="Static00_00_onclick" cssclass="stc_title"/>
         <Static id="Static_Label_Attachments" text="첨부파일" left="30" top="320" width="60" height="30" textAlign="right" taborder="8" cssclass="stc_stc"/>
         <Static id="Static_Label_Content" text="내용" left="-10" top="170" width="100" height="30" textAlign="right" taborder="9" cssclass="stc_stc"/>
