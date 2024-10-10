@@ -152,10 +152,11 @@
             obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button00","370","130","60","25",null,null,null,null,null,null,this);
+            obj = new Button("Button00","360","130","70","25",null,null,null,null,null,null,this);
             obj.set_taborder("23");
             obj.set_text("중복 확인");
             obj.set_cssclass("btn_normal");
+            obj.set_font("10pt/normal \"Arial\"");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

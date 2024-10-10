@@ -70,7 +70,7 @@
             obj.set_datacolumn("assign_name");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","850","100","43","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","850","100","60","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");
