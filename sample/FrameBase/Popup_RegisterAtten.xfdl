@@ -3,6 +3,7 @@
   <Form id="Popup_RegisterAtten" width="1100" height="600" titletext="출/퇴근 정보 등록" onload="Popup_RegisterAtten_onload">
     <Layouts>
       <Layout height="600" mobileorientation="landscape" width="1100">
+        <GroupBox id="GroupBox_Search" taborder="10" text="검색" left="390" top="20" width="470" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
         <Static id="sta_SearchTitle" taborder="0" text="직원 검색" left="50" top="30" width="120" height="40" font="28px/normal &quot;Gulim&quot;"/>
         <Grid id="grid_SearchEmp" taborder="1" left="50" top="90" width="810" height="260" binddataset="ds_EmpList" oncellposchanged="grid_SearchEmp_oncellposchanged">
           <Formats>
@@ -38,12 +39,12 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="sta_RegisterTitle" taborder="2" text="근태 입력" left="50" top="370" width="120" height="40" font="28px/normal &quot;Gulim&quot;"/>
-        <Button id="btn_Search" taborder="3" text="검색" left="720" top="40" width="70" height="30" onclick="btn_Search_onclick"/>
-        <Button id="btn_SearchReset" taborder="4" text="초기화" left="800" top="40" width="60" height="30" onclick="btn_SearchReset_onclick"/>
-        <Combo id="cmb_SearchType" taborder="5" text="전체" left="410" top="40" width="100" height="30" value="ALL" index="0" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" onitemchanged="cmb_SearchType_onitemchanged"/>
-        <Edit id="Edit00" taborder="6" left="520" top="40" width="180" height="30"/>
-        <Button id="btn_close" taborder="7" text="닫기" left="950" top="30" width="100" height="50" onclick="btn_close_onclick"/>
+        <Static id="sta_RegisterTitle" taborder="2" text="근태 등록" left="50" top="370" width="120" height="40" font="28px/normal &quot;Gulim&quot;"/>
+        <Button id="btn_Search" taborder="3" text=" 검색" left="710" top="40" width="70" height="30" onclick="btn_Search_onclick" icon="url('imagerc::img_WF_search01.png')"/>
+        <Button id="btn_SearchReset" taborder="4" text="초기화" left="790" top="40" width="60" height="30" onclick="btn_SearchReset_onclick"/>
+        <Combo id="cmb_SearchType" taborder="5" text="전체" left="400" top="40" width="100" height="30" value="ALL" index="0" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" onitemchanged="cmb_SearchType_onitemchanged"/>
+        <Edit id="edt_SearchWord" taborder="6" left="510" top="40" width="180" height="30"/>
+        <Button id="btn_close" taborder="7" text="닫기" left="970" top="30" width="80" height="50" onclick="btn_close_onclick" icon="url('imagerc::KakaoTalk_20241002_183456404_01.png')"/>
         <Grid id="grid_Register" taborder="8" left="50" top="430" width="1000" height="130" binddataset="ds_AttenList">
           <Formats>
             <Format id="default">
@@ -157,7 +158,7 @@
           <Column id="attenType" type="STRING" size="256"/>
           <Column id="workStart" type="STRING" size="256"/>
           <Column id="workEnd" type="STRING" size="256"/>
-          <Column id="managerName" type="STRING" size="256"/>
+          <Column id="admin_name" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -166,7 +167,7 @@
     </Objects>
     <Bind>
       <BindItem id="item0" compid="cmb_SearchType" propid="value" datasetid="ds_SearchEmp" columnid="SEARCH_TYPE"/>
-      <BindItem id="item1" compid="Edit00" propid="value" datasetid="ds_SearchEmp" columnid="SEARCH_WORD"/>
+      <BindItem id="item1" compid="edt_SearchWord" propid="value" datasetid="ds_SearchEmp" columnid="SEARCH_WORD"/>
     </Bind>
     <Script type="xscript5.1"><![CDATA[
 this.Popup_RegisterAtten_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
@@ -226,7 +227,7 @@ this.grid_SearchEmp_oncellposchanged = function(obj:nexacro.Grid,e:nexacro.GridS
 
 this.btn_Register_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo) {
 	
-	this.ds_AttenList.setColumn(0, "managerName", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
+	this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
 
 	console.log(this.ds_AttenList.saveXML());
 
@@ -273,16 +274,24 @@ this.btn_Register_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo
 	
 	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 	
-	alert("등록이 완료되었습니다.");
-	this.close('Close RegisterPopup');
-	
-	this.opener.fnSearch();
 };
 
-this.cmb_SearchType_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+// 콜백함수
+this.fnCallback = function(svcID, errorCode, errorMsg)
 {
+	// 근태 등록 콜백 시
+	if(svcID == "attenRegister"){
+		if (errorCode < 0) {
+			alert(errorMsg);
+			return;
+		}
+		
+		alert("등록이 완료되었습니다.");
+		this.close('Close RegisterPopup');
+		
+		this.opener.fnSearch();
+	}
 	
-};
-]]></Script>
+};]]></Script>
   </Form>
 </FDL>

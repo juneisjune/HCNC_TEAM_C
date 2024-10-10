@@ -28,8 +28,6 @@ public class NexaLoginController {
         Map<String, Object> ds_userInfo = loginService.getUserInfoByUserId(loginInfo);
         
         if (ds_userInfo != null) {
-            // 사용자 정보를 가져와서 반환 (아이디, 비밀번호, 관리자 이름, 이메일)
-            
 
             // 디버깅용 출력
             System.out.println("ds_userInfo: " + ds_userInfo);
@@ -40,12 +38,11 @@ public class NexaLoginController {
             result.setErrorMsg("로그인 성공");
         } else {
             result.setErrorCode(-1); // 실패
-            result.setErrorMsg("권한이 없거나 아이디 비밀번호를 확인해주세요!");
+            result.setErrorMsg("권한이 없거나 아이디 및 비밀번호를 확인해주세요.");
         }
         
         return result;
     }
-
     
     // Nexa 2단계 인증
 	@RequestMapping(value = "/NexaAuth.do", method = RequestMethod.POST)
@@ -75,4 +72,27 @@ public class NexaLoginController {
 	    return result;
 	}
 
+	// 사용자 Id 찾기
+		@RequestMapping("/FindId.do")
+	    public NexacroResult FindId(@ParamDataSet(name = "ds_FindLoginInfo") Map<String, Object> loginInfo) {
+	        NexacroResult result = new NexacroResult();
+	              
+	        Map<String, Object> ds_userInfo = loginService.FindId(loginInfo);
+	        
+	        if (ds_userInfo != null) {
+
+	            // 디버깅용 출력
+	            System.out.println("ds_userInfo: " + ds_userInfo);
+
+	            // Nexacro에서 사용할 데이터셋에 추가
+	            result.addDataSet("ds_userInfo", ds_userInfo);  // 사용자 정보 전체 반환
+	            result.setErrorCode(0);  // 성공
+	            result.setErrorMsg("로그인 성공");
+	        } else {
+	            result.setErrorCode(-1); // 실패
+	            result.setErrorMsg("권한이 없거나 아이디 비밀번호를 확인해주세요.");
+	        }
+	        
+	        return result;
+	    }
 }

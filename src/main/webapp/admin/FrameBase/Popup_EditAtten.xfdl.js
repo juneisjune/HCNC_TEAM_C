@@ -18,7 +18,7 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("ds_AttenList", this);
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"workDate\" type=\"STRING\" size=\"256\"/><Column id=\"attenType\" type=\"STRING\" size=\"256\"/><Column id=\"workStart\" type=\"STRING\" size=\"256\"/><Column id=\"workEnd\" type=\"STRING\" size=\"256\"/><Column id=\"managerName\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"workDate\" type=\"STRING\" size=\"256\"/><Column id=\"attenType\" type=\"STRING\" size=\"256\"/><Column id=\"workStart\" type=\"STRING\" size=\"256\"/><Column id=\"workEnd\" type=\"STRING\" size=\"256\"/><Column id=\"admin_name\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -29,15 +29,15 @@
             // UI Components Initialize
             obj = new Button("btn_Close","960","20","70","40",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("  닫기");
-            obj.set_icon("url(\'imagerc::btn_WF_Tabextra.png\')");
+            obj.set_text("닫기");
+            obj.set_icon("url(\'imagerc::KakaoTalk_20241002_183456404_01.png\')");
             obj.set_iconPosition("left");
             this.addChild(obj.name, obj);
 
             obj = new Grid("Grid_Edit","20","30","890","130",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("ds_AttenList");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"80\"/><Column size=\"100\"/><Column size=\"83\"/><Column size=\"160\"/><Column size=\"160\"/><Column size=\"105\"/><Column size=\"100\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"103\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"부서명\"/><Cell col=\"4\" text=\"근무일자\"/><Cell col=\"5\" text=\"근무형태\"/><Cell col=\"6\" text=\"출근시간\"/><Cell col=\"7\" text=\"퇴근시간\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:workDate\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:attenType\" displaytype=\"text\" textAlign=\"center\" edittype=\"combo\" combodataset=\"ds_WorkType\" combocodecol=\"Name\" combodatacol=\"Name\" comboautoselect=\"false\" autosizecol=\"default\" autosizerow=\"default\"/><Cell col=\"6\" text=\"bind:workStart\" textAlign=\"center\" edittype=\"mask\" maskeditformat=\"##:##\" maskedittype=\"string\" displaytype=\"mask\" maskedittrimtype=\"none\"/><Cell col=\"7\" text=\"bind:workEnd\" textAlign=\"center\" edittype=\"mask\" maskedittype=\"string\" displaytype=\"mask\" calendareditformat=\"HH:mm\" maskeditformat=\"##:##\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"80\"/><Column size=\"100\"/><Column size=\"83\"/><Column size=\"160\"/><Column size=\"160\"/><Column size=\"105\"/><Column size=\"100\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"103\"/></Rows><Band id=\"head\" cssclass=\"grid_sumin .head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"부서명\"/><Cell col=\"4\" text=\"근무일자\"/><Cell col=\"5\" text=\"근무형태\"/><Cell col=\"6\" text=\"출근시간\"/><Cell col=\"7\" text=\"퇴근시간\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:workDate\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:attenType\" displaytype=\"text\" textAlign=\"center\" edittype=\"combo\" combodataset=\"ds_WorkType\" combocodecol=\"Name\" combodatacol=\"Name\" comboautoselect=\"false\" autosizecol=\"default\" autosizerow=\"default\"/><Cell col=\"6\" text=\"bind:workStart\" textAlign=\"center\" edittype=\"mask\" maskeditformat=\"##:##\" maskedittype=\"string\" displaytype=\"mask\" maskedittrimtype=\"none\"/><Cell col=\"7\" text=\"bind:workEnd\" textAlign=\"center\" edittype=\"mask\" maskedittype=\"string\" displaytype=\"mask\" calendareditformat=\"HH:mm\" maskeditformat=\"##:##\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Edit","930","110","100","50",null,null,null,null,null,null,this);
@@ -77,7 +77,7 @@
         	this.ds_AttenList.setColumn(0, "attenType", this.parent.attenType);
         	this.ds_AttenList.setColumn(0, "workStart", this.parent.workStart);
         	this.ds_AttenList.setColumn(0, "workEnd", this.parent.workEnd);
-        	this.ds_AttenList.setColumn(0, "managerName", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
+        	this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
 
         };
 

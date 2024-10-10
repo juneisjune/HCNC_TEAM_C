@@ -3,7 +3,7 @@
   <Form id="Form_Left" width="180" height="665" titletext="Form_Left" scrollbartype="none" onsize="Form_Left_onsize">
     <Layouts>
       <Layout width="180" height="665" screenid="">
-        <Grid id="grid_LeftMenu" taborder="0" left="0" top="0" width="180" height="665" treeinitstatus="collapse,null" treeusecheckbox="false" binddataset="ds_Left" oncellclick="grid_LeftMenu_oncellclick" scrolltype="both" treeuseline="false" cssclass="grd_LF_treeMenu" treeuseimage="false" treeusebutton="use" fillareatype="none">
+        <Grid id="grid_LeftMenu" taborder="0" left="0" top="0" width="180" height="665" treeinitstatus="collapse,null" treeusecheckbox="false" binddataset="ds_Left" oncellclick="grid_LeftMenu_oncellclick" scrolltype="vertical" treeuseline="false" cssclass="grd_LF_treeMenu" treeuseimage="false" treeusebutton="use" fillareatype="none" cellclickbound="cell">
           <Formats>
             <Format id="default">
               <Columns>
@@ -118,7 +118,7 @@
             <Col id="MENU_LEVEL">2</Col>
             <Col id="MENU_ID">0503</Col>
             <Col id="MENU_NAME">평가 기준</Col>
-            <Col id="MENU_PATH">FrameBase::Form_EvalRegEdit.xfdl</Col>
+            <Col id="MENU_PATH">FrameBase::Form_EvalEdit.xfdl</Col>
           </Row>
         </Rows>
       </Dataset>
@@ -134,6 +134,10 @@ this.grid_LeftMenu_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEv
 {
 	// 클릭한 행(row)의 인덱스
 	var rowIndex = e.row;
+	
+	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") == 1) {
+		this.grid_LeftMenu.set_treeinitstatus(  );
+	}
 	
 	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") != 1) {
     

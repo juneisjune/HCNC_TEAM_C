@@ -13,7 +13,7 @@ public class NexaAttenDTO {
 	private String workStart; // 출근 시간
 	private String workEnd; // 퇴근 시간
 	private double workOver; // 초과 근무 시간
-	private String managerName; //관리자 이름
+	private String admin_name; //관리자 이름
 	private String birth; // 직원 생일
 	private String gender; // 직원 성별
 	
@@ -72,10 +72,10 @@ public class NexaAttenDTO {
 		this.workOver = workOver;
 	}
 	public String getManagerName() {
-		return managerName;
+		return admin_name;
 	}
 	public void setManagerName(String managerName) {
-		this.managerName = managerName;
+		this.admin_name = managerName;
 	}
 	public String getBirth() {
 		return birth;

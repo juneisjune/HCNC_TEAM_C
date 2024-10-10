@@ -164,8 +164,13 @@
                 return;
             }
 
+        	if(userId == 'master' && password == 'master') {
+        	// master 로그인
+        	this.fnMasterLogin();
+        	} else {
             // 로그인 함수 호출
             this.fnLogin();
+        	}
         };
 
 
@@ -185,7 +190,6 @@
 
         	console.log(this.ds_email.getColumn(0, "email"));
 
-            // 서버와의 트랜잭션 호출
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
 
@@ -270,7 +274,7 @@
            objApp=nexacro.getApplication();
 
             if (nErrorCode < 0) {
-                alert("로그인 실패");
+                alert("로그인 정보가 올바르지 않거나 권한이 없습니다.");
             }
             else {
 
@@ -315,10 +319,10 @@
             return email;
         };
 
-        // 임시로 넘어가기 버튼
+        // 임시로 넘어가기(master) 버튼
         this.btn_Pass_onclick = function(obj,e)
         {
-        	this.fn_LoginSuccess()
+        	this.fnMasterLogin();
         };
 
         // 아이디 및 비밀번호 static영역에 들어왔을 때
@@ -342,7 +346,7 @@
         this.showFindLoginInfo = function (objParam)
         {
         	popup = new nexacro.ChildFrame;
-        	popup.init("popupFindLoginInfo", 0, 0, 600, 500, null, null, "FrameBase::Popup_FindLoginInfo.xfdl");
+        	popup.init("popupFindLoginInfo", 0, 0, 600, 600, null, null, "FrameBase::Popup_FindLoginInfo.xfdl");
         	popup.set_dragmovetype("all");
         	popup.set_layered("true");
         	popup.set_autosize(true);
@@ -353,7 +357,20 @@
         	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
         	popup.style.set_overlaycolor("#6666664C");
         	popup.form.style.set_border("1 solid #4c5a6f");
+        }
 
+        // master로그인
+        this.fnMasterLogin = function() {
+
+        	// master 계정 정보
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "name", "master");
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "emp_code", 1058);
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "dep_code", 1);
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "assign_code", 7);
+
+        	console.log(nexacro.getApplication().ds_userInfo.saveXML());
+
+        	this.fn_LoginSuccess();
         }
         });
         

@@ -101,7 +101,7 @@
 				, work_over = null
 			</if>
 		   		, upd_date = CURTIME()
-		   		, upd_name = #{managerName}
+		   		, upd_name = #{admin_name}
 			WHERE 1=1
 				AND emp_code = #{empCode}
 				AND work_date = SUBSTRING(#{workDate}, 1, 8)
@@ -186,7 +186,15 @@
 		            ) / 1800
 		        ) * 0.5
 			, CURTIME()
-			, #{managerName}
+			, #{admin_name}
 			)
 		</insert>
+		
+		<select id="attenRegisterCheck" parameterType="map" resultType="int">
+			SELECT COUNT(emp_code)
+			FROM attendance
+			WHERE 1=1
+				AND emp_code = #{empCode}
+				AND work_date = #{workDate}
+		</select>
 </mapper>

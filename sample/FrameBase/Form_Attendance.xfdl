@@ -2,7 +2,6 @@
 <FDL version="2.1">
   <Form id="Form_Attendance" width="1490" height="720" titletext="출/퇴근 목록" onload="Form_Attendance_onload">
     <Layouts>
-
       <Layout height="720" mobileorientation="landscape" width="1280">
         <GroupBox id="GroupBox_Search" taborder="11" text="검색" left="440" top="90" width="820" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
         <Static id="sta_Title" taborder="0" text="직원 출/퇴근 기록 관리" left="15" top="15" width="350" height="50" font="bold 32px/normal &quot;Gulim&quot;,&quot;Arial Black&quot;" textAlign="left"/>
@@ -55,7 +54,6 @@
             </Format>
           </Formats>
         </Grid>
-
         <Button id="btn_RegisterAtten" taborder="8" text="+ 등록" left="1180" top="630" width="80" height="40" onclick="btn_RegisterAtten_onclick"/>
         <Button id="btn_SearchReset" taborder="9" text="초기화" left="1189" top="110" width="60" height="30" onclick="btn_SearchReset_onclick"/>
         <Button id="btn_EditAtten" taborder="10" text="수정" left="1080" top="630" width="80" height="40" onclick="btn_EditAtten_onclick"/>

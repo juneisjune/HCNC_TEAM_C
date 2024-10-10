@@ -61,7 +61,6 @@ public class LoginController {
 			 String userName = loginService.selectUser(loginDTO).getName();
 			 session.setAttribute("userName", userName);
 
-			 
 			 AttenDTO workResult = loginService.selectWork(userCode);
 			 
 			 if (workResult != null) {

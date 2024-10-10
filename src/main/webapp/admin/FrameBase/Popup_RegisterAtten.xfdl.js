@@ -38,10 +38,19 @@
 
 
             obj = new Dataset("ds_AttenList", this);
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"workDate\" type=\"DATE\" size=\"256\"/><Column id=\"attenType\" type=\"STRING\" size=\"256\"/><Column id=\"workStart\" type=\"STRING\" size=\"256\"/><Column id=\"workEnd\" type=\"STRING\" size=\"256\"/><Column id=\"managerName\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"workDate\" type=\"DATE\" size=\"256\"/><Column id=\"attenType\" type=\"STRING\" size=\"256\"/><Column id=\"workStart\" type=\"STRING\" size=\"256\"/><Column id=\"workEnd\" type=\"STRING\" size=\"256\"/><Column id=\"admin_name\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
+            obj = new GroupBox("GroupBox_Search","390","20","470","60",null,null,null,null,null,null,this);
+            obj.set_taborder("10");
+            obj.set_text("검색");
+            obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_visible("true");
+            obj.set_opacity("1");
+            obj.set_tooltiptype("default");
+            this.addChild(obj.name, obj);
+
             obj = new Static("sta_SearchTitle","50","30","120","40",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("직원 검색");
@@ -56,21 +65,22 @@
 
             obj = new Static("sta_RegisterTitle","50","370","120","40",null,null,null,null,null,null,this);
             obj.set_taborder("2");
-            obj.set_text("근태 입력");
+            obj.set_text("근태 등록");
             obj.set_font("28px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","720","40","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","710","40","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
-            obj.set_text("검색");
+            obj.set_text(" 검색");
+            obj.set_icon("url(\'imagerc::img_WF_search01.png\')");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_SearchReset","800","40","60","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_SearchReset","790","40","60","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("초기화");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearchType","410","40","100","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_SearchType","400","40","100","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_innerdataset("ds_SearchType");
             obj.set_codecolumn("Value");
@@ -80,13 +90,14 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit00","520","40","180","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_SearchWord","510","40","180","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_close","950","30","100","50",null,null,null,null,null,null,this);
+            obj = new Button("btn_close","970","30","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("닫기");
+            obj.set_icon("url(\'imagerc::KakaoTalk_20241002_183456404_01.png\')");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grid_Register","50","430","1000","130",null,null,null,null,null,null,this);
@@ -110,7 +121,7 @@
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item1","Edit00","value","ds_SearchEmp","SEARCH_WORD");
+            obj = new BindItem("item1","edt_SearchWord","value","ds_SearchEmp","SEARCH_WORD");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -183,7 +194,7 @@
 
         this.btn_Register_onclick = function(obj,e) {
 
-        	this.ds_AttenList.setColumn(0, "managerName", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
+        	this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
 
         	console.log(this.ds_AttenList.saveXML());
 
@@ -230,17 +241,25 @@
 
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 
-        	alert("등록이 완료되었습니다.");
-        	this.close('Close RegisterPopup');
-
-        	this.opener.fnSearch();
         };
 
-        this.cmb_SearchType_onitemchanged = function(obj,e)
+        // 콜백함수
+        this.fnCallback = function(svcID, errorCode, errorMsg)
         {
+        	// 근태 등록 콜백 시
+        	if(svcID == "attenRegister"){
+        		if (errorCode < 0) {
+        			alert(errorMsg);
+        			return;
+        		}
+
+        		alert("등록이 완료되었습니다.");
+        		this.close('Close RegisterPopup');
+
+        		this.opener.fnSearch();
+        	}
 
         };
-
         });
         
         // Regist UI Components Event
