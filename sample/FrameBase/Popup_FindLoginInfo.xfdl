@@ -159,14 +159,16 @@ this.maskedId = function(id) {
 // 새 비밀번호 업데이트 확인 버튼
 this.btn_NewPassword_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	var password = this.ds_NewPassword.getColumn(0, "NewPassword");
+
 	// 비밀번호 유효성 검사
-//     if (password && password.trim() !== "") {
-//         var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-//         if (!passwordPattern.test(password)) {
-//             alert("비밀번호는 최소 8자 이상이며, 숫자와 영문자를 포함해야 합니다.");
-//             return false;
-//         }
-//     }
+    if (password && password.trim() !== "") {
+        var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        if (!passwordPattern.test(password)) {
+            alert("비밀번호는 최소 8자 이상이며, 숫자와 영문자를 포함해야 합니다.");
+            return false;
+       }
+    }
 	
 	this.ds_NewPassword.setColumn(0, "id", this.ds_FindLoginInfo.getColumn(0, "id"));
 	
