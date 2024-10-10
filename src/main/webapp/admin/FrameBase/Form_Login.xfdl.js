@@ -346,7 +346,7 @@
         this.showFindLoginInfo = function (objParam)
         {
         	popup = new nexacro.ChildFrame;
-        	popup.init("popupFindLoginInfo", 0, 0, 600, 600, null, null, "FrameBase::Popup_FindLoginInfo.xfdl");
+        	popup.init("popupFindLoginInfo", 0, 0, 600, 500, null, null, "FrameBase::Popup_FindLoginInfo.xfdl");
         	popup.set_dragmovetype("all");
         	popup.set_layered("true");
         	popup.set_autosize(true);
@@ -364,7 +364,7 @@
 
         	// master 계정 정보
         	nexacro.getApplication().ds_userInfo.setColumn(0, "name", "master");
-        	nexacro.getApplication().ds_userInfo.setColumn(0, "emp_code", 1058);
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "emp_code", 1);
         	nexacro.getApplication().ds_userInfo.setColumn(0, "dep_code", 1);
         	nexacro.getApplication().ds_userInfo.setColumn(0, "assign_code", 7);
 
