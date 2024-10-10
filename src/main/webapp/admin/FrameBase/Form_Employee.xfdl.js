@@ -43,28 +43,28 @@
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_employee","25","160","1082","400",null,null,null,null,null,null,this);
+            obj = new Grid("grd_employee","40","160","1150","400",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_binddataset("ds_empList");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"78\"/><Column size=\"111\"/><Column size=\"73\"/><Column size=\"92\"/><Column size=\"71\"/><Column size=\"117\"/><Column size=\"136\"/><Column size=\"221\"/><Column size=\"181\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"부서명\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"이름\"/><Cell col=\"4\" text=\"성별\"/><Cell col=\"5\" text=\"전화번호\"/><Cell col=\"6\" text=\"생년월일\"/><Cell col=\"7\" text=\"주소\"/><Cell col=\"8\" text=\"이메일\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:gender\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:phone\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:birth\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\" calendareditformat=\"yyyy-MM-dd\"/><Cell col=\"7\" text=\"bind:address\" textAlign=\"center\"/><Cell col=\"8\" text=\"bind:email\" textAlign=\"center\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"76\"/><Column size=\"69\"/><Column size=\"123\"/><Column size=\"73\"/><Column size=\"92\"/><Column size=\"67\"/><Column size=\"117\"/><Column size=\"136\"/><Column size=\"221\"/><Column size=\"174\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"아이디\"/><Cell col=\"2\" text=\"부서명\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"이름\"/><Cell col=\"5\" text=\"성별\"/><Cell col=\"6\" text=\"전화번호\"/><Cell col=\"7\" text=\"생년월일\"/><Cell col=\"8\" text=\"주소\"/><Cell col=\"9\" text=\"이메일\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:id\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:gender\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:phone\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:birth\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\" calendareditformat=\"yyyy-MM-dd\"/><Cell col=\"8\" text=\"bind:address\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:email\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Register","845","580","80","50",null,null,null,null,null,null,this);
+            obj = new Button("btn_Register","900","580","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("등록");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Edit","935","580","80","50",null,null,null,null,null,null,this);
+            obj = new Button("btn_Edit","1005","580","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("수정");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Delete","1025","580","80","50",null,null,null,null,null,null,this);
+            obj = new Button("btn_Delete","1107","580","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("삭제");
             this.addChild(obj.name, obj);
 
-            obj = new GroupBox("GroupBox_Search","617","85","490","60",null,null,null,null,null,null,this);
+            obj = new GroupBox("GroupBox_Search","720","85","470","60",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("조회");
             obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
@@ -73,7 +73,7 @@
             obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearchType","672","105","100","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_SearchType","762","105","100","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_innerdataset("ds_SearchType");
             obj.set_codecolumn("Value");
@@ -82,13 +82,13 @@
             obj.set_value("ALL");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_SearchWord","797","105","180","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_SearchWord","887","105","180","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.getSetter("binddataset").set("ds_search");
             obj.set_text("bind:SEARCH_WORD");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","1005","105","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","1095","105","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_text("조회");
             this.addChild(obj.name, obj);
