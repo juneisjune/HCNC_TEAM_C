@@ -29,4 +29,8 @@ public interface PayService {
 
 	void deletePay(PayDTO payDTO);
 
+	
+
+
+
 }

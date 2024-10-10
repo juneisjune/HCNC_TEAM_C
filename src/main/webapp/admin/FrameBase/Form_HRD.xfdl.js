@@ -174,6 +174,11 @@
 
         };
 
+        this.cmb_SearchType_onitemchanged = function(obj,e)
+        {
+
+        };
+
         });
         
         // Regist UI Components Event
@@ -182,6 +187,7 @@
             this.addEventHandler("onload",this.Form_HRD_onload,this);
             this.btn_HrdListSearch.addEventHandler("onclick",this.btn_HrdListSearch_onclick,this);
             this.grd_HrdList.addEventHandler("oncellclick",this.grd_HrdList_oncellclick,this);
+            this.cmb_SearchType.addEventHandler("onitemchanged",this.cmb_SearchType_onitemchanged,this);
             this.btn_Savehrd.addEventHandler("onclick",this.btn_Savehrd_onclick,this);
             this.ds_Hrdlist.addEventHandler("oncolumnchanged",this.ds_Hrdlist_oncolumnchanged,this);
             this.ds_UpdateHrdlist.addEventHandler("onvaluechanged",this.ds_Hrdlist_onvaluechanged,this);

@@ -75,7 +75,7 @@ public class PayDTO {
 	private LocalDateTime regDate;
 	private String regName;
 	private LocalDateTime updDate;
-	private String updName;
+	private String admName;
 	
 	public int getEmpCode() {
 		return empCode;
@@ -192,12 +192,12 @@ public class PayDTO {
 	public void setUpdDate(LocalDateTime updDate) {
 		this.updDate = updDate;
 	}
-	public String getUpdName() {
-		return updName;
-	}
-	public void setUpdName(String updName) {
-		this.updName = updName;
-	}
+    public String getAdmName() {
+        return admName;
+    }
+    public void setAdmName(String admName) {
+        this.admName = admName;
+    }
 	public int getEtc() {
 		return etc;
 	}

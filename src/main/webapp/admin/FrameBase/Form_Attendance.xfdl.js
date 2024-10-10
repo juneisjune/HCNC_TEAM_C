@@ -273,12 +273,14 @@
 
         }
 
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Form_Attendance_onload,this);
+            this.cmb_SearchType.addEventHandler("onitemchanged",this.cmb_SearchType_onitemchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grid_Atten.addEventHandler("oncelldblclick",this.grid_Atten_oncelldblclick,this);
             this.btn_RegisterAtten.addEventHandler("onclick",this.btn_RegisterAtten_onclick,this);

@@ -28,7 +28,7 @@
 
 
             obj = new Dataset("ds_Year", this);
-            obj._setContents("<ColumnInfo><Column id=\"NO\" type=\"INT\" size=\"256\"/><Column id=\"year\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"NO\">1</Col><Col id=\"year\">2021</Col></Row><Row><Col id=\"NO\">2</Col><Col id=\"year\">2022</Col></Row><Row><Col id=\"NO\">3</Col><Col id=\"year\">2023</Col></Row><Row><Col id=\"NO\">4</Col><Col id=\"year\">2024</Col></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"year\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -38,7 +38,7 @@
 
 
             obj = new Dataset("ds_Pay", this);
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"payYear\" type=\"STRING\" size=\"256\"/><Column id=\"payMonth\" type=\"STRING\" size=\"256\"/><Column id=\"actualPay\" type=\"STRING\" size=\"256\"/><Column id=\"etc\" type=\"INT\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"updName\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"payYear\" type=\"STRING\" size=\"256\"/><Column id=\"payMonth\" type=\"STRING\" size=\"256\"/><Column id=\"actualPay\" type=\"STRING\" size=\"256\"/><Column id=\"etc\" type=\"INT\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"admName\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -82,34 +82,33 @@
             obj.set_font("bold 20px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("com_year","300","164","90","35",null,null,null,null,null,null,this);
+            obj = new Combo("com_year","300","163","90","35",null,null,null,null,null,null,this);
             obj.set_taborder("8");
-            obj.set_innerdataset("ds_Year");
-            obj.set_datacolumn("year");
-            obj.set_codecolumn("year");
-            obj.set_text("");
-            obj.set_value("year");
-            obj.set_index("-1");
+            obj.set_innerdataset("ds_Search");
+            obj.set_datacolumn("START_YEAR");
+            obj.set_codecolumn("START_YEAR");
+            obj.set_text("2021");
+            obj.set_value("1");
+            obj.set_index("0");
             this.addChild(obj.name, obj);
 
             obj = new Combo("com_Month","427","164","73","36",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_innerdataset("ds_Month");
-            obj.set_datacolumn("month");
             obj.set_codecolumn("month");
-            obj.set_text("");
-            obj.set_value("month");
-            obj.set_index("-1");
+            obj.set_datacolumn("month");
+            obj.set_value("1");
+            obj.set_index("0");
             this.addChild(obj.name, obj);
 
             obj = new Combo("com_year00","567","165","83","35",null,null,null,null,null,null,this);
             obj.set_taborder("10");
-            obj.set_innerdataset("ds_Year");
-            obj.set_datacolumn("year");
-            obj.set_codecolumn("year");
-            obj.set_text("");
-            obj.set_value("year");
-            obj.set_index("-1");
+            obj.set_innerdataset("ds_Search");
+            obj.set_datacolumn("END_YEAR");
+            obj.set_codecolumn("END_YEAR");
+            obj.set_text("2024");
+            obj.set_value("2024");
+            obj.set_index("2");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edt_ModPay","498","601","104","40",null,null,null,null,null,null,this);
@@ -152,14 +151,13 @@
             obj.set_font("36px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("com_Month00","697","166","73","36",null,null,null,null,null,null,this);
+            obj = new Combo("com_Month00","697","165","73","36",null,null,null,null,null,null,this);
             obj.set_taborder("18");
             obj.set_innerdataset("ds_Month");
             obj.set_datacolumn("month");
             obj.set_codecolumn("month");
-            obj.set_text("");
-            obj.set_value("month");
-            obj.set_index("-1");
+            obj.set_value("10");
+            obj.set_index("9");
             this.addChild(obj.name, obj);
 
             obj = new Combo("cmb_SearType","38","148","112","50",null,null,null,null,null,null,this);
@@ -177,7 +175,7 @@
             obj.set_text("삭제");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_CodeMst","30","207","930","381",null,null,null,null,null,null,this);
+            obj = new Grid("grd_CodeMst","30","207","940","381",null,null,null,null,null,null,this);
             obj.set_taborder("21");
             obj.set_binddataset("ds_Pay");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"115\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"0\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"부서\"/><Cell col=\"4\" text=\"직책\"/><Cell col=\"5\" text=\"급여년도\"/><Cell col=\"6\" text=\"급여월\"/><Cell col=\"7\" text=\"지급액\"/><Cell col=\"8\" text=\"수정액\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chk\"/><Cell col=\"1\" text=\"bind:empCode\"/><Cell col=\"2\" text=\"bind:name\"/><Cell col=\"3\" text=\"bind:depName\"/><Cell col=\"4\" text=\"bind:assignName\"/><Cell col=\"5\" text=\"bind:payYear\"/><Cell col=\"6\" text=\"bind:payMonth\"/><Cell col=\"7\" text=\"bind:actualPay\"/><Cell col=\"8\" text=\"bind:etc\"/></Band></Format></Formats>");
@@ -236,17 +234,28 @@
         
         // User Script
         this.registerScript("Form_UpdatePay.xfdl", function() {
-        // 조회 버튼 클릭 시 호출되는 함수
-        this.btn_Search_onclick = function(obj, e) {
+        // 화면이 로드될 때 호출되는 함수
+        this.Form_UpdatePay_onload = function(obj, e) {
+            // 검색 조건 콤보박스 값 초기화 (전체 자동 선택)
+            this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
+
+            // 년도 및 월을 바로 설정 (조회 전에 자동으로 설정되도록)
+            this.fnSetYearsAndMonths();  // 년도 및 월 설정 함수 호출
+
+            // 첫 조회 실행
             this.fnSearch();
         };
 
-        // 화면이 로드될 때 호출되는 함수
-        this.Form_UpdatePay_onload = function(obj, e) {
-            // 검색 조건 콤보박스 값 초기화
-            this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
+        // 조회 버튼 클릭 시 호출되는 함수
+        this.btn_Search_onclick = function(obj, e) {
+            var searchType = this.ds_Search.getColumn(0, "SEARCH_TYPE");
 
-            // 첫 조회 실행
+            if (searchType === "ALL") {
+                // 전체가 선택된 경우 년도 및 월 자동 설정
+                this.fnSetYearsAndMonths();
+            }
+
+            // 조회 실행
             this.fnSearch();
         };
 
@@ -271,8 +280,35 @@
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
 
-        // 처리콜백 함수
+        // 년도 및 월 자동 설정 함수
+        this.fnSetYearsAndMonths = function() {
+            var currentYear = new Date().getFullYear();
+            var startYear = currentYear - 2;  // 현재 년도에서 -2년
+            var endYear = currentYear;        // 현재 년도
+
+            // ds_Search에 START_YEAR과 END_YEAR 설정
+            this.ds_Search.setColumn(0, "START_YEAR", startYear);
+            this.ds_Search.setColumn(0, "END_YEAR", endYear);
+
+            // ComboBox에 년도 값 설정
+            this.com_year.set_value(startYear);
+            this.com_year00.set_value(endYear);
+
+            // 월 자동 설정 (첫 번째 월은 1월, 두 번째 월은 10월)
+            var startMonth = 1;
+            var endMonth = 10;
+
+            this.ds_Search.setColumn(0, "START_MONTH", startMonth);
+            this.ds_Search.setColumn(0, "END_MONTH", endMonth);
+
+            // ComboBox에 월 값 설정
+            this.com_Month.set_value(startMonth);
+            this.com_Month00.set_value(endMonth);
+        };
+
+        // 처리 콜백 함수
         this.fnCallback = function(svcID, errorCode, errorMsg) {
+            // 에러 처리
             if (errorCode == -1) {
                 this.alert(errorMsg);
                 return;
@@ -296,8 +332,10 @@
             }
         };
 
-        ////////////////////////////////////////////////////////////삭제
 
+
+
+        ////////////////////////////////////////////////////////////삭제
 
 
         this.btn_Delete_onclick = function(obj, e) {
@@ -358,42 +396,42 @@
         ////////////////////////////////////////////////////////////////////////수정
 
 
-
-        this.btn_Update_onclick = function(obj, e)
-        {
-            // 사번, 이름, 수정액을 입력했는지 확인
+        this.btn_Update_onclick = function(obj, e) {
             var empCode = this.edt_Code.value;
             var name = this.edt_CodeNm.value;
             var modPay = this.edt_ModPay.value;
 
-            if (!empCode || !name || !modPay) {
+            if (!empCode || !name || !modPay || isNaN(modPay)) {
                 this.alert("사번, 이름, 수정액을 모두 입력해주세요.");
                 return;
             }
 
-            // 선택한 행을 찾음 (사번과 이름 기준으로 그리드에서 찾음)
             var selectedRow = this.ds_Pay.findRowExpr("empCode == '" + empCode + "' && name == '" + name + "'");
-
             if (selectedRow == -1) {
                 this.alert("해당 사번의 데이터를 찾을 수 없습니다.");
                 return;
             }
 
-            // 수정액 반영
-            this.ds_Pay.setColumn(selectedRow, "etc", modPay);  // 수정액 업데이트
+        	var admName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 
-            // 로그인된 사용자 ID를 `updName` 컬럼에 반영
-            var updName = this.application.gds_user.getColumn(0, "userName");  // 로그인한 사용자 이름을 가져옴
-            this.ds_Pay.setColumn(selectedRow, "updName", updName);  // 업데이트한 사용자 이름 저장
+            // 지급액과 수정액 반영
+            var actualPay = this.ds_Pay.getColumn(selectedRow, "actualPay");
+            var modPayValue = parseInt(modPay);
+            var newActualPay = actualPay + modPayValue;
 
-            // 서버에 수정된 값 반영
-            var strSvcId    = "updatePayEtc";
-            var strSvcUrl   = "svc::updatePayEtc.do";
-            var inData      = "ds_Pay=ds_Pay";
-            var outData     = "ds_Pay=ds_Pay";
-            var strArg      = "";
+            this.ds_Pay.setColumn(selectedRow, "actualPay", newActualPay);  // 지급액 업데이트
+            this.ds_Pay.setColumn(selectedRow, "etc", modPayValue);         // 수정액 업데이트
+        	this.ds_Pay.setColumn(selectedRow, "admName", admName);
+
+
+            // 서버로 수정 요청 전송
+            var strSvcId = "updatePayEtc";
+            var strSvcUrl = "svc::updatePayEtc.do";
+            var inData = "ds_Pay=ds_Pay";
+            var outData = "ds_Pay=ds_Pay";
+            var strArg = "";
             var callBackFnc = "fnCallback";
-            var isAsync     = true;
+            var isAsync = true;
 
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
@@ -409,6 +447,9 @@
             switch(svcID) {
                 case "updatePayEtc":
                     this.alert("수정이 성공적으로 완료되었습니다.");
+
+                    // 데이터셋 업데이트 후 변경된 값이 반영되었는지 확인
+                    this.ds_Pay.applyChange();  // 그리드에 반영
                     break;
                 default:
                     break;
@@ -417,11 +458,21 @@
 
 
 
+
+
+
+
+
+
+
+
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
+            this.addEventHandler("onload",this.Form_UpdatePay_onload,this);
             this.edt_Search.addEventHandler("onchanged",this.edt_Search_onchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.emp_code.addEventHandler("onclick",this.emp_onclick,this);
@@ -431,11 +482,11 @@
             this.Static00.addEventHandler("onclick",this.Static00_onclick,this);
             this.com_year.addEventHandler("onitemchanged",this.com_year_onitemchanged,this);
             this.com_Month.addEventHandler("onitemchanged",this.com_Month_onitemchanged,this);
-            this.com_year00.addEventHandler("onitemchanged",this.com_year_onitemchanged,this);
+            this.com_year00.addEventHandler("onitemchanged",this.com_year00_onitemchanged,this);
             this.edt_ModPay.addEventHandler("onchanged",this.edt_ModPay_onchanged,this);
             this.Static02.addEventHandler("onclick",this.Static02_onclick,this);
             this.Static06.addEventHandler("onclick",this.Static06_onclick,this);
-            this.com_Month00.addEventHandler("onitemchanged",this.com_Month_onitemchanged,this);
+            this.com_Month00.addEventHandler("onitemchanged",this.com_Month00_onitemchanged,this);
             this.cmb_SearType.addEventHandler("onitemchanged",this.cmb_SearType_onitemchanged,this);
             this.btn_Delete.addEventHandler("onclick",this.btn_Delete_onclick,this);
             this.grd_CodeMst.addEventHandler("onheadclick",this.grd_CodeMst_onheadclick,this);
