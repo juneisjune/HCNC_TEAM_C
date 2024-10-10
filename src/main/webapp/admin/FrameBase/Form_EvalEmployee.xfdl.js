@@ -41,6 +41,7 @@
             obj = new Button("btnFilterSearch","255","70","80","25",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("검색");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grdEvaluation","15","105","992","580",null,null,null,null,null,null,this);
@@ -66,11 +67,13 @@
             obj = new Button("btnReset","345","70","60","25",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("초기화");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnRegister","927","55","80","40",null,null,null,null,null,null,this);
+            obj = new Button("btnRegister","900","55","107","40",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("평가하기");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

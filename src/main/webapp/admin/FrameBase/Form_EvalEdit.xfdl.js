@@ -36,6 +36,7 @@
             obj = new Button("btnSubmit","685","530","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("수정");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grdEdit","10","100","745","385",null,null,null,null,null,null,this);

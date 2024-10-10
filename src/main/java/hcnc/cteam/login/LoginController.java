@@ -46,6 +46,15 @@ public class LoginController {
 		
 		int result = loginService.userLogin(loginDTO);
 		
+		//부서 배정과 직책 배정이 되지 않았을 경우 로그인 안되도록
+		if(loginService.selectUser(loginDTO).getAssignCode() == null || loginService.selectUser(loginDTO).getAssignCode().equals("") 
+				|| loginService.selectUser(loginDTO).getDepCode() == null || loginService.selectUser(loginDTO).getDepCode().equals("") ){
+			
+			msg = "empty";
+			
+			return msg;
+		 } 
+		
 		 if (result == 1) {
 			 
 			 //세션 생성
@@ -55,7 +64,6 @@ public class LoginController {
 			 String userName = loginService.selectUser(loginDTO).getName();
 			 session.setAttribute("userName", userName);
 
-			 
 			 AttenDTO workResult = loginService.selectWork(userCode);
 			 
 			 if (workResult != null) {
@@ -66,9 +74,13 @@ public class LoginController {
 				 session.setAttribute("workEnd", workEnd);
 			 }
 			 
-
 	         msg = "ok";
+	         
+	        //master는 2단계 인증하지 않고 바로 홈으로 접속  
+	        if(loginService.selectUser(loginDTO).getEmpCode() == 1) {
+	        	msg = "master";
 	        }
+	    }
 		 
 		 
 		 return msg;
@@ -121,6 +133,7 @@ public class LoginController {
 		try {
 		    String authKey = mailSendService.sendAuthMail(email); 
 		    map.put("authKey", authKey);
+		    System.out.println("인증번호 : " + authKey);
 		    map.put("msg", "ok");
 		    
 		} catch(Exception e) {

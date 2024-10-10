@@ -47,7 +47,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static00","79","270","482","70",null,null,null,null,null,null,this);
+            obj = new Static("Static00","99","280","482","70",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("Drop Files Here");
             obj.set_visible("true");
@@ -58,65 +58,63 @@
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
 
-            obj = new Button("open","579","250","120","80",null,null,null,null,null,null,this);
+            obj = new Button("open","599","260","120","80",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("폴더 열기");
+            obj.set_cssclass("btn_download");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("attach_grid","81","250","480","90",null,null,null,null,null,null,this);
+            obj = new Grid("attach_grid","101","260","480","90",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"삭제\"/></Band><Band id=\"body\"><Cell text=\"bind:attach_name\"/><Cell col=\"1\" text=\"삭제\" textAlign=\"right\" edittype=\"button\" displaytype=\"buttoncontrol\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button01","330","370","120","50",null,null,null,null,null,null,this);
+            obj = new Button("Button01","250","380","120","50",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("수정하기");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
-            obj = new TextArea("TextArea00","1038","60","482","120",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_title","100","80","620","39",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_title","80","70","620","39",null,null,null,null,null,null,this);
+            obj = new Button("btn_close","410","380","110","50",null,null,null,null,null,null,this);
             obj.set_taborder("5");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_close","490","370","110","50",null,null,null,null,null,null,this);
-            obj.set_taborder("6");
             obj.set_text("닫기");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
-            obj = new TextArea("TextArea01","80","120","619","112",null,null,null,null,null,null,this);
+            obj = new TextArea("TextArea01","100","130","619","112",null,null,null,null,null,null,this);
+            obj.set_taborder("6");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static_Label_Title","-30","79","100","30",null,null,null,null,null,null,this);
+            obj.set_text("제목:");
+            obj.set_font("bold 14px \'Gulim\'");
+            obj.set_textAlign("right");
             obj.set_taborder("7");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Title","-50","69","100","30",null,null,null,null,null,null,this);
-            obj.set_text("제목:");
+            obj = new Static("Static_Label_Attachments","-19","265","100","30",null,null,null,null,null,null,this);
+            obj.set_text("첨부파일:");
             obj.set_font("bold 14px \'Gulim\'");
             obj.set_textAlign("right");
             obj.set_taborder("8");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Attachments","-39","255","100","30",null,null,null,null,null,null,this);
-            obj.set_text("첨부파일:");
+            obj = new Static("Static_Label_Content","-30","129","100","30",null,null,null,null,null,null,this);
+            obj.set_text("내용:");
             obj.set_font("bold 14px \'Gulim\'");
             obj.set_textAlign("right");
             obj.set_taborder("9");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Content","-50","119","100","30",null,null,null,null,null,null,this);
-            obj.set_text("내용:");
-            obj.set_font("bold 14px \'Gulim\'");
-            obj.set_textAlign("right");
+            obj = new Static("Static_Title","180","20","400","40",null,null,null,null,null,null,this);
+            obj.set_text("공지사항 수정");
             obj.set_taborder("10");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("Static_Title","60","10","400","40",null,null,null,null,null,null,this);
-            obj.set_text("공지사항 수정하기");
-            obj.set_font("bold 24px \'Gulim\'");
-            obj.set_textAlign("left");
-            obj.set_taborder("11");
+            obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -342,7 +340,6 @@
             this.attach_grid.addEventHandler("ondrop",this.Grid00_ondrop,this);
             this.attach_grid.addEventHandler("oncellclick",this.attach_grid_oncellclick,this);
             this.Button01.addEventHandler("onclick",this.Button01_onclick,this);
-            this.TextArea00.addEventHandler("onchanged",this.TextArea00_onchanged,this);
             this.Edit_title.addEventHandler("onchanged",this.Edit_title_onchanged,this);
             this.btn_close.addEventHandler("ondblclick",this.btn_close_ondblclick,this);
             this.btn_close.addEventHandler("onclick",this.btn_close_onclick,this);

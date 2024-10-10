@@ -30,8 +30,7 @@
             obj = new Button("btn_Close","960","20","70","40",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("  닫기");
-            obj.set_icon("url(\'imagerc::btn_WF_Tabextra.png\')");
-            obj.set_iconPosition("left");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new Grid("Grid_Edit","20","30","890","130",null,null,null,null,null,null,this);
@@ -43,6 +42,7 @@
             obj = new Button("btn_Edit","930","110","100","50",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("수정 완료");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

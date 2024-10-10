@@ -86,7 +86,7 @@
 </head>
 <body>
     <div class="header">
-                <a href=""><img src="${pageContext.request.contextPath}/images/banner/bannerNew.png" alt="배너 이미지"></a>
+        <a href="/post/viewPost.do"><img src="${pageContext.request.contextPath}/images/banner/bannerNew.png" alt="배너 이미지"></a>
                 
         <div class="btn">
             <!-- 출근 버튼과 출근 시간 표시 -->

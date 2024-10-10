@@ -118,11 +118,13 @@
             obj = new Button("btnSubmit","610","1640","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("10");
             obj.set_text("제출");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
             obj = new Button("btnCancel","690","1640","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("11");
             obj.set_text("취소");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new Static("Question06","10","870","750","40",null,null,null,null,null,null,this);

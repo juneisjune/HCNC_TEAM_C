@@ -130,7 +130,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>게시글 코드</th>
+                    <th>게시글 번호</th>
                     <th>작성자 이름</th>
                     <th class="title">제목</th> <!-- 제목 부분에 클래스 추가 -->
                     
