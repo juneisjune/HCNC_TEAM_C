@@ -109,11 +109,13 @@
             obj = new Button("Button_Download","730","570","100","30",null,null,null,null,null,null,this);
             obj.set_text("다운로드");
             obj.set_borderRadius("5px");
+            obj.set_cssclass("btn_download");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button_Close","840","570","100","30",null,null,null,null,null,null,this);
             obj.set_text("닫기");
             obj.set_borderRadius("5px");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new MaskEdit("MaskEdit00","450","108","213","34",null,null,null,null,null,null,this);
@@ -211,7 +213,7 @@
         };
 
         this.Button_Download_onclick = function(obj,e)
-        {
+        {	this.Edit_Title.setFocus();
         	// 현재 선택된 행의 인덱스 가져오기
             var nRow = this.ds_Attachments.rowposition;
             if (nRow < 0) {

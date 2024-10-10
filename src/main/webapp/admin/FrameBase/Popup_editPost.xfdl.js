@@ -60,14 +60,8 @@
 
             obj = new Button("open","589","255","120","80",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("폴더 열기");
-            obj.set_borderRadius("5px");
-            obj.set_cursor("pointer");
-            obj.set_background("gray");
-            obj.set_boxShadow("white");
-            obj.set_border("0px solid");
-            obj.set_color("white");
-            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_text(" 폴더 열기");
+            obj.set_cssclass("btn_download");
             this.addChild(obj.name, obj);
 
             obj = new Grid("attach_grid","81","250","498","90",null,null,null,null,null,null,this);
@@ -80,11 +74,8 @@
             obj = new Button("Button01","230","370","120","50",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("수정하기");
-            obj.set_background("green");
-            obj.set_borderRadius("5px");
-            obj.set_color("white");
             obj.set_cursor("pointer");
-            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
             obj = new TextArea("TextArea00","1038","60","482","120",null,null,null,null,null,null,this);
@@ -99,11 +90,7 @@
             obj = new Button("btn_close","390","370","110","50",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("닫기");
-            obj.set_borderRadius("5px");
-            obj.set_cursor("pointer");
-            obj.set_background("gray");
-            obj.set_color("white");
-            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new TextArea("TextArea01","80","120","619","112",null,null,null,null,null,null,this);
@@ -330,6 +317,8 @@
         };
         this.btn_open_onclick = function(obj,e)
         {
+        	this.Static_Title.setFocus();
+
         	this.FileDialog00.open('nexacro17', FileDialog.LOAD);  // 단일 파일 선택 모드
         };
 

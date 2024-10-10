@@ -70,10 +70,11 @@
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","1109","110","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","1114","110","66","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
-            obj.set_text("  검색");
-            obj.set_icon("url(\'imagerc::img_WF_search01.png\')");
+            obj.set_text("   검색");
+            obj.set_cssclass("btn_search");
+            obj.set_accessibilitydesclevel("all");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static01","919","110","20","30",null,null,null,null,null,null,this);
@@ -88,19 +89,22 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"120\"/><Column size=\"130\"/><Column size=\"120\"/><Column size=\"160\"/><Column size=\"240\"/><Column size=\"130\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"138\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"부서명\"/><Cell col=\"4\" text=\"근무 일자\"/><Cell col=\"5\" text=\"근무 형태\"/><Cell col=\"6\" text=\"출근 시간\"/><Cell col=\"7\" text=\"퇴근 시간\"/><Cell col=\"8\" text=\"초과 근무 시간\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:workDate\" calendardateformat=\"yyyy년 MM월 dd일\" displaytype=\"date\"/><Cell col=\"5\" text=\"bind:attenType\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:workStart\" textAlign=\"center\" displaytype=\"normal\"/><Cell col=\"7\" text=\"bind:workEnd\" textAlign=\"center\"/><Cell col=\"8\" text=\"bind:workOver\" textAlign=\"center\" maskeditformat=\"##0.0\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_RegisterAtten","1180","630","80","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_RegisterAtten","1180","630","86","40",null,null,null,null,null,null,this);
             obj.set_taborder("8");
-            obj.set_text("+ 등록");
+            obj.set_text("등록");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_SearchReset","1189","110","60","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("초기화");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_EditAtten","1080","630","80","40",null,null,null,null,null,null,this);
             obj.set_taborder("10");
             obj.set_text("수정");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -140,6 +144,7 @@
         this.btn_Search_onclick = function(obj,e)
         {
         	this.fnSearch();
+        	this.grid_Atten.setFocus();
         };
 
         this.Form_Attendance_onload = function(obj,e)
@@ -198,6 +203,7 @@
         	this.ds_Search.setColumn(0, "SEARCH_WORD", "");
         	this.ds_Search.setColumn(0, "START_DATE", "");
         	this.ds_Search.setColumn(0, "END_DATE", "");
+        	this.grid_Atten.setFocus();
 
         };
 
@@ -227,14 +233,15 @@
         				  , attenType:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "attenType")
         				  , workStart:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workStart")
         				  , workEnd:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workEnd")};
-
+        	this.grid_Atten.setFocus();
         	this.showEditAtten(objParam);
         };
 
         // 등록 버튼 클릭 시 등록 팝업 호출
         this.btn_RegisterAtten_onclick = function(obj,e)
-        {
+        {	this.grid_Atten.setFocus();
         	this.showRegisterAtten();
+
         };
 
         // 수정 팝업호출

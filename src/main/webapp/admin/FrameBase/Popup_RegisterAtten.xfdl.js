@@ -60,14 +60,16 @@
             obj.set_font("28px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","720","40","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","718","46","80","25",null,null,null,null,null,null,this);
             obj.set_taborder("3");
-            obj.set_text("검색");
+            obj.set_text(" 검색");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_SearchReset","800","40","60","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("초기화");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
             obj = new Combo("cmb_SearchType","410","40","100","30",null,null,null,null,null,null,this);
@@ -87,6 +89,7 @@
             obj = new Button("btn_close","950","30","100","50",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("닫기");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grid_Register","50","430","1000","130",null,null,null,null,null,null,this);
@@ -98,6 +101,7 @@
             obj = new Button("btn_Register","950","370","100","40",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("등록하기");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -130,7 +134,7 @@
         {
         	// 검색 조건 콤보박스값 임의 부여
         	this.ds_SearchEmp.setColumn(0, "SEARCH_TYPE", "ALL");
-
+        	this.sta_SearchTitle.setFocus();
         	this.fnSearch();
         };
 
@@ -155,14 +159,17 @@
         // 직원 정보 검색 버튼
         this.btn_Search_onclick = function(obj,e)
         {
+        	this.Edit00.setFocus();
         	this.fnSearch();
         };
 
         // 초기화 버튼
         this.btn_SearchReset_onclick = function(obj,e)
         {
+
         	this.ds_SearchEmp.setColumn(0, "SEARCH_TYPE", "ALL");
         	this.ds_SearchEmp.setColumn(0, "SEARCH_WORD", "");
+        	this.Edit00.setFocus();
         };
 
         // 팝업 닫기 버튼
@@ -183,6 +190,7 @@
 
         this.btn_Register_onclick = function(obj,e) {
 
+        	this.sta_SearchTitle.setFocus();
         	this.ds_AttenList.setColumn(0, "managerName", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
 
         	console.log(this.ds_AttenList.saveXML());
@@ -236,10 +244,6 @@
         	this.opener.fnSearch();
         };
 
-        this.cmb_SearchType_onitemchanged = function(obj,e)
-        {
-
-        };
 
         });
         

@@ -101,7 +101,7 @@
         ],
         "screen" :
         [    
-        {"id":"Desktop_screen","type":"desktop","themeid":"theme::violet"}
+        {"id":"Desktop_screen","type":"desktop","themeid":"theme::blue"}
         ],
         "xadl" :
         [

@@ -39,11 +39,11 @@
           </Formats>
         </Grid>
         <Static id="sta_RegisterTitle" taborder="2" text="근태 입력" left="50" top="370" width="120" height="40" font="28px/normal &quot;Gulim&quot;"/>
-        <Button id="btn_Search" taborder="3" text="검색" left="720" top="40" width="70" height="30" onclick="btn_Search_onclick"/>
-        <Button id="btn_SearchReset" taborder="4" text="초기화" left="800" top="40" width="60" height="30" onclick="btn_SearchReset_onclick"/>
+        <Button id="btn_Search" taborder="3" text=" 검색" left="718" top="46" width="80" height="25" onclick="btn_Search_onclick" cssclass="btn_search"/>
+        <Button id="btn_SearchReset" taborder="4" text="초기화" left="800" top="40" width="60" height="30" onclick="btn_SearchReset_onclick" cssclass="btn_normal"/>
         <Combo id="cmb_SearchType" taborder="5" text="전체" left="410" top="40" width="100" height="30" value="ALL" index="0" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" onitemchanged="cmb_SearchType_onitemchanged"/>
         <Edit id="Edit00" taborder="6" left="520" top="40" width="180" height="30"/>
-        <Button id="btn_close" taborder="7" text="닫기" left="950" top="30" width="100" height="50" onclick="btn_close_onclick"/>
+        <Button id="btn_close" taborder="7" text="닫기" left="950" top="30" width="100" height="50" onclick="btn_close_onclick" cssclass="btn_delete"/>
         <Grid id="grid_Register" taborder="8" left="50" top="430" width="1000" height="130" binddataset="ds_AttenList">
           <Formats>
             <Format id="default">
@@ -84,7 +84,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Register" taborder="9" text="등록하기" left="950" top="370" width="100" height="40" onclick="btn_Register_onclick"/>
+        <Button id="btn_Register" taborder="9" text="등록하기" left="950" top="370" width="100" height="40" onclick="btn_Register_onclick" cssclass="btn_regist"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -173,7 +173,7 @@ this.Popup_RegisterAtten_onload = function(obj:nexacro.Form,e:nexacro.LoadEventI
 {
 	// 검색 조건 콤보박스값 임의 부여
 	this.ds_SearchEmp.setColumn(0, "SEARCH_TYPE", "ALL");
-
+	this.sta_SearchTitle.setFocus();
 	this.fnSearch();
 };
 
@@ -197,15 +197,18 @@ this.fnSearch = function(){
 
 // 직원 정보 검색 버튼
 this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	
+	this.Edit00.setFocus();
 	this.fnSearch();
 };
 
 // 초기화 버튼
 this.btn_SearchReset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	
+	
 	this.ds_SearchEmp.setColumn(0, "SEARCH_TYPE", "ALL");
 	this.ds_SearchEmp.setColumn(0, "SEARCH_WORD", "");
+	this.Edit00.setFocus();
 };
 
 // 팝업 닫기 버튼
@@ -226,6 +229,7 @@ this.grid_SearchEmp_oncellposchanged = function(obj:nexacro.Grid,e:nexacro.GridS
 
 this.btn_Register_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo) {
 	
+	this.sta_SearchTitle.setFocus();
 	this.ds_AttenList.setColumn(0, "managerName", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
 
 	console.log(this.ds_AttenList.saveXML());
@@ -279,10 +283,6 @@ this.btn_Register_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo
 	this.opener.fnSearch();
 };
 
-this.cmb_SearchType_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
-{
-	
-};
 ]]></Script>
   </Form>
 </FDL>

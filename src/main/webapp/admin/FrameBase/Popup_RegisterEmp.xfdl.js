@@ -145,23 +145,22 @@
 
             obj = new Button("btnRegister","170","310","80","30",null,null,null,null,null,null,this);
             obj.set_text("등록");
-            obj.set_background("green");
             obj.set_color("white");
-            obj.set_borderRadius("5px");
-            obj.set_cursor("pointer");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
             obj = new Button("btnClose","280","310","80","30",null,null,null,null,null,null,this);
             obj.set_text("닫기");
-            obj.set_background("gray");
             obj.set_color("white");
-            obj.set_borderRadius("5px");
             obj.set_cursor("pointer");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new Button("Button00","220","125","60","25",null,null,null,null,null,null,this);
             obj.set_taborder("23");
             obj.set_text("중복 확인");
+            obj.set_cssclass("btn_normal");
+            obj.set_font("8pt \"Arial\"");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -257,6 +256,7 @@
             // 이름 검사
             if (!name || name.trim() === "") {
                 alert("이름을 입력해 주세요.");
+        		this.edtName.setFocus();
                 return false;
             }
 
@@ -264,24 +264,28 @@
             var birthPattern = /^[0-9]{8}$/;
             if (!birth || !birthPattern.test(birth)) {
                 alert("올바른 생년월일을 입력해 주세요. ");
+        		this.calBirth.setFocus();
                 return false;
             }
 
             // 성별 검사
             if (!gender || gender.trim() === "") {
                 alert("성별을 입력해 주세요.");
+        		this.cmbGender.setFocus();
                 return false;
             }
 
             var phonePattern = /^010-[0-9]{4}-[0-9]{4}$/;
             if (!phone || !phonePattern.test(phone)) {
                 alert("유효한 전화번호를 입력해 주세요. 형식: 010-XXXX-XXXX");
+        		this.edtPhone.setFocus();
                 return false;
             }
 
             // 주소 검사
             if (!address || address.trim() === "") {
                 alert("주소를 입력해 주세요.");
+        		this.edtAddress.setFocus();
                 return false;
             }
 
@@ -290,6 +294,7 @@
             if (!joinDate || !joinDatePattern.test(joinDate)) {
                 console.log(this.ds_employee.saveXML());
                 alert("올바른 입사일을 입력해 주세요.");
+        		this.calJoinDate.setFocus();
                 return false;
             }
 
@@ -297,6 +302,7 @@
             var accountPattern = /^[가-힣]+[0-9]+$/;
             if (!account || !accountPattern.test(account)) {
                 alert("유효한 계좌번호를 입력해 주세요. 예: 국민은행12345678");
+        		this.edtAccount.setFocus();
                 return false;
             }
 
@@ -304,18 +310,21 @@
             var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!email || !emailPattern.test(email)) {
                 alert("유효한 이메일을 입력해 주세요.");
+        		this.edtEmail.setFocus();
                 return false;
             }
 
             // 아이디 검사
             if (!id || id.trim() === "") {
                 alert("아이디를 입력해 주세요.");
+        		this.edtID.setFocus();
                 return false;
             }
 
             // 비밀번호 검사 (최소 6자 이상)
             if (!password || password.length < 6) {
                 alert("비밀번호는 최소 6자 이상이어야 합니다.");
+        		this.edtPassword.setFocus();
                 return false;
             }
 
@@ -341,10 +350,13 @@
 
         // 중복 체크 버튼 클릭 시 호출되는 함수
         this.Button00_onclick = function(obj, e) {
+
+        	this.edtID.setFocus();
             var id = this.ds_employee.getColumn(0, "id");
 
             if (!id || id.trim() === "") {
                 alert("아이디를 입력해 주세요.");
+        		this.Title.setFocus();
                 return;
             }
 
@@ -386,6 +398,7 @@
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Pop_RegisterEmp_onload,this);
+            this.calBirth.addEventHandler("onchanged",this.calBirth_onchanged,this);
             this.cmbGender.addEventHandler("onitemchanged",this.cmbGender_onitemchanged,this);
             this.edtID.addEventHandler("onchanged",this.edtID_onchanged,this);
             this.btnRegister.addEventHandler("onclick",this.btnRegister_onclick,this);

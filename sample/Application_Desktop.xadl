@@ -8,7 +8,6 @@
             <ChildFrame id="TopFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Top.xfdl"/>
             <HFrameSet id="HFrameSet00" separatesize="200,*">
               <Frames>
-
                 <ChildFrame id="LeftFrame" showtitlebar="false" showstatusbar="false" formurl="FrameBase::Form_Left.xfdl" showcascadetitletext="true"/>
                 <ChildFrame id="WorkFrame" showtitlebar="false" formurl="FrameBase::Form_Post.xfdl"/>
               </Frames>
@@ -19,5 +18,6 @@
       </MainFrame>
     </Layout>
     <Style url="xcssrc::temp_main.xcss"/>
+    <Style url="xcssrc::Button.xcss"/>
   </Application>
 </ADL>

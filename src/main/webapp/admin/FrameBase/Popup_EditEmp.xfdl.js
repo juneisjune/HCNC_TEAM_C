@@ -133,18 +133,12 @@
 
             obj = new Button("btnUpdate","180","400","80","30",null,null,null,null,null,null,this);
             obj.set_text("수정");
-            obj.set_background("green");
-            obj.set_color("white");
-            obj.set_borderRadius("5px");
-            obj.set_cursor("pointer");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
             obj = new Button("btnClose","280","400","80","30",null,null,null,null,null,null,this);
             obj.set_text("닫기");
-            obj.set_background("gray");
-            obj.set_color("white");
-            obj.set_borderRadius("5px");
-            obj.set_cursor("pointer");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -265,31 +259,36 @@
         	// 아이디 검사
             if (!id || id.trim() === "") {
                 alert("아이디를 입력해 주세요.");
+        		this.edtID.setFocus();
                 return false;
             }
 
             // 비밀번호 검사 (최소 6자 이상)
             if (!password || password.length < 5) {
                 alert("비밀번호는 최소 5자 이상이어야 합니다.");
+        		this.edtPassword.setFocus();
                 return false;
             }
 
             // 이름 검사
             if (!name || name.trim() === "") {
                 alert("이름을 입력해 주세요.");
+        		this.edtName.setFocus();
                 return false;
             }
 
             // 생년월일 검사 (YYYYMMDD 형식)
         	var birth = this.ds_employee.getColumn(0, "birth");
         	if (birth) {
-            birth = birth.toString().trim();  // 데이터 타입을 문자열로 변환하고 공백 제거
+        		birth = birth.toString().trim();  // 데이터 타입을 문자열로 변환하고 공백 제거
+        		this.calBirth.setFocus();
 
             }
 
             // 성별 검사
             if (!gender || gender.trim() === "") {
                 alert("성별을 입력해 주세요.");
+        		this.cmbGender.setFocus();
                 return false;
             }
 
@@ -297,12 +296,14 @@
             var phonePattern = /^010-[0-9]{4}-[0-9]{4}$/;
             if (!phone || !phonePattern.test(phone)) {
                 alert("유효한 전화번호를 입력해 주세요. 형식: 010-XXXX-XXXX");
+        		this.edtPhone.setFocus();
                 return false;
             }
 
             // 주소 검사
             if (!address || address.trim() === "") {
                 alert("주소를 입력해 주세요.");
+        		this.edtAddress.setFocus();
                 return false;
             }
 
@@ -310,12 +311,14 @@
             var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!email || !emailPattern.test(email)) {
                 alert("유효한 이메일을 입력해 주세요.");
+        		this.edtEmail.setFocus();
                 return false;
             }
 
              var accountPattern = /^[가-힣]+[0-9]+$/;
             if (!account || !accountPattern.test(account)) {
                 alert("유효한 계좌번호를 입력해 주세요. 예: 국민은행12345678");
+        		this.edtAccount.setFocus();
                 return false;
             }
 

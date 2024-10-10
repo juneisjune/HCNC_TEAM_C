@@ -62,6 +62,7 @@
             obj = new Button("btn_Search","320","110","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grd_employee","15","160","795","330",null,null,null,null,null,null,this);
@@ -73,16 +74,19 @@
             obj = new Button("btn_Register","15","500","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("등록");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Edit","110","500","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("수정");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Delete","200","500","80","50",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("삭제");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -111,6 +115,7 @@
         this.registerScript("Form_Employee.xfdl", function() {
         // 검색 버튼 클릭 이벤트
         this.btn_Search_onclick = function(obj, e) {
+        	this.grd_employee.setFocus();
             console.log("검색 버튼 클릭됨");
             this.fnSearch();  // 검색 함수 호출
         };
@@ -139,6 +144,7 @@
 
         // 등록 버튼 클릭 이벤트
         this.btn_Register_onclick = function(obj, e) {
+        	this.grd_employee.setFocus();
             console.log("등록 팝업 호출");
             this.showRegisterPopup();  // 등록 팝업 호출 함수 호출
         };
@@ -186,7 +192,7 @@
 
 
         this.btn_Edit_onclick = function(obj,e)
-        {
+        {	this.grd_employee.setFocus();
         	var objParam = {id:this.ds_empList.getColumn(this.ds_empList.rowposition, "id")
                           , name:this.ds_empList.getColumn(this.ds_empList.rowposition, "name")
                           , birth:this.ds_empList.getColumn(this.ds_empList.rowposition, "birth")
@@ -205,7 +211,7 @@
 
 
         this.btn_Delete_onclick = function(obj,e)
-        {
+        {	this.grd_employee.setFocus();
             if (!this.confirm("정말로 삭제하시겠습니까?", "")) {
                 return;  // 취소 시 동작 중단
             }

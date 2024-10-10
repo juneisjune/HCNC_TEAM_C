@@ -46,6 +46,7 @@
             obj = new Button("btn_offListSearch","708","102","100","44",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("조회");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grd_offList","28","160","942","460",null,null,null,null,null,null,this);
@@ -59,6 +60,7 @@
             obj.set_text("승인");
             obj.set_font("16px/normal \"Gulim\"");
             obj.set_textAlign("center");
+            obj.set_cssclass("btn_check");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_return","870","634","98","33",null,null,null,null,null,null,this);
@@ -66,6 +68,7 @@
             obj.set_text("반려");
             obj.set_font("16px/normal \"Gulim\"");
             obj.set_textAlign("center");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static01","96","101","84","47",null,null,null,null,null,null,this);
@@ -133,7 +136,7 @@
         }
 
         this.btn_offListSearch_onclick = function(obj,e)
-        {
+        {		this.grd_offList.setFocus();
         	// 바인딩 된 값 콘솔로그로 찍어서 조회
         	console.log("edt_confirm = " + this.ds_offList.getColumn(0,"name"));
         	console.log("cal_confirm = " + this.ds_offList.getColumn(0,"start_date"));
@@ -142,7 +145,7 @@
 
         //승인 함수
         this.btn_confirm_onclick = function(obj,e)
-        {
+        {	this.grd_offList.setFocus();
         	console.log("승인 함수 실행");
         	// application 변수에서 emp_code와 assign_code를 가져옴
 
@@ -189,7 +192,7 @@
         };
         //반려함수
         this.btn_return_onclick = function(obj,e)
-        {
+        {	this.grd_offList.setFocus();
         	console.log("반려 함수 실행");
 
         	var loginAssignCode = nexacro.getApplication().gv_assign_code;

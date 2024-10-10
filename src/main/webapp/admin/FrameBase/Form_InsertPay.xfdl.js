@@ -65,6 +65,7 @@
             obj = new Button("btn_Search","215","91","43","20",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grd_Emp","60","125","830","330",null,null,null,null,null,null,this);
@@ -86,6 +87,7 @@
             obj = new Button("btn_Insert","800","470","90","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("등록");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -121,6 +123,7 @@
 
         this.btn_Search_onclick = function(obj,e)
         {
+        	this.grd_Emp.setFocus();
         	this.fnSearch();
 
         };
@@ -191,7 +194,7 @@
         };
 
         this.btn_Insert_onclick = function(obj,e)
-        {
+        {	this.grd_Emp.setFocus();
         	if(this.ds_GiveDate.getColumn(0, "give_date") == ''
         	|| this.ds_GiveDate.getColumn(0, "give_date") == 'undefined'
         	|| this.ds_GiveDate.getColumn(0, "give_date") == null){
@@ -231,12 +234,14 @@
         };
 
 
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Form_InsertPay_onload,this);
+            this.title.addEventHandler("onclick",this.title_onclick,this);
             this.cmb_Assign.addEventHandler("onitemchanged",this.Combo00_onitemchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grd_Emp.addEventHandler("onheadclick",this.grd_Emp_onheadclick,this);

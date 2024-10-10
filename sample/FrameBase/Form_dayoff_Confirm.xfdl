@@ -5,7 +5,7 @@
       <Layout height="720" width="1280">
         <Static id="Static00" taborder="0" text="휴 가 승 인" left="56" top="13" width="842" height="67" font="bold 36px/normal &quot;Gulim&quot;" textAlign="center"/>
         <Edit id="edt_Confirm" taborder="1" left="180" top="105" width="216" height="40"/>
-        <Button id="btn_offListSearch" taborder="2" text="조회" left="708" top="102" width="100" height="44" onclick="btn_offListSearch_onclick"/>
+        <Button id="btn_offListSearch" taborder="2" text="조회" left="708" top="102" width="100" height="44" onclick="btn_offListSearch_onclick" cssclass="btn_search"/>
         <Grid id="grd_offList" taborder="3" left="28" top="160" width="942" height="460" binddataset="ds_doRequestList" onheadclick="grd_offList_onheadclick">
           <Formats>
             <Format id="default">
@@ -55,8 +55,8 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_confirm" taborder="4" text="승인" left="762" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_confirm_onclick"/>
-        <Button id="btn_return" taborder="5" text="반려" left="870" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_return_onclick"/>
+        <Button id="btn_confirm" taborder="4" text="승인" left="762" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_confirm_onclick" cssclass="btn_check"/>
+        <Button id="btn_return" taborder="5" text="반려" left="870" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_return_onclick" cssclass="btn_delete"/>
         <Static id="Static01" taborder="6" text="이 름" left="96" top="101" width="84" height="47" font="18px/normal &quot;Gulim&quot;" textAlign="center"/>
         <Static id="Static01_00" taborder="7" text="시작일" left="390" top="101" width="84" height="47" font="18px/normal &quot;Gulim&quot;" textAlign="center"/>
         <Calendar id="cal_Confirm" taborder="8" left="470" top="105" width="216" height="40"/>
@@ -137,7 +137,7 @@ this.fnSearchList = function(){
 }
 
 this.btn_offListSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{		this.grd_offList.setFocus();
 	// 바인딩 된 값 콘솔로그로 찍어서 조회
 	console.log("edt_confirm = " + this.ds_offList.getColumn(0,"name"));
 	console.log("cal_confirm = " + this.ds_offList.getColumn(0,"start_date"));
@@ -146,7 +146,7 @@ this.btn_offListSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEven
 
 //승인 함수
 this.btn_confirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	this.grd_offList.setFocus();
 	console.log("승인 함수 실행");
 	// application 변수에서 emp_code와 assign_code를 가져옴
 
@@ -193,7 +193,7 @@ this.btn_confirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 };
 //반려함수
 this.btn_return_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	this.grd_offList.setFocus();
 	console.log("반려 함수 실행");
 	
 	var loginAssignCode = nexacro.getApplication().gv_assign_code;

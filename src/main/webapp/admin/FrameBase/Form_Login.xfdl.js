@@ -41,6 +41,7 @@
             obj = new Button("btn_Login","650","270","150","140",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("인증번호 발송");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edt_AuthCheck","430","430","200","60",null,null,null,null,null,null,this);
@@ -50,6 +51,7 @@
             obj = new Button("btn_AuthCheck","650","430","150","60",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("인증하기");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_AuthCheck","310","430","115","60",null,null,null,null,null,null,this);
@@ -81,6 +83,7 @@
             obj = new Button("btn_Pass","84","256","136","124",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_text("넘어가기");
+            obj.set_cssclass("btn_temp");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -115,18 +118,22 @@
         // 인증번호 발송(로그인) 버튼
         this.btn_Login_onclick = function(obj,e) {
 
+
             var userId = this.ds_login.getColumn(0, "user_id");
             var password = this.ds_login.getColumn(0, "password");
 
             // 아이디 유효성 검사
             if(userId == null || userId == '' || typeof userId === 'undefined') {
                 alert("아이디를 입력하세요.");
+        		this.edt_Id.setFocus();
                 return;
             }
 
             // 비밀번호 유효성 검사
             if(password == null || password == '' || typeof password === 'undefined') {
                 alert("비밀번호를 입력하세요.");
+        		this.edt_Password.setFocus();
+
                 return;
             }
 
@@ -161,8 +168,9 @@
             if (nErrorCode == 0) {
                 console.log("Success: " + strSvcId);
 
-        		alert("인증 번호가 발송되었습니다.");
 
+        		alert("인증 번호가 발송되었습니다.");
+        	this.edt_AuthCheck.setFocus();
                 // 서버에서 넘어온 인증 키(authKey)를 확인
                 var authKey = this.ds_Auth.getColumn(0, "authKey");
                 console.log("Received AuthKey: " + authKey);
@@ -195,11 +203,13 @@
         {
         	if(this.ds_Auth.getColumn(0, "authKey") == '' || this.ds_Auth.getColumn(0, "authKey") == null || this.ds_Auth.getColumn(0, "authKey") == 'undefined') {
         		alert("인증번호를 먼저 발급받으세요.");
+        		this.edt_AuthCheck.setFocus();
         		return;
         	}
 
         	if(this.ds_Auth.getColumn(0, "authKey") != this.ds_AuthCheck.getColumn(0, "authCheck")) {
         		alert("인증번호가 일치하지 않습니다.");
+        		this.edt_AuthCheck.setFocus();
         		return;
         	}
 
@@ -254,6 +264,11 @@
         this.btn_Pass_onclick = function(obj,e)
         {
         	this.fn_LoginSuccess()
+        };
+
+        this.Form_Login_onload = function(obj,e)
+        {
+        	this.edt_Id.setFucus();
         };
 
         });

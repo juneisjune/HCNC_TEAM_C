@@ -53,12 +53,10 @@
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
 
-            obj = new Button("open","602","320","88","87",null,null,null,null,null,null,this);
+            obj = new Button("open","600","320","90","87",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("폴더 열기");
-            obj.set_borderRadius("5px");
-            obj.set_cursor("pointer");
-            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_cssclass("btn_download");
             this.addChild(obj.name, obj);
 
             obj = new Grid("Grid00","108","317","482","90",null,null,null,null,null,null,this);
@@ -70,12 +68,10 @@
 
             obj = new Button("Button01","236","420","130","70",null,null,null,null,null,null,this);
             obj.set_taborder("3");
-            obj.set_text("공지사항 등록");
-            obj.set_borderRadius("5px");
-            obj.set_background("green");
-            obj.set_color("white");
+            obj.set_text("등록");
             obj.set_cursor("pointer");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
             obj = new Edit("Edit_title","103","101","590","39",null,null,null,null,null,null,this);
@@ -90,10 +86,11 @@
 
             obj = new Button("btn_close","400","420","122","70",null,null,null,null,null,null,this);
             obj.set_taborder("6");
-            obj.set_text("목록 조회");
             obj.set_borderRadius("5px");
             obj.set_cursor("pointer");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_text("닫기");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static00_00","8","13","722","67",null,null,null,null,null,null,this);
@@ -152,7 +149,7 @@
 
         //아래 첨부파일 관련 코드
         this.btn_open_onclick = function(obj,e)
-        {
+        {	this.Grid00.setFocus();
         	this.FileDialog00.open('nexacro17', FileDialog.LOAD);  // 단일 파일 선택 모드
         };
 
@@ -232,7 +229,8 @@
         };
 
         this.Button01_onclick = function(obj, e) {
-            // ds_postInfo의 첫 번째 행을 생성 또는 선택
+            this.Grid00.setFocus();
+        	// ds_postInfo의 첫 번째 행을 생성 또는 선택
             if (this.ds_postInfo.getRowCount() == 0) {
                 this.ds_postInfo.addRow();
             }
@@ -324,8 +322,13 @@
 
 
         this.btn_close_onclick = function(obj,e)
-        {
+        {	this.Static00_00.setFocus();
         	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
+        };
+
+        this.sample_fileuptransfer_01_onload = function(obj,e)
+        {
+        	this.Grid00.setFocus();
         };
 
         });

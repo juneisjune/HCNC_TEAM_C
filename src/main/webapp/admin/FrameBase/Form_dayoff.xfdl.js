@@ -85,11 +85,13 @@
             obj = new Button("btn_Save","465","349","67","37",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("저장");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Cancel","543","349","67","37",null,null,null,null,null,null,this);
             obj.set_taborder("10");
             obj.set_text("취소");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new Calendar("Calendar00","176","86","166","26",null,null,null,null,null,null,this);

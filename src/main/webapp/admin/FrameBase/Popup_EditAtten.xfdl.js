@@ -30,7 +30,7 @@
             obj = new Button("btn_Close","930","20","100","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("   닫기");
-            obj.set_icon("url(\'imagerc::btn_mdi_close2.png\')");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new Grid("Grid_Edit","20","20","890","130",null,null,null,null,null,null,this);
@@ -42,6 +42,7 @@
             obj = new Button("btn_Edit","930","100","100","50",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("수정 완료");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -66,6 +67,7 @@
 
         this.Popup_EditAtten_onload = function(obj,e)
         {
+        	this.Grid_Edit.setFocus();
         	this.ds_AttenList.clearData();
         	this.ds_AttenList.addRow();
         	this.ds_AttenList.setColumn(0, "empCode", this.parent.empCode);

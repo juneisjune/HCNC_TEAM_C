@@ -2,7 +2,6 @@
 <FDL version="2.1">
   <Form id="Form_Attendance" width="1490" height="720" titletext="출/퇴근 목록" onload="Form_Attendance_onload">
     <Layouts>
-
       <Layout height="720" mobileorientation="landscape" width="1280">
         <GroupBox id="GroupBox_Search" taborder="11" text="검색" left="440" top="90" width="820" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
         <Static id="sta_Title" taborder="0" text="직원 출/퇴근 기록 관리" left="15" top="15" width="350" height="50" font="bold 32px/normal &quot;Gulim&quot;,&quot;Arial Black&quot;" textAlign="left"/>
@@ -10,7 +9,7 @@
         <Edit id="edt_SearchWord" taborder="2" left="559" top="110" width="180" height="30"/>
         <Calendar id="cal_Start" taborder="3" left="759" top="110" width="150" height="30"/>
         <Calendar id="cal_End" taborder="4" left="949" top="110" width="150" height="30"/>
-        <Button id="btn_Search" taborder="5" text="  검색" left="1109" top="110" width="70" height="30" onclick="btn_Search_onclick" icon="url('imagerc::img_WF_search01.png')"/>
+        <Button id="btn_Search" taborder="5" text="   검색" left="1114" top="110" width="66" height="30" onclick="btn_Search_onclick" cssclass="btn_search" accessibilitydesclevel="all"/>
         <Static id="Static01" taborder="6" text="~" left="919" top="110" width="20" height="30" font="24px/normal &quot;Gulim&quot;"/>
         <Grid id="grid_Atten" taborder="7" left="20" top="160" width="1240" height="460" binddataset="ds_AttenList" oncelldblclick="grid_Atten_oncelldblclick">
           <Formats>
@@ -55,16 +54,16 @@
             </Format>
           </Formats>
         </Grid>
-
-        <Button id="btn_RegisterAtten" taborder="8" text="+ 등록" left="1180" top="630" width="80" height="40" onclick="btn_RegisterAtten_onclick"/>
-        <Button id="btn_SearchReset" taborder="9" text="초기화" left="1189" top="110" width="60" height="30" onclick="btn_SearchReset_onclick"/>
-        <Button id="btn_EditAtten" taborder="10" text="수정" left="1080" top="630" width="80" height="40" onclick="btn_EditAtten_onclick"/>
+        <Button id="btn_RegisterAtten" taborder="8" text="등록" left="1180" top="630" width="86" height="40" onclick="btn_RegisterAtten_onclick" cssclass="btn_regist"/>
+        <Button id="btn_SearchReset" taborder="9" text="초기화" left="1189" top="110" width="60" height="30" onclick="btn_SearchReset_onclick" cssclass="btn_normal"/>
+        <Button id="btn_EditAtten" taborder="10" text="수정" left="1080" top="630" width="80" height="40" onclick="btn_EditAtten_onclick" cssclass="btn_edit"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
 this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.fnSearch();
+	this.grid_Atten.setFocus();
 };
 
 this.Form_Attendance_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
@@ -123,6 +122,7 @@ this.btn_SearchReset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventI
 	this.ds_Search.setColumn(0, "SEARCH_WORD", "");
 	this.ds_Search.setColumn(0, "START_DATE", "");
 	this.ds_Search.setColumn(0, "END_DATE", "");
+	this.grid_Atten.setFocus();
 	
 };
 
@@ -152,14 +152,15 @@ this.btn_EditAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInf
 				  , attenType:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "attenType")
 				  , workStart:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workStart")
 				  , workEnd:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workEnd")};
-				  
+	this.grid_Atten.setFocus();			  
 	this.showEditAtten(objParam);
 };
 
 // 등록 버튼 클릭 시 등록 팝업 호출
 this.btn_RegisterAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	this.grid_Atten.setFocus();
 	this.showRegisterAtten();
+
 };
 
 // 수정 팝업호출

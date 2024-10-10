@@ -72,7 +72,7 @@ this.Button_Close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo
 };
 
 this.Button_Download_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	this.Edit_Title.setFocus();
 	// 현재 선택된 행의 인덱스 가져오기
     var nRow = this.ds_Attachments.rowposition;
     if (nRow < 0) {
@@ -175,9 +175,9 @@ this.FileDownTransfer00_onerror = function(obj:nexacro.FileDownTransfer, e:nexac
           </Formats>
         </Grid>
         <!-- Download Button -->
-        <Button id="Button_Download" text="다운로드" left="730" top="570" width="100" height="30" onclick="Button_Download_onclick" borderRadius="5px"/>
+        <Button id="Button_Download" text="다운로드" left="730" top="570" width="100" height="30" onclick="Button_Download_onclick" borderRadius="5px" cssclass="btn_download"/>
         <!-- Close Button -->
-        <Button id="Button_Close" text="닫기" left="840" top="570" width="100" height="30" onclick="Button_Close_onclick" borderRadius="5px"/>
+        <Button id="Button_Close" text="닫기" left="840" top="570" width="100" height="30" onclick="Button_Close_onclick" borderRadius="5px" cssclass="btn_delete"/>
         <MaskEdit id="MaskEdit00" taborder="15" left="450" top="108" width="213" height="34" format="@@@@년 @@월 @@일" type="string" readonly="true" borderRadius="5px"/>
       </Layout>
     </Layouts>

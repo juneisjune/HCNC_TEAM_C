@@ -1,61 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="btn_Post" width="1280" height="720" titletext="New Form" onload="Form_Post_onload" borderRadius="5px">
+  <Form id="btn_Post" width="1280" height="720" titletext="공지사항 관리" onload="Form_Post_onload">
     <Layouts>
       <Layout height="720" width="1280">
-        <Grid id="grd_notice" binddataset="ds_Post" left="10" top="65" width="1020" height="410" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick" borderRadius="5px">
+        <!-- 공지사항 그리드 -->
+        <GroupBox id="GroupBox00" taborder="8" text="상세정보" left="10" bottom="153" height="515" width="1091" borderRadius="5px"/>
+        <Grid id="grd_notice" binddataset="ds_Post" left="29" top="103" width="1050" height="410" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick" borderRadius="5px" border="1px solid #cccccc">
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="48"/>
-                <Column size="85"/>
-                <Column size="144"/>
-                <Column size="258"/>
+                <Column size="50"/>
+                <Column size="90"/>
+                <Column size="150"/>
+                <Column size="260"/>
                 <Column size="190"/>
                 <Column size="85"/>
-                <Column size="64"/>
-                <Column size="94"/>
-                <Column size="48"/>
+                <Column size="70"/>
+                <Column size="100"/>
+                <Column size="60"/>
               </Columns>
               <Rows>
-                <Row size="24" band="head"/>
-                <Row size="34"/>
+                <Row size="30" band="head"/>
+                <Row size="35"/>
               </Rows>
               <Band id="head">
                 <Cell displaytype="none" edittype="none" text="0" checkboxtruevalue="1" checkboxfalsevalue="0"/>
-                <Cell col="1" text="게시글 번호"/>
-                <Cell col="2" text="제목"/>
-                <Cell col="3" text="내용"/>
-                <Cell col="4" text="작성일자"/>
-                <Cell col="5" text="작성자"/>
-                <Cell col="6" text="조회수"/>
-                <Cell col="7" text="수정 하기"/>
-                <Cell col="8" text="삭제"/>
+                <Cell col="1" text="게시글 번호" textAlign="center"/>
+                <Cell col="2" text="제목" textAlign="center"/>
+                <Cell col="3" text="내용" textAlign="center"/>
+                <Cell col="4" text="작성일자" textAlign="center"/>
+                <Cell col="5" text="작성자" textAlign="center"/>
+                <Cell col="6" text="조회수" textAlign="center"/>
+                <Cell col="7" text="수정" textAlign="center"/>
+                <Cell col="8" text="삭제" textAlign="center"/>
               </Band>
               <Band id="body">
-                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:checked" checkboxtruevalue="1" checkboxfalsevalue="0"/>
-                <Cell col="1" text="bind:post_code"/>
-                <Cell col="2" text="bind:title"/>
-                <Cell col="3" text="bind:content"/>
-                <Cell col="4" text="bind:reg_date" displaytype="date" mask="####-##-##"/>
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:checked" checkboxtruevalue="1" checkboxfalsevalue="0" textAlign="center"/>
+                <Cell col="1" text="bind:post_code" textAlign="center"/>
+                <Cell col="2" text="bind:title" textAlign="left"/>
+                <Cell col="3" text="bind:content" textAlign="left"/>
+                <Cell col="4" text="bind:reg_date" displaytype="date" mask="####-##-##" textAlign="center"/>
                 <Cell col="5" text="bind:emp_name" textAlign="center"/>
-                <Cell col="6" text="bind:view_count"/>
-                <Cell col="7" displaytype="buttoncontrol" text="수정 하기"/>
-                <Cell col="8" displaytype="buttoncontrol" text="삭제" edittype="button"/>
+                <Cell col="6" text="bind:view_count" textAlign="center"/>
+                <Cell col="7" displaytype="buttoncontrol" text="수정 하기" textAlign="center" cssclass="btn_edit"/>
+                <Cell col="8" displaytype="buttoncontrol" text="삭제" edittype="button" textAlign="center" borderRadius="3px" background="#ffcccc" cssclass="btn_delete"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Search" taborder="1" text="조회" left="850" top="16" width="50" height="28" onclick="Button00_onclick" borderRadius="5px" font="bold 12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="st_selectedCount" text="0건 선택됨" left="15" top="35" width="150" height="30" taborder="2" onclick="st_selectedCount_onclick" color="#6f0520" font="bold 20px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Button id="btn_delete" text="삭제" left="930" top="500" width="100" height="30" onclick="btn_delete_onclick" taborder="3" borderRadius="5px" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Button id="btn_newPost" taborder="4" text="새 공지사항 등록" left="920" top="16" width="110" height="28" onclick="btn_newPost_onclick" borderRadius="5px" font="bold 12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Button id="Button00" taborder="5" text="상세 보기" left="814" top="500" width="92" height="30" onclick="newEdit_onclick" borderRadius="5px" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="Static00_00" taborder="6" text="공지사항조회관리" left="140" top="3" width="722" height="67" font="bold 36px/normal &quot;Gulim&quot;" textAlign="center" onclick="Static00_00_onclick"/>
-        <Menu id="Menu00" taborder="7" left="252" top="168" width="76" height="152"/>
-        <Button id="Button01" taborder="8" text="Button01" left="232" top="568" width="112" height="88" onclick="Button01_onclick"/>
+        <!-- 조회 버튼 -->
+        <Button id="btn_Search" taborder="1" text="조회" left="870" top="66" width="70" height="32" onclick="Button00_onclick" borderRadius="8px" font="bold 13px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" cssclass="btn_search"/>
+        <!-- 선택된 항목 표시 -->
+        <Static id="st_selectedCount" text="0건 선택됨" left="35" top="75" width="180" height="30" taborder="2" color="#6f0520" font="bold 20px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" textAlign="left"/>
+        <!-- 삭제 버튼 -->
+        <Button id="btn_delete" text="삭제" left="989" top="535" width="110" height="35" onclick="btn_delete_onclick" taborder="3" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" cssclass="btn_delete"/>
+        <!-- 새 공지사항 등록 버튼 -->
+        <Button id="btn_newPost" taborder="4" text="새 공지사항 등록" left="945" top="66" width="130" height="32" onclick="btn_newPost_onclick" font="bold 13px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" cssclass="btn_regist"/>
+        <!-- 상세 보기 버튼 -->
+        <Button id="Button00" taborder="5" text="상세 보기" left="873" top="535" width="100" height="35" onclick="newEdit_onclick" cssclass="btn_normal"/>
+        <!-- 제목 -->
+        <!-- 메뉴 (추가 옵션) -->
+        <Menu id="Menu00" taborder="6" left="253" top="185" width="76" height="152"/>
+        <!-- 추가 버튼 -->
+        <Button id="Button01" taborder="7" text="Button01" left="1138" top="566" width="112" height="88" onclick="Button01_onclick" cssclass="btn_normal"/>
       </Layout>
     </Layouts>
+    <!-- 데이터셋 정의 -->
     <Script type="xscript5.1"><![CDATA[this.Form_Post_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	console.log("onload페이지 들엉몸");
@@ -102,7 +112,7 @@ this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
 }
 
  this.Button00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{	
+{	this.grd_notice.setFocus();
 	console.log("버튼 클릭됨 들어옴");
 	this.fnSearch();
 	
@@ -110,6 +120,7 @@ this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
 
 this.btn_newPost_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.grd_notice.setFocus();
 	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_NewPost.xfdl");
 };
 //위에는 조회관련
@@ -197,7 +208,7 @@ this.showPopup = function (objParam)
 }
 
 this.newEdit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{	
+{	this.grd_notice.setFocus();
 	console.log("ds_post(inFormpost):" + this.ds_Post.saveXML());
 		var objParam1 = 
 			{post_code:this.ds_Post.getColumn(this.ds_Post.rowposition, "post_code")};
@@ -232,7 +243,7 @@ this.grd_notice_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEv
 };
 //다중 선택시
 this.btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	this.grd_notice.setFocus();
 	var arrDeleteCodes = [];
 
     // 데이터셋을 순회하면서 체크된 행의 게시글 코드를 배열에 추가
@@ -337,17 +348,17 @@ this.grd_notice_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEvent
 
 
 this.Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	
 	// JSP 페이지 URL을 지정
     var url = "http://localhost:8080/post/viewPost.do";
     
     // 윈도우 창에서 열기
     system.execBrowser(url);
 };
+
 ]]></Script>
     <Objects>
       <Dataset id="ds_Post" onvaluechanged="ds_Post_onvaluechanged">
-        <!--공지사항 화면 축출 화면의 data set-->
         <ColumnInfo>
           <Column id="number" type="INT" size="256"/>
           <Column id="title" type="STRING" size="256"/>

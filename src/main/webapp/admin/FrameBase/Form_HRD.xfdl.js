@@ -61,6 +61,7 @@
             obj = new Button("btn_HrdListSearch","678","103","100","44",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("조회");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grd_HrdList","28","160","750","460",null,null,null,null,null,null,this);
@@ -82,6 +83,7 @@
             obj = new Button("btn_Savehrd","660","629","117","41",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("저장");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -129,6 +131,7 @@
 
         this.btn_HrdListSearch_onclick = function(obj,e)
         {
+        	this.grd_HrdList.setFocus();
         	this.fnSearchList();
         };
 
@@ -142,7 +145,7 @@
         this.btn_Savehrd_onclick = function(obj,e)
         {
         	// application 변수에서 emp_code와 assign_code를 가져옴
-
+           	this.grd_HrdList.setFocus();
         	var loginAdminName = nexacro.getApplication().gv_name;
         	this.ds_Hrdlist.setColumn(0,"admin_name","관리나경진")
 
