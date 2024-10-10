@@ -12,7 +12,7 @@
             this.set_name("Form_Login");
             this.set_titletext("New Form");
             this.set_color("#000000");
-            this.set_background("#000033");
+            this.set_background("#003366");
             this.set_scrollbartype("none");
             if (Form == this.constructor)
             {
@@ -124,7 +124,7 @@
             obj.set_taborder("13");
             obj.set_image("url(\'imagerc::img_hcnc_logo.png\')");
             obj.set_stretch("fixaspectratio");
-            obj.set_background("#000033");
+            obj.set_background("#003366");
             obj.set_border("0px none");
             this.addChild(obj.name, obj);
 
