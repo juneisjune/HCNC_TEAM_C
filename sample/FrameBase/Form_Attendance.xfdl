@@ -54,9 +54,9 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_RegisterAtten" taborder="8" text="+ 등록" left="1045" top="630" width="80" height="40" onclick="btn_RegisterAtten_onclick"/>
+        <Button id="btn_RegisterAtten" taborder="8" text="등록" left="1045" top="630" width="80" height="40" onclick="btn_RegisterAtten_onclick" cssclass="btn_regist"/>
         <Button id="btn_SearchReset" taborder="9" text="초기화" left="1049" top="110" width="60" height="30" onclick="btn_SearchReset_onclick" cssclass="btn_normal"/>
-        <Button id="btn_EditAtten" taborder="10" text="수정" left="950" top="630" width="80" height="40" onclick="btn_EditAtten_onclick"/>
+        <Button id="btn_EditAtten" taborder="10" text="수정" left="950" top="630" width="80" height="40" onclick="btn_EditAtten_onclick" cssclass="btn_edit"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[

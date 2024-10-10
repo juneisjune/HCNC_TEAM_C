@@ -90,7 +90,8 @@
 
             obj = new Button("btn_RegisterAtten","1045","630","80","40",null,null,null,null,null,null,this);
             obj.set_taborder("8");
-            obj.set_text("+ 등록");
+            obj.set_text("등록");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_SearchReset","1049","110","60","30",null,null,null,null,null,null,this);
@@ -102,6 +103,7 @@
             obj = new Button("btn_EditAtten","950","630","80","40",null,null,null,null,null,null,this);
             obj.set_taborder("10");
             obj.set_text("수정");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

@@ -118,13 +118,13 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Register" taborder="3" text="등록" left="900" top="580" width="80" height="50" onclick="btn_Register_onclick"/>
-        <Button id="btn_Edit" taborder="4" text="수정" left="1005" top="580" width="80" height="50" onclick="btn_Edit_onclick"/>
-        <Button id="btn_Delete" taborder="5" text="삭제" left="1107" top="580" width="80" height="50" onclick="btn_Delete_onclick"/>
+        <Button id="btn_Register" taborder="3" text="등록" left="900" top="580" width="80" height="50" onclick="btn_Register_onclick" cssclass="btn_regist"/>
+        <Button id="btn_Edit" taborder="4" text="수정" left="1005" top="580" width="80" height="50" onclick="btn_Edit_onclick" cssclass="btn_edit"/>
+        <Button id="btn_Delete" taborder="5" text="삭제" left="1107" top="580" width="80" height="50" onclick="btn_Delete_onclick" cssclass="btn_delete"/>
         <GroupBox id="GroupBox_Search" taborder="1" text="조회" left="720" top="85" width="470" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
         <Combo id="cmb_SearchType" taborder="6" text="전체" left="762" top="105" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" value="ALL" onitemchanged="cmb_SearchType_onitemchanged"/>
         <Edit id="edt_SearchWord" taborder="7" left="887" top="105" width="180" height="30" binddataset="ds_search" text="bind:SEARCH_WORD" onchanged="edt_SearchWord_onchanged"/>
-        <Button id="btn_Search" taborder="8" text="조회" left="1095" top="105" width="70" height="30" onclick="btn_Search_onclick"/>
+        <Button id="btn_Search" taborder="8" text="조회" left="1095" top="105" width="70" height="30" onclick="btn_Search_onclick" cssclass="btn_search"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[// 검색 버튼 클릭 이벤트

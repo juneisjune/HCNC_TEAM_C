@@ -11,9 +11,9 @@
             </Layout>
           </Layouts>
         </Div>
-        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="465" top="360" width="150" height="60" onclick="btn_Login_onclick"/>
+        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="465" top="360" width="150" height="60" onclick="btn_Login_onclick" cssclass="btn_normal"/>
         <Edit id="edt_AuthCheck" taborder="1" left="840" top="290" width="200" height="60"/>
-        <Button id="btn_AuthCheck" taborder="2" text="인증하기" left="890" top="360" width="150" height="60" onclick="btn_AuthCheck_onclick"/>
+        <Button id="btn_AuthCheck" taborder="2" text="인증하기" left="890" top="360" width="150" height="60" onclick="btn_AuthCheck_onclick" cssclass="btn_normal"/>
         <Static id="sta_AuthCheck" taborder="3" text="인증번호 입력 :" left="720" top="290" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
         <Static id="sta_Id" taborder="4" text="아이디 입력 :" left="310" top="210" width="90" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
         <Static id="sta_Password" taborder="5" text="비밀번호 입력 :" left="295" top="290" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
