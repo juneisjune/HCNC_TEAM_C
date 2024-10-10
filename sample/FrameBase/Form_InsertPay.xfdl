@@ -3,23 +3,23 @@
   <Form id="Form_InsertPay" width="1280" height="720" titletext="급여 등록" onload="Form_InsertPay_onload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
-        <GroupBox id="GroupBox_Search" taborder="8" text="조회" left="560" top="81" width="300" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
+        <GroupBox id="GroupBox_Search" taborder="8" text="조회" left="620" top="81" width="300" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
         <Static id="Static00" taborder="0" text="급여 등록" left="31" top="20" width="154" height="50" cssclass="stc_title" onclick="title_onclick"/>
-        <Static id="stc_Assign" taborder="1" text="직책" left="605" top="100" width="70" height="30"/>
-        <Combo id="cmb_Assign" taborder="2" left="649" top="100" width="130" height="30" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged"/>
-        <Button id="btn_Search" taborder="3" text="조회" left="790" top="100" width="43" height="30" onclick="btn_Search_onclick"/>
-        <Grid id="grd_Emp" taborder="4" left="30" top="155" width="830" height="330" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick">
+        <Static id="stc_Assign" taborder="1" text="직책" left="645" top="100" width="70" height="30" cssclass="stc_stc"/>
+        <Combo id="cmb_Assign" taborder="2" left="709" top="100" width="130" height="30" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged"/>
+        <Button id="btn_Search" taborder="3" text="조회" left="850" top="100" width="43" height="30" onclick="btn_Search_onclick"/>
+        <Grid id="grd_Emp" taborder="4" left="30" top="155" width="890" height="425" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="48"/>
-                <Column size="67"/>
-                <Column size="92"/>
-                <Column size="70"/>
-                <Column size="97"/>
+                <Column size="88"/>
+                <Column size="109"/>
+                <Column size="82"/>
+                <Column size="110"/>
                 <Column size="121"/>
                 <Column size="119"/>
-                <Column size="213"/>
+                <Column size="210"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
@@ -48,9 +48,9 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="Static04" taborder="5" text="지급일" left="540" top="500" width="120" height="30"/>
-        <Calendar id="cal_GiveDate" taborder="6" left="595" top="500" width="150" height="30" dateformat="yyyy-MM-dd"/>
-        <Button id="btn_Insert" taborder="7" text="등록" left="770" top="500" width="90" height="30" onclick="btn_Insert_onclick"/>
+        <Static id="Static04" taborder="5" text="지급일" left="600" top="600" width="120" height="30"/>
+        <Calendar id="cal_GiveDate" taborder="6" left="655" top="600" width="150" height="30" dateformat="yyyy-MM-dd"/>
+        <Button id="btn_Insert" taborder="7" text="등록" left="830" top="600" width="90" height="30" onclick="btn_Insert_onclick"/>
       </Layout>
     </Layouts>
     <Objects>

@@ -124,7 +124,7 @@
                     </td>
                     <td>
                         이름
-                        <input type="text" id="empName" name="empName" value="${emp.name}" disabled>
+                        <input type="text" id="empName" name="name" value="${emp.name}" disabled>
                     </td>
                     <td>
                         부서명
