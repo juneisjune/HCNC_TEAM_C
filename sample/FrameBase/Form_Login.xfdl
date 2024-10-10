@@ -7,7 +7,7 @@
         <Div id="div_LoginForm" taborder="11" left="262" top="160" width="380" height="370" background="#ffffff">
           <Layouts>
             <Layout>
-              <Static id="sta_FindLoginInfo" taborder="0" text="아이디 및 비밀번호 찾기" left="218" top="275" width="135" height="25" onmouseleave="div_LoginForm_sta_FindLoginInfo_onmouseleave" onmouseenter="div_LoginForm_sta_FindLoginInfo_onmouseenter" onclick="div_LoginForm_sta_FindLoginInfo_onclick"/>
+              <Static id="sta_FindLoginInfo" taborder="0" text="아이디 및 비밀번호 찾기" left="218" top="275" width="135" height="25" onmouseleave="div_LoginForm_sta_FindLoginInfo_onmouseleave" onmouseenter="div_LoginForm_sta_FindLoginInfo_onmouseenter" onclick="div_LoginForm_sta_FindLoginInfo_onclick" font="12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" color="#000000"/>
             </Layout>
           </Layouts>
         </Div>
@@ -206,12 +206,14 @@ this.btn_Pass_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 // 아이디 및 비밀번호 static영역에 들어왔을 때
 this.div_LoginForm_sta_FindLoginInfo_onmouseenter = function(obj:nexacro.Static,e:nexacro.MouseEventInfo)
 {
-	
+	this.div_LoginForm.form.sta_FindLoginInfo.set_color("#0000FF");
+	this.div_LoginForm.form.sta_FindLoginInfo.set_font("italic 12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;");
 };
 // 아이디 및 비밀번호 static영역에서 나갔을 때
 this.div_LoginForm_sta_FindLoginInfo_onmouseleave = function(obj:nexacro.Static,e:nexacro.MouseEventInfo)
 {
-	
+	this.div_LoginForm.form.sta_FindLoginInfo.set_color("#000000");
+	this.div_LoginForm.form.sta_FindLoginInfo.set_font("12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;");
 };
 
 // 아이디 및 비밀번호를 클릭했을 때

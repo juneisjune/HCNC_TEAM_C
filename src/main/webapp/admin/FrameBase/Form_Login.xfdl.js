@@ -53,6 +53,8 @@
             obj = new Static("sta_FindLoginInfo","218","275","135","25",null,null,null,null,null,null,this.div_LoginForm.form);
             obj.set_taborder("0");
             obj.set_text("아이디 및 비밀번호 찾기");
+            obj.set_font("12px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_color("#000000");
             this.div_LoginForm.addChild(obj.name, obj);
 
             obj = new Button("btn_Login","465","360","150","60",null,null,null,null,null,null,this);
@@ -328,12 +330,14 @@
         // 아이디 및 비밀번호 static영역에 들어왔을 때
         this.div_LoginForm_sta_FindLoginInfo_onmouseenter = function(obj,e)
         {
-
+        	this.div_LoginForm.form.sta_FindLoginInfo.set_color("#0000FF");
+        	this.div_LoginForm.form.sta_FindLoginInfo.set_font("italic 12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;");
         };
         // 아이디 및 비밀번호 static영역에서 나갔을 때
         this.div_LoginForm_sta_FindLoginInfo_onmouseleave = function(obj,e)
         {
-
+        	this.div_LoginForm.form.sta_FindLoginInfo.set_color("#000000");
+        	this.div_LoginForm.form.sta_FindLoginInfo.set_font("12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;");
         };
 
         // 아이디 및 비밀번호를 클릭했을 때
