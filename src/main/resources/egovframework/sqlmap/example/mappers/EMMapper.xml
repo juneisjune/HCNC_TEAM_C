@@ -88,7 +88,7 @@
 			#{joinDate},  
 			#{account}, 
 			CURTIME(),  
-			'김명준'  
+			#{admin_name}  
 			);
 	</insert>
 		<!--
@@ -99,18 +99,20 @@
 
 	<update id="updateEmployeeData" parameterType="map">
 
-		UPDATE employee
-		SET
-			id = #{id},
-			password = SHA2(#{password}, 256),  
-			name = #{name},
-			birth = SUBSTRING(#{birth}, 1, 8), 
-			gender = #{gender},  
-			phone = #{phone},  
-			address = #{address}, 
-			email = #{email},  
-			account = #{account} 
-		WHERE emp_code = #{emp_code};  
+		 UPDATE employee
+           SET
+        id = #{id},
+        <if test="password != null and password != ''">
+            password = SHA2(#{password}, 256),
+       </if>
+	        name = #{name},
+	        birth = SUBSTRING(#{birth}, 1, 8), 
+	        gender = #{gender},  
+	        phone = #{phone},  
+	        address = #{address}, 
+	        email = #{email},  
+	        account = #{account}
+	    WHERE emp_code = #{emp_code};   
 	</update>
 
 	

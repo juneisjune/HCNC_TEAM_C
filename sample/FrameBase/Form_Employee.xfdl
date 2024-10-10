@@ -72,19 +72,20 @@
     <Layouts>
       <Layout height="720" width="1280">
         <Static id="Title" taborder="0" text="직원 정보 관리" left="25" top="25" width="235" height="50" cssclass="stc_title"/>
-        <Grid id="grd_employee" taborder="2" left="25" top="160" width="1082" height="400" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged">
+        <Grid id="grd_employee" taborder="2" left="40" top="160" width="1150" height="400" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged">
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="78"/>
-                <Column size="111"/>
+                <Column size="76"/>
+                <Column size="69"/>
+                <Column size="123"/>
                 <Column size="73"/>
                 <Column size="92"/>
-                <Column size="71"/>
+                <Column size="67"/>
                 <Column size="117"/>
                 <Column size="136"/>
                 <Column size="221"/>
-                <Column size="181"/>
+                <Column size="174"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
@@ -92,33 +93,35 @@
               </Rows>
               <Band id="head">
                 <Cell text="사번"/>
-                <Cell col="1" text="부서명"/>
-                <Cell col="2" text="직책"/>
-                <Cell col="3" text="이름"/>
-                <Cell col="4" text="성별"/>
-                <Cell col="5" text="전화번호"/>
-                <Cell col="6" text="생년월일"/>
-                <Cell col="7" text="주소"/>
-                <Cell col="8" text="이메일"/>
+                <Cell col="1" text="아이디"/>
+                <Cell col="2" text="부서명"/>
+                <Cell col="3" text="직책"/>
+                <Cell col="4" text="이름"/>
+                <Cell col="5" text="성별"/>
+                <Cell col="6" text="전화번호"/>
+                <Cell col="7" text="생년월일"/>
+                <Cell col="8" text="주소"/>
+                <Cell col="9" text="이메일"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:empCode" textAlign="center"/>
-                <Cell col="1" text="bind:depName" textAlign="center"/>
-                <Cell col="2" text="bind:assignName" textAlign="center"/>
-                <Cell col="3" text="bind:name" textAlign="center"/>
-                <Cell col="4" text="bind:gender" textAlign="center"/>
-                <Cell col="5" text="bind:phone" textAlign="center"/>
-                <Cell col="6" text="bind:birth" displaytype="date" calendardateformat="yyyy년 MM월 dd일" calendareditformat="yyyy-MM-dd"/>
-                <Cell col="7" text="bind:address" textAlign="center"/>
-                <Cell col="8" text="bind:email" textAlign="center"/>
+                <Cell col="1" text="bind:id" textAlign="center"/>
+                <Cell col="2" text="bind:depName" textAlign="center"/>
+                <Cell col="3" text="bind:assignName" textAlign="center"/>
+                <Cell col="4" text="bind:name" textAlign="center"/>
+                <Cell col="5" text="bind:gender" textAlign="center"/>
+                <Cell col="6" text="bind:phone" textAlign="center"/>
+                <Cell col="7" text="bind:birth" displaytype="date" calendardateformat="yyyy년 MM월 dd일" calendareditformat="yyyy-MM-dd"/>
+                <Cell col="8" text="bind:address" textAlign="center"/>
+                <Cell col="9" text="bind:email" textAlign="center"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Register" taborder="3" text="등록" left="845" top="580" width="80" height="50" onclick="btn_Register_onclick"/>
-        <Button id="btn_Edit" taborder="4" text="수정" left="935" top="580" width="80" height="50" onclick="btn_Edit_onclick"/>
-        <Button id="btn_Delete" taborder="5" text="삭제" left="1025" top="580" width="80" height="50" onclick="btn_Delete_onclick"/>
-        <GroupBox id="GroupBox_Search" taborder="1" text="조회" left="617" top="85" width="490" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
+        <Button id="btn_Register" taborder="3" text="등록" left="900" top="580" width="80" height="50" onclick="btn_Register_onclick"/>
+        <Button id="btn_Edit" taborder="4" text="수정" left="1005" top="580" width="80" height="50" onclick="btn_Edit_onclick"/>
+        <Button id="btn_Delete" taborder="5" text="삭제" left="1107" top="580" width="80" height="50" onclick="btn_Delete_onclick"/>
+        <GroupBox id="GroupBox_Search" taborder="1" text="조회" left="630" top="85" width="490" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
         <Combo id="cmb_SearchType" taborder="6" text="전체" left="672" top="105" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" value="ALL" onitemchanged="cmb_SearchType_onitemchanged"/>
         <Edit id="edt_SearchWord" taborder="7" left="797" top="105" width="180" height="30" binddataset="ds_search" text="bind:SEARCH_WORD" onchanged="edt_SearchWord_onchanged"/>
         <Button id="btn_Search" taborder="8" text="조회" left="1005" top="105" width="70" height="30" onclick="btn_Search_onclick"/>

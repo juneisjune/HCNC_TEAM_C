@@ -37,59 +37,60 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Title","15","15","350","50",null,null,null,null,null,null,this);
+            obj = new Static("Title","25","25","235","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("직원 정보 관리");
-            obj.set_font("32px/normal \"Gulim\"");
+            obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearchType","20","110","100","30",null,null,null,null,null,null,this);
+            obj = new Grid("grd_employee","40","160","1150","400",null,null,null,null,null,null,this);
+            obj.set_taborder("2");
+            obj.set_binddataset("ds_empList");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"76\"/><Column size=\"69\"/><Column size=\"123\"/><Column size=\"73\"/><Column size=\"92\"/><Column size=\"67\"/><Column size=\"117\"/><Column size=\"136\"/><Column size=\"221\"/><Column size=\"174\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"아이디\"/><Cell col=\"2\" text=\"부서명\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"이름\"/><Cell col=\"5\" text=\"성별\"/><Cell col=\"6\" text=\"전화번호\"/><Cell col=\"7\" text=\"생년월일\"/><Cell col=\"8\" text=\"주소\"/><Cell col=\"9\" text=\"이메일\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:id\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:gender\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:phone\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:birth\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\" calendareditformat=\"yyyy-MM-dd\"/><Cell col=\"8\" text=\"bind:address\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:email\" textAlign=\"center\"/></Band></Format></Formats>");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btn_Register","900","580","80","50",null,null,null,null,null,null,this);
+            obj.set_taborder("3");
+            obj.set_text("등록");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btn_Edit","1005","580","80","50",null,null,null,null,null,null,this);
+            obj.set_taborder("4");
+            obj.set_text("수정");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btn_Delete","1107","580","80","50",null,null,null,null,null,null,this);
+            obj.set_taborder("5");
+            obj.set_text("삭제");
+            this.addChild(obj.name, obj);
+
+            obj = new GroupBox("GroupBox_Search","630","85","490","60",null,null,null,null,null,null,this);
             obj.set_taborder("1");
+            obj.set_text("조회");
+            obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_visible("true");
+            obj.set_opacity("1");
+            obj.set_tooltiptype("default");
+            this.addChild(obj.name, obj);
+
+            obj = new Combo("cmb_SearchType","672","105","100","30",null,null,null,null,null,null,this);
+            obj.set_taborder("6");
             obj.set_innerdataset("ds_SearchType");
             obj.set_codecolumn("Value");
             obj.set_datacolumn("Name");
-            obj.set_borderRadius("5px");
             obj.set_text("전체");
             obj.set_value("ALL");
-            obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_SearchWord","130","110","180","30",null,null,null,null,null,null,this);
-            obj.set_taborder("2");
+            obj = new Edit("edt_SearchWord","797","105","180","30",null,null,null,null,null,null,this);
+            obj.set_taborder("7");
             obj.getSetter("binddataset").set("ds_search");
-            obj.set_borderRadius("5px");
             obj.set_text("bind:SEARCH_WORD");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","320","110","70","30",null,null,null,null,null,null,this);
-            obj.set_taborder("3");
+            obj = new Button("btn_Search","1005","105","70","30",null,null,null,null,null,null,this);
+            obj.set_taborder("8");
             obj.set_text("조회");
-            obj.set_borderRadius("5px");
-            this.addChild(obj.name, obj);
-
-            obj = new Grid("grd_employee","15","160","795","340",null,null,null,null,null,null,this);
-            obj.set_taborder("4");
-            obj.set_binddataset("ds_empList");
-            obj.set_borderRadius("5px");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"55\"/><Column size=\"84\"/><Column size=\"60\"/><Column size=\"82\"/><Column size=\"41\"/><Column size=\"91\"/><Column size=\"145\"/><Column size=\"84\"/><Column size=\"151\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"부서명\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"이름\"/><Cell col=\"4\" text=\"성별\"/><Cell col=\"5\" text=\"전화번호\"/><Cell col=\"6\" text=\"생년월일\"/><Cell col=\"7\" text=\"주소\"/><Cell col=\"8\" text=\"이메일\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\"/><Cell col=\"1\" text=\"bind:depName\"/><Cell col=\"2\" text=\"bind:assignName\"/><Cell col=\"3\" text=\"bind:name\"/><Cell col=\"4\" text=\"bind:gender\"/><Cell col=\"5\" text=\"bind:phone\"/><Cell col=\"6\" text=\"bind:birth\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\" calendareditformat=\"yyyy-MM-dd\"/><Cell col=\"7\" text=\"bind:address\"/><Cell col=\"8\" text=\"bind:email\"/></Band></Format></Formats>");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_Register","15","520","80","50",null,null,null,null,null,null,this);
-            obj.set_taborder("5");
-            obj.set_text("등록");
-            obj.set_borderRadius("5px");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_Edit","110","520","80","50",null,null,null,null,null,null,this);
-            obj.set_taborder("6");
-            obj.set_text("수정");
-            obj.set_borderRadius("5px");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_Delete","210","520","80","50",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
-            obj.set_text("삭제");
-            obj.set_borderRadius("5px");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -97,11 +98,11 @@
             this.addLayout(obj.name, obj);
             
             // BindItem Information
-            obj = new BindItem("bind_SearchWord","edt_SearchWord","value","ds_search","SEARCH_WORD");
+            obj = new BindItem("item0","cmb_SearchType","value","ds_search","SEARCH_TYPE");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("bind_SearchType","cmb_SearchType","value","ds_search","SEARCH_TYPE");
+            obj = new BindItem("item1","edt_SearchWord","value","ds_search","SEARCH_WORD");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -117,26 +118,21 @@
         // User Script
         this.registerScript("Form_Employee.xfdl", function() {
         // 검색 버튼 클릭 이벤트
-           this.btn_Search_onclick = function(obj, e) {
+        this.btn_Search_onclick = function(obj, e) {
+            console.log("검색 버튼 클릭됨");
             this.fnSearch();  // 검색 함수 호출
         };
-        this.Form_employee_onkeyup = function(obj, e)
-        {
-
-        	if (e.keycode == 13) {  // Enter 키가 눌렸을 때
-                this.fnSearch();
-          };
-        }
 
         // 폼 로드 이벤트
-            this.Form_employee_onload = function(obj, e) {
+        this.Form_employee_onload = function(obj, e) {
+            console.log("폼 로드됨. 초기 검색 유형 설정: ALL");
             this.ds_search.setColumn(0, "SEARCH_TYPE", "ALL");  // 검색 유형을 ALL로 설정
 
             this.fnSearch();  // 폼 로드 시 자동 검색
         };
 
         // 검색 함수
-           this.fnSearch = function() {
+        this.fnSearch = function() {
             var strSvcId    = "selectEmployeeList";  // 서비스 ID
             var strSvcUrl   = "svc::selectEmployeeList.do";  // 서비스 URL
             var inData      = "ds_search=ds_search";  // 입력 데이터셋
@@ -145,16 +141,19 @@
             var isAsync     = true;  // 비동기 처리
 
             // 트랜잭션 호출
+            console.log("트랜잭션 시작. 서비스 ID: " + strSvcId + ", URL: " + strSvcUrl);
             this.transaction(strSvcId, strSvcUrl, inData, outData, "", callBackFnc, isAsync);
         };
 
         // 등록 버튼 클릭 이벤트
-            this.btn_Register_onclick = function(obj, e) {
+        this.btn_Register_onclick = function(obj, e) {
+            console.log("등록 팝업 호출");
             this.showRegisterPopup();  // 등록 팝업 호출 함수 호출
         };
 
         // 등록 팝업 호출 함수
-            this.showRegisterPopup = function() {
+        this.showRegisterPopup = function() {
+            console.log("등록 팝업 열기");
 
             var popup = new nexacro.ChildFrame;
             popup.init("popupRegisterEmp", 100, 100, 800, 700, null, null, "FrameBase::Popup_RegisterEmp.xfdl");
@@ -171,7 +170,7 @@
 
 
         // 수정팝업 호출 함수
-           this.showEditPopup = function(objParam) {
+        this.showEditPopup = function(objParam) {
             // 고유한 팝업 ID를 생성
             var popupId = "popupEditEmp_" + new Date().getTime();  // 시간을 기반으로 고유한 ID 생성
 
@@ -191,11 +190,14 @@
         };
 
 
-            this.btn_Edit_onclick = function(obj,e)
+
+
+
+        this.btn_Edit_onclick = function(obj,e)
         {
         	var objParam = {id:this.ds_empList.getColumn(this.ds_empList.rowposition, "id")
-                      , name:this.ds_empList.getColumn(this.ds_empList.rowposition, "name")
-                      , birth:this.ds_empList.getColumn(this.ds_empList.rowposition, "birth")
+                          , name:this.ds_empList.getColumn(this.ds_empList.rowposition, "name")
+                          , birth:this.ds_empList.getColumn(this.ds_empList.rowposition, "birth")
                       , gender:this.ds_empList.getColumn(this.ds_empList.rowposition, "gender")
                       , phone:this.ds_empList.getColumn(this.ds_empList.rowposition, "phone")
                       , address:this.ds_empList.getColumn(this.ds_empList.rowposition, "address")
@@ -203,17 +205,20 @@
                       , account:this.ds_empList.getColumn(this.ds_empList.rowposition, "account")
                       , emp_code:this.ds_empList.getColumn(this.ds_empList.rowposition, "empCode")};
 
-        			this.showEditPopup(objParam);
+        			  console.log(this.ds_empList.saveXML());
+           this.showEditPopup(objParam);
         };
 
 
-            this.btn_Delete_onclick = function(obj,e)
+
+
+        this.btn_Delete_onclick = function(obj,e)
         {
             if (!this.confirm("정말로 삭제하시겠습니까?", "")) {
                 return;  // 취소 시 동작 중단
             }
 
-           var nRow = this.ds_empList.rowposition;
+          var nRow = this.ds_empList.rowposition;
             if (nRow < 0) {
                 this.alert("삭제할 데이터를 선택하세요.");
                 return;
@@ -223,7 +228,7 @@
             this.fnDeleteEmployee();
         }
 
-           this.fnDeleteEmployee = function()
+        this.fnDeleteEmployee = function()
         {
 
             // 트랜잭션을 통해 삭제 요청
@@ -236,7 +241,7 @@
 
             this.transaction(strSvcId, strSvcUrl, inData, outData, "", callBackFnc, isAsync);
         };
-            this.fnCallbackDelete = function(svcID, errorCode, errorMsg)
+        this.fnCallbackDelete = function(svcID, errorCode, errorMsg)
         {
             if (errorCode == 0) {
                 this.alert("삭제가 완료되었습니다.");
@@ -250,10 +255,9 @@
         {
 
         	this.ds_employee.setColumn(0, "empCode", this.ds_empList.getColumn(this.ds_empList.rowposition, "empCode"));
+
+        	console.log(this.ds_employee.saveXML());
         };
-
-
-
 
 
         });
@@ -262,13 +266,13 @@
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Form_employee_onload,this);
-            this.addEventHandler("onkeyup",this.Form_employee_onkeyup,this);
-            this.edt_SearchWord.addEventHandler("onchanged",this.edt_SearchWord_onchanged,this);
-            this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grd_employee.addEventHandler("oncellposchanged",this.grd_employee_oncellposchanged,this);
             this.btn_Register.addEventHandler("onclick",this.btn_Register_onclick,this);
             this.btn_Edit.addEventHandler("onclick",this.btn_Edit_onclick,this);
             this.btn_Delete.addEventHandler("onclick",this.btn_Delete_onclick,this);
+            this.cmb_SearchType.addEventHandler("onitemchanged",this.cmb_SearchType_onitemchanged,this);
+            this.edt_SearchWord.addEventHandler("onchanged",this.edt_SearchWord_onchanged,this);
+            this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
         };
         this.loadIncludeScript("Form_Employee.xfdl");
         this.loadPreloadList();
