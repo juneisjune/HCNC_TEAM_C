@@ -118,7 +118,7 @@
             <Col id="MENU_LEVEL">2</Col>
             <Col id="MENU_ID">0503</Col>
             <Col id="MENU_NAME">평가 기준</Col>
-            <Col id="MENU_PATH">FrameBase::Form_EvalRegEdit.xfdl</Col>
+            <Col id="MENU_PATH">FrameBase::Form_EvalEdit.xfdl</Col>
           </Row>
         </Rows>
       </Dataset>
