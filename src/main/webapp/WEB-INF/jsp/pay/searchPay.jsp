@@ -47,6 +47,7 @@
 
         td {
             background-color: #ffffff;
+            font-size: 13px;
         }
 
         tr:nth-child(even) td {
