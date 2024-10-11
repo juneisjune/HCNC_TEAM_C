@@ -60,6 +60,7 @@
             border-radius: 4px;
             font-size: 14px;
             width: 170px;
+            background-color: #F0F0F0;
         }
         select {
         	width: 100px;
@@ -74,6 +75,7 @@
         button {
             padding: 10px 20px;
             font-size: 16px;
+            width: 72px;
             border: none;
             border-radius: 5px;
             background-color: #ff7f50; /* 귤색 */
@@ -245,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         <select id="startMonth"></select>월 &nbsp; ~ 
                         <select id="endYear"></select>년 &nbsp;
                         <select id="endMonth"></select>월 &nbsp;
-                        <button id="searchBtn" type="button">신청내역 조회</button>
+                        <button id="searchBtn" type="button">조회</button>
                     </td>
                 </tr>
             </table>

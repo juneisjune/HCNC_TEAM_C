@@ -47,7 +47,7 @@
 
         td {
             background-color: #ffffff;
-            font-size: 13px;
+            font-size : 14px;
         }
 
         tr:nth-child(even) td {
@@ -62,16 +62,17 @@
         	font-weight: bold;
         	color: black;
         }
-        
-
-        input[type="text"], select, button {
+      
+        input[type="text"] ,button {
             padding: 10px;
             margin: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
             width: 170px;
+            background-color: #F0F0F0;
         }
+        
         select {
             padding: 10px;
             margin: 5px;
@@ -82,6 +83,7 @@
         }
 
         button {
+        	width: 72px;
             padding: 10px 20px;
             font-size: 16px;
             border: none;
@@ -216,8 +218,7 @@
 	                    년 &nbsp;
 	                    <select id="endMonth"></select> 
 	                    월 &nbsp;
-	                    <button id="searchBtn" type="button">급여내역 조회</
-button>
+	                    <button id="searchBtn" type="button">조회</button>
 	                </td>
 	             </tr>   
 	       </table>

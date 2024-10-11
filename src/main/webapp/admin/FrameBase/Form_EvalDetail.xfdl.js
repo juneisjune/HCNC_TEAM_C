@@ -10,7 +10,7 @@
         this.on_create = function()
         {
             this.set_name("Form_EvalDetail");
-            this.set_titletext("New Form");
+            this.set_titletext("evalDetail");
             if (Form == this.constructor)
             {
                 this._setFormPosition(810,600);
