@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_EvalEmployee" width="1280" height="720" titletext="New Form" onload="Form_Eval_onload">
+  <Form id="Form_EvalEmployee" width="1080" height="720" titletext="New Form" onload="Form_Eval_onload">
     <Layouts>
-      <Layout height="768" mobileorientation="landscape" width="1024" stepcount="0">
-        <Static id="staTitle" taborder="0" text="전체 직원 목록" left="15" top="15" width="500" height="40" font="bold 20px/normal &quot;Arial&quot;" onclick="staTitle_onclick"/>
+      <Layout height="720" mobileorientation="landscape" width="1040" stepcount="0">
+        <Static id="staTitle" taborder="0" text="전체 직원 목록" left="15" top="15" width="230" height="40" font="bold 20px/normal &quot;Arial&quot;" onclick="staTitle_onclick" cssclass="stc_title"/>
         <Button id="btnFilterSearch" taborder="2" text="검색" left="255" top="70" width="80" height="25" onclick="btnFilterSearch_onclick" cssclass="btn_search"/>
         <Grid id="grdEvaluation" taborder="3" left="15" top="105" width="992" height="580" binddataset="dsEvalAll">
           <Formats>

@@ -2,18 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hcnc.cteam.evaluation.EvaluationMapper">
 
+	<!-- Form_EvalRegister의 각 점수 기입 -->
 	<insert id="insertEval">
 	    INSERT INTO eval_history (emp_code, guide_code, eval_date, question, score, reg_name)
 	    VALUES 
 	    (#{empCode}, #{guideCode}, #{evalDate}, #{question}, #{score}, #{admin_name})
 	</insert>
 	
+	<!-- Form_EvalRegister의 총 점수 기입 -->
 	<insert id="insertEvalTotal">
 	    INSERT INTO evaluation (emp_code, mng_code, eval_date, eval_grade, total_score, reg_name)
 	    VALUES 
 	    (#{empCode}, #{admin_code}, #{evalDate}, #{evalGrade}, #{totalScore}, #{admin_name})
 	</insert>
 	
+	<!-- Form_EvalEdit의 질문 수정 시 최종 수정자 기입 -->
 	<update id="updateRegister">
 		UPDATE eval_guide
 		SET
@@ -23,6 +26,7 @@
 		
 	</update>
 	
+	<!--  -->
 	<select id ="editRegister" resultType="hcnc.cteam.evaluation.EvalQuestionDTO">
 		SELECT guide_code, question
 		FROM eval_guide
@@ -37,7 +41,7 @@
 	</select>
 
     <select id="selectEval" resultType="hcnc.cteam.evaluation.EvaluationDTO">
-        SELECT
+        SELECT DISTINCT
 	a.emp_code as empCode,
 	a.name as name,
 	DATE_FORMAT(b.eval_date, '%Y-%m-%d') as evalDate,
@@ -90,6 +94,7 @@
 
     </select>
     
+    <!-- Form_EvalEmployee 전체 직원 목록 조회 -->
     <select id="evalAll" resultType="hcnc.cteam.evaluation.EvalAllDTO">
        SELECT a.emp_code AS empCode,
        a.name AS name,

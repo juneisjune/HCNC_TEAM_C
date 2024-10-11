@@ -414,6 +414,7 @@
 
             alert("평가가 성공적으로 저장되었습니다.");
             this.close();
+        	this.opener.fnSearch();
         };
 
         this.fnQuestionCallback = function(strSvcID, nErrorCode, strErrorMsg) {

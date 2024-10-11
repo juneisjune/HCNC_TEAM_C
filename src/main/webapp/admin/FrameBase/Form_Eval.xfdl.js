@@ -32,10 +32,11 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("staTitle","15","15","500","40",null,null,null,null,null,null,this);
+            obj = new Static("staTitle","15","15","230","40",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("직원 업무 평가 시스템");
             obj.set_font("bold 20px/normal \"Arial\"");
+            obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
             obj = new Button("btnFilterSearch","255","70","80","25",null,null,null,null,null,null,this);

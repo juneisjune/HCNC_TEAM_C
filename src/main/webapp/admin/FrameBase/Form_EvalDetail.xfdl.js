@@ -30,19 +30,21 @@
             obj = new Grid("grdEvalInfo","10","80","750","55",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_binddataset("dsEvaluation");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"124\"/><Column size=\"124\"/><Column size=\"128\"/><Column size=\"124\"/><Column size=\"124\"/><Column size=\"124\"/></Columns><Rows><Row size=\"25\" band=\"head\"/><Row size=\"25\"/></Rows><Band id=\"head\"><Cell text=\"직원 ID\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"평가일자\"/><Cell col=\"3\" text=\"점수\"/><Cell col=\"4\" text=\"등급\"/><Cell col=\"5\" text=\"평가자\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:evalDate\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:totalScore\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:evalGrade\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:regName\" textAlign=\"center\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"124\"/><Column size=\"124\"/><Column size=\"128\"/><Column size=\"124\"/><Column size=\"124\"/><Column size=\"124\"/></Columns><Rows><Row size=\"25\" band=\"head\"/><Row size=\"25\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"평가일자\"/><Cell col=\"3\" text=\"점수\"/><Cell col=\"4\" text=\"등급\"/><Cell col=\"5\" text=\"평가자\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:evalDate\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:totalScore\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:evalGrade\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:regName\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00","10","20","120","60",null,null,null,null,null,null,this);
+            obj = new Static("Static00","10","30","120","40",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("평가 정보");
             obj.set_font("bold 24px/normal \"Gulim\"");
+            obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static01","8","145","120","40",null,null,null,null,null,null,this);
+            obj = new Static("Static01","10","140","120","40",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("질문 목록");
             obj.set_font("bold 24px/normal \"Gulim\"");
+            obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
             obj = new Button("btnClose","680","1730","80","30",null,null,null,null,null,null,this);

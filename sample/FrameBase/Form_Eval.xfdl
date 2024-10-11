@@ -3,7 +3,7 @@
   <Form id="Form_Eval" width="1280" height="720" titletext="New Form" onload="Form_Eval_onload">
     <Layouts>
       <Layout height="768" mobileorientation="landscape" width="1024" stepcount="0">
-        <Static id="staTitle" taborder="0" text="직원 업무 평가 시스템" left="15" top="15" width="500" height="40" font="bold 20px/normal &quot;Arial&quot;" onclick="staTitle_onclick"/>
+        <Static id="staTitle" taborder="0" text="직원 업무 평가 시스템" left="15" top="15" width="230" height="40" font="bold 20px/normal &quot;Arial&quot;" onclick="staTitle_onclick" cssclass="stc_title"/>
         <Button id="btnFilterSearch" taborder="3" text="검색" left="255" top="70" width="80" height="25" onclick="btnFilterSearch_onclick" cssclass="btn_search"/>
         <Grid id="grdEvaluation" taborder="7" left="15" top="160" width="992" height="550" binddataset="dsEvaluation" oncelldblclick="grdEvaluation_oncelldblclick">
           <Formats>

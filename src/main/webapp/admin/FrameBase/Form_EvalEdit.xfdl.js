@@ -42,7 +42,7 @@
             obj = new Grid("grdEdit","10","100","745","385",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("dsQuestions");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"50\"/><Column size=\"693\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"35\"/></Rows><Band id=\"head\"><Cell text=\"ID\"/><Cell col=\"1\" text=\"질문 목록\"/></Band><Band id=\"body\"><Cell text=\"bind:guideCode\"/><Cell col=\"1\" text=\"bind:question\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"50\"/><Column size=\"693\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"35\"/></Rows><Band id=\"head\"><Cell text=\"번호\"/><Cell col=\"1\" text=\"질문 목록\"/></Band><Band id=\"body\"><Cell text=\"bind:guideCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:question\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Edit("EditQuestion","60","530","530","30",null,null,null,null,null,null,this);
@@ -54,10 +54,11 @@
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00","10","30","290","60",null,null,null,null,null,null,this);
+            obj = new Static("Static00","10","30","150","60",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("평가 수정");
             obj.set_font("bold 28px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -129,10 +130,6 @@
         // 수정 버튼 클릭 시 호출되는 함수
         this.btnSubmit_onclick = function(obj, e) {
 
-        	var admin_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
-
-        	this.dsEditSave.setColumn(0, "admin_name", admin_name);
-
             // Edit 박스에서 수정된 값 가져오기
             var editedValue = this.EditQuestion.value;
 
@@ -145,12 +142,17 @@
                     alert("guideCode 값을 가져올 수 없습니다.");
                     return;
                 }
+        		var admin_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
+
+
 
                 // 수정할 데이터를 dsEditSave 데이터셋에 추가
                 this.dsEditSave.clearData();  // 데이터셋을 초기화하고 새 데이터 추가
                 this.dsEditSave.addRow();
                 this.dsEditSave.setColumn(0, "question", editedValue);
-                this.dsEditSave.setColumn(0, "guideCode", guideCode);  // guideCode 값을 추가
+                this.dsEditSave.setColumn(0, "guideCode", guideCode);
+        		this.dsEditSave.setColumn(0, "admin_name", admin_name);
+        		console.log(this.dsEditSave.saveXML());
 
                 // 전송할 데이터 로그로 출력해 확인
                 console.log("dsEditSave 전송 데이터: " + this.dsEditSave.saveXML());
@@ -184,6 +186,17 @@
                 alert("수정 실패 : " + errorMsg);  // 서버가 반환한 구체적인 오류 메시지를 확인
             } else {
                 alert("수정이 성공적으로 완료되었습니다.");
+
+        		// 수정 후 데이터를 다시 로드
+                var strSvcID = "editRegister";
+                var strSvcUrl = "svc::editRegister.do";
+                var inData = "";
+                var outData = "dsQuestions=dsQuestions";
+                var strArg = "";
+                var callBackFnc = "fnQuestionCallback";
+                var isAsync = true;
+
+                this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
             }
 
         };

@@ -13,7 +13,7 @@
             this.set_titletext("New Form");
             if (Form == this.constructor)
             {
-                this._setFormPosition(1280,720);
+                this._setFormPosition(1080,720);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -32,10 +32,11 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("staTitle","15","15","500","40",null,null,null,null,null,null,this);
+            obj = new Static("staTitle","15","15","230","40",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("전체 직원 목록");
             obj.set_font("bold 20px/normal \"Arial\"");
+            obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
             obj = new Button("btnFilterSearch","255","70","80","25",null,null,null,null,null,null,this);
@@ -77,7 +78,7 @@
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",1024,768,this,function(p){});
+            obj = new Layout("default","",1040,720,this,function(p){});
             obj.set_mobileorientation("landscape");
             obj.set_stepcount("0");
             this.addLayout(obj.name, obj);
