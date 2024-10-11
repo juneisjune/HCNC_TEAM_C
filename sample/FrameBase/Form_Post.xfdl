@@ -47,7 +47,7 @@
           </Formats>
         </Grid>
         <Button id="btn_Search" taborder="1" text="조회" left="942" top="82" width="50" height="28" onclick="Button00_onclick" cssclass="btn_search"/>
-        <Static id="st_selectedCount" text="0건 선택됨" left="40" top="535" width="150" height="30" taborder="2" onclick="st_selectedCount_onclick" color="#6f0520"/>
+        <Static id="st_selectedCount" text="0건 선택됨" left="40" top="535" width="150" height="30" taborder="2" onclick="st_selectedCount_onclick" color="#6f0520" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
         <Button id="btn_delete" text="삭제" left="1030" top="545" width="100" height="30" onclick="btn_delete_onclick" taborder="3" cssclass="btn_delete"/>
         <Button id="btn_newPost" taborder="4" text="새 공지사항 등록" left="1016" top="82" width="110" height="28" onclick="btn_newPost_onclick" cssclass="btn_regist"/>
         <Button id="Button00" taborder="5" text="상세 보기" left="913" top="545" width="92" height="30" onclick="newEdit_onclick" cssclass="btn_normal"/>

@@ -22,7 +22,7 @@
               </Band>
               <Band id="body">
                 <Cell text="bind:attach_name"/>
-                <Cell col="1" text="삭제" textAlign="right" edittype="button" displaytype="buttoncontrol"/>
+                <Cell col="1" text="삭제" textAlign="center" edittype="button" displaytype="buttoncontrol"/>
               </Band>
             </Format>
           </Formats>

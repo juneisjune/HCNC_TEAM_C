@@ -48,6 +48,7 @@
             obj.set_text("0건 선택됨");
             obj.set_taborder("2");
             obj.set_color("#6f0520");
+            obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_delete","1030","545","100","30",null,null,null,null,null,null,this);
