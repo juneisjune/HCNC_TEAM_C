@@ -12,7 +12,7 @@
             this.set_name("Form_Login");
             this.set_titletext("New Form");
             this.set_color("#000000");
-            this.set_background("#000033");
+            this.set_background("#003366");
             this.set_scrollbartype("none");
             if (Form == this.constructor)
             {
@@ -40,77 +40,111 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Div("div_AuthForm","680","160","380","370",null,null,null,null,null,null,this);
-            obj.set_taborder("12");
-            obj.set_background("#ffffff");
-            this.addChild(obj.name, obj);
-
-            obj = new Div("div_LoginForm","262","160","380","370",null,null,null,null,null,null,this);
+            obj = new Div("div_AuthForm","770","200","380","370",null,null,null,null,null,null,this);
             obj.set_taborder("11");
             obj.set_background("#ffffff");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_FindLoginInfo","218","275","135","25",null,null,null,null,null,null,this.div_LoginForm.form);
-            obj.set_taborder("0");
-            obj.set_text("아이디 및 비밀번호 찾기");
-            this.div_LoginForm.addChild(obj.name, obj);
-
-            obj = new Button("btn_Login","465","360","150","60",null,null,null,null,null,null,this);
-            obj.set_taborder("0");
-            obj.set_text("인증번호 발송");
-            this.addChild(obj.name, obj);
-
-            obj = new Edit("edt_AuthCheck","840","290","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_AuthCheck","933","330","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_AuthCheck","890","360","150","60",null,null,null,null,null,null,this);
+            obj = new Button("btn_AuthCheck","1010","400","123","60",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("인증하기");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_AuthCheck","720","290","115","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_AuthCheck","813","330","115","60",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("인증번호 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_Id","310","210","90","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_MaskEmail","803","250","120","60",null,null,null,null,null,null,this);
+            obj.set_taborder("9");
+            obj.set_text("발송받은 이메일 :");
+            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            this.addChild(obj.name, obj);
+
+            obj = new Edit("edt_MaskedEmail","933","250","200","60",null,null,null,null,null,null,this);
+            obj.set_taborder("8");
+            obj.set_readonly("true");
+            obj.set_background("#ffffff");
+            this.addChild(obj.name, obj);
+
+            obj = new Div("div_LoginForm","770","200","380","370",null,null,null,null,null,null,this);
+            obj.set_taborder("10");
+            obj.set_background("#ffffff");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_FindLoginInfo","220","275","135","25",null,null,null,null,null,null,this.div_LoginForm.form);
+            obj.set_taborder("0");
+            obj.set_text("아이디 및 비밀번호 찾기");
+            obj.set_font("12px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_color("#000000");
+            this.div_LoginForm.addChild(obj.name, obj);
+
+            obj = new Button("btn_Login","1010","400","115","60",null,null,null,null,null,null,this);
+            obj.set_taborder("0");
+            obj.set_text("인증번호 발송");
+            obj.set_cssclass("btn_normal");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_Id","820","250","90","60",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("아이디 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_Password","295","290","115","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_Password","805","330","115","60",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("비밀번호 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Id","415","210","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Id","925","250","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Password","415","290","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Password","925","330","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_password("true");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Pass","9","10","143","124",null,null,null,null,null,null,this);
-            obj.set_taborder("8");
-            obj.set_text("넘어가기");
+            obj = new Div("div_LoginMain","390","200","380","370",null,null,null,null,null,null,this);
+            obj.set_taborder("13");
+            obj.set_background("#6666ff");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_MaskedEmail","840","210","200","60",null,null,null,null,null,null,this);
-            obj.set_taborder("9");
-            obj.set_readonly("true");
-            obj.set_background("#ffffff");
+            obj = new ImageViewer("img_HcncLogo","580","60","380","110",null,null,null,null,null,null,this);
+            obj.set_taborder("12");
+            obj.set_image("url(\'imagerc::img_hcnc_logo.png\')");
+            obj.set_stretch("fixaspectratio");
+            obj.set_background("#003366");
+            obj.set_border("0px none");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_MaskEmail","710","210","120","60",null,null,null,null,null,null,this);
-            obj.set_taborder("10");
-            obj.set_text("발송받은 이메일 :");
-            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj = new Static("sta_LoginMain2","390","425","380","100",null,null,null,null,null,null,this);
+            obj.set_taborder("14");
+            obj.set_text("Login");
+            obj.set_textAlign("center");
+            obj.set_font("42px/normal \"HY견고딕\"");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_LoginMain1","390","380","380","80",null,null,null,null,null,null,this);
+            obj.set_taborder("15");
+            obj.set_text("인사관리시스템");
+            obj.set_font("36px/normal \"HY견고딕\"");
+            obj.set_textAlign("center");
+            this.addChild(obj.name, obj);
+
+            obj = new ImageViewer("img_LoginMain","510","240","140","140",null,null,null,null,null,null,this);
+            obj.set_taborder("16");
+            obj.set_stretch("fixaspectratio");
+            obj.set_image("url(\'imagerc::인사관리시스템.png\')");
+            obj.set_background("#6666ff");
+            obj.set_border("0px none");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -146,6 +180,8 @@
         
         // User Script
         this.registerScript("Form_Login.xfdl", function() {
+
+
         // 인증번호 발송(로그인) 버튼
         this.btn_Login_onclick = function(obj,e) {
 
@@ -153,19 +189,24 @@
             var password = this.ds_login.getColumn(0, "password");
 
             // 아이디 유효성 검사
-            if(userId == null || userId == '' || typeof userId === 'undefined') {
+            if(userId == null || userId == '' || userId === 'undefined') {
                 alert("아이디를 입력하세요.");
                 return;
             }
 
             // 비밀번호 유효성 검사
-            if(password == null || password == '' || typeof password === 'undefined') {
+            if(password == null || password == '' || password === 'undefined') {
                 alert("비밀번호를 입력하세요.");
                 return;
             }
 
+        	if(userId == 'master' && password == 'master') {
+        	// master 로그인
+        	this.fnMasterLogin();
+        	} else {
             // 로그인 함수 호출
             this.fnLogin();
+        	}
         };
 
 
@@ -185,7 +226,6 @@
 
         	console.log(this.ds_email.getColumn(0, "email"));
 
-            // 서버와의 트랜잭션 호출
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
 
@@ -202,6 +242,18 @@
                 // 서버에서 넘어온 인증 키(authKey)를 확인
                 var authKey = this.ds_Auth.getColumn(0, "authKey");
                 console.log("Received AuthKey: " + authKey);
+
+        		this.div_LoginMain.set_visible(false);
+        		this.sta_LoginMain1.set_visible(false);
+        		this.sta_LoginMain2.set_visible(false);
+        		this.img_LoginMain.set_visible(false);
+
+        		this.div_LoginForm.set_left(390);
+        		this.sta_Id.set_left(440);
+        		this.sta_Password.set_left(425);
+        		this.edt_Id.set_left(545);
+        		this.edt_Password.set_left(545);
+        		this.btn_Login.set_left(630);
 
             } else {
                 // 통신 실패 시 에러 처리
@@ -270,7 +322,7 @@
            objApp=nexacro.getApplication();
 
             if (nErrorCode < 0) {
-                alert("로그인 실패");
+                alert("로그인 정보가 올바르지 않거나 권한이 없습니다.");
             }
             else {
 
@@ -315,21 +367,17 @@
             return email;
         };
 
-        // 임시로 넘어가기 버튼
-        this.btn_Pass_onclick = function(obj,e)
-        {
-        	this.fn_LoginSuccess()
-        };
-
         // 아이디 및 비밀번호 static영역에 들어왔을 때
         this.div_LoginForm_sta_FindLoginInfo_onmouseenter = function(obj,e)
         {
-
+        	this.div_LoginForm.form.sta_FindLoginInfo.set_color("#0000FF");
+        	this.div_LoginForm.form.sta_FindLoginInfo.set_font("italic 12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;");
         };
         // 아이디 및 비밀번호 static영역에서 나갔을 때
         this.div_LoginForm_sta_FindLoginInfo_onmouseleave = function(obj,e)
         {
-
+        	this.div_LoginForm.form.sta_FindLoginInfo.set_color("#000000");
+        	this.div_LoginForm.form.sta_FindLoginInfo.set_font("12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;");
         };
 
         // 아이디 및 비밀번호를 클릭했을 때
@@ -353,19 +401,39 @@
         	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
         	popup.style.set_overlaycolor("#6666664C");
         	popup.form.style.set_border("1 solid #4c5a6f");
-
         }
+
+        // master로그인
+        this.fnMasterLogin = function() {
+
+        	// master 계정 정보
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "name", "master");
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "emp_code", 1);
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "dep_code", 1);
+        	nexacro.getApplication().ds_userInfo.setColumn(0, "assign_code", 7);
+
+        	console.log(nexacro.getApplication().ds_userInfo.saveXML());
+
+        	this.fn_LoginSuccess();
+        }
+
+        //Form_Top에서 로그아웃시
+        this.Form_Login_onsize = function(obj,e)
+        {
+        	this.reload();
+        };
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
+            this.addEventHandler("onsize",this.Form_Login_onsize,this);
+            this.btn_AuthCheck.addEventHandler("onclick",this.btn_AuthCheck_onclick,this);
             this.div_LoginForm.form.sta_FindLoginInfo.addEventHandler("onmouseleave",this.div_LoginForm_sta_FindLoginInfo_onmouseleave,this);
             this.div_LoginForm.form.sta_FindLoginInfo.addEventHandler("onmouseenter",this.div_LoginForm_sta_FindLoginInfo_onmouseenter,this);
             this.div_LoginForm.form.sta_FindLoginInfo.addEventHandler("onclick",this.div_LoginForm_sta_FindLoginInfo_onclick,this);
             this.btn_Login.addEventHandler("onclick",this.btn_Login_onclick,this);
-            this.btn_AuthCheck.addEventHandler("onclick",this.btn_AuthCheck_onclick,this);
-            this.btn_Pass.addEventHandler("onclick",this.btn_Pass_onclick,this);
         };
         this.loadIncludeScript("Form_Login.xfdl");
         this.loadPreloadList();

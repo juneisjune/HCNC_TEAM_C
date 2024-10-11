@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hcnc.cteam.evaluation.EvaluationMapper">
+
+	<insert id="insertEval">
+	    INSERT INTO eval_history (emp_code, guide_code, eval_date, question, score, reg_name)
+	    VALUES 
+	    (#{empCode}, #{guideCode}, #{evalDate}, #{question}, #{score}, #{admin_name})
+	</insert>
+	
+	<insert id="insertEvalTotal">
+	    INSERT INTO evaluation (emp_code, mng_code, eval_date, eval_grade, total_score, reg_name)
+	    VALUES 
+	    (#{empCode}, #{admin_code}, #{evalDate}, #{evalGrade}, #{totalScore}, #{admin_name})
+	</insert>
+	
+	<update id="updateRegister">
+		UPDATE eval_guide
+		SET
+		question = #{question}
+		, upd_name = #{admin_name}
+		WHERE guide_code = #{guideCode}
+		
+	</update>
+	
+	<select id ="editRegister" resultType="hcnc.cteam.evaluation.EvalQuestionDTO">
+		SELECT guide_code, question
+		FROM eval_guide
+		WHERE 1=1
+	</select>
+	
+	<select id="getQuestions" resultType="hcnc.cteam.evaluation.EvalQuestionDTO">
+	    SELECT score, question
+	    FROM eval_history
+	    WHERE emp_code = #{empCode}
+	    AND eval_date = #{evalDate}
+	</select>
+
+    <select id="selectEval" resultType="hcnc.cteam.evaluation.EvaluationDTO">
+        SELECT DISTINCT
+	a.emp_code as empCode,
+	a.name as name,
+	DATE_FORMAT(b.eval_date, '%Y-%m-%d') as evalDate,
+	b.total_score as totalScore,
+	b.eval_grade as evalGrade,
+	b.reg_name as regName,
+	c.guide_code as guideCode
+        FROM employee a
+        JOIN evaluation b ON a.emp_code = b.emp_code
+        JOIN eval_history c ON b.emp_code = c.emp_code
+        WHERE 1=1
+        AND guide_code  = 1
+        AND a.mng_code = #{admin_code}
+        
+        <!-- 전체 조회 -->
+        <if test="Type == 'all' and Word != null and Word != ''">
+            AND (
+                a.emp_code LIKE CONCAT('%', #{Word}, '%')
+                OR a.name LIKE CONCAT('%', #{Word}, '%')
+                OR DATE_FORMAT(b.eval_date, '%Y-%m-%d') LIKE CONCAT('%', #{Word}, '%')
+                OR b.total_Score LIKE CONCAT('%', #{Word}, '%')
+                OR b.eval_grade LIKE CONCAT('%', #{Word}, '%')
+            )
+        </if>
+
+        <!-- 사원 코드로 검색 -->
+        <if test="Type == 'id' and Word != null and Word != ''">
+            AND a.emp_code LIKE CONCAT('%', #{Word}, '%')
+        </if>
+
+        <!-- 이름으로 검색 -->
+        <if test="Type == 'name' and Word != null and Word != ''">
+            AND a.name LIKE CONCAT('%', #{Word}, '%')
+        </if>
+
+        <!-- 날짜 범위 필터링 -->
+        <if test="StartDate != null and StartDate != '' and EndDate != null and EndDate != ''">
+            AND b.eval_date BETWEEN #{StartDate} AND #{EndDate}
+        </if>
+
+        <!-- 점수로 검색 -->
+        <if test="Type == 'totalScore' and Word != null and Word != ''">
+            AND b.total_Score LIKE CONCAT('%', #{Word}, '%')
+        </if>
+
+        <!-- 등급으로 검색 -->
+        <if test="Type == 'grade' and Word != null and Word != ''">
+            AND b.eval_grade LIKE CONCAT('%', #{Word}, '%')
+        </if>
+
+    </select>
+    
+    <select id="evalAll" resultType="hcnc.cteam.evaluation.EvalAllDTO">
+       SELECT a.emp_code AS empCode,
+       a.name AS name,
+       a.gender AS gender,
+       b.assign_name AS assignName,
+       c.dep_name AS depName
+		FROM employee a
+		JOIN `assignment` b ON a.assign_code = b.assign_code
+		JOIN department c ON a.dep_code = c.dep_code
+		LEFT JOIN eval_history e ON a.emp_code = e.emp_code
+		  AND e.eval_date = CURDATE()
+		WHERE a.mng_code = #{admin_code}
+		  AND e.emp_code IS NULL
+        <!--AND dep_code = #{depCode} -->
+        
+        <!-- 전체 조회 -->
+        <if test="Type == 'all' and Word != null and Word != ''">
+            AND (
+                a.emp_code LIKE CONCAT('%', #{Word}, '%')
+                OR a.name LIKE CONCAT('%', #{Word}, '%')
+                OR b.assign_name LIKE CONCAT('%', #{Word}, '%')
+                OR c.dep_name LIKE CONCAT('%', #{Word}, '%')
+            )
+        </if>
+
+        <!-- 사원 코드로 검색 -->
+        <if test="Type == 'id' and Word != null and Word != ''">
+            AND a.emp_code LIKE CONCAT('%', #{Word}, '%')
+        </if>
+
+        <!-- 이름으로 검색 -->
+        <if test="Type == 'name' and Word != null and Word != ''">
+            AND a.name LIKE CONCAT('%', #{Word}, '%')
+        </if>
+
+        <!-- 등급으로 검색 -->
+        <if test="Type == 'assign' and Word != null and Word != ''">
+            AND b.assign_name LIKE CONCAT('%', #{Word}, '%')
+        </if>
+
+    </select>
+
+</mapper>

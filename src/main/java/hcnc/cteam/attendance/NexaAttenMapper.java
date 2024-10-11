@@ -17,4 +17,5 @@ public interface NexaAttenMapper {
 
 	void attenRegister(Map<String, Object> param);
 	
+	int attenRegisterCheck(Map<String, Object> param);
 }

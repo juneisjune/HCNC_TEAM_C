@@ -71,19 +71,31 @@ public class NexaAttenController {
 		return result;
 	}
 	
-	// 근태 정보 수정
+	// 근태 정보 등록
 	@RequestMapping(value = "/attenRegister.do")
 	public NexacroResult attenRegister(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
 		NexacroResult result = new NexacroResult();
 			
 		System.out.println(param);
-		try {
-			nexaAttenService.attenRegister(param);
-		} catch (Exception ee) {
-				System.out.println(ee);
+		
+		// 해당 일자에 근태 정보가 있는지 체크
+		int KeyCheck = nexaAttenService.attenRegisterCheck(param);
+		
+		System.out.println("키 체크 값 : " + KeyCheck);
+		
+		if (KeyCheck == 0) {
+			try {
+				nexaAttenService.attenRegister(param);
+			} catch (Exception ee) {
+					System.out.println(ee);
+				result.setErrorCode(-1);
+				result.setErrorMsg("catch 조회 오류");
+			}
+		} else {
 			result.setErrorCode(-1);
-			result.setErrorMsg("catch 조회 오류");
+			result.setErrorMsg("해당 날짜에 근태 정보가 있습니다.");
 		}
+		
 		return result;
 		}
 }

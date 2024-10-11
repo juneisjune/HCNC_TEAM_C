@@ -13,7 +13,7 @@
             this.set_titletext("공지사항 조회");
             if (Form == this.constructor)
             {
-                this._setFormPosition(1000,720);
+                this._setFormPosition(1000,690);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -31,85 +31,77 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static_Title","356","20","400","40",null,null,null,null,null,null,this);
+            obj = new Static("Static00_00","386","20","244","50",null,null,null,null,null,null,this);
             obj.set_text("공지사항 상세보기");
-            obj.set_font("bold 24px \'Gulim\'");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Title","10","70","100","30",null,null,null,null,null,null,this);
-            obj.set_text("제목:");
-            obj.set_font("bold 14px \'Gulim\'");
-            obj.set_textAlign("right");
+            obj = new Static("Static_Label_Title","30","88","100","30",null,null,null,null,null,null,this);
+            obj.set_text("제목");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_Title","120","70","600","30",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_Title","120","90","600","30",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Author","10","110","100","30",null,null,null,null,null,null,this);
-            obj.set_text("작성자:");
-            obj.set_font("bold 14px \'Gulim\'");
-            obj.set_textAlign("right");
+            obj = new Static("Static_Label_Author","30","130","100","30",null,null,null,null,null,null,this);
+            obj.set_text("작성자");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_Author","120","110","200","30",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_Author","120","130","200","30",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Date","340","110","100","30",null,null,null,null,null,null,this);
-            obj.set_text("작성일:");
-            obj.set_font("bold 14px \'Gulim\'");
-            obj.set_textAlign("right");
+            obj = new Static("Static_Label_Date","340","130","100","30",null,null,null,null,null,null,this);
+            obj.set_text("작성일");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_ViewCount","670","110","100","30",null,null,null,null,null,null,this);
-            obj.set_text("조회수:");
-            obj.set_font("bold 14px \'Gulim\'");
-            obj.set_textAlign("right");
+            obj = new Static("Static_Label_ViewCount","660","130","100","30",null,null,null,null,null,null,this);
+            obj.set_text("조회수");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_ViewCount","780","110","100","30",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_ViewCount","750","130","100","30",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Content","10","150","100","30",null,null,null,null,null,null,this);
-            obj.set_text("내용:");
-            obj.set_font("bold 14px \'Gulim\'");
-            obj.set_textAlign("right");
+            obj = new Static("Static_Label_Content","30","170","100","30",null,null,null,null,null,null,this);
+            obj.set_text("내용");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new WebBrowser("WebBrowser_Content","120","150","820","400",null,null,null,null,null,null,this);
-            this.addChild(obj.name, obj);
-
-            obj = new TextArea("TextArea_Content","120","150","820","400",null,null,null,null,null,null,this);
+            obj = new TextArea("TextArea_Content","120","170","820","360",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Attachments","10","570","100","30",null,null,null,null,null,null,this);
-            obj.set_text("첨부파일:");
-            obj.set_font("bold 14px \'Gulim\'");
-            obj.set_textAlign("right");
+            obj = new Static("Static_Label_Attachments","30","550","100","30",null,null,null,null,null,null,this);
+            obj.set_text("첨부파일");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("Grid_Attachments","120","570","600","100",null,null,null,null,null,null,this);
+            obj = new Grid("Grid_Attachments","120","550","599","100",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Attachments");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"50\"/><Column size=\"550\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"번호\"/><Cell col=\"1\" text=\"파일명\"/></Band><Band id=\"body\"><Cell text=\"expr:currow + 1\"/><Cell col=\"1\" text=\"bind:attach_name\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"50\"/><Column size=\"547\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"번호\"/><Cell col=\"1\" text=\"파일명\"/></Band><Band id=\"body\"><Cell text=\"expr:currow + 1\"/><Cell col=\"1\" text=\"bind:attach_name\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button_Download","730","570","100","30",null,null,null,null,null,null,this);
+            obj = new Button("Button_Download","730","610","100","40",null,null,null,null,null,null,this);
             obj.set_text("다운로드");
+            obj.set_cssclass("btn_download");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button_Close","840","570","100","30",null,null,null,null,null,null,this);
+            obj = new Button("Button_Close","840","610","100","40",null,null,null,null,null,null,this);
             obj.set_text("닫기");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
-            obj = new MaskEdit("MaskEdit00","450","108","213","34",null,null,null,null,null,null,this);
+            obj = new MaskEdit("MaskEdit00","430","128","213","34",null,null,null,null,null,null,this);
             obj.set_taborder("15");
             obj.set_format("@@@@년 @@월 @@일");
             obj.set_type("string");
@@ -117,7 +109,7 @@
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",1000,720,this,function(p){});
+            obj = new Layout("default","",1000,690,this,function(p){});
             this.addLayout(obj.name, obj);
             
             // BindItem Information
@@ -262,6 +254,7 @@
             alert("파일 다운로드 중 오류가 발생했습니다. 오류 코드: " + e.errormsg);
         };
 
+
         });
         
         // Regist UI Components Event
@@ -269,6 +262,7 @@
         {
             this.addEventHandler("onload",this.Popup_DetailPost_onload,this);
             this.Edit_Author.addEventHandler("onchanged",this.Edit_Author_onchanged,this);
+            this.Static_Label_Attachments.addEventHandler("onclick",this.Static_Label_Attachments_onclick,this);
             this.Button_Download.addEventHandler("onclick",this.Button_Download_onclick,this);
             this.Button_Close.addEventHandler("onclick",this.Button_Close_onclick,this);
         };

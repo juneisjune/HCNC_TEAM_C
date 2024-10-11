@@ -39,10 +39,18 @@ public class LoginServiceImpl extends EgovAbstractServiceImpl implements LoginSe
         return loginMapper.getUserByUserId(loginInfo);
     }
 
-	
+	@Override
+	public Map<String, Object> FindId(Map<String, Object> param) {
+		return loginMapper.FindId(param);
+	}
 
-	
+	@Override
+	public Map<String, Object> FindPassword(Map<String, Object> param) {
+		return loginMapper.FindPassword(param);
+	}
 
-
-
+	@Override
+	public void UpdatePassword(Map<String, Object> param) {
+		loginMapper.UpdatePassword(param);
+	}
 }

@@ -3,17 +3,18 @@
   <Form id="Form_HRD" width="1280" height="720" titletext="New Form" onload="Form_HRD_onload">
     <Layouts>
       <Layout height="720" width="1280">
-        <Static id="Static00" taborder="0" text="인 사 관 리" left="56" top="13" width="722" height="67" font="bold 36px/normal &quot;Gulim&quot;" textAlign="center"/>
-        <Edit id="edt_SearchWord" taborder="1" left="164" top="104" width="504" height="44" onchanged="edt_SearchWord_onchanged"/>
-        <Button id="btn_HrdListSearch" taborder="2" text="조회" left="678" top="103" width="100" height="44" onclick="btn_HrdListSearch_onclick"/>
-        <Grid id="grd_HrdList" taborder="3" left="28" top="170" width="750" height="460" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none">
+        <GroupBox id="GroupBox_Search" taborder="6" text="조회" left="350" top="83" width="430" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
+        <Static id="Static00" taborder="0" text="인사관리" left="36" top="23" width="174" height="50" cssclass="stc_title"/>
+        <Edit id="edt_SearchWord" taborder="1" left="480" top="104" width="200" height="30" onchanged="edt_SearchWord_onchanged"/>
+        <Button id="btn_HrdListSearch" taborder="2" text="조회" left="701" top="104" width="70" height="30" onclick="btn_HrdListSearch_onclick" cssclass="btn_search"/>
+        <Grid id="grd_HrdList" taborder="3" left="36" top="160" width="742" height="400" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="75"/>
-                <Column size="92"/>
-                <Column size="130"/>
-                <Column size="91"/>
+                <Column size="122"/>
+                <Column size="106"/>
+                <Column size="77"/>
                 <Column size="130"/>
                 <Column size="115"/>
                 <Column size="115"/>
@@ -32,19 +33,19 @@
                 <Cell col="6" text="퇴사일"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:emp_code"/>
-                <Cell col="1" text="bind:name"/>
-                <Cell col="2" calendardateformat="yyyy-MM-dd" displaytype="combotext" edittype="combo" calendardisplayinvalidtype="none" calendardisplaynulltype="none" calendarpopuptype="none" text="bind:dep_code" combodataset="ds_Department" combocodecol="dep_code" combodatacol="dep_name"/>
-                <Cell col="3" calendardateformat="yyyy-MM-dd" displaytype="combotext" text="bind:assign_code" edittype="combo" combodataset="ds_Assignment" combocodecol="assign_code" combodatacol="assign_name"/>
-                <Cell col="4" text="bind:mng_name"/>
-                <Cell col="5" text="bind:join_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date" calendarshowmonthspin="true" calendarshowyearspin="true" calendardisplaynulltype="none" calendarautoselect="true"/>
-                <Cell col="6" text="bind:resign_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date" calendarshowmonthspin="true" calendarshowyearspin="true" calendardisplaynulltype="none"/>
+                <Cell text="bind:emp_code" textAlign="center"/>
+                <Cell col="1" text="bind:name" textAlign="center"/>
+                <Cell col="2" calendardateformat="yyyy-MM-dd" displaytype="combotext" edittype="combo" calendardisplayinvalidtype="none" calendardisplaynulltype="none" calendarpopuptype="none" text="bind:dep_code" combodataset="ds_Department" combocodecol="dep_code" combodatacol="dep_name" textAlign="center"/>
+                <Cell col="3" calendardateformat="yyyy-MM-dd" displaytype="combotext" text="bind:assign_code" edittype="combo" combodataset="ds_Assignment" combocodecol="assign_code" combodatacol="assign_name" textAlign="center"/>
+                <Cell col="4" text="bind:mng_name" textAlign="center"/>
+                <Cell col="5" text="bind:join_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date" calendarshowmonthspin="true" calendarshowyearspin="true" calendardisplaynulltype="none" calendarautoselect="true" textAlign="center"/>
+                <Cell col="6" text="bind:resign_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date" calendarshowmonthspin="true" calendarshowyearspin="true" calendardisplaynulltype="none" textAlign="center"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Combo id="cmb_SearchType" taborder="4" left="30" top="104" width="120" height="41" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0"/>
-        <Button id="btn_Savehrd" taborder="5" text="저장" left="660" top="629" width="117" height="41" onclick="btn_Savehrd_onclick"/>
+        <Combo id="cmb_SearchType" taborder="4" left="360" top="104" width="110" height="30" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0" onitemchanged="cmb_SearchType_onitemchanged"/>
+        <Button id="btn_Savehrd" taborder="5" text="저장" left="697" top="580" width="80" height="40" onclick="btn_Savehrd_onclick" cssclass="btn_check"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -308,6 +309,11 @@ this.validateBeforeUpdate = function() {
         }
     }
     return true;
-};]]></Script>
+};
+this.cmb_SearchType_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	
+};
+]]></Script>
   </Form>
 </FDL>

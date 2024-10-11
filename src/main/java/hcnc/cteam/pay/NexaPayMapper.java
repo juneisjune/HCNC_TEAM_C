@@ -26,9 +26,18 @@ public interface NexaPayMapper {
 	//지난달 결근 조회
 	int selectAbsence(Map< String, Object> param); 
 	
+	//잔여 연차 개수 조회
+	Integer selectEtc(Map< String, Object> param); 
+	
 	//중복된 급여등록 조회
 	int duplidacatedPay(Map< String, Object> param); 
 
 	//pay insert
 	void insertPay(Map< String, Object> param); 
+	
+	List<PayDTO> nexaGetPayListByCondition(Map<String, Object> param);
+
+	void updatePayEtc(PayDTO payDTO);  // DB에 수정된 값 반영하는 쿼리
+	   
+	void deletePay(PayDTO payDTO);
 }

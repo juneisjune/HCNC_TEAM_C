@@ -71,23 +71,21 @@
     </Objects>
     <Layouts>
       <Layout height="720" width="1280">
-        <Static id="Title" taborder="0" text="직원 정보 관리" left="15" top="15" width="350" height="50" font="32px/normal &quot;Gulim&quot;"/>
-        <Combo id="cmb_SearchType" taborder="1" text="전체" left="20" top="110" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL"/>
-        <Edit id="edt_SearchWord" taborder="2" left="130" top="110" width="180" height="30" binddataset="ds_search" text="bind:SEARCH_WORD" onchanged="edt_SearchWord_onchanged"/>
-        <Button id="btn_Search" taborder="3" text="조회" left="320" top="110" width="70" height="30" onclick="btn_Search_onclick"/>
-        <Grid id="grd_employee" taborder="4" left="15" top="160" width="795" height="330" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged">
+        <Static id="Title" taborder="0" text="직원 정보 관리" left="25" top="25" width="235" height="50" cssclass="stc_title"/>
+        <Grid id="grd_employee" taborder="2" left="40" top="160" width="1150" height="400" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged">
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="55"/>
-                <Column size="84"/>
-                <Column size="60"/>
-                <Column size="70"/>
-                <Column size="41"/>
-                <Column size="91"/>
-                <Column size="145"/>
-                <Column size="84"/>
-                <Column size="156"/>
+                <Column size="76"/>
+                <Column size="69"/>
+                <Column size="123"/>
+                <Column size="73"/>
+                <Column size="92"/>
+                <Column size="67"/>
+                <Column size="117"/>
+                <Column size="136"/>
+                <Column size="221"/>
+                <Column size="174"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
@@ -95,32 +93,38 @@
               </Rows>
               <Band id="head">
                 <Cell text="사번"/>
-                <Cell col="1" text="부서명"/>
-                <Cell col="2" text="직책"/>
-                <Cell col="3" text="이름"/>
-                <Cell col="4" text="성별"/>
-                <Cell col="5" text="전화번호"/>
-                <Cell col="6" text="생년월일"/>
-                <Cell col="7" text="주소"/>
-                <Cell col="8" text="이메일"/>
+                <Cell col="1" text="아이디"/>
+                <Cell col="2" text="부서명"/>
+                <Cell col="3" text="직책"/>
+                <Cell col="4" text="이름"/>
+                <Cell col="5" text="성별"/>
+                <Cell col="6" text="전화번호"/>
+                <Cell col="7" text="생년월일"/>
+                <Cell col="8" text="주소"/>
+                <Cell col="9" text="이메일"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:empCode"/>
-                <Cell col="1" text="bind:depName"/>
-                <Cell col="2" text="bind:assignName"/>
-                <Cell col="3" text="bind:name"/>
-                <Cell col="4" text="bind:gender"/>
-                <Cell col="5" text="bind:phone"/>
-                <Cell col="6" text="bind:birth" displaytype="date" calendardateformat="yyyy년 MM월 dd일" calendareditformat="yyyy-MM-dd"/>
-                <Cell col="7" text="bind:address"/>
-                <Cell col="8" text="bind:email"/>
+                <Cell text="bind:empCode" textAlign="center"/>
+                <Cell col="1" text="bind:id" textAlign="center"/>
+                <Cell col="2" text="bind:depName" textAlign="center"/>
+                <Cell col="3" text="bind:assignName" textAlign="center"/>
+                <Cell col="4" text="bind:name" textAlign="center"/>
+                <Cell col="5" text="bind:gender" textAlign="center"/>
+                <Cell col="6" text="bind:phone" textAlign="center"/>
+                <Cell col="7" text="bind:birth" displaytype="date" calendardateformat="yyyy년 MM월 dd일" calendareditformat="yyyy-MM-dd"/>
+                <Cell col="8" text="bind:address" textAlign="center"/>
+                <Cell col="9" text="bind:email" textAlign="center"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Register" taborder="5" text="등록" left="15" top="500" width="80" height="50" onclick="btn_Register_onclick"/>
-        <Button id="btn_Edit" taborder="6" text="수정" left="110" top="500" width="80" height="50" onclick="btn_Edit_onclick"/>
-        <Button id="btn_Delete" taborder="7" text="삭제" left="200" top="500" width="80" height="50" onclick="btn_Delete_onclick"/>
+        <Button id="btn_Register" taborder="3" text="등록" left="900" top="580" width="80" height="40" onclick="btn_Register_onclick" cssclass="btn_regist"/>
+        <Button id="btn_Edit" taborder="4" text="수정" left="1005" top="580" width="80" height="40" onclick="btn_Edit_onclick" cssclass="btn_edit"/>
+        <Button id="btn_Delete" taborder="5" text="삭제" left="1107" top="580" width="80" height="40" onclick="btn_Delete_onclick" cssclass="btn_delete"/>
+        <GroupBox id="GroupBox_Search" taborder="1" text="조회" left="770" top="85" width="420" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
+        <Combo id="cmb_SearchType" taborder="6" text="전체" left="780" top="105" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" value="ALL" onitemchanged="cmb_SearchType_onitemchanged"/>
+        <Edit id="edt_SearchWord" taborder="7" left="900" top="105" width="180" height="30" binddataset="ds_search" text="bind:SEARCH_WORD" onchanged="edt_SearchWord_onchanged"/>
+        <Button id="btn_Search" taborder="8" text="조회" left="1110" top="105" width="70" height="30" onclick="btn_Search_onclick" cssclass="btn_search"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[// 검색 버튼 클릭 이벤트
@@ -264,10 +268,11 @@ this.grd_employee_oncellposchanged = function(obj:nexacro.Grid,e:nexacro.GridSel
 	
 	console.log(this.ds_employee.saveXML());
 };
+
 ]]></Script>
     <Bind>
-      <BindItem id="bind_SearchWord" compid="edt_SearchWord" propid="value" datasetid="ds_search" columnid="SEARCH_WORD"/>
-      <BindItem id="bind_SearchType" compid="cmb_SearchType" propid="value" datasetid="ds_search" columnid="SEARCH_TYPE"/>
+      <BindItem id="item0" compid="cmb_SearchType" propid="value" datasetid="ds_search" columnid="SEARCH_TYPE"/>
+      <BindItem id="item1" compid="edt_SearchWord" propid="value" datasetid="ds_search" columnid="SEARCH_WORD"/>
     </Bind>
   </Form>
 </FDL>
