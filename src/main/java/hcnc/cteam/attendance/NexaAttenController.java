@@ -55,14 +55,15 @@ public class NexaAttenController {
 		return result;
 	}
 	
-	// 근태 정보 수정
-	@RequestMapping(value = "/editAttenList.do")
-	public NexacroResult editAttenList(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
+	// 사번 입력 시 정보 가져오기
+	@RequestMapping(value = "/selectUserInfo.do")
+	public NexacroResult selectUserInfo(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
 		NexacroResult result = new NexacroResult();
 		
 		System.out.println(param);
 		try {
-			nexaAttenService.editAttenList(param);
+			 Map<String, Object> ds_AttenList = nexaAttenService.selectUserInfo(param);
+			 result.addDataSet("ds_AttenList", ds_AttenList);
 		} catch (Exception ee) {
 			System.out.println(ee);
 			result.setErrorCode(-1);
@@ -71,9 +72,9 @@ public class NexaAttenController {
 		return result;
 	}
 	
-	// 근태 정보 등록
-	@RequestMapping(value = "/attenRegister.do")
-	public NexacroResult attenRegister(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
+	// 근태 정보 저장
+	@RequestMapping(value = "/attenSave.do")
+	public NexacroResult attenSave(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
 		NexacroResult result = new NexacroResult();
 			
 		System.out.println(param);
@@ -89,11 +90,16 @@ public class NexaAttenController {
 			} catch (Exception ee) {
 					System.out.println(ee);
 				result.setErrorCode(-1);
-				result.setErrorMsg("catch 조회 오류");
+				result.setErrorMsg("입력 정보가 올바른지 다시 확인하세요.");
 			}
 		} else {
-			result.setErrorCode(-1);
-			result.setErrorMsg("해당 날짜에 근태 정보가 있습니다.");
+			try {
+				nexaAttenService.editAttenList(param);
+			} catch (Exception ee) {
+					System.out.println(ee);
+				result.setErrorCode(-1);
+				result.setErrorMsg("입력 정보가 올바른지 다시 확인하세요.");
+			}
 		}
 		
 		return result;
