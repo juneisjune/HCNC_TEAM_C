@@ -55,7 +55,7 @@
             obj.set_taborder("0");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","870","113","77","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","870","119","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");

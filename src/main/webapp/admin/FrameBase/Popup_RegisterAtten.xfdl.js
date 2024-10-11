@@ -95,7 +95,7 @@
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_close","970","30","100","50",null,null,null,null,null,null,this);
+            obj = new Button("btn_close","980","20","100","40",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("닫기");
             obj.set_cssclass("btn_delete");
@@ -109,7 +109,7 @@
 
             obj = new Button("btn_Register","950","420","100","40",null,null,null,null,null,null,this);
             obj.set_taborder("9");
-            obj.set_text("등록하기");
+            obj.set_text("등록");
             obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
             // Layout Functions

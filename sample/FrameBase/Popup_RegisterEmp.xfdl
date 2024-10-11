@@ -42,7 +42,7 @@
     <Layouts>
       <Layout width="850" height="390">
         <!-- 직원 정보 등록 UI 구성 -->
-        <Static id="Static" text="직원 정보 등록" left="140" top="20" width="560" height="40" background="whitesmoke" cssclass="stc_popup"/>
+        <Static id="Static" text="직원 정보 등록" left="130" top="20" width="560" height="40" background="whitesmoke" cssclass="stc_popup"/>
         <!-- 첫 번째 행: 이름, 생년월일 -->
         <Static id="lblName" text="이름" left="40" top="90" width="80" height="25" textAlign="left"/>
         <Edit id="edtName" left="100" top="90" width="250" height="25" binddataset="ds_employee" text="bind:Name"/>
