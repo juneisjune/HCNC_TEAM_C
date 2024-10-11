@@ -17,4 +17,9 @@ public interface LoginMapper {
 
 	Map<String, Object> getUserByUserId(Map<String, Object> loginInfo);
 	
+	Map<String, Object> FindId(Map<String, Object> param);
+
+	Map<String, Object> FindPassword(Map<String, Object> param);
+
+	void UpdatePassword(Map<String, Object> param);
 }	

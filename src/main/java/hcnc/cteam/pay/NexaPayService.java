@@ -16,8 +16,16 @@ public interface NexaPayService {
 	
 	int selectAbsence(Map< String, Object> param);
 	
+	Integer selectEtc(Map< String, Object> param);
+	
 	int duplidacatedPay(Map< String, Object> param); 
 	
 	void insertPay(Map< String, Object> param); 
+	
+   List<PayDTO> nexaGetPayListByCondition(Map<String, Object> param);
+
+   void updatePayEtc(PayDTO payDTO);  // DB에 수정된 값 반영하는 쿼리
+   
+   void deletePay(PayDTO payDTO);
 
 }

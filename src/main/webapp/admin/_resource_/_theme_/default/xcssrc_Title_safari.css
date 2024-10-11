@@ -280,7 +280,7 @@ textarea::-webkit-scrollbar { display: none; }
 }
 .Button.btn_check
 {
-	font : normal bold  12pt/normal "Arial";
+	font : normal bold  10pt/normal "Arial";
 	background : #A1C4E8;
 	color : #121212;
 	cursor : pointer;
@@ -293,7 +293,7 @@ textarea::-webkit-scrollbar { display: none; }
 }
 .Button.btn_delete
 {
-	font : normal bold  12pt/normal "Arial";
+	font : normal bold  10pt/normal "Arial";
 	background : #A1C4E8;
 	color : #121212;
 	cursor : pointer;
@@ -306,7 +306,7 @@ textarea::-webkit-scrollbar { display: none; }
 }
 .Button.btn_download
 {
-	font : normal bold  12pt/normal "Arial";
+	font : normal bold  10pt/normal "Arial";
 	background : #A1C4E8;
 	color : #121212;
 	cursor : pointer;
@@ -319,7 +319,7 @@ textarea::-webkit-scrollbar { display: none; }
 }
 .Button.btn_edit
 {
-	font : normal 700 12pt /normal "Arial";
+	font : normal 700 10pt /normal "Arial";
 	background : #A1C4E8;
 	color : #121212;
 	cursor : pointer;
@@ -332,7 +332,7 @@ textarea::-webkit-scrollbar { display: none; }
 }
 .Button.btn_normal
 {
-	font : normal 700 12pt /normal "Arial";
+	font : normal 700 10pt /normal "Arial";
 	background : #A1C4E8;
 	color : #121212;
 	cursor : pointer;
@@ -345,7 +345,7 @@ textarea::-webkit-scrollbar { display: none; }
 }
 .Button.btn_regist
 {
-	font : normal bold  12pt/normal "Arial";
+	font : normal bold  10pt/normal "Arial";
 	background : #A1C4E8;
 	color : #121212;
 	cursor : pointer;

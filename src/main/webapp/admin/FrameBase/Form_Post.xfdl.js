@@ -38,7 +38,7 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"85\"/><Column size=\"244\"/><Column size=\"297\"/><Column size=\"129\"/><Column size=\"85\"/><Column size=\"64\"/><Column size=\"94\"/><Column size=\"48\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell displaytype=\"none\" edittype=\"none\" text=\"0\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"게시글 번호\"/><Cell col=\"2\" text=\"제목\"/><Cell col=\"3\" text=\"내용\"/><Cell col=\"4\" text=\"작성일자\"/><Cell col=\"5\" text=\"작성자\"/><Cell col=\"6\" text=\"조회수\"/><Cell col=\"7\" text=\"수정 하기\"/><Cell col=\"8\" text=\"삭제\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:checked\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"bind:post_code\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:title\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:content\"/><Cell col=\"4\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"5\" text=\"bind:emp_name\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:view_count\" textAlign=\"center\"/><Cell col=\"7\" displaytype=\"buttoncontrol\" text=\"수정 하기\"/><Cell col=\"8\" displaytype=\"buttoncontrol\" text=\"삭제\" edittype=\"button\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","942","82","50","28",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","922","82","60","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");
@@ -50,19 +50,19 @@
             obj.set_color("#6f0520");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_delete","1030","545","100","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_delete","1036","545","90","30",null,null,null,null,null,null,this);
             obj.set_text("삭제");
             obj.set_taborder("3");
             obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_newPost","1016","82","110","28",null,null,null,null,null,null,this);
+            obj = new Button("btn_newPost","996","82","130","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("새 공지사항 등록");
             obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button00","913","545","92","30",null,null,null,null,null,null,this);
+            obj = new Button("Button00","933","545","90","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("상세 보기");
             obj.set_cssclass("btn_normal");

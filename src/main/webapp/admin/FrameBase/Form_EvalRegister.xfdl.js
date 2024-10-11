@@ -13,7 +13,7 @@
             this.set_titletext("EvalRegister");
             if (Form == this.constructor)
             {
-                this._setFormPosition(800,600);
+                this._setFormPosition(780,600);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -202,7 +202,7 @@
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdEvalName","50","10","600","60",null,null,null,null,null,null,this);
+            obj = new Grid("grdEvalName","80","30","600","60",null,null,null,null,null,null,this);
             obj.set_taborder("22");
             obj.set_binddataset("dsEvalAll");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"149\"/><Column size=\"149\"/><Column size=\"150\"/><Column size=\"150\"/></Columns><Rows><Row size=\"29\" band=\"head\"/><Row size=\"28\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\"/><Cell col=\"3\" text=\"직책\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:assignName\" textAlign=\"center\"/></Band></Format></Formats>");

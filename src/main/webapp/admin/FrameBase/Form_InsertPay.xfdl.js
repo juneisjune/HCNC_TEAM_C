@@ -42,7 +42,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new GroupBox("GroupBox_Search","620","81","300","60",null,null,null,null,null,null,this);
+            obj = new GroupBox("GroupBox_Search","630","81","290","60",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_text("조회");
             obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
@@ -57,20 +57,20 @@
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_Assign","645","100","70","30",null,null,null,null,null,null,this);
+            obj = new Static("stc_Assign","640","100","30","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("직책");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_Assign","709","100","130","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_Assign","679","100","130","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_innerdataset("ds_AssignType");
             obj.set_codecolumn("assign_code");
             obj.set_datacolumn("assign_name");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","850","100","60","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","840","100","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");
@@ -82,17 +82,17 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"88\"/><Column size=\"109\"/><Column size=\"82\"/><Column size=\"110\"/><Column size=\"121\"/><Column size=\"119\"/><Column size=\"210\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/><Cell col=\"7\" text=\"계좌번호\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chkVal\"/><Cell col=\"1\" textAlign=\"center\" text=\"bind:emp_code\"/><Cell col=\"2\" textAlign=\"center\" text=\"bind:name\"/><Cell col=\"3\" textAlign=\"center\" text=\"bind:assign_name\"/><Cell col=\"4\" textAlign=\"center\" text=\"bind:dep_name\"/><Cell col=\"5\" textAlign=\"center\" text=\"bind:join_date\" displaytype=\"date\"/><Cell col=\"6\" text=\"bind:resign_date\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:account\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static04","600","600","120","30",null,null,null,null,null,null,this);
+            obj = new Static("Static04","620","600","120","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("지급일");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_GiveDate","655","600","150","30",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_GiveDate","675","600","150","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_dateformat("yyyy-MM-dd");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Insert","830","600","90","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Insert","850","600","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("등록");
             obj.set_cssclass("btn_regist");

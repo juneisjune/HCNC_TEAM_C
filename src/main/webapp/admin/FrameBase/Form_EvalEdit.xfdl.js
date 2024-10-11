@@ -33,31 +33,30 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Button("btnSubmit","685","530","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btnSubmit","695","510","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("수정");
             obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdEdit","10","100","745","385",null,null,null,null,null,null,this);
+            obj = new Grid("grdEdit","30","100","745","385",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("dsQuestions");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"50\"/><Column size=\"693\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"35\"/></Rows><Band id=\"head\"><Cell text=\"번호\"/><Cell col=\"1\" text=\"질문 목록\"/></Band><Band id=\"body\"><Cell text=\"bind:guideCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:question\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"50\"/><Column size=\"693\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"35\"/></Rows><Band id=\"head\"><Cell text=\"ID\"/><Cell col=\"1\" text=\"질문 목록\"/></Band><Band id=\"body\"><Cell text=\"bind:guideCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:question\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("EditQuestion","60","530","530","30",null,null,null,null,null,null,this);
+            obj = new Edit("EditQuestion","80","510","600","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("EditCode","10","530","50","30",null,null,null,null,null,null,this);
+            obj = new Edit("EditCode","30","510","50","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00","10","30","150","60",null,null,null,null,null,null,this);
+            obj = new Static("Static00","30","20","250","50",null,null,null,null,null,null,this);
             obj.set_taborder("4");
-            obj.set_text("평가 수정");
-            obj.set_font("bold 28px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_text("평가 기준 수정");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
             // Layout Functions
@@ -130,6 +129,8 @@
         // 수정 버튼 클릭 시 호출되는 함수
         this.btnSubmit_onclick = function(obj, e) {
 
+        	var admin_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
+
             // Edit 박스에서 수정된 값 가져오기
             var editedValue = this.EditQuestion.value;
 
@@ -150,9 +151,8 @@
                 this.dsEditSave.clearData();  // 데이터셋을 초기화하고 새 데이터 추가
                 this.dsEditSave.addRow();
                 this.dsEditSave.setColumn(0, "question", editedValue);
-                this.dsEditSave.setColumn(0, "guideCode", guideCode);
+                this.dsEditSave.setColumn(0, "guideCode", guideCode);  // guideCode 값을 추가
         		this.dsEditSave.setColumn(0, "admin_name", admin_name);
-        		console.log(this.dsEditSave.saveXML());
 
                 // 전송할 데이터 로그로 출력해 확인
                 console.log("dsEditSave 전송 데이터: " + this.dsEditSave.saveXML());
@@ -200,10 +200,7 @@
             }
 
         };
-        this.Static00_onclick = function(obj,e)
-        {
 
-        };
 
         });
         

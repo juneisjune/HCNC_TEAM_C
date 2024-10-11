@@ -228,7 +228,7 @@
 .Combo .dropbutton,.ComboControl .dropbutton
 {
 	-nexa-padding : 1px 2px 0px 0px;
-	-nexa-icon : URL('theme:/images/cmb_WF_drop.png');
+	-nexa-icon : URL('theme:/images/cmb_WF_drop_O.png');
 }
 
 .Combo .dropbutton[status=mouseover],.Combo .dropbutton[status=focused],.ComboControl .dropbutton[status=mouseover],.ComboControl .dropbutton[status=focused]

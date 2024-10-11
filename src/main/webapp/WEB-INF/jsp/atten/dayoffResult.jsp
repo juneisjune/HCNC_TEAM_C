@@ -165,7 +165,7 @@ $(function() {
         });
     });
 });
-
+ 
 //년도,월을 현재기준 3개년 보는 스크립트
 document.addEventListener("DOMContentLoaded", function() {
        // 현재 연도 가져오기
@@ -223,19 +223,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 <tr>
                     <td>
                         사번
-                        <input type="text" id="empCode" name="empCode" value="${emp.empCode}" disabled>
+                        <input type="text" id="empCode" name="empCode" value="${emp.empCode}" readonly>
                     </td>
                     <td>
                         이름
-                        <input type="text" id="empName" name="empName" value="${emp.name}" disabled>
+                        <input type="text" id="empName" name="name" value="${emp.name}" readonly>
                     </td>
                     <td>
                         부서명
-                        <input type="text" id="depName" name="depName" value="${emp.depName}" disabled>
+                        <input type="text" id="depName" name="depName" value="${emp.depName}" readonly>
                     </td>
                     <td>
                         직책 
-                        <input type="text" id="assignName" name="assignName" value="${emp.assignName}" disabled>
+                        <input type="text" id="assignName" name="assignName" value="${emp.assignName}" readonly>
                     </td>    
                 </tr>
                 <tr>

@@ -175,9 +175,9 @@ this.FileDownTransfer00_onerror = function(obj:nexacro.FileDownTransfer, e:nexac
           </Formats>
         </Grid>
         <!-- Download Button -->
-        <Button id="Button_Download" text="다운로드" left="730" top="620" width="100" height="30" onclick="Button_Download_onclick" cssclass="btn_download"/>
+        <Button id="Button_Download" text="다운로드" left="730" top="610" width="100" height="40" onclick="Button_Download_onclick" cssclass="btn_download"/>
         <!-- Close Button -->
-        <Button id="Button_Close" text="닫기" left="840" top="620" width="100" height="30" onclick="Button_Close_onclick" cssclass="btn_delete"/>
+        <Button id="Button_Close" text="닫기" left="840" top="610" width="100" height="40" onclick="Button_Close_onclick" cssclass="btn_delete"/>
         <MaskEdit id="MaskEdit00" taborder="15" left="430" top="128" width="213" height="34" format="@@@@년 @@월 @@일" type="string" readonly="true"/>
       </Layout>
     </Layouts>

@@ -53,7 +53,7 @@
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
 
-            obj = new Button("open","598","320","88","87",null,null,null,null,null,null,this);
+            obj = new Button("open","600","317","90","90",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("폴더 열기");
             obj.set_cssclass("btn_download");
@@ -65,21 +65,21 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"size\"/></Band><Band id=\"body\"><Cell text=\"bind:filename\"/><Cell col=\"1\" text=\"bind:filesize\" textAlign=\"right\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button01","236","420","130","70",null,null,null,null,null,null,this);
+            obj = new Button("Button01","266","430","100","40",null,null,null,null,null,null,this);
             obj.set_taborder("3");
-            obj.set_text("공지사항 등록");
+            obj.set_text("등록");
             obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_title","100","101","586","39",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_title","100","101","590","39",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new TextArea("TextArea01","100","160","586","144",null,null,null,null,null,null,this);
+            obj = new TextArea("TextArea01","100","160","590","144",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_close","400","420","122","70",null,null,null,null,null,null,this);
+            obj = new Button("btn_close","390","430","100","40",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("닫기");
             obj.set_cssclass("btn_delete");
