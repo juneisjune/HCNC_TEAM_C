@@ -33,7 +33,7 @@
 
 
             obj = new Dataset("ds_Month", this);
-            obj._setContents("<ColumnInfo><Column id=\"month\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"month\">1</Col></Row><Row><Col id=\"month\">2</Col></Row><Row><Col id=\"month\">3</Col></Row><Row><Col id=\"month\">4</Col></Row><Row><Col id=\"month\">5</Col></Row><Row><Col id=\"month\">6</Col></Row><Row><Col id=\"month\">7</Col></Row><Row><Col id=\"month\">8</Col></Row><Row><Col id=\"month\">9</Col></Row><Row><Col id=\"month\">10</Col></Row><Row><Col id=\"month\">11</Col></Row><Row><Col id=\"month\">12</Col></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"month\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -95,9 +95,9 @@
 
             obj = new Combo("com_year","388","120","90","30",null,null,null,null,null,null,this);
             obj.set_taborder("8");
-            obj.set_innerdataset("ds_Search");
-            obj.set_datacolumn("START_YEAR");
-            obj.set_codecolumn("START_YEAR");
+            obj.set_innerdataset("ds_Year");
+            obj.set_datacolumn("year");
+            obj.set_codecolumn("year");
             obj.set_text("2021");
             obj.set_value("1");
             obj.set_index("0");
@@ -114,9 +114,9 @@
 
             obj = new Combo("com_year00","659","120","90","30",null,null,null,null,null,null,this);
             obj.set_taborder("10");
-            obj.set_innerdataset("ds_Search");
-            obj.set_datacolumn("END_YEAR");
-            obj.set_codecolumn("END_YEAR");
+            obj.set_innerdataset("ds_Year");
+            obj.set_datacolumn("year");
+            obj.set_codecolumn("year");
             obj.set_text("2024");
             obj.set_value("2024");
             obj.set_index("2");
@@ -248,6 +248,18 @@
         this.registerScript("Form_UpdatePay.xfdl", function() {
         // 화면이 로드될 때 호출되는 함수
         this.Form_UpdatePay_onload = function(obj, e) {
+
+        	 // 현재 년도 가져오기
+            var currentYear = new Date().getFullYear();
+
+            for (var i = 0; i < 3; i++) {
+                var row = this.ds_Year.addRow();
+                this.ds_Year.setColumn(row, "year", (currentYear - i).toString());
+            }
+        	for (var i=1; i<=12; i++){
+        		var row = this.ds_Month.addRow();
+        		this.ds_Month.setColumn(row, "month", i);
+        	}
             // 검색 조건 콤보박스 값 초기화 (전체 자동 선택)
             this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
 
@@ -295,27 +307,19 @@
         // 년도 및 월 자동 설정 함수
         this.fnSetYearsAndMonths = function() {
             var currentYear = new Date().getFullYear();
-            var startYear = currentYear - 2;  // 현재 년도에서 -2년
-            var endYear = currentYear;        // 현재 년도
+            var startYear = currentYear;  // 현재 년도에서 -2년
+            var endYear = currentYear;  // 현재 년도
 
             // ds_Search에 START_YEAR과 END_YEAR 설정
             this.ds_Search.setColumn(0, "START_YEAR", startYear);
             this.ds_Search.setColumn(0, "END_YEAR", endYear);
 
-            // ComboBox에 년도 값 설정
-            this.com_year.set_value(startYear);
-            this.com_year00.set_value(endYear);
-
             // 월 자동 설정 (첫 번째 월은 1월, 두 번째 월은 10월)
-            var startMonth = 1;
-            var endMonth = 10;
+            var startMonth = new Date().getMonth() + 1;
+            var endMonth = new Date().getMonth() + 1;
 
             this.ds_Search.setColumn(0, "START_MONTH", startMonth);
             this.ds_Search.setColumn(0, "END_MONTH", endMonth);
-
-            // ComboBox에 월 값 설정
-            this.com_Month.set_value(startMonth);
-            this.com_Month00.set_value(endMonth);
         };
 
         // 처리 콜백 함수
