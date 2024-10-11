@@ -29,16 +29,25 @@
         	text-align: center;
             margin-bottom: 20px;
         }
-        select, input[type="text"] {
-            padding: 8px;
-            margin-right: 10px;
+        select{
+            padding: 10px;
+            margin: 5px;
             border-radius: 4px;
             border: 1px solid #ccc;
             font-size: 16px;
-            width: 200px;
+            width: 100px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 220px;
         }
         button {
-            padding: 10px 20px;
+     	    width: 72px;
+     		padding: 10px 20px;
             font-size: 16px;
             border: none;
             border-radius: 5px;

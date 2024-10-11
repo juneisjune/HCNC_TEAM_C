@@ -135,7 +135,7 @@
         </div>
 
         <div class="btn-area">
-            <a href="/post/viewPost.do">목록으로 돌아가기</a>
+            <a href="/post/viewPost.do">돌아가기</a>
         </div>
     </div>
 </body>

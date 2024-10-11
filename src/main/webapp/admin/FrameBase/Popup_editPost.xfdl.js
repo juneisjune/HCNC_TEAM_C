@@ -10,7 +10,7 @@
         this.on_create = function()
         {
             this.set_name("Popup_edit_page");
-            this.set_titletext("New Form");
+            this.set_titletext("editPost");
             this.set_border("");
             this.set_background("");
             if (Form == this.constructor)

@@ -33,25 +33,26 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Button("btnSubmit","695","510","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btnSubmit","700","510","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("수정");
             obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdEdit","30","100","745","385",null,null,null,null,null,null,this);
+            obj = new Grid("grdEdit","30","100","750","385",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("dsQuestions");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"50\"/><Column size=\"693\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"35\"/></Rows><Band id=\"head\"><Cell text=\"ID\"/><Cell col=\"1\" text=\"질문 목록\"/></Band><Band id=\"body\"><Cell text=\"bind:guideCode\"/><Cell col=\"1\" text=\"bind:question\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"63\"/><Column size=\"683\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"35\"/></Rows><Band id=\"head\"><Cell text=\"질문 번호\"/><Cell col=\"1\" text=\"질문 목록\"/></Band><Band id=\"body\"><Cell text=\"bind:guideCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:question\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("EditQuestion","80","510","600","30",null,null,null,null,null,null,this);
+            obj = new Edit("EditQuestion","95","510","590","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("EditCode","30","510","50","30",null,null,null,null,null,null,this);
+            obj = new Edit("EditCode","30","510","65","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_enable("false");
+            obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static00","30","20","250","50",null,null,null,null,null,null,this);
@@ -197,10 +198,8 @@
             }
 
         };
-        this.Static00_onclick = function(obj,e)
-        {
 
-        };
+
 
         });
         
@@ -211,6 +210,7 @@
             this.btnSubmit.addEventHandler("onclick",this.btnSubmit_onclick,this);
             this.grdEdit.addEventHandler("oncelldblclick",this.grdEdit_oncelldblclick,this);
             this.EditQuestion.addEventHandler("onchanged",this.EditQuestion_onchanged,this);
+            this.EditCode.addEventHandler("onchanged",this.EditCode_onchanged,this);
             this.Static00.addEventHandler("onclick",this.Static00_onclick,this);
         };
         this.loadIncludeScript("Form_EvalEdit.xfdl");

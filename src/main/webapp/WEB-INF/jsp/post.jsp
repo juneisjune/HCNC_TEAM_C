@@ -136,7 +136,7 @@
                     
                     <th>등록일</th>
                     <th>조회수</th>
-                    <th>상세 조회</th> <!-- 버튼을 위한 열 추가 -->
+                    <th>조회</th> <!-- 버튼을 위한 열 추가 -->
                 </tr>
             </thead>
             <tbody>
@@ -152,7 +152,7 @@
                             <!-- 상세 조회 버튼 -->
                             <form action="postDetail.do" method="get">
                                 <input type="hidden" name="post_code" value="${post.post_code}">
-                                <button type="submit" class="btn1">상세 조회</button>
+                                <button type="submit" class="btn1">조회</button>
                             </form>
                         </td>
                     </tr>

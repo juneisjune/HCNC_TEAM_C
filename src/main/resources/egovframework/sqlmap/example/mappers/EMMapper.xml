@@ -114,7 +114,10 @@
 		WHERE emp_code = #{empCode}; 
 	</delete>
 
-	
+	<delete id="deleteDayoffCount" parameterType="map">
+		DELETE FROM dayoff_count
+		WHERE emp_code = #{empCode};
+	</delete>
 		
 	<!--직원 ID의 중복 여부를 확인하는 SQL 쿼리입니다.
            직원 테이블에서 해당 ID가 존재하는지 확인하여 중복인 경우 1 이상의 숫자를 반환합니다. -->
