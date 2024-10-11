@@ -38,13 +38,13 @@
 
     <select id="selectEval" resultType="hcnc.cteam.evaluation.EvaluationDTO">
         SELECT DISTINCT
-	a.emp_code as empCode,
-	a.name as name,
-	DATE_FORMAT(b.eval_date, '%Y-%m-%d') as evalDate,
-	b.total_score as totalScore,
-	b.eval_grade as evalGrade,
-	b.reg_name as regName,
-	c.guide_code as guideCode
+		a.emp_code as empCode,
+		a.name as name,
+		DATE_FORMAT(b.eval_date, '%Y-%m-%d') as evalDate,
+		b.total_score as totalScore,
+		b.eval_grade as evalGrade,
+		b.reg_name as regName,
+		c.guide_code as guideCode
         FROM employee a
         JOIN evaluation b ON a.emp_code = b.emp_code
         JOIN eval_history c ON b.emp_code = c.emp_code

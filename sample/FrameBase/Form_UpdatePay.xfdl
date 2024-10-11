@@ -186,6 +186,14 @@
     </Objects>
     <Script type="xscript5.1"><![CDATA[// 화면이 로드될 때 호출되는 함수
 this.Form_UpdatePay_onload = function(obj:nexacro.Form, e:nexacro.LoadEventInfo) {
+	 
+	 // 현재 년도 가져오기
+    var currentYear = new Date().getFullYear();
+    
+    for (var i = 0; i < 3; i++) {
+        var row = this.ds_Year.addRow();
+        this.ds_Year.setColumn(row, "year", (currentYear - i).toString());
+    }
     // 검색 조건 콤보박스 값 초기화 (전체 자동 선택)
     this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
 
@@ -233,8 +241,8 @@ this.fnSearch = function() {
 // 년도 및 월 자동 설정 함수
 this.fnSetYearsAndMonths = function() {
     var currentYear = new Date().getFullYear();
-    var startYear = currentYear - 2;  // 현재 년도에서 -2년
-    var endYear = currentYear;        // 현재 년도
+    var startYear = currentYear;  // 현재 년도에서 -2년
+    var endYear = currentYear;  // 현재 년도
 
     // ds_Search에 START_YEAR과 END_YEAR 설정
     this.ds_Search.setColumn(0, "START_YEAR", startYear);
