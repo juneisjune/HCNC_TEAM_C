@@ -108,6 +108,7 @@ public class EMController {
             
             // 서비스 레이어에 직원 삭제 요청
             EMService.deleteEmployee(empData);
+            EMService.deleteDayoffCount(empData);
             
             // 성공 시 에러 코드와 메시지를 설정
             result.setErrorCode(0);

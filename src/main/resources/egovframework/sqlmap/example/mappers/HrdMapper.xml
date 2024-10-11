@@ -44,7 +44,7 @@
 			dep_code= #{dep_code},
 			join_date =#{join_date},
 			resign_date =#{resign_date},
-			upd_name = '업뎃텟'
+			upd_name = #{admin_name}
 		WHERE emp_code = #{emp_code} ;
 	</update>
 	
