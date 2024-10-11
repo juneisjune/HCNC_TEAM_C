@@ -23,12 +23,12 @@
 
 
             obj = new Dataset("ds_offList", this);
-            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"start_date\" type=\"DATE\" size=\"256\"/><Column id=\"emp_code\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"start_date\" type=\"DATE\" size=\"256\"/><Column id=\"admin_emp\" type=\"STRING\" size=\"256\"/><Column id=\"admin_assign\" type=\"STRING\" size=\"256\"/><Column id=\"admin_dep\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
             obj = new Dataset("ds_doRequestListCopy", this);
-            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"start_date\" type=\"DATE\" size=\"256\"/><Column id=\"end_date\" type=\"DATE\" size=\"256\"/><Column id=\"off_type\" type=\"STRING\" size=\"256\"/><Column id=\"reason\" type=\"STRING\" size=\"256\"/><Column id=\"mng_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"md_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"ceo_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"mng_code\" type=\"STRING\" size=\"256\"/><Column id=\"off_code\" type=\"INT\" size=\"256\"/><Column id=\"off_result\" type=\"STRING\" size=\"256\"/><Column id=\"admin_name\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"start_date\" type=\"DATE\" size=\"256\"/><Column id=\"end_date\" type=\"DATE\" size=\"256\"/><Column id=\"off_type\" type=\"STRING\" size=\"256\"/><Column id=\"reason\" type=\"STRING\" size=\"256\"/><Column id=\"mng_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"md_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"ceo_confirm\" type=\"STRING\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"mng_code\" type=\"STRING\" size=\"256\"/><Column id=\"off_code\" type=\"INT\" size=\"256\"/><Column id=\"off_result\" type=\"STRING\" size=\"256\"/><Column id=\"admin_name\" type=\"STRING\" size=\"256\"/><Column id=\"admin_assign\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -115,9 +115,11 @@
         	// application 변수에서 emp_code와 assign_code를 가져옴
             var loginEmpCode = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
             var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
+        	var loginDepCode = nexacro.getApplication().ds_userInfo.getColumn(0, "dep_code");
 
-            this.ds_offList.setColumn(0, "emp_code", loginEmpCode);
-            this.ds_offList.setColumn(0, "assign_code", loginAssign_code);
+            this.ds_offList.setColumn(0, "admin_emp", loginEmpCode);
+            this.ds_offList.setColumn(0, "admin_assign", loginAssignCode);
+        	this.ds_offList.setColumn(0, "admin_dep", loginDepCode);
         	console.log(this.ds_offList);
 
         	// 컨트롤러 호출
@@ -151,7 +153,7 @@
                 if (isChecked == 1) {  // 체크된 경우
                     var newRow = this.ds_doRequestListCopy.addRow();  // 새로운 행 추가
                     this.ds_doRequestListCopy.copyRow(newRow, this.ds_doRequestList, i);  // 기존 데이터에서 해당 행 복사
-        			this.ds_doRequestListCopy.setColumn(newRow, "assign_code", loginAssignCode);
+        			this.ds_doRequestListCopy.setColumn(newRow, "admin_assign", loginAssignCode);
         			this.ds_doRequestListCopy.setColumn(newRow, "admin_name", loginAdminName);
                 }
             }
@@ -190,7 +192,7 @@
             var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
         	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 
-            this.ds_offList.setColumn(0, "assign_code", loginAssignCode);
+            this.ds_offList.setColumn(0, "admin_assign", loginAssignCode);
 
             // 체크된 데이터를 새로운 Dataset에 추가
         	this.ds_doRequestListCopy.clearData();
@@ -199,7 +201,7 @@
                 if (isChecked == 1) {  // 체크된 경우
                     var newRow = this.ds_doRequestListCopy.addRow();  // 새로운 행 추가
                     this.ds_doRequestListCopy.copyRow(newRow, this.ds_doRequestList, i);  // 기존 데이터에서 해당 행 복사
-        			this.ds_doRequestListCopy.setColumn(newRow, "assign_code", loginAssignCode);
+        			this.ds_doRequestListCopy.setColumn(newRow, "admin_assign", loginAssignCode);
         			this.ds_doRequestListCopy.setColumn(newRow, "admin_name", loginAdminName);
                 }
             }
