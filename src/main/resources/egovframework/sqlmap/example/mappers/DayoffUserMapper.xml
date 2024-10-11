@@ -4,8 +4,8 @@
 	
 	<!--연차신청(저장)  -->
 	<insert id="sendRequest" parameterType="dayoffDto">
-		INSERT INTO dayoff(emp_code,start_date,off_code,end_date,reason,reg_name) 
-		VALUES (#{empCode},#{startDate},#{offCode},#{endDate},#{reason},#{name})
+		INSERT INTO dayoff (emp_code,start_date,off_code,end_date,reason,reg_name) 
+		VALUES (#{empCode},#{startDate},#{offCode},#{endDate},#{reason}, #{name})
 	</insert>
 	
 	<!-- 연차신청내역  리스트 -->

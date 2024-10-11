@@ -28,7 +28,7 @@
         </Grid>
         <Edit id="EditQuestion" taborder="2" left="80" top="510" width="600" height="30" onchanged="EditQuestion_onchanged"/>
         <Edit id="EditCode" taborder="3" left="30" top="510" width="50" height="30" enable="false"/>
-        <Static id="Static00" taborder="4" text="평가 기준 수정" left="30" top="20" width="230" height="50" onclick="Static00_onclick" cssclass="stc_title"/>
+        <Static id="Static00" taborder="4" text="평가 기준 수정" left="30" top="20" width="250" height="50" onclick="Static00_onclick" cssclass="stc_title"/>
       </Layout>
     </Layouts>
     <Objects>

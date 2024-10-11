@@ -3,9 +3,9 @@
   <Form id="Form_Eval" width="1280" height="720" titletext="New Form" onload="Form_Eval_onload">
     <Layouts>
       <Layout height="768" mobileorientation="landscape" width="1024" stepcount="0">
-        <GroupBox id="GroupBox_Search" taborder="9" text="조회" left="30" top="95" width="730" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
-        <Static id="staTitle" taborder="0" text="업무 평가 조회" left="30" top="20" width="270" height="50" onclick="staTitle_onclick" cssclass="stc_title"/>
-        <Button id="btnFilterSearch" taborder="3" text="검색" left="560" top="115" width="80" height="30" onclick="btnFilterSearch_onclick" cssclass="btn_search"/>
+        <GroupBox id="GroupBox_Search" taborder="9" text="조회" left="320" top="100" width="700" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
+        <Static id="staTitle" taborder="0" text="직원 업무 평가 조회" left="30" top="20" width="325" height="50" onclick="staTitle_onclick" cssclass="stc_title"/>
+        <Button id="btnFilterSearch" taborder="3" text="검색" left="835" top="120" width="80" height="30" onclick="btnFilterSearch_onclick" cssclass="btn_search"/>
         <Grid id="grdEvaluation" taborder="7" left="30" top="170" width="992" height="510" binddataset="dsEvaluation" oncelldblclick="grdEvaluation_oncelldblclick">
           <Formats>
             <Format id="default">
@@ -37,12 +37,12 @@
             </Format>
           </Formats>
         </Grid>
-        <Combo id="cmbSearchType" taborder="1" text="전체" left="55" top="115" width="80" height="30" onitemchanged="dsEvaluation_onload" innerdataset="dsSearchType" value="all" index="0" codecolumn="CODE" datacolumn="CODE_NM"/>
-        <Edit id="edtSearchText" taborder="2" left="145" top="115" width="140" height="30" onchanged="edtSearchText_onchanged"/>
-        <Calendar id="calStartDate" taborder="4" left="295" top="115" width="110" height="30" onchanged="Calendar00_onchanged"/>
-        <Calendar id="calEndDate" taborder="5" left="435" top="115" width="110" height="30" onchanged="calEndDate_onchanged"/>
-        <Static id="Static00" taborder="8" text="~" left="415" top="115" width="30" height="30" font="bold 12px/normal &quot;Gulim&quot;"/>
-        <Button id="btnReset" taborder="6" left="655" top="115" width="80" height="30" text="초기화" onclick="btnReset_onclick" cssclass="btn_normal"/>
+        <Combo id="cmbSearchType" taborder="1" text="전체" left="330" top="120" width="80" height="30" onitemchanged="dsEvaluation_onload" innerdataset="dsSearchType" value="all" index="0" codecolumn="CODE" datacolumn="CODE_NM"/>
+        <Edit id="edtSearchText" taborder="2" left="420" top="120" width="140" height="30" onchanged="edtSearchText_onchanged"/>
+        <Calendar id="calStartDate" taborder="4" left="570" top="120" width="110" height="30" onchanged="Calendar00_onchanged"/>
+        <Calendar id="calEndDate" taborder="5" left="710" top="120" width="110" height="30" onchanged="calEndDate_onchanged"/>
+        <Static id="Static00" taborder="8" text="~" left="690" top="120" width="30" height="30" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Button id="btnReset" taborder="6" left="930" top="120" width="80" height="30" text="초기화" onclick="btnReset_onclick" cssclass="btn_normal"/>
       </Layout>
     </Layouts>
     <Objects>

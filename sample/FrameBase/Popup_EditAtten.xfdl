@@ -21,7 +21,7 @@
                 <Row size="24" band="head"/>
                 <Row size="103"/>
               </Rows>
-              <Band id="head">
+              <Band id="head" cssclass="grid_sumin .head">
                 <Cell text="사번"/>
                 <Cell col="1" text="이름"/>
                 <Cell col="2" text="직책"/>
@@ -58,7 +58,7 @@
           <Column id="attenType" type="STRING" size="256"/>
           <Column id="workStart" type="STRING" size="256"/>
           <Column id="workEnd" type="STRING" size="256"/>
-          <Column id="managerName" type="STRING" size="256"/>
+          <Column id="admin_name" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="ds_WorkType">
@@ -91,7 +91,7 @@ this.Popup_EditAtten_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 	this.ds_AttenList.setColumn(0, "attenType", this.parent.attenType);
 	this.ds_AttenList.setColumn(0, "workStart", this.parent.workStart);
 	this.ds_AttenList.setColumn(0, "workEnd", this.parent.workEnd);
-	this.ds_AttenList.setColumn(0, "managerName", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
+	this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
 	
 };
 
@@ -155,5 +155,6 @@ this.btn_Edit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	this.opener.fnSearch();
 };
 ]]></Script>
+    <InitValue/>
   </Form>
 </FDL>

@@ -67,7 +67,7 @@
             obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
-            obj = new GroupBox("GroupBox_Search","710","85","470","60",null,null,null,null,null,null,this);
+            obj = new GroupBox("GroupBox_Search","760","85","420","60",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("조회");
             obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
@@ -76,7 +76,7 @@
             obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearchType","752","105","100","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_SearchType","770","105","100","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_innerdataset("ds_SearchType");
             obj.set_codecolumn("Value");
@@ -85,13 +85,13 @@
             obj.set_value("ALL");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_SearchWord","877","105","180","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_SearchWord","890","105","180","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.getSetter("binddataset").set("ds_search");
             obj.set_text("bind:SEARCH_WORD");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","1085","105","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","1100","105","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");

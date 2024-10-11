@@ -3,11 +3,11 @@
   <Form id="Form_HRD" width="1280" height="720" titletext="New Form" onload="Form_HRD_onload">
     <Layouts>
       <Layout height="720" width="1280">
-        <GroupBox id="GroupBox_Search" taborder="6" text="조회" left="276" top="84" width="497" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
-        <Static id="Static00" taborder="0" text="인사관리" left="30" top="20" width="174" height="50" cssclass="stc_title"/>
-        <Edit id="edt_SearchWord" taborder="1" left="450" top="105" width="208" height="30" onchanged="edt_SearchWord_onchanged"/>
-        <Button id="btn_HrdListSearch" taborder="2" text="조회" left="677" top="105" width="70" height="30" onclick="btn_HrdListSearch_onclick" cssclass="btn_search"/>
-        <Grid id="grd_HrdList" taborder="3" left="30" top="160" width="742" height="400" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none">
+        <GroupBox id="GroupBox_Search" taborder="6" text="조회" left="350" top="83" width="430" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
+        <Static id="Static00" taborder="0" text="인사관리" left="36" top="23" width="174" height="50" cssclass="stc_title"/>
+        <Edit id="edt_SearchWord" taborder="1" left="480" top="104" width="200" height="30" onchanged="edt_SearchWord_onchanged"/>
+        <Button id="btn_HrdListSearch" taborder="2" text="조회" left="701" top="104" width="70" height="30" onclick="btn_HrdListSearch_onclick" cssclass="btn_search"/>
+        <Grid id="grd_HrdList" taborder="3" left="36" top="160" width="742" height="400" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none">
           <Formats>
             <Format id="default">
               <Columns>
@@ -44,8 +44,13 @@
             </Format>
           </Formats>
         </Grid>
+<<<<<<< HEAD
         <Combo id="cmb_SearchType" taborder="4" left="330" top="105" width="110" height="30" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0" onitemchanged="cmb_SearchType_onitemchanged"/>
         <Button id="btn_Savehrd" taborder="5" text="저장" left="692" top="580" width="80" height="40" onclick="btn_Savehrd_onclick" cssclass="btn_check"/>
+=======
+        <Combo id="cmb_SearchType" taborder="4" left="360" top="104" width="110" height="30" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0" onitemchanged="cmb_SearchType_onitemchanged"/>
+        <Button id="btn_Savehrd" taborder="5" text="저장" left="697" top="580" width="80" height="40" onclick="btn_Savehrd_onclick" cssclass="btn_check"/>
+>>>>>>> cec903bf45b7f4950480237a318c03adf5af0a99
       </Layout>
     </Layouts>
     <Objects>

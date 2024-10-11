@@ -42,36 +42,36 @@
     <Layouts>
       <Layout width="850" height="390">
         <!-- 직원 정보 등록 UI 구성 -->
-        <Static id="Static" text="직원 정보 등록" left="130" top="20" width="560" height="40" background="whitesmoke" cssclass="stc_popup"/>
+        <Static id="Static" text="직원 정보 등록" left="150" top="20" width="560" height="40" background="whitesmoke" cssclass="stc_popup"/>
         <!-- 첫 번째 행: 이름, 생년월일 -->
-        <Static id="lblName" text="이름" left="40" top="90" width="80" height="25" textAlign="left"/>
-        <Edit id="edtName" left="100" top="90" width="250" height="25" binddataset="ds_employee" text="bind:Name"/>
-        <Static id="lblBirth" text="생년월일" left="460" top="90" width="80" height="25" textAlign="left"/>
-        <Calendar id="calBirth" left="520" top="90" width="250" height="25" binddataset="ds_employee" datecolumn="Birth" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
+        <Static id="lblName" text="이름" left="60" top="90" width="80" height="25" textAlign="left"/>
+        <Edit id="edtName" left="120" top="90" width="250" height="25" binddataset="ds_employee" text="bind:Name"/>
+        <Static id="lblBirth" text="생년월일" left="480" top="90" width="80" height="25" textAlign="left"/>
+        <Calendar id="calBirth" left="540" top="90" width="250" height="25" binddataset="ds_employee" datecolumn="Birth" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
         <!-- 두 번째 행: 성별, 전화번호 -->
-        <Static id="lblGender" text="성별" left="40" top="265" width="80" height="25" textAlign="left"/>
-        <Combo id="cmbGender" left="100" top="265" width="250" height="25" innerdataset="ds_gender" codecolumn="value" datacolumn="text" binddataset="ds_employee" value="bind:Gender" text="" onitemchanged="cmbGender_onitemchanged"/>
-        <Static id="lblPhone" text="전화번호" left="460" top="265" width="80" height="25" textAlign="left"/>
-        <Edit id="edtPhone" left="520" top="265" width="250" height="25" binddataset="ds_employee" text="bind:Phone" onchanged="edtPhone_onchanged"/>
+        <Static id="lblGender" text="성별" left="60" top="265" width="80" height="25" textAlign="left"/>
+        <Combo id="cmbGender" left="120" top="265" width="250" height="25" innerdataset="ds_gender" codecolumn="value" datacolumn="text" binddataset="ds_employee" value="bind:Gender" text="" onitemchanged="cmbGender_onitemchanged"/>
+        <Static id="lblPhone" text="전화번호" left="480" top="265" width="80" height="25" textAlign="left"/>
+        <Edit id="edtPhone" left="540" top="265" width="250" height="25" binddataset="ds_employee" text="bind:Phone" onchanged="edtPhone_onchanged"/>
         <!-- 세 번째 행: 주소, 이메일 -->
-        <Static id="lblAddress" text="주소" left="40" top="175" width="80" height="25" textAlign="left"/>
-        <Edit id="edtAddress" left="100" top="175" width="250" height="25" binddataset="ds_employee" text="bind:Address"/>
-        <Static id="lblEmail" text="이메일" left="460" top="218" width="80" height="25" textAlign="left"/>
-        <Edit id="edtEmail" left="520" top="218" width="250" height="25" binddataset="ds_employee" text="bind:Email"/>
+        <Static id="lblAddress" text="주소" left="60" top="175" width="80" height="25" textAlign="left"/>
+        <Edit id="edtAddress" left="120" top="175" width="250" height="25" binddataset="ds_employee" text="bind:Address"/>
+        <Static id="lblEmail" text="이메일" left="480" top="218" width="80" height="25" textAlign="left"/>
+        <Edit id="edtEmail" left="540" top="218" width="250" height="25" binddataset="ds_employee" text="bind:Email"/>
         <!-- 네 번째 행: 입사일, 계좌번호 -->
-        <Static id="lblJoinDate" text="입사일" left="460" top="175" width="80" height="25" textAlign="left"/>
-        <Calendar id="calJoinDate" left="520" top="175" width="250" height="25" binddataset="ds_employee" datecolumn="joinDate" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
-        <Static id="lblAccount" text="계좌번호" left="40" top="218" width="80" height="25" textAlign="left"/>
-        <Edit id="edtAccount" left="100" top="218" width="250" height="25" binddataset="ds_employee" text="bind:Account"/>
+        <Static id="lblJoinDate" text="입사일" left="480" top="175" width="80" height="25" textAlign="left"/>
+        <Calendar id="calJoinDate" left="540" top="175" width="250" height="25" binddataset="ds_employee" datecolumn="joinDate" dateformat="yyyy.MM.dd" editformat="yyyy.MM.dd"/>
+        <Static id="lblAccount" text="계좌번호" left="60" top="218" width="80" height="25" textAlign="left"/>
+        <Edit id="edtAccount" left="120" top="218" width="250" height="25" binddataset="ds_employee" text="bind:Account"/>
         <!-- 마지막 행: 아이디, 비밀번호 -->
-        <Static id="lblID" text="아이디" left="40" top="130" width="95" height="25" textAlign="left"/>
-        <Edit id="edtID" left="100" top="130" width="250" height="25" binddataset="ds_employee" text="bind:ID" onchanged="edtID_onchanged"/>
-        <Static id="lblPassword" text="비밀번호" left="460" top="130" width="80" height="25" textAlign="left"/>
-        <Edit id="edtPassword" left="520" top="130" width="250" height="25" binddataset="ds_employee" text="bind:Password"/>
+        <Static id="lblID" text="아이디" left="60" top="130" width="95" height="25" textAlign="left"/>
+        <Edit id="edtID" left="120" top="130" width="250" height="25" binddataset="ds_employee" text="bind:ID" onchanged="edtID_onchanged"/>
+        <Static id="lblPassword" text="비밀번호" left="480" top="130" width="80" height="25" textAlign="left"/>
+        <Edit id="edtPassword" left="540" top="130" width="250" height="25" binddataset="ds_employee" text="bind:Password"/>
         <!-- 버튼 -->
-        <Button id="btnRegister" text="등록" left="320" top="330" width="80" height="30" onclick="btnRegister_onclick" cssclass="btn_regist"/>
-        <Button id="btnClose" text="닫기" left="430" top="330" width="80" height="30" onclick="btnClose_onclick" cssclass="btn_delete"/>
-        <Button id="Button00" taborder="23" text="중복 확인" left="360" top="130" width="70" height="25" onclick="Button00_onclick" cssclass="btn_normal" font="10pt/normal &quot;Arial&quot;"/>
+        <Button id="btnRegister" text="등록" left="340" top="330" width="80" height="30" onclick="btnRegister_onclick" cssclass="btn_regist"/>
+        <Button id="btnClose" text="닫기" left="450" top="330" width="80" height="30" onclick="btnClose_onclick" cssclass="btn_delete"/>
+        <Button id="Button00" taborder="23" text="중복 확인" left="380" top="130" width="70" height="25" onclick="Button00_onclick" cssclass="btn_normal" font="10pt/normal &quot;Arial&quot;"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[

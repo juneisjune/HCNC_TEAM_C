@@ -29,12 +29,13 @@
             obj.set_treeinitstatus("collapse,null");
             obj.set_treeusecheckbox("false");
             obj.set_binddataset("ds_Left");
-            obj.set_scrolltype("both");
+            obj.set_scrolltype("vertical");
             obj.set_treeuseline("false");
             obj.set_cssclass("grd_LF_treeMenu");
             obj.set_treeuseimage("false");
             obj.set_treeusebutton("use");
             obj.set_fillareatype("none");
+            obj.set_cellclickbound("cell");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"180\"/></Columns><Rows><Row size=\"35\"/></Rows><Band id=\"body\"><Cell displaytype=\"treeitemcontrol\" edittype=\"tree\" text=\"bind:MENU_NAME\" treestartlevel=\"1\" treelevel=\"bind:MENU_LEVEL\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
             // Layout Functions
@@ -65,8 +66,28 @@
 
         this.grid_LeftMenu_oncellclick = function(obj,e)
         {
+
+
         	// 클릭한 행(row)의 인덱스
         	var rowIndex = e.row;
+        	var colIndex = e.cell;    // 클릭한 셀의 열 인덱스
+            var treeCellIndex = 1;    // 트리로 표시된 열의 인덱스 (예: 이름 열이 트리로 표시되는 경우 1)
+
+            // 트리 열을 클릭했는지 확인
+            if (this.ds_Left.getColumn(rowIndex, "MENU_LEVEL")  == 1) {
+                var isExpanded = obj.isTreeExpandedRow(rowIndex)
+
+                // 현재 행이 확장된 상태라면 축소하고, 그렇지 않으면 확장
+                if (isExpanded) {
+                    obj.collapseTreeItem(rowIndex); // 트리 아이템 축소
+                } else {
+                    obj.expandTreeItem(rowIndex);   // 트리 아이템 확장
+                }
+            }
+
+        	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") == 1) {
+        		this.grid_LeftMenu.set_treeinitstatus(  );
+        	}
 
         	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") != 1) {
 

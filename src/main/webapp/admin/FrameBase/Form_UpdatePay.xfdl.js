@@ -42,7 +42,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new GroupBox("GroupBox_Search","105","99","860","60",null,null,null,null,null,null,this);
+            obj = new GroupBox("GroupBox_Search","154","100","830","60",null,null,null,null,null,null,this);
             obj.set_taborder("22");
             obj.set_text("조회");
             obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
@@ -51,11 +51,11 @@
             obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Search","230","119","100","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Search","264","120","100","30",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","870","119","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","894","120","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");
@@ -67,33 +67,33 @@
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Static("emp_nsme","246","575","60","38",null,null,null,null,null,null,this);
+            obj = new Static("emp_nsme","266","575","60","38",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("이름");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Code","144","579","92","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Code","164","579","92","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_CodeNm","297","579","106","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_CodeNm","317","579","106","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Update","630","574","90","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_Update","650","574","90","40",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("수정");
             obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00","585","122","40","28",null,null,null,null,null,null,this);
+            obj = new Static("Static00","609","123","40","28",null,null,null,null,null,null,this);
             obj.set_text("~");
             obj.set_taborder("7");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("com_year","364","119","90","30",null,null,null,null,null,null,this);
+            obj = new Combo("com_year","388","120","90","30",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_innerdataset("ds_Search");
             obj.set_datacolumn("START_YEAR");
@@ -103,7 +103,7 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("com_Month","491","119","70","30",null,null,null,null,null,null,this);
+            obj = new Combo("com_Month","515","120","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_innerdataset("ds_Month");
             obj.set_codecolumn("month");
@@ -112,7 +112,7 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("com_year00","635","119","90","30",null,null,null,null,null,null,this);
+            obj = new Combo("com_year00","659","120","90","30",null,null,null,null,null,null,this);
             obj.set_taborder("10");
             obj.set_innerdataset("ds_Search");
             obj.set_datacolumn("END_YEAR");
@@ -122,35 +122,35 @@
             obj.set_index("2");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_ModPay","498","579","104","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_ModPay","518","579","104","30",null,null,null,null,null,null,this);
             obj.set_taborder("11");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static01","448","123","40","23",null,null,null,null,null,null,this);
+            obj = new Static("Static01","472","124","40","23",null,null,null,null,null,null,this);
             obj.set_taborder("12");
             obj.set_text("년");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static02","560","122","40","26",null,null,null,null,null,null,this);
+            obj = new Static("Static02","584","123","40","26",null,null,null,null,null,null,this);
             obj.set_taborder("13");
             obj.set_text("월");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static03","720","124","40","24",null,null,null,null,null,null,this);
+            obj = new Static("Static03","744","125","40","24",null,null,null,null,null,null,this);
             obj.set_taborder("14");
             obj.set_text("년");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static04","826","126","40","20",null,null,null,null,null,null,this);
+            obj = new Static("Static04","850","127","40","20",null,null,null,null,null,null,this);
             obj.set_taborder("15");
             obj.set_text("월");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Static("emp_","431","579","67","31",null,null,null,null,null,null,this);
+            obj = new Static("emp_","451","579","67","31",null,null,null,null,null,null,this);
             obj.set_taborder("16");
             obj.set_text("수정액");
             obj.set_cssclass("stc_stc");
@@ -162,7 +162,7 @@
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("com_Month00","760","119","70","30",null,null,null,null,null,null,this);
+            obj = new Combo("com_Month00","784","120","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("18");
             obj.set_innerdataset("ds_Month");
             obj.set_datacolumn("month");
@@ -171,7 +171,7 @@
             obj.set_index("9");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearType","131","119","90","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_SearType","165","120","90","30",null,null,null,null,null,null,this);
             obj.set_taborder("19");
             obj.set_innerdataset("ds_SearchType");
             obj.set_datacolumn("Name");
@@ -181,13 +181,13 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Delete","775","574","90","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_Delete","795","574","90","40",null,null,null,null,null,null,this);
             obj.set_taborder("20");
             obj.set_text("삭제");
             obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_CodeMst","30","177","935","381",null,null,null,null,null,null,this);
+            obj = new Grid("grd_CodeMst","30","177","955","381",null,null,null,null,null,null,this);
             obj.set_taborder("21");
             obj.set_binddataset("ds_Pay");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"115\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"0\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"부서\"/><Cell col=\"4\" text=\"직책\"/><Cell col=\"5\" text=\"급여년도\"/><Cell col=\"6\" text=\"급여월\"/><Cell col=\"7\" text=\"지급액\"/><Cell col=\"8\" text=\"수정액\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chk\"/><Cell col=\"1\" text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:payYear\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:payMonth\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:actualPay\"/><Cell col=\"8\" text=\"bind:etc\"/></Band></Format></Formats>");
