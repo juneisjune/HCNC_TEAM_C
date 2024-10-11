@@ -47,6 +47,12 @@ public class EMServiceImpl implements EMService {
         // 직원 정보를 삭제할 때, 이 파라미터에 포함된 값을 기반으로 해당 직원의 데이터를 DB에서 삭제합니다.
         EMMapper.deleteEmployee(param);  // Mapper를 사용하여 DB에서 직원 정보 삭제
     }
+    
+    @Override
+	public void deleteDayoffCount(Map<String, Object> param) {
+		EMMapper.deleteDayoffCount(param);
+		
+	}
 
     // ID 중복 체크 메서드 구현
     @Override
@@ -60,5 +66,7 @@ public class EMServiceImpl implements EMService {
 	public EMDTO findEmp(Map<String, Object> param) {
 		return EMMapper.findEmp(param);
 	}
+
+	
     
 }
