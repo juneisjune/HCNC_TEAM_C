@@ -3,29 +3,30 @@
   <Form id="Form_Login" width="1280" height="720" titletext="New Form" color="#000000" background="#003366" scrollbartype="none" onsize="Form_Login_onsize">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
-        <Div id="div_AuthForm" taborder="12" left="750" top="200" width="380" height="370" background="#ffffff"/>
-        <Edit id="edt_AuthCheck" taborder="1" left="913" top="330" width="200" height="60"/>
-        <Button id="btn_AuthCheck" taborder="2" text="인증하기" left="963" top="400" width="150" height="60" onclick="btn_AuthCheck_onclick"/>
-        <Static id="sta_AuthCheck" taborder="3" text="인증번호 입력 :" left="793" top="330" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_MaskEmail" taborder="10" text="발송받은 이메일 :" left="783" top="250" width="120" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Edit id="edt_MaskedEmail" taborder="9" left="913" top="250" width="200" height="60" readonly="true" background="#ffffff"/>
-        <Div id="div_LoginForm" taborder="11" left="750" top="200" width="380" height="370" background="#ffffff">
+        <Div id="div_AuthForm" taborder="12" left="770" top="200" width="380" height="370" background="#9999ff"/>
+        <Edit id="edt_AuthCheck" taborder="1" left="933" top="330" width="200" height="60"/>
+        <Button id="btn_AuthCheck" taborder="2" text="인증하기" left="983" top="400" width="150" height="60" onclick="btn_AuthCheck_onclick"/>
+        <Static id="sta_AuthCheck" taborder="3" text="인증번호 입력 :" left="813" top="330" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_MaskEmail" taborder="10" text="발송받은 이메일 :" left="803" top="250" width="120" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Edit id="edt_MaskedEmail" taborder="9" left="933" top="250" width="200" height="60" readonly="true" background="#ffffff"/>
+        <Div id="div_LoginForm" taborder="11" left="770" top="200" width="380" height="370" background="#9999ff">
           <Layouts>
             <Layout>
               <Static id="sta_FindLoginInfo" taborder="0" text="아이디 및 비밀번호 찾기" left="220" top="275" width="135" height="25" onmouseleave="div_LoginForm_sta_FindLoginInfo_onmouseleave" onmouseenter="div_LoginForm_sta_FindLoginInfo_onmouseenter" onclick="div_LoginForm_sta_FindLoginInfo_onclick" font="12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" color="#000000"/>
             </Layout>
           </Layouts>
         </Div>
-        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="955" top="400" width="150" height="60" onclick="btn_Login_onclick"/>
-        <Static id="sta_Id" taborder="4" text="아이디 입력 :" left="800" top="250" width="90" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_Password" taborder="5" text="비밀번호 입력 :" left="785" top="330" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Edit id="edt_Id" taborder="6" left="905" top="250" width="200" height="60"/>
-        <Edit id="edt_Password" taborder="7" left="905" top="330" width="200" height="60" password="true"/>
+        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="975" top="400" width="150" height="60" onclick="btn_Login_onclick"/>
+        <Static id="sta_Id" taborder="4" text="아이디 입력 :" left="820" top="250" width="90" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="sta_Password" taborder="5" text="비밀번호 입력 :" left="805" top="330" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Edit id="edt_Id" taborder="6" left="925" top="250" width="200" height="60"/>
+        <Edit id="edt_Password" taborder="7" left="925" top="330" width="200" height="60" password="true"/>
         <Button id="btn_Pass" taborder="8" text="넘어가기" left="9" top="10" width="143" height="124" onclick="btn_Pass_onclick"/>
-        <Div id="div_LoginMain" taborder="14" left="370" top="200" width="380" height="370" background="#ffffff"/>
-        <ImageViewer id="img_HcncLogo" taborder="13" left="560" top="60" width="380" height="110" image="url('imagerc::img_hcnc_logo.png')" stretch="fixaspectratio" background="#003366" border="0px none"/>
-        <Static id="sta_LoginMain2" taborder="15" text="Login" left="370" top="355" width="380" height="100" textAlign="center" font="42px/normal &quot;HY견고딕&quot;"/>
-        <Static id="sta_LoginMain1" taborder="16" text="인사관리시스템" left="370" top="310" width="380" height="80" font="36px/normal &quot;HY견고딕&quot;" textAlign="center"/>
+        <Div id="div_LoginMain" taborder="14" left="390" top="200" width="380" height="370" background="#6666ff"/>
+        <ImageViewer id="img_HcncLogo" taborder="13" left="580" top="60" width="380" height="110" image="url('imagerc::img_hcnc_logo.png')" stretch="fixaspectratio" background="#003366" border="0px none"/>
+        <Static id="sta_LoginMain2" taborder="15" text="Login" left="390" top="425" width="380" height="100" textAlign="center" font="42px/normal &quot;HY견고딕&quot;"/>
+        <Static id="sta_LoginMain1" taborder="16" text="인사관리시스템" left="390" top="380" width="380" height="80" font="36px/normal &quot;HY견고딕&quot;" textAlign="center"/>
+        <ImageViewer id="img_LoginMain" taborder="17" left="510" top="240" width="140" height="140" stretch="fixaspectratio" image="url('imagerc::인사관리시스템.png')" background="#6666ff" border="0px none"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -94,6 +95,7 @@ this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
 		this.div_LoginMain.set_visible(false);
 		this.sta_LoginMain1.set_visible(false);
 		this.sta_LoginMain2.set_visible(false);
+		this.img_LoginMain.set_visible(false);
 		
 		this.div_LoginForm.set_left(370);
 		this.sta_Id.set_left(420);

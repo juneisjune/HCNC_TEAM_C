@@ -40,41 +40,41 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Div("div_AuthForm","750","200","380","370",null,null,null,null,null,null,this);
+            obj = new Div("div_AuthForm","770","200","380","370",null,null,null,null,null,null,this);
             obj.set_taborder("12");
-            obj.set_background("#ffffff");
+            obj.set_background("#9999ff");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_AuthCheck","913","330","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_AuthCheck","933","330","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_AuthCheck","963","400","150","60",null,null,null,null,null,null,this);
+            obj = new Button("btn_AuthCheck","983","400","150","60",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("인증하기");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_AuthCheck","793","330","115","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_AuthCheck","813","330","115","60",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("인증번호 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_MaskEmail","783","250","120","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_MaskEmail","803","250","120","60",null,null,null,null,null,null,this);
             obj.set_taborder("10");
             obj.set_text("발송받은 이메일 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_MaskedEmail","913","250","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_MaskedEmail","933","250","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_readonly("true");
             obj.set_background("#ffffff");
             this.addChild(obj.name, obj);
 
-            obj = new Div("div_LoginForm","750","200","380","370",null,null,null,null,null,null,this);
+            obj = new Div("div_LoginForm","770","200","380","370",null,null,null,null,null,null,this);
             obj.set_taborder("11");
-            obj.set_background("#ffffff");
+            obj.set_background("#9999ff");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_FindLoginInfo","220","275","135","25",null,null,null,null,null,null,this.div_LoginForm.form);
@@ -84,28 +84,28 @@
             obj.set_color("#000000");
             this.div_LoginForm.addChild(obj.name, obj);
 
-            obj = new Button("btn_Login","955","400","150","60",null,null,null,null,null,null,this);
+            obj = new Button("btn_Login","975","400","150","60",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("인증번호 발송");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_Id","800","250","90","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_Id","820","250","90","60",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("아이디 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_Password","785","330","115","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_Password","805","330","115","60",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("비밀번호 입력 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Id","905","250","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Id","925","250","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Password","905","330","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Password","925","330","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_password("true");
             this.addChild(obj.name, obj);
@@ -115,12 +115,12 @@
             obj.set_text("넘어가기");
             this.addChild(obj.name, obj);
 
-            obj = new Div("div_LoginMain","370","200","380","370",null,null,null,null,null,null,this);
+            obj = new Div("div_LoginMain","390","200","380","370",null,null,null,null,null,null,this);
             obj.set_taborder("14");
-            obj.set_background("#ffffff");
+            obj.set_background("#6666ff");
             this.addChild(obj.name, obj);
 
-            obj = new ImageViewer("img_HcncLogo","560","60","380","110",null,null,null,null,null,null,this);
+            obj = new ImageViewer("img_HcncLogo","580","60","380","110",null,null,null,null,null,null,this);
             obj.set_taborder("13");
             obj.set_image("url(\'imagerc::img_hcnc_logo.png\')");
             obj.set_stretch("fixaspectratio");
@@ -128,18 +128,26 @@
             obj.set_border("0px none");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_LoginMain2","370","355","380","100",null,null,null,null,null,null,this);
+            obj = new Static("sta_LoginMain2","390","425","380","100",null,null,null,null,null,null,this);
             obj.set_taborder("15");
             obj.set_text("Login");
             obj.set_textAlign("center");
             obj.set_font("42px/normal \"HY견고딕\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_LoginMain1","370","310","380","80",null,null,null,null,null,null,this);
+            obj = new Static("sta_LoginMain1","390","380","380","80",null,null,null,null,null,null,this);
             obj.set_taborder("16");
             obj.set_text("인사관리시스템");
             obj.set_font("36px/normal \"HY견고딕\"");
             obj.set_textAlign("center");
+            this.addChild(obj.name, obj);
+
+            obj = new ImageViewer("img_LoginMain","510","240","140","140",null,null,null,null,null,null,this);
+            obj.set_taborder("17");
+            obj.set_stretch("fixaspectratio");
+            obj.set_image("url(\'imagerc::인사관리시스템.png\')");
+            obj.set_background("#6666ff");
+            obj.set_border("0px none");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -241,6 +249,7 @@
         		this.div_LoginMain.set_visible(false);
         		this.sta_LoginMain1.set_visible(false);
         		this.sta_LoginMain2.set_visible(false);
+        		this.img_LoginMain.set_visible(false);
 
         		this.div_LoginForm.set_left(370);
         		this.sta_Id.set_left(420);
