@@ -272,12 +272,6 @@
 
         // 조회 버튼 클릭 시 호출되는 함수
         this.btn_Search_onclick = function(obj, e) {
-            var searchType = this.ds_Search.getColumn(0, "SEARCH_TYPE");
-
-            if (searchType === "ALL") {
-                // 전체가 선택된 경우 년도 및 월 자동 설정
-                this.fnSetYearsAndMonths();
-            }
 
             // 조회 실행
             this.fnSearch();
@@ -315,7 +309,7 @@
             this.ds_Search.setColumn(0, "END_YEAR", endYear);
 
             // 월 자동 설정 (첫 번째 월은 1월, 두 번째 월은 10월)
-            var startMonth = new Date().getMonth() + 1;
+            var startMonth = new Date().getMonth();
             var endMonth = new Date().getMonth() + 1;
 
             this.ds_Search.setColumn(0, "START_MONTH", startMonth);
