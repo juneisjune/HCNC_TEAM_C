@@ -42,7 +42,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static00","108","322","482","80",null,null,null,null,null,null,this);
+            obj = new Static("Static00","98","322","482","80",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("Drop Files Here");
             obj.set_visible("true");
@@ -53,19 +53,19 @@
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
 
-            obj = new Button("open","600","317","90","90",null,null,null,null,null,null,this);
+            obj = new Button("open","600","322","90","90",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("폴더 열기");
             obj.set_cssclass("btn_download");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("Grid00","100","317","482","90",null,null,null,null,null,null,this);
+            obj = new Grid("Grid00","100","322","482","90",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"size\"/></Band><Band id=\"body\"><Cell text=\"bind:filename\"/><Cell col=\"1\" text=\"bind:filesize\" textAlign=\"right\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button01","266","430","100","40",null,null,null,null,null,null,this);
+            obj = new Button("Button01","346","440","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("등록");
             obj.set_cssclass("btn_regist");
@@ -79,36 +79,27 @@
             obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_close","390","430","100","40",null,null,null,null,null,null,this);
-            obj.set_taborder("6");
-            obj.set_text("닫기");
-            obj.set_cssclass("btn_delete");
-            this.addChild(obj.name, obj);
-
             obj = new Static("Static00_00","30","23","220","50",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
+            obj.set_taborder("6");
             obj.set_text("공지사항 등록");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Attachments","30","320","60","30",null,null,null,null,null,null,this);
+            obj = new Static("Static_Label_Attachments","30","322","60","30",null,null,null,null,null,null,this);
             obj.set_text("첨부파일");
-            obj.set_textAlign("right");
+            obj.set_taborder("7");
+            obj.set_cssclass("stc_stc");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static_Label_Content","30","160","60","30",null,null,null,null,null,null,this);
+            obj.set_text("내용");
             obj.set_taborder("8");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Content","-10","170","100","30",null,null,null,null,null,null,this);
-            obj.set_text("내용");
-            obj.set_textAlign("right");
-            obj.set_taborder("9");
-            obj.set_cssclass("stc_stc");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("Static_Label_Title","-10","105","100","30",null,null,null,null,null,null,this);
+            obj = new Static("Static_Label_Title","30","101","60","30",null,null,null,null,null,null,this);
             obj.set_text("제목");
-            obj.set_textAlign("right");
-            obj.set_taborder("10");
+            obj.set_taborder("9");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
             // Layout Functions
@@ -329,7 +320,6 @@
             this.Grid00.addEventHandler("ondrop",this.Grid00_ondrop,this);
             this.Button01.addEventHandler("onclick",this.Button01_onclick,this);
             this.Edit_title.addEventHandler("onchanged",this.Edit_title_onchanged,this);
-            this.btn_close.addEventHandler("onclick",this.btn_close_onclick,this);
             this.Static00_00.addEventHandler("onclick",this.Static00_00_onclick,this);
             this.FileUpTransfer00.addEventHandler("onprogress",this.FileUpTransfer00_onprogress,this);
             this.FileUpTransfer00.addEventHandler("onsuccess",this.FileUpTransfer00_onsuccess,this);

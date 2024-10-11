@@ -32,22 +32,13 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new GroupBox("GroupBox_Search","300","90","820","60",null,null,null,null,null,null,this);
-            obj.set_taborder("11");
-            obj.set_text("조회");
-            obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
-            obj.set_visible("true");
-            obj.set_opacity("1");
-            obj.set_tooltiptype("default");
-            this.addChild(obj.name, obj);
-
             obj = new Static("sta_Title","25","25","305","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("직원 출/퇴근 기록 관리");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearchType","310","110","100","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_SearchType","20","110","100","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_innerdataset("ds_SearchType");
             obj.set_codecolumn("Value");
@@ -57,53 +48,47 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_SearchWord","419","110","180","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_SearchWord","129","110","180","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_Start","619","110","150","30",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_Start","329","110","150","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_End","809","110","150","30",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_End","519","110","150","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","969","110","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","890","110","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
-            obj.set_text("  검색");
+            obj.set_text("조회");
             obj.set_icon("url(\'imagerc::img_WF_search01.png\')");
             obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static01","779","110","20","30",null,null,null,null,null,null,this);
+            obj = new Static("Static01","489","110","20","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("~");
             obj.set_font("24px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grid_Atten","20","160","1105","460",null,null,null,null,null,null,this);
+            obj = new Grid("grid_Atten","20","150","1105","460",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_binddataset("ds_AttenList");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"104\"/><Column size=\"130\"/><Column size=\"104\"/><Column size=\"151\"/><Column size=\"173\"/><Column size=\"109\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"114\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"부서명\"/><Cell col=\"4\" text=\"근무 일자\"/><Cell col=\"5\" text=\"근무 형태\"/><Cell col=\"6\" text=\"출근 시간\"/><Cell col=\"7\" text=\"퇴근 시간\"/><Cell col=\"8\" text=\"초과 근무 시간\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:workDate\" calendardateformat=\"yyyy년 MM월 dd일\" displaytype=\"date\"/><Cell col=\"5\" text=\"bind:attenType\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:workStart\" textAlign=\"center\" displaytype=\"normal\"/><Cell col=\"7\" text=\"bind:workEnd\" textAlign=\"center\"/><Cell col=\"8\" text=\"bind:workOver\" textAlign=\"center\" maskeditformat=\"##0.0\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_RegisterAtten","1045","630","80","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_EditAtten","975","110","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("8");
-            obj.set_text("등록");
-            obj.set_cssclass("btn_regist");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_SearchReset","1049","110","60","30",null,null,null,null,null,null,this);
-            obj.set_taborder("9");
-            obj.set_text("초기화");
-            obj.set_cssclass("btn_normal");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_EditAtten","950","630","80","40",null,null,null,null,null,null,this);
-            obj.set_taborder("10");
             obj.set_text("수정");
             obj.set_cssclass("btn_edit");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btn_RegisterAtten","1055","110","70","30",null,null,null,null,null,null,this);
+            obj.set_taborder("9");
+            obj.set_text("등록");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -285,9 +270,8 @@
             this.addEventHandler("onload",this.Form_Attendance_onload,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grid_Atten.addEventHandler("oncelldblclick",this.grid_Atten_oncelldblclick,this);
-            this.btn_RegisterAtten.addEventHandler("onclick",this.btn_RegisterAtten_onclick,this);
-            this.btn_SearchReset.addEventHandler("onclick",this.btn_SearchReset_onclick,this);
             this.btn_EditAtten.addEventHandler("onclick",this.btn_EditAtten_onclick,this);
+            this.btn_RegisterAtten.addEventHandler("onclick",this.btn_RegisterAtten_onclick,this);
         };
         this.loadIncludeScript("Form_Attendance.xfdl");
         this.loadPreloadList();

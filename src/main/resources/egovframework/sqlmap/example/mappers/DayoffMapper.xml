@@ -24,7 +24,7 @@
 			AND name LIKE CONCAT('%',#{name},'%')
 	   </if>
 	   <if test="start_date != null ">
-			AND start_date = #{start_date}
+			AND start_date &gt;= #{start_date}
 	   </if>	   
 	    <!-- assign_code가 5일 경우: mng_code가 emp_code와 일치하는 경우 -->
 	    <if test="admin_assign == 5">

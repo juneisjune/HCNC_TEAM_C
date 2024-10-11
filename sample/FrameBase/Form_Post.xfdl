@@ -3,19 +3,19 @@
   <Form id="btn_Post" width="1280" height="720" titletext="New Form" onload="Form_Post_onload">
     <Layouts>
       <Layout height="720" width="1280">
-        <Grid id="grd_notice" binddataset="ds_Post" left="30" top="120" width="1096" height="400" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick">
+        <Grid id="grd_notice" binddataset="ds_Post" left="30" top="150" width="1096" height="400" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="48"/>
-                <Column size="85"/>
-                <Column size="244"/>
-                <Column size="297"/>
-                <Column size="129"/>
+                <Column size="71"/>
+                <Column size="284"/>
+                <Column size="306"/>
+                <Column size="95"/>
                 <Column size="85"/>
                 <Column size="64"/>
-                <Column size="94"/>
-                <Column size="48"/>
+                <Column size="70"/>
+                <Column size="70"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
@@ -23,13 +23,13 @@
               </Rows>
               <Band id="head">
                 <Cell displaytype="none" edittype="none" text="0" checkboxtruevalue="1" checkboxfalsevalue="0"/>
-                <Cell col="1" text="게시글 번호"/>
+                <Cell col="1" text="번호"/>
                 <Cell col="2" text="제목"/>
                 <Cell col="3" text="내용"/>
                 <Cell col="4" text="작성일자"/>
                 <Cell col="5" text="작성자"/>
                 <Cell col="6" text="조회수"/>
-                <Cell col="7" text="수정 하기"/>
+                <Cell col="7" text="수정"/>
                 <Cell col="8" text="삭제"/>
               </Band>
               <Band id="body">
@@ -40,19 +40,18 @@
                 <Cell col="4" text="bind:reg_date" displaytype="date" mask="####-##-##"/>
                 <Cell col="5" text="bind:emp_name" textAlign="center"/>
                 <Cell col="6" text="bind:view_count" textAlign="center"/>
-                <Cell col="7" displaytype="buttoncontrol" text="수정 하기"/>
+                <Cell col="7" displaytype="buttoncontrol" text="수정"/>
                 <Cell col="8" displaytype="buttoncontrol" text="삭제" edittype="button"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Search" taborder="1" text="조회" left="922" top="82" width="60" height="30" onclick="Button00_onclick" cssclass="btn_search"/>
-        <Static id="st_selectedCount" text="0건 선택됨" left="40" top="535" width="150" height="30" taborder="2" onclick="st_selectedCount_onclick" color="#6f0520"/>
-        <Button id="btn_delete" text="삭제" left="1036" top="545" width="90" height="30" onclick="btn_delete_onclick" taborder="3" cssclass="btn_delete"/>
-        <Button id="btn_newPost" taborder="4" text="새 공지사항 등록" left="996" top="82" width="130" height="30" onclick="btn_newPost_onclick" cssclass="btn_regist"/>
-        <Button id="Button00" taborder="5" text="상세 보기" left="933" top="545" width="90" height="30" onclick="newEdit_onclick" cssclass="btn_normal"/>
-        <Static id="Static00_00" taborder="6" text="공지사항 관리" left="30" top="23" width="222" height="50" onclick="Static00_00_onclick" cssclass="stc_title"/>
-        <Menu id="Menu00" taborder="7" left="252" top="198" width="76" height="152" onmenuclick="Menu00_onmenuclick"/>
+        <Static id="st_selectedCount" text="0건 선택됨" left="30" top="110" width="150" height="30" taborder="1" onclick="st_selectedCount_onclick" color="#6f0520"/>
+        <Button id="btn_delete" text="삭제" left="1056" top="110" width="70" height="30" onclick="btn_delete_onclick" taborder="2" cssclass="btn_delete"/>
+        <Button id="btn_newPost" taborder="3" text="등록" left="970" top="110" width="70" height="30" onclick="btn_newPost_onclick" cssclass="btn_regist"/>
+        <Button id="Button00" taborder="4" text="조회" left="885" top="110" width="70" height="30" onclick="newEdit_onclick" cssclass="btn_search"/>
+        <Static id="Static00_00" taborder="5" text="공지사항 관리" left="30" top="23" width="222" height="50" onclick="Static00_00_onclick" cssclass="stc_title"/>
+        <Menu id="Menu00" taborder="6" left="252" top="198" width="76" height="152" onmenuclick="Menu00_onmenuclick"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.Form_Post_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
