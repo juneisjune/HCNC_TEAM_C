@@ -186,7 +186,7 @@
 	        AND (b.pay_month BETWEEN #{START_MONTH} AND #{END_MONTH})
 	    </if>
 	    
-	    ORDER BY b.pay_year ASC, b.pay_month ASC
+	    ORDER BY b.pay_month DESC ,a.emp_code ASC
 	</select>
 
 	<update id="updatePayEtc" parameterType="payDTO">
