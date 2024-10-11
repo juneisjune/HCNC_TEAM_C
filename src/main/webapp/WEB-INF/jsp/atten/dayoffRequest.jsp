@@ -56,8 +56,18 @@
             background-color: #f4f6f9;
         }
 
-        input[type="text"],input[type="date"], button {
+        input[type="text"],button {
             padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 170px;
+            background-color: #F0F0F0;
+        }
+        
+        input[type="date"]{
+        padding: 10px;
             margin: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -75,6 +85,7 @@
         }
 
         button {
+        	width: 72px;        	
             padding: 10px 20px;
             font-size: 16px;
             border: none;
@@ -138,7 +149,7 @@
                 <tr>
                     <td colspan="4">
                         연차 시작일
-                        <input type="date" id="startDate" name="startDate" required> ~ 
+                        <input type="date" id="startDate" name="startDate" required>  
                         연차 종료일		<input type="date" id="endDate" name="endDate" required>
                         <label for="offCode">연차 사유 선택</label>
                         
@@ -149,18 +160,14 @@
                             <option value="4">하계휴가</option>
                             <option value="5">반차</option>
                         </select>
+                        <button type="submit">신청</button>
                     </td>
                 </tr>
                 
                 <tr>
                     <td colspan="4">
-                        <label for="reason">상세 사유</label>
-                        <textarea id="reason" name="reason" rows="4" cols="50" placeholder="내용 입력" required></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4">
-                        <button type="submit">신청</button>
+                        <label for="reason" style="font-size: 18px; ">상세 사유</label>
+                        <textarea id="reason" name="reason" rows="15" cols="50" placeholder="내용 입력" style="font-size: 16px;" required></textarea>
                     </td>
                 </tr>
             </table>

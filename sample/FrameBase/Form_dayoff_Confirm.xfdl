@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_dayoff_Confirm" width="1280" height="720" titletext="New Form">
+  <Form id="Form_dayoff_Confirm" width="1280" height="720" titletext="New Form" onload="Form_dayoff_Confirm_onload">
     <Layouts>
       <Layout height="720" width="1280">
         <Static id="Static00" taborder="0" text="휴가 승인" left="28" top="23" width="154" height="50" cssclass="stc_title" onclick="Static00_onclick"/>
-        <Grid id="grd_offList" taborder="1" left="28" top="160" width="943" height="460" binddataset="ds_doRequestList" onheadclick="grd_offList_onheadclick">
+        <Grid id="grd_offList" taborder="1" left="28" top="160" width="1070" height="460" binddataset="ds_doRequestList" onheadclick="grd_offList_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="48" band="left"/>
-                <Column size="63"/>
-                <Column size="80"/>
+                <Column size="100"/>
+                <Column size="120"/>
                 <Column size="100"/>
                 <Column size="100"/>
-                <Column size="48"/>
+                <Column size="72"/>
                 <Column size="193"/>
-                <Column size="80"/>
-                <Column size="79"/>
-                <Column size="66"/>
+                <Column size="89"/>
+                <Column size="88"/>
+                <Column size="74"/>
                 <Column size="84"/>
               </Columns>
               <Rows>
@@ -39,28 +39,27 @@
               </Band>
               <Band id="body">
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:chk"/>
-                <Cell col="1" text="bind:name"/>
-                <Cell col="2" text="bind:dep_name"/>
-                <Cell col="3" text="bind:start_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="none" calendardisplayinvalidtype="none" calendardisplaynulltype="none" calendarpopuptype="none"/>
-                <Cell col="4" text="bind:end_date" calendardateformat="yyyy-MM-dd" displaytype="date"/>
-                <Cell col="5" text="bind:off_type"/>
+                <Cell col="1" text="bind:name" textAlign="center"/>
+                <Cell col="2" text="bind:dep_name" textAlign="center"/>
+                <Cell col="3" text="bind:start_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="none" calendardisplayinvalidtype="none" calendardisplaynulltype="none" calendarpopuptype="none" textAlign="center"/>
+                <Cell col="4" text="bind:end_date" calendardateformat="yyyy-MM-dd" displaytype="date" textAlign="center"/>
+                <Cell col="5" text="bind:off_type" textAlign="center"/>
                 <Cell col="6" text="bind:reason"/>
-                <Cell col="7" text="bind:mng_confirm"/>
-                <Cell col="8" text="bind:md_confirm"/>
-                <Cell col="9" text="bind:ceo_confirm"/>
-                <Cell col="10" text="bind:off_result"/>
+                <Cell col="7" text="bind:mng_confirm" textAlign="center"/>
+                <Cell col="8" text="bind:md_confirm" textAlign="center"/>
+                <Cell col="9" text="bind:ceo_confirm" textAlign="center"/>
+                <Cell col="10" text="bind:off_result" textAlign="center"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_confirm" taborder="2" text="승인" left="782" top="634" width="80" height="40" textAlign="center" onclick="btn_confirm_onclick" cssclass="btn_check"/>
-        <Button id="btn_return" taborder="3" text="반려" left="890" top="634" width="80" height="40" textAlign="center" onclick="btn_return_onclick" cssclass="btn_delete"/>
-        <GroupBox id="GroupBox_Search" taborder="4" text="조회" left="340" top="90" width="630" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
-        <Calendar id="cal_Confirm" taborder="5" left="672" top="109" width="190" height="30"/>
-        <Static id="Static01_00" taborder="6" text="시작일" left="592" top="109" width="84" height="30" cssclass="stc_stc"/>
-        <Edit id="edt_Confirm" taborder="7" left="402" top="109" width="190" height="30"/>
-        <Static id="Static01" taborder="8" text="이 름" left="328" top="109" width="84" height="30" cssclass="stc_stc"/>
-        <Button id="btn_offListSearch" taborder="9" text="조회" left="890" top="109" width="70" height="30" onclick="btn_offListSearch_onclick" cssclass="btn_search"/>
+        <Button id="btn_confirm" taborder="2" text="승인" left="938" top="110" width="70" height="30" textAlign="center" onclick="btn_confirm_onclick" cssclass="btn_check"/>
+        <Button id="btn_return" taborder="3" text="반려" left="1025" top="110" width="70" height="30" textAlign="center" onclick="btn_return_onclick" cssclass="btn_delete"/>
+        <Calendar id="cal_Confirm" taborder="4" left="345" top="110" width="190" height="30"/>
+        <Static id="Static01_00" taborder="5" text="시작일" left="272" top="110" width="84" height="30" cssclass="stc_stc"/>
+        <Edit id="edt_Confirm" taborder="6" left="82" top="110" width="190" height="30"/>
+        <Static id="Static01" taborder="7" text="이 름" left="8" top="110" width="84" height="30" cssclass="stc_stc"/>
+        <Button id="btn_offListSearch" taborder="8" text="조회" left="850" top="110" width="70" height="30" onclick="btn_offListSearch_onclick" cssclass="btn_search"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -114,7 +113,12 @@
         </ColumnInfo>
       </Dataset>
     </Objects>
-    <Script type="xscript5.1"><![CDATA[// 조회 함수
+    <Script type="xscript5.1"><![CDATA[this.Form_dayoff_Confirm_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fnSearchList();
+};
+
+// 조회 함수
 this.fnSearchList = function(){
 	// application 변수에서 emp_code와 assign_code를 가져옴
     var loginEmpCode = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
@@ -288,10 +292,7 @@ this.grd_offList_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEven
 
 
 
-this.Static00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
-{
-	
-};
+
 ]]></Script>
     <Bind>
       <BindItem id="item0" compid="cal_Confirm" propid="value" datasetid="ds_offList" columnid="start_date"/>
