@@ -101,7 +101,6 @@
     </update>
    
      <!-- 로그인성공후 실행할 근태정보 가져오기  -->
-     <!-- 로그인기능이 들어가는 컨트롤러에 옮길예정 -->
      <select id="userAttendanceInfo" parameterType="java.util.Map" resultType="attenDTO">
      	SELECT a.emp_code , a.work_start, a.work_end 
 		FROM employee e JOIN attendance a 

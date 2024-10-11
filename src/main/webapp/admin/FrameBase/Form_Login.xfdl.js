@@ -41,17 +41,18 @@
             
             // UI Components Initialize
             obj = new Div("div_AuthForm","770","200","380","370",null,null,null,null,null,null,this);
-            obj.set_taborder("12");
-            obj.set_background("#9999ff");
+            obj.set_taborder("11");
+            obj.set_background("#ffffff");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edt_AuthCheck","933","330","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_AuthCheck","983","400","150","60",null,null,null,null,null,null,this);
+            obj = new Button("btn_AuthCheck","1010","400","123","60",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("인증하기");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_AuthCheck","813","330","115","60",null,null,null,null,null,null,this);
@@ -61,20 +62,20 @@
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_MaskEmail","803","250","120","60",null,null,null,null,null,null,this);
-            obj.set_taborder("10");
+            obj.set_taborder("9");
             obj.set_text("발송받은 이메일 :");
             obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edt_MaskedEmail","933","250","200","60",null,null,null,null,null,null,this);
-            obj.set_taborder("9");
+            obj.set_taborder("8");
             obj.set_readonly("true");
             obj.set_background("#ffffff");
             this.addChild(obj.name, obj);
 
             obj = new Div("div_LoginForm","770","200","380","370",null,null,null,null,null,null,this);
-            obj.set_taborder("11");
-            obj.set_background("#9999ff");
+            obj.set_taborder("10");
+            obj.set_background("#ffffff");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_FindLoginInfo","220","275","135","25",null,null,null,null,null,null,this.div_LoginForm.form);
@@ -84,9 +85,10 @@
             obj.set_color("#000000");
             this.div_LoginForm.addChild(obj.name, obj);
 
-            obj = new Button("btn_Login","975","400","150","60",null,null,null,null,null,null,this);
+            obj = new Button("btn_Login","1010","400","115","60",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("인증번호 발송");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_Id","820","250","90","60",null,null,null,null,null,null,this);
@@ -110,18 +112,13 @@
             obj.set_password("true");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Pass","9","10","143","124",null,null,null,null,null,null,this);
-            obj.set_taborder("8");
-            obj.set_text("넘어가기");
-            this.addChild(obj.name, obj);
-
             obj = new Div("div_LoginMain","390","200","380","370",null,null,null,null,null,null,this);
-            obj.set_taborder("14");
+            obj.set_taborder("13");
             obj.set_background("#6666ff");
             this.addChild(obj.name, obj);
 
             obj = new ImageViewer("img_HcncLogo","580","60","380","110",null,null,null,null,null,null,this);
-            obj.set_taborder("13");
+            obj.set_taborder("12");
             obj.set_image("url(\'imagerc::img_hcnc_logo.png\')");
             obj.set_stretch("fixaspectratio");
             obj.set_background("#003366");
@@ -129,21 +126,21 @@
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_LoginMain2","390","425","380","100",null,null,null,null,null,null,this);
-            obj.set_taborder("15");
+            obj.set_taborder("14");
             obj.set_text("Login");
             obj.set_textAlign("center");
             obj.set_font("42px/normal \"HY견고딕\"");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_LoginMain1","390","380","380","80",null,null,null,null,null,null,this);
-            obj.set_taborder("16");
+            obj.set_taborder("15");
             obj.set_text("인사관리시스템");
             obj.set_font("36px/normal \"HY견고딕\"");
             obj.set_textAlign("center");
             this.addChild(obj.name, obj);
 
             obj = new ImageViewer("img_LoginMain","510","240","140","140",null,null,null,null,null,null,this);
-            obj.set_taborder("17");
+            obj.set_taborder("16");
             obj.set_stretch("fixaspectratio");
             obj.set_image("url(\'imagerc::인사관리시스템.png\')");
             obj.set_background("#6666ff");
@@ -192,13 +189,13 @@
             var password = this.ds_login.getColumn(0, "password");
 
             // 아이디 유효성 검사
-            if(userId == null || userId == '' || typeof userId === 'undefined') {
+            if(userId == null || userId == '' || userId === 'undefined') {
                 alert("아이디를 입력하세요.");
                 return;
             }
 
             // 비밀번호 유효성 검사
-            if(password == null || password == '' || typeof password === 'undefined') {
+            if(password == null || password == '' || password === 'undefined') {
                 alert("비밀번호를 입력하세요.");
                 return;
             }
@@ -251,12 +248,12 @@
         		this.sta_LoginMain2.set_visible(false);
         		this.img_LoginMain.set_visible(false);
 
-        		this.div_LoginForm.set_left(370);
-        		this.sta_Id.set_left(420);
-        		this.sta_Password.set_left(405);
-        		this.edt_Id.set_left(525);
-        		this.edt_Password.set_left(525);
-        		this.btn_Login.set_left(575);
+        		this.div_LoginForm.set_left(390);
+        		this.sta_Id.set_left(440);
+        		this.sta_Password.set_left(425);
+        		this.edt_Id.set_left(545);
+        		this.edt_Password.set_left(545);
+        		this.btn_Login.set_left(630);
 
             } else {
                 // 통신 실패 시 에러 처리
@@ -370,12 +367,6 @@
             return email;
         };
 
-        // 임시로 넘어가기(master) 버튼
-        this.btn_Pass_onclick = function(obj,e)
-        {
-        	this.fnMasterLogin();
-        };
-
         // 아이디 및 비밀번호 static영역에 들어왔을 때
         this.div_LoginForm_sta_FindLoginInfo_onmouseenter = function(obj,e)
         {
@@ -443,7 +434,6 @@
             this.div_LoginForm.form.sta_FindLoginInfo.addEventHandler("onmouseenter",this.div_LoginForm_sta_FindLoginInfo_onmouseenter,this);
             this.div_LoginForm.form.sta_FindLoginInfo.addEventHandler("onclick",this.div_LoginForm_sta_FindLoginInfo_onclick,this);
             this.btn_Login.addEventHandler("onclick",this.btn_Login_onclick,this);
-            this.btn_Pass.addEventHandler("onclick",this.btn_Pass_onclick,this);
         };
         this.loadIncludeScript("Form_Login.xfdl");
         this.loadPreloadList();

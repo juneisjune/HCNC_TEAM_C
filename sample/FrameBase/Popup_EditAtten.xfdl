@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Popup_EditAtten" width="1050" height="200" titletext="출/퇴근 정보 수정" onload="Popup_EditAtten_onload">
+  <Form id="Popup_EditAtten" width="1050" height="240" titletext="출/퇴근 정보 수정" onload="Popup_EditAtten_onload">
     <Layouts>
-      <Layout height="200" mobileorientation="landscape" width="1050">
-        <Button id="btn_Close" taborder="0" text="닫기" left="960" top="20" width="70" height="40" onclick="btn_Close_onclick" icon="url('imagerc::KakaoTalk_20241002_183456404_01.png')" iconPosition="left"/>
-        <Grid id="Grid_Edit" taborder="1" left="20" top="30" width="890" height="130" binddataset="ds_AttenList">
+      <Layout height="240" mobileorientation="landscape" width="1050">
+        <Button id="btn_Close" taborder="0" text="  닫기" left="960" top="20" width="70" height="40" onclick="btn_Close_onclick" cssclass="btn_delete"/>
+        <Grid id="Grid_Edit" taborder="1" left="20" top="80" width="890" height="130" binddataset="ds_AttenList">
           <Formats>
             <Format id="default">
               <Columns>
@@ -44,7 +44,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_Edit" taborder="2" text="수정 완료" left="930" top="110" width="100" height="50" onclick="btn_Edit_onclick"/>
+        <Button id="btn_Edit" taborder="2" text="수정 완료" left="930" top="170" width="100" height="40" onclick="btn_Edit_onclick" cssclass="btn_edit"/>
       </Layout>
     </Layouts>
     <Objects>

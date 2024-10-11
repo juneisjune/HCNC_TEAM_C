@@ -49,31 +49,40 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static00","56","13","722","67",null,null,null,null,null,null,this);
-            obj.set_taborder("0");
-            obj.set_text("인 사 관 리");
-            obj.set_font("bold 36px/normal \"Gulim\"");
-            obj.set_textAlign("center");
+            obj = new GroupBox("GroupBox_Search","350","83","430","60",null,null,null,null,null,null,this);
+            obj.set_taborder("6");
+            obj.set_text("조회");
+            obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_visible("true");
+            obj.set_opacity("1");
+            obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_SearchWord","164","104","504","44",null,null,null,null,null,null,this);
+            obj = new Static("Static00","36","23","174","50",null,null,null,null,null,null,this);
+            obj.set_taborder("0");
+            obj.set_text("인사관리");
+            obj.set_cssclass("stc_title");
+            this.addChild(obj.name, obj);
+
+            obj = new Edit("edt_SearchWord","480","104","200","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_HrdListSearch","678","103","100","44",null,null,null,null,null,null,this);
+            obj = new Button("btn_HrdListSearch","701","104","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("조회");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_HrdList","28","170","750","460",null,null,null,null,null,null,this);
+            obj = new Grid("grd_HrdList","36","160","742","400",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_binddataset("ds_Hrdlist");
             obj.set_autoenter("none");
             obj.set_autoupdatetype("none");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"75\"/><Column size=\"92\"/><Column size=\"130\"/><Column size=\"91\"/><Column size=\"130\"/><Column size=\"115\"/><Column size=\"115\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"normal\"/><Cell col=\"3\" text=\"직책\" calendardateformat=\"yyyy-MM-dd\"/><Cell col=\"4\" text=\"부서장\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/></Band><Band id=\"body\"><Cell text=\"bind:emp_code\"/><Cell col=\"1\" text=\"bind:name\"/><Cell col=\"2\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"combotext\" edittype=\"combo\" calendardisplayinvalidtype=\"none\" calendardisplaynulltype=\"none\" calendarpopuptype=\"none\" text=\"bind:dep_code\" combodataset=\"ds_Department\" combocodecol=\"dep_code\" combodatacol=\"dep_name\"/><Cell col=\"3\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"combotext\" text=\"bind:assign_code\" edittype=\"combo\" combodataset=\"ds_Assignment\" combocodecol=\"assign_code\" combodatacol=\"assign_name\"/><Cell col=\"4\" text=\"bind:mng_name\"/><Cell col=\"5\" text=\"bind:join_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"date\" calendarshowmonthspin=\"true\" calendarshowyearspin=\"true\" calendardisplaynulltype=\"none\" calendarautoselect=\"true\"/><Cell col=\"6\" text=\"bind:resign_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"date\" calendarshowmonthspin=\"true\" calendarshowyearspin=\"true\" calendardisplaynulltype=\"none\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"75\"/><Column size=\"122\"/><Column size=\"106\"/><Column size=\"77\"/><Column size=\"130\"/><Column size=\"115\"/><Column size=\"115\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"normal\"/><Cell col=\"3\" text=\"직책\" calendardateformat=\"yyyy-MM-dd\"/><Cell col=\"4\" text=\"부서장\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/></Band><Band id=\"body\"><Cell text=\"bind:emp_code\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"combotext\" edittype=\"combo\" calendardisplayinvalidtype=\"none\" calendardisplaynulltype=\"none\" calendarpopuptype=\"none\" text=\"bind:dep_code\" combodataset=\"ds_Department\" combocodecol=\"dep_code\" combodatacol=\"dep_name\" textAlign=\"center\"/><Cell col=\"3\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"combotext\" text=\"bind:assign_code\" edittype=\"combo\" combodataset=\"ds_Assignment\" combocodecol=\"assign_code\" combodatacol=\"assign_name\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:mng_name\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:join_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"date\" calendarshowmonthspin=\"true\" calendarshowyearspin=\"true\" calendardisplaynulltype=\"none\" calendarautoselect=\"true\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:resign_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"date\" calendarshowmonthspin=\"true\" calendarshowyearspin=\"true\" calendardisplaynulltype=\"none\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearchType","30","104","120","41",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_SearchType","360","104","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_codecolumn("Value");
             obj.set_datacolumn("Name");
@@ -83,9 +92,10 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Savehrd","660","629","117","41",null,null,null,null,null,null,this);
+            obj = new Button("btn_Savehrd","697","580","80","40",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("저장");
+            obj.set_cssclass("btn_check");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -126,7 +136,10 @@
         	switch(svcID)
         	{
         		case "hrdList":
-        		console.log(this.ds_Hrdlist.saveXML());
+        			console.log(this.ds_Hrdlist.saveXML());
+        			break;
+        		case "hrdListUpdate":
+        			this.fnSearchList();
         			break;
         		default :
         			break;
@@ -136,10 +149,6 @@
 
         // 조회 함수
         this.fnSearchList = function(){
-        	// application 변수에서 emp_code와 assign_code를 가져옴
-
-        	var loginAdminName = nexacro.getApplication().gv_name;
-        	this.ds_Hrdlist.setColumn(0,"admin_name","관리나경진")
 
         	// 컨트롤러 호출
         	var strSvcId    = "hrdList";                     // 콜백 서비스명
@@ -162,17 +171,23 @@
         {
         	this.ds_Search.setColumn(0,"SEARCH_TYPE","ALL");
         	this.fnSearchList();
-        	trace("제발 .. " + nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
         };
+
 
         //저장 버튼
         this.btn_Savehrd_onclick = function(obj,e)
         {
+        	 // 유효성 검사를 먼저 수행
+            if (!this.validateBeforeUpdate()) {
+                return;
+            }
+
         	this.ds_UpdateHrdlist.clearData();  // 이전 데이터 초기화
+
         	// application 변수에서 emp_code와 assign_code를 가져옴
         	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 
-            console.log(this.ds_UpdateHrdlist.saveXML());
+
             for (var i = 0; i < this.ds_Hrdlist.getRowCount(); i++) {
                 var rowType = this.ds_Hrdlist.getRowType(i);
 
@@ -183,8 +198,7 @@
         			this.ds_UpdateHrdlist.setColumn(newRow,"admin_name",loginAdminName);
                 }
             }
-
-
+        	console.log("업뎃리스트" + this.ds_UpdateHrdlist.saveXML());
 
                 // 변경된 데이터가 있을 경우 저장 로직 실행
                 var strSvcId    = "hrdListUpdate";                     // 콜백 서비스명
@@ -198,6 +212,50 @@
                 if(confirm("변경된 데이터를 저장하시겠습니까?")){
                     this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
                 }
+        };
+
+        // 유효성 검사 함수 (Update 전)
+        this.validateBeforeUpdate = function() {
+
+            var dsHrdlist = this.lookup("ds_Hrdlist");
+
+            // ds_Hrdlist의 모든 행을 검사
+            for (var i = 0; i < dsHrdlist.getRowCount(); i++) {
+                var joinDate = dsHrdlist.getColumn(i, "join_date"); // 입사일
+                var resignDate = dsHrdlist.getColumn(i, "resign_date"); // 퇴사일
+
+                // 퇴사일이 입사일 이전인지 확인
+                if (resignDate && resignDate < joinDate) {
+                    alert("퇴사일은 입사일 이전일 수 없습니다.");
+                    return false;
+                }
+
+                // assign_code가 5인 경우 중복 여부 확인
+                var assignCode = dsHrdlist.getColumn(i, "assign_code");
+                var depCode = dsHrdlist.getColumn(i, "dep_code");
+
+                if (assignCode == "5" || assignCode == 5) {
+                    // ds_Hrdlist의 다른 행을 검사하여 동일한 부서에 assign_code 5가 있는지 확인
+                    for (var j = 0; j < dsHrdlist.getRowCount(); j++) {
+                        if (i === j) continue; // 동일한 행은 건너뜀
+
+                        var hrdListDepCode = dsHrdlist.getColumn(j, "dep_code");
+                        var hrdListAssignCode = dsHrdlist.getColumn(j, "assign_code");
+
+                        // 동일한 부서에서 assign_code가 5인 데이터가 있는지 확인
+                        if (hrdListDepCode == depCode && (hrdListAssignCode == "5" || hrdListAssignCode == 5)) {
+                            console.log("부서코드: " + hrdListDepCode);
+                            console.log("직책코드: " + hrdListAssignCode);
+                            alert("이미 해당 부서에 직책 코드 5(부장)가 존재합니다.");
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        };
+        this.cmb_SearchType_onitemchanged = function(obj,e)
+        {
 
         };
 
@@ -209,6 +267,7 @@
             this.addEventHandler("onload",this.Form_HRD_onload,this);
             this.edt_SearchWord.addEventHandler("onchanged",this.edt_SearchWord_onchanged,this);
             this.btn_HrdListSearch.addEventHandler("onclick",this.btn_HrdListSearch_onclick,this);
+            this.cmb_SearchType.addEventHandler("onitemchanged",this.cmb_SearchType_onitemchanged,this);
             this.btn_Savehrd.addEventHandler("onclick",this.btn_Savehrd_onclick,this);
         };
         this.loadIncludeScript("Form_HRD.xfdl");

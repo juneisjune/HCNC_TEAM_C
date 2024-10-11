@@ -19,7 +19,7 @@ public class HrdController {
 	private HrdService hrds;
 	
 	@Autowired
-	private DayoffService dos;
+	private DayoffService dayoffService;
 	
 	//인사직원조회
 	@RequestMapping(value = "/hrdList.do")
@@ -30,11 +30,9 @@ public class HrdController {
     		List<Map<String, Object>> ds_Hrdlist = hrds.getHrdList(param);
     		result.addDataSet("ds_Hrdlist", ds_Hrdlist);
     	}catch(Exception ee) {
-    		System.out.println(ee);
     		result.setErrorCode(-1);
     		result.setErrorMsg("catch 조회 오류");
     	}
-    	System.out.println("조회 완료");
     	return result;
     }
 	
@@ -43,8 +41,6 @@ public class HrdController {
     public NexacroResult confirmOff(@ParamDataSet(name = "ds_UpdateHrdlist", required = false) List<Map<String,Object>> param){
 		
 		NexacroResult result = new NexacroResult();
-		System.out.println("저장 컨트롤러 진입");
-		System.out.println(param);
 		
 		// param이 null인지 확인
 	    if (param == null || param.isEmpty()) {
@@ -53,21 +49,18 @@ public class HrdController {
 	        return result;
 	    }
 
-	    System.out.println("데이터셋: " + param);  // 데이터셋 확인
 		
     	try {	
     			for(Map<String,Object> offRequest : param) {
-    				System.out.println("승인");
     				hrds.updateHRD(offRequest);
     				//emp_code로 dayoffCount 조회하고
-    				int findResult = dos.findDayoff(offRequest);
+    				int findResult = dayoffService.findDayoff(offRequest);
     				if(findResult == 0) {
     					//없으면 새로 등록 (넥사 관리자 이름 추가후 확인해야함)
-    					dos.insertDayoffCount(offRequest);
+    					dayoffService.insertDayoffCount(offRequest);
     				}
 	    		}
     	}catch(Exception ee) {
-    		System.out.println(ee);
     		result.setErrorCode(-1);
     		result.setErrorMsg("catch 조회 오류");
     	}

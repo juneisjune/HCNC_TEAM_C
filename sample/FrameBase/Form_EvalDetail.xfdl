@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_EvalDetail" width="810" height="600" titletext="New Form" onload="Form_EvalDetail_onload">
+    <Layouts>
+      <Layout height="600" mobileorientation="landscape" width="810" stepcount="0">
+        <Grid id="grdEvalInfo" taborder="0" left="30" top="65" width="750" height="55" binddataset="dsEvaluation">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="124"/>
+                <Column size="124"/>
+                <Column size="128"/>
+                <Column size="124"/>
+                <Column size="124"/>
+                <Column size="124"/>
+              </Columns>
+              <Rows>
+                <Row size="25" band="head"/>
+                <Row size="25"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사번"/>
+                <Cell col="1" text="이름"/>
+                <Cell col="2" text="평가일자"/>
+                <Cell col="3" text="점수"/>
+                <Cell col="4" text="등급"/>
+                <Cell col="5" text="평가자"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:empCode" textAlign="center"/>
+                <Cell col="1" text="bind:name" textAlign="center"/>
+                <Cell col="2" text="bind:evalDate" textAlign="center"/>
+                <Cell col="3" text="bind:totalScore" textAlign="center"/>
+                <Cell col="4" text="bind:evalGrade" textAlign="center"/>
+                <Cell col="5" text="bind:regName" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static00" taborder="1" text="평가 정보" left="18" top="20" width="120" height="40" onclick="Static00_onclick" cssclass="stc_popup"/>
+        <Static id="Static01" taborder="2" text="질문 목록" left="18" top="145" width="120" height="40" cssclass="stc_popup"/>
+        <Button id="btnClose" taborder="3" text="닫기" left="680" top="1730" width="80" height="30" onclick="btnClose_onclick"/>
+        <Static id="Question01" taborder="4" left="30" top="190" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer01" taborder="5" left="30" top="240" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">매우 그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">보통이다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">그렇지 않다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">매우 그렇지 않다</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Question02" taborder="6" left="30" top="345" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer02" taborder="7" left="30" top="395" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">매우 그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">보통이다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">그렇지 않다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">매우 그렇지 않다</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Question03" taborder="8" left="30" top="500" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer03" taborder="9" left="30" top="550" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">매우 그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">보통이다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">그렇지 않다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">매우 그렇지 않다</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Question04" taborder="10" left="30" top="655" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer04" taborder="11" left="30" top="705" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">매우 그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">보통이다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">그렇지 않다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">매우 그렇지 않다</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Question05" taborder="12" left="30" top="810" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer05" taborder="13" left="30" top="860" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">매우 그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">보통이다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">그렇지 않다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">매우 그렇지 않다</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Question06" taborder="14" left="30" top="965" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer06" taborder="15" left="30" top="1015" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">매우 그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">보통이다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">그렇지 않다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">매우 그렇지 않다</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Question07" taborder="16" left="30" top="1120" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer07" taborder="17" left="30" top="1170" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">매우 그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">보통이다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">그렇지 않다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">매우 그렇지 않다</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Radio id="Answer08" taborder="18" left="30" top="1325" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">매우 그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">보통이다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">그렇지 않다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">매우 그렇지 않다</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Question08" taborder="19" left="30" top="1275" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer09" taborder="20" left="30" top="1480" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">매우 그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">보통이다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">그렇지 않다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">매우 그렇지 않다</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Question09" taborder="21" left="30" top="1430" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer10" taborder="22" left="30" top="1635" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+          <Dataset id="innerdataset">
+            <ColumnInfo>
+              <Column id="codecolumn" size="256"/>
+              <Column id="datacolumn" size="256"/>
+            </ColumnInfo>
+            <Rows>
+              <Row>
+                <Col id="codecolumn">1</Col>
+                <Col id="datacolumn">매우 그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">2</Col>
+                <Col id="datacolumn">그렇다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">3</Col>
+                <Col id="datacolumn">보통이다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">4</Col>
+                <Col id="datacolumn">그렇지 않다</Col>
+              </Row>
+              <Row>
+                <Col id="codecolumn">5</Col>
+                <Col id="datacolumn">매우 그렇지 않다</Col>
+              </Row>
+            </Rows>
+          </Dataset>
+        </Radio>
+        <Static id="Question10" taborder="23" left="30" top="1585" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsEvaluation" onload="dsEvaluation_onload">
+        <ColumnInfo>
+          <Column id="empCode" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="evalDate" type="DATE" size="256"/>
+          <Column id="totalScore" type="INT" size="256"/>
+          <Column id="evalGrade" type="STRING" size="256"/>
+          <Column id="regName" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSurvey">
+        <ColumnInfo>
+          <Column id="codecolumn" type="STRING" size="256"/>
+          <Column id="datacolumn" type="STRING" size="256"/>
+          <Column id="scorecolumn" type="INT" size="256"/>
+          <Column id="question" type="STRING" size="256"/>
+          <Column id="guideCode" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="codecolumn">1</Col>
+            <Col id="scorecolumn">5</Col>
+            <Col id="datacolumn">매우 그렇다</Col>
+          </Row>
+          <Row>
+            <Col id="codecolumn">2</Col>
+            <Col id="scorecolumn">4</Col>
+            <Col id="datacolumn">그렇다</Col>
+          </Row>
+          <Row>
+            <Col id="codecolumn">3</Col>
+            <Col id="scorecolumn">3</Col>
+            <Col id="datacolumn">보통이다</Col>
+          </Row>
+          <Row>
+            <Col id="codecolumn">4</Col>
+            <Col id="scorecolumn">2</Col>
+            <Col id="datacolumn">그렇지 않다</Col>
+          </Row>
+          <Row>
+            <Col id="codecolumn">5</Col>
+            <Col id="scorecolumn">1</Col>
+            <Col id="datacolumn">매우 그렇지 않다</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.Form_EvalDetail_onload = function(obj:nexacro.Form, e:nexacro.LoadEventInfo) {
+    // 평가 정보 초기화
+    this.dsEvaluation.clearData();
+    this.dsEvaluation.addRow();
+    this.dsEvaluation.setColumn(0, "empCode", this.parent.empCode);
+    this.dsEvaluation.setColumn(0, "name", this.parent.name);
+    this.dsEvaluation.setColumn(0, "evalDate", this.parent.evalDate);
+    this.dsEvaluation.setColumn(0, "totalScore", this.parent.totalScore);
+    this.dsEvaluation.setColumn(0, "evalGrade", this.parent.evalGrade);
+    this.dsEvaluation.setColumn(0, "guideCode", this.parent.guideCode);
+    this.dsEvaluation.setColumn(0, "regName", this.parent.regName);
+
+    console.log(this.dsEvaluation.saveXML()); // 평가 데이터 로그
+
+    // 평가 점수를 불러오기 위한 트랜잭션
+    var strSvcIDEval = "getQuestions";
+    var strSvcUrlEval = "svc::getQuestions.do";
+    var inDataEval = "dsEvaluation=dsEvaluation";
+    var outDataEval = "dsSurvey=dsSurvey";
+    var strArgEval = "empCode=" + nexacro.wrapQuote(this.dsEvaluation.getColumn(0, "empCode")) +
+                 " guideCode=" + nexacro.wrapQuote(this.dsEvaluation.getColumn(0, "guideCode")) +
+                 " evalDate=" + nexacro.wrapQuote(this.dsEvaluation.getColumn(0, "evalDate"));
+    var callBackFncEval = "fnEvalScoreCallback"; // 평가 점수를 불러온 후 라디오 버튼에 표시
+    var isAsyncEval = true;
+
+    this.transaction(strSvcIDEval, strSvcUrlEval, inDataEval, outDataEval, strArgEval, callBackFncEval, isAsyncEval);
+};
+
+// 평가 점수를 받아오는 콜백 함수
+this.fnEvalScoreCallback = function(strSvcID, nErrorCode, strErrorMsg) {
+
+	if (nErrorCode < 0) {
+        alert("질문 데이터를 불러오는데 실패했습니다.");
+        return;
+    }
+
+    var questions = [this.Question01, this.Question02, this.Question03, this.Question04, this.Question05,
+                     this.Question06, this.Question07, this.Question08, this.Question09, this.Question10];
+
+    for (var i = 0; i < questions.length; i++) {
+        var questionText = this.dsSurvey.getColumn(i, "question");
+        questions[i].set_text((i + 1) + ". " + questionText);
+        questions[i].set_textAlign("left");
+        questions[i].set_padding("10px 10px");
+    }
+	
+    if (nErrorCode < 0) {
+        alert("평가 점수를 불러오는데 실패했습니다.");
+        return;
+    };
+
+    var answers = [this.Answer01, this.Answer02, this.Answer03, this.Answer04, this.Answer05,
+                   this.Answer06, this.Answer07, this.Answer08, this.Answer09, this.Answer10];
+
+    for (var i = 0; i < answers.length; i++) {
+        var selectedValue = this.dsSurvey.getColumn(i, "score");
+        if (selectedValue !== undefined && selectedValue !== null) {
+            // 점수를 반대로 변환 (1 -> 5, 5 -> 1)
+            var invertedScore = 6 - selectedValue;
+            answers[i].set_value(invertedScore);
+        } else {
+            console.error("Score 값이 존재하지 않습니다. Index: " + i);
+        }
+    }
+};
+
+
+// 닫기 버튼
+this.btnClose_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+    this.close();
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="grdEvalInfo" propid="binddataset" datasetid="dsEvaluation" columnid=""/>
+      <BindItem id="item1" compid="Answer01" propid="innerdataset" datasetid="dsSurvey" columnid=""/>
+      <BindItem id="item2" compid="Answer02" propid="innerdataset" datasetid="dsSurvey" columnid=""/>
+      <BindItem id="item3" compid="Answer03" propid="innerdataset" datasetid="dsSurvey" columnid=""/>
+      <BindItem id="item4" compid="Answer04" propid="innerdataset" datasetid="dsSurvey" columnid=""/>
+      <BindItem id="item5" compid="Answer05" propid="innerdataset" datasetid="dsSurvey" columnid=""/>
+      <BindItem id="item6" compid="Answer06" propid="innerdataset" datasetid="dsSurvey" columnid=""/>
+      <BindItem id="item7" compid="Answer07" propid="innerdataset" datasetid="dsSurvey" columnid=""/>
+      <BindItem id="item8" compid="Answer08" propid="innerdataset" datasetid="dsSurvey" columnid=""/>
+      <BindItem id="item9" compid="Answer09" propid="innerdataset" datasetid="dsSurvey" columnid=""/>
+      <BindItem id="item10" compid="Answer10" propid="innerdataset" datasetid="dsSurvey" columnid=""/>
+      <BindItem id="item11" compid="Question01" propid="text" datasetid="dsSurvey" columnid="question"/>
+      <BindItem id="item12" compid="Question02" propid="text" datasetid="dsSurvey" columnid="question"/>
+      <BindItem id="item13" compid="Question03" propid="text" datasetid="dsSurvey" columnid="question"/>
+      <BindItem id="item14" compid="Question04" propid="text" datasetid="dsSurvey" columnid="question"/>
+      <BindItem id="item15" compid="Question05" propid="text" datasetid="dsSurvey" columnid="question"/>
+      <BindItem id="item16" compid="Question06" propid="text" datasetid="dsSurvey" columnid="question"/>
+      <BindItem id="item17" compid="Question07" propid="text" datasetid="dsSurvey" columnid="question"/>
+      <BindItem id="item18" compid="Question08" propid="text" datasetid="dsSurvey" columnid="question"/>
+      <BindItem id="item19" compid="Question09" propid="text" datasetid="dsSurvey" columnid="question"/>
+      <BindItem id="item20" compid="Question10" propid="text" datasetid="dsSurvey" columnid="question"/>
+    </Bind>
+  </Form>
+</FDL>

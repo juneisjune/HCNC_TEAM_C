@@ -108,6 +108,8 @@
                             location.href = "/viewAuth.do";
                         } else if(result === "empty") { 
                         	$(".error-message").text("관리자에게 문의하세요.").show();
+                        } else if(result === "master"){
+                        	 location.href = "/post/viewPost.do";
                         } else {
                             $(".error-message").text("아이디 또는 비밀번호를 확인하세요.").show();
                         }

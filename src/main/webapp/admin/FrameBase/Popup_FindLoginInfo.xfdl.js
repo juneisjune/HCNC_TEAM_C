@@ -33,94 +33,98 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("sta_FindId","20","20","170","40",null,null,null,null,null,null,this);
-            obj.set_taborder("0");
-            obj.set_text("아이디 찾기");
-            obj.set_font("24px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("sta_FindPassword","20","200","230","40",null,null,null,null,null,null,this);
-            obj.set_taborder("1");
+            obj = new GroupBox("GroupBox_FindPassword","10","220","580","80",null,null,null,null,null,null,this);
+            obj.set_taborder("16");
             obj.set_text("새로운 비밀번호 발급");
-            obj.set_font("24px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_font("bold 24px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_NameForId","20","80","50","40",null,null,null,null,null,null,this);
-            obj.set_taborder("2");
+            obj = new GroupBox("GroupBox_FindId","10","30","580","80",null,null,null,null,null,null,this);
+            obj.set_taborder("15");
+            obj.set_text("아이디 찾기");
+            obj.set_font("bold 24px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_NameForId","20","70","50","30",null,null,null,null,null,null,this);
+            obj.set_taborder("0");
             obj.set_text("이름 : ");
             obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_EmailForId","260","80","70","40",null,null,null,null,null,null,this);
+            obj = new Static("sta_EmailForId","270","70","70","30",null,null,null,null,null,null,this);
+            obj.set_taborder("1");
+            obj.set_text("이메일 : ");
+            obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_IdForPassword","30","260","40","30",null,null,null,null,null,null,this);
+            obj.set_taborder("2");
+            obj.set_text("ID : ");
+            obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("sta_EmailForPassword","270","260","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("이메일 : ");
             obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_IdForPassword","30","260","40","40",null,null,null,null,null,null,this);
+            obj = new Edit("edt_NameForId","80","70","160","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
-            obj.set_text("ID : ");
-            obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_EmailForPassword","255","260","70","40",null,null,null,null,null,null,this);
+            obj = new Edit("edt_EmailForId","340","70","170","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
-            obj.set_text("이메일 : ");
-            obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_NameForId","70","80","160","40",null,null,null,null,null,null,this);
+            obj = new Edit("edt_IdForPassword","80","260","160","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_EmailForId","330","80","170","40",null,null,null,null,null,null,this);
+            obj = new Edit("edt_EmailForPassword","340","260","170","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_IdForPassword","70","260","160","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_IdSearch","530","70","50","30",null,null,null,null,null,null,this);
             obj.set_taborder("8");
+            obj.set_text("찾기");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_EmailForPassword","330","260","170","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_PasswordSearch","530","260","50","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
+            obj.set_text("찾기");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_IdSearch","520","80","50","40",null,null,null,null,null,null,this);
+            obj = new Static("sta_ResultId","20","130","550","40",null,null,null,null,null,null,this);
             obj.set_taborder("10");
-            obj.set_text("찾기");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_PasswordSearch","520","260","50","40",null,null,null,null,null,null,this);
-            obj.set_taborder("11");
-            obj.set_text("찾기");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("sta_ResultId","20","140","550","40",null,null,null,null,null,null,this);
-            obj.set_taborder("12");
             obj.set_font("bold 14pt \"Arial Black\"");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_NewPassword","30","340","190","40",null,null,null,null,null,null,this);
-            obj.set_taborder("13");
+            obj = new Static("sta_NewPassword","30","330","190","40",null,null,null,null,null,null,this);
+            obj.set_taborder("11");
             obj.set_text("새로운 비밀번호 입력 : ");
             obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             obj.set_visible("false");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_NewPassword","220","340","170","40",null,null,null,null,null,null,this);
-            obj.set_taborder("14");
+            obj = new Edit("edt_NewPassword","220","330","170","40",null,null,null,null,null,null,this);
+            obj.set_taborder("12");
             obj.set_visible("false");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_NewPassword","410","340","50","40",null,null,null,null,null,null,this);
-            obj.set_taborder("15");
+            obj = new Button("btn_NewPassword","410","330","50","40",null,null,null,null,null,null,this);
+            obj.set_taborder("13");
             obj.set_text("확인");
             obj.set_visible("false");
+            obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
             obj = new Button("btn_Close","260","440","80","40",null,null,null,null,null,null,this);
-            obj.set_taborder("16");
+            obj.set_taborder("14");
             obj.set_text("닫기");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

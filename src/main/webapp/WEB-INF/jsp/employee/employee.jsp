@@ -87,9 +87,11 @@
 
         <form action="/employee/searchEmployee.do" method="post">
             <select name="searchType">
+            	<option value="All">전체</option>
+             	<option value="name">이름</option>
                 <option value="depName">부서</option>
                 <option value="assignName">직책</option>
-                <option value="name">이름</option>
+               
             </select>
             <input type="text" name="searchWord" placeholder="검색어를 입력하세요" />
             <button type="submit">조회</button>

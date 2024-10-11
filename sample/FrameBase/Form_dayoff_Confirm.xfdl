@@ -3,10 +3,8 @@
   <Form id="Form_dayoff_Confirm" width="1280" height="720" titletext="New Form">
     <Layouts>
       <Layout height="720" width="1280">
-        <Static id="Static00" taborder="0" text="휴 가 승 인" left="56" top="13" width="842" height="67" font="bold 36px/normal &quot;Gulim&quot;" textAlign="center"/>
-        <Edit id="edt_Confirm" taborder="1" left="180" top="105" width="216" height="40"/>
-        <Button id="btn_offListSearch" taborder="2" text="조회" left="708" top="102" width="100" height="44" onclick="btn_offListSearch_onclick"/>
-        <Grid id="grd_offList" taborder="3" left="28" top="160" width="942" height="460" binddataset="ds_doRequestList" onheadclick="grd_offList_onheadclick">
+        <Static id="Static00" taborder="0" text="휴가 승인" left="28" top="23" width="154" height="50" cssclass="stc_title" onclick="Static00_onclick"/>
+        <Grid id="grd_offList" taborder="1" left="28" top="160" width="943" height="460" binddataset="ds_doRequestList" onheadclick="grd_offList_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -55,11 +53,14 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_confirm" taborder="4" text="승인" left="762" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_confirm_onclick"/>
-        <Button id="btn_return" taborder="5" text="반려" left="870" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_return_onclick"/>
-        <Static id="Static01" taborder="6" text="이 름" left="96" top="101" width="84" height="47" font="18px/normal &quot;Gulim&quot;" textAlign="center"/>
-        <Static id="Static01_00" taborder="7" text="시작일" left="390" top="101" width="84" height="47" font="18px/normal &quot;Gulim&quot;" textAlign="center"/>
-        <Calendar id="cal_Confirm" taborder="8" left="470" top="105" width="216" height="40"/>
+        <Button id="btn_confirm" taborder="2" text="승인" left="782" top="634" width="80" height="40" textAlign="center" onclick="btn_confirm_onclick" cssclass="btn_check"/>
+        <Button id="btn_return" taborder="3" text="반려" left="890" top="634" width="80" height="40" textAlign="center" onclick="btn_return_onclick" cssclass="btn_delete"/>
+        <GroupBox id="GroupBox_Search" taborder="4" text="조회" left="340" top="90" width="630" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
+        <Calendar id="cal_Confirm" taborder="5" left="672" top="109" width="190" height="30"/>
+        <Static id="Static01_00" taborder="6" text="시작일" left="592" top="109" width="84" height="30" cssclass="stc_stc"/>
+        <Edit id="edt_Confirm" taborder="7" left="402" top="109" width="190" height="30"/>
+        <Static id="Static01" taborder="8" text="이 름" left="328" top="109" width="84" height="30" cssclass="stc_stc"/>
+        <Button id="btn_offListSearch" taborder="9" text="조회" left="890" top="109" width="70" height="30" onclick="btn_offListSearch_onclick" cssclass="btn_search"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -111,10 +112,6 @@
         </ColumnInfo>
       </Dataset>
     </Objects>
-    <Bind>
-      <BindItem id="item0" compid="edt_Confirm" propid="value" datasetid="ds_offList" columnid="name"/>
-      <BindItem id="item1" compid="cal_Confirm" propid="value" datasetid="ds_offList" columnid="start_date"/>
-    </Bind>
     <Script type="xscript5.1"><![CDATA[// 조회 함수
 this.fnSearchList = function(){
 	// application 변수에서 emp_code와 assign_code를 가져옴
@@ -139,16 +136,12 @@ this.fnSearchList = function(){
 
 this.btn_offListSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	// 바인딩 된 값 콘솔로그로 찍어서 조회
-	console.log("edt_confirm = " + this.ds_offList.getColumn(0,"name"));
-	console.log("cal_confirm = " + this.ds_offList.getColumn(0,"start_date"));
 	this.fnSearchList();
 };
 
 //승인 함수
 this.btn_confirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	console.log("승인 함수 실행");
 	// application 변수에서assign_code를 가져옴
     var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
 	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
@@ -165,7 +158,7 @@ this.btn_confirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
         }
     }
 	var off_result = this.ds_doRequestListCopy.getColumn(0,"off_result");
-	console.log(off_result);
+
 	
 	// off_result 값이 '반 려', '승 인', '승인중'일 경우 함수 실행 중지 및 경고 메시지
     if (off_result === "반 려" || off_result === "승 인" ) {
@@ -190,10 +183,10 @@ this.btn_confirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 	}
 };
+
 //반려함수
 this.btn_return_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	console.log("반려 함수 실행");
 	
 	// application 변수에서 emp_code와 assign_code를 가져옴
     var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
@@ -212,11 +205,8 @@ this.btn_return_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 			this.ds_doRequestListCopy.setColumn(newRow, "admin_name", loginAdminName);
         }
     }
-	
-	console.log("전송할 데이터셋 확인:", this.ds_doRequestListCopy.saveXML());
-	
 	var off_result = this.ds_doRequestListCopy.getColumn(0,"off_result");
-	console.log(off_result);
+
 	
 	// off_result 값이 '반 려', '승 인', '승인중'일 경우 함수 실행 중지 및 경고 메시지
     if (off_result === "반 려" || off_result === "승 인" ) {
@@ -293,6 +283,15 @@ this.grd_offList_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEven
 };
 
 
+
+this.Static00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
 ]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="cal_Confirm" propid="value" datasetid="ds_offList" columnid="start_date"/>
+      <BindItem id="item1" compid="edt_Confirm" propid="value" datasetid="ds_offList" columnid="name"/>
+    </Bind>
   </Form>
 </FDL>
