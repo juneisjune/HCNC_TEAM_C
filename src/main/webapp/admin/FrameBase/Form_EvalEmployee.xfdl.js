@@ -32,8 +32,8 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new GroupBox("GroupBox_Search","590","95","430","60",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
+            obj = new GroupBox("GroupBox_Search","680","95","340","60",null,null,null,null,null,null,this);
+            obj.set_taborder("6");
             obj.set_text("조회");
             obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             obj.set_visible("true");
@@ -47,7 +47,7 @@
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnFilterSearch","855","115","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btnFilterSearch","935","115","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("검색");
             obj.set_cssclass("btn_search");
@@ -59,7 +59,7 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"198\"/><Column size=\"198\"/><Column size=\"198\"/><Column size=\"198\"/><Column size=\"198\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"성별\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:gender\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:depName\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmbSearchType","600","115","80","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmbSearchType","690","115","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_innerdataset("dsSearchType");
             obj.set_codecolumn("CODE");
@@ -69,18 +69,12 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtSearchText","695","115","140","30",null,null,null,null,null,null,this);
+            obj = new Edit("edtSearchText","785","115","140","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnReset","940","115","70","30",null,null,null,null,null,null,this);
-            obj.set_taborder("5");
-            obj.set_text("초기화");
-            obj.set_cssclass("btn_normal");
-            this.addChild(obj.name, obj);
-
             obj = new Button("btnRegister","913","640","107","40",null,null,null,null,null,null,this);
-            obj.set_taborder("6");
+            obj.set_taborder("5");
             obj.set_text("평가하기");
             obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
@@ -148,14 +142,6 @@
         	this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
 
-
-        this.btnReset_onclick = function(obj,e)
-        {
-        	this.dsSearch.setColumn(0, "Type", "all");
-            this.dsSearch.setColumn(0, "Word", "");
-
-        };
-
         this.showPopup = function(objParam)
         {
         	popup = new nexacro.ChildFrame;
@@ -196,7 +182,6 @@
             this.btnFilterSearch.addEventHandler("onclick",this.btnFilterSearch_onclick,this);
             this.cmbSearchType.addEventHandler("onitemchanged",this.dsEvaluation_onload,this);
             this.edtSearchText.addEventHandler("onchanged",this.edtSearchText_onchanged,this);
-            this.btnReset.addEventHandler("onclick",this.btnReset_onclick,this);
             this.btnRegister.addEventHandler("onclick",this.btnRegister_onclick,this);
             this.dsEvalAll.addEventHandler("onload",this.dsEvaluation_onload,this);
         };

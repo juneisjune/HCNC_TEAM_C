@@ -237,7 +237,6 @@
         	popup.style.set_overlaycolor("#6666664C");
         	popup.form.style.set_border("1 solid #4c5a6f");
         };
-
         });
         
         // Regist UI Components Event
