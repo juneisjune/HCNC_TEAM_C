@@ -35,12 +35,10 @@
 	    <if test="assign_code == 6">
 	        AND mng_confirm = 'Y'
 	    </if>
-	
-	    <!-- assign_code가 7일 경우: md_confirm이 'Y'인 경우 -->
-	    
-	    <!-- <if test="assign_code == 7">
-	        AND md_confirm = 'Y'
-	     </if> -->
+	    <!-- assign_code가 7일 경우: md_confirm이 'Y'인 경우 -->	    
+	    <if test="assign_code == 7">
+	        AND (md_confirm = 'Y' OR e.assign_code = 6)
+	     </if> 
 	    
 	</select>
 	

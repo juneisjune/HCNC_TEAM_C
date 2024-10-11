@@ -53,6 +53,7 @@
             obj.set_innerdataset("ds_SearchType");
             obj.set_codecolumn("Value");
             obj.set_datacolumn("Name");
+            obj.set_type("dropdown");
             obj.set_text("전체");
             obj.set_value("ALL");
             obj.set_index("0");
@@ -273,12 +274,14 @@
 
         }
 
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Form_Attendance_onload,this);
+            this.cmb_SearchType.addEventHandler("onitemchanged",this.cmb_SearchType_onitemchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grid_Atten.addEventHandler("oncelldblclick",this.grid_Atten_oncelldblclick,this);
             this.btn_RegisterAtten.addEventHandler("onclick",this.btn_RegisterAtten_onclick,this);

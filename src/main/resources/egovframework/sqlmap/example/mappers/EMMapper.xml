@@ -12,7 +12,7 @@
     c.assign_name AS assignName,
     a.id,
     a.name,
-    a.birth,
+    To_char(a.birth,'YYYYMMDD') AS birth,
     a.gender,
     a.phone,
     a.address,

@@ -87,6 +87,7 @@ public class DayoffUserController {
 	@RequestMapping(value="/sendRequest.do")
 	public String sendRequest(Model model, @ModelAttribute DayoffDTO dayoff) {
 		
+		System.out.println(dayoff.getName());
 		//휴가신청 insert문
 		int result = doUserService.sendRequest(dayoff);
 		if(result == 0) {
