@@ -33,7 +33,7 @@
 
 
             obj = new Dataset("ds_Month", this);
-            obj._setContents("<ColumnInfo><Column id=\"month\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"month\">1</Col></Row><Row><Col id=\"month\">2</Col></Row><Row><Col id=\"month\">3</Col></Row><Row><Col id=\"month\">4</Col></Row><Row><Col id=\"month\">5</Col></Row><Row><Col id=\"month\">6</Col></Row><Row><Col id=\"month\">7</Col></Row><Row><Col id=\"month\">8</Col></Row><Row><Col id=\"month\">9</Col></Row><Row><Col id=\"month\">10</Col></Row><Row><Col id=\"month\">11</Col></Row><Row><Col id=\"month\">12</Col></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"month\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -256,6 +256,10 @@
                 var row = this.ds_Year.addRow();
                 this.ds_Year.setColumn(row, "year", (currentYear - i).toString());
             }
+        	for (var i=1; i<=12; i++){
+        		var row = this.ds_Month.addRow();
+        		this.ds_Month.setColumn(row, "month", i);
+        	}
             // 검색 조건 콤보박스 값 초기화 (전체 자동 선택)
             this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
 
@@ -310,20 +314,12 @@
             this.ds_Search.setColumn(0, "START_YEAR", startYear);
             this.ds_Search.setColumn(0, "END_YEAR", endYear);
 
-            // ComboBox에 년도 값 설정
-            this.com_year.set_value(startYear);
-            this.com_year00.set_value(endYear);
-
             // 월 자동 설정 (첫 번째 월은 1월, 두 번째 월은 10월)
-            var startMonth = 1;
-            var endMonth = 10;
+            var startMonth = new Date().getMonth() + 1;
+            var endMonth = new Date().getMonth() + 1;
 
             this.ds_Search.setColumn(0, "START_MONTH", startMonth);
             this.ds_Search.setColumn(0, "END_MONTH", endMonth);
-
-            // ComboBox에 월 값 설정
-            this.com_Month.set_value(startMonth);
-            this.com_Month00.set_value(endMonth);
         };
 
         // 처리 콜백 함수

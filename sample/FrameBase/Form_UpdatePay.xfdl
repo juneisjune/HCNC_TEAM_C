@@ -12,9 +12,9 @@
         <Edit id="edt_CodeNm" taborder="5" left="317" top="579" width="106" height="30" onchanged="edt_CodeNm_onchanged"/>
         <Button id="btn_Update" taborder="6" text="수정" left="650" top="574" width="90" height="40" onclick="btn_Update_onclick" cssclass="btn_edit"/>
         <Static id="Static00" text="~" left="609" top="123" width="40" height="28" taborder="7" onclick="Static00_onclick" cssclass="stc_stc"/>
-        <Combo id="com_year" taborder="8" text="2021" left="388" top="120" width="90" height="30" index="0" onitemchanged="com_year_onitemchanged" value="1" innerdataset="ds_Search" datacolumn="START_YEAR" codecolumn="START_YEAR"/>
+        <Combo id="com_year" taborder="8" text="2021" left="388" top="120" width="90" height="30" index="0" onitemchanged="com_year_onitemchanged" value="1" innerdataset="ds_Year" datacolumn="year" codecolumn="year"/>
         <Combo id="com_Month" taborder="9" left="515" top="120" width="70" height="30" onitemchanged="com_Month_onitemchanged" value="1" index="0" innerdataset="ds_Month" codecolumn="month" datacolumn="month"/>
-        <Combo id="com_year00" taborder="10" text="2024" left="659" top="120" width="90" height="30" value="2024" index="2" onitemchanged="com_year00_onitemchanged" innerdataset="ds_Search" datacolumn="END_YEAR" codecolumn="END_YEAR"/>
+        <Combo id="com_year00" taborder="10" text="2024" left="659" top="120" width="90" height="30" value="2024" index="2" onitemchanged="com_year00_onitemchanged" innerdataset="ds_Year" datacolumn="year" codecolumn="year"/>
         <Edit id="edt_ModPay" taborder="11" left="518" top="579" width="104" height="30" onchanged="edt_ModPay_onchanged"/>
         <Static id="Static01" taborder="12" text="년" left="472" top="124" width="40" height="23" cssclass="stc_stc" onclick="Static01_onclick"/>
         <Static id="Static02" taborder="13" text="월" left="584" top="123" width="40" height="26" onclick="Static02_onclick" cssclass="stc_stc"/>
@@ -130,44 +130,6 @@
         <ColumnInfo>
           <Column id="month" type="STRING" size="256"/>
         </ColumnInfo>
-        <Rows>
-          <Row>
-            <Col id="month">1</Col>
-          </Row>
-          <Row>
-            <Col id="month">2</Col>
-          </Row>
-          <Row>
-            <Col id="month">3</Col>
-          </Row>
-          <Row>
-            <Col id="month">4</Col>
-          </Row>
-          <Row>
-            <Col id="month">5</Col>
-          </Row>
-          <Row>
-            <Col id="month">6</Col>
-          </Row>
-          <Row>
-            <Col id="month">7</Col>
-          </Row>
-          <Row>
-            <Col id="month">8</Col>
-          </Row>
-          <Row>
-            <Col id="month">9</Col>
-          </Row>
-          <Row>
-            <Col id="month">10</Col>
-          </Row>
-          <Row>
-            <Col id="month">11</Col>
-          </Row>
-          <Row>
-            <Col id="month">12</Col>
-          </Row>
-        </Rows>
       </Dataset>
       <Dataset id="ds_Pay">
         <ColumnInfo>
@@ -194,6 +156,10 @@ this.Form_UpdatePay_onload = function(obj:nexacro.Form, e:nexacro.LoadEventInfo)
         var row = this.ds_Year.addRow();
         this.ds_Year.setColumn(row, "year", (currentYear - i).toString());
     }
+	for (var i=1; i<=12; i++){
+		var row = this.ds_Month.addRow();
+		this.ds_Month.setColumn(row, "month", i);
+	}
     // 검색 조건 콤보박스 값 초기화 (전체 자동 선택)
     this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
 
@@ -248,20 +214,12 @@ this.fnSetYearsAndMonths = function() {
     this.ds_Search.setColumn(0, "START_YEAR", startYear);
     this.ds_Search.setColumn(0, "END_YEAR", endYear);
 
-    // ComboBox에 년도 값 설정
-    this.com_year.set_value(startYear);
-    this.com_year00.set_value(endYear);
-
     // 월 자동 설정 (첫 번째 월은 1월, 두 번째 월은 10월)
-    var startMonth = 1;
-    var endMonth = 10;
+    var startMonth = new Date().getMonth() + 1;
+    var endMonth = new Date().getMonth() + 1;
 
     this.ds_Search.setColumn(0, "START_MONTH", startMonth);
     this.ds_Search.setColumn(0, "END_MONTH", endMonth);
-
-    // ComboBox에 월 값 설정
-    this.com_Month.set_value(startMonth);
-    this.com_Month00.set_value(endMonth);
 };
 
 // 처리 콜백 함수
