@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_EvalDetail" width="810" height="600" titletext="New Form" onload="Form_EvalDetail_onload">
+  <Form id="Form_EvalDetail" width="810" height="600" titletext="evalDetail" onload="Form_EvalDetail_onload">
     <Layouts>
       <Layout height="600" mobileorientation="landscape" width="810" stepcount="0">
         <Grid id="grdEvalInfo" taborder="0" left="30" top="65" width="750" height="55" binddataset="dsEvaluation">

@@ -50,6 +50,8 @@ public interface EMMapper {
      *              - 예시: {"empCode": 101} 등.
      */
     void deleteEmployee(Map<String, Object> param);
+    
+    void deleteDayoffCount(Map<String, Object> param);
 
     /**
      * 특정 ID로 등록된 직원이 존재하는지 여부를 확인하는 메서드.
