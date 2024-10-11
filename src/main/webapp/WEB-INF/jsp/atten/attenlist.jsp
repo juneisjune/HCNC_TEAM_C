@@ -80,8 +80,7 @@
 <%@ include file="/WEB-INF/jsp/header.jsp" %>   
 
     <div class="container">
-        <h1>직원 근태 목록</h1>
-    
+        <h1>직원 근태 목록</h1> 
     <form action="/atten/searchAtten.do" method="post">
    		<select name="WORK_TYPE">
             <option value="ALL">전체</option>
@@ -95,7 +94,6 @@
         <button type="submit">검색</button>
     </form>
     <br>
-
         <table>
             <thead>
                 <tr>
@@ -129,7 +127,6 @@
             </tbody>
         </table>
     </div>
-
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>       
 </body>
 </html>

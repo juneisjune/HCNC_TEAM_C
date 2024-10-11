@@ -32,7 +32,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new GroupBox("GroupBox_Search","30","90","460","60",null,null,null,null,null,null,this);
+            obj = new GroupBox("GroupBox_Search","590","95","430","60",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("조회");
             obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
@@ -41,13 +41,13 @@
             obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Static("staTitle","30","20","230","50",null,null,null,null,null,null,this);
+            obj = new Static("staTitle","30","20","220","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("직원 평가");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnFilterSearch","315","110","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btnFilterSearch","855","115","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("검색");
             obj.set_cssclass("btn_search");
@@ -59,7 +59,7 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"198\"/><Column size=\"198\"/><Column size=\"198\"/><Column size=\"198\"/><Column size=\"198\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"성별\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:gender\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:depName\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmbSearchType","60","110","80","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmbSearchType","600","115","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_innerdataset("dsSearchType");
             obj.set_codecolumn("CODE");
@@ -69,17 +69,17 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtSearchText","155","110","140","30",null,null,null,null,null,null,this);
+            obj = new Edit("edtSearchText","695","115","140","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnReset","400","110","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btnReset","940","115","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("초기화");
             obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnRegister","915","110","107","40",null,null,null,null,null,null,this);
+            obj = new Button("btnRegister","913","640","107","40",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("평가하기");
             obj.set_cssclass("btn_edit");

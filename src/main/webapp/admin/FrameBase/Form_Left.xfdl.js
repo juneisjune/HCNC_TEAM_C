@@ -29,12 +29,13 @@
             obj.set_treeinitstatus("collapse,null");
             obj.set_treeusecheckbox("false");
             obj.set_binddataset("ds_Left");
-            obj.set_scrolltype("both");
+            obj.set_scrolltype("vertical");
             obj.set_treeuseline("false");
             obj.set_cssclass("grd_LF_treeMenu");
             obj.set_treeuseimage("false");
             obj.set_treeusebutton("use");
             obj.set_fillareatype("none");
+            obj.set_cellclickbound("cell");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"180\"/></Columns><Rows><Row size=\"35\"/></Rows><Band id=\"body\"><Cell displaytype=\"treeitemcontrol\" edittype=\"tree\" text=\"bind:MENU_NAME\" treestartlevel=\"1\" treelevel=\"bind:MENU_LEVEL\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
             // Layout Functions
@@ -67,6 +68,10 @@
         {
         	// 클릭한 행(row)의 인덱스
         	var rowIndex = e.row;
+
+        	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") == 1) {
+        		this.grid_LeftMenu.set_treeinitstatus(  );
+        	}
 
         	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") != 1) {
 

@@ -42,7 +42,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new GroupBox("GroupBox_Search","105","99","860","60",null,null,null,null,null,null,this);
+            obj = new GroupBox("GroupBox_Search","130","99","830","60",null,null,null,null,null,null,this);
             obj.set_taborder("22");
             obj.set_text("조회");
             obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
@@ -51,7 +51,7 @@
             obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Search","230","119","100","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Search","240","119","100","30",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             this.addChild(obj.name, obj);
 
@@ -171,7 +171,7 @@
             obj.set_index("9");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearType","131","119","90","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_SearType","141","119","90","30",null,null,null,null,null,null,this);
             obj.set_taborder("19");
             obj.set_innerdataset("ds_SearchType");
             obj.set_datacolumn("Name");

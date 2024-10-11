@@ -42,7 +42,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new GroupBox("GroupBox_Search","590","81","330","60",null,null,null,null,null,null,this);
+            obj = new GroupBox("GroupBox_Search","630","81","290","60",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_text("조회");
             obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
@@ -57,7 +57,7 @@
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_Assign","615","100","70","30",null,null,null,null,null,null,this);
+            obj = new Static("stc_Assign","640","100","30","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("직책");
             obj.set_cssclass("stc_stc");
@@ -70,7 +70,7 @@
             obj.set_datacolumn("assign_name");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","830","100","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","840","100","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");

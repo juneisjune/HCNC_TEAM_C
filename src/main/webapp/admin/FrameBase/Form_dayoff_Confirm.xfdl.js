@@ -58,7 +58,7 @@
             obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
-            obj = new GroupBox("GroupBox_Search","310","90","660","60",null,null,null,null,null,null,this);
+            obj = new GroupBox("GroupBox_Search","340","90","630","60",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("조회");
             obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
@@ -67,27 +67,27 @@
             obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_Confirm","662","109","190","30",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_Confirm","672","109","190","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static01_00","582","109","84","30",null,null,null,null,null,null,this);
+            obj = new Static("Static01_00","592","109","84","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_text("시작일");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Confirm","392","109","190","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Confirm","402","109","190","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static01","318","109","84","30",null,null,null,null,null,null,this);
+            obj = new Static("Static01","328","109","84","30",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_text("이 름");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_offListSearch","880","109","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_offListSearch","890","109","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");

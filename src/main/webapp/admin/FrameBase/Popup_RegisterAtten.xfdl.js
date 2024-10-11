@@ -38,11 +38,11 @@
 
 
             obj = new Dataset("ds_AttenList", this);
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"workDate\" type=\"DATE\" size=\"256\"/><Column id=\"attenType\" type=\"STRING\" size=\"256\"/><Column id=\"workStart\" type=\"STRING\" size=\"256\"/><Column id=\"workEnd\" type=\"STRING\" size=\"256\"/><Column id=\"managerName\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"workDate\" type=\"DATE\" size=\"256\"/><Column id=\"attenType\" type=\"STRING\" size=\"256\"/><Column id=\"workStart\" type=\"STRING\" size=\"256\"/><Column id=\"workEnd\" type=\"STRING\" size=\"256\"/><Column id=\"admin_name\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new GroupBox("GroupBox_Search","305","50","540","60",null,null,null,null,null,null,this);
+            obj = new GroupBox("GroupBox_Search","350","50","495","60",null,null,null,null,null,null,this);
             obj.set_taborder("10");
             obj.set_text("조회");
             obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
@@ -69,19 +69,19 @@
             obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","665","70","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","675","70","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("검색");
             obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_SearchReset","755","70","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_SearchReset","765","70","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_text("초기화");
             obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_SearchType","355","70","100","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_SearchType","360","70","100","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_innerdataset("ds_SearchType");
             obj.set_codecolumn("Value");
@@ -91,11 +91,11 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit00","465","70","180","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_SearchWord","470","70","180","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_close","980","20","100","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_close","960","20","90","40",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("닫기");
             obj.set_cssclass("btn_delete");
@@ -107,7 +107,7 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"90\"/><Column size=\"120\"/><Column size=\"108\"/><Column size=\"160\"/><Column size=\"160\"/><Column size=\"120\"/><Column size=\"120\"/><Column size=\"120\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"60\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"직책\"/><Cell col=\"3\" text=\"부서명\"/><Cell col=\"4\" text=\"근무일자\"/><Cell col=\"5\" text=\"근무형태\"/><Cell col=\"6\" text=\"출근시간\"/><Cell col=\"7\" text=\"퇴근시간\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:workDate\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\" textAlign=\"center\" edittype=\"date\" calendareditformat=\"yyyy년 MM월 dd일\" calendardisplayinvalidtype=\"none\"/><Cell col=\"5\" text=\"bind:attenType\" displaytype=\"text\" textAlign=\"center\" edittype=\"combo\" combodataset=\"ds_WorkType\" combocodecol=\"Name\" combodatacol=\"Name\" comboautoselect=\"false\" autosizecol=\"default\" autosizerow=\"default\"/><Cell col=\"6\" text=\"bind:workStart\" textAlign=\"center\" edittype=\"mask\" maskeditformat=\"##:##\" maskedittype=\"string\" displaytype=\"mask\"/><Cell col=\"7\" text=\"bind:workEnd\" textAlign=\"center\" edittype=\"mask\" maskedittype=\"string\" displaytype=\"mask\" calendareditformat=\"HH:mm\" maskeditformat=\"##:##\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Register","950","420","100","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_Register","960","420","90","40",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("등록");
             obj.set_cssclass("btn_regist");
@@ -123,7 +123,11 @@
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item1","Edit00","value","ds_SearchEmp","SEARCH_WORD");
+            obj = new BindItem("item1","edt_SearchWord","value","ds_SearchEmp","SEARCH_WORD");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item2","edt_SearchWord","value","ds_SearchEmp","SEARCH_WORD");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -196,7 +200,7 @@
 
         this.btn_Register_onclick = function(obj,e) {
 
-        	this.ds_AttenList.setColumn(0, "managerName", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
+        	this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
 
         	console.log(this.ds_AttenList.saveXML());
 
@@ -243,17 +247,25 @@
 
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 
-        	alert("등록이 완료되었습니다.");
-        	this.close('Close RegisterPopup');
-
-        	this.opener.fnSearch();
         };
 
-        this.cmb_SearchType_onitemchanged = function(obj,e)
+        // 콜백함수
+        this.fnCallback = function(svcID, errorCode, errorMsg)
         {
+        	// 근태 등록 콜백 시
+        	if(svcID == "attenRegister"){
+        		if (errorCode < 0) {
+        			alert(errorMsg);
+        			return;
+        		}
+
+        		alert("등록이 완료되었습니다.");
+        		this.close('Close RegisterPopup');
+
+        		this.opener.fnSearch();
+        	}
 
         };
-
         });
         
         // Regist UI Components Event

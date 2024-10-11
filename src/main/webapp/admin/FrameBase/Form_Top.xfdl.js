@@ -24,7 +24,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("staHello","1320","0","120","65",null,null,null,null,null,null,this);
+            obj = new Static("staHello","1300","0","120","65",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_color("#ffffff");
             obj.set_textAlign("right");

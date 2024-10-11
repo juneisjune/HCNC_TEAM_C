@@ -3,8 +3,8 @@
   <Form id="Form_UpdatePay" width="1280" height="720" titletext="New Form" onload="Form_UpdatePay_onload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
-        <GroupBox id="GroupBox_Search" taborder="22" text="조회" left="105" top="99" width="860" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
-        <Edit id="edt_Search" taborder="0" left="230" top="119" width="100" height="30" onchanged="edt_Search_onchanged"/>
+        <GroupBox id="GroupBox_Search" taborder="22" text="조회" left="130" top="99" width="830" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
+        <Edit id="edt_Search" taborder="0" left="240" top="119" width="100" height="30" onchanged="edt_Search_onchanged"/>
         <Button id="btn_Search" taborder="1" text="조회" left="870" top="119" width="80" onclick="btn_Search_onclick" cssclass="btn_search" height="30"/>
         <Static id="emp_code" taborder="2" text="사번" left="90" top="572" width="65" height="45" onclick="emp_onclick" cssclass="stc_stc"/>
         <Static id="emp_nsme" taborder="3" text="이름" left="246" top="575" width="60" height="38" cssclass="stc_stc"/>
@@ -23,7 +23,7 @@
         <Static id="emp_" taborder="16" text="수정액" left="431" top="579" width="67" height="31" cssclass="stc_stc"/>
         <Static id="Static06" taborder="17" text="급여 관리" left="31" top="20" width="167" height="50" onclick="Static06_onclick" cssclass="stc_title"/>
         <Combo id="com_Month00" taborder="18" left="760" top="119" width="70" height="30" onitemchanged="com_Month00_onitemchanged" value="10" index="9" innerdataset="ds_Month" datacolumn="month" codecolumn="month"/>
-        <Combo id="cmb_SearType" taborder="19" text="전체" left="131" top="119" width="90" height="30" index="0" innerdataset="ds_SearchType" datacolumn="Name" codecolumn="Value" onitemchanged="cmb_SearType_onitemchanged" value="ALL"/>
+        <Combo id="cmb_SearType" taborder="19" text="전체" left="141" top="119" width="90" height="30" index="0" innerdataset="ds_SearchType" datacolumn="Name" codecolumn="Value" onitemchanged="cmb_SearType_onitemchanged" value="ALL"/>
         <Button id="btn_Delete" taborder="20" text="삭제" left="775" top="574" width="90" height="40" onclick="btn_Delete_onclick" cssclass="btn_delete"/>
         <Grid id="grd_CodeMst" taborder="21" left="30" top="177" width="935" height="381" binddataset="ds_Pay" onheadclick="grd_CodeMst_onheadclick">
           <Formats>
