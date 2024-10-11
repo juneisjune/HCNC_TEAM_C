@@ -49,7 +49,6 @@ public class HrdController {
 	        return result;
 	    }
 
-		
     	try {	
     			for(Map<String,Object> offRequest : param) {
     				hrds.updateHRD(offRequest);

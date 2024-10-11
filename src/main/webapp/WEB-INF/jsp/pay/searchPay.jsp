@@ -47,6 +47,7 @@
 
         td {
             background-color: #ffffff;
+            font-size: 13px;
         }
 
         tr:nth-child(even) td {
@@ -145,19 +146,19 @@
 	                         var row = "<tr>"
 	                             + "<td>" + "<a href='/pay/viewPayslip/" + pay.payYear + "/" + pay.payMonth + ".do'>" + pay.payYear + "." + pay.payMonth + "</a>" + "</td>"
 	                             + "<td>" + pay.giveDate + "</td>"
-	                             + "<td>" + (pay.month - pay.absence).toLocaleString() + "원" + "</td>" 
-	                             + "<td>" + pay.payMeal.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + pay.payOver.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + pay.payAmount.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + pay.incomeTax.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + pay.residentTax.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + pay.nationalTax.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + pay.empInsurance.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + pay.healthInsurance.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + pay.longcareInsurance.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + totalTax.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + pay.etc.toLocaleString() + "원" + "</td>"
-	                             + "<td>" + pay.actualPay.toLocaleString() + "원" + "</td>"
+	                             + "<td>" + (pay.month - pay.absence).toLocaleString()+ "</td>" 
+	                             + "<td>" + pay.payMeal.toLocaleString() + "</td>"
+	                             + "<td>" + pay.payOver.toLocaleString()+ "</td>"
+	                             + "<td>" + pay.payAmount.toLocaleString()  + "</td>"
+	                             + "<td>" + pay.incomeTax.toLocaleString()  + "</td>"
+	                             + "<td>" + pay.residentTax.toLocaleString() + "</td>"
+	                             + "<td>" + pay.nationalTax.toLocaleString()  + "</td>"
+	                             + "<td>" + pay.empInsurance.toLocaleString() + "</td>"
+	                             + "<td>" + pay.healthInsurance.toLocaleString() + "</td>"
+	                             + "<td>" + pay.longcareInsurance.toLocaleString()  + "</td>"
+	                             + "<td>" + totalTax.toLocaleString() + "</td>"
+	                             + "<td>" + pay.etc.toLocaleString()  + "</td>"
+	                             + "<td>" + pay.actualPay.toLocaleString()  + "</td>"
 	                             + "</tr>";
 
 	                         payListBody.append(row);  

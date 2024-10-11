@@ -58,7 +58,7 @@ public class DayoffController {
     			for(Map<String,Object> offRequest : param) {
     				dayoffService.updateConfirm(offRequest);
 
-    				Object assignCodeObj = offRequest.get("assign_code");
+    				Object assignCodeObj = offRequest.get("admin_assign");
     				String assignCode = assignCodeObj != null ? assignCodeObj.toString() : null;
     				
     				//대표자가 최종승인시 연차개수 변경

@@ -132,8 +132,24 @@ nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl
 
 this.grid_LeftMenu_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
+
+
 	// 클릭한 행(row)의 인덱스
 	var rowIndex = e.row;
+	var colIndex = e.cell;    // 클릭한 셀의 열 인덱스
+    var treeCellIndex = 1;    // 트리로 표시된 열의 인덱스 (예: 이름 열이 트리로 표시되는 경우 1)
+
+    // 트리 열을 클릭했는지 확인
+    if (this.ds_Left.getColumn(rowIndex, "MENU_LEVEL")  == 1) {
+        var isExpanded = obj.isTreeExpandedRow(rowIndex)
+
+        // 현재 행이 확장된 상태라면 축소하고, 그렇지 않으면 확장
+        if (isExpanded) {
+            obj.collapseTreeItem(rowIndex); // 트리 아이템 축소
+        } else {
+            obj.expandTreeItem(rowIndex);   // 트리 아이템 확장
+        }
+    }
 	
 	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") == 1) {
 		this.grid_LeftMenu.set_treeinitstatus(  );

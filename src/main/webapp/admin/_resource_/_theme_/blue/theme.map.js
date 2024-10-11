@@ -2023,7 +2023,7 @@
             							"enabled" :
             							{
             								"padding" : nexacro.PaddingObject("1px 2px 0px 0px"),
-            								"icon" : nexacro.UrlObject("URL('theme:/images/cmb_WF_drop.png')")
+            								"icon" : nexacro.UrlObject("URL('theme:/images/cmb_WF_drop_O.png')")
             							},
             							"mouseover" :
             							{
@@ -2053,7 +2053,7 @@
             							"enabled" :
             							{
             								"padding" : nexacro.PaddingObject("1px 2px 0px 0px"),
-            								"icon" : nexacro.UrlObject("URL('theme:/images/cmb_WF_drop.png')")
+            								"icon" : nexacro.UrlObject("URL('theme:/images/cmb_WF_drop_O.png')")
             							},
             							"mouseover" :
             							{

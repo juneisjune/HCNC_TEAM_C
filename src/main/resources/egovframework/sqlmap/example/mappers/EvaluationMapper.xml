@@ -37,7 +37,7 @@
 	</select>
 
     <select id="selectEval" resultType="hcnc.cteam.evaluation.EvaluationDTO">
-        SELECT
+        SELECT DISTINCT
 	a.emp_code as empCode,
 	a.name as name,
 	DATE_FORMAT(b.eval_date, '%Y-%m-%d') as evalDate,
