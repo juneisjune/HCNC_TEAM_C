@@ -20,7 +20,7 @@
                 <Cell col="1" text="질문 목록"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:guideCode"/>
+                <Cell text="bind:guideCode" textAlign="center"/>
                 <Cell col="1" text="bind:question"/>
               </Band>
             </Format>
