@@ -16,7 +16,7 @@ public class EMServiceImpl implements EMService {
 
     // 직원 목록 조회 메서드 구현
     @Override
-    public List<EMDTO> selectEmployeeList(Map<String, Object> param) {
+    public List<Map<String, Object>> selectEmployeeList(Map<String, Object> param) {
         // Map<String, Object> param: 직원 목록을 조회할 때 필요한 검색 조건을 담고 있는 파라미터입니다.
         // 예를 들어, 검색어, 부서명, 직책명 등을 포함할 수 있으며, 키는 문자열(String)이고 값은 다양한 타입(Object)으로 받을 수 있습니다.
         // MyBatis Mapper를 통해 직원 목록을 DB에서 조회하여 리스트로 반환

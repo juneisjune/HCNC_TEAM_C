@@ -251,10 +251,10 @@
             }
 
             // 생년월일 검사 (YYYYMMDD 형식)
-        	var birth = this.ds_employee.getColumn(0, "birth");
-        	if (birth) {
-            birth = birth.toString().trim();
-
+            var birthPattern = /^[0-9]{8}$/;
+            if (!birth || !birthPattern.test(birth)) {
+                alert("올바른 생년월일을 입력해 주세요. ");
+                return false;
             }
 
             // 성별 검사
