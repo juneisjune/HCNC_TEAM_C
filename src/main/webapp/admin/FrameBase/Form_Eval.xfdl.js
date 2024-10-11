@@ -41,9 +41,9 @@
             obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Static("staTitle","30","20","325","50",null,null,null,null,null,null,this);
+            obj = new Static("staTitle","30","20","270","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("직원 업무 평가 시스템");
+            obj.set_text("업무 평가 조회");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 

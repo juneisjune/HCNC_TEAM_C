@@ -54,9 +54,9 @@
             obj.set_enable("false");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00","30","20","150","50",null,null,null,null,null,null,this);
+            obj = new Static("Static00","30","20","230","50",null,null,null,null,null,null,this);
             obj.set_taborder("4");
-            obj.set_text("평가 수정");
+            obj.set_text("평가 기준 수정");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
             // Layout Functions
@@ -197,10 +197,7 @@
             }
 
         };
-        this.Static00_onclick = function(obj,e)
-        {
 
-        };
 
         });
         

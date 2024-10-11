@@ -4,7 +4,7 @@
     <Layouts>
       <Layout height="768" mobileorientation="landscape" width="1024" stepcount="0">
         <GroupBox id="GroupBox_Search" taborder="9" text="조회" left="30" top="95" width="730" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
-        <Static id="staTitle" taborder="0" text="직원 업무 평가 시스템" left="30" top="20" width="325" height="50" onclick="staTitle_onclick" cssclass="stc_title"/>
+        <Static id="staTitle" taborder="0" text="업무 평가 조회" left="30" top="20" width="270" height="50" onclick="staTitle_onclick" cssclass="stc_title"/>
         <Button id="btnFilterSearch" taborder="3" text="검색" left="560" top="115" width="80" height="30" onclick="btnFilterSearch_onclick" cssclass="btn_search"/>
         <Grid id="grdEvaluation" taborder="7" left="30" top="170" width="992" height="510" binddataset="dsEvaluation" oncelldblclick="grdEvaluation_oncelldblclick">
           <Formats>
