@@ -58,7 +58,7 @@
             obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00","36","23","174","50",null,null,null,null,null,null,this);
+            obj = new Static("Static00","30","20","174","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("인사관리");
             obj.set_cssclass("stc_title");
@@ -74,7 +74,7 @@
             obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_HrdList","36","160","742","400",null,null,null,null,null,null,this);
+            obj = new Grid("grd_HrdList","30","160","742","400",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_binddataset("ds_Hrdlist");
             obj.set_autoenter("none");
@@ -92,7 +92,7 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Savehrd","697","580","80","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_Savehrd","692","580","80","40",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("저장");
             obj.set_cssclass("btn_check");

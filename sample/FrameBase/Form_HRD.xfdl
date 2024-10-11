@@ -44,8 +44,13 @@
             </Format>
           </Formats>
         </Grid>
+<<<<<<< HEAD
+        <Combo id="cmb_SearchType" taborder="4" left="330" top="105" width="110" height="30" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0" onitemchanged="cmb_SearchType_onitemchanged"/>
+        <Button id="btn_Savehrd" taborder="5" text="저장" left="692" top="580" width="80" height="40" onclick="btn_Savehrd_onclick" cssclass="btn_check"/>
+=======
         <Combo id="cmb_SearchType" taborder="4" left="360" top="104" width="110" height="30" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0" onitemchanged="cmb_SearchType_onitemchanged"/>
         <Button id="btn_Savehrd" taborder="5" text="저장" left="697" top="580" width="80" height="40" onclick="btn_Savehrd_onclick" cssclass="btn_check"/>
+>>>>>>> cec903bf45b7f4950480237a318c03adf5af0a99
       </Layout>
     </Layouts>
     <Objects>

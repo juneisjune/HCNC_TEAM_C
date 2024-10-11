@@ -47,7 +47,7 @@
 
         td {
             background-color: #ffffff;
-            font-size: 13px;
+            font-size : 14px;
         }
 
         tr:nth-child(even) td {
@@ -216,8 +216,7 @@
 	                    년 &nbsp;
 	                    <select id="endMonth"></select> 
 	                    월 &nbsp;
-	                    <button id="searchBtn" type="button">급여내역 조회</
-button>
+	                    <button id="searchBtn" type="button">급여내역 조회</button>
 	                </td>
 	             </tr>   
 	       </table>

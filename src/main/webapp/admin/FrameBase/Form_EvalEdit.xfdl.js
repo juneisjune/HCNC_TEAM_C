@@ -197,10 +197,7 @@
             }
 
         };
-        this.Static00_onclick = function(obj,e)
-        {
 
-        };
 
         });
         

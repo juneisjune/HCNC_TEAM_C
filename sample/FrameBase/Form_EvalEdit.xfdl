@@ -163,10 +163,7 @@ this.fnUpdateCallback = function(svcID, errorCode, errorMsg) {
     }
 
 };
-this.Static00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
-{
-	
-};
+
 ]]></Script>
     <Bind>
       <BindItem id="item0" compid="grdEdit" propid="binddataset" datasetid="dsQuestions" columnid=""/>

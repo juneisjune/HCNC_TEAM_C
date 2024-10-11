@@ -72,6 +72,7 @@
 	border-radius : 8px;
 	-nexa-icon : url('theme://images/chk_WF_Box_F.png');
 	-nexa-text-padding : 0px 0px 0px 5px;
+	
 }
 .Button.btn_delete
 {
