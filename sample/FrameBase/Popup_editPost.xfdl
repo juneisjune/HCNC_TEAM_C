@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Popup_edit_page" left="0" top="0" width="750" height="470" titletext="New Form" border="" background="" onload="Popup_edit_page_onload">
+  <Form id="Popup_edit_page" left="0" top="0" width="750" height="470" titletext="editPost" border="" background="" onload="Popup_edit_page_onload">
     <Layouts>
       <Layout height="470" width="750" stepcount="0">
         <Static id="Static00" taborder="2" text="Drop Files Here" left="99" top="280" width="482" height="70" visible="true" background="aliceblue" color="dodgerblue" font="normal 30pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>

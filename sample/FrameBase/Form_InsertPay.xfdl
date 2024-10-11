@@ -8,7 +8,7 @@
         <Static id="stc_Assign" taborder="1" text="직책" left="640" top="100" width="30" height="30" cssclass="stc_stc"/>
         <Combo id="cmb_Assign" taborder="2" left="679" top="100" width="130" height="30" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged"/>
         <Button id="btn_Search" taborder="3" text="조회" left="840" top="100" width="70" height="30" onclick="btn_Search_onclick" cssclass="btn_search"/>
-        <Grid id="grd_Emp" taborder="4" left="30" top="155" width="890" height="425" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick">
+        <Grid id="grd_Emp" taborder="4" left="30" top="155" width="890" height="415" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -48,9 +48,9 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="Static04" taborder="5" text="지급일" left="620" top="600" width="120" height="30"/>
-        <Calendar id="cal_GiveDate" taborder="6" left="675" top="600" width="150" height="30" dateformat="yyyy-MM-dd"/>
-        <Button id="btn_Insert" taborder="7" text="등록" left="850" top="600" width="70" height="30" onclick="btn_Insert_onclick" cssclass="btn_regist"/>
+        <Static id="Static04" taborder="5" text="지급일" left="620" top="580" width="120" height="30"/>
+        <Calendar id="cal_GiveDate" taborder="6" left="675" top="580" width="150" height="30" dateformat="yyyy-MM-dd"/>
+        <Button id="btn_Insert" taborder="7" text="등록" left="850" top="580" width="70" height="30" onclick="btn_Insert_onclick" cssclass="btn_regist"/>
       </Layout>
     </Layouts>
     <Objects>
