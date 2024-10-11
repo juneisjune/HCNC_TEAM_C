@@ -6,6 +6,11 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class PayDTO {
+    private String depName;        // 부서명
+    private String assignName;     // 직책명
+    private String name;
+    private String chk; 
+	
 	private int empCode;
 	private int payYear;
 	private int payMonth;
@@ -33,6 +38,41 @@ public class PayDTO {
 	private String regName;
 	private LocalDateTime updDate;
 	private String updName;
+	private String admName;
+
+
+    public String getDepName() {
+        return depName;
+    }
+
+    public void setDepName(String depName) {
+        this.depName = depName;
+    }
+
+    public String getAssignName() {
+        return assignName;
+    }
+
+    public void setAssignName(String assignName) {
+        this.assignName = assignName;
+    }
+    
+    public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public String getChk() {
+        return chk;
+    }
+
+    public void setChk(String chk) {
+        this.chk = chk;
+      
+   }
 	
 	public int getEmpCode() {
 		return empCode;
@@ -155,6 +195,15 @@ public class PayDTO {
 	public void setUpdName(String updName) {
 		this.updName = updName;
 	}
+	
+	public String getAdmName() {
+		return admName;
+	}
+
+	public void setAdmName(String admName) {
+		this.admName = admName;
+	}
+
 	public int getEtc() {
 		return etc;
 	}

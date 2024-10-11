@@ -61,7 +61,7 @@
             							{
             								"enabled" :
             								{
-            									"font" : nexacro.FontObject("normal bold  12pt/normal \"Arial\""),
+            									"font" : nexacro.FontObject("normal bold  10pt/normal \"Arial\""),
             									"color" : nexacro.ColorObject("#121212"),
             									"icon" : nexacro.UrlObject("url('theme://images/chk_WF_Box_F.png')"),
             									"textPadding" : nexacro.PaddingObject("0px 0px 0px 5px")
@@ -76,7 +76,7 @@
             							{
             								"enabled" :
             								{
-            									"font" : nexacro.FontObject("normal bold  12pt/normal \"Arial\""),
+            									"font" : nexacro.FontObject("normal bold  10pt/normal \"Arial\""),
             									"color" : nexacro.ColorObject("#121212"),
             									"icon" : nexacro.UrlObject("url('imagerc::btn_mdi_close2.png')"),
             									"textPadding" : nexacro.PaddingObject("0px 0px 0px 5px")
@@ -91,7 +91,7 @@
             							{
             								"enabled" :
             								{
-            									"font" : nexacro.FontObject("normal bold  12pt/normal \"Arial\""),
+            									"font" : nexacro.FontObject("normal bold  10pt/normal \"Arial\""),
             									"color" : nexacro.ColorObject("#121212"),
             									"textPadding" : nexacro.PaddingObject("0px 0px 0px 5px"),
             									"icon" : nexacro.UrlObject("url('imagerc::img_WF_save01.png')")
@@ -106,7 +106,7 @@
             							{
             								"enabled" :
             								{
-            									"font" : nexacro.FontObject("normal 700 12pt /normal \"Arial\""),
+            									"font" : nexacro.FontObject("normal 700 10pt /normal \"Arial\""),
             									"color" : nexacro.ColorObject("#121212"),
             									"textPadding" : nexacro.PaddingObject("0px 0px 0px 5px"),
             									"icon" : nexacro.UrlObject("url('imagerc::edit.png')")
@@ -121,7 +121,7 @@
             							{
             								"enabled" :
             								{
-            									"font" : nexacro.FontObject("normal 700 12pt /normal \"Arial\""),
+            									"font" : nexacro.FontObject("normal 700 10pt /normal \"Arial\""),
             									"color" : nexacro.ColorObject("#121212")
             								}
             							}
@@ -134,7 +134,7 @@
             							{
             								"enabled" :
             								{
-            									"font" : nexacro.FontObject("normal bold  12pt/normal \"Arial\""),
+            									"font" : nexacro.FontObject("normal bold  10pt/normal \"Arial\""),
             									"color" : nexacro.ColorObject("#121212"),
             									"textPadding" : nexacro.PaddingObject("0px 0px 0px 5px"),
             									"icon" : nexacro.UrlObject("url('imagerc::plus1.png')")
