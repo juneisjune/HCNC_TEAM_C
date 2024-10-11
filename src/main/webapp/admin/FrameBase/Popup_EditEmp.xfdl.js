@@ -120,12 +120,12 @@
             obj.set_text("bind:account");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnUpdate","310","360","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btnUpdate","300","360","80","30",null,null,null,null,null,null,this);
             obj.set_text("수정");
             obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnClose","410","360","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btnClose","400","360","80","30",null,null,null,null,null,null,this);
             obj.set_text("닫기");
             obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
@@ -251,10 +251,10 @@
             }
 
             // 생년월일 검사 (YYYYMMDD 형식)
-        	var birth = this.ds_employee.getColumn(0, "birth");
-        	if (birth) {
-            birth = birth.toString().trim();
-
+            var birthPattern = /^[0-9]{8}$/;
+            if (!birth || !birthPattern.test(birth)) {
+                alert("올바른 생년월일을 입력해 주세요. ");
+                return false;
             }
 
             // 성별 검사

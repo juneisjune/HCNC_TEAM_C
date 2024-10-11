@@ -35,7 +35,7 @@ public class EMController {
             System.out.println("검색어: " + param.get("SEARCH_WORD"));
             
             // 서비스 레이어에서 직원 목록을 가져와 ds_empList에 저장
-            List<EMDTO> ds_empList = EMService.selectEmployeeList(param);
+            List<Map<String, Object>> ds_empList = EMService.selectEmployeeList(param);
             
             // 결과 객체에 직원 목록 데이터셋을 추가
             result.addDataSet("ds_empList", ds_empList);

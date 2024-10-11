@@ -17,7 +17,7 @@ public interface EMMapper {
      * @return 직원 목록을 담고 있는 리스트(List<EMDTO>).
      *         각 항목은 직원의 정보를 담고 있는 EMDTO 객체로 구성됩니다.
      */
-    List<EMDTO> selectEmployeeList(Map<String, Object> param);
+    List<Map<String, Object>> selectEmployeeList(Map<String, Object> param);
 
     /**
      * 직원 정보를 데이터베이스에 삽입하는 메서드.

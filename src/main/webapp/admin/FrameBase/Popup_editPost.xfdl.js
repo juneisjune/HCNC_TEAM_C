@@ -58,7 +58,7 @@
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
 
-            obj = new Button("open","599","260","120","80",null,null,null,null,null,null,this);
+            obj = new Button("open","599","260","120","90",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("폴더 열기");
             obj.set_cssclass("btn_download");
@@ -70,7 +70,7 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"삭제\"/></Band><Band id=\"body\"><Cell text=\"bind:attach_name\"/><Cell col=\"1\" text=\"삭제\" textAlign=\"center\" edittype=\"button\" displaytype=\"buttoncontrol\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button01","250","380","120","50",null,null,null,null,null,null,this);
+            obj = new Button("Button01","250","380","110","50",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("수정하기");
             obj.set_cssclass("btn_edit");
