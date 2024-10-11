@@ -30,14 +30,24 @@
             text-align: center;
             margin-bottom: 20px;
         }
-        select, input[type="text"], input[type="date"], button {
-            padding: 8px;
+        select{
+        	padding: 10px;
             margin: 5px;
-            border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 14px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 100px;
+        }
+        input[type="text"], input[type="date"], button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            width: 170px;
         }
         button {
+			width: 72px;
             padding: 10px 20px;
             font-size: 16px;
             border: none;
@@ -53,7 +63,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            
         }
         table, th, td {
             border: 1px solid #ddd;
@@ -91,7 +101,7 @@
         <input type="date" name="START_DATE"/>
         ~
         <input type="date" name="END_DATE"/>
-        <button type="submit">검색</button>
+        <button type="submit">조회</button>
     </form>
     <br>
         <table>
