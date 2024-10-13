@@ -13,7 +13,7 @@
             this.set_titletext("아이디 및 비밀번호 찾기");
             if (Form == this.constructor)
             {
-                this._setFormPosition(600,500);
+                this._setFormPosition(560,350);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -33,127 +33,126 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new GroupBox("GroupBox_FindPassword","10","220","580","80",null,null,null,null,null,null,this);
-            obj.set_taborder("16");
-            obj.set_text("새로운 비밀번호 발급");
-            obj.set_font("bold 24px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
-            this.addChild(obj.name, obj);
-
-            obj = new GroupBox("GroupBox_FindId","10","30","580","80",null,null,null,null,null,null,this);
-            obj.set_taborder("15");
-            obj.set_text("아이디 찾기");
-            obj.set_font("bold 24px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("sta_NameForId","20","70","50","30",null,null,null,null,null,null,this);
-            obj.set_taborder("0");
-            obj.set_text("이름 : ");
-            obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("sta_EmailForId","270","70","70","30",null,null,null,null,null,null,this);
+            obj = new Tab("Tab00","24","56","506","224",null,null,null,null,null,null,this);
             obj.set_taborder("1");
-            obj.set_text("이메일 : ");
-            obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_tabindex("0");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_IdForPassword","30","260","40","30",null,null,null,null,null,null,this);
+            obj = new Tabpage("Tabpage1",this.Tab00);
+            obj.set_text("아이디 찾기");
+            obj.set_formscrollbartype("none");
+            this.Tab00.addChild(obj.name, obj);
+
+            obj = new Edit("edt_NameForId00","170","35","170","30",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
+            obj.set_taborder("0");
+            this.Tab00.Tabpage1.addChild(obj.name, obj);
+
+            obj = new Static("sta_NameForId","99","35","50","30",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
+            obj.set_taborder("1");
+            obj.set_text("이름");
+            obj.set_cssclass("stc_stc");
+            this.Tab00.Tabpage1.addChild(obj.name, obj);
+
+            obj = new Static("sta_EmailForId","89","90","70","30",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
             obj.set_taborder("2");
-            obj.set_text("ID : ");
-            obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
-            this.addChild(obj.name, obj);
+            obj.set_text("이메일");
+            obj.set_cssclass("stc_stc");
+            this.Tab00.Tabpage1.addChild(obj.name, obj);
 
-            obj = new Static("sta_EmailForPassword","270","260","70","30",null,null,null,null,null,null,this);
+            obj = new Edit("edt_EmailForId","170","93","170","30",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
             obj.set_taborder("3");
-            obj.set_text("이메일 : ");
-            obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
-            this.addChild(obj.name, obj);
+            this.Tab00.Tabpage1.addChild(obj.name, obj);
 
-            obj = new Edit("edt_NameForId","80","70","160","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_IdSearch","375","63","50","30",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
             obj.set_taborder("4");
-            this.addChild(obj.name, obj);
+            obj.set_text("찾기");
+            obj.set_cssclass("btn_normal");
+            this.Tab00.Tabpage1.addChild(obj.name, obj);
 
-            obj = new Edit("edt_EmailForId","340","70","170","30",null,null,null,null,null,null,this);
+            obj = new Static("sta_ResultId","-1","153","506","40",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
             obj.set_taborder("5");
-            this.addChild(obj.name, obj);
+            obj.set_text("");
+            obj.set_cssclass("stc_stc");
+            obj.set_background(" #A1C4E8");
+            this.Tab00.Tabpage1.addChild(obj.name, obj);
 
-            obj = new Edit("edt_IdForPassword","80","260","160","30",null,null,null,null,null,null,this);
+            obj = new Tabpage("Tabpage2",this.Tab00);
+            obj.set_text("비밀번호 찾기");
+            this.Tab00.addChild(obj.name, obj);
+
+            obj = new Edit("edt_IdForPassword","170","30","170","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj.set_taborder("0");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
+
+            obj = new Static("sta_IdForPassword","99","30","40","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj.set_taborder("1");
+            obj.set_text("아이디");
+            obj.set_cssclass("stc_stc");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
+
+            obj = new Static("sta_EmailForPassword","99","83","40","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj.set_taborder("2");
+            obj.set_text("이메일");
+            obj.set_cssclass("stc_stc");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
+
+            obj = new Edit("edt_EmailForPassword","170","83","170","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj.set_taborder("3");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
+
+            obj = new Button("btn_PasswordSearch","375","58","50","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj.set_taborder("4");
+            obj.set_text("찾기");
+            obj.set_cssclass("btn_normal");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
+
+            obj = new Static("sta_NewPassword","25","143","190","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj.set_taborder("5");
+            obj.set_text("새로운 비밀번호 입력 ");
+            obj.set_visible("false");
+            obj.set_cssclass("stc_stc");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
+
+            obj = new Edit("edt_NewPassword","205","143","170","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("6");
-            this.addChild(obj.name, obj);
+            obj.set_visible("false");
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
 
-            obj = new Edit("edt_EmailForPassword","340","260","170","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_NewPassword","410","143","50","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("7");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_IdSearch","530","70","50","30",null,null,null,null,null,null,this);
-            obj.set_taborder("8");
-            obj.set_text("찾기");
-            obj.set_cssclass("btn_normal");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_PasswordSearch","530","260","50","30",null,null,null,null,null,null,this);
-            obj.set_taborder("9");
-            obj.set_text("찾기");
-            obj.set_cssclass("btn_normal");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("sta_ResultId","20","130","550","40",null,null,null,null,null,null,this);
-            obj.set_taborder("10");
-            obj.set_font("bold 14pt \"Arial Black\"");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("sta_NewPassword","30","330","190","40",null,null,null,null,null,null,this);
-            obj.set_taborder("11");
-            obj.set_text("새로운 비밀번호 입력 : ");
-            obj.set_font("18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
-            obj.set_visible("false");
-            this.addChild(obj.name, obj);
-
-            obj = new Edit("edt_NewPassword","220","330","170","40",null,null,null,null,null,null,this);
-            obj.set_taborder("12");
-            obj.set_visible("false");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_NewPassword","410","330","50","40",null,null,null,null,null,null,this);
-            obj.set_taborder("13");
             obj.set_text("확인");
             obj.set_visible("false");
             obj.set_cssclass("btn_normal");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_Close","260","440","80","40",null,null,null,null,null,null,this);
-            obj.set_taborder("14");
-            obj.set_text("닫기");
-            obj.set_cssclass("btn_delete");
-            this.addChild(obj.name, obj);
+            this.Tab00.Tabpage2.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",600,500,this,function(p){});
+            obj = new Layout("default","",560,350,this,function(p){});
             obj.set_mobileorientation("landscape");
             this.addLayout(obj.name, obj);
             
             // BindItem Information
-            obj = new BindItem("item0","edt_NameForId","value","ds_FindLoginInfo","name");
+            obj = new BindItem("item6","Tab00.Tabpage1.form.edt_NameForId00","value","ds_FindLoginInfo","name");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item1","edt_IdForPassword","value","ds_FindLoginInfo","id");
+            obj = new BindItem("item0","Tab00.Tabpage1.form.edt_EmailForId","value","ds_FindLoginInfo","emailForId");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item2","edt_EmailForId","value","ds_FindLoginInfo","emailForId");
+            obj = new BindItem("item2","Tab00.Tabpage1.form.sta_ResultId","text","ds_Result","ResultId");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item3","edt_EmailForPassword","value","ds_FindLoginInfo","emailForPassword");
+            obj = new BindItem("item4","Tab00.Tabpage2.form.edt_IdForPassword","value","ds_FindLoginInfo","id");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item4","sta_ResultId","text","ds_Result","ResultId");
+            obj = new BindItem("item7","Tab00.Tabpage2.form.edt_EmailForPassword","value","ds_FindLoginInfo","emailForPassword");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item5","edt_NewPassword","value","ds_NewPassword","NewPassword");
+            obj = new BindItem("item8","Tab00.Tabpage2.form.edt_NewPassword","value","ds_NewPassword","NewPassword");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -256,10 +255,13 @@
 
         		alert("새로 등록할 비밀번호를 입력하세요.");
 
+
+        		var form = this.parent; // 부모 객체를 가져옵니다.
+
         		// 숨겨진 새 비밀번호 입력 칸 보이기
-        		this.sta_NewPassword.set_visible(true);
-        		this.edt_NewPassword.set_visible(true);
-        		this.btn_NewPassword.set_visible(true);
+        		this.Tab00.Tabpage2.form.sta_NewPassword.set_visible(true);
+        		this.Tab00.Tabpage2.form.edt_NewPassword.set_visible(true);
+        		this.Tab00.Tabpage2.form.btn_NewPassword.set_visible(true);
         	}
 
         	// 비밀번호 업데이트 콜백
@@ -303,7 +305,7 @@
         };
 
         // 새 비밀번호 업데이트 확인 버튼
-        this.btn_NewPassword_onclick = function(obj,e)
+        this.btn_NewPassword_onclick= function(obj,e)
         {
         	var password = this.ds_NewPassword.getColumn(0, "NewPassword");
 
@@ -330,15 +332,18 @@
 
         };
 
+
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
-            this.btn_IdSearch.addEventHandler("onclick",this.btn_IdSearch_onclick,this);
-            this.btn_PasswordSearch.addEventHandler("onclick",this.btn_PasswordSearch_onclick,this);
-            this.btn_NewPassword.addEventHandler("onclick",this.btn_NewPassword_onclick,this);
-            this.btn_Close.addEventHandler("onclick",this.btn_Close_onclick,this);
+            this.Tab00.addEventHandler("onchanged",this.Tab00_onchanged,this);
+            this.Tab00.Tabpage1.form.sta_NameForId.addEventHandler("onclick",this.Tab00_Tabpage1_sta_NameForId_onclick,this);
+            this.Tab00.Tabpage1.form.btn_IdSearch.addEventHandler("onclick",this.btn_IdSearch_onclick,this);
+            this.Tab00.Tabpage2.form.btn_PasswordSearch.addEventHandler("onclick",this.btn_PasswordSearch_onclick,this);
+            this.Tab00.Tabpage2.form.btn_NewPassword.addEventHandler("onclick",this.btn_NewPassword_onclick,this);
         };
         this.loadIncludeScript("Popup_FindLoginInfo.xfdl");
         this.loadPreloadList();
