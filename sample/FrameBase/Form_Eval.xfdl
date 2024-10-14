@@ -41,7 +41,7 @@
         <Calendar id="calStartDate" taborder="4" left="785" top="100" width="110" height="30" onchanged="Calendar00_onchanged"/>
         <Calendar id="calEndDate" taborder="5" left="925" top="100" width="110" height="30" onchanged="calEndDate_onchanged"/>
         <Static id="Static00" taborder="7" text="~" left="905" top="100" width="30" height="30" font="bold 12px/normal &quot;Gulim&quot;"/>
-        <Grid id="grdEvaluation00" taborder="8" left="30" top="170" width="490" height="460" binddataset="dsEvalAll">
+        <Grid id="grdEvalAll" taborder="8" left="30" top="170" width="490" height="460" binddataset="dsEvalAll">
           <Formats>
             <Format id="default">
               <Columns>
@@ -319,7 +319,7 @@ this.btnRegister_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
       <BindItem id="item3" compid="calStartDate" propid="value" datasetid="dsSearch" columnid="StartDate"/>
       <BindItem id="item4" compid="calEndDate" propid="value" datasetid="dsSearch" columnid="EndDate"/>
       <BindItem id="item5" compid="grdEvalAll" propid="binddataset" datasetid="dsEvalAll" columnid=""/>
-      <BindItem id="item6" compid="grdEvaluation00" propid="binddataset" datasetid="dsEvaluation" columnid=""/>
+      <BindItem id="item6" compid="grdEvalAll" propid="binddataset" datasetid="dsEvaluation" columnid=""/>
     </Bind>
   </Form>
 </FDL>
