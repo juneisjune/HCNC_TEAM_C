@@ -24,7 +24,7 @@
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\Grid.json" checksum="20230829134030" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\ListView.json" checksum="20230829134032" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\DeviceAPI.json" checksum="20230829134030" errormsg=""/>
-      <File url="Application_Desktop.xadl" checksum="20241011085627" errormsg=""/>
+      <File url="Application_Desktop.xadl" checksum="20241011121329" errormsg=""/>
       <File url="FrameBase\Form_UpdatePay.xfdl" checksum="20241011210645" errormsg=""/>
       <File url="FrameBase\Form_Attendance.xfdl" checksum="20241011204034" errormsg=""/>
       <File url="FrameBase\Form_Eval.xfdl" checksum="20241011210803" errormsg=""/>
@@ -40,7 +40,7 @@
       <File url="FrameBase\Popup_EditEmp.xfdl" checksum="20241011195551" errormsg=""/>
       <File url="FrameBase\Popup_RegisterEmp.xfdl" checksum="20241011195933" errormsg=""/>
       <File url="FrameBase\Form_EvalEdit.xfdl" checksum="20241011210725" errormsg=""/>
-      <File url="FrameBase\Popup_FindLoginInfo.xfdl" checksum="20241011222003" errormsg=""/>
+      <File url="FrameBase\Popup_FindLoginInfo.xfdl" checksum="20241014083054" errormsg=""/>
     </Info>
   </GenInfo>
 </root>

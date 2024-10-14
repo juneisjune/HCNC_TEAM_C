@@ -240,6 +240,16 @@ document.addEventListener("DOMContentLoaded", function() {
                         <input type="text" id="assignName" name="assignName" value="${emp.assignName}" readonly>
                     </td>    
                 </tr>
+                
+                <tr>
+                 <td colspan="4">
+                        총 연차
+                    <input type="text" id="assignName" name="dayoffCnt" value="${emp.dayoffCnt}" readonly>
+                        잔여 연차 
+                    <input type="text" id="assignName" name="remainCnt" value="${emp.remainCnt}" readonly>
+                 </td>  
+                </tr>                
+                
                 <tr>
                     <td colspan="4">
                         기간 선택
