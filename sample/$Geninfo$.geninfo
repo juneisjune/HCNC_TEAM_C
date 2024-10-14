@@ -40,8 +40,9 @@
       <File url="FrameBase\Popup_EditEmp.xfdl" checksum="20241011195551" errormsg=""/>
       <File url="FrameBase\Popup_RegisterEmp.xfdl" checksum="20241011195933" errormsg=""/>
       <File url="FrameBase\Form_EvalEdit.xfdl" checksum="20241011210725" errormsg=""/>
-      <File url="FrameBase\Popup_FindLoginInfo.xfdl" checksum="20241011222003" errormsg=""/>
+      <File url="FrameBase\Popup_FindLoginInfo.xfdl" checksum="20241014165950" errormsg=""/>
       <File url="FrameBase\Popup_Atten.xfdl" checksum="20241014100430" errormsg=""/>
+      <File url="FrameBase\Form_Left.xfdl" checksum="20241014171233" errormsg=""/>
     </Info>
   </GenInfo>
 </root>

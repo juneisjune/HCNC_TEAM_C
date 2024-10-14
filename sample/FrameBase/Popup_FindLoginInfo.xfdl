@@ -28,6 +28,9 @@
                   <Static id="sta_NewPassword" taborder="5" text="새로운 비밀번호 입력 " left="25" top="143" width="190" height="30" visible="false" cssclass="stc_stc"/>
                   <Edit id="edt_NewPassword" taborder="6" left="205" top="143" width="170" height="30" visible="false"/>
                   <Button id="btn_NewPassword" taborder="7" text="확인" left="410" top="143" width="50" height="30" visible="false" onclick="btn_NewPassword_onclick" cssclass="btn_normal"/>
+                  <Static id="sta_authCheck" taborder="8" text="인증번호" left="79" top="143" width="60" height="30" cssclass="stc_stc" visible="false"/>
+                  <Edit id="edt_authCheck" taborder="9" left="170" top="143" width="170" height="30" visible="false"/>
+                  <Button id="btn_AuthCheck" taborder="10" text="인증" left="375" top="143" width="50" height="30" cssclass="btn_normal" onclick="Tab00_Tabpage2_btn_AuthCheck_onclick" visible="false"/>
                 </Layout>
               </Layouts>
             </Tabpage>
@@ -121,15 +124,28 @@ this.fnCallback = function(svcID, errorCode, errorMsg) {
 			return;
 		}
 		
-		alert("새로 등록할 비밀번호를 입력하세요.");
+		this.fn_Auth();
 		
+	}
+	
+	//인증번호 발송 콜백
+	if(svcID == "NexaAuth") {
+		if (errorCode < 0) {
+			alert(errorMsg);
+			return;
+		}
 		
-		var form = this.parent; // 부모 객체를 가져옵니다.
+		alert("인증번호가 발송되었습니다.");
 		
-		// 숨겨진 새 비밀번호 입력 칸 보이기
-		this.Tab00.Tabpage2.form.sta_NewPassword.set_visible(true);
-		this.Tab00.Tabpage2.form.edt_NewPassword.set_visible(true);
-		this.Tab00.Tabpage2.form.btn_NewPassword.set_visible(true);
+		// 인증번호 입력 칸과 버튼 보이기
+		this.Tab00.Tabpage2.form.sta_authCheck.set_visible(true);
+		this.Tab00.Tabpage2.form.edt_authCheck.set_visible(true);
+		this.Tab00.Tabpage2.form.btn_AuthCheck.set_visible(true);
+		
+		// 서버에서 넘어온 인증 키(authKey)를 확인
+        var authKey = this.ds_Auth.getColumn(0, "authKey");
+        console.log("Received AuthKey: " + authKey);
+		
 	}
 	
 	// 비밀번호 업데이트 콜백
@@ -200,7 +216,52 @@ this.btn_NewPassword_onclick= function(obj:nexacro.Button,e:nexacro.ClickEventIn
 	
 };
 
+// 인증번호 발송 함수
+this.fn_Auth = function() {
 
+    var email = this.ds_FindLoginInfo.getColumn(0, "emailForPassword");
+    this.ds_email.setColumn(0, "email", email);  // 데이터셋에 이메일 설정
+
+    var strSvcId    = "NexaAuth";
+    var strSvcUrl   = "svc::NexaAuth.do";
+    var inData      = "ds_email=ds_email";  // 입력 데이터셋
+    var outData     = "ds_Auth=ds_Auth";  // 출력 데이터셋 (서버에서 응답받을 데이터)
+    var strArg      = "";  // 추가적인 파라미터 (필요시 사용)
+    var callBackFnc = "fnCallback";  // 콜백 함수 이름
+    var isAsync     = true;  // 비동기 설정
+
+	console.log(this.ds_email.getColumn(0, "email"));
+
+    this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+// 인증번호 확인
+this.Tab00_Tabpage2_btn_AuthCheck_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.ds_Auth.getColumn(0, "authKey") == '' || this.ds_Auth.getColumn(0, "authKey") == null || this.ds_Auth.getColumn(0, "authKey") == 'undefined') {
+		alert("인증번호를 먼저 발급받으세요.");
+		return;
+	}
+
+	if(this.ds_Auth.getColumn(0, "authKey") != this.ds_AuthCheck.getColumn(0, "authCheck")) {
+		alert("인증번호가 일치하지 않습니다.");
+		return;
+	}
+	
+	if(this.ds_Auth.getColumn(0, "authKey") == this.ds_AuthCheck.getColumn(0, "authCheck")) {
+		alert("인증번호가 확인되었습니다.");
+		
+		// 인증번호 입력 칸과 버튼 숨기기
+		this.Tab00.Tabpage2.form.sta_authCheck.set_visible(false);
+		this.Tab00.Tabpage2.form.edt_authCheck.set_visible(false);
+		this.Tab00.Tabpage2.form.btn_AuthCheck.set_visible(false);
+		
+		// 숨겨진 새 비밀번호 입력 칸 보이기
+ 		this.Tab00.Tabpage2.form.sta_NewPassword.set_visible(true);
+		this.Tab00.Tabpage2.form.edt_NewPassword.set_visible(true);
+		this.Tab00.Tabpage2.form.btn_NewPassword.set_visible(true);
+	}
+};
 ]]></Script>
     <Objects>
       <Dataset id="ds_FindLoginInfo">
@@ -231,6 +292,31 @@ this.btn_NewPassword_onclick= function(obj:nexacro.Button,e:nexacro.ClickEventIn
           <Row/>
         </Rows>
       </Dataset>
+      <Dataset id="ds_Auth">
+        <ColumnInfo>
+          <Column id="authKey" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_AuthCheck">
+        <ColumnInfo>
+          <Column id="authCheck" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_email">
+        <ColumnInfo>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="maskedEmail" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
     </Objects>
     <Bind>
       <BindItem id="item6" compid="Tab00.Tabpage1.form.edt_NameForId00" propid="value" datasetid="ds_FindLoginInfo" columnid="name"/>
@@ -239,6 +325,7 @@ this.btn_NewPassword_onclick= function(obj:nexacro.Button,e:nexacro.ClickEventIn
       <BindItem id="item4" compid="Tab00.Tabpage2.form.edt_IdForPassword" propid="value" datasetid="ds_FindLoginInfo" columnid="id"/>
       <BindItem id="item7" compid="Tab00.Tabpage2.form.edt_EmailForPassword" propid="value" datasetid="ds_FindLoginInfo" columnid="emailForPassword"/>
       <BindItem id="item8" compid="Tab00.Tabpage2.form.edt_NewPassword" propid="value" datasetid="ds_NewPassword" columnid="NewPassword"/>
+      <BindItem id="item1" compid="Tab00.Tabpage2.form.edt_authCheck" propid="value" datasetid="ds_AuthCheck" columnid="authCheck"/>
     </Bind>
   </Form>
 </FDL>
