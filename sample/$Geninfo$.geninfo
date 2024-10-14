@@ -41,6 +41,7 @@
       <File url="FrameBase\Popup_RegisterEmp.xfdl" checksum="20241011195933" errormsg=""/>
       <File url="FrameBase\Form_EvalEdit.xfdl" checksum="20241011210725" errormsg=""/>
       <File url="FrameBase\Popup_FindLoginInfo.xfdl" checksum="20241014083054" errormsg=""/>
+      <File url="FrameBase\Form_Login.xfdl" checksum="20241014153019" errormsg=""/>
     </Info>
   </GenInfo>
 </root>
