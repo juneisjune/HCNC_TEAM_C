@@ -44,19 +44,19 @@
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnFilterSearch","940","110","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btnFilterSearch","955","135","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdEvaluation","30","150","992","480",null,null,null,null,null,null,this);
+            obj = new Grid("grdEvaluation","545","170","490","460",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_binddataset("dsEvaluation");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"98\"/><Column size=\"98\"/><Column size=\"98\"/><Column size=\"98\"/><Column size=\"98\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\" expandsize=\"16\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"평가일자\"/><Cell col=\"3\" text=\"점수\"/><Cell col=\"4\" text=\"등급\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:evalDate\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:totalScore\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:evalGrade\" textAlign=\"center\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"97\"/><Column size=\"98\"/><Column size=\"98\"/><Column size=\"98\"/><Column size=\"97\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\" expandsize=\"16\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"평가일자\"/><Cell col=\"3\" text=\"점수\"/><Cell col=\"4\" text=\"등급\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:evalDate\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:totalScore\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:evalGrade\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmbSearchType","30","110","80","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmbSearchType","575","100","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_innerdataset("dsSearchType");
             obj.set_codecolumn("CODE");
@@ -66,22 +66,46 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtSearchText","120","110","140","30",null,null,null,null,null,null,this);
+            obj = new Edit("edtSearchText","665","100","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calStartDate","270","110","110","30",null,null,null,null,null,null,this);
+            obj = new Calendar("calStartDate","785","100","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calEndDate","410","110","110","30",null,null,null,null,null,null,this);
+            obj = new Calendar("calEndDate","925","100","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00","390","110","30","30",null,null,null,null,null,null,this);
+            obj = new Static("Static00","905","100","30","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("~");
             obj.set_font("bold 12px/normal \"Gulim\"");
+            this.addChild(obj.name, obj);
+
+            obj = new Grid("grdEvaluation00","30","170","490","460",null,null,null,null,null,null,this);
+            obj.set_taborder("8");
+            obj.set_binddataset("dsEvalAll");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"97\"/><Column size=\"98\"/><Column size=\"97\"/><Column size=\"98\"/><Column size=\"98\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"성별\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:gender\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:depName\" textAlign=\"center\"/></Band></Format></Formats>");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static01","30","130","100","50",null,null,null,null,null,null,this);
+            obj.set_taborder("9");
+            obj.set_text("평가 조회");
+            obj.set_font("bold 18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static02","545","130","95","45",null,null,null,null,null,null,this);
+            obj.set_taborder("10");
+            obj.set_text("평가 결과");
+            obj.set_font("bold 18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btnRegister","440","135","80","30",null,null,null,null,null,null,this);
+            obj.set_taborder("11");
+            obj.set_text("평가");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -112,6 +136,10 @@
             obj.bind();
 
             obj = new BindItem("item5","grdEvalAll","binddataset","dsEvalAll","");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item6","grdEvaluation00","binddataset","dsEvaluation","");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -315,6 +343,7 @@
             this.edtSearchText.addEventHandler("onchanged",this.edtSearchText_onchanged,this);
             this.calStartDate.addEventHandler("onchanged",this.Calendar00_onchanged,this);
             this.calEndDate.addEventHandler("onchanged",this.calEndDate_onchanged,this);
+            this.btnRegister.addEventHandler("onclick",this.btnRegister_onclick,this);
             this.dsEvaluation.addEventHandler("onload",this.dsEvaluation_onload,this);
         };
         this.loadIncludeScript("Form_Eval.xfdl");
