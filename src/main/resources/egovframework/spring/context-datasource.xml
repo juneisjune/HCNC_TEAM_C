@@ -14,7 +14,6 @@
 <!-- 	</jdbc:embedded-database> -->
 
      
-     
     <!-- hsql (테스트용 메모리 DB)
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
