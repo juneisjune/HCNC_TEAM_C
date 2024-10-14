@@ -40,7 +40,7 @@
             // UI Components Initialize
             obj = new Static("staTitle","30","20","325","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("직원 업무 평가 및 조회");
+            obj.set_text("직원 업무 평가 조회");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
