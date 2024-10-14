@@ -33,7 +33,7 @@
 	
 	    <!-- assign_code가 6일 경우: mng_confirm이 'Y'인 경우 -->
 	    <if test="admin_assign == 6">
-	        AND mng_confirm = 'Y' AND e.dep_code = #{admin_dep}
+	        AND mng_confirm = 'Y'
 	    </if>
 	    <!-- assign_code가 7일 경우: md_confirm이 'Y'인 경우 -->	    
 	    <if test="admin_assign == 7">

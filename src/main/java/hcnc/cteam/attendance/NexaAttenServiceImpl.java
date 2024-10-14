@@ -38,8 +38,12 @@ public class NexaAttenServiceImpl implements NexaAttenService {
 
 	@Override
 	public int attenRegisterCheck(Map<String, Object> param) {
-		// TODO Auto-generated method stub
 		return mapper.attenRegisterCheck(param);
+	}
+
+	@Override
+	public Map<String, Object> selectUserInfo(Map<String, Object> param) {
+		return mapper.selectUserInfo(param);
 	}
 	
 }
