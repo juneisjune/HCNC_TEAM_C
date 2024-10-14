@@ -1,5 +1,6 @@
 package hcnc.cteam.pay;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
@@ -35,69 +36,80 @@ public class NexaPayController {
 		try {
 			//직책코드로 사원 목록 조회
 			List<Map<String, Object>> ds_EmpList = nexaPayService.selectEmpList(param);
+			List<Map<String, Object>> results = new ArrayList<>();
 			
 			for (Map<String, Object> emp : ds_EmpList) {
-				emp.put("chkVal", "1");
-				
-				//월지급액
-				int month = nexaPayService.selectMonth(emp);
-				emp.put("month", month);
-
-				//직책에 따른 시급
-				int hourly = nexaPayService.selectHourly(emp);
-				
-				// 연장근로수당
-				int pay_over = (int) (hourly * nexaPayService.selectWorkOver(emp));
-				emp.put("pay_over", pay_over);
-
-				// 식대
-				int pay_meal = 100000;
-				emp.put("pay_meal", pay_meal);
-
-				// 결근
-				int absence = hourly * 8 * nexaPayService.selectAbsence(emp);
-				emp.put("absence", absence);
-
-				// 지급액 = (기본급 or 일급) - 결근 + 연장근로수당 + 식대 
-				int pay_amount = month - absence + pay_over + pay_meal;
-				emp.put("pay_amount", pay_amount);
-				
-				//직책에 따른 세금(비율)
-				double tax = nexaPayService.selectTax(emp);
-
-				// 공제액
-				int income_tax = (int) (pay_amount * tax);
-				emp.put("income_tax", income_tax);
-
-				int resident_tax = (int) (income_tax * 0.1);
-				emp.put("resident_tax", resident_tax);
-
-				int national_tax = (int) (pay_amount * 0.045);
-				emp.put("national_tax", national_tax);
-
-				int emp_insurance = (int) (national_tax * 0.1);
-				emp.put("emp_insurance", emp_insurance);
-
-				int health_insurance = (int) (pay_amount * 0.0343);
-				emp.put("health_insurance", health_insurance);
-
-				int longcare_insurance = (int) (health_insurance * 0.1);
-				emp.put("longcare_insurance", longcare_insurance);
-				
-				//Integer etc = hourly * 8 * nexaPayService.selectEtc(param);
-				//emp.put("etc", etc);
-
-				// 실지급액 = 지급액 - 공제액
-				int actual_pay = pay_amount - (income_tax + resident_tax + national_tax + emp_insurance
-						+ health_insurance + longcare_insurance);
-				//+ etc;
-						
-				// 1의 자리에서 올림
-				actual_pay = (int) Math.ceil(actual_pay / 10.0) * 10;
-				emp.put("actual_pay", actual_pay);
+				//급여가 등록되지 않은 직원만 그리드에 조회되도록 
+				if(nexaPayService.duplidacatedPay(emp) == 0) {
+					emp.put("chkVal", "1");
+					
+					//월지급액
+					int month = nexaPayService.selectMonth(emp);
+					emp.put("month", month);
+	
+					//직책에 따른 시급
+					int hourly = nexaPayService.selectHourly(emp);
+					
+					// 연장근로수당
+					int pay_over = (int) (hourly * nexaPayService.selectWorkOver(emp));
+					emp.put("pay_over", pay_over);
+	
+					// 식대
+					int pay_meal = 100000;
+					emp.put("pay_meal", pay_meal);
+	
+					// 결근
+					int absence = hourly * 8 * nexaPayService.selectAbsence(emp);
+					emp.put("absence", absence);
+	
+					// 지급액 = (기본급 or 일급) - 결근 + 연장근로수당 + 식대 
+					int pay_amount = month - absence + pay_over + pay_meal;
+					emp.put("pay_amount", pay_amount);
+					
+					//직책에 따른 세금(비율)
+					double tax = nexaPayService.selectTax(emp);
+	
+					// 공제액
+					int income_tax = (int) (pay_amount * tax);
+					emp.put("income_tax", income_tax);
+	
+					int resident_tax = (int) (income_tax * 0.1);
+					emp.put("resident_tax", resident_tax);
+	
+					int national_tax = (int) (pay_amount * 0.045);
+					emp.put("national_tax", national_tax);
+	
+					int emp_insurance = (int) (national_tax * 0.1);
+					emp.put("emp_insurance", emp_insurance);
+	
+					int health_insurance = (int) (pay_amount * 0.0343);
+					emp.put("health_insurance", health_insurance);
+	
+					int longcare_insurance = (int) (health_insurance * 0.1);
+					emp.put("longcare_insurance", longcare_insurance);
+					
+					int etc = 0; 
+					
+					//지난달 퇴사시 연차비 계산
+					if (nexaPayService.selectDayOff(emp) == 1) {
+						etc = hourly * 8 * nexaPayService.selectEtc(emp);
+						emp.put("etc", etc);
+					} 
+	
+					// 실지급액 = 지급액 - 공제액
+					int actual_pay = pay_amount - (income_tax + resident_tax + national_tax + emp_insurance
+							+ health_insurance + longcare_insurance) + etc;
+							
+					// 1의 자리에서 올림
+					actual_pay = (int) Math.ceil(actual_pay / 10.0) * 10;
+					emp.put("actual_pay", actual_pay);
+					
+					results.add(emp);
+					
+				}
 			}
-
-			result.addDataSet("ds_EmpList", ds_EmpList);
+			
+			result.addDataSet("ds_EmpList", results);
 
 		} catch (Exception ee) {
 			System.out.println(ee);
@@ -107,6 +119,7 @@ public class NexaPayController {
 		return result;
 	}
 
+	@Transactional
 	@RequestMapping("/insertPay.do")
 	public NexacroResult insertPay(@ParamDataSet(name = "ds_EmpListCopy", required = false) List<Map<String, Object>> param) {
 		NexacroResult result = new NexacroResult();

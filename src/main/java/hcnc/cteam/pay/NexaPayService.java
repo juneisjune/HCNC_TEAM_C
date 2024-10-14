@@ -16,6 +16,8 @@ public interface NexaPayService {
 	
 	int selectAbsence(Map< String, Object> param);
 	
+	int selectDayOff(Map< String, Object> param); 
+	
 	Integer selectEtc(Map< String, Object> param);
 	
 	int duplidacatedPay(Map< String, Object> param); 

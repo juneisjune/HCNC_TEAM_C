@@ -61,7 +61,14 @@
         <Static id="lblAccount" text="계좌번호" left="15" top="253" width="90" height="25" cssclass="stc_stc"/>
         <Edit id="edtAccount" left="100" top="250" width="250" height="30" binddataset="ds_employee" text="bind:account"/>
         <!-- 수정 버튼 -->
+<<<<<<< HEAD
+
+        <Button id="btnUpdate" text="수정" left="300" top="360" width="80" height="30" onclick="btnUpdate_onclick" cssclass="btn_edit"/>
+        <Button id="btnClose" text="닫기" left="400" top="360" width="80" height="30" onclick="btnClose_onclick" cssclass="btn_delete"/>
+
+=======
         <Button id="btnUpdate" text="수정" left="350" top="340" width="80" height="30" onclick="btnUpdate_onclick" cssclass="btn_edit"/>
+>>>>>>> 70a654ed7341d0c6a9f02ac7945bd4fd7c3369ef
       </Layout>
     </Layouts>
     <Bind>

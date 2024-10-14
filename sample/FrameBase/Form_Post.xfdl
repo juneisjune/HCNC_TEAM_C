@@ -38,7 +38,7 @@
                 <Cell col="2" text="bind:title" textAlign="center"/>
                 <Cell col="3" text="bind:content"/>
                 <Cell col="4" text="bind:reg_date" displaytype="date" mask="####-##-##"/>
-                <Cell col="5" text="bind:emp_name" textAlign="center"/>
+                <Cell col="5" text="bind:upd_name" textAlign="center"/>
                 <Cell col="6" text="bind:view_count" textAlign="center"/>
                 <Cell col="7" displaytype="buttoncontrol" text="수정"/>
                 <Cell col="8" displaytype="buttoncontrol" text="삭제" edittype="button"/>

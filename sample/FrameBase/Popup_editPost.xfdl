@@ -215,7 +215,8 @@ this.attach_grid_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEven
 };
 
 this.btn_close_ondblclick = function(obj:nexacro.Button,e:nexacro.MouseEventInfo)
-{
+{	
+	this.opener.fnSearch();
 	this.close('Close Popup');
 };
 

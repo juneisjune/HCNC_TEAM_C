@@ -316,6 +316,7 @@
 
         this.btn_close_ondblclick = function(obj,e)
         {
+        	this.opener.fnSearch();
         	this.close('Close Popup');
         };
 
