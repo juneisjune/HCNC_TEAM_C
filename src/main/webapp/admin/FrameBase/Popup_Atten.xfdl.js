@@ -239,8 +239,6 @@
 
         	}
 
-        	this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
-
         	console.log(this.ds_AttenList.saveXML());
         };
 
@@ -278,6 +276,8 @@
         			return;
         		}
             }
+
+        		this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
 
         	console.log(this.ds_AttenList.saveXML());
 

@@ -50,8 +50,6 @@ this.Popup_Atten_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 
 	}
 	
-	this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
-	
 	console.log(this.ds_AttenList.saveXML());
 };
 
@@ -89,6 +87,8 @@ this.btn_Save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 			return;
 		}
     }
+	
+		this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
 	
 	console.log(this.ds_AttenList.saveXML());
 	
