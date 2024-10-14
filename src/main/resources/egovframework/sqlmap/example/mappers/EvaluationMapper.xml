@@ -54,7 +54,7 @@
         JOIN eval_history c ON b.emp_code = c.emp_code
         WHERE 1=1
         AND guide_code  = 1
-        AND a.mng_code = #{admin_code}
+        AND (a.mng_code = #{admin_code} OR #{admin_assign_code} = 7)
         
         <!-- 전체 조회 -->
         <if test="Type == 'all' and Word != null and Word != ''">
@@ -93,7 +93,7 @@
 		JOIN department c ON a.dep_code = c.dep_code
 		LEFT JOIN eval_history e ON a.emp_code = e.emp_code
 		  AND e.eval_date = CURDATE()
-		WHERE a.mng_code = #{admin_code}
+		WHERE (a.mng_code = #{admin_code} OR #{admin_assign_code} = 7)
 		  AND e.emp_code IS NULL
         <!--AND dep_code = #{depCode} -->
         
