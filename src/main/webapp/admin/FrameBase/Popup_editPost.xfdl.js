@@ -67,7 +67,9 @@
             obj = new Grid("attach_grid","101","260","488","90",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
+
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"405\"/><Column size=\"81\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"삭제\"/></Band><Band id=\"body\"><Cell text=\"bind:attach_name\"/><Cell col=\"1\" text=\"삭제\" textAlign=\"center\" edittype=\"button\" displaytype=\"buttoncontrol\"/></Band></Format></Formats>");
+
             this.addChild(obj.name, obj);
 
             obj = new Button("Button01","350","380","70","30",null,null,null,null,null,null,this);
@@ -316,6 +318,7 @@
 
         this.btn_close_ondblclick = function(obj,e)
         {
+        	this.opener.fnSearch();
         	this.close('Close Popup');
         };
 
