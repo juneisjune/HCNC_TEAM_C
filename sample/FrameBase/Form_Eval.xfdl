@@ -4,16 +4,16 @@
     <Layouts>
       <Layout height="768" mobileorientation="landscape" width="1024" stepcount="0">
         <Static id="staTitle" taborder="0" text="직원 업무 평가 조회" left="30" top="20" width="325" height="50" onclick="staTitle_onclick" cssclass="stc_title"/>
-        <Button id="btnFilterSearch" taborder="3" text="조회" left="940" top="110" width="80" height="30" onclick="btnFilterSearch_onclick" cssclass="btn_search"/>
-        <Grid id="grdEvaluation" taborder="6" left="30" top="150" width="992" height="480" binddataset="dsEvaluation" oncelldblclick="grdEvaluation_oncelldblclick">
+        <Button id="btnFilterSearch" taborder="3" text="조회" left="955" top="135" width="80" height="30" onclick="btnFilterSearch_onclick" cssclass="btn_search"/>
+        <Grid id="grdEvaluation" taborder="6" left="545" top="170" width="490" height="460" binddataset="dsEvaluation" oncelldblclick="grdEvaluation_oncelldblclick">
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="198"/>
-                <Column size="198"/>
-                <Column size="198"/>
-                <Column size="198"/>
-                <Column size="198"/>
+                <Column size="97"/>
+                <Column size="98"/>
+                <Column size="98"/>
+                <Column size="98"/>
+                <Column size="97"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
@@ -36,15 +36,49 @@
             </Format>
           </Formats>
         </Grid>
-        <Combo id="cmbSearchType" taborder="1" text="전체" left="30" top="110" width="80" height="30" onitemchanged="dsEvaluation_onload" innerdataset="dsSearchType" value="all" index="0" codecolumn="CODE" datacolumn="CODE_NM"/>
-        <Edit id="edtSearchText" taborder="2" left="120" top="110" width="140" height="30" onchanged="edtSearchText_onchanged"/>
-        <Calendar id="calStartDate" taborder="4" left="270" top="110" width="110" height="30" onchanged="Calendar00_onchanged"/>
-        <Calendar id="calEndDate" taborder="5" left="410" top="110" width="110" height="30" onchanged="calEndDate_onchanged"/>
-        <Static id="Static00" taborder="7" text="~" left="390" top="110" width="30" height="30" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Combo id="cmbSearchType" taborder="1" text="전체" left="575" top="100" width="80" height="30" onitemchanged="dsEvaluation_onload" innerdataset="dsSearchType" value="all" index="0" codecolumn="CODE" datacolumn="CODE_NM"/>
+        <Edit id="edtSearchText" taborder="2" left="665" top="100" width="110" height="30" onchanged="edtSearchText_onchanged"/>
+        <Calendar id="calStartDate" taborder="4" left="785" top="100" width="110" height="30" onchanged="Calendar00_onchanged"/>
+        <Calendar id="calEndDate" taborder="5" left="925" top="100" width="110" height="30" onchanged="calEndDate_onchanged"/>
+        <Static id="Static00" taborder="7" text="~" left="905" top="100" width="30" height="30" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Grid id="grdEvalAll" taborder="8" left="30" top="170" width="490" height="460" binddataset="dsEvalAll">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="97"/>
+                <Column size="98"/>
+                <Column size="97"/>
+                <Column size="98"/>
+                <Column size="98"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사번"/>
+                <Cell col="1" text="이름"/>
+                <Cell col="2" text="성별"/>
+                <Cell col="3" text="직책"/>
+                <Cell col="4" text="부서"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:empCode" textAlign="center"/>
+                <Cell col="1" text="bind:name" textAlign="center"/>
+                <Cell col="2" text="bind:gender" textAlign="center"/>
+                <Cell col="3" text="bind:assignName" textAlign="center"/>
+                <Cell col="4" text="bind:depName" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static01" taborder="9" text="평가 조회" left="30" top="130" width="100" height="50" font="bold 18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="Static02" taborder="10" text="평가 결과" left="545" top="130" width="95" height="45" font="bold 18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Button id="btnRegister" taborder="11" text="평가" left="440" top="135" width="80" height="30" onclick="btnRegister_onclick" cssclass="btn_edit"/>
       </Layout>
     </Layouts>
     <Objects>
-      <Dataset id="dsEvaluation" onload="dsEvaluation_onload">
+      <Dataset id="dsEvaluation" onload="dsEvaluation_onload" keystring="S:-evalDate">
         <ColumnInfo>
           <Column id="empCode" type="STRING" size="256"/>
           <Column id="name" type="STRING" size="256"/>
@@ -52,7 +86,6 @@
           <Column id="totalScore" type="INT" size="256"/>
           <Column id="evalGrade" type="STRING" size="256"/>
           <Column id="guideCode" type="STRING" size="256"/>
-          <Column id="regName" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="dsSearchType">
@@ -73,14 +106,6 @@
             <Col id="CODE">name</Col>
             <Col id="CODE_NM">이름</Col>
           </Row>
-          <Row>
-            <Col id="CODE">totalScore</Col>
-            <Col id="CODE_NM">점수</Col>
-          </Row>
-          <Row>
-            <Col id="CODE">grade</Col>
-            <Col id="CODE_NM">등급</Col>
-          </Row>
         </Rows>
       </Dataset>
       <Dataset id="dsSearch">
@@ -98,15 +123,18 @@
           </Row>
         </Rows>
       </Dataset>
+      <Dataset id="dsEvalAll">
+        <ColumnInfo>
+          <Column id="empCode" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="gender" type="STRING" size="256"/>
+          <Column id="assignName" type="STRING" size="256"/>
+          <Column id="depName" type="STRING" size="256"/>
+          <Column id="evalDate" type="STRING" size="256"/>
+          <Column id="evalMonth" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
     </Objects>
-    <InitValue/>
-    <Bind>
-      <BindItem id="item0" compid="grdEvaluation" propid="binddataset" datasetid="dsEvaluation" columnid=""/>
-      <BindItem id="item1" compid="cmbSearchType" propid="value" datasetid="dsSearch" columnid="Type"/>
-      <BindItem id="item2" compid="edtSearchText" propid="value" datasetid="dsSearch" columnid="Word"/>
-      <BindItem id="item3" compid="calStartDate" propid="value" datasetid="dsSearch" columnid="StartDate"/>
-      <BindItem id="item4" compid="calEndDate" propid="value" datasetid="dsSearch" columnid="EndDate"/>
-    </Bind>
     <Script type="xscript5.1"><![CDATA[this.btnFilterSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo) {
     this.fnSearch();
 };
@@ -115,6 +143,7 @@ this.Form_Eval_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo) {
 	
     this.dsSearch.setColumn(0, "Type", "all");
     this.fnSearch();
+	this.fnEvalSearch();
 };
 
 
@@ -169,11 +198,49 @@ this.fnSearch = function() {
     var inData = "dsSearch=dsSearch";
     var outData = "dsEvaluation=dsEvaluation";
     var strArg = "";
-    var callBackFnc = "fnCallback";
+    var callBackFnc = "fnSearchCallback";
     var isAsync = true;
 
     this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 };
+
+this.fnEvalSearch = function() {
+    var searchType = this.dsSearch.getColumn(0, "Type");
+    var searchWord = this.dsSearch.getColumn(0, "Word");
+
+	
+    console.log("cmbSearchType = " + searchType);
+    console.log("edtSearchText = " + searchWord);
+    
+    var strSvcID = "evalAll";
+    var strSvcUrl = "svc::evalAll.do";
+    var inData = "dsSearch=dsSearch";
+    var outData = "dsEvalAll=dsEvalAll";
+    var strArg = "";
+    var callBackFnc = "fnEvalCallback";
+    var isAsync = true;
+	
+	this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+// 조회 트랜잭션의 콜백 함수 (조회 그리드)
+this.fnSearchCallback = function(strSvcID, nErrorCode, strErrorMsg) {
+    if (nErrorCode < 0) {
+        alert("조회 데이터 로드 실패: " + strErrorMsg);
+    } else {
+        console.log("조회 데이터 로드 성공");
+    }
+};
+
+// 평가 트랜잭션의 콜백 함수 (평가 그리드)
+this.fnEvalCallback = function(strSvcID, nErrorCode, strErrorMsg) {
+    if (nErrorCode < 0) {
+        alert("평가 데이터 로드 실패: " + strErrorMsg);
+    } else {
+        console.log("평가 데이터 로드 성공");
+    }
+};
+
 
 this.btnReset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo) {
     this.dsSearch.setColumn(0, "Type", "all");
@@ -213,6 +280,46 @@ this.showPopup = function(objParam)
 	popup.style.set_overlaycolor("#6666664C");
 	popup.form.style.set_border("1 solid #4c5a6f");
 };
-]]></Script>
+
+this.showEvalPopup = function(objParam) 
+{		  
+	popup = new nexacro.ChildFrame;
+	popup.init("popRegister", 0, 0, 800, 700, null, null, "FrameBase::Form_EvalRegister.xfdl");
+	popup.set_dragmovetype("all");
+	popup.set_layered("true");
+	popup.set_autosize(true);
+	popup.set_showtitlebar("Popup Title");	
+	popup.set_showstatusbar(false);
+	popup.set_resizable(true);
+	popup.set_openalign("center middle");
+	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
+	popup.style.set_overlaycolor("#6666664C");
+	popup.form.style.set_border("1 solid #4c5a6f");
+};
+
+this.btnRegister_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.dsEvalAll.getRowCount() === 0) {
+        alert("평가할 데이터를 선택해 주세요.");
+        return;
+    }
+	
+	var objParam = {empCode:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "empCode")
+                  , name:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "name")
+				  , assignName:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "assignName")
+				  , depName:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "depName")
+				  };
+	this.showEvalPopup(objParam);
+};]]></Script>
+    <InitValue/>
+    <Bind>
+      <BindItem id="item0" compid="grdEvaluation" propid="binddataset" datasetid="dsEvaluation" columnid=""/>
+      <BindItem id="item1" compid="cmbSearchType" propid="value" datasetid="dsSearch" columnid="Type"/>
+      <BindItem id="item2" compid="edtSearchText" propid="value" datasetid="dsSearch" columnid="Word"/>
+      <BindItem id="item3" compid="calStartDate" propid="value" datasetid="dsSearch" columnid="StartDate"/>
+      <BindItem id="item4" compid="calEndDate" propid="value" datasetid="dsSearch" columnid="EndDate"/>
+      <BindItem id="item5" compid="grdEvalAll" propid="binddataset" datasetid="dsEvalAll" columnid=""/>
+      <BindItem id="item6" compid="grdEvalAll" propid="binddataset" datasetid="dsEvaluation" columnid=""/>
+    </Bind>
   </Form>
 </FDL>

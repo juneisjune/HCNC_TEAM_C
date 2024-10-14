@@ -133,14 +133,6 @@
         	this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
 
-
-        this.btnReset_onclick = function(obj,e)
-        {
-        	this.dsSearch.setColumn(0, "Type", "all");
-            this.dsSearch.setColumn(0, "Word", "");
-
-        };
-
         this.showPopup = function(objParam)
         {
         	popup = new nexacro.ChildFrame;

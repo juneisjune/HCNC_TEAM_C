@@ -41,6 +41,69 @@
         <Button id="btnRegister" taborder="5" text="평가" left="952" top="110" width="70" height="30" onclick="btnRegister_onclick" cssclass="btn_edit"/>
       </Layout>
     </Layouts>
+    <Script type="xscript5.1"><![CDATA[this.btnFilterSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+this.Form_Eval_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo) {	
+	
+	this.dsSearch.setColumn(0, "Type", "all");
+    this.fnSearch();
+};
+	var admin_code = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
+	
+	this.dsSearch.setColumn(0, "admin_code", admin_code);
+
+this.fnSearch = function() {
+    var searchType = this.dsSearch.getColumn(0, "Type");
+    var searchWord = this.dsSearch.getColumn(0, "Word");
+
+	
+    console.log("cmbSearchType = " + searchType);
+    console.log("edtSearchText = " + searchWord);
+    
+    var strSvcID = "evalAll";
+    var strSvcUrl = "svc::evalAll.do";
+    var inData = "dsSearch=dsSearch";
+    var outData = "dsEvalAll=dsEvalAll";
+    var strArg = "";
+    var callBackFnc = "fnCallback";
+    var isAsync = true;
+	
+	this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+this.showPopup = function(objParam) 
+{		  
+	popup = new nexacro.ChildFrame;
+	popup.init("popRegister", 0, 0, 800, 700, null, null, "FrameBase::Form_EvalRegister.xfdl");
+	popup.set_dragmovetype("all");
+	popup.set_layered("true");
+	popup.set_autosize(true);
+	popup.set_showtitlebar("Popup Title");
+	popup.set_showstatusbar(false);
+	popup.set_resizable(true);
+	popup.set_openalign("center middle");
+	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
+	popup.style.set_overlaycolor("#6666664C");
+	popup.form.style.set_border("1 solid #4c5a6f");
+};
+
+this.btnRegister_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.dsEvalAll.getRowCount() === 0) {
+        alert("평가할 데이터를 선택해 주세요.");
+        return;
+    }
+	
+	var objParam = {empCode:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "empCode")
+                  , name:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "name")
+				  , assignName:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "assignName")
+				  , depName:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "depName")
+				  };
+	this.showPopup(objParam);
+};]]></Script>
     <Objects>
       <Dataset id="dsEvalAll" onload="dsEvaluation_onload">
         <ColumnInfo>
@@ -93,76 +156,5 @@
       <BindItem id="item1" compid="cmbSearchType" propid="value" datasetid="dsSearch" columnid="Type"/>
       <BindItem id="item2" compid="edtSearchText" propid="value" datasetid="dsSearch" columnid="Word"/>
     </Bind>
-    <Script type="xscript5.1"><![CDATA[this.btnFilterSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	this.fnSearch();
-};
-
-this.Form_Eval_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo) {	
-	
-	this.dsSearch.setColumn(0, "Type", "all");
-    this.fnSearch();
-};
-	var admin_code = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
-	
-	this.dsSearch.setColumn(0, "admin_code", admin_code);
-
-this.fnSearch = function() {
-    var searchType = this.dsSearch.getColumn(0, "Type");
-    var searchWord = this.dsSearch.getColumn(0, "Word");
-
-	
-    console.log("cmbSearchType = " + searchType);
-    console.log("edtSearchText = " + searchWord);
-    
-    var strSvcID = "evalAll";
-    var strSvcUrl = "svc::evalAll.do";
-    var inData = "dsSearch=dsSearch";
-    var outData = "dsEvalAll=dsEvalAll";
-    var strArg = "";
-    var callBackFnc = "fnCallback";
-    var isAsync = true;
-	
-	this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
-};
-
-
-this.btnReset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	this.dsSearch.setColumn(0, "Type", "all");
-    this.dsSearch.setColumn(0, "Word", "");
-
-};
-
-this.showPopup = function(objParam) 
-{		  
-	popup = new nexacro.ChildFrame;
-	popup.init("popRegister", 0, 0, 800, 700, null, null, "FrameBase::Form_EvalRegister.xfdl");
-	popup.set_dragmovetype("all");
-	popup.set_layered("true");
-	popup.set_autosize(true);
-	popup.set_showtitlebar("Popup Title");
-	popup.set_showstatusbar(false);
-	popup.set_resizable(true);
-	popup.set_openalign("center middle");
-	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
-	popup.style.set_overlaycolor("#6666664C");
-	popup.form.style.set_border("1 solid #4c5a6f");
-};
-
-this.btnRegister_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	if (this.dsEvalAll.getRowCount() === 0) {
-        alert("평가할 데이터를 선택해 주세요.");
-        return;
-    }
-	
-	var objParam = {empCode:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "empCode")
-                  , name:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "name")
-				  , assignName:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "assignName")
-				  , depName:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "depName")
-				  };
-	this.showPopup(objParam);
-};]]></Script>
   </Form>
 </FDL>

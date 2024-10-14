@@ -161,6 +161,7 @@ this.fnSaveEvaluationCallback = function(strSvcID, nErrorCode, strErrorMsg) {
 
     alert("평가가 성공적으로 저장되었습니다.");
     this.close();
+	this.opener.fnEvalSearch();
 	this.opener.fnSearch();
 };
 
