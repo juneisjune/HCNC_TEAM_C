@@ -32,50 +32,46 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Grid("grd_notice","30","120","1096","400",null,null,null,null,null,null,this);
+            obj = new Grid("grd_notice","30","150","1096","400",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Post");
             obj.set_taborder("0");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"85\"/><Column size=\"244\"/><Column size=\"297\"/><Column size=\"129\"/><Column size=\"85\"/><Column size=\"64\"/><Column size=\"94\"/><Column size=\"48\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell displaytype=\"none\" edittype=\"none\" text=\"0\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"게시글 번호\"/><Cell col=\"2\" text=\"제목\"/><Cell col=\"3\" text=\"내용\"/><Cell col=\"4\" text=\"작성일자\"/><Cell col=\"5\" text=\"작성자\"/><Cell col=\"6\" text=\"조회수\"/><Cell col=\"7\" text=\"수정 하기\"/><Cell col=\"8\" text=\"삭제\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:checked\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"bind:post_code\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:title\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:content\"/><Cell col=\"4\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"5\" text=\"bind:upd_name\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:view_count\" textAlign=\"center\"/><Cell col=\"7\" displaytype=\"buttoncontrol\" text=\"수정 하기\"/><Cell col=\"8\" displaytype=\"buttoncontrol\" text=\"삭제\" edittype=\"button\"/></Band></Format></Formats>");
+
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"71\"/><Column size=\"284\"/><Column size=\"306\"/><Column size=\"95\"/><Column size=\"85\"/><Column size=\"64\"/><Column size=\"70\"/><Column size=\"70\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell displaytype=\"none\" edittype=\"none\" text=\"0\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"번호\"/><Cell col=\"2\" text=\"제목\"/><Cell col=\"3\" text=\"내용\"/><Cell col=\"4\" text=\"작성일자\"/><Cell col=\"5\" text=\"작성자\"/><Cell col=\"6\" text=\"조회수\"/><Cell col=\"7\" text=\"수정\"/><Cell col=\"8\" text=\"삭제\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:checked\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"bind:post_code\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:title\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:content\"/><Cell col=\"4\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"5\" text=\"bind:emp_name\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:view_count\" textAlign=\"center\"/><Cell col=\"7\" displaytype=\"buttoncontrol\" text=\"수정\"/><Cell col=\"8\" displaytype=\"buttoncontrol\" text=\"삭제\" edittype=\"button\"/></Band></Format></Formats>");
+
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","922","82","60","30",null,null,null,null,null,null,this);
+            obj = new Static("st_selectedCount","30","110","150","30",null,null,null,null,null,null,this);
+            obj.set_text("0건 선택됨");
             obj.set_taborder("1");
+            obj.set_color("#6f0520");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btn_delete","1056","110","70","30",null,null,null,null,null,null,this);
+            obj.set_text("삭제");
+            obj.set_taborder("2");
+            obj.set_cssclass("btn_delete");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btn_newPost","970","110","70","30",null,null,null,null,null,null,this);
+            obj.set_taborder("3");
+            obj.set_text("등록");
+            obj.set_cssclass("btn_regist");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("Button00","885","110","70","30",null,null,null,null,null,null,this);
+            obj.set_taborder("4");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
-            obj = new Static("st_selectedCount","40","535","150","30",null,null,null,null,null,null,this);
-            obj.set_text("0건 선택됨");
-            obj.set_taborder("2");
-            obj.set_color("#6f0520");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_delete","1036","545","90","30",null,null,null,null,null,null,this);
-            obj.set_text("삭제");
-            obj.set_taborder("3");
-            obj.set_cssclass("btn_delete");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btn_newPost","996","82","130","30",null,null,null,null,null,null,this);
-            obj.set_taborder("4");
-            obj.set_text("새 공지사항 등록");
-            obj.set_cssclass("btn_regist");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("Button00","933","545","90","30",null,null,null,null,null,null,this);
-            obj.set_taborder("5");
-            obj.set_text("상세 보기");
-            obj.set_cssclass("btn_normal");
-            this.addChild(obj.name, obj);
-
             obj = new Static("Static00_00","30","23","222","50",null,null,null,null,null,null,this);
-            obj.set_taborder("6");
+            obj.set_taborder("5");
             obj.set_text("공지사항 관리");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
             obj = new Menu("Menu00","252","198","76","152",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
+            obj.set_taborder("6");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -385,7 +381,6 @@
             this.grd_notice.addEventHandler("oncellclick",this.grd_notice_oncellclick,this);
             this.grd_notice.addEventHandler("onheadclick",this.grd_notice_onheadclick,this);
             this.grd_notice.addEventHandler("oncelldblclick",this.grd_notice_oncelldblclick,this);
-            this.btn_Search.addEventHandler("onclick",this.Button00_onclick,this);
             this.st_selectedCount.addEventHandler("onclick",this.st_selectedCount_onclick,this);
             this.btn_delete.addEventHandler("onclick",this.btn_delete_onclick,this);
             this.btn_newPost.addEventHandler("onclick",this.btn_newPost_onclick,this);

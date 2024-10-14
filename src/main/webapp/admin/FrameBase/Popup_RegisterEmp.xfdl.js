@@ -14,7 +14,7 @@
             this.set_background("whitesmoke");
             if (Form == this.constructor)
             {
-                this._setFormPosition(850,390);
+                this._setFormPosition(840,390);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -28,40 +28,40 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static","150","20","560","40",null,null,null,null,null,null,this);
+            obj = new Static("Static","130","20","560","40",null,null,null,null,null,null,this);
             obj.set_text("직원 정보 등록");
             obj.set_background("whitesmoke");
             obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblName","60","90","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblName","20","90","80","25",null,null,null,null,null,null,this);
             obj.set_text("이름");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtName","120","90","250","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtName","100","90","250","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Name");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblBirth","480","90","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblBirth","450","90","80","25",null,null,null,null,null,null,this);
             obj.set_text("생년월일");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calBirth","540","90","250","25",null,null,null,null,null,null,this);
+            obj = new Calendar("calBirth","530","90","250","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_datecolumn("Birth");
             obj.set_dateformat("yyyy.MM.dd");
             obj.set_editformat("yyyy.MM.dd");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblGender","60","265","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblGender","20","265","80","25",null,null,null,null,null,null,this);
             obj.set_text("성별");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmbGender","120","265","250","25",null,null,null,null,null,null,this);
+            obj = new Combo("cmbGender","100","265","250","25",null,null,null,null,null,null,this);
             obj.set_innerdataset("ds_gender");
             obj.set_codecolumn("value");
             obj.set_datacolumn("text");
@@ -70,89 +70,84 @@
             obj.set_value("bind:Gender");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblPhone","480","265","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblPhone","450","265","80","25",null,null,null,null,null,null,this);
             obj.set_text("전화번호");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtPhone","540","265","250","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtPhone","530","265","250","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Phone");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblAddress","60","175","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblAddress","20","175","80","25",null,null,null,null,null,null,this);
             obj.set_text("주소");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtAddress","120","175","250","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtAddress","100","175","250","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Address");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblEmail","480","218","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblEmail","450","218","80","25",null,null,null,null,null,null,this);
             obj.set_text("이메일");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtEmail","540","218","250","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtEmail","530","218","250","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Email");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblJoinDate","480","175","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblJoinDate","450","175","80","25",null,null,null,null,null,null,this);
             obj.set_text("입사일");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calJoinDate","540","175","250","25",null,null,null,null,null,null,this);
+            obj = new Calendar("calJoinDate","530","175","250","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_datecolumn("joinDate");
             obj.set_dateformat("yyyy.MM.dd");
             obj.set_editformat("yyyy.MM.dd");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblAccount","60","218","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblAccount","20","218","80","25",null,null,null,null,null,null,this);
             obj.set_text("계좌번호");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtAccount","120","218","250","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtAccount","100","218","250","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Account");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblID","60","130","95","25",null,null,null,null,null,null,this);
+            obj = new Static("lblID","20","130","80","25",null,null,null,null,null,null,this);
             obj.set_text("아이디");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtID","120","130","250","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtID","100","130","250","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:ID");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblPassword","480","130","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblPassword","450","130","80","25",null,null,null,null,null,null,this);
             obj.set_text("비밀번호");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtPassword","540","130","250","25",null,null,null,null,null,null,this);
+            obj = new Edit("edtPassword","530","130","250","25",null,null,null,null,null,null,this);
             obj.getSetter("binddataset").set("ds_employee");
             obj.set_text("bind:Password");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnRegister","340","330","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btnRegister","370","330","80","30",null,null,null,null,null,null,this);
             obj.set_text("등록");
             obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnClose","450","330","80","30",null,null,null,null,null,null,this);
-            obj.set_text("닫기");
-            obj.set_cssclass("btn_delete");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("Button00","380","130","70","25",null,null,null,null,null,null,this);
+            obj = new Button("Button00","360","130","70","25",null,null,null,null,null,null,this);
             obj.set_taborder("23");
             obj.set_text("중복 확인");
             obj.set_cssclass("btn_normal");
@@ -160,7 +155,7 @@
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",850,390,this,function(p){});
+            obj = new Layout("default","",840,390,this,function(p){});
             this.addLayout(obj.name, obj);
             
             // BindItem Information
@@ -396,7 +391,6 @@
             this.edtPhone.addEventHandler("onchanged",this.edtPhone_onchanged,this);
             this.edtID.addEventHandler("onchanged",this.edtID_onchanged,this);
             this.btnRegister.addEventHandler("onclick",this.btnRegister_onclick,this);
-            this.btnClose.addEventHandler("onclick",this.btnClose_onclick,this);
             this.Button00.addEventHandler("onclick",this.Button00_onclick,this);
         };
         this.loadIncludeScript("Popup_RegisterEmp.xfdl");

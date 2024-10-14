@@ -38,57 +38,48 @@
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_offList","28","160","943","460",null,null,null,null,null,null,this);
+            obj = new Grid("grd_offList","28","160","1070","460",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("ds_doRequestList");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"63\"/><Column size=\"80\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"48\"/><Column size=\"193\"/><Column size=\"80\"/><Column size=\"79\"/><Column size=\"66\"/><Column size=\"84\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\"/><Cell col=\"3\" text=\"시작일\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"normal\"/><Cell col=\"4\" text=\"종료일\" calendardateformat=\"yyyy-MM-dd\"/><Cell col=\"5\" text=\"구분\"/><Cell col=\"6\" text=\"사유\"/><Cell col=\"7\" text=\"부서장결재\"/><Cell col=\"8\" text=\"이사결재\"/><Cell col=\"9\" text=\"대표결재\"/><Cell col=\"10\" text=\"결과\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chk\"/><Cell col=\"1\" text=\"bind:name\"/><Cell col=\"2\" text=\"bind:dep_name\"/><Cell col=\"3\" text=\"bind:start_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"none\" calendardisplayinvalidtype=\"none\" calendardisplaynulltype=\"none\" calendarpopuptype=\"none\"/><Cell col=\"4\" text=\"bind:end_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\"/><Cell col=\"5\" text=\"bind:off_type\"/><Cell col=\"6\" text=\"bind:reason\"/><Cell col=\"7\" text=\"bind:mng_confirm\"/><Cell col=\"8\" text=\"bind:md_confirm\"/><Cell col=\"9\" text=\"bind:ceo_confirm\"/><Cell col=\"10\" text=\"bind:off_result\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"100\"/><Column size=\"120\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"72\"/><Column size=\"193\"/><Column size=\"89\"/><Column size=\"88\"/><Column size=\"74\"/><Column size=\"84\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\"/><Cell col=\"3\" text=\"시작일\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"normal\"/><Cell col=\"4\" text=\"종료일\" calendardateformat=\"yyyy-MM-dd\"/><Cell col=\"5\" text=\"구분\"/><Cell col=\"6\" text=\"사유\"/><Cell col=\"7\" text=\"부서장결재\"/><Cell col=\"8\" text=\"이사결재\"/><Cell col=\"9\" text=\"대표결재\"/><Cell col=\"10\" text=\"결과\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chk\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:dep_name\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:start_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"none\" calendardisplayinvalidtype=\"none\" calendardisplaynulltype=\"none\" calendarpopuptype=\"none\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:end_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:off_type\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:reason\"/><Cell col=\"7\" text=\"bind:mng_confirm\" textAlign=\"center\"/><Cell col=\"8\" text=\"bind:md_confirm\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:ceo_confirm\" textAlign=\"center\"/><Cell col=\"10\" text=\"bind:off_result\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_confirm","782","634","80","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_confirm","938","110","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("승인");
             obj.set_textAlign("center");
             obj.set_cssclass("btn_check");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_return","890","634","80","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_return","1025","110","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("반려");
             obj.set_textAlign("center");
             obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
-            obj = new GroupBox("GroupBox_Search","340","90","630","60",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_Confirm","345","110","190","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
-            obj.set_text("조회");
-            obj.set_font("bold 14px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
-            obj.set_visible("true");
-            obj.set_opacity("1");
-            obj.set_tooltiptype("default");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_Confirm","672","109","190","30",null,null,null,null,null,null,this);
+            obj = new Static("Static01_00","272","110","84","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
-            this.addChild(obj.name, obj);
-
-            obj = new Static("Static01_00","592","109","84","30",null,null,null,null,null,null,this);
-            obj.set_taborder("6");
             obj.set_text("시작일");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Confirm","402","109","190","30",null,null,null,null,null,null,this);
-            obj.set_taborder("7");
+            obj = new Edit("edt_Confirm","82","110","190","30",null,null,null,null,null,null,this);
+            obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static01","328","109","84","30",null,null,null,null,null,null,this);
-            obj.set_taborder("8");
+            obj = new Static("Static01","8","110","84","30",null,null,null,null,null,null,this);
+            obj.set_taborder("7");
             obj.set_text("이 름");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_offListSearch","890","109","70","30",null,null,null,null,null,null,this);
-            obj.set_taborder("9");
+            obj = new Button("btn_offListSearch","850","110","70","30",null,null,null,null,null,null,this);
+            obj.set_taborder("8");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
@@ -117,6 +108,11 @@
         
         // User Script
         this.registerScript("Form_dayoff_Confirm.xfdl", function() {
+        this.Form_dayoff_Confirm_onload = function(obj,e)
+        {
+        	this.fnSearchList();
+        };
+
         // 조회 함수
         this.fnSearchList = function(){
         	// application 변수에서 emp_code와 assign_code를 가져옴
@@ -291,16 +287,14 @@
 
 
 
-        this.Static00_onclick = function(obj,e)
-        {
 
-        };
 
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
+            this.addEventHandler("onload",this.Form_dayoff_Confirm_onload,this);
             this.Static00.addEventHandler("onclick",this.Static00_onclick,this);
             this.grd_offList.addEventHandler("onheadclick",this.grd_offList_onheadclick,this);
             this.btn_confirm.addEventHandler("onclick",this.btn_confirm_onclick,this);

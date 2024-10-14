@@ -41,7 +41,7 @@
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_Title","120","90","600","30",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_Title","120","90","820","30",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
             this.addChild(obj.name, obj);
@@ -66,7 +66,7 @@
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("Edit_ViewCount","750","130","100","30",null,null,null,null,null,null,this);
+            obj = new Edit("Edit_ViewCount","750","130","190","30",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
             this.addChild(obj.name, obj);
@@ -86,19 +86,14 @@
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("Grid_Attachments","120","550","599","100",null,null,null,null,null,null,this);
+            obj = new Grid("Grid_Attachments","120","550","700","100",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Attachments");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"50\"/><Column size=\"547\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"번호\"/><Cell col=\"1\" text=\"파일명\"/></Band><Band id=\"body\"><Cell text=\"expr:currow + 1\"/><Cell col=\"1\" text=\"bind:attach_name\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"85\"/><Column size=\"612\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"번호\"/><Cell col=\"1\" text=\"파일명\"/></Band><Band id=\"body\"><Cell text=\"expr:currow + 1\"/><Cell col=\"1\" text=\"bind:attach_name\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button_Download","730","610","100","40",null,null,null,null,null,null,this);
+            obj = new Button("Button_Download","840","550","100","100",null,null,null,null,null,null,this);
             obj.set_text("다운로드");
             obj.set_cssclass("btn_download");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("Button_Close","840","610","100","40",null,null,null,null,null,null,this);
-            obj.set_text("닫기");
-            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new MaskEdit("MaskEdit00","430","128","213","34",null,null,null,null,null,null,this);
@@ -264,7 +259,6 @@
             this.Edit_Author.addEventHandler("onchanged",this.Edit_Author_onchanged,this);
             this.Static_Label_Attachments.addEventHandler("onclick",this.Static_Label_Attachments_onclick,this);
             this.Button_Download.addEventHandler("onclick",this.Button_Download_onclick,this);
-            this.Button_Close.addEventHandler("onclick",this.Button_Close_onclick,this);
         };
         this.loadIncludeScript("Popup_DetailPost.xfdl");
         this.loadPreloadList();

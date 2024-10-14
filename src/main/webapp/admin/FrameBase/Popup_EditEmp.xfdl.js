@@ -34,9 +34,9 @@
             obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblPassword","380","198","90","30",null,null,null,null,null,null,this);
+            obj = new Static("lblPassword","370","198","110","30",null,null,null,null,null,null,this);
             obj.set_text("새로운 비밀번호");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edtPassword","490","200","250","30",null,null,null,null,null,null,this);
@@ -45,9 +45,9 @@
             obj.set_text("bind:password");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblName","40","100","80","30",null,null,null,null,null,null,this);
+            obj = new Static("lblName","15","100","90","30",null,null,null,null,null,null,this);
             obj.set_text("이름");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edtName","100","100","250","30",null,null,null,null,null,null,this);
@@ -55,9 +55,9 @@
             obj.set_text("bind:name");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblBirth","390","100","80","30",null,null,null,null,null,null,this);
+            obj = new Static("lblBirth","380","100","90","30",null,null,null,null,null,null,this);
             obj.set_text("생년월일");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Calendar("calBirth","490","100","250","30",null,null,null,null,null,null,this);
@@ -67,9 +67,9 @@
             obj.set_editformat("yyyy.MM.dd");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblGender","40","153","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblGender","15","153","90","25",null,null,null,null,null,null,this);
             obj.set_text("성별");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Combo("cmbGender","100","150","250","30",null,null,null,null,null,null,this);
@@ -80,9 +80,9 @@
             obj.set_value("bind:gender");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblPhone","40","203","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblPhone","15","203","90","25",null,null,null,null,null,null,this);
             obj.set_text("전화번호");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edtPhone","100","200","250","30",null,null,null,null,null,null,this);
@@ -90,9 +90,9 @@
             obj.set_text("bind:phone");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblAddress","390","153","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblAddress","380","153","90","25",null,null,null,null,null,null,this);
             obj.set_text("주소");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edtAddress","490","150","250","30",null,null,null,null,null,null,this);
@@ -100,9 +100,9 @@
             obj.set_text("bind:address");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblEmail","390","253","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblEmail","380","253","90","25",null,null,null,null,null,null,this);
             obj.set_text("이메일");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edtEmail","490","250","250","30",null,null,null,null,null,null,this);
@@ -110,9 +110,9 @@
             obj.set_text("bind:email");
             this.addChild(obj.name, obj);
 
-            obj = new Static("lblAccount","40","253","80","25",null,null,null,null,null,null,this);
+            obj = new Static("lblAccount","15","253","90","25",null,null,null,null,null,null,this);
             obj.set_text("계좌번호");
-            obj.set_textAlign("left");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Edit("edtAccount","100","250","250","30",null,null,null,null,null,null,this);
@@ -120,14 +120,9 @@
             obj.set_text("bind:account");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnUpdate","300","360","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btnUpdate","350","340","80","30",null,null,null,null,null,null,this);
             obj.set_text("수정");
             obj.set_cssclass("btn_edit");
-            this.addChild(obj.name, obj);
-
-            obj = new Button("btnClose","400","360","80","30",null,null,null,null,null,null,this);
-            obj.set_text("닫기");
-            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -320,7 +315,6 @@
             this.addEventHandler("onload",this.Popup_EditEmp_onload,this);
             this.lblBirth.addEventHandler("onclick",this.lblBirth_onclick,this);
             this.btnUpdate.addEventHandler("onclick",this.btnUpdate_onclick,this);
-            this.btnClose.addEventHandler("onclick",this.btnClose_onclick,this);
         };
         this.loadIncludeScript("Popup_EditEmp.xfdl");
         this.loadPreloadList();
