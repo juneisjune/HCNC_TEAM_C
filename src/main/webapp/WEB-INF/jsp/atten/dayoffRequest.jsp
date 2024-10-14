@@ -62,7 +62,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
-            width: 170px;
+            width: 100px;
             background-color: #F0F0F0;
         }
         
@@ -144,13 +144,22 @@
                     <td>
                         직책 
                         <input type="text" id="assignName" name="assignName" value="${emp.assignName}" readonly>
-                    </td>    
+                     </td>
+ 
                 </tr>
                 <tr>
+                 <td colspan="4">
+                        총 연차
+                    <input type="text" id="assignName" name="dayoffCnt" value="${emp.dayoffCnt}" readonly>
+                        잔여 연차 
+                    <input type="text" id="assignName" name="remainCnt" value="${emp.remainCnt}" readonly>
+                 </td>  
+                </tr>                
+                <tr>
                     <td colspan="4">
-                        연차 시작일
-                        <input type="date" id="startDate" name="startDate" required>  
-                        연차 종료일		<input type="date" id="endDate" name="endDate" required>
+                        시작일
+                    <input type="date" id="startDate" name="startDate" required>  
+                        종료일		<input type="date" id="endDate" name="endDate" required>
                         <label for="offCode">연차 사유 선택</label>
                         
                         <select id="offCode" name="offCode" required>

@@ -121,10 +121,7 @@
                     <th>성별</th>
                     <td><form:input path="gender" readonly="true" /></td>
                 </tr>
-                <tr>
-                    <th>연차</th>
-                    <td>총 연차: <form:input path="dayoffCnt" readonly="true" /> 잔여 연차: <form:input path="remainCnt" readonly="true" /></td>
-                </tr>
+                
                 <tr>
                     <th>이메일</th>
                     <td><form:input path="email" readonly="true" /></td>
