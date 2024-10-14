@@ -21,11 +21,13 @@
         <Static id="sta_Password" taborder="5" text="비밀번호 입력 :" left="805" top="330" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
         <Edit id="edt_Id" taborder="6" left="925" top="250" width="200" height="60"/>
         <Edit id="edt_Password" taborder="7" left="925" top="330" width="200" height="60" password="true"/>
-        <Div id="div_LoginMain" taborder="13" left="390" top="200" width="380" height="370" background="#b0c4d9"/>
+
+        <Div id="div_LoginMain" taborder="13" left="390" top="200" width="380" height="370" background="#B0C4D9"/>
         <ImageViewer id="img_HcncLogo" taborder="12" left="580" top="60" width="380" height="110" image="url('imagerc::img_hcnc_logo.png')" stretch="fixaspectratio" background="#003366" border="0px none"/>
         <Static id="sta_LoginMain2" taborder="14" text="Login" left="390" top="425" width="380" height="100" textAlign="center" font="42px/normal &quot;HY견고딕&quot;"/>
         <Static id="sta_LoginMain1" taborder="15" text="인사관리시스템" left="390" top="380" width="380" height="80" font="36px/normal &quot;HY견고딕&quot;" textAlign="center"/>
-        <ImageViewer id="img_LoginMain" taborder="16" left="510" top="240" width="140" height="140" stretch="fixaspectratio" image="url('imagerc::인사관리시스템.png')" background="#b0c4d9" border="0px none"/>
+        <ImageViewer id="img_LoginMain" taborder="16" left="510" top="240" width="140" height="140" stretch="fixaspectratio" image="url('imagerc::인사관리시스템.png')" background="#B0C4D9" border="0px none"/>
+
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[

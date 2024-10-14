@@ -114,7 +114,7 @@
 
             obj = new Div("div_LoginMain","390","200","380","370",null,null,null,null,null,null,this);
             obj.set_taborder("13");
-            obj.set_background("#b0c4d9");
+            obj.set_background("#B0C4D9");
             this.addChild(obj.name, obj);
 
             obj = new ImageViewer("img_HcncLogo","580","60","380","110",null,null,null,null,null,null,this);
@@ -143,7 +143,7 @@
             obj.set_taborder("16");
             obj.set_stretch("fixaspectratio");
             obj.set_image("url(\'imagerc::인사관리시스템.png\')");
-            obj.set_background("#b0c4d9");
+            obj.set_background("#B0C4D9");
             obj.set_border("0px none");
             this.addChild(obj.name, obj);
             // Layout Functions

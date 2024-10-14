@@ -18,7 +18,7 @@
             font-size: 35px;
         }
         .container {
-            width: 70%;
+            width: 60%;
             margin: 0 auto;
             background-color: #ffffff;
             border-radius: 8px;
