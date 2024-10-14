@@ -115,6 +115,7 @@ public class NexaPayController {
 		return result;
 	}
 
+	@Transactional
 	@RequestMapping("/insertPay.do")
 	public NexacroResult insertPay(@ParamDataSet(name = "ds_EmpListCopy", required = false) List<Map<String, Object>> param) {
 		NexacroResult result = new NexacroResult();
