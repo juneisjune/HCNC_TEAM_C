@@ -47,6 +47,11 @@ public class NexaPayServiceImpl extends EgovAbstractServiceImpl implements NexaP
 	}
 	
 	@Override
+	public int selectDayOff(Map<String, Object> param) {
+		return nexaPayMapper.selectDayOff(param);
+	}
+	
+	@Override
 	public Integer selectEtc(Map<String, Object> param) {
 		return nexaPayMapper.selectEtc(param);
 	}
