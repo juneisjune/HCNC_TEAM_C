@@ -14,7 +14,7 @@
             this.set_background("whitesmoke");
             if (Form == this.constructor)
             {
-                this._setFormPosition(600,600);
+                this._setFormPosition(600,560);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -34,70 +34,62 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("sta_Title","190","10","220","50",null,null,null,null,null,null,this);
+            obj = new Static("sta_Title","190","25","220","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_textAlign("center");
-            obj.set_font("24pt/normal \"Arial Black\"");
             obj.set_background("whitesmoke");
+            obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_empCode","30","120","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
-            obj.set_text("사번 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("사번");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_name","290","120","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
-            obj.set_text("이름 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("이름");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_assignName","30","210","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
-            obj.set_text("직책 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("직책");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_depName","290","210","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
-            obj.set_text("부서명 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("부서명");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_workDate","30","300","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
-            obj.set_text("근무일자 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("근무일자");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_workType","290","300","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
-            obj.set_text("근무형태 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("근무형태");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_workStart","30","390","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
-            obj.set_text("출근시간 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("출근시간");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_workEnd","290","390","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("8");
-            obj.set_text("퇴근시간 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("퇴근시간");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Save","260","500","80","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_Save","260","480","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("저장");
             obj.set_cssclass("btn_edit");
@@ -160,7 +152,7 @@
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",600,600,this,function(p){});
+            obj = new Layout("default","",600,560,this,function(p){});
             obj.set_mobileorientation("landscape");
             this.addLayout(obj.name, obj);
             

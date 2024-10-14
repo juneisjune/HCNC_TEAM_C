@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Popup_Atten" width="600" height="600" titletext="근태 정보" onload="Popup_Atten_onload" background="whitesmoke">
+  <Form id="Popup_Atten" width="600" height="560" titletext="근태 정보" onload="Popup_Atten_onload" background="whitesmoke">
     <Layouts>
-      <Layout height="600" mobileorientation="landscape" width="600">
-        <Static id="sta_Title" taborder="0" left="190" top="10" width="220" height="50" textAlign="center" font="24pt/normal &quot;Arial Black&quot;" background="whitesmoke"/>
-        <Static id="sta_empCode" taborder="1" text="사번 : " left="30" top="120" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_name" taborder="2" text="이름 : " left="290" top="120" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_assignName" taborder="3" text="직책 : " left="30" top="210" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_depName" taborder="4" text="부서명 : " left="290" top="210" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_workDate" taborder="5" text="근무일자 : " left="30" top="300" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_workType" taborder="6" text="근무형태 : " left="290" top="300" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_workStart" taborder="7" text="출근시간 : " left="30" top="390" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_workEnd" taborder="8" text="퇴근시간 : " left="290" top="390" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Button id="btn_Save" taborder="9" text="저장" left="260" top="500" width="80" height="40" onclick="btn_Save_onclick" cssclass="btn_edit"/>
+      <Layout height="560" mobileorientation="landscape" width="600">
+        <Static id="sta_Title" taborder="0" left="190" top="25" width="220" height="50" textAlign="center" background="whitesmoke" cssclass="stc_popup"/>
+        <Static id="sta_empCode" taborder="1" text="사번" left="30" top="120" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_name" taborder="2" text="이름" left="290" top="120" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_assignName" taborder="3" text="직책" left="30" top="210" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_depName" taborder="4" text="부서명" left="290" top="210" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workDate" taborder="5" text="근무일자" left="30" top="300" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workType" taborder="6" text="근무형태" left="290" top="300" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workStart" taborder="7" text="출근시간" left="30" top="390" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workEnd" taborder="8" text="퇴근시간" left="290" top="390" width="80" height="30" cssclass="stc_stc"/>
+        <Button id="btn_Save" taborder="9" text="저장" left="260" top="480" width="80" height="30" onclick="btn_Save_onclick" cssclass="btn_edit"/>
         <Combo id="cmb_workType" taborder="10" left="370" top="300" width="150" height="30" innerdataset="ds_WorkType" codecolumn="Name" datacolumn="Name" index="0" text="출근" value="출근" font="bold 16px/normal &quot;HY궁서B&quot;"/>
         <Edit id="edt_empCode" taborder="11" left="110" top="122" width="150" height="30" inputtype="number" onchanged="edt_empCode_onchanged"/>
         <Edit id="edt_name" taborder="12" left="370" top="122" width="150" height="30" readonly="true" background="#ffffff"/>
