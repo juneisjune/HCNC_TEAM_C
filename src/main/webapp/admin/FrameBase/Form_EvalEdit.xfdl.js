@@ -39,7 +39,7 @@
             obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdEdit","30","100","750","385",null,null,null,null,null,null,this);
+            obj = new Grid("grdEdit","30","110","750","385",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("dsQuestions");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"63\"/><Column size=\"683\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"35\"/></Rows><Band id=\"head\"><Cell text=\"질문 번호\"/><Cell col=\"1\" text=\"질문 목록\"/></Band><Band id=\"body\"><Cell text=\"bind:guideCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:question\"/></Band></Format></Formats>");

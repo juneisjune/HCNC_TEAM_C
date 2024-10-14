@@ -1,25 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Popup_FindLoginInfo" width="600" height="500" titletext="아이디 및 비밀번호 찾기">
+  <Form id="Popup_FindLoginInfo" width="560" height="350" titletext="아이디 및 비밀번호 찾기">
     <Layouts>
-      <Layout height="500" mobileorientation="landscape" width="600">
-        <GroupBox id="GroupBox_FindPassword" taborder="16" text="새로운 비밀번호 발급" left="10" top="220" width="580" height="80" font="bold 24px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <GroupBox id="GroupBox_FindId" taborder="15" text="아이디 찾기" left="10" top="30" width="580" height="80" font="bold 24px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_NameForId" taborder="0" text="이름 : " left="20" top="70" width="50" height="30" font="18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_EmailForId" taborder="1" text="이메일 : " left="270" top="70" width="70" height="30" font="18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_IdForPassword" taborder="2" text="ID : " left="30" top="260" width="40" height="30" font="18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_EmailForPassword" taborder="3" text="이메일 : " left="270" top="260" width="70" height="30" font="18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Edit id="edt_NameForId" taborder="4" left="80" top="70" width="160" height="30"/>
-        <Edit id="edt_EmailForId" taborder="5" left="340" top="70" width="170" height="30"/>
-        <Edit id="edt_IdForPassword" taborder="6" left="80" top="260" width="160" height="30"/>
-        <Edit id="edt_EmailForPassword" taborder="7" left="340" top="260" width="170" height="30"/>
-        <Button id="btn_IdSearch" taborder="8" text="찾기" left="530" top="70" width="50" height="30" onclick="btn_IdSearch_onclick" cssclass="btn_normal"/>
-        <Button id="btn_PasswordSearch" taborder="9" text="찾기" left="530" top="260" width="50" height="30" onclick="btn_PasswordSearch_onclick" cssclass="btn_normal"/>
-        <Static id="sta_ResultId" taborder="10" left="20" top="130" width="550" height="40" font="bold 14pt &quot;Arial Black&quot;"/>
-        <Static id="sta_NewPassword" taborder="11" text="새로운 비밀번호 입력 : " left="30" top="330" width="190" height="40" font="18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="false"/>
-        <Edit id="edt_NewPassword" taborder="12" left="220" top="330" width="170" height="40" visible="false"/>
-        <Button id="btn_NewPassword" taborder="13" text="확인" left="410" top="330" width="50" height="40" visible="false" onclick="btn_NewPassword_onclick" cssclass="btn_normal"/>
-        <Button id="btn_Close" taborder="14" text="닫기" left="260" top="440" width="80" height="40" onclick="btn_Close_onclick" cssclass="btn_delete"/>
+      <Layout height="350" mobileorientation="landscape" width="560">
+        <Tab id="Tab00" taborder="1" tabindex="0" left="24" top="56" width="506" height="224" onchanged="Tab00_onchanged" cssclass="stc_stc">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="아이디 찾기" formscrollbartype="none">
+              <Layouts>
+                <Layout>
+                  <Edit id="edt_NameForId00" taborder="0" left="170" top="35" width="170" height="30"/>
+                  <Static id="sta_NameForId" taborder="1" text="이름" left="99" top="35" width="50" height="30" cssclass="stc_stc" onclick="Tab00_Tabpage1_sta_NameForId_onclick"/>
+                  <Static id="sta_EmailForId" taborder="2" text="이메일" left="89" top="90" width="70" height="30" cssclass="stc_stc"/>
+                  <Edit id="edt_EmailForId" taborder="3" left="170" top="93" width="170" height="30"/>
+                  <Button id="btn_IdSearch" taborder="4" text="찾기" left="375" top="63" width="50" height="30" onclick="btn_IdSearch_onclick" cssclass="btn_normal"/>
+                  <Static id="sta_ResultId" taborder="5" left="-1" top="153" width="506" height="40" text="" cssclass="stc_stc" background=" #A1C4E8"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="비밀번호 찾기">
+              <Layouts>
+                <Layout>
+                  <Edit id="edt_IdForPassword" taborder="0" left="170" top="30" width="170" height="30"/>
+                  <Static id="sta_IdForPassword" taborder="1" text="아이디" left="99" top="30" width="40" height="30" cssclass="stc_stc"/>
+                  <Static id="sta_EmailForPassword" taborder="2" text="이메일" left="99" top="83" width="40" height="30" cssclass="stc_stc"/>
+                  <Edit id="edt_EmailForPassword" taborder="3" left="170" top="83" width="170" height="30"/>
+                  <Button id="btn_PasswordSearch" taborder="4" text="찾기" left="375" top="58" width="50" height="30" onclick="btn_PasswordSearch_onclick" cssclass="btn_normal"/>
+                  <Static id="sta_NewPassword" taborder="5" text="새로운 비밀번호 입력 " left="25" top="143" width="190" height="30" visible="false" cssclass="stc_stc"/>
+                  <Edit id="edt_NewPassword" taborder="6" left="205" top="143" width="170" height="30" visible="false"/>
+                  <Button id="btn_NewPassword" taborder="7" text="확인" left="410" top="143" width="50" height="30" visible="false" onclick="btn_NewPassword_onclick" cssclass="btn_normal"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
@@ -110,10 +123,13 @@ this.fnCallback = function(svcID, errorCode, errorMsg) {
 		
 		alert("새로 등록할 비밀번호를 입력하세요.");
 		
+		
+		var form = this.parent; // 부모 객체를 가져옵니다.
+		
 		// 숨겨진 새 비밀번호 입력 칸 보이기
-		this.sta_NewPassword.set_visible(true);
-		this.edt_NewPassword.set_visible(true);
-		this.btn_NewPassword.set_visible(true);
+		this.Tab00.Tabpage2.form.sta_NewPassword.set_visible(true);
+		this.Tab00.Tabpage2.form.edt_NewPassword.set_visible(true);
+		this.Tab00.Tabpage2.form.btn_NewPassword.set_visible(true);
 	}
 	
 	// 비밀번호 업데이트 콜백
@@ -157,7 +173,7 @@ this.maskedId = function(id) {
 };
 
 // 새 비밀번호 업데이트 확인 버튼
-this.btn_NewPassword_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+this.btn_NewPassword_onclick= function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	var password = this.ds_NewPassword.getColumn(0, "NewPassword");
 
@@ -183,6 +199,8 @@ this.btn_NewPassword_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventI
     this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 	
 };
+
+
 ]]></Script>
     <Objects>
       <Dataset id="ds_FindLoginInfo">
@@ -215,12 +233,12 @@ this.btn_NewPassword_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventI
       </Dataset>
     </Objects>
     <Bind>
-      <BindItem id="item0" compid="edt_NameForId" propid="value" datasetid="ds_FindLoginInfo" columnid="name"/>
-      <BindItem id="item1" compid="edt_IdForPassword" propid="value" datasetid="ds_FindLoginInfo" columnid="id"/>
-      <BindItem id="item2" compid="edt_EmailForId" propid="value" datasetid="ds_FindLoginInfo" columnid="emailForId"/>
-      <BindItem id="item3" compid="edt_EmailForPassword" propid="value" datasetid="ds_FindLoginInfo" columnid="emailForPassword"/>
-      <BindItem id="item4" compid="sta_ResultId" propid="text" datasetid="ds_Result" columnid="ResultId"/>
-      <BindItem id="item5" compid="edt_NewPassword" propid="value" datasetid="ds_NewPassword" columnid="NewPassword"/>
+      <BindItem id="item6" compid="Tab00.Tabpage1.form.edt_NameForId00" propid="value" datasetid="ds_FindLoginInfo" columnid="name"/>
+      <BindItem id="item0" compid="Tab00.Tabpage1.form.edt_EmailForId" propid="value" datasetid="ds_FindLoginInfo" columnid="emailForId"/>
+      <BindItem id="item2" compid="Tab00.Tabpage1.form.sta_ResultId" propid="text" datasetid="ds_Result" columnid="ResultId"/>
+      <BindItem id="item4" compid="Tab00.Tabpage2.form.edt_IdForPassword" propid="value" datasetid="ds_FindLoginInfo" columnid="id"/>
+      <BindItem id="item7" compid="Tab00.Tabpage2.form.edt_EmailForPassword" propid="value" datasetid="ds_FindLoginInfo" columnid="emailForPassword"/>
+      <BindItem id="item8" compid="Tab00.Tabpage2.form.edt_NewPassword" propid="value" datasetid="ds_NewPassword" columnid="NewPassword"/>
     </Bind>
   </Form>
 </FDL>
