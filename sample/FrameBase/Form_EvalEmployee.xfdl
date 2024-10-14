@@ -5,8 +5,8 @@
       <Layout height="720" mobileorientation="landscape" width="1040" stepcount="0">
         <GroupBox id="GroupBox_Search" taborder="6" text="조회" left="680" top="95" width="340" height="60" font="bold 14px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" visible="true" opacity="1" tooltiptype="default"/>
         <Static id="staTitle" taborder="0" text="직원 평가" left="30" top="20" width="220" height="50" onclick="staTitle_onclick" cssclass="stc_title"/>
-        <Button id="btnFilterSearch" taborder="2" text="검색" left="855" top="115" width="70" height="30" onclick="btnFilterSearch_onclick" cssclass="btn_search"/>
-        <Grid id="grdEvaluation" taborder="3" left="30" top="165" width="992" height="385" binddataset="dsEvalAll">
+        <Button id="btnFilterSearch" taborder="2" text="검색" left="935" top="115" width="70" height="30" onclick="btnFilterSearch_onclick" cssclass="btn_search"/>
+        <Grid id="grdEvaluation" taborder="3" left="30" top="165" width="992" height="465" binddataset="dsEvalAll">
           <Formats>
             <Format id="default">
               <Columns>
@@ -37,10 +37,9 @@
             </Format>
           </Formats>
         </Grid>
-        <Combo id="cmbSearchType" taborder="1" text="전체" left="600" top="115" width="80" height="30" onitemchanged="dsEvaluation_onload" innerdataset="dsSearchType" value="all" index="0" codecolumn="CODE" datacolumn="CODE_NM"/>
-        <Edit id="edtSearchText" taborder="4" left="695" top="115" width="140" height="30" onchanged="edtSearchText_onchanged"/>
-        <Button id="btnReset" taborder="5" left="940" top="115" width="70" height="30" text="초기화" onclick="btnReset_onclick" cssclass="btn_normal"/>
-        <Button id="btnRegister" taborder="6" text="평가하기" left="913" top="560" width="107" height="40" onclick="btnRegister_onclick" cssclass="btn_edit"/>
+        <Combo id="cmbSearchType" taborder="1" text="전체" left="690" top="115" width="80" height="30" onitemchanged="dsEvaluation_onload" innerdataset="dsSearchType" value="all" index="0" codecolumn="CODE" datacolumn="CODE_NM"/>
+        <Edit id="edtSearchText" taborder="4" left="785" top="115" width="140" height="30" onchanged="edtSearchText_onchanged"/>
+        <Button id="btnRegister" taborder="5" text="평가하기" left="913" top="640" width="107" height="40" onclick="btnRegister_onclick" cssclass="btn_edit"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.btnFilterSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)

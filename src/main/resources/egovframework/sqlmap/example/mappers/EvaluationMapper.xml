@@ -62,8 +62,6 @@
                 a.emp_code LIKE CONCAT('%', #{Word}, '%')
                 OR a.name LIKE CONCAT('%', #{Word}, '%')
                 OR DATE_FORMAT(b.eval_date, '%Y-%m-%d') LIKE CONCAT('%', #{Word}, '%')
-                OR b.total_Score LIKE CONCAT('%', #{Word}, '%')
-                OR b.eval_grade LIKE CONCAT('%', #{Word}, '%')
             )
         </if>
 
@@ -80,16 +78,6 @@
         <!-- 날짜 범위 필터링 -->
         <if test="StartDate != null and StartDate != '' and EndDate != null and EndDate != ''">
             AND b.eval_date BETWEEN #{StartDate} AND #{EndDate}
-        </if>
-
-        <!-- 점수로 검색 -->
-        <if test="Type == 'totalScore' and Word != null and Word != ''">
-            AND b.total_Score LIKE CONCAT('%', #{Word}, '%')
-        </if>
-
-        <!-- 등급으로 검색 -->
-        <if test="Type == 'grade' and Word != null and Word != ''">
-            AND b.eval_grade LIKE CONCAT('%', #{Word}, '%')
         </if>
 
     </select>

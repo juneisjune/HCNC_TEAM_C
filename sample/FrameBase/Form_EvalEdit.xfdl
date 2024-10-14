@@ -3,7 +3,7 @@
   <Form id="Form_EvalEdit" width="1280" height="720" titletext="New Form" onload="Form_EvalEdit_onload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="800">
-        <Button id="btnSubmit" taborder="0" text="수정" left="700" top="510" width="80" height="30" onclick="btnSubmit_onclick" cssclass="btn_edit"/>
+        <Button id="btnSubmit" taborder="0" text="저장" left="700" top="510" width="80" height="30" onclick="btnSubmit_onclick" cssclass="btn_edit"/>
         <Grid id="grdEdit" taborder="1" left="30" top="100" width="750" height="385" binddataset="dsQuestions" oncelldblclick="grdEdit_oncelldblclick">
           <Formats>
             <Format id="default">
@@ -16,7 +16,6 @@
                 <Row size="35"/>
               </Rows>
               <Band id="head">
-
                 <Cell text="질문 번호"/>
                 <Cell col="1" text="질문 목록"/>
               </Band>

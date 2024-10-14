@@ -35,7 +35,7 @@
             // UI Components Initialize
             obj = new Button("btnSubmit","700","510","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("수정");
+            obj.set_text("저장");
             obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
 
