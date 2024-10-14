@@ -61,7 +61,6 @@
             AND (
                 a.emp_code LIKE CONCAT('%', #{Word}, '%')
                 OR a.name LIKE CONCAT('%', #{Word}, '%')
-                OR DATE_FORMAT(b.eval_date, '%Y-%m-%d') LIKE CONCAT('%', #{Word}, '%')
             )
         </if>
 
