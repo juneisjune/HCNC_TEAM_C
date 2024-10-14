@@ -117,7 +117,7 @@
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item1","Edit_Author","value","ds_Post","name");
+            obj = new BindItem("item1","Edit_Author","value","ds_Post","upd_name");
             this.addChild(obj.name, obj);
             obj.bind();
 

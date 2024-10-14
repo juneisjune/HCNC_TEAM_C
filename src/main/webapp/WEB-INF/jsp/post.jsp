@@ -143,7 +143,7 @@
                 <c:forEach var="post" items="${postList}">
                     <tr>
                         <td>${post.post_code}</td> <!-- 게시글 번호-->
-                        <td>${post.emp_name}</td> <!-- 작성자-->
+                        <td>${post.upd_name}</td> <!-- 작성자-->
                         <td class="title">${post.title}</td> <!-- 제목 부분에 클래스 추가 -->
                         
                         <td>${post.reg_date}</td> <!-- 작성일-->

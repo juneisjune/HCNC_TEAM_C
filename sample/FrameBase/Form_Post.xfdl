@@ -38,7 +38,7 @@
                 <Cell col="2" text="bind:title" textAlign="center"/>
                 <Cell col="3" text="bind:content"/>
                 <Cell col="4" text="bind:reg_date" displaytype="date" mask="####-##-##"/>
-                <Cell col="5" text="bind:emp_name" textAlign="center"/>
+                <Cell col="5" text="bind:upd_name" textAlign="center"/>
                 <Cell col="6" text="bind:view_count" textAlign="center"/>
                 <Cell col="7" displaytype="buttoncontrol" text="수정 하기"/>
                 <Cell col="8" displaytype="buttoncontrol" text="삭제" edittype="button"/>
@@ -46,13 +46,11 @@
             </Format>
           </Formats>
         </Grid>
-
         <Button id="btn_Search" taborder="1" text="조회" left="922" top="82" width="60" height="30" onclick="Button00_onclick" cssclass="btn_search"/>
         <Static id="st_selectedCount" text="0건 선택됨" left="40" top="535" width="150" height="30" taborder="2" onclick="st_selectedCount_onclick" color="#6f0520"/>
         <Button id="btn_delete" text="삭제" left="1036" top="545" width="90" height="30" onclick="btn_delete_onclick" taborder="3" cssclass="btn_delete"/>
         <Button id="btn_newPost" taborder="4" text="새 공지사항 등록" left="996" top="82" width="130" height="30" onclick="btn_newPost_onclick" cssclass="btn_regist"/>
         <Button id="Button00" taborder="5" text="상세 보기" left="933" top="545" width="90" height="30" onclick="newEdit_onclick" cssclass="btn_normal"/>
-
         <Static id="Static00_00" taborder="6" text="공지사항 관리" left="30" top="23" width="222" height="50" onclick="Static00_00_onclick" cssclass="stc_title"/>
         <Menu id="Menu00" taborder="7" left="252" top="198" width="76" height="152" onmenuclick="Menu00_onmenuclick"/>
       </Layout>

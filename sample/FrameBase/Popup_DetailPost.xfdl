@@ -183,7 +183,7 @@ this.FileDownTransfer00_onerror = function(obj:nexacro.FileDownTransfer, e:nexac
     </Layouts>
     <Bind>
       <BindItem id="item0" compid="Edit_Title" propid="value" datasetid="ds_Post" columnid="title"/>
-      <BindItem id="item1" compid="Edit_Author" propid="value" datasetid="ds_Post" columnid="name"/>
+      <BindItem id="item1" compid="Edit_Author" propid="value" datasetid="ds_Post" columnid="upd_name"/>
       <BindItem id="item2" compid="TextArea_Content" propid="value" datasetid="ds_Post" columnid="content"/>
       <BindItem id="item4" compid="Edit_ViewCount" propid="value" datasetid="ds_Post" columnid="view_count"/>
       <BindItem id="item5" compid="MaskEdit00" propid="value" datasetid="ds_Post" columnid="reg_date"/>

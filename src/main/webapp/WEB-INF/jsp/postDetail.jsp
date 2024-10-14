@@ -105,7 +105,7 @@
                 <th>작성일자</th>
                 <td>${postDetail.reg_date}</td>
                 <th>작성자</th>
-                <td>${postDetail.name}</td>
+                <td>${postDetail.upd_name}</td>
             </tr>
             <tr>
                 <th>첨부파일</th>
