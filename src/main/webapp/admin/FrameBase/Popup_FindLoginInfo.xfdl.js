@@ -153,10 +153,10 @@
             obj.set_visible("false");
             this.Tab00.Tabpage2.addChild(obj.name, obj);
 
-            obj = new Button("btn_AuthCheck","375","130","50","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj = new Button("btn_AuthCheck","375","130","70","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("10");
             obj.set_text("인증");
-            obj.set_cssclass("btn_normal");
+            obj.set_cssclass("btn_edit");
             obj.set_visible("false");
             this.Tab00.Tabpage2.addChild(obj.name, obj);
             // Layout Functions

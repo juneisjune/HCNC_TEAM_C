@@ -4,7 +4,7 @@
     <Layouts>
       <Layout height="720" width="1280">
         <Static id="Static00" taborder="0" text="휴가 승인" left="28" top="23" width="154" height="50" cssclass="stc_title" onclick="Static00_onclick"/>
-        <Grid id="grd_offList" taborder="1" left="28" top="160" width="1070" height="460" binddataset="ds_doRequestList" onheadclick="grd_offList_onheadclick">
+        <Grid id="grd_offList" taborder="1" left="28" top="160" width="1070" height="460" binddataset="ds_doRequestList" onheadclick="grd_offList_onheadclick" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>

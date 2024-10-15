@@ -24,7 +24,7 @@
         <Radio id="Answer09" taborder="18" left="30" top="1370" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
         <Radio id="Answer10" taborder="19" left="30" top="1520" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
         <Static id="Question10" taborder="20" left="30" top="1470" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
-        <Grid id="grdEvalName" taborder="21" left="100" top="30" width="600" height="60" binddataset="dsEvalAll">
+        <Grid id="grdEvalName" taborder="21" left="100" top="30" width="600" height="60" binddataset="dsEvalAll" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>

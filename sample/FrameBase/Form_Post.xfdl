@@ -3,7 +3,7 @@
   <Form id="btn_Post" width="1280" height="720" titletext="New Form" onload="Form_Post_onload">
     <Layouts>
       <Layout height="720" width="1280">
-        <Grid id="grd_notice" binddataset="ds_Post" left="30" top="150" width="1096" height="400" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick">
+        <Grid id="grd_notice" binddataset="ds_Post" left="30" top="150" width="1096" height="400" taborder="0" oncellclick="grd_notice_oncellclick" onheadclick="grd_notice_onheadclick" oncelldblclick="grd_notice_oncelldblclick" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>

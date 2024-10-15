@@ -3,7 +3,7 @@
   <Form id="Form_EvalDetail" width="810" height="600" titletext="evalDetail" onload="Form_EvalDetail_onload">
     <Layouts>
       <Layout height="600" mobileorientation="landscape" width="810" stepcount="0">
-        <Grid id="grdEvalInfo" taborder="0" left="30" top="75" width="750" height="55" binddataset="dsEvaluation">
+        <Grid id="grdEvalInfo" taborder="0" left="30" top="75" width="750" height="55" binddataset="dsEvaluation" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>
