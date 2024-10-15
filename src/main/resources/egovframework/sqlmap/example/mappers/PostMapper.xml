@@ -22,7 +22,7 @@
 	    	FROM post a
 	   <!-- INNER JOIN employee b 
 	      ON a.emp_code = b.emp_code --> 
-	    WHERE post_code = #{postCode}
+	    WHERE post_code = #{post_code}
 	</select>	
 	
 	<!-- 조회수 1 증가 관련 -->
@@ -115,7 +115,7 @@
 	<!-- 여기까지 이상무 -->
 	<!-- 게시글 목록 페이징 처리 조회 -->
 	<select id="selectPostWithPaging" resultType="map">
-	    SELECT a.post_code, a.title, a.content, a.reg_date, b.name AS emp_name, a.view_count
+	    SELECT a.post_code, a.title, a.content, DATE_FORMAT(a.reg_date, '%Y-%m-%d') reg_date, a.upd_name, a.view_count
 	    FROM post a
 	    INNER JOIN employee b ON a.emp_code = b.emp_code
 	    ORDER BY a.post_code DESC
