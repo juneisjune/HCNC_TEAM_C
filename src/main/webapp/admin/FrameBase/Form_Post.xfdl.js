@@ -145,8 +145,6 @@
 
         this.btn_newPost_onclick = function(obj,e)
         {
-        	this.grd_notice.setFocus();
-
         	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_NewPost.xfdl");
         };
         //위에는 조회관련
@@ -235,7 +233,6 @@
 
         this.newEdit_onclick = function(obj,e)
         {
-        	this.grd_notice.setFocus();
         	console.log("ds_post(inFormpost):" + this.ds_Post.saveXML());
         		var objParam1 =
         			{post_code:this.ds_Post.getColumn(this.ds_Post.rowposition, "post_code")};
@@ -271,8 +268,6 @@
         //다중 선택시
         this.btn_delete_onclick = function(obj,e)
         {
-        	this.grd_notice.setFocus();
-
         	var arrDeleteCodes = [];
 
             // 데이터셋을 순회하면서 체크된 행의 게시글 코드를 배열에 추가

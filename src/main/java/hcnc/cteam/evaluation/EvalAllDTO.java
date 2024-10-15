@@ -2,17 +2,17 @@ package hcnc.cteam.evaluation;
 
 public class EvalAllDTO {
     
-    private String empCode;
+    private int empCode;
     private String name;
     private String gender;
     private String assignName;
     private String depName;
     private String evalDate;
     
-	public String getEmpCode() {
+	public int getEmpCode() {
 		return empCode;
 	}
-	public void setEmpCode(String empCode) {
+	public void setEmpCode(int empCode) {
 		this.empCode = empCode;
 	}
 	public String getName() {
