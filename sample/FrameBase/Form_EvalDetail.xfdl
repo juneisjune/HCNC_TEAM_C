@@ -37,7 +37,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="Static00" taborder="1" text="평가 정보" left="340" top="15" width="120" height="40" onclick="Static00_onclick" cssclass="stc_popup"/>
+        <Static id="Static00" taborder="1" text="평가 결과" left="340" top="15" width="120" height="40" onclick="Static00_onclick" cssclass="stc_popup"/>
         <Static id="Static01" taborder="2" text="질문 목록" left="30" top="150" width="60" height="40" cssclass="stc_stc"/>
         <Static id="Question01" taborder="3" left="30" top="190" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
         <Radio id="Answer01" taborder="4" left="30" top="240" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">

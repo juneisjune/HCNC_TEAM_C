@@ -36,7 +36,7 @@
 
             obj = new Static("Static00","340","15","120","40",null,null,null,null,null,null,this);
             obj.set_taborder("1");
-            obj.set_text("평가 정보");
+            obj.set_text("평가 결과");
             obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);
 
