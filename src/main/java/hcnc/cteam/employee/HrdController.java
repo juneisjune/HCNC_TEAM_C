@@ -48,9 +48,16 @@ public class HrdController {
 	        result.setErrorMsg("데이터셋이 없습니다.");
 	        return result;
 	    }
-
     	try {	
     			for(Map<String,Object> offRequest : param) {
+    				 
+    				
+					//기존부서 dep_out업데이트
+					hrds.updateDepOutIsNull(offRequest);
+					//hrdHIstory insert
+					hrds.insertHrdHistory(offRequest);
+    				
+    				//employee테이블 업데이트
     				hrds.updateHRD(offRequest);
     				//emp_code로 dayoffCount 조회하고
     				int findResult = dayoffService.findDayoff(offRequest);
@@ -59,6 +66,22 @@ public class HrdController {
     					dayoffService.insertDayoffCount(offRequest);
     				}
 	    		}
+    	}catch(Exception ee) {
+    		result.setErrorCode(-1);
+    		result.setErrorMsg("catch 조회 오류");
+    	}
+    	return result;
+    }
+	
+	
+	//인사이력(history) 조회
+	@RequestMapping(value = "/hrdHistoryList.do")
+    public NexacroResult getHrdHistoryList(@ParamDataSet(name = "ds_Search", required = false) Map<String,Object> param) {
+		
+    	NexacroResult result = new NexacroResult();
+    	try {
+    		List<Map<String, Object>> ds_HrdHistorylist = hrds.getHrdHistory(param);
+    		result.addDataSet("ds_HrdHistorylist", ds_HrdHistorylist);
     	}catch(Exception ee) {
     		result.setErrorCode(-1);
     		result.setErrorMsg("catch 조회 오류");

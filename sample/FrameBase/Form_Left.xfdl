@@ -65,7 +65,7 @@
           </Row>
           <Row>
             <Col id="MENU_ID">0103</Col>
-            <Col id="MENU_NAME">직원 인사 기록</Col>
+            <Col id="MENU_NAME">인사 기록 관리</Col>
             <Col id="MENU_LEVEL">2</Col>
             <Col id="MENU_PATH">FrameBase::Form_HRD_history.xfdl</Col>
           </Row>
