@@ -49,7 +49,7 @@
             obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_HrdList","36","150","728","400",null,null,null,null,null,null,this);
+            obj = new Grid("grd_HrdList","36","150","730","400",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_binddataset("ds_HrdHistorylist");
             obj.set_autoenter("none");

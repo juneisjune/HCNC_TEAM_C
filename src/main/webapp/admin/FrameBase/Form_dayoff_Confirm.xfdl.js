@@ -282,7 +282,6 @@
         		for (var i=0; i<this.ds_doRequestList.rowcount; i++) { //프론트에 적용 ROW 부분
         			this.ds_doRequestList.setColumn(i,"chk","1");
         		}
-
         	}
         };
 
