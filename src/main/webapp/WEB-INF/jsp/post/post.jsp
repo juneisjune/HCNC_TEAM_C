@@ -22,7 +22,6 @@
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin-top: 30px;
-        }
 
         h1 {
             color: #2c3e50;
@@ -82,7 +81,7 @@
             font-weight: bold; /* 제목을 더 두껍게 */
         }
         
-         td.title {
+        td.title {
         	text-align : left;
         }
 
