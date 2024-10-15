@@ -133,6 +133,7 @@
 
         this.grd_Emp_onheadclick = function(obj,e)
         {
+        	if(e.col == 0) {
         	//grid의 head에서 0번째 셀의 값을 가져옴
         	var chkVal = obj.getCellProperty("head", 0, "text");
 
@@ -148,10 +149,9 @@
         		for (var i=0; i<this.ds_EmpList.rowcount; i++) {
         			this.ds_EmpList.setColumn(i,"chkVal","1");
         		}
-
+        	}
         	}
         };
-
 
         this.fnSearch = function() {
         	if(this.ds_Assign.getColumn(0, "assign_code") == ''
@@ -241,6 +241,54 @@
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
 
+        // 그리드 헤드 더블 클릭 시 정렬
+        this.grd_Emp_onheaddblclick = function(obj,e)
+        {
+        	var objDs = this.objects[obj.binddataset];
+            var colId = "";
+
+        	// 컬럼 확인
+            if (e.col == 1) {
+                colId = "emp_code";
+            } else if (e.col == 2) {
+                colId = "name";
+            } else if (e.col == 5) {
+                colId = "join_date";
+            } else if (e.col == 6) {
+                colId = "resign_date";
+            } else {
+                return;
+            }
+
+            for (var i = 0; i < obj.getCellCount("head"); i++) {
+                var sHeadText = obj.getCellText(-1, i);  // 헤더의 텍스트 가져오기
+                var nLen = sHeadText.length - 1;  // 텍스트 길이 계산
+
+                if (i == e.col) { // 클릭한 셀에 대해 처리
+                    if (sHeadText.substr(nLen) == "▲") {  // 오름차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▼");
+                        objDs.set_keystring("S:-" + colId);  // 내림차순 정렬
+                    } else if (sHeadText.substr(nLen) == "▼") {  // 내림차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    } else {  // 정렬이 설정되지 않은 경우 기본 오름차순 적용
+                        obj.setCellProperty("head", i, "text", sHeadText + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    }
+                } else {
+                    // 클릭되지 않은 다른 셀의 정렬 표시 제거
+                    if (sHeadText.substr(nLen) == "▲" || sHeadText.substr(nLen) == "▼") {
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen));
+                    }
+                }
+            }
+
+            // 정렬 후 데이터셋 강제 적용
+            objDs.applyChange();
+
+        	// 정렬 후 첫 번째 행을 선택
+            objDs.set_rowposition(0);
+        };
 
 
         });
@@ -253,6 +301,7 @@
             this.cmb_Assign.addEventHandler("onitemchanged",this.Combo00_onitemchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grd_Emp.addEventHandler("onheadclick",this.grd_Emp_onheadclick,this);
+            this.grd_Emp.addEventHandler("onheaddblclick",this.grd_Emp_onheaddblclick,this);
             this.cal_GiveDate.addEventHandler("onchanged",this.cal_GiveDate_onchanged,this);
             this.btn_Insert.addEventHandler("onclick",this.btn_Insert_onclick,this);
         };
