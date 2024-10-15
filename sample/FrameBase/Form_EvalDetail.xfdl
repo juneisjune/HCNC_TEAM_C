@@ -468,6 +468,7 @@ this.fnEvalScoreCallback = function(strSvcID, nErrorCode, strErrorMsg) {
 
 // 닫기 버튼
 this.btnClose_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+	this.grdEvalInfo.setFocus();
     this.close();
 };
 ]]></Script>

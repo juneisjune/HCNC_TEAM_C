@@ -175,6 +175,7 @@
 
 this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.grd_Emp.setFocus();
 	this.fnSearch();
 
 };
@@ -246,6 +247,7 @@ this.fnCallback = function(svcID,errorCode,errorMsg)
 
 this.btn_Insert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.grd_Emp.setFocus();
 	
 	var adm_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 	

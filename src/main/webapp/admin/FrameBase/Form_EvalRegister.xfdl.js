@@ -317,6 +317,7 @@
         };
 
         this.btnSubmit_onclick = function(obj, e) {
+        	this.grdEvalName.setFocus();
 
         	var admin_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
         	var admin_code = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
@@ -396,6 +397,9 @@
         };
 
         this.btnCancel_onclick = function(obj, e) {
+
+        	this.grdEvalName.setFocus();
+
             if (confirm("정말로 취소하시겠습니까?")) {
                 this.close();
             }
