@@ -140,12 +140,14 @@
 
         this.btn_offListSearch_onclick = function(obj,e)
         {
+        	this.grd_offList.setFocus();
         	this.fnSearchList();
         };
 
         //승인 함수
         this.btn_confirm_onclick = function(obj,e)
         {
+        	this.grd_offList.setFocus();
         	// application 변수에서assign_code를 가져옴
             var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
         	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
@@ -191,7 +193,7 @@
         //반려함수
         this.btn_return_onclick = function(obj,e)
         {
-
+        	this.grd_offList.setFocus();
         	// application 변수에서 emp_code와 assign_code를 가져옴
             var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
         	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
@@ -282,7 +284,6 @@
         		for (var i=0; i<this.ds_doRequestList.rowcount; i++) { //프론트에 적용 ROW 부분
         			this.ds_doRequestList.setColumn(i,"chk","1");
         		}
-
         	}
         };
 

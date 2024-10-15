@@ -192,6 +192,8 @@
 
         this.Button_Download_onclick = function(obj,e)
         {
+        	this.Grid_Attachments.setFocus();
+
         	// 현재 선택된 행의 인덱스 가져오기
             var nRow = this.ds_Attachments.rowposition;
             if (nRow < 0) {

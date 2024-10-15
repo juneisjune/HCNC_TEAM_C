@@ -158,6 +158,8 @@
 
         this.fnSearch = function() {
 
+        	this.grdEvalAll.setFocus();
+
         	var admin_code = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
         	var admin_assign_code = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
 
@@ -311,6 +313,7 @@
 
         this.btnRegister_onclick = function(obj,e)
         {
+        	this.grdEvalAll.setFocus();
         	if (this.dsEvalAll.getRowCount() === 0) {
                 alert("평가할 데이터를 선택해 주세요.");
                 return;

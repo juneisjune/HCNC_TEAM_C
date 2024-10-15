@@ -229,6 +229,7 @@
 
         // 조회 버튼 클릭 시 호출되는 함수
         this.btn_Search_onclick = function(obj, e) {
+        	this.grd_CodeMst.setFocus();
 
             // 조회 실행
             this.fnSearch();
@@ -306,6 +307,8 @@
 
 
         this.btn_Delete_onclick = function(obj, e) {
+        	this.grd_CodeMst.setFocus();
+
             var deleteList = [];
 
             // 체크된 데이터 수집
@@ -364,12 +367,15 @@
 
 
         this.btn_Update_onclick = function(obj, e) {
+        	this.grd_CodeMst.setFocus();
+
             // 수정 액 입력 부분을 두 번째 그리드에서 직접 입력 받음 (이전 edt_Code, edt_CodeNm, edt_ModPay는 더 이상 사용하지 않음)
             var selectedRow = this.ds_Pay.rowposition; // 두 번째 그리드에서 선택된 행
             var modPay = this.ds_Pay.getColumn(selectedRow, "etc"); // 수정액 필드
 
             if (!modPay || isNaN(modPay)) {
                 this.alert("수정액을 올바르게 입력해주세요.");
+        		this.grd_CodeMst2.setFocus();
                 return;
             }
 

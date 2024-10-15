@@ -10,7 +10,7 @@
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="75"/>
+                <Column size="70"/>
                 <Column size="100"/>
                 <Column size="100"/>
                 <Column size="115"/>

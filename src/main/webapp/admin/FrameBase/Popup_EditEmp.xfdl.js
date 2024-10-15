@@ -199,7 +199,7 @@
         // 수정 버튼 클릭 시 호출되는 함수 (수정된 데이터 저장)
         this.btnUpdate_onclick = function(obj, e) {
 
-
+        	this.edtName.setFocus();
 
         	if (!this.validateEmployeeData()) {
                 return;
@@ -249,12 +249,14 @@
             var birthPattern = /^[0-9]{8}$/;
             if (!birth || !birthPattern.test(birth)) {
                 alert("올바른 생년월일을 입력해 주세요. ");
+        			this.calBirth.setFocus();
                 return false;
             }
 
             // 성별 검사
             if (!gender || gender.trim() === "") {
                 alert("성별을 입력해 주세요.");
+        			this.cmbGender.setFocus();
                 return false;
             }
 
@@ -262,12 +264,14 @@
             var phonePattern = /^010-[0-9]{4}-[0-9]{4}$/;
             if (!phone || !phonePattern.test(phone)) {
                 alert("유효한 전화번호를 입력해 주세요. 형식: 010-XXXX-XXXX");
+        			this.edtPhone.setFocus();
                 return false;
             }
 
             // 주소 검사
             if (!address || address.trim() === "") {
                 alert("주소를 입력해 주세요.");
+        			this.edtAddress.setFocus();
                 return false;
             }
 
@@ -275,12 +279,14 @@
             var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!email || !emailPattern.test(email)) {
                 alert("유효한 이메일을 입력해 주세요.");
+        			this.edtEmail.setFocus();
                 return false;
             }
 
              var accountPattern = /^[가-힣]+[0-9]+$/;
             if (!account || !accountPattern.test(account)) {
                 alert("유효한 계좌번호를 입력해 주세요. 예: 국민은행12345678");
+        			this.edtAccount.setFocus();
                 return false;
             }
 
@@ -307,12 +313,18 @@
         	this.opener.fnSearch();
         };
 
+        this.edtPassword_onchanged = function(obj,e)
+        {
+
+        };
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Popup_EditEmp_onload,this);
+            this.edtPassword.addEventHandler("onchanged",this.edtPassword_onchanged,this);
             this.lblBirth.addEventHandler("onclick",this.lblBirth_onclick,this);
             this.btnUpdate.addEventHandler("onclick",this.btnUpdate_onclick,this);
         };

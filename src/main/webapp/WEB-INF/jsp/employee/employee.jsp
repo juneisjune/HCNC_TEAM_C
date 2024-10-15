@@ -69,11 +69,12 @@
         }
         th, td {
             padding: 12px 15px;
-            text-align: left;
+            text-align: center;
         }
         th {
             background-color: #34495e;
             color: white;
+            text-align: center;
         }
         td {
             background-color: #ffffff;
