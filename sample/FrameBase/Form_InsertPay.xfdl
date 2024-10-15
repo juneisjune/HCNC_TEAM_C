@@ -48,7 +48,7 @@
           </Formats>
         </Grid>
         <Static id="Static04" taborder="5" text="지급일" left="580" top="590" width="120" height="30" cssclass="stc_stc"/>
-        <Calendar id="cal_GiveDate" taborder="6" left="675" top="590" width="150" height="30" dateformat="yyyy-MM-dd"/>
+        <Calendar id="cal_GiveDate" taborder="6" left="675" top="590" width="150" height="30" dateformat="yyyy-MM-dd" onchanged="cal_GiveDate_onchanged"/>
         <Button id="btn_Insert" taborder="7" text="등록" left="850" top="590" width="70" height="30" onclick="btn_Insert_onclick" cssclass="btn_regist"/>
       </Layout>
     </Layouts>
@@ -287,8 +287,6 @@ this.btn_Insert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	
 	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
 };
-
-
 
 
 ]]></Script>

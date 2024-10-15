@@ -240,8 +240,6 @@
 
 
 
-
-
         });
         
         // Regist UI Components Event
@@ -252,6 +250,7 @@
             this.cmb_Assign.addEventHandler("onitemchanged",this.Combo00_onitemchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grd_Emp.addEventHandler("onheadclick",this.grd_Emp_onheadclick,this);
+            this.cal_GiveDate.addEventHandler("onchanged",this.cal_GiveDate_onchanged,this);
             this.btn_Insert.addEventHandler("onclick",this.btn_Insert_onclick,this);
         };
         this.loadIncludeScript("Form_InsertPay.xfdl");

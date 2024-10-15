@@ -27,25 +27,27 @@
 				)
 			</if>
 			<if test="SEARCH_TYPE =='EMP_CODE'">
-				AND e.emp_code LIKE CONCAT('%',#{SEARCH_WORD},'%')
+				AND hh.emp_code LIKE CONCAT('%',#{SEARCH_WORD},'%')
 			</if>
 			<if test="SEARCH_TYPE == 'NAME'">
 				AND e.name LIKE CONCAT('%',#{SEARCH_WORD},'%')
 			</if>
+
 			<if test="SEARCH_TYPE == 'DEP_NAME'">
 				AND d.dep_name LIKE CONCAT('%',#{SEARCH_WORD},'%')
 			</if>
 		</if>
 	</select>
 	
+	<!-- 부서,직책 업데이트 -->
 	<update id="updateHRD" parameterType="java.util.Map">
 	   UPDATE employee 
 		SET assign_code = #{assign_code},
 			dep_code= #{dep_code},
-			join_date =#{join_date},
-			resign_date =#{resign_date},
+			join_date = #{join_date},
+			resign_date = #{resign_date},
 			upd_name = #{admin_name}
-		WHERE emp_code = #{emp_code} ;
+		WHERE emp_code = #{emp_code};
 	</update>
 	
 	
@@ -71,5 +73,66 @@
 		)
 	</update>
 	
+	<!-- 부서 변경 이력 -->
+	<select id="getHrdHistory" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT hh.emp_code, e.name, 
+			a.assign_name,
+			TO_CHAR(hh.assign_date,'yyyyMMDD') as assign_date,
+			d.dep_name, 
+			TO_CHAR(dep_in,'yyyyMMDD') as dep_in, 
+			TO_CHAR(dep_out,'yyyyMMDD') as dep_out
+		FROM hrd_history hh JOIN employee e 
+			ON hh.emp_code = e.emp_code JOIN department d 
+			ON hh.dep_code =d.dep_code JOIN assignment a
+			ON hh.assign_code = a.assign_code
+		WHERE 1=1
+		<if test="SEARCH_WORD != null and SEARCH_WORD != '' and SEARCH_TYPE != '' and SEARCH_TYPE != null">
+			<if test="SEARCH_TYPE =='EMP_CODE'">
+				AND e.emp_code LIKE CONCAT('%',#{SEARCH_WORD},'%')
+			</if>
+			<if test="SEARCH_TYPE == 'NAME'">
+				AND e.name LIKE CONCAT('%',#{SEARCH_WORD},'%')
+			</if>
+			<if test="SEARCH_TYPE == 'ASSIGN_NAME'">
+				AND a.assign_name LIKE CONCAT('%',#{SEARCH_WORD},'%')
+			</if>
+			<if test="SEARCH_TYPE == 'DEP_NAME'">
+				AND d.dep_name LIKE CONCAT('%',#{SEARCH_WORD},'%')
+			</if>
+		</if>
+		ORDER BY dep_in DESC,assign_date DESC;
+	</select>
+	
+	 <!-- 해당 직원과 부서코드로 현재 소속중인부서인지 확인 -->
+    <select id="selectHrdHistoryForDepOut" parameterType="java.util.Map" resultType="int">
+        SELECT count(*)
+        FROM hrd_history hh
+        WHERE emp_code = #{emp_code}
+          AND dep_code = #{dep_code}
+          AND dep_out IS NULL;
+    </select>
+
+    <!-- 최초 등록 여부 확인 (결과가 0이면 insert 진행) -->
+    <select id="countHrdHistory" parameterType="java.util.Map" resultType="int">
+        SELECT count(*)
+        FROM hrd_history hh
+        WHERE emp_code = #{emp_code}
+          AND dep_code = #{dep_code};
+    </select>
+
+    <!-- 신규 기록 등록 -->
+    <insert id="insertHrdHistory" parameterType="java.util.Map">
+        INSERT INTO hrd_history (emp_code,assign_code,assign_date, dep_code, dep_in,reg_name)
+        VALUES (#{emp_code},#{assign_code},#{assign_date}, #{dep_code},#{assign_date},#{admin_name});
+    </insert>
+
+    <!-- 기존 부서 dep_out 업데이트 -->
+    <update id="updateDepOutIsNull" parameterType="java.util.Map">
+        UPDATE hrd_history
+        SET dep_out = #{assign_date},
+        	upd_name = #{admin_name}
+        WHERE emp_code = #{emp_code}
+          AND dep_out IS NULL;
+    </update>
 
 </mapper>
