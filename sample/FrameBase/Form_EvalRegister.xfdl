@@ -3,28 +3,28 @@
   <Form id="Form_EvalRegister" width="810" height="600" titletext="EvalRegister" onload="Form_EvalRegister_onload">
     <Layouts>
       <Layout>
-        <Radio id="Answer01" taborder="0" left="30" top="170" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value=""/>
-        <Static id="Question01" taborder="1" left="30" top="120" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
-        <Radio id="Answer02" taborder="2" left="30" top="320" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
-        <Static id="Question02" taborder="3" left="30" top="270" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
-        <Static id="Question03" taborder="4" left="30" top="420" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
-        <Radio id="Answer03" taborder="5" left="30" top="470" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
-        <Radio id="Answer04" taborder="6" left="30" top="620" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
-        <Static id="Question04" taborder="7" left="30" top="570" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
-        <Radio id="Answer05" taborder="8" left="30" top="770" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
-        <Static id="Question05" taborder="9" left="30" top="720" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
-        <Button id="btnSubmit" taborder="10" text="제출" left="710" top="1640" width="70" height="30" onclick="btnSubmit_onclick" cssclass="btn_regist"/>
-        <Static id="Question06" taborder="11" left="30" top="870" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
-        <Radio id="Answer06" taborder="12" left="30" top="920" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
-        <Static id="Question07" taborder="13" left="30" top="1020" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
-        <Radio id="Answer07" taborder="14" left="30" top="1070" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
-        <Static id="Question08" taborder="15" left="30" top="1170" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
-        <Radio id="Answer08" taborder="16" left="30" top="1220" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
-        <Static id="Question09" taborder="17" left="30" top="1320" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
-        <Radio id="Answer09" taborder="18" left="30" top="1370" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
-        <Radio id="Answer10" taborder="19" left="30" top="1520" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
-        <Static id="Question10" taborder="20" left="30" top="1470" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
-        <Grid id="grdEvalName" taborder="21" left="100" top="30" width="600" height="60" binddataset="dsEvalAll" autofittype="col">
+        <Radio id="Answer01" taborder="0" left="30" top="240" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value=""/>
+        <Static id="Question01" taborder="1" left="30" top="190" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer02" taborder="2" left="30" top="390" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
+        <Static id="Question02" taborder="3" left="30" top="340" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
+        <Static id="Question03" taborder="4" left="30" top="490" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
+        <Radio id="Answer03" taborder="5" left="30" top="540" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
+        <Radio id="Answer04" taborder="6" left="30" top="690" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
+        <Static id="Question04" taborder="7" left="30" top="640" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
+        <Radio id="Answer05" taborder="8" left="30" top="840" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
+        <Static id="Question05" taborder="9" left="30" top="790" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
+        <Button id="btnSubmit" taborder="10" text="제출" left="710" top="1710" width="70" height="30" onclick="btnSubmit_onclick" cssclass="btn_regist"/>
+        <Static id="Question06" taborder="11" left="30" top="940" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
+        <Radio id="Answer06" taborder="12" left="30" top="990" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
+        <Static id="Question07" taborder="13" left="30" top="1090" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
+        <Radio id="Answer07" taborder="14" left="30" top="1140" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
+        <Static id="Question08" taborder="15" left="30" top="1240" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
+        <Radio id="Answer08" taborder="16" left="30" top="1290" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
+        <Static id="Question09" taborder="17" left="30" top="1390" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
+        <Radio id="Answer09" taborder="18" left="30" top="1440" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
+        <Radio id="Answer10" taborder="19" left="30" top="1590" width="250" height="90" innerdataset="dsSurvey" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged"/>
+        <Static id="Question10" taborder="20" left="30" top="1540" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text=""/>
+        <Grid id="grdEvalName" taborder="21" left="100" top="75" width="600" height="60" binddataset="dsEvalAll" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>
@@ -52,6 +52,8 @@
             </Format>
           </Formats>
         </Grid>
+        <Static id="Static01" taborder="22" text="질문 목록" left="30" top="150" width="60" height="40" cssclass="stc_stc"/>
+        <Static id="Static00" taborder="23" text="직원 평가" left="340" top="15" width="120" height="40" onclick="Static00_onclick" cssclass="stc_popup"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[this.isAllQuestionsAnswered = function() {

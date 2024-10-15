@@ -37,7 +37,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Radio("Answer01","30","170","250","90",null,null,null,null,null,null,this);
+            obj = new Radio("Answer01","30","240","250","90",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_innerdataset("dsSurvey");
             obj.set_codecolumn("codecolumn");
@@ -47,7 +47,7 @@
             obj.set_index("-1");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Question01","30","120","750","40",null,null,null,null,null,null,this);
+            obj = new Static("Question01","30","190","750","40",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_background("white");
             obj.set_border("1px solid black");
@@ -55,14 +55,14 @@
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Radio("Answer02","30","320","250","90",null,null,null,null,null,null,this);
+            obj = new Radio("Answer02","30","390","250","90",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_innerdataset("dsSurvey");
             obj.set_codecolumn("codecolumn");
             obj.set_datacolumn("datacolumn");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Question02","30","270","750","40",null,null,null,null,null,null,this);
+            obj = new Static("Question02","30","340","750","40",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_background("white");
             obj.set_border("1px solid black");
@@ -70,7 +70,7 @@
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Question03","30","420","750","40",null,null,null,null,null,null,this);
+            obj = new Static("Question03","30","490","750","40",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_background("white");
             obj.set_border("1px solid black");
@@ -78,21 +78,21 @@
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Radio("Answer03","30","470","250","90",null,null,null,null,null,null,this);
+            obj = new Radio("Answer03","30","540","250","90",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_innerdataset("dsSurvey");
             obj.set_codecolumn("codecolumn");
             obj.set_datacolumn("datacolumn");
             this.addChild(obj.name, obj);
 
-            obj = new Radio("Answer04","30","620","250","90",null,null,null,null,null,null,this);
+            obj = new Radio("Answer04","30","690","250","90",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_innerdataset("dsSurvey");
             obj.set_codecolumn("codecolumn");
             obj.set_datacolumn("datacolumn");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Question04","30","570","750","40",null,null,null,null,null,null,this);
+            obj = new Static("Question04","30","640","750","40",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_background("white");
             obj.set_border("1px solid black");
@@ -100,14 +100,14 @@
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Radio("Answer05","30","770","250","90",null,null,null,null,null,null,this);
+            obj = new Radio("Answer05","30","840","250","90",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_innerdataset("dsSurvey");
             obj.set_codecolumn("codecolumn");
             obj.set_datacolumn("datacolumn");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Question05","30","720","750","40",null,null,null,null,null,null,this);
+            obj = new Static("Question05","30","790","750","40",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_background("white");
             obj.set_border("1px solid black");
@@ -115,13 +115,13 @@
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnSubmit","710","1640","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btnSubmit","710","1710","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("10");
             obj.set_text("제출");
             obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Question06","30","870","750","40",null,null,null,null,null,null,this);
+            obj = new Static("Question06","30","940","750","40",null,null,null,null,null,null,this);
             obj.set_taborder("11");
             obj.set_background("white");
             obj.set_border("1px solid black");
@@ -129,14 +129,14 @@
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Radio("Answer06","30","920","250","90",null,null,null,null,null,null,this);
+            obj = new Radio("Answer06","30","990","250","90",null,null,null,null,null,null,this);
             obj.set_taborder("12");
             obj.set_innerdataset("dsSurvey");
             obj.set_codecolumn("codecolumn");
             obj.set_datacolumn("datacolumn");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Question07","30","1020","750","40",null,null,null,null,null,null,this);
+            obj = new Static("Question07","30","1090","750","40",null,null,null,null,null,null,this);
             obj.set_taborder("13");
             obj.set_background("white");
             obj.set_border("1px solid black");
@@ -144,14 +144,14 @@
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Radio("Answer07","30","1070","250","90",null,null,null,null,null,null,this);
+            obj = new Radio("Answer07","30","1140","250","90",null,null,null,null,null,null,this);
             obj.set_taborder("14");
             obj.set_innerdataset("dsSurvey");
             obj.set_codecolumn("codecolumn");
             obj.set_datacolumn("datacolumn");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Question08","30","1170","750","40",null,null,null,null,null,null,this);
+            obj = new Static("Question08","30","1240","750","40",null,null,null,null,null,null,this);
             obj.set_taborder("15");
             obj.set_background("white");
             obj.set_border("1px solid black");
@@ -159,14 +159,14 @@
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Radio("Answer08","30","1220","250","90",null,null,null,null,null,null,this);
+            obj = new Radio("Answer08","30","1290","250","90",null,null,null,null,null,null,this);
             obj.set_taborder("16");
             obj.set_innerdataset("dsSurvey");
             obj.set_codecolumn("codecolumn");
             obj.set_datacolumn("datacolumn");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Question09","30","1320","750","40",null,null,null,null,null,null,this);
+            obj = new Static("Question09","30","1390","750","40",null,null,null,null,null,null,this);
             obj.set_taborder("17");
             obj.set_background("white");
             obj.set_border("1px solid black");
@@ -174,21 +174,21 @@
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Radio("Answer09","30","1370","250","90",null,null,null,null,null,null,this);
+            obj = new Radio("Answer09","30","1440","250","90",null,null,null,null,null,null,this);
             obj.set_taborder("18");
             obj.set_innerdataset("dsSurvey");
             obj.set_codecolumn("codecolumn");
             obj.set_datacolumn("datacolumn");
             this.addChild(obj.name, obj);
 
-            obj = new Radio("Answer10","30","1520","250","90",null,null,null,null,null,null,this);
+            obj = new Radio("Answer10","30","1590","250","90",null,null,null,null,null,null,this);
             obj.set_taborder("19");
             obj.set_innerdataset("dsSurvey");
             obj.set_codecolumn("codecolumn");
             obj.set_datacolumn("datacolumn");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Question10","30","1470","750","40",null,null,null,null,null,null,this);
+            obj = new Static("Question10","30","1540","750","40",null,null,null,null,null,null,this);
             obj.set_taborder("20");
             obj.set_background("white");
             obj.set_border("1px solid black");
@@ -196,11 +196,23 @@
             obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdEvalName","100","30","600","60",null,null,null,null,null,null,this);
+            obj = new Grid("grdEvalName","100","75","600","60",null,null,null,null,null,null,this);
             obj.set_taborder("21");
             obj.set_binddataset("dsEvalAll");
             obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"149\"/><Column size=\"149\"/><Column size=\"150\"/><Column size=\"150\"/></Columns><Rows><Row size=\"29\" band=\"head\"/><Row size=\"28\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\"/><Cell col=\"3\" text=\"직책\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:assignName\" textAlign=\"center\"/></Band></Format></Formats>");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static01","30","150","60","40",null,null,null,null,null,null,this);
+            obj.set_taborder("22");
+            obj.set_text("질문 목록");
+            obj.set_cssclass("stc_stc");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static00","340","15","120","40",null,null,null,null,null,null,this);
+            obj.set_taborder("23");
+            obj.set_text("직원 평가");
+            obj.set_cssclass("stc_popup");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -493,6 +505,7 @@
             this.Answer08.addEventHandler("onitemchanged",this.Radio00_onitemchanged,this);
             this.Answer09.addEventHandler("onitemchanged",this.Radio00_onitemchanged,this);
             this.Answer10.addEventHandler("onitemchanged",this.Radio00_onitemchanged,this);
+            this.Static00.addEventHandler("onclick",this.Static00_onclick,this);
         };
         this.loadIncludeScript("Form_EvalRegister.xfdl");
         this.loadPreloadList();
