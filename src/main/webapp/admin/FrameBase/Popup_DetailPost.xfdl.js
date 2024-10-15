@@ -13,7 +13,7 @@
             this.set_titletext("공지사항 조회");
             if (Form == this.constructor)
             {
-                this._setFormPosition(1000,690);
+                this._setFormPosition(1000,630);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -76,22 +76,23 @@
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new TextArea("TextArea_Content","120","170","820","360",null,null,null,null,null,null,this);
+            obj = new TextArea("TextArea_Content","120","170","820","310",null,null,null,null,null,null,this);
             obj.set_readonly("true");
             obj.set_font("14px \'Gulim\'");
+            obj.set_wordWrap("english");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static_Label_Attachments","30","550","100","30",null,null,null,null,null,null,this);
+            obj = new Static("Static_Label_Attachments","30","490","100","30",null,null,null,null,null,null,this);
             obj.set_text("첨부파일");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("Grid_Attachments","120","550","700","100",null,null,null,null,null,null,this);
+            obj = new Grid("Grid_Attachments","120","490","700","100",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Attachments");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"85\"/><Column size=\"612\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"번호\"/><Cell col=\"1\" text=\"파일명\"/></Band><Band id=\"body\"><Cell text=\"expr:currow + 1\"/><Cell col=\"1\" text=\"bind:attach_name\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"85\"/><Column size=\"612\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"번호\"/><Cell col=\"1\" text=\"파일명\"/></Band><Band id=\"body\"><Cell text=\"expr:currow + 1\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:attach_name\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button_Download","840","550","100","100",null,null,null,null,null,null,this);
+            obj = new Button("Button_Download","840","490","100","100",null,null,null,null,null,null,this);
             obj.set_text("다운로드");
             obj.set_cssclass("btn_download");
             this.addChild(obj.name, obj);
@@ -104,7 +105,7 @@
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",1000,690,this,function(p){});
+            obj = new Layout("default","",1000,630,this,function(p){});
             this.addLayout(obj.name, obj);
             
             // BindItem Information

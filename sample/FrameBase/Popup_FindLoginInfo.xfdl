@@ -30,7 +30,7 @@
                   <Button id="btn_NewPassword" taborder="7" text="확인" left="410" top="130" width="50" height="30" visible="false" onclick="btn_NewPassword_onclick" cssclass="btn_normal"/>
                   <Static id="sta_authCheck" taborder="8" text="인증번호" left="79" top="130" width="60" height="30" cssclass="stc_stc" visible="false"/>
                   <Edit id="edt_authCheck" taborder="9" left="170" top="130" width="170" height="30" visible="false"/>
-                  <Button id="btn_AuthCheck" taborder="10" text="인증" left="375" top="130" width="50" height="30" cssclass="btn_normal" onclick="Tab00_Tabpage2_btn_AuthCheck_onclick" visible="false"/>
+                  <Button id="btn_AuthCheck" taborder="10" text="인증" left="375" top="130" width="70" height="30" cssclass="btn_edit" onclick="Tab00_Tabpage2_btn_AuthCheck_onclick" visible="false"/>
                 </Layout>
               </Layouts>
             </Tabpage>

@@ -10,7 +10,7 @@
         <Calendar id="cal_End" taborder="4" left="519" top="110" width="150" height="30"/>
         <Button id="btn_Search" taborder="5" text="조회" left="890" top="110" width="70" height="30" onclick="btn_Search_onclick" icon="url('imagerc::img_WF_search01.png')" cssclass="btn_search"/>
         <Static id="Static01" taborder="6" text="~" left="489" top="110" width="20" height="30" font="24px/normal &quot;Gulim&quot;"/>
-        <Grid id="grid_Atten" taborder="7" left="20" top="150" width="1105" height="460" binddataset="ds_AttenList" oncelldblclick="grid_Atten_oncelldblclick">
+        <Grid id="grid_Atten" taborder="7" left="20" top="150" width="1105" height="460" binddataset="ds_AttenList" oncelldblclick="grid_Atten_oncelldblclick" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>

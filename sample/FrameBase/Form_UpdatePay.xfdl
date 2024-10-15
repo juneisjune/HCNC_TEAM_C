@@ -18,7 +18,7 @@
         <Combo id="com_Month00" taborder="12" left="614" top="110" width="60" height="30" onitemchanged="com_Month00_onitemchanged" value="10" index="9" innerdataset="ds_Month" datacolumn="month" codecolumn="month"/>
         <Combo id="cmb_SearType" taborder="13" text="전체" left="30" top="110" width="90" height="30" index="0" innerdataset="ds_SearchType" datacolumn="Name" codecolumn="Value" onitemchanged="cmb_SearType_onitemchanged" value="ALL"/>
         <Button id="btn_Delete" taborder="14" text="삭제" left="915" top="110" width="70" height="30" onclick="btn_Delete_onclick" cssclass="btn_delete"/>
-        <Grid id="grd_CodeMst" taborder="15" left="30" top="150" width="955" height="280" binddataset="ds_Pay" onheadclick="grd_CodeMst_onheadclick">
+        <Grid id="grd_CodeMst" taborder="15" left="30" top="150" width="955" height="280" binddataset="ds_Pay" onheadclick="grd_CodeMst_onheadclick" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>
@@ -61,7 +61,7 @@
             </Format>
           </Formats>
         </Grid>
-        <Grid id="grd_CodeMst2" taborder="16" left="30" top="444" width="420" height="153" binddataset="ds_Pay">
+        <Grid id="grd_CodeMst2" taborder="16" left="30" top="444" width="437" height="153" binddataset="ds_Pay" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>

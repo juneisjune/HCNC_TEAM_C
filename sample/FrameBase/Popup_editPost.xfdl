@@ -5,7 +5,7 @@
       <Layout height="470" width="750" stepcount="0">
         <Static id="Static00" taborder="2" text="Drop Files Here" left="99" top="280" width="482" height="70" visible="true" background="aliceblue" color="dodgerblue" font="normal 30pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>
         <Button id="open" taborder="0" text="폴더 열기" left="599" top="260" width="120" height="90" onclick="btn_open_onclick" cssclass="btn_download"/>
-        <Grid id="attach_grid" taborder="1" left="101" top="260" width="488" height="90" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop" oncellclick="attach_grid_oncellclick">
+        <Grid id="attach_grid" taborder="1" left="101" top="260" width="488" height="90" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop" oncellclick="attach_grid_oncellclick" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>
@@ -21,15 +21,15 @@
                 <Cell col="1" text="삭제"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:attach_name"/>
+                <Cell text="bind:attach_name" textAlign="center"/>
                 <Cell col="1" text="삭제" textAlign="center" edittype="button" displaytype="buttoncontrol"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="Button01" taborder="3" text="수정" left="350" top="380" width="70" height="30" onclick="Button01_onclick" cssclass="btn_edit"/>
+        <Button id="Button01" taborder="3" text="수정" left="350" top="390" width="70" height="30" onclick="Button01_onclick" cssclass="btn_edit"/>
         <Edit id="Edit_title" taborder="4" left="100" top="80" width="620" height="39" onchanged="Edit_title_onchanged"/>
-        <TextArea id="TextArea01" taborder="5" left="100" top="130" width="619" height="112" onchanged="TextArea01_onchanged"/>
+        <TextArea id="TextArea01" taborder="5" left="100" top="130" width="619" height="112" onchanged="TextArea01_onchanged" wordWrap="english"/>
         <Static id="Static_Label_Title" text="제목" left="19" top="79" width="70" height="30" textAlign="center" taborder="6" cssclass="stc_stc"/>
         <Static id="Static_Label_Attachments" text="첨부파일" left="19" top="265" width="70" height="30" textAlign="center" taborder="7" cssclass="stc_stc"/>
         <Static id="Static_Label_Content" text="내용" left="19" top="129" width="70" height="30" textAlign="center" taborder="8" cssclass="stc_stc"/>

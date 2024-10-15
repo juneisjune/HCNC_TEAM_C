@@ -5,7 +5,7 @@
       <Layout height="530" width="770" stepcount="0">
         <Static id="Static00" taborder="2" text="Drop Files Here" left="98" top="322" width="482" height="80" visible="true" background="aliceblue" color="dodgerblue" font="normal 30pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>
         <Button id="open" taborder="0" text="폴더 열기" left="600" top="322" width="90" height="90" onclick="btn_open_onclick" cssclass="btn_download"/>
-        <Grid id="Grid00" taborder="1" left="100" top="322" width="482" height="90" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop">
+        <Grid id="Grid00" taborder="1" left="100" top="322" width="482" height="90" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>
@@ -29,7 +29,7 @@
         </Grid>
         <Button id="Button01" taborder="3" text="등록" left="346" top="440" width="70" height="30" onclick="Button01_onclick" cssclass="btn_regist"/>
         <Edit id="Edit_title" taborder="4" left="100" top="101" width="590" height="39" onchanged="Edit_title_onchanged"/>
-        <TextArea id="TextArea01" taborder="5" left="100" top="160" width="590" height="144"/>
+        <TextArea id="TextArea01" taborder="5" left="100" top="160" width="590" height="144" wordWrap="english"/>
         <Static id="Static00_00" taborder="6" text="공지사항 등록" left="30" top="23" width="220" height="50" onclick="Static00_00_onclick" cssclass="stc_title"/>
         <Static id="Static_Label_Attachments" text="첨부파일" left="30" top="322" width="60" height="30" taborder="7" cssclass="stc_stc"/>
         <Static id="Static_Label_Content" text="내용" left="30" top="160" width="60" height="30" taborder="8" cssclass="stc_stc"/>
