@@ -22,7 +22,6 @@
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             padding: 20px;
             margin-top: 30px;
-        }
 
         h1 {
             color: #2c3e50;
@@ -80,7 +79,10 @@
         th.title, td.title {
             font-size: 18px; /* 제목 크기를 키움 */
             font-weight: bold; /* 제목을 더 두껍게 */
-            width: 500px;
+        }
+        
+        td.title {
+        	text-align : left;
         }
 
         .pagination {
@@ -131,7 +133,7 @@
             <thead>
                 <tr>
                     <th>게시글 번호</th>
-                    <th>작성자 이름</th>
+                    <th>작성자</th>
                     <th class="title">제목</th> <!-- 제목 부분에 클래스 추가 -->
                     
                     <th>등록일</th>

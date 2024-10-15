@@ -45,6 +45,7 @@
         .detail-table th {
             background-color: #34495e;
             color: white;
+            text-align: center;
         }
 
         .detail-table td {
