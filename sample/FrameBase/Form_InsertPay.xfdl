@@ -7,7 +7,7 @@
         <Static id="stc_Assign" taborder="1" text="직책" left="30" top="110" width="30" height="30" cssclass="stc_stc"/>
         <Combo id="cmb_Assign" taborder="2" left="69" top="110" width="130" height="30" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged"/>
         <Button id="btn_Search" taborder="3" text="조회" left="210" top="110" width="70" height="30" onclick="btn_Search_onclick" cssclass="btn_search"/>
-        <Grid id="grd_Emp" taborder="4" left="30" top="155" width="890" height="415" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick">
+        <Grid id="grd_Emp" taborder="4" left="30" top="155" width="890" height="415" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>

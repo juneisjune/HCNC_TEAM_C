@@ -72,7 +72,7 @@
     <Layouts>
       <Layout height="720" width="1280">
         <Static id="Title" taborder="0" text="직원 정보 관리" left="30" top="20" width="235" height="50" cssclass="stc_title"/>
-        <Grid id="grd_employee" taborder="1" left="30" top="150" width="1150" height="400" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged">
+        <Grid id="grd_employee" taborder="1" left="30" top="150" width="1150" height="400" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>

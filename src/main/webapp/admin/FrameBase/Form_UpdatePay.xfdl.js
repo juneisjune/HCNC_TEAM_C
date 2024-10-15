@@ -151,12 +151,14 @@
             obj = new Grid("grd_CodeMst","30","150","955","280",null,null,null,null,null,null,this);
             obj.set_taborder("15");
             obj.set_binddataset("ds_Pay");
+            obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"98\"/><Column size=\"121\"/><Column size=\"117\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"0\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"부서\"/><Cell col=\"4\" text=\"직책\"/><Cell col=\"5\" text=\"급여년도\"/><Cell col=\"6\" text=\"급여월\"/><Cell col=\"7\" text=\"지급액\"/><Cell col=\"8\" text=\"수정금액\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chk\"/><Cell col=\"1\" text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:payYear\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:payMonth\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:actualPay\"/><Cell col=\"8\" text=\"bind:etc\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grd_CodeMst2","30","444","437","153",null,null,null,null,null,null,this);
             obj.set_taborder("16");
             obj.set_binddataset("ds_Pay");
+            obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"117\"/><Column size=\"130\"/><Column size=\"170\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\" textAlign=\"center\"/><Cell col=\"1\" text=\"이름\" textAlign=\"center\"/><Cell col=\"2\" text=\"수정금액\" textAlign=\"center\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:etc\" displaytype=\"normal\" edittype=\"text\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
             // Layout Functions
