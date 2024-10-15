@@ -77,6 +77,7 @@
 
             obj = new TextArea("TextArea01","100","160","590","144",null,null,null,null,null,null,this);
             obj.set_taborder("5");
+            obj.set_wordWrap("english");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static00_00","30","23","220","50",null,null,null,null,null,null,this);
