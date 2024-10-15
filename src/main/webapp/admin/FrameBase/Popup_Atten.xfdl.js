@@ -89,7 +89,7 @@
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Save","260","480","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Save","260","480","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("저장");
             obj.set_cssclass("btn_edit");

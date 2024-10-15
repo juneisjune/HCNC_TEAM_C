@@ -26,6 +26,9 @@ public interface NexaPayMapper {
 	//지난달 결근 조회
 	int selectAbsence(Map< String, Object> param); 
 	
+	//퇴사자일시 dayoff count 테이블 조회 
+	int selectDayOff(Map< String, Object> param); 
+	
 	//잔여 연차 개수 조회
 	Integer selectEtc(Map< String, Object> param); 
 	
