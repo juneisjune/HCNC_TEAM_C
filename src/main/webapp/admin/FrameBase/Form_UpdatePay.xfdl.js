@@ -154,7 +154,7 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"110\"/><Column size=\"98\"/><Column size=\"121\"/><Column size=\"117\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"0\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"부서\"/><Cell col=\"4\" text=\"직책\"/><Cell col=\"5\" text=\"급여년도\"/><Cell col=\"6\" text=\"급여월\"/><Cell col=\"7\" text=\"지급액\"/><Cell col=\"8\" text=\"수정금액\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chk\"/><Cell col=\"1\" text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:payYear\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:payMonth\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:actualPay\"/><Cell col=\"8\" text=\"bind:etc\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_CodeMst2","30","444","437","153",null,null,null,null,null,null,this);
+            obj = new Grid("grd_CodeMst2","30","444","420","153",null,null,null,null,null,null,this);
             obj.set_taborder("16");
             obj.set_binddataset("ds_Pay");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"117\"/><Column size=\"130\"/><Column size=\"170\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\" textAlign=\"center\"/><Cell col=\"1\" text=\"이름\" textAlign=\"center\"/><Cell col=\"2\" text=\"수정금액\" textAlign=\"center\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:etc\" displaytype=\"normal\" edittype=\"text\"/></Band></Format></Formats>");
@@ -227,6 +227,7 @@
 
         // 조회 버튼 클릭 시 호출되는 함수
         this.btn_Search_onclick = function(obj, e) {
+        	this.grd_CodeMst.setFocus();
 
             // 조회 실행
             this.fnSearch();
@@ -304,6 +305,8 @@
 
 
         this.btn_Delete_onclick = function(obj, e) {
+        	this.grd_CodeMst.setFocus();
+
             var deleteList = [];
 
             // 체크된 데이터 수집
@@ -362,12 +365,15 @@
 
 
         this.btn_Update_onclick = function(obj, e) {
+        	this.grd_CodeMst.setFocus();
+
             // 수정 액 입력 부분을 두 번째 그리드에서 직접 입력 받음 (이전 edt_Code, edt_CodeNm, edt_ModPay는 더 이상 사용하지 않음)
             var selectedRow = this.ds_Pay.rowposition; // 두 번째 그리드에서 선택된 행
             var modPay = this.ds_Pay.getColumn(selectedRow, "etc"); // 수정액 필드
 
             if (!modPay || isNaN(modPay)) {
                 this.alert("수정액을 올바르게 입력해주세요.");
+        		this.grd_CodeMst2.setFocus();
                 return;
             }
 

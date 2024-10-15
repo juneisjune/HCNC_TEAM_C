@@ -139,6 +139,8 @@
         // 팝업 로드 시 게시글 정보와 첨부파일 정보를 불러옴
         this.Popup_edit_page_onload = function(obj,e)
         {
+        	this.attach_grid.setFocus();
+
         	this.ds_post.clearData();
         	this.ds_post.addRow();
         	this.ds_post.setColumn(0, "post_code", this.parent.post_code);
@@ -148,7 +150,6 @@
         	console.log("postInfo data:" + this.ds_postInfo.saveXML());
         	console.log("post dataafaf:" + this.ds_post.saveXML());
         	console.log("dbset" + this.Dataset00.saveXML());
-
 
         	// Edit 및 TextArea에 게시글 정보 설정
         	this.Edit_title.set_value(this.ds_post.getColumn(0, "title"));
@@ -166,6 +167,7 @@
 
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
+        	this.attach_grid.setFocus();
 
         // 첨부파일 정보 조회 콜백
         this.fn_callbackAttachments = function(svcID, errorCode, errorMsg)
@@ -232,6 +234,7 @@
 
         // 게시글 수정 및 파일 저장 로직
         this.Button01_onclick = function(obj,e){
+        	this.attach_grid.setFocus();
             if (this.ds_postInfo.getRowCount() == 0) {
                 this.ds_postInfo.addRow();
             }
@@ -301,6 +304,7 @@
         };
         this.btn_open_onclick = function(obj,e)
         {
+        	this.attach_grid.setFocus();
         	this.FileDialog00.open('nexacro17', FileDialog.LOAD);  // 단일 파일 선택 모드
         };
 

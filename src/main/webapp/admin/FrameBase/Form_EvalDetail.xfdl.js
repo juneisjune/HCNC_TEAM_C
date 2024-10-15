@@ -48,6 +48,7 @@
             obj = new Button("btnClose","680","1730","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("닫기");
+            obj.set_cssclass("btn_delete");
             this.addChild(obj.name, obj);
 
             obj = new Static("Question01","30","190","750","40",null,null,null,null,null,null,this);
@@ -431,6 +432,7 @@
 
         // 닫기 버튼
         this.btnClose_onclick = function(obj, e) {
+        	this.grdEvalInfo.setFocus();
             this.close();
         };
 

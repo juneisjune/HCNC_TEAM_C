@@ -155,6 +155,7 @@
 
         this.btn_HrdListSearch_onclick = function(obj,e)
         {
+        	this.grd_HrdList.setFocus();
         	this.fnSearchList();
         };
 
@@ -168,6 +169,7 @@
         //저장 버튼
         this.btn_Savehrd_onclick = function(obj,e)
         {
+        	this.grd_HrdList.setFocus();
         	 // 유효성 검사를 먼저 수행
             if (!this.validateBeforeUpdate()) {
                 return;

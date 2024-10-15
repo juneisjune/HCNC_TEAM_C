@@ -125,6 +125,7 @@
 
         this.btn_Search_onclick = function(obj,e)
         {
+        	this.grd_Emp.setFocus();
         	this.fnSearch();
 
         };
@@ -196,6 +197,7 @@
 
         this.btn_Insert_onclick = function(obj,e)
         {
+        	this.grd_Emp.setFocus();
 
         	var adm_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 

@@ -191,12 +191,14 @@
             // 아이디 유효성 검사
             if(userId == null || userId == '' || userId === 'undefined') {
                 alert("아이디를 입력하세요.");
+        			this.edt_Id.setFocus();
                 return;
             }
 
             // 비밀번호 유효성 검사
             if(password == null || password == '' || password === 'undefined')	 {
                 alert("비밀번호를 입력하세요.");
+        			this.edt_Password.setFocus();
                 return;
             }
 
