@@ -29,7 +29,7 @@
 
 
             obj = new Dataset("dsSearch", this);
-            obj._setContents("<ColumnInfo><Column id=\"Type\" type=\"STRING\" size=\"256\"/><Column id=\"Word\" type=\"STRING\" size=\"256\"/><Column id=\"StartDate\" type=\"STRING\" size=\"256\"/><Column id=\"EndDate\" type=\"STRING\" size=\"256\"/><Column id=\"admin_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"Type\"/><Col id=\"Word\"/></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"Type\" type=\"STRING\" size=\"256\"/><Column id=\"Word\" type=\"STRING\" size=\"256\"/><Column id=\"StartDate\" type=\"STRING\" size=\"256\"/><Column id=\"EndDate\" type=\"STRING\" size=\"256\"/><Column id=\"admin_code\" type=\"STRING\" size=\"256\"/><Column id=\"admin_assign_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"Type\"/><Col id=\"Word\"/></Row></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -169,8 +169,10 @@
         this.fnSearch = function() {
 
         	var admin_code = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
+        	var admin_assign_code = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
 
         	this.dsSearch.setColumn(0, "admin_code", admin_code);
+        	this.dsSearch.setColumn(0, "admin_assign_code", admin_assign_code);
 
             var searchType = this.dsSearch.getColumn(0, "Type");
             var searchWord = this.dsSearch.getColumn(0, "Word");

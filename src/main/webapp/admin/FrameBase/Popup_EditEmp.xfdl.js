@@ -255,6 +255,7 @@
             // 성별 검사
             if (!gender || gender.trim() === "") {
                 alert("성별을 입력해 주세요.");
+
                 return false;
             }
 

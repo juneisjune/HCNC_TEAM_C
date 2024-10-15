@@ -131,7 +131,8 @@
         this.registerScript("Form_Attendance.xfdl", function() {
 
         this.btn_Search_onclick = function(obj,e)
-        {	this.grid_Atten.setFocus();
+        {
+        this.grid_Atten.setFocus();
         	this.fnSearch();
         };
 
@@ -204,6 +205,7 @@
         // 수정 버튼 클릭 시 수정 팝업 호출
         this.btn_EditAtten_onclick = function(obj,e)
         {
+        	this.grid_Atten.setFocus();
         	this.ds_Condition.setColumn(0, "condition", 1);
 
         	var objParam = {condition:this.ds_Condition.getColumn(0, "condition")
@@ -222,6 +224,7 @@
         // 등록 버튼 클릭 시 등록 팝업 호출
         this.btn_RegisterAtten_onclick = function(obj,e)
         {
+        	this.grid_Atten.setFocus();
         	this.ds_Condition.setColumn(0, "condition", 0);
 
         	var objParam = {condition:this.ds_Condition.getColumn(0, "condition")};

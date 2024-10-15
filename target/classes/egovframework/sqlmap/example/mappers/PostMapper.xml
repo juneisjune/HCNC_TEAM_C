@@ -10,7 +10,7 @@
 	           reg_date,
 	           upd_name,
 	           view_count
-	    FROM post
+	    FROM post a
 <!--    INNER JOIN employee b 
 	      ON a.emp_code = b.emp_code -->	 
 	    ORDER BY post_code DESC
@@ -18,8 +18,8 @@
 
 	<!-- 게시글 상세 조회 관련 쿼리 -->	
 	<select id="selectPostDetail" parameterType="int" resultType="map">
-	    SELECT post_code, title, content, reg_date, upd_name, view_count
-	    	FROM post
+	    SELECT a.post_code, a.title, a.content, a.reg_date, a.upd_name, a.view_count
+	    	FROM post a
 	   <!-- INNER JOIN employee b 
 	      ON a.emp_code = b.emp_code --> 
 	    WHERE post_code = #{postCode}
@@ -115,12 +115,9 @@
 	<!-- 여기까지 이상무 -->
 	<!-- 게시글 목록 페이징 처리 조회 -->
 	<select id="selectPostWithPaging" resultType="map">
-	    SELECT a.post_code, a.title, a.content, a.reg_date, upd_name, a.view_count
+	    SELECT a.post_code, a.title, a.content, a.reg_date, b.name AS emp_name, a.view_count
 	    FROM post a
-	    <!-- 
 	    INNER JOIN employee b ON a.emp_code = b.emp_code
-	     -->
-	    
 	    ORDER BY a.post_code DESC
 	    LIMIT #{offset}, #{pageSize}
 	</select>

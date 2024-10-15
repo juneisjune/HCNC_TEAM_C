@@ -184,7 +184,7 @@
 
         // 인증번호 발송(로그인) 버튼
         this.btn_Login_onclick = function(obj,e) {
-
+        	this.img_HcncLogo.setFocus();
             var userId = this.ds_login.getColumn(0, "user_id");
             var password = this.ds_login.getColumn(0, "password");
 
@@ -195,7 +195,7 @@
             }
 
             // 비밀번호 유효성 검사
-            if(password == null || password == '' || password === 'undefined') {
+            if(password == null || password == '' || password === 'undefined')	 {
                 alert("비밀번호를 입력하세요.");
                 return;
             }
