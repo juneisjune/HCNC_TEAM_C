@@ -39,7 +39,7 @@
         }
 
         th, td {
-            padding: 12px 15px;
+            padding: 7px 8px;
             text-align: center;
         }
 
@@ -145,18 +145,19 @@
                         직책 
                         <input type="text" id="assignName" name="assignName" value="${emp.assignName}" readonly>
                      </td>
- 
-                </tr>
-                <tr>
-                 <td colspan="4">
+                     <td>
                         총 연차
                     <input type="text" id="assignName" name="dayoffCnt" value="${emp.dayoffCnt}" readonly>
+                    </td>
+                    <td>
                         잔여 연차 
                     <input type="text" id="assignName" name="remainCnt" value="${emp.remainCnt}" readonly>
                  </td>  
-                </tr>                
+ 
+                </tr>
+                             
                 <tr>
-                    <td colspan="4">
+                    <td colspan="6">
                         시작일
                     <input type="date" id="startDate" name="startDate" required>  
                         종료일		<input type="date" id="endDate" name="endDate" required>
@@ -174,7 +175,7 @@
                 </tr>
                 
                 <tr>
-                    <td colspan="4">
+                    <td colspan="6">
                         <label for="reason" style="font-size: 18px; ">상세 사유</label>
                         <textarea id="reason" name="reason" rows="15" cols="50" placeholder="내용 입력" style="font-size: 16px;" required></textarea>
                     </td>
