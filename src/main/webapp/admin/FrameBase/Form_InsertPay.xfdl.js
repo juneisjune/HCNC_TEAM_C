@@ -70,6 +70,7 @@
             obj = new Grid("grd_Emp","30","155","890","415",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_binddataset("ds_EmpList");
+            obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"88\"/><Column size=\"109\"/><Column size=\"82\"/><Column size=\"110\"/><Column size=\"121\"/><Column size=\"119\"/><Column size=\"210\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/><Cell col=\"7\" text=\"계좌번호\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chkVal\"/><Cell col=\"1\" textAlign=\"center\" text=\"bind:emp_code\"/><Cell col=\"2\" textAlign=\"center\" text=\"bind:name\"/><Cell col=\"3\" textAlign=\"center\" text=\"bind:assign_name\"/><Cell col=\"4\" textAlign=\"center\" text=\"bind:dep_name\"/><Cell col=\"5\" textAlign=\"center\" text=\"bind:join_date\" displaytype=\"date\"/><Cell col=\"6\" text=\"bind:resign_date\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:account\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
@@ -125,6 +126,7 @@
 
         this.btn_Search_onclick = function(obj,e)
         {
+        	this.grd_Emp.setFocus();
         	this.fnSearch();
 
         };
@@ -196,6 +198,7 @@
 
         this.btn_Insert_onclick = function(obj,e)
         {
+        	this.grd_Emp.setFocus();
 
         	var adm_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 
@@ -237,9 +240,6 @@
 
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
-
-
-
 
         // 그리드 헤드 더블 클릭 시 정렬
         this.grd_Emp_onheaddblclick = function(obj,e)
@@ -290,6 +290,7 @@
             objDs.set_rowposition(0);
         };
 
+
         });
         
         // Regist UI Components Event
@@ -301,6 +302,7 @@
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grd_Emp.addEventHandler("onheadclick",this.grd_Emp_onheadclick,this);
             this.grd_Emp.addEventHandler("onheaddblclick",this.grd_Emp_onheaddblclick,this);
+            this.cal_GiveDate.addEventHandler("onchanged",this.cal_GiveDate_onchanged,this);
             this.btn_Insert.addEventHandler("onclick",this.btn_Insert_onclick,this);
         };
         this.loadIncludeScript("Form_InsertPay.xfdl");

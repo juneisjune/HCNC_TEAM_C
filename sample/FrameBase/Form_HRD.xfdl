@@ -6,7 +6,7 @@
         <Static id="Static00" taborder="0" text="인사관리" left="36" top="23" width="174" height="50" cssclass="stc_title"/>
         <Edit id="edt_SearchWord" taborder="1" left="160" top="110" width="200" height="30" onchanged="edt_SearchWord_onchanged"/>
         <Button id="btn_HrdListSearch" taborder="2" text="조회" left="620" top="110" width="70" height="30" onclick="btn_HrdListSearch_onclick" cssclass="btn_search"/>
-        <Grid id="grd_HrdList" taborder="3" left="36" top="150" width="742" height="400" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none" onheaddblclick="grd_HrdList_onheaddblclick">
+        <Grid id="grd_HrdList" taborder="3" left="36" top="150" width="742" height="400" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none" autofittype="col" onheaddblclick="grd_HrdList_onheaddblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -45,6 +45,8 @@
         </Grid>
         <Combo id="cmb_SearchType" taborder="4" left="36" top="110" width="110" height="30" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="전체" index="0" onitemchanged="cmb_SearchType_onitemchanged"/>
         <Button id="btn_Savehrd" taborder="5" text="저장" left="707" top="110" width="70" height="30" onclick="btn_Savehrd_onclick" cssclass="btn_check"/>
+        <Calendar id="Cal_Appointment" taborder="6" left="480" top="110" width="124" height="30" dateformat="yyyy-MM-dd" onchanged="Cal_Appointment_onchanged"/>
+        <Static id="Static01" taborder="7" text="발령일" left="404" top="110" width="80" height="30" cssclass="stc_stc"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -170,12 +172,22 @@
           <Column id="admin_name" type="STRING" size="256"/>
           <Column id="assign_code" type="STRING" size="256"/>
           <Column id="dep_code" type="STRING" size="256"/>
+          <Column id="assign_date" type="DATE" size="256"/>
         </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_assignDate">
+        <ColumnInfo>
+          <Column id="ASSIGN_DATE" type="DATE" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
       </Dataset>
     </Objects>
     <Bind>
       <BindItem id="item0" compid="edt_SearchWord" propid="value" datasetid="ds_Search" columnid="SEARCH_WORD"/>
       <BindItem id="item1" compid="cmb_SearchType" propid="value" datasetid="ds_Search" columnid="SEARCH_TYPE"/>
+      <BindItem id="item2" compid="Cal_Appointment" propid="value" datasetid="ds_assignDate" columnid="ASSIGN_DATE"/>
     </Bind>
     <Script type="xscript5.1"><![CDATA[
 //처리콜백 함수
@@ -219,6 +231,7 @@ this.fnSearchList = function(){
 
 this.btn_HrdListSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.grd_HrdList.setFocus();
 	this.fnSearchList();
 };
 
@@ -232,6 +245,7 @@ this.Form_HRD_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 //저장 버튼
 this.btn_Savehrd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {	
+	this.grd_HrdList.setFocus();
 	 // 유효성 검사를 먼저 수행
     if (!this.validateBeforeUpdate()) {
         return;
@@ -251,6 +265,7 @@ this.btn_Savehrd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
             var newRow = this.ds_UpdateHrdlist.addRow();  // UpdateHrdlist에 새 행 추가
             this.ds_UpdateHrdlist.copyRow(newRow, this.ds_Hrdlist, i);  // Hrdlist의 i번째 행을 복사
 			this.ds_UpdateHrdlist.setColumn(newRow,"admin_name",loginAdminName);
+			this.ds_UpdateHrdlist.setColumn(newRow, "assign_date", this.ds_assignDate.getColumn(0, "ASSIGN_DATE"));
         }
     }
 	console.log("업뎃리스트" + this.ds_UpdateHrdlist.saveXML());
@@ -273,6 +288,13 @@ this.btn_Savehrd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 this.validateBeforeUpdate = function() {
 
     var dsHrdlist = this.lookup("ds_Hrdlist");
+	
+	if(this.ds_assignDate.getColumn(0, "ASSIGN_DATE") == '' 
+	|| this.ds_assignDate.getColumn(0, "ASSIGN_DATE") == 'undefined'
+	|| this.ds_assignDate.getColumn(0, "ASSIGN_DATE") == null){
+		alert("발령일을 입력하세요.");
+		return;
+	}
 
     // ds_Hrdlist의 모든 행을 검사
     for (var i = 0; i < dsHrdlist.getRowCount(); i++) {
@@ -309,7 +331,9 @@ this.validateBeforeUpdate = function() {
     }
     return true;
 };
-this.cmb_SearchType_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+
+
+this.Cal_Appointment_onchanged = function(obj:nexacro.Calendar,e:nexacro.ChangeEventInfo)
 {
 	
 };

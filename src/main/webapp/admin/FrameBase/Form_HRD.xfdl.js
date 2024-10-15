@@ -45,7 +45,12 @@
 
             obj = new Dataset("ds_UpdateHrdlist", this);
             obj.set_useclientlayout("true");
-            obj._setContents("<ColumnInfo><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\"/><Column id=\"mng_code\" type=\"INT\" size=\"256\"/><Column id=\"admin_name\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"dep_code\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\"/><Column id=\"mng_code\" type=\"INT\" size=\"256\"/><Column id=\"admin_name\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"STRING\" size=\"256\"/><Column id=\"dep_code\" type=\"STRING\" size=\"256\"/><Column id=\"assign_date\" type=\"DATE\" size=\"256\"/></ColumnInfo>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("ds_assignDate", this);
+            obj._setContents("<ColumnInfo><Column id=\"ASSIGN_DATE\" type=\"DATE\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -70,6 +75,7 @@
             obj.set_binddataset("ds_Hrdlist");
             obj.set_autoenter("none");
             obj.set_autoupdatetype("none");
+            obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"75\"/><Column size=\"122\"/><Column size=\"106\"/><Column size=\"77\"/><Column size=\"130\"/><Column size=\"115\"/><Column size=\"115\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"부서\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"normal\"/><Cell col=\"3\" text=\"직책\" calendardateformat=\"yyyy-MM-dd\"/><Cell col=\"4\" text=\"부서장\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/></Band><Band id=\"body\"><Cell text=\"bind:emp_code\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"combotext\" edittype=\"combo\" calendardisplayinvalidtype=\"none\" calendardisplaynulltype=\"none\" calendarpopuptype=\"none\" text=\"bind:dep_code\" combodataset=\"ds_Department\" combocodecol=\"dep_code\" combodatacol=\"dep_name\" textAlign=\"center\"/><Cell col=\"3\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"combotext\" text=\"bind:assign_code\" edittype=\"combo\" combodataset=\"ds_Assignment\" combocodecol=\"assign_code\" combodatacol=\"assign_name\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:mng_name\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:join_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"date\" calendarshowmonthspin=\"true\" calendarshowyearspin=\"true\" calendardisplaynulltype=\"none\" calendarautoselect=\"true\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:resign_date\" calendardateformat=\"yyyy-MM-dd\" displaytype=\"date\" edittype=\"date\" calendarshowmonthspin=\"true\" calendarshowyearspin=\"true\" calendardisplaynulltype=\"none\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
@@ -88,6 +94,17 @@
             obj.set_text("저장");
             obj.set_cssclass("btn_check");
             this.addChild(obj.name, obj);
+
+            obj = new Calendar("Cal_Appointment","480","110","124","30",null,null,null,null,null,null,this);
+            obj.set_taborder("6");
+            obj.set_dateformat("yyyy-MM-dd");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static01","404","110","80","30",null,null,null,null,null,null,this);
+            obj.set_taborder("7");
+            obj.set_text("발령일");
+            obj.set_cssclass("stc_stc");
+            this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
             obj = new Layout("default","",1280,720,this,function(p){});
@@ -99,6 +116,10 @@
             obj.bind();
 
             obj = new BindItem("item1","cmb_SearchType","value","ds_Search","SEARCH_TYPE");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item2","Cal_Appointment","value","ds_assignDate","ASSIGN_DATE");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -155,6 +176,7 @@
 
         this.btn_HrdListSearch_onclick = function(obj,e)
         {
+        	this.grd_HrdList.setFocus();
         	this.fnSearchList();
         };
 
@@ -168,6 +190,7 @@
         //저장 버튼
         this.btn_Savehrd_onclick = function(obj,e)
         {
+        	this.grd_HrdList.setFocus();
         	 // 유효성 검사를 먼저 수행
             if (!this.validateBeforeUpdate()) {
                 return;
@@ -187,6 +210,7 @@
                     var newRow = this.ds_UpdateHrdlist.addRow();  // UpdateHrdlist에 새 행 추가
                     this.ds_UpdateHrdlist.copyRow(newRow, this.ds_Hrdlist, i);  // Hrdlist의 i번째 행을 복사
         			this.ds_UpdateHrdlist.setColumn(newRow,"admin_name",loginAdminName);
+        			this.ds_UpdateHrdlist.setColumn(newRow, "assign_date", this.ds_assignDate.getColumn(0, "ASSIGN_DATE"));
                 }
             }
         	console.log("업뎃리스트" + this.ds_UpdateHrdlist.saveXML());
@@ -209,6 +233,13 @@
         this.validateBeforeUpdate = function() {
 
             var dsHrdlist = this.lookup("ds_Hrdlist");
+
+        	if(this.ds_assignDate.getColumn(0, "ASSIGN_DATE") == ''
+        	|| this.ds_assignDate.getColumn(0, "ASSIGN_DATE") == 'undefined'
+        	|| this.ds_assignDate.getColumn(0, "ASSIGN_DATE") == null){
+        		alert("발령일을 입력하세요.");
+        		return;
+        	}
 
             // ds_Hrdlist의 모든 행을 검사
             for (var i = 0; i < dsHrdlist.getRowCount(); i++) {
@@ -245,7 +276,9 @@
             }
             return true;
         };
-        this.cmb_SearchType_onitemchanged = function(obj,e)
+
+
+        this.Cal_Appointment_onchanged = function(obj,e)
         {
 
         };
@@ -310,6 +343,7 @@
             this.grd_HrdList.addEventHandler("onheaddblclick",this.grd_HrdList_onheaddblclick,this);
             this.cmb_SearchType.addEventHandler("onitemchanged",this.cmb_SearchType_onitemchanged,this);
             this.btn_Savehrd.addEventHandler("onclick",this.btn_Savehrd_onclick,this);
+            this.Cal_Appointment.addEventHandler("onchanged",this.Cal_Appointment_onchanged,this);
         };
         this.loadIncludeScript("Form_HRD.xfdl");
         this.loadPreloadList();

@@ -72,7 +72,7 @@
     <Layouts>
       <Layout height="720" width="1280">
         <Static id="Title" taborder="0" text="직원 정보 관리" left="30" top="20" width="235" height="50" cssclass="stc_title"/>
-        <Grid id="grd_employee" taborder="1" left="30" top="150" width="1150" height="400" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged" onheaddblclick="grd_employee_onheaddblclick">
+        <Grid id="grd_employee" taborder="1" left="30" top="150" width="1150" height="400" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged" autofittype="col" onheaddblclick="grd_employee_onheaddblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -128,6 +128,7 @@
     </Layouts>
     <Script type="xscript5.1"><![CDATA[// 검색 버튼 클릭 이벤트
 this.btn_Search_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+	this.grd_employee.setFocus();
     console.log("검색 버튼 클릭됨");
     this.fnSearch();  // 검색 함수 호출
 };
@@ -156,6 +157,7 @@ this.fnSearch = function() {
 
 // 등록 버튼 클릭 이벤트
 this.btn_Register_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+	this.grd_employee.setFocus();
     console.log("등록 팝업 호출");
     this.showRegisterPopup();  // 등록 팝업 호출 함수 호출
 };
@@ -204,6 +206,8 @@ this.showEditPopup = function(objParam) {
 
 this.btn_Edit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.grd_employee.setFocus();
+	
 	var objParam = {id:this.ds_empList.getColumn(this.ds_empList.rowposition, "id")
                   , name:this.ds_empList.getColumn(this.ds_empList.rowposition, "name")
                   , birth:this.ds_empList.getColumn(this.ds_empList.rowposition, "birth")
@@ -223,6 +227,8 @@ this.btn_Edit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 
 this.btn_Delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.grd_employee.setFocus();
+	
     if (!this.confirm("정말로 삭제하시겠습니까?", "")) {
         return;  // 취소 시 동작 중단
     }

@@ -46,6 +46,7 @@
             obj = new Grid("grd_employee","30","150","1150","400",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("ds_empList");
+            obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"76\"/><Column size=\"69\"/><Column size=\"123\"/><Column size=\"73\"/><Column size=\"92\"/><Column size=\"67\"/><Column size=\"117\"/><Column size=\"136\"/><Column size=\"221\"/><Column size=\"174\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"아이디\"/><Cell col=\"2\" text=\"부서명\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"이름\"/><Cell col=\"5\" text=\"성별\"/><Cell col=\"6\" text=\"전화번호\"/><Cell col=\"7\" text=\"생년월일\"/><Cell col=\"8\" text=\"주소\"/><Cell col=\"9\" text=\"이메일\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:id\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:gender\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:phone\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:birth\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\" calendareditformat=\"yyyy-MM-dd\"/><Cell col=\"8\" text=\"bind:address\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:email\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
@@ -114,6 +115,7 @@
         this.registerScript("Form_Employee.xfdl", function() {
         // 검색 버튼 클릭 이벤트
         this.btn_Search_onclick = function(obj, e) {
+        	this.grd_employee.setFocus();
             console.log("검색 버튼 클릭됨");
             this.fnSearch();  // 검색 함수 호출
         };
@@ -142,6 +144,7 @@
 
         // 등록 버튼 클릭 이벤트
         this.btn_Register_onclick = function(obj, e) {
+        	this.grd_employee.setFocus();
             console.log("등록 팝업 호출");
             this.showRegisterPopup();  // 등록 팝업 호출 함수 호출
         };
@@ -190,6 +193,8 @@
 
         this.btn_Edit_onclick = function(obj,e)
         {
+        	this.grd_employee.setFocus();
+
         	var objParam = {id:this.ds_empList.getColumn(this.ds_empList.rowposition, "id")
                           , name:this.ds_empList.getColumn(this.ds_empList.rowposition, "name")
                           , birth:this.ds_empList.getColumn(this.ds_empList.rowposition, "birth")
@@ -209,6 +214,8 @@
 
         this.btn_Delete_onclick = function(obj,e)
         {
+        	this.grd_employee.setFocus();
+
             if (!this.confirm("정말로 삭제하시겠습니까?", "")) {
                 return;  // 취소 시 동작 중단
             }

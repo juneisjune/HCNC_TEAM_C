@@ -4,8 +4,8 @@
     <Layouts>
       <Layout height="768" mobileorientation="landscape" width="1024" stepcount="0">
         <Static id="staTitle" taborder="0" text="업무 평가" left="30" top="20" width="210" height="50" onclick="staTitle_onclick" cssclass="stc_title"/>
-        <Button id="btnFilterSearch" taborder="3" text="조회" left="1050" top="115" width="70" height="30" onclick="btnFilterSearch_onclick" cssclass="btn_search"/>
-        <Grid id="grdEvaluation" taborder="6" left="555" top="155" width="565" height="460" binddataset="dsEvaluation" oncelldblclick="grdEvaluation_oncelldblclick" onheaddblclick="grdEvaluation_onheaddblclick">
+        <Button id="btnFilterSearch" taborder="3" text="조회" left="1050" top="155" width="70" height="30" onclick="btnFilterSearch_onclick" cssclass="btn_search"/>
+        <Grid id="grdEvaluation" taborder="6" left="555" top="195" width="565" height="415" binddataset="dsEvaluation" oncelldblclick="grdEvaluation_oncelldblclick" autofittype="col" onheaddblclick="grdEvaluation_onheaddblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -36,12 +36,12 @@
             </Format>
           </Formats>
         </Grid>
-        <Combo id="cmbSearchType" taborder="1" text="전체" left="555" top="115" width="80" height="30" onitemchanged="dsEvaluation_onload" innerdataset="dsSearchType" value="all" index="0" codecolumn="CODE" datacolumn="CODE_NM"/>
-        <Edit id="edtSearchText" taborder="2" left="645" top="115" width="110" height="30" onchanged="edtSearchText_onchanged"/>
-        <Calendar id="calStartDate" taborder="4" left="775" top="115" width="110" height="30" onchanged="Calendar00_onchanged"/>
-        <Calendar id="calEndDate" taborder="5" left="915" top="115" width="110" height="30" onchanged="calEndDate_onchanged"/>
-        <Static id="Static00" taborder="7" text="~" left="895" top="115" width="30" height="30" font="bold 12px/normal &quot;Gulim&quot;"/>
-        <Grid id="grdEvalAll" taborder="8" left="30" top="155" width="490" height="460" binddataset="dsEvalAll" onheaddblclick="grdEvalAll_onheaddblclick">
+        <Combo id="cmbSearchType" taborder="1" text="전체" left="555" top="157" width="80" height="30" onitemchanged="dsEvaluation_onload" innerdataset="dsSearchType" value="all" index="0" codecolumn="CODE" datacolumn="CODE_NM"/>
+        <Edit id="edtSearchText" taborder="2" left="645" top="157" width="110" height="30" onchanged="edtSearchText_onchanged"/>
+        <Calendar id="calStartDate" taborder="4" left="775" top="157" width="110" height="30" onchanged="Calendar00_onchanged"/>
+        <Calendar id="calEndDate" taborder="5" left="915" top="157" width="110" height="30" onchanged="calEndDate_onchanged"/>
+        <Static id="Static00" taborder="7" text="~" left="895" top="157" width="30" height="30" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Grid id="grdEvalAll" taborder="8" left="30" top="195" width="490" height="415" binddataset="dsEvalAll" autofittype="col" onheaddblclick="grdEvalAll_onheaddblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -72,7 +72,9 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btnRegister" taborder="9" text="평가" left="450" top="115" width="70" height="30" onclick="btnRegister_onclick" cssclass="btn_edit"/>
+        <Button id="btnRegister" taborder="9" text="평가" left="450" top="155" width="70" height="30" onclick="btnRegister_onclick" cssclass="btn_edit"/>
+        <Static id="Static01" taborder="10" text="직원 평가" left="30" top="110" width="90" height="45" font="bold 18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="Static02" taborder="11" text="평가 결과" left="555" top="110" width="90" height="45" font="bold 18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -113,6 +115,7 @@
           <Column id="StartDate" type="STRING" size="256"/>
           <Column id="EndDate" type="STRING" size="256"/>
           <Column id="admin_code" type="STRING" size="256"/>
+          <Column id="admin_assign_code" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row>
@@ -147,9 +150,14 @@ this.Form_Eval_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo) {
 
 this.fnSearch = function() {
 
+	this.grdEvalAll.setFocus();
+
 	var admin_code = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
+	var admin_assign_code = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
+	
 	
 	this.dsSearch.setColumn(0, "admin_code", admin_code);
+	this.dsSearch.setColumn(0, "admin_assign_code", admin_assign_code);
 	
     var searchType = this.dsSearch.getColumn(0, "Type");
     var searchWord = this.dsSearch.getColumn(0, "Word");
@@ -297,6 +305,7 @@ this.showEvalPopup = function(objParam)
 
 this.btnRegister_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.grdEvalAll.setFocus();
 	if (this.dsEvalAll.getRowCount() === 0) {
         alert("평가할 데이터를 선택해 주세요.");
         return;

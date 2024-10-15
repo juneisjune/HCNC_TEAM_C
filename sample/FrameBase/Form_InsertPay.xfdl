@@ -7,7 +7,7 @@
         <Static id="stc_Assign" taborder="1" text="직책" left="30" top="110" width="30" height="30" cssclass="stc_stc"/>
         <Combo id="cmb_Assign" taborder="2" left="69" top="110" width="130" height="30" innerdataset="ds_AssignType" codecolumn="assign_code" datacolumn="assign_name" onitemchanged="Combo00_onitemchanged"/>
         <Button id="btn_Search" taborder="3" text="조회" left="210" top="110" width="70" height="30" onclick="btn_Search_onclick" cssclass="btn_search"/>
-        <Grid id="grd_Emp" taborder="4" left="30" top="155" width="890" height="415" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick" onheaddblclick="grd_Emp_onheaddblclick">
+        <Grid id="grd_Emp" taborder="4" left="30" top="155" width="890" height="415" binddataset="ds_EmpList" onheadclick="grd_Emp_onheadclick" autofittype="col" onheaddblclick="grd_Emp_onheaddblclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -48,7 +48,7 @@
           </Formats>
         </Grid>
         <Static id="Static04" taborder="5" text="지급일" left="580" top="590" width="120" height="30" cssclass="stc_stc"/>
-        <Calendar id="cal_GiveDate" taborder="6" left="675" top="590" width="150" height="30" dateformat="yyyy-MM-dd"/>
+        <Calendar id="cal_GiveDate" taborder="6" left="675" top="590" width="150" height="30" dateformat="yyyy-MM-dd" onchanged="cal_GiveDate_onchanged"/>
         <Button id="btn_Insert" taborder="7" text="등록" left="850" top="590" width="70" height="30" onclick="btn_Insert_onclick" cssclass="btn_regist"/>
       </Layout>
     </Layouts>
@@ -175,6 +175,7 @@
 
 this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.grd_Emp.setFocus();
 	this.fnSearch();
 
 };
@@ -246,6 +247,7 @@ this.fnCallback = function(svcID,errorCode,errorMsg)
 
 this.btn_Insert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.grd_Emp.setFocus();
 	
 	var adm_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 	
@@ -287,9 +289,6 @@ this.btn_Insert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 	
 	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
 };
-
-
-
 
 // 그리드 헤드 더블 클릭 시 정렬
 this.grd_Emp_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
@@ -339,6 +338,7 @@ this.grd_Emp_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEvent
 	// 정렬 후 첫 번째 행을 선택
     objDs.set_rowposition(0);
 };
+
 ]]></Script>
     <InitValue>
       <Static id="title" font="24px/normal &quot;Gulim&quot;"/>

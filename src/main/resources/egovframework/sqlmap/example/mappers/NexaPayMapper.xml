@@ -187,8 +187,10 @@
 	        <if test="SEARCH_TYPE == 'DEPARTMENT'">
 	            AND e.dep_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
 	        </if>
-	    </if>
-	
+	        <if test="SEARCH_TYPE == 'ASSIGNMENT'">
+	            AND d.assign_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+	        </if>
+	    </if>    
 	    <!-- 년도 및 월 필터링 -->
 	    <if test="START_YEAR != null and END_YEAR != null">
 	        AND (b.pay_year BETWEEN #{START_YEAR} AND #{END_YEAR})
@@ -196,7 +198,6 @@
 	    <if test="START_MONTH != null and END_MONTH != null">
 	        AND (b.pay_month BETWEEN #{START_MONTH} AND #{END_MONTH})
 	    </if>
-	    
 	    ORDER BY b.pay_month DESC ,a.emp_code ASC
 	</select>
 

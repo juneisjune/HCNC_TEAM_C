@@ -27,5 +27,34 @@ public class HrdServiceImpl implements HrdService{
 	public void updateMng() {
 		
 	}
+
+	@Override
+	public List<Map<String, Object>> getHrdHistory(Map<String, Object> param) {
+		return hrdm.getHrdHistory(param);
+	}
+
+	@Override
+	public int selectHrdHistoryForDepOut(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return hrdm.selectHrdHistoryForDepOut(param);
+	}
+
+	@Override
+	public int countHrdHistory(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return hrdm.countHrdHistory(param);
+	}
+
+	@Override
+	public void insertHrdHistory(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		hrdm.insertHrdHistory(param);
+	}
+
+	@Override
+	public void updateDepOutIsNull(Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		hrdm.updateDepOutIsNull(param);
+	}
 	
 }

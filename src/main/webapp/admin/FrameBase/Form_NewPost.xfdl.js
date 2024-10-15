@@ -62,6 +62,7 @@
             obj = new Grid("Grid00","100","322","482","90",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
+            obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"380\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"size\"/></Band><Band id=\"body\"><Cell text=\"bind:filename\"/><Cell col=\"1\" text=\"bind:filesize\" textAlign=\"right\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
@@ -77,6 +78,7 @@
 
             obj = new TextArea("TextArea01","100","160","590","144",null,null,null,null,null,null,this);
             obj.set_taborder("5");
+            obj.set_wordWrap("english");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static00_00","30","23","220","50",null,null,null,null,null,null,this);
@@ -129,9 +131,16 @@
         // User Script
         this.registerScript("Form_NewPost.xfdl", function() {
 
+
+        this.sample_fileuptransfer_01_onload = function(obj,e)
+        {
+        	this.Grid00.setFocus();
+        };
+
         //아래 첨부파일 관련 코드
         this.btn_open_onclick = function(obj,e)
         {
+        	this.Grid00.setFocus();
         	this.FileDialog00.open('nexacro17', FileDialog.LOAD);  // 단일 파일 선택 모드
         };
 
@@ -211,6 +220,8 @@
         };
 
         this.Button01_onclick = function(obj, e) {
+        	this.Grid00.setFocus();
+
             // ds_postInfo의 첫 번째 행을 생성 또는 선택
             if (this.ds_postInfo.getRowCount() == 0) {
                 this.ds_postInfo.addRow();
@@ -306,6 +317,8 @@
         {
         	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
         };
+
+
 
         });
         
