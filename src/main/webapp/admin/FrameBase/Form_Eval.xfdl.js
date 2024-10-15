@@ -18,39 +18,45 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("dsEvaluation", this);
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"evalDate\" type=\"DATE\" size=\"256\"/><Column id=\"totalScore\" type=\"INT\" size=\"256\"/><Column id=\"evalGrade\" type=\"STRING\" size=\"256\"/><Column id=\"guideCode\" type=\"STRING\" size=\"256\"/><Column id=\"regName\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj.set_keystring("S:-evalDate");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"evalDate\" type=\"DATE\" size=\"256\"/><Column id=\"totalScore\" type=\"INT\" size=\"256\"/><Column id=\"evalGrade\" type=\"STRING\" size=\"256\"/><Column id=\"guideCode\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
             obj = new Dataset("dsSearchType", this);
-            obj._setContents("<ColumnInfo><Column id=\"CODE\" type=\"STRING\" size=\"256\"/><Column id=\"CODE_NM\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"CODE\">all</Col><Col id=\"CODE_NM\">전체</Col></Row><Row><Col id=\"CODE\">id</Col><Col id=\"CODE_NM\">ID</Col></Row><Row><Col id=\"CODE\">name</Col><Col id=\"CODE_NM\">이름</Col></Row><Row><Col id=\"CODE\">totalScore</Col><Col id=\"CODE_NM\">점수</Col></Row><Row><Col id=\"CODE\">grade</Col><Col id=\"CODE_NM\">등급</Col></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"CODE\" type=\"STRING\" size=\"256\"/><Column id=\"CODE_NM\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"CODE\">all</Col><Col id=\"CODE_NM\">전체</Col></Row><Row><Col id=\"CODE\">id</Col><Col id=\"CODE_NM\">사번</Col></Row><Row><Col id=\"CODE\">name</Col><Col id=\"CODE_NM\">이름</Col></Row></Rows>");
             this.addChild(obj.name, obj);
 
 
             obj = new Dataset("dsSearch", this);
-            obj._setContents("<ColumnInfo><Column id=\"Type\" type=\"STRING\" size=\"256\"/><Column id=\"Word\" type=\"STRING\" size=\"256\"/><Column id=\"StartDate\" type=\"STRING\" size=\"256\"/><Column id=\"EndDate\" type=\"STRING\" size=\"256\"/><Column id=\"admin_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"Type\"/><Col id=\"Word\"/></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"Type\" type=\"STRING\" size=\"256\"/><Column id=\"Word\" type=\"STRING\" size=\"256\"/><Column id=\"StartDate\" type=\"STRING\" size=\"256\"/><Column id=\"EndDate\" type=\"STRING\" size=\"256\"/><Column id=\"admin_code\" type=\"STRING\" size=\"256\"/><Column id=\"admin_assign_code\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"Type\"/><Col id=\"Word\"/></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsEvalAll", this);
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"evalDate\" type=\"STRING\" size=\"256\"/><Column id=\"evalMonth\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("staTitle","30","20","325","50",null,null,null,null,null,null,this);
+            obj = new Static("staTitle","30","20","210","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
-            obj.set_text("직원 업무 평가 조회");
+            obj.set_text("업무 평가");
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnFilterSearch","940","110","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btnFilterSearch","1050","115","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdEvaluation","30","150","992","480",null,null,null,null,null,null,this);
+            obj = new Grid("grdEvaluation","555","155","565","415",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_binddataset("dsEvaluation");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"198\"/><Column size=\"198\"/><Column size=\"198\"/><Column size=\"198\"/><Column size=\"198\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\" expandsize=\"16\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"평가일자\"/><Cell col=\"3\" text=\"점수\"/><Cell col=\"4\" text=\"등급\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:evalDate\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:totalScore\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:evalGrade\" textAlign=\"center\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"97\"/><Column size=\"98\"/><Column size=\"128\"/><Column size=\"123\"/><Column size=\"117\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\" expandsize=\"16\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"평가일자\"/><Cell col=\"3\" text=\"점수\"/><Cell col=\"4\" text=\"등급\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:evalDate\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:totalScore\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:evalGrade\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmbSearchType","30","110","80","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmbSearchType","555","115","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_innerdataset("dsSearchType");
             obj.set_codecolumn("CODE");
@@ -60,22 +66,34 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtSearchText","120","110","140","30",null,null,null,null,null,null,this);
+            obj = new Edit("edtSearchText","645","115","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calStartDate","270","110","110","30",null,null,null,null,null,null,this);
+            obj = new Calendar("calStartDate","775","115","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calEndDate","410","110","110","30",null,null,null,null,null,null,this);
+            obj = new Calendar("calEndDate","915","115","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00","390","110","30","30",null,null,null,null,null,null,this);
+            obj = new Static("Static00","895","115","30","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("~");
             obj.set_font("bold 12px/normal \"Gulim\"");
+            this.addChild(obj.name, obj);
+
+            obj = new Grid("grdEvalAll","30","155","490","415",null,null,null,null,null,null,this);
+            obj.set_taborder("8");
+            obj.set_binddataset("dsEvalAll");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"97\"/><Column size=\"98\"/><Column size=\"97\"/><Column size=\"98\"/><Column size=\"98\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"성별\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:gender\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:depName\" textAlign=\"center\"/></Band></Format></Formats>");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btnRegister","450","115","70","30",null,null,null,null,null,null,this);
+            obj.set_taborder("9");
+            obj.set_text("평가");
+            obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -104,6 +122,14 @@
             obj = new BindItem("item4","calEndDate","value","dsSearch","EndDate");
             this.addChild(obj.name, obj);
             obj.bind();
+
+            obj = new BindItem("item5","grdEvalAll","binddataset","dsEvalAll","");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item6","grdEvalAll","binddataset","dsEvaluation","");
+            this.addChild(obj.name, obj);
+            obj.bind();
             
             // TriggerItem Information
 
@@ -124,14 +150,18 @@
 
             this.dsSearch.setColumn(0, "Type", "all");
             this.fnSearch();
+        	this.fnEvalSearch();
         };
 
 
         this.fnSearch = function() {
 
         	var admin_code = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
+        	var admin_assign_code = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
+
 
         	this.dsSearch.setColumn(0, "admin_code", admin_code);
+        	this.dsSearch.setColumn(0, "admin_assign_code", admin_assign_code);
 
             var searchType = this.dsSearch.getColumn(0, "Type");
             var searchWord = this.dsSearch.getColumn(0, "Word");
@@ -178,11 +208,49 @@
             var inData = "dsSearch=dsSearch";
             var outData = "dsEvaluation=dsEvaluation";
             var strArg = "";
-            var callBackFnc = "fnCallback";
+            var callBackFnc = "fnSearchCallback";
             var isAsync = true;
 
             this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
+
+        this.fnEvalSearch = function() {
+            var searchType = this.dsSearch.getColumn(0, "Type");
+            var searchWord = this.dsSearch.getColumn(0, "Word");
+
+
+            console.log("cmbSearchType = " + searchType);
+            console.log("edtSearchText = " + searchWord);
+
+            var strSvcID = "evalAll";
+            var strSvcUrl = "svc::evalAll.do";
+            var inData = "dsSearch=dsSearch";
+            var outData = "dsEvalAll=dsEvalAll";
+            var strArg = "";
+            var callBackFnc = "fnEvalCallback";
+            var isAsync = true;
+
+        	this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+        };
+
+        // 조회 트랜잭션의 콜백 함수 (조회 그리드)
+        this.fnSearchCallback = function(strSvcID, nErrorCode, strErrorMsg) {
+            if (nErrorCode < 0) {
+                alert("조회 데이터 로드 실패: " + strErrorMsg);
+            } else {
+                console.log("조회 데이터 로드 성공");
+            }
+        };
+
+        // 평가 트랜잭션의 콜백 함수 (평가 그리드)
+        this.fnEvalCallback = function(strSvcID, nErrorCode, strErrorMsg) {
+            if (nErrorCode < 0) {
+                alert("평가 데이터 로드 실패: " + strErrorMsg);
+            } else {
+                console.log("평가 데이터 로드 성공");
+            }
+        };
+
 
         this.btnReset_onclick = function(obj,e) {
             this.dsSearch.setColumn(0, "Type", "all");
@@ -223,6 +291,36 @@
         	popup.form.style.set_border("1 solid #4c5a6f");
         };
 
+        this.showEvalPopup = function(objParam)
+        {
+        	popup = new nexacro.ChildFrame;
+        	popup.init("popRegister", 0, 0, 800, 700, null, null, "FrameBase::Form_EvalRegister.xfdl");
+        	popup.set_dragmovetype("all");
+        	popup.set_layered("true");
+        	popup.set_autosize(true);
+        	popup.set_showtitlebar("Popup Title");
+        	popup.set_showstatusbar(false);
+        	popup.set_resizable(true);
+        	popup.set_openalign("center middle");
+        	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
+        	popup.style.set_overlaycolor("#6666664C");
+        	popup.form.style.set_border("1 solid #4c5a6f");
+        };
+
+        this.btnRegister_onclick = function(obj,e)
+        {
+        	if (this.dsEvalAll.getRowCount() === 0) {
+                alert("평가할 데이터를 선택해 주세요.");
+                return;
+            }
+
+        	var objParam = {empCode:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "empCode")
+                          , name:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "name")
+        				  , assignName:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "assignName")
+        				  , depName:this.dsEvalAll.getColumn(this.dsEvalAll.rowposition, "depName")
+        				  };
+        	this.showEvalPopup(objParam);
+        };
         });
         
         // Regist UI Components Event
@@ -236,6 +334,7 @@
             this.edtSearchText.addEventHandler("onchanged",this.edtSearchText_onchanged,this);
             this.calStartDate.addEventHandler("onchanged",this.Calendar00_onchanged,this);
             this.calEndDate.addEventHandler("onchanged",this.calEndDate_onchanged,this);
+            this.btnRegister.addEventHandler("onclick",this.btnRegister_onclick,this);
             this.dsEvaluation.addEventHandler("onload",this.dsEvaluation_onload,this);
         };
         this.loadIncludeScript("Form_Eval.xfdl");

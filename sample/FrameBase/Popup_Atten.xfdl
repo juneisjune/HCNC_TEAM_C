@@ -12,7 +12,7 @@
         <Static id="sta_workType" taborder="6" text="근무형태" left="290" top="300" width="80" height="30" cssclass="stc_stc"/>
         <Static id="sta_workStart" taborder="7" text="출근시간" left="30" top="390" width="80" height="30" cssclass="stc_stc"/>
         <Static id="sta_workEnd" taborder="8" text="퇴근시간" left="290" top="390" width="80" height="30" cssclass="stc_stc"/>
-        <Button id="btn_Save" taborder="9" text="저장" left="260" top="480" width="80" height="30" onclick="btn_Save_onclick" cssclass="btn_edit"/>
+        <Button id="btn_Save" taborder="9" text="저장" left="260" top="480" width="70" height="30" onclick="btn_Save_onclick" cssclass="btn_edit"/>
         <Combo id="cmb_workType" taborder="10" left="370" top="300" width="150" height="30" innerdataset="ds_WorkType" codecolumn="Name" datacolumn="Name" index="0" text="출근" value="출근" font="bold 16px/normal &quot;HY궁서B&quot;"/>
         <Edit id="edt_empCode" taborder="11" left="110" top="122" width="150" height="30" inputtype="number" onchanged="edt_empCode_onchanged"/>
         <Edit id="edt_name" taborder="12" left="370" top="122" width="150" height="30" readonly="true" background="#ffffff"/>

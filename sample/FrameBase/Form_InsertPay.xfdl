@@ -124,6 +124,7 @@
           <Column id="health_insurance" type="INT" size="256"/>
           <Column id="longcare_insurance" type="INT" size="256"/>
           <Column id="actual_pay" type="INT" size="256"/>
+          <Column id="etc" type="INT" size="256"/>
           <Column id="give_date" type="DATE" size="256"/>
         </ColumnInfo>
       </Dataset>
@@ -158,6 +159,7 @@
           <Column id="health_insurance" type="INT" size="256"/>
           <Column id="longcare_insurance" type="INT" size="256"/>
           <Column id="actual_pay" type="INT" size="256"/>
+          <Column id="etc" type="INT" size="256"/>
           <Column id="give_date" type="DATE" size="256"/>
           <Column id="adm_name" type="STRING" size="256"/>
         </ColumnInfo>

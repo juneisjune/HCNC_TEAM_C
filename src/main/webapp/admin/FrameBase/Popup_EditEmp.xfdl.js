@@ -120,7 +120,7 @@
             obj.set_text("bind:account");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnUpdate","350","340","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btnUpdate","360","340","70","30",null,null,null,null,null,null,this);
             obj.set_text("수정");
             obj.set_cssclass("btn_edit");
             this.addChild(obj.name, obj);

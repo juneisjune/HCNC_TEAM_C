@@ -111,7 +111,7 @@ public class NexaLoginController {
 		return result;
 	}
 
-	// 사용자 Id 찾기
+	// 사용자 password update
 	@RequestMapping("/UpdatePassword.do")
 	public NexacroResult UpdatePassword(@ParamDataSet(name = "ds_NewPassword") Map<String, Object> param) {
 		NexacroResult result = new NexacroResult();

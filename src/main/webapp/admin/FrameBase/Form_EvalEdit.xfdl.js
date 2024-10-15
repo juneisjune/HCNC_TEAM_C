@@ -33,7 +33,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Button("btnSubmit","700","510","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btnSubmit","710","510","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("수정");
             obj.set_cssclass("btn_edit");
@@ -129,9 +129,7 @@
 
         // 수정 버튼 클릭 시 호출되는 함수
         this.btnSubmit_onclick = function(obj, e) {
-
         	var admin_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
-
             // Edit 박스에서 수정된 값 가져오기
             var editedValue = this.EditQuestion.value;
 
@@ -144,6 +142,9 @@
                     alert("guideCode 값을 가져올 수 없습니다.");
                     return;
                 }
+        		var admin_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
+
+
 
                 // 수정할 데이터를 dsEditSave 데이터셋에 추가
                 this.dsEditSave.clearData();  // 데이터셋을 초기화하고 새 데이터 추가

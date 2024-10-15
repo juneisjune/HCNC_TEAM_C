@@ -2,18 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hcnc.cteam.evaluation.EvaluationMapper">
 
+	<!-- Form_EvalRegister의 각 점수 기입 -->
 	<insert id="insertEval">
 	    INSERT INTO eval_history (emp_code, guide_code, eval_date, question, score, reg_name)
 	    VALUES 
 	    (#{empCode}, #{guideCode}, #{evalDate}, #{question}, #{score}, #{admin_name})
 	</insert>
 	
+	<!-- Form_EvalRegister의 총 점수 기입 -->
 	<insert id="insertEvalTotal">
 	    INSERT INTO evaluation (emp_code, mng_code, eval_date, eval_grade, total_score, reg_name)
 	    VALUES 
 	    (#{empCode}, #{admin_code}, #{evalDate}, #{evalGrade}, #{totalScore}, #{admin_name})
 	</insert>
 	
+	<!-- Form_EvalEdit의 질문 수정 시 최종 수정자 기입 -->
 	<update id="updateRegister">
 		UPDATE eval_guide
 		SET
@@ -23,6 +26,7 @@
 		
 	</update>
 	
+	<!--  -->
 	<select id ="editRegister" resultType="hcnc.cteam.evaluation.EvalQuestionDTO">
 		SELECT guide_code, question
 		FROM eval_guide
@@ -50,16 +54,13 @@
         JOIN eval_history c ON b.emp_code = c.emp_code
         WHERE 1=1
         AND guide_code  = 1
-        AND a.mng_code = #{admin_code}
+        AND (a.mng_code = #{admin_code} OR #{admin_assign_code} = 7)
         
         <!-- 전체 조회 -->
         <if test="Type == 'all' and Word != null and Word != ''">
             AND (
                 a.emp_code LIKE CONCAT('%', #{Word}, '%')
                 OR a.name LIKE CONCAT('%', #{Word}, '%')
-                OR DATE_FORMAT(b.eval_date, '%Y-%m-%d') LIKE CONCAT('%', #{Word}, '%')
-                OR b.total_Score LIKE CONCAT('%', #{Word}, '%')
-                OR b.eval_grade LIKE CONCAT('%', #{Word}, '%')
             )
         </if>
 
@@ -78,18 +79,9 @@
             AND b.eval_date BETWEEN #{StartDate} AND #{EndDate}
         </if>
 
-        <!-- 점수로 검색 -->
-        <if test="Type == 'totalScore' and Word != null and Word != ''">
-            AND b.total_Score LIKE CONCAT('%', #{Word}, '%')
-        </if>
-
-        <!-- 등급으로 검색 -->
-        <if test="Type == 'grade' and Word != null and Word != ''">
-            AND b.eval_grade LIKE CONCAT('%', #{Word}, '%')
-        </if>
-
     </select>
     
+    <!-- Form_EvalEmployee 전체 직원 목록 조회 -->
     <select id="evalAll" resultType="hcnc.cteam.evaluation.EvalAllDTO">
        SELECT a.emp_code AS empCode,
        a.name AS name,
@@ -101,7 +93,7 @@
 		JOIN department c ON a.dep_code = c.dep_code
 		LEFT JOIN eval_history e ON a.emp_code = e.emp_code
 		  AND e.eval_date = CURDATE()
-		WHERE a.mng_code = #{admin_code}
+		WHERE (a.mng_code = #{admin_code} OR #{admin_assign_code} = 7)
 		  AND e.emp_code IS NULL
         <!--AND dep_code = #{depCode} -->
         

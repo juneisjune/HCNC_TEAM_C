@@ -142,7 +142,7 @@
             obj.set_text("bind:Password");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnRegister","370","330","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btnRegister","380","330","70","30",null,null,null,null,null,null,this);
             obj.set_text("등록");
             obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
