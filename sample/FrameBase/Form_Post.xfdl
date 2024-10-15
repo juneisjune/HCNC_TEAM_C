@@ -33,7 +33,7 @@
               <Band id="body">
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:checked" checkboxtruevalue="1" checkboxfalsevalue="0"/>
                 <Cell col="1" text="bind:post_code" textAlign="center"/>
-                <Cell col="2" text="bind:title" textAlign="center"/>
+                <Cell col="2" text="bind:title" textAlign="left"/>
                 <Cell col="3" text="bind:reg_date" displaytype="date" mask="####-##-##"/>
                 <Cell col="4" text="bind:upd_name" textAlign="center"/>
                 <Cell col="5" text="bind:view_count" textAlign="center"/>
