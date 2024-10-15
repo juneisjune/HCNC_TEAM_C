@@ -21,15 +21,15 @@
                 <Cell col="1" text="삭제"/>
               </Band>
               <Band id="body">
-                <Cell text="bind:attach_name"/>
+                <Cell text="bind:attach_name" textAlign="center"/>
                 <Cell col="1" text="삭제" textAlign="center" edittype="button" displaytype="buttoncontrol"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="Button01" taborder="3" text="수정" left="350" top="380" width="70" height="30" onclick="Button01_onclick" cssclass="btn_edit"/>
+        <Button id="Button01" taborder="3" text="수정" left="350" top="390" width="70" height="30" onclick="Button01_onclick" cssclass="btn_edit"/>
         <Edit id="Edit_title" taborder="4" left="100" top="80" width="620" height="39" onchanged="Edit_title_onchanged"/>
-        <TextArea id="TextArea01" taborder="5" left="100" top="130" width="619" height="112" onchanged="TextArea01_onchanged"/>
+        <TextArea id="TextArea01" taborder="5" left="100" top="130" width="619" height="112" onchanged="TextArea01_onchanged" wordWrap="english"/>
         <Static id="Static_Label_Title" text="제목" left="19" top="79" width="70" height="30" textAlign="center" taborder="6" cssclass="stc_stc"/>
         <Static id="Static_Label_Attachments" text="첨부파일" left="19" top="265" width="70" height="30" textAlign="center" taborder="7" cssclass="stc_stc"/>
         <Static id="Static_Label_Content" text="내용" left="19" top="129" width="70" height="30" textAlign="center" taborder="8" cssclass="stc_stc"/>
