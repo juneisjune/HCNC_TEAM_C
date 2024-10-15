@@ -79,10 +79,10 @@
             obj.set_taborder("3");
             this.Tab00.Tabpage1.addChild(obj.name, obj);
 
-            obj = new Button("btn_IdSearch","375","63","50","30",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
+            obj = new Button("btn_IdSearch","375","63","70","30",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
             obj.set_taborder("4");
             obj.set_text("찾기");
-            obj.set_cssclass("btn_normal");
+            obj.set_cssclass("btn_search");
             this.Tab00.Tabpage1.addChild(obj.name, obj);
 
             obj = new Static("sta_ResultId","-1","153","506","40",null,null,null,null,null,null,this.Tab00.Tabpage1.form);
@@ -106,54 +106,54 @@
             obj.set_cssclass("stc_stc");
             this.Tab00.Tabpage2.addChild(obj.name, obj);
 
-            obj = new Static("sta_EmailForPassword","99","83","40","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj = new Static("sta_EmailForPassword","99","80","40","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("2");
             obj.set_text("이메일");
             obj.set_cssclass("stc_stc");
             this.Tab00.Tabpage2.addChild(obj.name, obj);
 
-            obj = new Edit("edt_EmailForPassword","170","83","170","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj = new Edit("edt_EmailForPassword","170","80","170","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("3");
             this.Tab00.Tabpage2.addChild(obj.name, obj);
 
-            obj = new Button("btn_PasswordSearch","375","58","50","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj = new Button("btn_PasswordSearch","375","55","70","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("4");
             obj.set_text("찾기");
-            obj.set_cssclass("btn_normal");
+            obj.set_cssclass("btn_search");
             this.Tab00.Tabpage2.addChild(obj.name, obj);
 
-            obj = new Static("sta_NewPassword","25","143","190","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj = new Static("sta_NewPassword","25","130","190","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("5");
             obj.set_text("새로운 비밀번호 입력 ");
             obj.set_visible("false");
             obj.set_cssclass("stc_stc");
             this.Tab00.Tabpage2.addChild(obj.name, obj);
 
-            obj = new Edit("edt_NewPassword","205","143","170","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj = new Edit("edt_NewPassword","205","130","170","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("6");
             obj.set_visible("false");
             this.Tab00.Tabpage2.addChild(obj.name, obj);
 
-            obj = new Button("btn_NewPassword","410","143","50","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj = new Button("btn_NewPassword","410","130","50","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("7");
             obj.set_text("확인");
             obj.set_visible("false");
             obj.set_cssclass("btn_normal");
             this.Tab00.Tabpage2.addChild(obj.name, obj);
 
-            obj = new Static("sta_authCheck","79","143","60","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj = new Static("sta_authCheck","79","130","60","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("8");
             obj.set_text("인증번호");
             obj.set_cssclass("stc_stc");
             obj.set_visible("false");
             this.Tab00.Tabpage2.addChild(obj.name, obj);
 
-            obj = new Edit("edt_authCheck","170","143","170","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj = new Edit("edt_authCheck","170","130","170","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("9");
             obj.set_visible("false");
             this.Tab00.Tabpage2.addChild(obj.name, obj);
 
-            obj = new Button("btn_AuthCheck","375","143","50","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
+            obj = new Button("btn_AuthCheck","375","130","50","30",null,null,null,null,null,null,this.Tab00.Tabpage2.form);
             obj.set_taborder("10");
             obj.set_text("인증");
             obj.set_cssclass("btn_normal");
