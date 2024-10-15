@@ -57,7 +57,7 @@
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"97\"/><Column size=\"98\"/><Column size=\"128\"/><Column size=\"123\"/><Column size=\"117\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\" expandsize=\"16\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"평가일자\"/><Cell col=\"3\" text=\"점수\"/><Cell col=\"4\" text=\"등급\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:evalDate\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:totalScore\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:evalGrade\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmbSearchType","555","115","80","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmbSearchType","650","80","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_innerdataset("dsSearchType");
             obj.set_codecolumn("CODE");
@@ -67,19 +67,19 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtSearchText","645","115","110","30",null,null,null,null,null,null,this);
+            obj = new Edit("edtSearchText","740","80","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calStartDate","775","115","110","30",null,null,null,null,null,null,this);
+            obj = new Calendar("calStartDate","870","80","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calEndDate","915","115","110","30",null,null,null,null,null,null,this);
+            obj = new Calendar("calEndDate","1010","80","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00","895","115","30","30",null,null,null,null,null,null,this);
+            obj = new Static("Static00","990","80","30","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("~");
             obj.set_font("bold 12px/normal \"Gulim\"");
@@ -96,6 +96,18 @@
             obj.set_taborder("9");
             obj.set_text("평가");
             obj.set_cssclass("btn_edit");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static01","30","110","90","45",null,null,null,null,null,null,this);
+            obj.set_taborder("10");
+            obj.set_text("직원 평가");
+            obj.set_font("bold 18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static02","555","110","90","45",null,null,null,null,null,null,this);
+            obj.set_taborder("11");
+            obj.set_text("평가 결과");
+            obj.set_font("bold 18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this

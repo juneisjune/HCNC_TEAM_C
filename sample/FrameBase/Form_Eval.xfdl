@@ -36,11 +36,11 @@
             </Format>
           </Formats>
         </Grid>
-        <Combo id="cmbSearchType" taborder="1" text="전체" left="555" top="115" width="80" height="30" onitemchanged="dsEvaluation_onload" innerdataset="dsSearchType" value="all" index="0" codecolumn="CODE" datacolumn="CODE_NM"/>
-        <Edit id="edtSearchText" taborder="2" left="645" top="115" width="110" height="30" onchanged="edtSearchText_onchanged"/>
-        <Calendar id="calStartDate" taborder="4" left="775" top="115" width="110" height="30" onchanged="Calendar00_onchanged"/>
-        <Calendar id="calEndDate" taborder="5" left="915" top="115" width="110" height="30" onchanged="calEndDate_onchanged"/>
-        <Static id="Static00" taborder="7" text="~" left="895" top="115" width="30" height="30" font="bold 12px/normal &quot;Gulim&quot;"/>
+        <Combo id="cmbSearchType" taborder="1" text="전체" left="650" top="80" width="80" height="30" onitemchanged="dsEvaluation_onload" innerdataset="dsSearchType" value="all" index="0" codecolumn="CODE" datacolumn="CODE_NM"/>
+        <Edit id="edtSearchText" taborder="2" left="740" top="80" width="110" height="30" onchanged="edtSearchText_onchanged"/>
+        <Calendar id="calStartDate" taborder="4" left="870" top="80" width="110" height="30" onchanged="Calendar00_onchanged"/>
+        <Calendar id="calEndDate" taborder="5" left="1010" top="80" width="110" height="30" onchanged="calEndDate_onchanged"/>
+        <Static id="Static00" taborder="7" text="~" left="990" top="80" width="30" height="30" font="bold 12px/normal &quot;Gulim&quot;"/>
         <Grid id="grdEvalAll" taborder="8" left="30" top="155" width="490" height="415" binddataset="dsEvalAll" autofittype="col">
           <Formats>
             <Format id="default">
@@ -73,6 +73,8 @@
           </Formats>
         </Grid>
         <Button id="btnRegister" taborder="9" text="평가" left="450" top="115" width="70" height="30" onclick="btnRegister_onclick" cssclass="btn_edit"/>
+        <Static id="Static01" taborder="10" text="직원 평가" left="30" top="110" width="90" height="45" font="bold 18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
+        <Static id="Static02" taborder="11" text="평가 결과" left="555" top="110" width="90" height="45" font="bold 18px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
       </Layout>
     </Layouts>
     <Objects>

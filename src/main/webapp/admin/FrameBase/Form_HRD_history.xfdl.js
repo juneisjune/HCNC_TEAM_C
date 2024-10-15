@@ -120,6 +120,7 @@
 
         this.btn_HrdHistorySearch_onclick = function(obj,e)
         {
+        	this.grd_HrdList.setFocus();
         	this.fnSearchList();
         };
 
