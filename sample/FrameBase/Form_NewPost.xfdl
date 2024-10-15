@@ -5,7 +5,7 @@
       <Layout height="530" width="770" stepcount="0">
         <Static id="Static00" taborder="2" text="Drop Files Here" left="98" top="322" width="482" height="80" visible="true" background="aliceblue" color="dodgerblue" font="normal 30pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>
         <Button id="open" taborder="0" text="폴더 열기" left="600" top="322" width="90" height="90" onclick="btn_open_onclick" cssclass="btn_download"/>
-        <Grid id="Grid00" taborder="1" left="100" top="322" width="482" height="90" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop">
+        <Grid id="Grid00" taborder="1" left="100" top="322" width="482" height="90" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>

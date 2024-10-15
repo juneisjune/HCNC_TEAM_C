@@ -6,7 +6,7 @@
         <Static id="Static00" taborder="0" text="인사관리" left="36" top="23" width="174" height="50" cssclass="stc_title"/>
         <Edit id="edt_SearchWord" taborder="1" left="160" top="110" width="200" height="30" onchanged="edt_SearchWord_onchanged"/>
         <Button id="btn_HrdListSearch" taborder="2" text="조회" left="620" top="110" width="70" height="30" onclick="btn_HrdListSearch_onclick" cssclass="btn_search"/>
-        <Grid id="grd_HrdList" taborder="3" left="36" top="150" width="742" height="400" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none">
+        <Grid id="grd_HrdList" taborder="3" left="36" top="150" width="742" height="400" binddataset="ds_Hrdlist" autoenter="none" autoupdatetype="none" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>

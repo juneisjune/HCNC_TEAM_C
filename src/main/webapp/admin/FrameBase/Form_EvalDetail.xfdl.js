@@ -30,6 +30,7 @@
             obj = new Grid("grdEvalInfo","30","75","750","55",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_binddataset("dsEvaluation");
+            obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"124\"/><Column size=\"124\"/><Column size=\"128\"/><Column size=\"124\"/><Column size=\"124\"/><Column size=\"124\"/></Columns><Rows><Row size=\"25\" band=\"head\"/><Row size=\"25\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"평가일자\"/><Cell col=\"3\" text=\"점수\"/><Cell col=\"4\" text=\"등급\"/><Cell col=\"5\" text=\"평가자\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:evalDate\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:totalScore\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:evalGrade\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:regName\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 

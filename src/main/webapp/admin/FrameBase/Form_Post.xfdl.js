@@ -35,6 +35,7 @@
             obj = new Grid("grd_notice","30","150","1096","400",null,null,null,null,null,null,this);
             obj.set_binddataset("ds_Post");
             obj.set_taborder("0");
+            obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"71\"/><Column size=\"552\"/><Column size=\"128\"/><Column size=\"85\"/><Column size=\"70\"/><Column size=\"70\"/><Column size=\"70\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell displaytype=\"none\" edittype=\"none\" text=\"0\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"번호\"/><Cell col=\"2\" text=\"제목\"/><Cell col=\"3\" text=\"작성일자\"/><Cell col=\"4\" text=\"작성자\"/><Cell col=\"5\" text=\"조회수\"/><Cell col=\"6\" text=\"수정\"/><Cell col=\"7\" text=\"삭제\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:checked\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"bind:post_code\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:title\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:reg_date\" displaytype=\"date\" mask=\"####-##-##\"/><Cell col=\"4\" text=\"bind:upd_name\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:view_count\" textAlign=\"center\"/><Cell col=\"6\" displaytype=\"buttoncontrol\" text=\"수정\"/><Cell col=\"7\" displaytype=\"buttoncontrol\" text=\"삭제\" edittype=\"button\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
