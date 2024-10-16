@@ -50,7 +50,7 @@ public class JspPostController {
 	    model.addAttribute("totalPages", totalPages);
 
 	    // post.jsp로 이동
-	    return "post";
+	    return "post/post";
 	}
 
 	
@@ -77,7 +77,7 @@ public class JspPostController {
 	    model.addAttribute("attachments", attachments);
 	    
 	    // postDetail.jsp로 이동
-	    return "postDetail";
+	    return "post/postDetail";
 	}
 
 	//==========================================//

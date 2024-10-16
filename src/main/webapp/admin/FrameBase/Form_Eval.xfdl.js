@@ -19,7 +19,7 @@
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("dsEvaluation", this);
             obj.set_keystring("S:-evalDate");
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"evalDate\" type=\"DATE\" size=\"256\"/><Column id=\"totalScore\" type=\"INT\" size=\"256\"/><Column id=\"evalGrade\" type=\"STRING\" size=\"256\"/><Column id=\"guideCode\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"evalDate\" type=\"DATE\" size=\"256\"/><Column id=\"totalScore\" type=\"INT\" size=\"256\"/><Column id=\"evalGrade\" type=\"STRING\" size=\"256\"/><Column id=\"guideCode\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -34,7 +34,7 @@
 
 
             obj = new Dataset("dsEvalAll", this);
-            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"STRING\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"evalDate\" type=\"STRING\" size=\"256\"/><Column id=\"evalMonth\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"gender\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"evalDate\" type=\"STRING\" size=\"256\"/><Column id=\"evalMonth\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -44,20 +44,20 @@
             obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnFilterSearch","1050","115","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btnFilterSearch","1050","155","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
             obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdEvaluation","555","155","565","415",null,null,null,null,null,null,this);
+            obj = new Grid("grdEvaluation","555","195","565","415",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_binddataset("dsEvaluation");
             obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"97\"/><Column size=\"98\"/><Column size=\"128\"/><Column size=\"123\"/><Column size=\"117\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\" expandsize=\"16\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"평가일자\"/><Cell col=\"3\" text=\"점수\"/><Cell col=\"4\" text=\"등급\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:evalDate\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:totalScore\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:evalGrade\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmbSearchType","555","115","80","30",null,null,null,null,null,null,this);
+            obj = new Combo("cmbSearchType","555","157","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_innerdataset("dsSearchType");
             obj.set_codecolumn("CODE");
@@ -67,35 +67,47 @@
             obj.set_index("0");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edtSearchText","645","115","110","30",null,null,null,null,null,null,this);
+            obj = new Edit("edtSearchText","645","157","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calStartDate","775","115","110","30",null,null,null,null,null,null,this);
+            obj = new Calendar("calStartDate","775","157","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("calEndDate","915","115","110","30",null,null,null,null,null,null,this);
+            obj = new Calendar("calEndDate","915","157","110","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static00","895","115","30","30",null,null,null,null,null,null,this);
+            obj = new Static("Static00","895","157","30","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("~");
             obj.set_font("bold 12px/normal \"Gulim\"");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grdEvalAll","30","155","490","415",null,null,null,null,null,null,this);
+            obj = new Grid("grdEvalAll","30","195","490","415",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_binddataset("dsEvalAll");
             obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"97\"/><Column size=\"98\"/><Column size=\"97\"/><Column size=\"98\"/><Column size=\"98\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"이름\"/><Cell col=\"2\" text=\"성별\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:gender\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:depName\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnRegister","450","115","70","30",null,null,null,null,null,null,this);
+            obj = new Button("btnRegister","450","155","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("평가");
             obj.set_cssclass("btn_edit");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static01","30","110","90","45",null,null,null,null,null,null,this);
+            obj.set_taborder("10");
+            obj.set_text("직원 평가");
+            obj.set_font("bold 18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static02","555","110","90","45",null,null,null,null,null,null,this);
+            obj.set_taborder("11");
+            obj.set_text("평가 결과");
+            obj.set_font("bold 18px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -157,6 +169,8 @@
 
 
         this.fnSearch = function() {
+
+        	this.grdEvalAll.setFocus();
 
         	var admin_code = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
         	var admin_assign_code = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
@@ -311,6 +325,7 @@
 
         this.btnRegister_onclick = function(obj,e)
         {
+        	this.grdEvalAll.setFocus();
         	if (this.dsEvalAll.getRowCount() === 0) {
                 alert("평가할 데이터를 선택해 주세요.");
                 return;
@@ -323,6 +338,101 @@
         				  };
         	this.showEvalPopup(objParam);
         };
+
+        // 직원 목록 그리드 더블 헤드 클릭 시 정렬
+        this.grdEvalAll_onheaddblclick = function(obj,e)
+        {
+        	var objDs = this.objects[obj.binddataset];
+            var colId = "";
+
+        	// 컬럼 확인
+            if (e.col == 0) {
+                colId = "empCode";
+            } else if (e.col == 1) {
+                colId = "name";
+            } else {
+                return;
+            }
+
+            for (var i = 0; i < obj.getCellCount("head"); i++) {
+                var sHeadText = obj.getCellText(-1, i);  // 헤더의 텍스트 가져오기
+                var nLen = sHeadText.length - 1;  // 텍스트 길이 계산
+
+                if (i == e.col) { // 클릭한 셀에 대해 처리
+                    if (sHeadText.substr(nLen) == "▲") {  // 오름차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▼");
+                        objDs.set_keystring("S:-" + colId);  // 내림차순 정렬
+                    } else if (sHeadText.substr(nLen) == "▼") {  // 내림차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    } else {  // 정렬이 설정되지 않은 경우 기본 오름차순 적용
+                        obj.setCellProperty("head", i, "text", sHeadText + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    }
+                } else {
+                    // 클릭되지 않은 다른 셀의 정렬 표시 제거
+                    if (sHeadText.substr(nLen) == "▲" || sHeadText.substr(nLen) == "▼") {
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen));
+                    }
+                }
+            }
+
+            // 정렬 후 데이터셋 강제 적용
+            objDs.applyChange();
+
+        	// 정렬 후 첫 번째 행을 선택
+            objDs.set_rowposition(0);
+        };
+
+        // 평가 목록 그리드 헤드 더블 클릭 시 정렬
+        this.grdEvaluation_onheaddblclick = function(obj,e)
+        {
+        	var objDs = this.objects[obj.binddataset];
+            var colId = "";
+
+        	// 컬럼 확인
+            if (e.col == 0) {
+                colId = "empCode";
+            } else if (e.col == 1) {
+                colId = "name";
+            } else if (e.col == 2) {
+                colId = "evalDate";
+            } else if (e.col == 3) {
+                colId = "totalScore";
+            } else {
+                return;
+            }
+
+            for (var i = 0; i < obj.getCellCount("head"); i++) {
+                var sHeadText = obj.getCellText(-1, i);  // 헤더의 텍스트 가져오기
+                var nLen = sHeadText.length - 1;  // 텍스트 길이 계산
+
+                if (i == e.col) { // 클릭한 셀에 대해 처리
+                    if (sHeadText.substr(nLen) == "▲") {  // 오름차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▼");
+                        objDs.set_keystring("S:-" + colId);  // 내림차순 정렬
+                    } else if (sHeadText.substr(nLen) == "▼") {  // 내림차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    } else {  // 정렬이 설정되지 않은 경우 기본 오름차순 적용
+                        obj.setCellProperty("head", i, "text", sHeadText + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    }
+                } else {
+                    // 클릭되지 않은 다른 셀의 정렬 표시 제거
+                    if (sHeadText.substr(nLen) == "▲" || sHeadText.substr(nLen) == "▼") {
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen));
+                    }
+                }
+            }
+
+            // 정렬 후 데이터셋 강제 적용
+            objDs.applyChange();
+
+        	// 정렬 후 첫 번째 행을 선택
+            objDs.set_rowposition(0);
+        };
+
         });
         
         // Regist UI Components Event
@@ -332,10 +442,12 @@
             this.staTitle.addEventHandler("onclick",this.staTitle_onclick,this);
             this.btnFilterSearch.addEventHandler("onclick",this.btnFilterSearch_onclick,this);
             this.grdEvaluation.addEventHandler("oncelldblclick",this.grdEvaluation_oncelldblclick,this);
+            this.grdEvaluation.addEventHandler("onheaddblclick",this.grdEvaluation_onheaddblclick,this);
             this.cmbSearchType.addEventHandler("onitemchanged",this.dsEvaluation_onload,this);
             this.edtSearchText.addEventHandler("onchanged",this.edtSearchText_onchanged,this);
             this.calStartDate.addEventHandler("onchanged",this.Calendar00_onchanged,this);
             this.calEndDate.addEventHandler("onchanged",this.calEndDate_onchanged,this);
+            this.grdEvalAll.addEventHandler("onheaddblclick",this.grdEvalAll_onheaddblclick,this);
             this.btnRegister.addEventHandler("onclick",this.btnRegister_onclick,this);
             this.dsEvaluation.addEventHandler("onload",this.dsEvaluation_onload,this);
         };

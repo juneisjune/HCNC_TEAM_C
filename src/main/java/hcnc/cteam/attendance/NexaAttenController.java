@@ -63,7 +63,14 @@ public class NexaAttenController {
 		System.out.println(param);
 		try {
 			 Map<String, Object> ds_AttenList = nexaAttenService.selectUserInfo(param);
-			 result.addDataSet("ds_AttenList", ds_AttenList);
+			 
+			 	// 결과가 null 또는 비어있는 경우 처리
+		        if (ds_AttenList == null || ds_AttenList.isEmpty()) {
+		            result.setErrorCode(-1);
+		            result.setErrorMsg("없는 사번입니다.");
+		        } else {
+		            result.addDataSet("ds_AttenList", ds_AttenList);
+		        }
 		} catch (Exception ee) {
 			System.out.println(ee);
 			result.setErrorCode(-1);

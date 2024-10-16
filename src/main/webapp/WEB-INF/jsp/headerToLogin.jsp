@@ -6,7 +6,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>인사정보</title>
+    <title>로그인</title>
     <style>
     	
         .header {

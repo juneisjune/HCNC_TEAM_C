@@ -124,6 +124,7 @@ this.Form_HRD_history_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo
 
 this.btn_HrdHistorySearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.grd_HrdList.setFocus();
 	this.fnSearchList();
 };
 ]]></Script>

@@ -427,6 +427,7 @@
 
         // 닫기 버튼
         this.btnClose_onclick = function(obj, e) {
+        	this.grdEvalInfo.setFocus();
             this.close();
         };
 

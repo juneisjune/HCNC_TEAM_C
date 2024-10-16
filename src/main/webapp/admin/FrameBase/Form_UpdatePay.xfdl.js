@@ -229,6 +229,7 @@
 
         // 조회 버튼 클릭 시 호출되는 함수
         this.btn_Search_onclick = function(obj, e) {
+        	this.grd_CodeMst.setFocus();
 
             // 조회 실행
             this.fnSearch();
@@ -306,6 +307,8 @@
 
 
         this.btn_Delete_onclick = function(obj, e) {
+        	this.grd_CodeMst.setFocus();
+
             var deleteList = [];
 
             // 체크된 데이터 수집
@@ -364,12 +367,15 @@
 
 
         this.btn_Update_onclick = function(obj, e) {
+        	this.grd_CodeMst.setFocus();
+
             // 수정 액 입력 부분을 두 번째 그리드에서 직접 입력 받음 (이전 edt_Code, edt_CodeNm, edt_ModPay는 더 이상 사용하지 않음)
             var selectedRow = this.ds_Pay.rowposition; // 두 번째 그리드에서 선택된 행
             var modPay = this.ds_Pay.getColumn(selectedRow, "etc"); // 수정액 필드
 
             if (!modPay || isNaN(modPay)) {
                 this.alert("수정액을 올바르게 입력해주세요.");
+        		this.grd_CodeMst2.setFocus();
                 return;
             }
 
@@ -417,16 +423,50 @@
             }
         };
 
+        // 그리드 헤드 더블 클릭 시 정렬
+        this.grd_CodeMst_onheaddblclick = function(obj,e)
+        {
+        	var objDs = this.objects[obj.binddataset];
+            var colId = "";
 
+        	// 컬럼 확인
+            if (e.col == 1) {
+                colId = "empCode";
+            } else if (e.col == 2) {
+                colId = "name";
+            } else {
+                return;
+            }
 
+            for (var i = 0; i < obj.getCellCount("head"); i++) {
+                var sHeadText = obj.getCellText(-1, i);  // 헤더의 텍스트 가져오기
+                var nLen = sHeadText.length - 1;  // 텍스트 길이 계산
 
+                if (i == e.col) { // 클릭한 셀에 대해 처리
+                    if (sHeadText.substr(nLen) == "▲") {  // 오름차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▼");
+                        objDs.set_keystring("S:-" + colId);  // 내림차순 정렬
+                    } else if (sHeadText.substr(nLen) == "▼") {  // 내림차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    } else {  // 정렬이 설정되지 않은 경우 기본 오름차순 적용
+                        obj.setCellProperty("head", i, "text", sHeadText + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    }
+                } else {
+                    // 클릭되지 않은 다른 셀의 정렬 표시 제거
+                    if (sHeadText.substr(nLen) == "▲" || sHeadText.substr(nLen) == "▼") {
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen));
+                    }
+                }
+            }
 
+            // 정렬 후 데이터셋 강제 적용
+            objDs.applyChange();
 
-
-
-
-
-
+        	// 정렬 후 첫 번째 행을 선택
+            objDs.set_rowposition(0);
+        };
 
 
         });
@@ -449,6 +489,7 @@
             this.cmb_SearType.addEventHandler("onitemchanged",this.cmb_SearType_onitemchanged,this);
             this.btn_Delete.addEventHandler("onclick",this.btn_Delete_onclick,this);
             this.grd_CodeMst.addEventHandler("onheadclick",this.grd_CodeMst_onheadclick,this);
+            this.grd_CodeMst.addEventHandler("onheaddblclick",this.grd_CodeMst_onheaddblclick,this);
         };
         this.loadIncludeScript("Form_UpdatePay.xfdl");
         this.loadPreloadList();

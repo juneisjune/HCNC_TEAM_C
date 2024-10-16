@@ -140,12 +140,14 @@
 
         this.btn_offListSearch_onclick = function(obj,e)
         {
+        	this.grd_offList.setFocus();
         	this.fnSearchList();
         };
 
         //승인 함수
         this.btn_confirm_onclick = function(obj,e)
         {
+        	this.grd_offList.setFocus();
         	// application 변수에서assign_code를 가져옴
             var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
         	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
@@ -191,7 +193,7 @@
         //반려함수
         this.btn_return_onclick = function(obj,e)
         {
-
+        	this.grd_offList.setFocus();
         	// application 변수에서 emp_code와 assign_code를 가져옴
             var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
         	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
@@ -265,7 +267,7 @@
         // -------------------------------------------------- //
 
         this.grd_offList_onheadclick = function(obj,e)
-        {
+        {	if(e.col == 0) {
         	// 아래 속성에서 0은 그리드에서 0번쨰 column을 의미하며 text 값을 가져오라는 의미입니다.
         	var chkVal = obj.getCellProperty("head", 0, "text");
 
@@ -283,11 +285,55 @@
         			this.ds_doRequestList.setColumn(i,"chk","1");
         		}
         	}
+        	}
         };
 
+        // 헤드 더블 클릭 시 정렬
+        this.grd_offList_onheaddblclick = function(obj,e)
+        {
+        	var objDs = this.objects[obj.binddataset];
+            var colId = "";
 
+        	// 컬럼 확인
+            if (e.col == 1) {
+                colId = "name";
+            } else if (e.col == 3) {
+                colId = "start_date";
+            } else if (e.col == 4) {
+                colId = "end_date";
+            } else {
+                return;
+            }
 
+            for (var i = 0; i < obj.getCellCount("head"); i++) {
+                var sHeadText = obj.getCellText(-1, i);  // 헤더의 텍스트 가져오기
+                var nLen = sHeadText.length - 1;  // 텍스트 길이 계산
 
+                if (i == e.col) { // 클릭한 셀에 대해 처리
+                    if (sHeadText.substr(nLen) == "▲") {  // 오름차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▼");
+                        objDs.set_keystring("S:-" + colId);  // 내림차순 정렬
+                    } else if (sHeadText.substr(nLen) == "▼") {  // 내림차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    } else {  // 정렬이 설정되지 않은 경우 기본 오름차순 적용
+                        obj.setCellProperty("head", i, "text", sHeadText + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    }
+                } else {
+                    // 클릭되지 않은 다른 셀의 정렬 표시 제거
+                    if (sHeadText.substr(nLen) == "▲" || sHeadText.substr(nLen) == "▼") {
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen));
+                    }
+                }
+            }
+
+            // 정렬 후 데이터셋 강제 적용
+            objDs.applyChange();
+
+        	// 정렬 후 첫 번째 행을 선택
+            objDs.set_rowposition(0);
+        };
 
         });
         
@@ -297,6 +343,7 @@
             this.addEventHandler("onload",this.Form_dayoff_Confirm_onload,this);
             this.Static00.addEventHandler("onclick",this.Static00_onclick,this);
             this.grd_offList.addEventHandler("onheadclick",this.grd_offList_onheadclick,this);
+            this.grd_offList.addEventHandler("onheaddblclick",this.grd_offList_onheaddblclick,this);
             this.btn_confirm.addEventHandler("onclick",this.btn_confirm_onclick,this);
             this.btn_return.addEventHandler("onclick",this.btn_return_onclick,this);
             this.btn_offListSearch.addEventHandler("onclick",this.btn_offListSearch_onclick,this);

@@ -39,6 +39,7 @@
             obj.set_textAlign("center");
             obj.set_background("whitesmoke");
             obj.set_cssclass("stc_popup");
+            obj.set_text("");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_empCode","30","120","80","30",null,null,null,null,null,null,this);
@@ -207,6 +208,8 @@
 
         this.Popup_Atten_onload = function(obj,e)
         {
+
+
         	this.ds_AttenList.clearData();
         	this.ds_AttenList.addRow();
         	this.ds_AttenList.setColumn(0, "condition", this.parent.condition);
@@ -230,13 +233,14 @@
         		this.ds_AttenList.setColumn(0, "workEnd", this.parent.workEnd);
 
         	}
-
-        	console.log(this.ds_AttenList.saveXML());
+        	this.edt_name.setFocus();
         };
 
         // 저장 버튼
         this.btn_Save_onclick = function(obj,e)
         {
+        	this.edt_name.setFocus();
+
         	// 출근 입력 시 유효성 검사
         	if (this.ds_AttenList.getColumn(0, "attenType")=="출근") {
 
@@ -287,7 +291,7 @@
         // 콜백 함수
         this.fnCallback = function (svcID, errorCode, errorMsg) {
 
-        	// 근태 저장 콜백 시
+        	// 근태 저장 콜백
         	if(svcID == "attenSave"){
         		if (errorCode < 0) {
         			alert(errorMsg);
@@ -299,12 +303,25 @@
 
         		this.opener.fnSearch();
         	}
+
+        	// 사번 입력 후 콜백
+        	if(svcID == "selectUserInfo"){
+        		if (errorCode < 0) {
+        			alert(errorMsg);
+
+        			this.ds_AttenList.setColumn(0, "empCode", null);
+        			this.ds_AttenList.setColumn(0, "name", "");
+        			this.ds_AttenList.setColumn(0, "assignName", "");
+        			this.ds_AttenList.setColumn(0, "depName", "");
+
+        			return;
+        		}
+        	}
         };
 
         // 사번 입력 후 해당 직원 정보 가져오기
         this.edt_empCode_onchanged = function(obj,e)
         {
-
         	var strSvcId    = "selectUserInfo";
         	var strSvcUrl   = "svc::selectUserInfo.do";
         	var inData      = "ds_AttenList=ds_AttenList";
