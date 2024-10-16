@@ -53,7 +53,7 @@
                 <Cell col="2" text="bind:name" textAlign="center"/>
                 <Cell col="3" text="bind:depName" textAlign="center"/>
                 <Cell col="4" text="bind:assignName" textAlign="center"/>
-                <Cell col="5" text="bind:payYear" textAlign="center"/>
+                <Cell col="5" text="bind:payYear" textAlign="center" displaytype="text" mask="####"/>
                 <Cell col="6" text="bind:payMonth" textAlign="center"/>
                 <Cell col="7" text="bind:actualPay"/>
                 <Cell col="8" text="bind:etc"/>
@@ -155,7 +155,7 @@
           <Column id="payYear" type="STRING" size="256"/>
           <Column id="payMonth" type="STRING" size="256"/>
           <Column id="actualPay" type="STRING" size="256"/>
-          <Column id="etc" type="INT" size="256"/>
+          <Column id="etc" type="STRING" size="256"/>
           <Column id="chk" type="STRING" size="256"/>
           <Column id="admName" type="STRING" size="256"/>
         </ColumnInfo>
@@ -330,8 +330,8 @@ this.btn_Update_onclick = function(obj, e) {
     // 수정 액 입력 부분을 두 번째 그리드에서 직접 입력 받음 (이전 edt_Code, edt_CodeNm, edt_ModPay는 더 이상 사용하지 않음)
     var selectedRow = this.ds_Pay.rowposition; // 두 번째 그리드에서 선택된 행
     var modPay = this.ds_Pay.getColumn(selectedRow, "etc"); // 수정액 필드
-
-    if (!modPay || isNaN(modPay)) {
+	
+    if (isNaN(modPay)) {
         this.alert("수정액을 올바르게 입력해주세요.");
 		this.grd_CodeMst2.setFocus();
         return;
@@ -342,13 +342,13 @@ this.btn_Update_onclick = function(obj, e) {
 
     // 지급액과 수정액 반영
     var actualPay = this.ds_Pay.getColumn(selectedRow, "actualPay");
-    var modPayValue = parseInt(modPay);
-    var newActualPay = actualPay + modPayValue;
-
-    this.ds_Pay.setColumn(selectedRow, "actualPay", newActualPay);  // 지급액 업데이트
-    this.ds_Pay.setColumn(selectedRow, "etc", modPayValue);         // 수정액 업데이트
+	
+	var newActPay = modPay + actualPay;
+    
+    this.ds_Pay.setColumn(selectedRow, "actualPay", newActPay);  // 지급액 업데이트
+    this.ds_Pay.setColumn(selectedRow, "etc", modPay);         // 수정액 업데이트
     this.ds_Pay.setColumn(selectedRow, "admName", admName);         // 수정자의 이름 업데이트
-
+	
     // 서버로 수정 내용 전송
     var strSvcId = "updatePayEtc";
     var strSvcUrl = "svc::updatePayEtc.do";
@@ -372,9 +372,7 @@ this.fnCallback = function(svcID, errorCode, errorMsg) {
     switch(svcID) {
         case "updatePayEtc":
             this.alert("수정이 성공적으로 완료되었습니다.");
-            
-            // 데이터셋 업데이트 후 변경된 값이 반영되었는지 확인
-            this.ds_Pay.applyChange();  // 그리드에 반영
+			this.fnSearch();
             break;
         default:
             break;
