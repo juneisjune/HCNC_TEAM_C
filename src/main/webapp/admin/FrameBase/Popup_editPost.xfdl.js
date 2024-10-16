@@ -67,10 +67,11 @@
             obj = new Grid("attach_grid","101","260","488","90",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("Dataset00");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"405\"/><Column size=\"81\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"삭제\"/></Band><Band id=\"body\"><Cell text=\"bind:attach_name\"/><Cell col=\"1\" text=\"삭제\" textAlign=\"center\" edittype=\"button\" displaytype=\"buttoncontrol\"/></Band></Format></Formats>");
+            obj.set_autofittype("col");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"405\"/><Column size=\"81\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"name\"/><Cell col=\"1\" text=\"삭제\"/></Band><Band id=\"body\"><Cell text=\"bind:attach_name\" textAlign=\"center\"/><Cell col=\"1\" text=\"삭제\" textAlign=\"center\" edittype=\"button\" displaytype=\"buttoncontrol\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Button("Button01","350","380","70","30",null,null,null,null,null,null,this);
+            obj = new Button("Button01","350","390","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("수정");
             obj.set_cssclass("btn_edit");
@@ -82,6 +83,7 @@
 
             obj = new TextArea("TextArea01","100","130","619","112",null,null,null,null,null,null,this);
             obj.set_taborder("5");
+            obj.set_wordWrap("english");
             this.addChild(obj.name, obj);
 
             obj = new Static("Static_Label_Title","19","79","70","30",null,null,null,null,null,null,this);
@@ -139,6 +141,8 @@
         // 팝업 로드 시 게시글 정보와 첨부파일 정보를 불러옴
         this.Popup_edit_page_onload = function(obj,e)
         {
+        	this.attach_grid.setFocus();
+
         	this.ds_post.clearData();
         	this.ds_post.addRow();
         	this.ds_post.setColumn(0, "post_code", this.parent.post_code);
@@ -148,7 +152,6 @@
         	console.log("postInfo data:" + this.ds_postInfo.saveXML());
         	console.log("post dataafaf:" + this.ds_post.saveXML());
         	console.log("dbset" + this.Dataset00.saveXML());
-
 
         	// Edit 및 TextArea에 게시글 정보 설정
         	this.Edit_title.set_value(this.ds_post.getColumn(0, "title"));
@@ -166,6 +169,7 @@
 
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
+        	this.attach_grid.setFocus();
 
         // 첨부파일 정보 조회 콜백
         this.fn_callbackAttachments = function(svcID, errorCode, errorMsg)
@@ -232,6 +236,7 @@
 
         // 게시글 수정 및 파일 저장 로직
         this.Button01_onclick = function(obj,e){
+        	this.attach_grid.setFocus();
             if (this.ds_postInfo.getRowCount() == 0) {
                 this.ds_postInfo.addRow();
             }
@@ -301,6 +306,7 @@
         };
         this.btn_open_onclick = function(obj,e)
         {
+        	this.attach_grid.setFocus();
         	this.FileDialog00.open('nexacro17', FileDialog.LOAD);  // 단일 파일 선택 모드
         };
 

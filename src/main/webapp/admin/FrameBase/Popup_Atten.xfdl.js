@@ -14,7 +14,7 @@
             this.set_background("whitesmoke");
             if (Form == this.constructor)
             {
-                this._setFormPosition(600,600);
+                this._setFormPosition(600,560);
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
@@ -34,70 +34,63 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("sta_Title","190","10","220","50",null,null,null,null,null,null,this);
+            obj = new Static("sta_Title","190","25","220","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_textAlign("center");
-            obj.set_font("24pt/normal \"Arial Black\"");
             obj.set_background("whitesmoke");
+            obj.set_cssclass("stc_popup");
+            obj.set_text("");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_empCode","30","120","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
-            obj.set_text("사번 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("사번");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_name","290","120","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
-            obj.set_text("이름 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("이름");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_assignName","30","210","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
-            obj.set_text("직책 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("직책");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_depName","290","210","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("4");
-            obj.set_text("부서명 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("부서명");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_workDate","30","300","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
-            obj.set_text("근무일자 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("근무일자");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_workType","290","300","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
-            obj.set_text("근무형태 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("근무형태");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_workStart","30","390","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
-            obj.set_text("출근시간 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("출근시간");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
             obj = new Static("sta_workEnd","290","390","80","30",null,null,null,null,null,null,this);
             obj.set_taborder("8");
-            obj.set_text("퇴근시간 : ");
-            obj.set_textAlign("right");
-            obj.set_font("bold 16px/normal \"HY궁서B\"");
+            obj.set_text("퇴근시간");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Save","260","500","80","40",null,null,null,null,null,null,this);
+            obj = new Button("btn_Save","260","480","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("9");
             obj.set_text("저장");
             obj.set_cssclass("btn_edit");
@@ -160,7 +153,7 @@
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
-            obj = new Layout("default","",600,600,this,function(p){});
+            obj = new Layout("default","",600,560,this,function(p){});
             obj.set_mobileorientation("landscape");
             this.addLayout(obj.name, obj);
             
@@ -215,6 +208,8 @@
 
         this.Popup_Atten_onload = function(obj,e)
         {
+
+
         	this.ds_AttenList.clearData();
         	this.ds_AttenList.addRow();
         	this.ds_AttenList.setColumn(0, "condition", this.parent.condition);
@@ -238,13 +233,14 @@
         		this.ds_AttenList.setColumn(0, "workEnd", this.parent.workEnd);
 
         	}
-
-        	console.log(this.ds_AttenList.saveXML());
+        	this.edt_name.setFocus();
         };
 
         // 저장 버튼
         this.btn_Save_onclick = function(obj,e)
         {
+        	this.edt_name.setFocus();
+
         	// 출근 입력 시 유효성 검사
         	if (this.ds_AttenList.getColumn(0, "attenType")=="출근") {
 
@@ -252,8 +248,9 @@
         		var workEnd = this.ds_AttenList.getColumn(0, "workEnd");
 
                 if(!workStart || !workEnd) {
-        		alert("출근시간 또는 퇴근시간을 입력하세요.");
-                return;
+        			alert("출근시간 또는 퇴근시간을 입력하세요.");
+        			this.cmb_workType.setFocus();
+        			return;
         		}
 
         		var startHour = parseInt(workStart.slice(0, 2), 10);
@@ -262,17 +259,20 @@
         		var endMinute = parseInt(workEnd.slice(2, 4), 10);
 
         		if (startHour > 23 || startMinute > 59) {
-                alert("출근시간을 올바르게 입력해주세요.");
-                return;
+        			alert("출근시간을 올바르게 입력해주세요.");
+        			this.maskedt_workStart.setFocus();
+        			return;
         		}
 
         		if (endHour > 23 || endMinute > 59) {
         			alert("퇴근시간을 올바르게 입력해주세요.");
+        			this.maskedt_workEnd.setFocus();
         			return;
         		}
 
         		if (startHour > endHour || (startHour == endHour && startMinute > endMinute)) {
         			alert("시간을 올바르게 입력해주세요.");
+        			this.maskedt_workEnd.setFocus();
         			return;
         		}
             }
@@ -295,7 +295,7 @@
         // 콜백 함수
         this.fnCallback = function (svcID, errorCode, errorMsg) {
 
-        	// 근태 저장 콜백 시
+        	// 근태 저장 콜백
         	if(svcID == "attenSave"){
         		if (errorCode < 0) {
         			alert(errorMsg);
@@ -307,12 +307,25 @@
 
         		this.opener.fnSearch();
         	}
+
+        	// 사번 입력 후 콜백
+        	if(svcID == "selectUserInfo"){
+        		if (errorCode < 0) {
+        			alert(errorMsg);
+
+        			this.ds_AttenList.setColumn(0, "empCode", null);
+        			this.ds_AttenList.setColumn(0, "name", "");
+        			this.ds_AttenList.setColumn(0, "assignName", "");
+        			this.ds_AttenList.setColumn(0, "depName", "");
+
+        			return;
+        		}
+        	}
         };
 
         // 사번 입력 후 해당 직원 정보 가져오기
         this.edt_empCode_onchanged = function(obj,e)
         {
-
         	var strSvcId    = "selectUserInfo";
         	var strSvcUrl   = "svc::selectUserInfo.do";
         	var inData      = "ds_AttenList=ds_AttenList";

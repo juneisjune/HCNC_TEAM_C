@@ -142,7 +142,7 @@
             obj.set_text("bind:Password");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btnRegister","370","330","80","30",null,null,null,null,null,null,this);
+            obj = new Button("btnRegister","380","330","70","30",null,null,null,null,null,null,this);
             obj.set_text("등록");
             obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
@@ -213,6 +213,7 @@
 
         // 등록 버튼 클릭 시 데이터 저장 로직 추가
         this.btnRegister_onclick = function(obj, e) {
+        	this.edtName.setFocus();
 
             if (!this.validateEmployeeData()) {
                 return;
@@ -250,6 +251,7 @@
             // 이름 검사
             if (!name || name.trim() === "") {
                 alert("이름을 입력해 주세요.");
+        			this.edtName.setFocus();
                 return false;
             }
 
@@ -257,24 +259,28 @@
             var birthPattern = /^[0-9]{8}$/;
             if (!birth || !birthPattern.test(birth)) {
                 alert("올바른 생년월일을 입력해 주세요. ");
+        			this.calBirth.setFocus();
                 return false;
             }
 
             // 성별 검사
             if (!gender || gender.trim() === "") {
                 alert("성별을 입력해 주세요.");
+        			this.cmbGender.setFocus();
                 return false;
             }
 
             var phonePattern = /^010-[0-9]{4}-[0-9]{4}$/;
             if (!phone || !phonePattern.test(phone)) {
                 alert("유효한 전화번호를 입력해 주세요. 형식: 010-XXXX-XXXX");
+        			this.edtPhone.setFocus();
                 return false;
             }
 
             // 주소 검사
             if (!address || address.trim() === "") {
                 alert("주소를 입력해 주세요.");
+        			this.edtAddress.setFocus();
                 return false;
             }
 
@@ -283,6 +289,7 @@
             if (!joinDate || !joinDatePattern.test(joinDate)) {
                 console.log(this.ds_employee.saveXML());
                 alert("올바른 입사일을 입력해 주세요.");
+        			this.calJoinDate.setFocus();
                 return false;
             }
 
@@ -290,6 +297,7 @@
             var accountPattern = /^[가-힣]+[0-9]+$/;
             if (!account || !accountPattern.test(account)) {
                 alert("유효한 계좌번호를 입력해 주세요. 예: 국민은행12345678");
+        			this.edtAccount.setFocus();
                 return false;
             }
 
@@ -297,12 +305,14 @@
             var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!email || !emailPattern.test(email)) {
                 alert("유효한 이메일을 입력해 주세요.");
+        			this.edtEmail.setFocus();
                 return false;
             }
 
             // 아이디 검사
             if (!id || id.trim() === "") {
                 alert("아이디를 입력해 주세요.");
+        			this.edtID.setFocus();
                 return false;
             }
 
@@ -312,6 +322,7 @@
                 var passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
                 if (!passwordPattern.test(password)) {
                     alert("비밀번호는 최소 8자 이상이며, 숫자와 영문자를 포함해야 합니다.");
+        				this.edtPassword.setFocus();
                     return false;
 
                 }
@@ -340,6 +351,7 @@
 
         // 중복 체크 버튼 클릭 시 호출되는 함수
         this.Button00_onclick = function(obj, e) {
+        	this.edtID.setFocus();
             var id = this.ds_employee.getColumn(0, "id");
 
             if (!id || id.trim() === "") {

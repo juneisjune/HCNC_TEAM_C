@@ -3,8 +3,8 @@
   <Form id="Form_EvalEdit" width="1280" height="720" titletext="New Form" onload="Form_EvalEdit_onload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="800">
-        <Button id="btnSubmit" taborder="0" text="수정" left="700" top="510" width="80" height="30" onclick="btnSubmit_onclick" cssclass="btn_edit"/>
-        <Grid id="grdEdit" taborder="1" left="30" top="110" width="750" height="385" binddataset="dsQuestions" oncelldblclick="grdEdit_oncelldblclick">
+        <Button id="btnSubmit" taborder="0" text="수정" left="710" top="510" width="70" height="30" onclick="btnSubmit_onclick" cssclass="btn_edit"/>
+        <Grid id="grdEdit" taborder="1" left="30" top="110" width="750" height="385" binddataset="dsQuestions" oncelldblclick="grdEdit_oncelldblclick" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>
@@ -94,9 +94,8 @@ this.grdEdit_oncelldblclick = function(obj:nexacro.Grid, e:nexacro.GridCellClick
 
 // 수정 버튼 클릭 시 호출되는 함수
 this.btnSubmit_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
-
+	this.EditQuestion.setFocus();
 	var admin_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
-	
     // Edit 박스에서 수정된 값 가져오기
     var editedValue = this.EditQuestion.value;
 
@@ -109,6 +108,9 @@ this.btnSubmit_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) 
             alert("guideCode 값을 가져올 수 없습니다.");
             return;
         }
+		var admin_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
+	
+
 
         // 수정할 데이터를 dsEditSave 데이터셋에 추가
         this.dsEditSave.clearData();  // 데이터셋을 초기화하고 새 데이터 추가

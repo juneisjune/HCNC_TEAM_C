@@ -45,29 +45,29 @@
             obj.set_background("#ffffff");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_AuthCheck","933","330","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_AuthCheck","893","330","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_AuthCheck","1010","400","123","60",null,null,null,null,null,null,this);
+            obj = new Button("btn_AuthCheck","990","410","100","50",null,null,null,null,null,null,this);
             obj.set_taborder("2");
-            obj.set_text("인증하기");
+            obj.set_text("인증");
             obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_AuthCheck","813","330","115","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_AuthCheck","766","330","115","60",null,null,null,null,null,null,this);
             obj.set_taborder("3");
-            obj.set_text("인증번호 입력 :");
-            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_text("인증번호");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_MaskEmail","803","250","120","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_MaskEmail","763","250","120","60",null,null,null,null,null,null,this);
             obj.set_taborder("9");
-            obj.set_text("발송받은 이메일 :");
-            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_text("발송받은 이메일");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_MaskedEmail","933","250","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_MaskedEmail","893","250","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("8");
             obj.set_readonly("true");
             obj.set_background("#ffffff");
@@ -78,36 +78,36 @@
             obj.set_background("#ffffff");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_FindLoginInfo","220","275","135","25",null,null,null,null,null,null,this.div_LoginForm.form);
+            obj = new Static("sta_FindLoginInfo","210","278","135","25",null,null,null,null,null,null,this.div_LoginForm.form);
             obj.set_taborder("0");
             obj.set_text("아이디 및 비밀번호 찾기");
             obj.set_font("12px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
             obj.set_color("#000000");
             this.div_LoginForm.addChild(obj.name, obj);
 
-            obj = new Button("btn_Login","1010","400","115","60",null,null,null,null,null,null,this);
+            obj = new Button("btn_Login","1005","410","100","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("인증번호 발송");
             obj.set_cssclass("btn_normal");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_Id","820","250","90","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_Id","805","250","90","60",null,null,null,null,null,null,this);
             obj.set_taborder("4");
-            obj.set_text("아이디 입력 :");
-            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_text("아이디");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Static("sta_Password","805","330","115","60",null,null,null,null,null,null,this);
+            obj = new Static("sta_Password","805","330","90","60",null,null,null,null,null,null,this);
             obj.set_taborder("5");
-            obj.set_text("비밀번호 입력 :");
-            obj.set_font("bold 15px/normal \"Arial\",\"Malgun Gothic\",\"Gulim\"");
+            obj.set_text("비밀번호");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Id","925","250","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Id","905","250","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             this.addChild(obj.name, obj);
 
-            obj = new Edit("edt_Password","925","330","200","60",null,null,null,null,null,null,this);
+            obj = new Edit("edt_Password","905","330","200","60",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_password("true");
             this.addChild(obj.name, obj);
@@ -184,19 +184,21 @@
 
         // 인증번호 발송(로그인) 버튼
         this.btn_Login_onclick = function(obj,e) {
-
+        	this.edt_AuthCheck.setFocus();
             var userId = this.ds_login.getColumn(0, "user_id");
             var password = this.ds_login.getColumn(0, "password");
 
             // 아이디 유효성 검사
             if(userId == null || userId == '' || userId === 'undefined') {
                 alert("아이디를 입력하세요.");
+        			this.edt_Id.setFocus();
                 return;
             }
 
             // 비밀번호 유효성 검사
-            if(password == null || password == '' || password === 'undefined') {
+            if(password == null || password == '' || password === 'undefined')	 {
                 alert("비밀번호를 입력하세요.");
+        			this.edt_Password.setFocus();
                 return;
             }
 
@@ -249,11 +251,11 @@
         		this.img_LoginMain.set_visible(false);
 
         		this.div_LoginForm.set_left(390);
-        		this.sta_Id.set_left(440);
-        		this.sta_Password.set_left(425);
-        		this.edt_Id.set_left(545);
-        		this.edt_Password.set_left(545);
-        		this.btn_Login.set_left(630);
+        		this.sta_Id.set_left(420);
+        		this.sta_Password.set_left(420);
+        		this.edt_Id.set_left(525);
+        		this.edt_Password.set_left(525);
+        		this.btn_Login.set_left(625);
 
             } else {
                 // 통신 실패 시 에러 처리
@@ -282,14 +284,16 @@
 
         //인증하기
         this.btn_AuthCheck_onclick = function(obj,e)
-        {
+        {	this.img_LoginMain.setFocus();
         	if(this.ds_Auth.getColumn(0, "authKey") == '' || this.ds_Auth.getColumn(0, "authKey") == null || this.ds_Auth.getColumn(0, "authKey") == 'undefined') {
         		alert("인증번호를 먼저 발급받으세요.");
+        		this.edt_MaskedEmail.setFocus();
         		return;
         	}
 
         	if(this.ds_Auth.getColumn(0, "authKey") != this.ds_AuthCheck.getColumn(0, "authCheck")) {
         		alert("인증번호가 일치하지 않습니다.");
+        		this.edt_AuthCheck.setFocus();
         		return;
         	}
 
@@ -423,6 +427,7 @@
         	this.reload();
         };
 
+
         });
         
         // Regist UI Components Event
@@ -434,6 +439,7 @@
             this.div_LoginForm.form.sta_FindLoginInfo.addEventHandler("onmouseenter",this.div_LoginForm_sta_FindLoginInfo_onmouseenter,this);
             this.div_LoginForm.form.sta_FindLoginInfo.addEventHandler("onclick",this.div_LoginForm_sta_FindLoginInfo_onclick,this);
             this.btn_Login.addEventHandler("onclick",this.btn_Login_onclick,this);
+            this.sta_Id.addEventHandler("onclick",this.sta_Id_onclick,this);
         };
         this.loadIncludeScript("Form_Login.xfdl");
         this.loadPreloadList();

@@ -4,23 +4,23 @@
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
         <Div id="div_AuthForm" taborder="11" left="770" top="200" width="380" height="370" background="#ffffff"/>
-        <Edit id="edt_AuthCheck" taborder="1" left="933" top="330" width="200" height="60"/>
-        <Button id="btn_AuthCheck" taborder="2" text="인증하기" left="1010" top="400" width="123" height="60" onclick="btn_AuthCheck_onclick" cssclass="btn_normal"/>
-        <Static id="sta_AuthCheck" taborder="3" text="인증번호 입력 :" left="813" top="330" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_MaskEmail" taborder="9" text="발송받은 이메일 :" left="803" top="250" width="120" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Edit id="edt_MaskedEmail" taborder="8" left="933" top="250" width="200" height="60" readonly="true" background="#ffffff"/>
+        <Edit id="edt_AuthCheck" taborder="1" left="893" top="330" width="200" height="60"/>
+        <Button id="btn_AuthCheck" taborder="2" text="인증" left="990" top="410" width="100" height="50" onclick="btn_AuthCheck_onclick" cssclass="btn_normal"/>
+        <Static id="sta_AuthCheck" taborder="3" text="인증번호" left="766" top="330" width="115" height="60" cssclass="stc_stc"/>
+        <Static id="sta_MaskEmail" taborder="9" text="발송받은 이메일" left="763" top="250" width="120" height="60" cssclass="stc_stc"/>
+        <Edit id="edt_MaskedEmail" taborder="8" left="893" top="250" width="200" height="60" readonly="true" background="#ffffff"/>
         <Div id="div_LoginForm" taborder="10" left="770" top="200" width="380" height="370" background="#ffffff">
           <Layouts>
             <Layout>
-              <Static id="sta_FindLoginInfo" taborder="0" text="아이디 및 비밀번호 찾기" left="220" top="275" width="135" height="25" onmouseleave="div_LoginForm_sta_FindLoginInfo_onmouseleave" onmouseenter="div_LoginForm_sta_FindLoginInfo_onmouseenter" onclick="div_LoginForm_sta_FindLoginInfo_onclick" font="12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" color="#000000"/>
+              <Static id="sta_FindLoginInfo" taborder="0" text="아이디 및 비밀번호 찾기" left="210" top="278" width="135" height="25" onmouseleave="div_LoginForm_sta_FindLoginInfo_onmouseleave" onmouseenter="div_LoginForm_sta_FindLoginInfo_onmouseenter" onclick="div_LoginForm_sta_FindLoginInfo_onclick" font="12px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;" color="#000000"/>
             </Layout>
           </Layouts>
         </Div>
-        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="1010" top="400" width="115" height="60" onclick="btn_Login_onclick" cssclass="btn_normal"/>
-        <Static id="sta_Id" taborder="4" text="아이디 입력 :" left="820" top="250" width="90" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Static id="sta_Password" taborder="5" text="비밀번호 입력 :" left="805" top="330" width="115" height="60" font="bold 15px/normal &quot;Arial&quot;,&quot;Malgun Gothic&quot;,&quot;Gulim&quot;"/>
-        <Edit id="edt_Id" taborder="6" left="925" top="250" width="200" height="60"/>
-        <Edit id="edt_Password" taborder="7" left="925" top="330" width="200" height="60" password="true"/>
+        <Button id="btn_Login" taborder="0" text="인증번호 발송" left="1005" top="410" width="100" height="50" onclick="btn_Login_onclick" cssclass="btn_normal"/>
+        <Static id="sta_Id" taborder="4" text="아이디" left="805" top="250" width="90" height="60" cssclass="stc_stc" onclick="sta_Id_onclick"/>
+        <Static id="sta_Password" taborder="5" text="비밀번호" left="805" top="330" width="90" height="60" cssclass="stc_stc"/>
+        <Edit id="edt_Id" taborder="6" left="905" top="250" width="200" height="60"/>
+        <Edit id="edt_Password" taborder="7" left="905" top="330" width="200" height="60" password="true"/>
         <Div id="div_LoginMain" taborder="13" left="390" top="200" width="380" height="370" background="#B0C4D9"/>
         <ImageViewer id="img_HcncLogo" taborder="12" left="580" top="60" width="380" height="110" image="url('imagerc::img_hcnc_logo.png')" stretch="fixaspectratio" background="#003366" border="0px none"/>
         <Static id="sta_LoginMain2" taborder="14" text="Login" left="390" top="425" width="380" height="100" textAlign="center" font="42px/normal &quot;HY견고딕&quot;"/>
@@ -32,19 +32,21 @@
 
 // 인증번호 발송(로그인) 버튼
 this.btn_Login_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo) {
-
+	this.edt_AuthCheck.setFocus();
     var userId = this.ds_login.getColumn(0, "user_id");
     var password = this.ds_login.getColumn(0, "password");
 
     // 아이디 유효성 검사
     if(userId == null || userId == '' || userId === 'undefined') {
         alert("아이디를 입력하세요.");
+			this.edt_Id.setFocus();
         return;
     }
 
     // 비밀번호 유효성 검사
-    if(password == null || password == '' || password === 'undefined') {
+    if(password == null || password == '' || password === 'undefined')	 {
         alert("비밀번호를 입력하세요.");
+			this.edt_Password.setFocus();
         return;
     }
 
@@ -97,11 +99,11 @@ this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
 		this.img_LoginMain.set_visible(false);
 		
 		this.div_LoginForm.set_left(390);
-		this.sta_Id.set_left(440);
-		this.sta_Password.set_left(425); 
-		this.edt_Id.set_left(545);
-		this.edt_Password.set_left(545);
-		this.btn_Login.set_left(630);
+		this.sta_Id.set_left(420);
+		this.sta_Password.set_left(420); 
+		this.edt_Id.set_left(525);
+		this.edt_Password.set_left(525);
+		this.btn_Login.set_left(625);
 		
     } else {
         // 통신 실패 시 에러 처리
@@ -130,14 +132,16 @@ this.fn_LoginSuccess = function() {
 
 //인증하기
 this.btn_AuthCheck_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	this.img_LoginMain.setFocus();
 	if(this.ds_Auth.getColumn(0, "authKey") == '' || this.ds_Auth.getColumn(0, "authKey") == null || this.ds_Auth.getColumn(0, "authKey") == 'undefined') {
 		alert("인증번호를 먼저 발급받으세요.");
+		this.edt_MaskedEmail.setFocus();
 		return;
 	}
 
 	if(this.ds_Auth.getColumn(0, "authKey") != this.ds_AuthCheck.getColumn(0, "authCheck")) {
 		alert("인증번호가 일치하지 않습니다.");
+		this.edt_AuthCheck.setFocus();
 		return;
 	}
 	
@@ -270,6 +274,7 @@ this.Form_Login_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
 {
 	this.reload();
 };
+
 ]]></Script>
     <Objects>
       <Dataset id="ds_login">

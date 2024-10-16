@@ -3,7 +3,7 @@
   <Form id="Form_EvalDetail" width="810" height="600" titletext="evalDetail" onload="Form_EvalDetail_onload">
     <Layouts>
       <Layout height="600" mobileorientation="landscape" width="810" stepcount="0">
-        <Grid id="grdEvalInfo" taborder="0" left="30" top="65" width="750" height="55" binddataset="dsEvaluation">
+        <Grid id="grdEvalInfo" taborder="0" left="30" top="75" width="750" height="55" binddataset="dsEvaluation" autofittype="col">
           <Formats>
             <Format id="default">
               <Columns>
@@ -37,11 +37,10 @@
             </Format>
           </Formats>
         </Grid>
-        <Static id="Static00" taborder="1" text="평가 정보" left="18" top="20" width="120" height="40" onclick="Static00_onclick" cssclass="stc_popup"/>
-        <Static id="Static01" taborder="2" text="질문 목록" left="18" top="145" width="120" height="40" cssclass="stc_popup"/>
-        <Button id="btnClose" taborder="3" text="닫기" left="680" top="1730" width="80" height="30" onclick="btnClose_onclick"/>
-        <Static id="Question01" taborder="4" left="30" top="190" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
-        <Radio id="Answer01" taborder="5" left="30" top="240" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+        <Static id="Static00" taborder="1" text="평가 정보" left="340" top="15" width="120" height="40" onclick="Static00_onclick" cssclass="stc_popup"/>
+        <Static id="Static01" taborder="2" text="질문 목록" left="30" top="150" width="60" height="40" cssclass="stc_stc"/>
+        <Static id="Question01" taborder="3" left="30" top="190" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer01" taborder="4" left="30" top="240" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -71,8 +70,8 @@
             </Rows>
           </Dataset>
         </Radio>
-        <Static id="Question02" taborder="6" left="30" top="345" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
-        <Radio id="Answer02" taborder="7" left="30" top="395" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+        <Static id="Question02" taborder="5" left="30" top="345" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer02" taborder="6" left="30" top="395" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -102,8 +101,8 @@
             </Rows>
           </Dataset>
         </Radio>
-        <Static id="Question03" taborder="8" left="30" top="500" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
-        <Radio id="Answer03" taborder="9" left="30" top="550" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+        <Static id="Question03" taborder="7" left="30" top="500" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer03" taborder="8" left="30" top="550" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -133,8 +132,8 @@
             </Rows>
           </Dataset>
         </Radio>
-        <Static id="Question04" taborder="10" left="30" top="655" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
-        <Radio id="Answer04" taborder="11" left="30" top="705" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+        <Static id="Question04" taborder="9" left="30" top="655" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer04" taborder="10" left="30" top="705" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -164,8 +163,8 @@
             </Rows>
           </Dataset>
         </Radio>
-        <Static id="Question05" taborder="12" left="30" top="810" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
-        <Radio id="Answer05" taborder="13" left="30" top="860" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+        <Static id="Question05" taborder="11" left="30" top="810" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer05" taborder="12" left="30" top="860" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -195,8 +194,8 @@
             </Rows>
           </Dataset>
         </Radio>
-        <Static id="Question06" taborder="14" left="30" top="965" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
-        <Radio id="Answer06" taborder="15" left="30" top="1015" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+        <Static id="Question06" taborder="13" left="30" top="965" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer06" taborder="14" left="30" top="1015" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -226,8 +225,8 @@
             </Rows>
           </Dataset>
         </Radio>
-        <Static id="Question07" taborder="16" left="30" top="1120" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
-        <Radio id="Answer07" taborder="17" left="30" top="1170" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+        <Static id="Question07" taborder="15" left="30" top="1120" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer07" taborder="16" left="30" top="1170" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -257,7 +256,7 @@
             </Rows>
           </Dataset>
         </Radio>
-        <Radio id="Answer08" taborder="18" left="30" top="1325" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+        <Radio id="Answer08" taborder="17" left="30" top="1325" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -287,8 +286,8 @@
             </Rows>
           </Dataset>
         </Radio>
-        <Static id="Question08" taborder="19" left="30" top="1275" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
-        <Radio id="Answer09" taborder="20" left="30" top="1480" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+        <Static id="Question08" taborder="18" left="30" top="1275" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer09" taborder="19" left="30" top="1480" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -318,8 +317,8 @@
             </Rows>
           </Dataset>
         </Radio>
-        <Static id="Question09" taborder="21" left="30" top="1430" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
-        <Radio id="Answer10" taborder="22" left="30" top="1635" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
+        <Static id="Question09" taborder="20" left="30" top="1430" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Radio id="Answer10" taborder="21" left="30" top="1635" width="250" height="90" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="Radio00_onitemchanged" index="-1" text="" value="" readonly="true">
           <Dataset id="innerdataset">
             <ColumnInfo>
               <Column id="codecolumn" size="256"/>
@@ -349,7 +348,7 @@
             </Rows>
           </Dataset>
         </Radio>
-        <Static id="Question10" taborder="23" left="30" top="1585" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
+        <Static id="Question10" taborder="22" left="30" top="1585" width="750" height="40" background="white" border="1px solid black" verticalAlign="middle" text="" onclick="Question01_onclick"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -469,6 +468,7 @@ this.fnEvalScoreCallback = function(strSvcID, nErrorCode, strErrorMsg) {
 
 // 닫기 버튼
 this.btnClose_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+	this.grdEvalInfo.setFocus();
     this.close();
 };
 ]]></Script>

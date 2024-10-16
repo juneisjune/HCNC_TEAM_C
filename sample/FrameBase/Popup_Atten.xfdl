@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Popup_Atten" width="600" height="600" titletext="근태 정보" onload="Popup_Atten_onload" background="whitesmoke">
+  <Form id="Popup_Atten" width="600" height="560" titletext="근태 정보" onload="Popup_Atten_onload" background="whitesmoke">
     <Layouts>
-      <Layout height="600" mobileorientation="landscape" width="600">
-        <Static id="sta_Title" taborder="0" left="190" top="10" width="220" height="50" textAlign="center" font="24pt/normal &quot;Arial Black&quot;" background="whitesmoke"/>
-        <Static id="sta_empCode" taborder="1" text="사번 : " left="30" top="120" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_name" taborder="2" text="이름 : " left="290" top="120" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_assignName" taborder="3" text="직책 : " left="30" top="210" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_depName" taborder="4" text="부서명 : " left="290" top="210" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_workDate" taborder="5" text="근무일자 : " left="30" top="300" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_workType" taborder="6" text="근무형태 : " left="290" top="300" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_workStart" taborder="7" text="출근시간 : " left="30" top="390" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Static id="sta_workEnd" taborder="8" text="퇴근시간 : " left="290" top="390" width="80" height="30" textAlign="right" font="bold 16px/normal &quot;HY궁서B&quot;"/>
-        <Button id="btn_Save" taborder="9" text="저장" left="260" top="500" width="80" height="40" onclick="btn_Save_onclick" cssclass="btn_edit"/>
+      <Layout height="560" mobileorientation="landscape" width="600">
+        <Static id="sta_Title" taborder="0" left="190" top="25" width="220" height="50" textAlign="center" background="whitesmoke" cssclass="stc_popup" text=""/>
+        <Static id="sta_empCode" taborder="1" text="사번" left="30" top="120" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_name" taborder="2" text="이름" left="290" top="120" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_assignName" taborder="3" text="직책" left="30" top="210" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_depName" taborder="4" text="부서명" left="290" top="210" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workDate" taborder="5" text="근무일자" left="30" top="300" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workType" taborder="6" text="근무형태" left="290" top="300" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workStart" taborder="7" text="출근시간" left="30" top="390" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workEnd" taborder="8" text="퇴근시간" left="290" top="390" width="80" height="30" cssclass="stc_stc"/>
+        <Button id="btn_Save" taborder="9" text="저장" left="260" top="480" width="70" height="30" onclick="btn_Save_onclick" cssclass="btn_edit"/>
         <Combo id="cmb_workType" taborder="10" left="370" top="300" width="150" height="30" innerdataset="ds_WorkType" codecolumn="Name" datacolumn="Name" index="0" text="출근" value="출근" font="bold 16px/normal &quot;HY궁서B&quot;"/>
         <Edit id="edt_empCode" taborder="11" left="110" top="122" width="150" height="30" inputtype="number" onchanged="edt_empCode_onchanged"/>
         <Edit id="edt_name" taborder="12" left="370" top="122" width="150" height="30" readonly="true" background="#ffffff"/>
@@ -26,6 +26,8 @@
     <Script type="xscript5.1"><![CDATA[
 this.Popup_Atten_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
+
+	
 	this.ds_AttenList.clearData();
 	this.ds_AttenList.addRow();
 	this.ds_AttenList.setColumn(0, "condition", this.parent.condition);
@@ -49,13 +51,14 @@ this.Popup_Atten_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 		this.ds_AttenList.setColumn(0, "workEnd", this.parent.workEnd);
 
 	}
-	
-	console.log(this.ds_AttenList.saveXML());
+	this.edt_name.setFocus();
 };
 
 // 저장 버튼
 this.btn_Save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
+	this.edt_name.setFocus();
+	
 	// 출근 입력 시 유효성 검사
 	if (this.ds_AttenList.getColumn(0, "attenType")=="출근") {
 	
@@ -63,8 +66,9 @@ this.btn_Save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		var workEnd = this.ds_AttenList.getColumn(0, "workEnd");
 	
         if(!workStart || !workEnd) {
-		alert("출근시간 또는 퇴근시간을 입력하세요.");
-        return;
+			alert("출근시간 또는 퇴근시간을 입력하세요.");
+			this.cmb_workType.setFocus();
+			return;
 		}
 		
 		var startHour = parseInt(workStart.slice(0, 2), 10);
@@ -73,17 +77,20 @@ this.btn_Save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		var endMinute = parseInt(workEnd.slice(2, 4), 10);
 		
 		if (startHour > 23 || startMinute > 59) {
-        alert("출근시간을 올바르게 입력해주세요.");
-        return;
+			alert("출근시간을 올바르게 입력해주세요.");
+			this.maskedt_workStart.setFocus();		
+			return;
 		}
 
 		if (endHour > 23 || endMinute > 59) {
 			alert("퇴근시간을 올바르게 입력해주세요.");
+			this.maskedt_workEnd.setFocus();	
 			return;
 		}
 
 		if (startHour > endHour || (startHour == endHour && startMinute > endMinute)) {
 			alert("시간을 올바르게 입력해주세요.");
+			this.maskedt_workEnd.setFocus();	
 			return;
 		}
     }
@@ -106,7 +113,7 @@ this.btn_Save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 // 콜백 함수
 this.fnCallback = function (svcID, errorCode, errorMsg) {
 	
-	// 근태 저장 콜백 시
+	// 근태 저장 콜백
 	if(svcID == "attenSave"){
 		if (errorCode < 0) {
 			alert(errorMsg);
@@ -118,12 +125,25 @@ this.fnCallback = function (svcID, errorCode, errorMsg) {
 		
 		this.opener.fnSearch();
 	}
+	
+	// 사번 입력 후 콜백
+	if(svcID == "selectUserInfo"){
+		if (errorCode < 0) {
+			alert(errorMsg);
+			
+			this.ds_AttenList.setColumn(0, "empCode", null);
+			this.ds_AttenList.setColumn(0, "name", "");
+			this.ds_AttenList.setColumn(0, "assignName", "");
+			this.ds_AttenList.setColumn(0, "depName", "");
+			
+			return;
+		}
+	}
 };
 
 // 사번 입력 후 해당 직원 정보 가져오기
 this.edt_empCode_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
 {
-
 	var strSvcId    = "selectUserInfo";
 	var strSvcUrl   = "svc::selectUserInfo.do";
 	var inData      = "ds_AttenList=ds_AttenList";

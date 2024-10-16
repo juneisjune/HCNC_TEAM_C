@@ -39,7 +39,7 @@
         }
 
         th, td {
-            padding: 12px 15px;
+            padding: 7px 8px;
             text-align: center;
         }
 
@@ -62,7 +62,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
-            width: 170px;
+            width: 100px;
             background-color: #F0F0F0;
         }
         
@@ -144,13 +144,23 @@
                     <td>
                         직책 
                         <input type="text" id="assignName" name="assignName" value="${emp.assignName}" readonly>
-                    </td>    
+                     </td>
+                     <td>
+                        총 연차
+                    <input type="text" id="assignName" name="dayoffCnt" value="${emp.dayoffCnt}" readonly>
+                    </td>
+                    <td>
+                        잔여 연차 
+                    <input type="text" id="assignName" name="remainCnt" value="${emp.remainCnt}" readonly>
+                 </td>  
+ 
                 </tr>
+                             
                 <tr>
-                    <td colspan="4">
-                        연차 시작일
-                        <input type="date" id="startDate" name="startDate" required>  
-                        연차 종료일		<input type="date" id="endDate" name="endDate" required>
+                    <td colspan="6">
+                        시작일
+                    <input type="date" id="startDate" name="startDate" required>  
+                        종료일		<input type="date" id="endDate" name="endDate" required>
                         <label for="offCode">연차 사유 선택</label>
                         
                         <select id="offCode" name="offCode" required>
@@ -165,7 +175,7 @@
                 </tr>
                 
                 <tr>
-                    <td colspan="4">
+                    <td colspan="6">
                         <label for="reason" style="font-size: 18px; ">상세 사유</label>
                         <textarea id="reason" name="reason" rows="15" cols="50" placeholder="내용 입력" style="font-size: 16px;" required></textarea>
                     </td>

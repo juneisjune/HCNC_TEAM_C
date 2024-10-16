@@ -36,7 +36,7 @@
         }
 
         th, td {
-            padding: 12px 15px;
+            padding: 7px 8px;
             text-align: center;
         }
 
@@ -59,7 +59,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
-            width: 170px;
+            width: 100px;
             background-color: #F0F0F0;
         }
         select {
@@ -166,6 +166,7 @@ $(function() {
             }
         });
     });
+    $("#searchBtn").click();
 });
  
 //년도,월을 현재기준 3개년 보는 스크립트
@@ -211,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
        	
        }
 	
-       
+      
            
    });
 </script>
@@ -238,10 +239,18 @@ document.addEventListener("DOMContentLoaded", function() {
                     <td>
                         직책 
                         <input type="text" id="assignName" name="assignName" value="${emp.assignName}" readonly>
-                    </td>    
-                </tr>
+                    </td>  
+                    <td>
+                        총 연차
+                    <input type="text" id="assignName" name="dayoffCnt" value="${emp.dayoffCnt}" readonly>
+                    </td>
+                    <td>
+                        잔여 연차 
+                    <input type="text" id="assignName" name="remainCnt" value="${emp.remainCnt}" readonly>
+                 </td>    
+                </tr>               
                 <tr>
-                    <td colspan="4">
+                    <td colspan="6">
                         기간 선택
                         <select id="startYear"></select>년 &nbsp;
                         <select id="startMonth"></select>월 &nbsp; ~ 

@@ -88,13 +88,17 @@ public class NexaPayController {
 					int longcare_insurance = (int) (health_insurance * 0.1);
 					emp.put("longcare_insurance", longcare_insurance);
 					
-					//Integer etc = hourly * 8 * nexaPayService.selectEtc(param);
-					//emp.put("etc", etc);
+					int etc = 0; 
+					
+					//지난달 퇴사시 연차비 계산
+					if (nexaPayService.selectDayOff(emp) == 1) {
+						etc = hourly * 8 * nexaPayService.selectEtc(emp);
+						emp.put("etc", etc);
+					} 
 	
 					// 실지급액 = 지급액 - 공제액
 					int actual_pay = pay_amount - (income_tax + resident_tax + national_tax + emp_insurance
-							+ health_insurance + longcare_insurance);
-					//+ etc;
+							+ health_insurance + longcare_insurance) + etc;
 							
 					// 1의 자리에서 올림
 					actual_pay = (int) Math.ceil(actual_pay / 10.0) * 10;
@@ -115,6 +119,7 @@ public class NexaPayController {
 		return result;
 	}
 
+	@Transactional
 	@RequestMapping("/insertPay.do")
 	public NexacroResult insertPay(@ParamDataSet(name = "ds_EmpListCopy", required = false) List<Map<String, Object>> param) {
 		NexacroResult result = new NexacroResult();

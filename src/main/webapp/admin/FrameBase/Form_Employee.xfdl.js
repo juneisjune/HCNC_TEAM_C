@@ -46,6 +46,7 @@
             obj = new Grid("grd_employee","30","150","1150","400",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_binddataset("ds_empList");
+            obj.set_autofittype("col");
             obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"76\"/><Column size=\"69\"/><Column size=\"123\"/><Column size=\"73\"/><Column size=\"92\"/><Column size=\"67\"/><Column size=\"117\"/><Column size=\"136\"/><Column size=\"221\"/><Column size=\"174\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"사번\"/><Cell col=\"1\" text=\"아이디\"/><Cell col=\"2\" text=\"부서명\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"이름\"/><Cell col=\"5\" text=\"성별\"/><Cell col=\"6\" text=\"전화번호\"/><Cell col=\"7\" text=\"생년월일\"/><Cell col=\"8\" text=\"주소\"/><Cell col=\"9\" text=\"이메일\"/></Band><Band id=\"body\"><Cell text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"1\" text=\"bind:id\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:gender\" textAlign=\"center\"/><Cell col=\"6\" text=\"bind:phone\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:birth\" displaytype=\"date\" calendardateformat=\"yyyy년 MM월 dd일\" calendareditformat=\"yyyy-MM-dd\"/><Cell col=\"8\" text=\"bind:address\" textAlign=\"center\"/><Cell col=\"9\" text=\"bind:email\" textAlign=\"center\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
@@ -114,6 +115,7 @@
         this.registerScript("Form_Employee.xfdl", function() {
         // 검색 버튼 클릭 이벤트
         this.btn_Search_onclick = function(obj, e) {
+        	this.grd_employee.setFocus();
             console.log("검색 버튼 클릭됨");
             this.fnSearch();  // 검색 함수 호출
         };
@@ -142,6 +144,7 @@
 
         // 등록 버튼 클릭 이벤트
         this.btn_Register_onclick = function(obj, e) {
+        	this.grd_employee.setFocus();
             console.log("등록 팝업 호출");
             this.showRegisterPopup();  // 등록 팝업 호출 함수 호출
         };
@@ -190,6 +193,8 @@
 
         this.btn_Edit_onclick = function(obj,e)
         {
+        	this.grd_employee.setFocus();
+
         	var objParam = {id:this.ds_empList.getColumn(this.ds_empList.rowposition, "id")
                           , name:this.ds_empList.getColumn(this.ds_empList.rowposition, "name")
                           , birth:this.ds_empList.getColumn(this.ds_empList.rowposition, "birth")
@@ -209,6 +214,8 @@
 
         this.btn_Delete_onclick = function(obj,e)
         {
+        	this.grd_employee.setFocus();
+
             if (!this.confirm("정말로 삭제하시겠습니까?", "")) {
                 return;  // 취소 시 동작 중단
             }
@@ -254,6 +261,52 @@
         	console.log(this.ds_employee.saveXML());
         };
 
+        // head 더블 클릭 시 정렬
+        this.grd_employee_onheaddblclick = function(obj,e)
+        {
+        	var objDs = this.objects[obj.binddataset];
+            var colId = "";
+
+        	// 컬럼 확인
+            if (e.col == 0) {
+                colId = "empCode";
+            } else if (e.col == 4) {
+                colId = "name";
+            } else if (e.col == 7) {
+                colId = "birth";
+            } else {
+                return;
+            }
+
+            for (var i = 0; i < obj.getCellCount("head"); i++) {
+                var sHeadText = obj.getCellText(-1, i);  // 헤더의 텍스트 가져오기
+                var nLen = sHeadText.length - 1;  // 텍스트 길이 계산
+
+                if (i == e.col) { // 클릭한 셀에 대해 처리
+                    if (sHeadText.substr(nLen) == "▲") {  // 오름차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▼");
+                        objDs.set_keystring("S:-" + colId);  // 내림차순 정렬
+                    } else if (sHeadText.substr(nLen) == "▼") {  // 내림차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    } else {  // 정렬이 설정되지 않은 경우 기본 오름차순 적용
+                        obj.setCellProperty("head", i, "text", sHeadText + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    }
+                } else {
+                    // 클릭되지 않은 다른 셀의 정렬 표시 제거
+                    if (sHeadText.substr(nLen) == "▲" || sHeadText.substr(nLen) == "▼") {
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen));
+                    }
+                }
+            }
+
+            // 정렬 후 데이터셋 강제 적용
+            objDs.applyChange();
+
+        	// 정렬 후 첫 번째 행을 선택
+            objDs.set_rowposition(0);
+        };
 
         });
         
@@ -262,6 +315,7 @@
         {
             this.addEventHandler("onload",this.Form_employee_onload,this);
             this.grd_employee.addEventHandler("oncellposchanged",this.grd_employee_oncellposchanged,this);
+            this.grd_employee.addEventHandler("onheaddblclick",this.grd_employee_onheaddblclick,this);
             this.btn_Register.addEventHandler("onclick",this.btn_Register_onclick,this);
             this.btn_Edit.addEventHandler("onclick",this.btn_Edit_onclick,this);
             this.btn_Delete.addEventHandler("onclick",this.btn_Delete_onclick,this);
