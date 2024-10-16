@@ -76,7 +76,7 @@ public class LoginController {
 			 
 	         msg = "ok";
 	         
-	        //master는 2단계 인증하지 않고 바로 홈으로 접속  
+	        //master(대표 아이디)는 2단계 인증하지 않고 바로 홈으로 접속  
 	        if(loginService.selectUser(loginDTO).getEmpCode() == 1) {
 	        	msg = "master";
 	        }
