@@ -44,11 +44,11 @@
             // UI Components Initialize
             obj = new Static("Static00","98","322","482","80",null,null,null,null,null,null,this);
             obj.set_taborder("2");
-            obj.set_text("Drop Files Here");
+            obj.set_text("업로드할 파일을 여기에 드래그하세요.");
             obj.set_visible("true");
             obj.set_background("aliceblue");
             obj.set_color("dodgerblue");
-            obj.set_font("normal 30pt/normal \"Arial\"");
+            obj.set_font("normal 20pt/normal \"Arial\"");
             obj.set_textAlign("center");
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
