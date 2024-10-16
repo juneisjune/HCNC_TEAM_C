@@ -24,6 +24,30 @@
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\Grid.json" checksum="20230829134030" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\ListView.json" checksum="20230829134032" errormsg=""/>
       <File url="C:\Program Files (x86)\nexacro\17.1\nexacro17lib\component\DeviceAPI.json" checksum="20230829134030" errormsg=""/>
+      <File url="Application_Desktop.xadl" checksum="20241011101145" errormsg=""/>
+      <File url="FrameBase\Form_UpdatePay.xfdl" checksum="20241016100155" errormsg=""/>
+      <File url="FrameBase\Form_Attendance.xfdl" checksum="20241015150846" errormsg=""/>
+      <File url="FrameBase\Form_Eval.xfdl" checksum="20241015152715" errormsg=""/>
+      <File url="FrameBase\Form_EvalEmployee.xfdl" checksum="20241011210712" errormsg=""/>
+      <File url="FrameBase\Form_NewPost.xfdl" checksum="20241015150702" errormsg=""/>
+      <File url="FrameBase\Form_InsertPay.xfdl" checksum="20241015151640" errormsg=""/>
+      <File url="FrameBase\Form_dayoff_Confirm.xfdl" checksum="20241015150951" errormsg=""/>
+      <File url="FrameBase\Form_Post.xfdl" checksum="20241015150702" errormsg=""/>
+      <File url="FrameBase\Form_HRD.xfdl" checksum="20241015151456" errormsg=""/>
+      <File url="FrameBase\Form_Employee.xfdl" checksum="20241015151114" errormsg=""/>
+      <File url="FrameBase\Popup_DetailPost.xfdl" checksum="20241015150702" errormsg=""/>
+      <File url="FrameBase\Popup_editPost.xfdl" checksum="20241015150702" errormsg=""/>
+      <File url="FrameBase\Popup_EditEmp.xfdl" checksum="20241015151954" errormsg=""/>
+      <File url="FrameBase\Popup_RegisterEmp.xfdl" checksum="20241015150702" errormsg=""/>
+      <File url="FrameBase\Form_EvalEdit.xfdl" checksum="20241015150702" errormsg=""/>
+      <File url="FrameBase\Popup_FindLoginInfo.xfdl" checksum="20241015150702" errormsg=""/>
+      <File url="FrameBase\Popup_Atten.xfdl" checksum="20241016090633" errormsg=""/>
+      <File url="FrameBase\Form_Left.xfdl" checksum="20241015150702" errormsg=""/>
+      <File url="FrameBase\Form_EvalDetail.xfdl" checksum="20241015150702" errormsg=""/>
+      <File url="FrameBase\Form_EvalRegister.xfdl" checksum="20241015150702" errormsg=""/>
+      <File url="FrameBase\Form_Login.xfdl" checksum="20241015150702" errormsg=""/>
+      <File url="FrameBase\Form_Top.xfdl" checksum="20241008141512" errormsg=""/>
+      <File url="FrameBase\Form_HRD_history.xfdl" checksum="20241015150702" errormsg=""/>
     </Info>
   </GenInfo>
 </root>

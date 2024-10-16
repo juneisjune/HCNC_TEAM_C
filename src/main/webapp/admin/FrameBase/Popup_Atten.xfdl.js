@@ -291,7 +291,7 @@
         // 콜백 함수
         this.fnCallback = function (svcID, errorCode, errorMsg) {
 
-        	// 근태 저장 콜백 시
+        	// 근태 저장 콜백
         	if(svcID == "attenSave"){
         		if (errorCode < 0) {
         			alert(errorMsg);
@@ -302,6 +302,20 @@
         		this.close('Close Popup');
 
         		this.opener.fnSearch();
+        	}
+
+        	// 사번 입력 후 콜백
+        	if(svcID == "selectUserInfo"){
+        		if (errorCode < 0) {
+        			alert(errorMsg);
+
+        			this.ds_AttenList.setColumn(0, "empCode", null);
+        			this.ds_AttenList.setColumn(0, "name", "");
+        			this.ds_AttenList.setColumn(0, "assignName", "");
+        			this.ds_AttenList.setColumn(0, "depName", "");
+
+        			return;
+        		}
         	}
         };
 
