@@ -228,8 +228,6 @@
                 }
             }
 
-        	console.log(this.ds_EmpListCopy.saveXML());
-
         	var strSvcId    = "insertPay";
         	var strSvcUrl   = "svc::insertPay.do";
         	var inData      = "ds_EmpListCopy=ds_EmpListCopy";

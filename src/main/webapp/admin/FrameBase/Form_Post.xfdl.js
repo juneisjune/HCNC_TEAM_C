@@ -93,7 +93,6 @@
         this.registerScript("Form_Post.xfdl", function() {
         this.Form_Post_onload = function(obj,e)
         {
-        	console.log("onload페이지 들어옴");
         	this.fnSearch();
 
         	// ds_Post의 onvaluechanged 이벤트 핸들러 등록
@@ -108,7 +107,6 @@
 
         this.fnSearch = function (){
 
-
         	var strSvcId    = "selectPost";                     // 콜백 서비스명
             var strSvcUrl   = "svc::selectPost.do";             // 호출 URL
             var inData      = "";                              // 입력 데이터셋
@@ -117,30 +115,20 @@
             var fnCallback  = "fnCallback";                    // 콜백 함수
             var isAsync     = true;                            // 비동기 여부
 
-
-        	console.log("async까지 들어옴");
-
         	this.transaction(strSvcId, strSvcUrl, inData,outData,strArg,fnCallback,isAsync);
-        	console.log("transaction 다음부분");
 
         }
 
 
         this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
-        	console.log("fnCallback까지 들어옴");
             if (nErrorCode < 0) {
                 alert("조회 중 오류가 발생했습니다: " + strErrorMsg);
-            } else {
-                //alert("조회가 완료되었습니다.");
-        		console.log(this.ds_Post.saveXML());	//데이터셋 내용을 확인
             }
         }
 
          this.Button00_onclick = function(obj,e)
         {
-        	console.log("버튼 클릭됨 들어옴");
         	this.fnSearch();
-
          };
 
         this.btn_newPost_onclick = function(obj,e)
@@ -156,7 +144,6 @@
             // 삭제 버튼이 있는 셀 클릭 시
             if (clickedCol == 7) {  // 삭제 버튼이 있는 컬럼 (8번 컬럼)
                 if (confirm("정말로 삭제하시겠습니까?")) {
-                    console.log("삭제 클릭됨. 게시글 번호: " + postCode);
         			 var nRow = this.ds_deleteCode.addRow();
         			this.ds_deleteCode.setColumn(nRow, "post_code", postCode);
                     this.fnDeletePost(postCode);  // 삭제 처리 함수 호출
@@ -167,8 +154,6 @@
                 if (confirm("정말 수정하시겠습니까?")) {
                     var title = this.ds_Post.getColumn(this.ds_Post.rowposition, "title");
                     var content = this.ds_Post.getColumn(this.ds_Post.rowposition, "content");
-
-                    console.log("수정할 데이터 - 제목: " + title + ", 내용: " + content);
 
                     var objParam = {
                         post_code: postCode,  // 게시글 번호도 함께 전달
@@ -188,7 +173,6 @@
             // 데이터셋에 게시글 번호 추가
             var nRow = this.ds_deleteCode.addRow();
             this.ds_deleteCode.setColumn(nRow, "post_code", postCode);
-        	console.log("ds_deleteCode: "+this.ds_deleteCode.saveXML());
 
             // 트랜잭션 설정
             var strSvcId    = "deletePost";
@@ -233,10 +217,9 @@
 
         this.newEdit_onclick = function(obj,e)
         {
-        	console.log("ds_post(inFormpost):" + this.ds_Post.saveXML());
+
         		var objParam1 =
         			{post_code:this.ds_Post.getColumn(this.ds_Post.rowposition, "post_code")};
-
 
         	this.showPopup_Detail(objParam1);
         };
@@ -258,10 +241,8 @@
 
         this.grd_notice_oncelldblclick = function(obj,e)
         {
-        	console.log("ds_post(inFormpost):" + this.ds_Post.saveXML());
         		var objParam1 =
         			{post_code:this.ds_Post.getColumn(this.ds_Post.rowposition, "post_code")};
-
 
         	this.showPopup_Detail(objParam1);
         };

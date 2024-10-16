@@ -123,13 +123,7 @@
         </Rows>
       </Dataset>
     </Objects>
-    <Script type="xscript5.1"><![CDATA[/*
-var objWorkFrame = nexacro.WorkFrame;
-nexacro.getApplication().objWorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
-
-nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
-*/
-
+    <Script type="xscript5.1"><![CDATA[
 this.grid_LeftMenu_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
 

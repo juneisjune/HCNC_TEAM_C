@@ -175,8 +175,6 @@
         this.registerScript("Popup_EditEmp.xfdl", function() {
         this.Popup_EditEmp_onload = function(obj, e)
         {
-        	console.log("수정 팝업 열기");
-
         	this.ds_employee.clearData()
         	this.ds_employee.addRow();
 
@@ -190,8 +188,6 @@
             this.ds_employee.setColumn(0, "address", this.parent.address);
             this.ds_employee.setColumn(0, "account", this.parent.account);
         	this.ds_employee.setColumn(0, "emp_code", this.parent.emp_code);
-
-        	console.log(this.ds_employee.saveXML());
 
         };
 
@@ -214,8 +210,6 @@
             var strArg = "";  // 추가 인자가 필요 없을 경우 빈 문자열
             var callBackFnc = "fnCallback";  // 콜백 함수 호출
             var isAsync = true;  // 비동기 처리
-
-            console.log(this.ds_employee.saveXML());
 
             // transaction 호출
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
@@ -309,13 +303,7 @@
         {
         	this.close("닫기");
         	this.ds_employee.clearData()
-        	console.log("수정 화면 닫음");
         	this.opener.fnSearch();
-        };
-
-        this.edtPassword_onchanged = function(obj,e)
-        {
-
         };
 
         });

@@ -26,8 +26,6 @@
     <Script type="xscript5.1"><![CDATA[
 this.Popup_Atten_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
-
-	
 	this.ds_AttenList.clearData();
 	this.ds_AttenList.addRow();
 	this.ds_AttenList.setColumn(0, "condition", this.parent.condition);
@@ -92,8 +90,6 @@ this.btn_Save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
     }
 	
 		this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
-	
-	console.log(this.ds_AttenList.saveXML());
 	
 	var strSvcId    = "attenSave";
 	var strSvcUrl   = "svc::attenSave.do";

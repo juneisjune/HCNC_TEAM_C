@@ -74,11 +74,6 @@ this.Form_Attendance_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 
 //조회 함수
 this.fnSearch = function(){
-
- 	console.log("SEARCH_TYPE = " + this.ds_Search.getColumn(0, "SEARCH_TYPE"));
- 	console.log("SEARCH_WORD = " + this.ds_Search.getColumn(0, "SEARCH_WORD"));
- 	console.log("START_DATE = " + this.ds_Search.getColumn(0, "START_DATE"));
- 	console.log("END_DATE = " + this.ds_Search.getColumn(0, "END_DATE"));
 	
 	var strSvcId    = "selectAttenList"; 					// 콜백 서비스명
 	var strSvcUrl   = "svc::selectAttenList.do"; 			// 호출 URL

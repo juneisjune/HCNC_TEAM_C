@@ -148,11 +148,6 @@
         //조회 함수
         this.fnSearch = function(){
 
-         	console.log("SEARCH_TYPE = " + this.ds_Search.getColumn(0, "SEARCH_TYPE"));
-         	console.log("SEARCH_WORD = " + this.ds_Search.getColumn(0, "SEARCH_WORD"));
-         	console.log("START_DATE = " + this.ds_Search.getColumn(0, "START_DATE"));
-         	console.log("END_DATE = " + this.ds_Search.getColumn(0, "END_DATE"));
-
         	var strSvcId    = "selectAttenList"; 					// 콜백 서비스명
         	var strSvcUrl   = "svc::selectAttenList.do"; 			// 호출 URL
         	var inData      = "ds_Search=ds_Search"; 			// 앞=뒤 //앞은 컨트롤러단에서 받는 파라미터명 / 뒤는 넥사크로에서 보낼 파라미터명

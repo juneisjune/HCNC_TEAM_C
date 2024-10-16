@@ -57,12 +57,6 @@
         
         // User Script
         this.registerScript("Form_Left.xfdl", function() {
-        /*
-        var objWorkFrame = nexacro.WorkFrame;
-        nexacro.getApplication().objWorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
-
-        nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
-        */
 
         this.grid_LeftMenu_oncellclick = function(obj,e)
         {

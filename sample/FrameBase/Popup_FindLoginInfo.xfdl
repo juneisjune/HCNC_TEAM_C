@@ -3,7 +3,7 @@
   <Form id="Popup_FindLoginInfo" width="560" height="350" titletext="아이디 및 비밀번호 찾기">
     <Layouts>
       <Layout height="350" mobileorientation="landscape" width="560">
-        <Tab id="Tab00" taborder="1" tabindex="1" left="24" top="56" width="506" height="224" onchanged="Tab00_onchanged" cssclass="stc_stc">
+        <Tab id="Tab00" taborder="1" tabindex="0" left="24" top="56" width="506" height="224" onchanged="Tab00_onchanged" cssclass="stc_stc">
           <Tabpages>
             <Tabpage id="Tabpage1" text="아이디 찾기" formscrollbartype="none">
               <Layouts>
@@ -152,7 +152,6 @@ this.fnCallback = function(svcID, errorCode, errorMsg) {
 		
 		// 서버에서 넘어온 인증 키(authKey)를 확인
         var authKey = this.ds_Auth.getColumn(0, "authKey");
-        console.log("Received AuthKey: " + authKey);
 		
 	}
 	
@@ -239,8 +238,6 @@ this.fn_Auth = function() {
     var strArg      = "";  // 추가적인 파라미터 (필요시 사용)
     var callBackFnc = "fnCallback";  // 콜백 함수 이름
     var isAsync     = true;  // 비동기 설정
-
-	console.log(this.ds_email.getColumn(0, "email"));
 
     this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 };

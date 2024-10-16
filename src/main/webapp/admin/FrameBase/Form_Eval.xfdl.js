@@ -214,11 +214,6 @@
                 }
             }
 
-            console.log("cmbSearchType = " + searchType);
-            console.log("edtSearchText = " + searchWord);
-            console.log("calStartDate = " + startDate);
-            console.log("calEndDate = " + endDate);
-
             var strSvcID = "selectEval";
             var strSvcUrl = "svc::evallist.do";
             var inData = "dsSearch=dsSearch";
@@ -233,10 +228,6 @@
         this.fnEvalSearch = function() {
             var searchType = this.dsSearch.getColumn(0, "Type");
             var searchWord = this.dsSearch.getColumn(0, "Word");
-
-
-            console.log("cmbSearchType = " + searchType);
-            console.log("edtSearchText = " + searchWord);
 
             var strSvcID = "evalAll";
             var strSvcUrl = "svc::evalAll.do";
@@ -253,8 +244,6 @@
         this.fnSearchCallback = function(strSvcID, nErrorCode, strErrorMsg) {
             if (nErrorCode < 0) {
                 alert("조회 데이터 로드 실패: " + strErrorMsg);
-            } else {
-                console.log("조회 데이터 로드 성공");
             }
         };
 
@@ -262,8 +251,6 @@
         this.fnEvalCallback = function(strSvcID, nErrorCode, strErrorMsg) {
             if (nErrorCode < 0) {
                 alert("평가 데이터 로드 실패: " + strErrorMsg);
-            } else {
-                console.log("평가 데이터 로드 성공");
             }
         };
 

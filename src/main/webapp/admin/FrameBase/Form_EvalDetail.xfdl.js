@@ -370,8 +370,6 @@
             this.dsEvaluation.setColumn(0, "guideCode", this.parent.guideCode);
             this.dsEvaluation.setColumn(0, "regName", this.parent.regName);
 
-            console.log(this.dsEvaluation.saveXML()); // 평가 데이터 로그
-
             // 평가 점수를 불러오기 위한 트랜잭션
             var strSvcIDEval = "getQuestions";
             var strSvcUrlEval = "svc::getQuestions.do";
@@ -418,8 +416,6 @@
                     // 점수를 반대로 변환 (1 -> 5, 5 -> 1)
                     var invertedScore = 6 - selectedValue;
                     answers[i].set_value(invertedScore);
-                } else {
-                    console.error("Score 값이 존재하지 않습니다. Index: " + i);
                 }
             }
         };

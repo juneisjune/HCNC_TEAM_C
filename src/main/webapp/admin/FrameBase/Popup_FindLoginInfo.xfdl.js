@@ -50,7 +50,7 @@
             // UI Components Initialize
             obj = new Tab("Tab00","24","56","506","224",null,null,null,null,null,null,this);
             obj.set_taborder("1");
-            obj.set_tabindex("1");
+            obj.set_tabindex("0");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
@@ -319,7 +319,6 @@
 
         		// 서버에서 넘어온 인증 키(authKey)를 확인
                 var authKey = this.ds_Auth.getColumn(0, "authKey");
-                console.log("Received AuthKey: " + authKey);
 
         	}
 
@@ -406,8 +405,6 @@
             var strArg      = "";  // 추가적인 파라미터 (필요시 사용)
             var callBackFnc = "fnCallback";  // 콜백 함수 이름
             var isAsync     = true;  // 비동기 설정
-
-        	console.log(this.ds_email.getColumn(0, "email"));
 
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };

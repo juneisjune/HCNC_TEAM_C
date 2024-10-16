@@ -66,8 +66,6 @@
 
     this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 
-    // 초기 데이터 로딩 및 설정
-    console.log(this.dsQuestions.saveXML());
 };
 
 	var selectedRow = -1;  // 전역 변수로 선택된 행을 저장
@@ -75,15 +73,10 @@
 // 그리드에서 셀을 더블 클릭했을 때 호출되는 함수
 this.grdEdit_oncelldblclick = function(obj:nexacro.Grid, e:nexacro.GridCellClickEventInfo) {
 	selectedRow = e.row;
-    console.log("선택된 행: " + selectedRow);
-    console.log("데이터셋 내용: " + this.dsQuestions.saveXML());  // 데이터셋의 상태 출력
 
     if (selectedRow >= 0) {
         var question = this.dsQuestions.getColumn(selectedRow, "question");  // 데이터셋에서 값을 가져옴
         var guideCode = this.dsQuestions.getColumn(selectedRow, "guideCode");
-
-        console.log("가져온 질문: " + question);
-        console.log("가져온 guideCode: " + guideCode);
 
         this.EditQuestion.set_value(question);
         this.EditCode.set_value(guideCode);
@@ -109,8 +102,6 @@ this.btnSubmit_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) 
             return;
         }
 		var admin_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
-	
-
 
         // 수정할 데이터를 dsEditSave 데이터셋에 추가
         this.dsEditSave.clearData();  // 데이터셋을 초기화하고 새 데이터 추가
@@ -118,9 +109,6 @@ this.btnSubmit_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) 
         this.dsEditSave.setColumn(0, "question", editedValue);
         this.dsEditSave.setColumn(0, "guideCode", guideCode);  // guideCode 값을 추가
 		this.dsEditSave.setColumn(0, "admin_name", admin_name);
-	
-        // 전송할 데이터 로그로 출력해 확인
-        console.log("dsEditSave 전송 데이터: " + this.dsEditSave.saveXML());
 
         // 수정된 데이터 전송
         var strSvcID = "updateRegister";
@@ -141,8 +129,6 @@ this.btnSubmit_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) 
 	this.fnQuestionCallback = function(svcID, errorCode, errorMsg) {
     if (errorCode < 0) {
         alert("데이터 로드 실패: " + errorMsg);  // 에러가 발생한 경우
-    } else {
-        console.log(this.dsQuestions.saveXML());  // 정상적으로 로드된 데이터를 확인
     }
 };
 
