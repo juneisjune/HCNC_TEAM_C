@@ -95,7 +95,7 @@ public class LoginController {
 		
 		String email = loginService.selectEmail(empCode);
 		model.addAttribute("email", email);
-	
+		
 		int index = email.indexOf("@");
 		
 		if(index > 0) {
