@@ -237,9 +237,6 @@
 
         // 조회 함수
         this.fnSearch = function() {
-            // 검색 조건 확인 (필요하다면 조건 추가)
-            console.log("SEARCH_TYPE = " + this.ds_Search.getColumn(0, "SEARCH_TYPE"));
-            console.log("SEARCH_WORD = " + this.ds_Search.getColumn(0, "SEARCH_WORD"));
 
             var empCode = this.ds_Search.getColumn(0, "SEARCH_EMP_CODE");
             var name = this.ds_Search.getColumn(0, "SEARCH_NAME");
@@ -287,7 +284,6 @@
                     // 조회된 데이터에서 chk 컬럼 값이 제대로 설정되었는지 확인
                     for (var i = 0; i < this.ds_Pay.getRowCount(); i++) {
                         var chkValue = this.ds_Pay.getColumn(i, "chk");
-                        console.log("Row " + i + ": chk = " + chkValue);
 
                         // 만약 chk 값이 없다면 기본값 설정
                         if (chkValue == null || chkValue === "") {

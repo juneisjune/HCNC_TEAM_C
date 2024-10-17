@@ -68,6 +68,7 @@ public class DayoffController {
 	    		}
     		
     	}catch(Exception ee) {
+    		System.out.println(ee);
     		result.setErrorCode(-1);
     		result.setErrorMsg("catch 조회 오류");
     	}
@@ -94,6 +95,7 @@ public class DayoffController {
     		}
     		
     	}catch(Exception ee) {
+    		System.out.println(ee);
     		result.setErrorCode(-1);
     		result.setErrorMsg("catch 조회 오류");
     	}

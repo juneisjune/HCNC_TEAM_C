@@ -92,8 +92,6 @@ this.btnRegister_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo
     var callBackFnc = "fnCallback";  // 콜백 함수 호출
     var isAsync = true;  // 비동기 처리
 
-    console.log(this.ds_employee.saveXML());  // 데이터 전송 전 확인용 로그
-
     // transaction 호출
     this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 };
@@ -150,7 +148,6 @@ this.validateEmployeeData = function() {
     // 입사일 검사 (YYYYMMDD 형식)
     var joinDatePattern = /^[0-9]{8}$/;  
     if (!joinDate || !joinDatePattern.test(joinDate)) {
-        console.log(this.ds_employee.saveXML());
         alert("올바른 입사일을 입력해 주세요.");
 			this.calJoinDate.setFocus();
         return false;  
@@ -243,15 +240,10 @@ this.fnCheckDuplicateIdCallback = function(svcID, errorCode, errorMsg) {
         } else {
 			this.edtID.enable=false;
             alert("아이디 입력 성공!");
-			
-
         }
     } else {
         alert("아이디 중복 체크 실패: " + errorMsg);
     }
-
-
-
 };
 
 

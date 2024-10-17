@@ -144,13 +144,11 @@
         {
             // 부모 폼에서 전달된 post_code 사용
             var postCode = this.parent.post_code;
-            console.log("post코드: " + postCode);
 
             // 데이터셋 초기화 및 post_code 설정
             this.ds_Post.clearData();
             this.ds_Post.addRow();
             this.ds_Post.setColumn(0, "post_code", postCode);
-
 
             this.fnSearch();
         };
@@ -164,26 +162,14 @@
             var fnCallback  = "fnCallback";
             var isAsync     = true;
 
-            console.log("async까지 들어옴");
-
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, fnCallback, isAsync);
-            console.log("transaction 다음부분");
         }
 
         this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
-            console.log("fnCallback까지 들어옴");
             if (nErrorCode < 0) {
                 alert("조회 중 오류가 발생했습니다: " + strErrorMsg);
-            } else {
-                // 조회된 데이터 확인
-                console.log(this.ds_Post.saveXML());
-                console.log(this.ds_Attachments.saveXML());
-
-                // 필요한 로직 추가 (예: 화면에 데이터 바인딩)
             }
         }
-
-
 
         this.Button_Close_onclick = function(obj,e)
         {
@@ -239,7 +225,6 @@
             objFileDownload.download();
         };
 
-
         // 다운로드 성공 이벤트
         this.FileDownTransfer00_onsuccess = function(obj, e)
         {
@@ -251,7 +236,6 @@
         {
             alert("파일 다운로드 중 오류가 발생했습니다. 오류 코드: " + e.errormsg);
         };
-
 
         });
         

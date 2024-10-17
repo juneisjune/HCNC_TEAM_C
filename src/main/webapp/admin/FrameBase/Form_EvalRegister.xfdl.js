@@ -324,8 +324,6 @@
 
             if (this.staErrorMessage) {
                 this.staErrorMessage.set_text("");
-            } else {
-                console.error("staErrorMessage 객체가 정의되지 않았습니다.");
             }
 
             if (!this.isAllQuestionsAnswered()) {
@@ -418,9 +416,6 @@
         };
 
         this.fnQuestionCallback = function(strSvcID, nErrorCode, strErrorMsg) {
-            console.log("Transaction Callback 실행됨");
-            console.log("Error Code: " + nErrorCode);
-            console.log("Error Msg: " + strErrorMsg);
 
             if (nErrorCode < 0) {
                 alert("질문 데이터를 불러오는데 실패했습니다.");
