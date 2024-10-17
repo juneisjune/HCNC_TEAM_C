@@ -75,12 +75,12 @@
 		WHERE a.emp_code =  #{empCode}
 		AND a.atten_code = 3
 		AND MONTH(work_date) = #{payMonth}
-		AND YEAR(work_date) =  #{payYear} );
+		AND YEAR(work_date) =  #{payYear} ) totalTime;
 	</select>
 	
 	<!-- pay_over 조회 -->
 	<select id="selectWorkOver" resultType="Double" parameterType="paySearchDTO">
-		SELECT SUM(work_over)
+		SELECT IFNULL(SUM(work_over), 0)
 		FROM attendance a JOIN att_code ac 
 		ON a.atten_code = ac.atten_code 
 		JOIN employee e 

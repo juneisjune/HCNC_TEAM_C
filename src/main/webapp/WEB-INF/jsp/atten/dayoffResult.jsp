@@ -153,7 +153,6 @@ $(function() {
                         requestListBody.append(row);  // 테이블에 행 추가
                     });
 
-                    alert("조회가 완료되었습니다.");
                 } else {
                     alert("에러 발생: " + result.msg);
                 }
