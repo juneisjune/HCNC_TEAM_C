@@ -124,7 +124,6 @@
             this.ds_offList.setColumn(0, "admin_emp", loginEmpCode);
             this.ds_offList.setColumn(0, "admin_assign", loginAssignCode);
         	this.ds_offList.setColumn(0, "admin_dep", loginDepCode);
-        	console.log(this.ds_offList);
 
         	// 컨트롤러 호출
         	var strSvcId    = "dayoffList";                     // 콜백 서비스명
@@ -171,9 +170,6 @@
                 alert("결재가 완료된 건은 재결재 할 수 없습니다.");
                 return;  // 함수 실행 중지
             }
-
-
-        	console.log("전송할 데이터셋 확인:", this.ds_doRequestListCopy.saveXML());
 
             // Transaction을 통해 서버로 전송
             var strSvcId = "confirmDayoff";

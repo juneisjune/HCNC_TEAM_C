@@ -208,8 +208,6 @@
 
         this.Popup_Atten_onload = function(obj,e)
         {
-
-
         	this.ds_AttenList.clearData();
         	this.ds_AttenList.addRow();
         	this.ds_AttenList.setColumn(0, "condition", this.parent.condition);
@@ -278,8 +276,6 @@
             }
 
         		this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
-
-        	console.log(this.ds_AttenList.saveXML());
 
         	var strSvcId    = "attenSave";
         	var strSvcUrl   = "svc::attenSave.do";

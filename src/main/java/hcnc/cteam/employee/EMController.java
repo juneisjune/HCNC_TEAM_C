@@ -30,9 +30,6 @@ public class EMController {
     public NexacroResult selectEmployeeList(@ParamDataSet(name = "ds_search", required = false) Map<String, Object> param) {
         NexacroResult result = new NexacroResult(); // 결과 객체 생성
         try {
-            // 검색 유형과 검색어를 콘솔에 출력 (디버깅 용도)
-            System.out.println("검색 유형: " + param.get("SEARCH_TYPE"));
-            System.out.println("검색어: " + param.get("SEARCH_WORD"));
             
             // 서비스 레이어에서 직원 목록을 가져와 ds_empList에 저장
             List<Map<String, Object>> ds_empList = EMService.selectEmployeeList(param);
@@ -55,8 +52,6 @@ public class EMController {
         NexacroResult result = new NexacroResult(); // 결과 객체 생성
 
         try {
-            // 입력된 직원 데이터를 콘솔에 출력 (디버깅 용도)
-            System.out.println("직원 데이터: " + empData);
             
             // 서비스 레이어에 직원 등록 요청
 
@@ -80,8 +75,6 @@ public class EMController {
     public NexacroResult updateEmployeeData(@ParamDataSet(name = "ds_employee") Map<String, Object> empData) {
         NexacroResult result = new NexacroResult(); // 결과 객체 생성
         try {
-            // 수정 요청된 데이터를 콘솔에 출력 (디버깅 용도)
-            System.out.println("수정 요청 데이터: " + empData);
             
             // 서비스 레이어에 직원 수정 요청
             EMService.updateEmployeeData(empData);
@@ -103,8 +96,6 @@ public class EMController {
     public NexacroResult deleteEmployee(@ParamDataSet(name = "ds_employee") Map<String, Object> empData) {
         NexacroResult result = new NexacroResult(); // 결과 객체 생성
         try {
-            // 삭제 요청된 데이터를 콘솔에 출력 (디버깅 용도)
-            System.out.println("삭제 요청 데이터: " + empData);
             
             // 서비스 레이어에 직원 삭제 요청
             EMService.deleteEmployee(empData);
@@ -127,8 +118,6 @@ public class EMController {
     public NexacroResult checkDuplicateId(@ParamDataSet(name = "ds_employee") Map<String, Object> empData) {
         NexacroResult result = new NexacroResult(); // 결과 객체 생성
         try {
-            // 중복 체크 요청된 데이터를 콘솔에 출력 (디버깅 용도)
-            System.out.println("중복 체크 요청 데이터: " + empData);
             
             // 서비스 레이어에 ID 중복 여부를 확인하는 메서드 호출
             boolean isDuplicate = EMService.checkDuplicateId(empData);
