@@ -50,7 +50,7 @@
             // UI Components Initialize
             obj = new Tab("Tab00","24","56","506","224",null,null,null,null,null,null,this);
             obj.set_taborder("1");
-            obj.set_tabindex("1");
+            obj.set_tabindex("0");
             obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
