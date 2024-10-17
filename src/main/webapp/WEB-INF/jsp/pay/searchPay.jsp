@@ -122,7 +122,7 @@
 			var startMonth = $("#startMonth").val();
 			var endYear = $("#endYear").val();
 			var endMonth = $("#endMonth").val();
-			
+		
 			$.ajax({
 			    type : "POST",
 			    data : "startYear="+startYear+"&startMonth="+startMonth+"&endYear="+endYear+"&endMonth="+endMonth,
@@ -168,7 +168,7 @@
 	                             + "<td>" + pay.longcareInsurance.toLocaleString()  + "</td>"
 	                             + "<td>" + totalTax.toLocaleString() + "</td>"
 	                             + "<td>" + pay.etc.toLocaleString()  + "</td>"
-	                             + "<td>" + pay.actualPay.toLocaleString()  + "</td>"
+	                             + "<td>" + pay.totalPay.toLocaleString()  + "</td>"
 	                             + "</tr>";
 
 	                         payListBody.append(row);  
@@ -274,7 +274,7 @@
 		                <td><fmt:formatNumber value="${pay.longcareInsurance}" type="number" groupingUsed="true"/></td>			                			                
 		                <td><fmt:formatNumber value="${pay.incomeTax + pay.residentTax + pay.nationalTax + pay.empInsurance + pay.healthInsurance + pay.longcareInsurance}" type="number" groupingUsed="true"/></td>	
 		                <td><fmt:formatNumber value="${pay.etc}" type="number" groupingUsed="true"/></td>	
-		                <td><fmt:formatNumber value="${pay.actualPay}" type="number" groupingUsed="true"/></td>	                			               
+		                <td><fmt:formatNumber value="${pay.totalPay}" type="number" groupingUsed="true"/></td>	                			               
 		            </tr>
 	            </c:forEach>
 			</tbody>
