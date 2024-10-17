@@ -173,8 +173,6 @@
 
 	                         payListBody.append(row);  
 	                     });
-	                     
-	                    alert("조회가 완료되었습니다.");
 	                    
 	                    }
 	                   
