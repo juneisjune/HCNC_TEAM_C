@@ -133,7 +133,7 @@
 
         this.btn_Search_onclick = function(obj,e)
         {
-        this.grid_Atten.setFocus();
+        	this.grid_Atten.setFocus();
         	this.fnSearch();
         };
 

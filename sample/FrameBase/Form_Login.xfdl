@@ -31,7 +31,7 @@
     <Script type="xscript5.1"><![CDATA[
 // 인증번호 발송(로그인) 버튼
 this.btn_Login_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo) {
-	this.img_HcncLogo.setFocus();
+	this.edt_AuthCheck.setFocus();
     var userId = this.ds_login.getColumn(0, "user_id");
     var password = this.ds_login.getColumn(0, "password");
 
@@ -85,9 +85,7 @@ this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
 		
 		this.ds_email.setColumn(0, "maskedEmail", this.maskEmail(this.ds_email.getColumn(0, "email")));
 
-        // 서버에서 넘어온 인증 키(authKey)를 확인
         var authKey = this.ds_Auth.getColumn(0, "authKey");
-        console.log("Received AuthKey: " + authKey);
 		
 		this.div_LoginMain.set_visible(false);
 		this.sta_LoginMain1.set_visible(false);
@@ -127,14 +125,16 @@ this.fn_LoginSuccess = function() {
 
 //인증하기
 this.btn_AuthCheck_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	this.img_LoginMain.setFocus();
 	if(this.ds_Auth.getColumn(0, "authKey") == '' || this.ds_Auth.getColumn(0, "authKey") == null || this.ds_Auth.getColumn(0, "authKey") == 'undefined') {
 		alert("인증번호를 먼저 발급받으세요.");
+		this.edt_MaskedEmail.setFocus();
 		return;
 	}
 
 	if(this.ds_Auth.getColumn(0, "authKey") != this.ds_AuthCheck.getColumn(0, "authCheck")) {
 		alert("인증번호가 일치하지 않습니다.");
+		this.edt_AuthCheck.setFocus();
 		return;
 	}
 	

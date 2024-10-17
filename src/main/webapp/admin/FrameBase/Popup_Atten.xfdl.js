@@ -246,8 +246,9 @@
         		var workEnd = this.ds_AttenList.getColumn(0, "workEnd");
 
                 if(!workStart || !workEnd) {
-        		alert("출근시간 또는 퇴근시간을 입력하세요.");
-                return;
+        			alert("출근시간 또는 퇴근시간을 입력하세요.");
+        			this.cmb_workType.setFocus();
+        			return;
         		}
 
         		var startHour = parseInt(workStart.slice(0, 2), 10);
@@ -256,17 +257,20 @@
         		var endMinute = parseInt(workEnd.slice(2, 4), 10);
 
         		if (startHour > 23 || startMinute > 59) {
-                alert("출근시간을 올바르게 입력해주세요.");
-                return;
+        			alert("출근시간을 올바르게 입력해주세요.");
+        			this.maskedt_workStart.setFocus();
+        			return;
         		}
 
         		if (endHour > 23 || endMinute > 59) {
         			alert("퇴근시간을 올바르게 입력해주세요.");
+        			this.maskedt_workEnd.setFocus();
         			return;
         		}
 
         		if (startHour > endHour || (startHour == endHour && startMinute > endMinute)) {
         			alert("시간을 올바르게 입력해주세요.");
+        			this.maskedt_workEnd.setFocus();
         			return;
         		}
             }

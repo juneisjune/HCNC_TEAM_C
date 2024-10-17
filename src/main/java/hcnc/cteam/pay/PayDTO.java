@@ -31,6 +31,7 @@ public class PayDTO {
 	private int longcareInsurance;
 	private int actualPay;
 	private int etc;
+	private int totalPay;
 	
 	private double tax;
 
@@ -40,8 +41,18 @@ public class PayDTO {
 	private String updName;
 	private String admName;
 
+	
+	
 
-    public String getDepName() {
+    public int getTotalPay() {
+		return totalPay;
+	}
+
+	public void setTotalPay(int totalPay) {
+		this.totalPay = totalPay;
+	}
+
+	public String getDepName() {
         return depName;
     }
 

@@ -60,8 +60,6 @@
 
         this.grid_LeftMenu_oncellclick = function(obj,e)
         {
-
-
         	// 클릭한 행(row)의 인덱스
         	var rowIndex = e.row;
         	var colIndex = e.cell;    // 클릭한 셀의 열 인덱스
@@ -86,8 +84,6 @@
         	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") != 1) {
 
             var value = this.ds_Left.getColumn(rowIndex, "MENU_PATH");
-
-        	trace(value);
 
         	//WorkFrame 이동
         	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl(value);

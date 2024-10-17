@@ -109,12 +109,20 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javaScript" language="javascript">
 	$(function() {
+		var today = new Date();
+	    var currentYear = today.getFullYear();
+	    var currentMonth = today.getMonth() + 1; // 월은 0부터 시작하므로 1을 더함
+
+	    // endYear와 endMonth 초기값 설정
+	    $("#endYear").val(currentYear);
+	    $("#endMonth").val(currentMonth);
+		
 	    $("#searchBtn").click(function() {
 			var startYear = $("#startYear").val();
 			var startMonth = $("#startMonth").val();
 			var endYear = $("#endYear").val();
 			var endMonth = $("#endMonth").val();
-			
+		
 			$.ajax({
 			    type : "POST",
 			    data : "startYear="+startYear+"&startMonth="+startMonth+"&endYear="+endYear+"&endMonth="+endMonth,
@@ -160,7 +168,7 @@
 	                             + "<td>" + pay.longcareInsurance.toLocaleString()  + "</td>"
 	                             + "<td>" + totalTax.toLocaleString() + "</td>"
 	                             + "<td>" + pay.etc.toLocaleString()  + "</td>"
-	                             + "<td>" + pay.actualPay.toLocaleString()  + "</td>"
+	                             + "<td>" + pay.totalPay.toLocaleString()  + "</td>"
 	                             + "</tr>";
 
 	                         payListBody.append(row);  
@@ -266,7 +274,7 @@
 		                <td><fmt:formatNumber value="${pay.longcareInsurance}" type="number" groupingUsed="true"/></td>			                			                
 		                <td><fmt:formatNumber value="${pay.incomeTax + pay.residentTax + pay.nationalTax + pay.empInsurance + pay.healthInsurance + pay.longcareInsurance}" type="number" groupingUsed="true"/></td>	
 		                <td><fmt:formatNumber value="${pay.etc}" type="number" groupingUsed="true"/></td>	
-		                <td><fmt:formatNumber value="${pay.actualPay}" type="number" groupingUsed="true"/></td>	                			               
+		                <td><fmt:formatNumber value="${pay.totalPay}" type="number" groupingUsed="true"/></td>	                			               
 		            </tr>
 	            </c:forEach>
 			</tbody>
@@ -290,36 +298,39 @@
     </div> <!-- container -->
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>   	
 <script>
-	const currentYear = new Date().getFullYear(); 
-	const startYearSelect = document.getElementById('startYear');
-	const endYearSelect = document.getElementById('endYear');
+	var currentYear = new Date().getFullYear(); 
+	var startYearSelect = document.getElementById('startYear');
+	var endYearSelect = document.getElementById('endYear');
 	
-	for (let i = 0; i < 3; i++) {
-		const startOption = document.createElement('option');
+	for (let i = 2; i >= 0; i--) {
+		var startOption = document.createElement('option');
 		startOption.value = currentYear - i;
 		startOption.textContent = currentYear - i; 
 		startYearSelect.appendChild(startOption); 
-		
-		const endOption = document.createElement('option');
+	}
+	
+	for (let i = 0; i < 3; i++) {
+		var endOption = document.createElement('option');
 		endOption.value = currentYear - i;
 		endOption.textContent = currentYear - i; 
 		endYearSelect.appendChild(endOption); 
 	}
 	
-	const startMonthSelect = document.getElementById('startMonth');
-	const endMonthSelect = document.getElementById('endMonth');
+	var startMonthSelect = document.getElementById('startMonth');
+	var endMonthSelect = document.getElementById('endMonth');
 	
 	for(let i=1; i<=12; i++) {
-		const startOption = document.createElement('option');
+		var startOption = document.createElement('option');
 		startOption.value = i;
 		startOption.textContent = i;
 		startMonthSelect.appendChild(startOption);
 		
-		const endOption = document.createElement('option');
+		var endOption = document.createElement('option');
 		endOption.value = i;
 		endOption.textContent = i;
 		endMonthSelect.appendChild(endOption);
-	}			
+	}		
+
 </script>
 </body>
 </html>

@@ -61,7 +61,9 @@
         <Static id="lblAccount" text="계좌번호" left="15" top="253" width="90" height="25" cssclass="stc_stc"/>
         <Edit id="edtAccount" left="100" top="250" width="250" height="30" binddataset="ds_employee" text="bind:account"/>
         <!-- 수정 버튼 -->
+
         <Button id="btnUpdate" text="수정" left="360" top="340" width="70" height="30" onclick="btnUpdate_onclick" cssclass="btn_edit"/>
+
       </Layout>
     </Layouts>
     <Bind>

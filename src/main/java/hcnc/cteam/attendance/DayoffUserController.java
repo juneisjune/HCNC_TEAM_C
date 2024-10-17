@@ -104,7 +104,6 @@ public class DayoffUserController {
 	public ModelAndView requestListSearch(DayoffDTO dayoff,Model model, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("jsonView");
 		
-		String result = "";
 		HttpSession session = request.getSession();
 		int empCode = (int)session.getAttribute("userCode");
 		String name = (String)session.getAttribute("userName");
