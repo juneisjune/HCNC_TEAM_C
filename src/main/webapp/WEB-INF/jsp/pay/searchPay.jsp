@@ -109,6 +109,14 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script type="text/javaScript" language="javascript">
 	$(function() {
+		var today = new Date();
+	    var currentYear = today.getFullYear();
+	    var currentMonth = today.getMonth() + 1; // 월은 0부터 시작하므로 1을 더함
+
+	    // endYear와 endMonth 초기값 설정
+	    $("#endYear").val(currentYear);
+	    $("#endMonth").val(currentMonth);
+		
 	    $("#searchBtn").click(function() {
 			var startYear = $("#startYear").val();
 			var startMonth = $("#startMonth").val();
@@ -290,36 +298,39 @@
     </div> <!-- container -->
 <%@ include file="/WEB-INF/jsp/footer.jsp" %>   	
 <script>
-	const currentYear = new Date().getFullYear(); 
-	const startYearSelect = document.getElementById('startYear');
-	const endYearSelect = document.getElementById('endYear');
+	var currentYear = new Date().getFullYear(); 
+	var startYearSelect = document.getElementById('startYear');
+	var endYearSelect = document.getElementById('endYear');
 	
-	for (let i = 0; i < 3; i++) {
-		const startOption = document.createElement('option');
+	for (let i = 2; i >= 0; i--) {
+		var startOption = document.createElement('option');
 		startOption.value = currentYear - i;
 		startOption.textContent = currentYear - i; 
 		startYearSelect.appendChild(startOption); 
-		
-		const endOption = document.createElement('option');
+	}
+	
+	for (let i = 0; i < 3; i++) {
+		var endOption = document.createElement('option');
 		endOption.value = currentYear - i;
 		endOption.textContent = currentYear - i; 
 		endYearSelect.appendChild(endOption); 
 	}
 	
-	const startMonthSelect = document.getElementById('startMonth');
-	const endMonthSelect = document.getElementById('endMonth');
+	var startMonthSelect = document.getElementById('startMonth');
+	var endMonthSelect = document.getElementById('endMonth');
 	
 	for(let i=1; i<=12; i++) {
-		const startOption = document.createElement('option');
+		var startOption = document.createElement('option');
 		startOption.value = i;
 		startOption.textContent = i;
 		startMonthSelect.appendChild(startOption);
 		
-		const endOption = document.createElement('option');
+		var endOption = document.createElement('option');
 		endOption.value = i;
 		endOption.textContent = i;
 		endMonthSelect.appendChild(endOption);
-	}			
+	}		
+
 </script>
 </body>
 </html>

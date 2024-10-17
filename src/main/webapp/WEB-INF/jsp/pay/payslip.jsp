@@ -79,6 +79,28 @@
         }
 
     </style>
+    <script type="text/javaScript" language="javascript">
+    	function printPage() {
+		    var initBody = document.body.innerHTML;
+		    
+		 	//인쇄할 내용 변경
+		    window.onbeforeprint = function(){ 
+		        document.body.innerHTML = document.querySelector('.container').innerHTML; 
+		    }
+		    
+		    window.onafterprint = function(){ 
+		        document.body.innerHTML = initBody; //기존 내용으로 복원 
+		    }
+		    
+		    window.print({
+		    	pageTitle: "MyPay", //프린트 출력 제목
+		    	media: "print", //프린트 매체
+		    	landscape: false, //가로 방향 프린트 여부 
+		    	margins: [10, 15, 20, 25], //여백 설정
+		    	copies: 1 //출력 부수 
+		    });
+    	};
+    </script> 
 </head>
 <body>
     <%@ include file="/WEB-INF/jsp/header.jsp" %>
@@ -178,8 +200,13 @@
         <c:if test="${empty myPay}">
             <h4>급여 내역이 없습니다.</h4>
         </c:if>
-    </div>
 
+    </div>
+    
+    <div style="display: flex; justify-content: center; margin-top: 20px;">
+       	<button onclick="printPage()">출력</button>
+ 	</div>
+    
     <%@ include file="/WEB-INF/jsp/footer.jsp" %>
 </body>
 </html>

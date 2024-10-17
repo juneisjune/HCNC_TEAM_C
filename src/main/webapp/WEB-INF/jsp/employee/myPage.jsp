@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>인사 관리 시스템 - 마이페이지</title>
+    <title>인사 관리 시스템 - 내 정보 보기</title>
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
@@ -94,12 +94,12 @@
 <body>
 <%@ include file="/WEB-INF/jsp/header.jsp" %>
     <div class="container">
-        <h1>마이페이지</h1>
+        <h1>내 정보</h1>
         
         <form:form method="post" modelAttribute="employee">
             <table>
                 <tr>
-                    <th colspan="2">내 정보</th>
+                    <th colspan="2">정보</th>
                 </tr>
                 <tr>
                     <th>사번</th>

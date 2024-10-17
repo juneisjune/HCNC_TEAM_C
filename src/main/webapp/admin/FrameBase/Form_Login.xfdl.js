@@ -184,7 +184,7 @@
 
         // 인증번호 발송(로그인) 버튼
         this.btn_Login_onclick = function(obj,e) {
-        	this.img_HcncLogo.setFocus();
+        	this.edt_AuthCheck.setFocus();
             var userId = this.ds_login.getColumn(0, "user_id");
             var password = this.ds_login.getColumn(0, "password");
 
@@ -284,14 +284,16 @@
 
         //인증하기
         this.btn_AuthCheck_onclick = function(obj,e)
-        {
+        {	this.img_LoginMain.setFocus();
         	if(this.ds_Auth.getColumn(0, "authKey") == '' || this.ds_Auth.getColumn(0, "authKey") == null || this.ds_Auth.getColumn(0, "authKey") == 'undefined') {
         		alert("인증번호를 먼저 발급받으세요.");
+        		this.edt_MaskedEmail.setFocus();
         		return;
         	}
 
         	if(this.ds_Auth.getColumn(0, "authKey") != this.ds_AuthCheck.getColumn(0, "authCheck")) {
         		alert("인증번호가 일치하지 않습니다.");
+        		this.edt_AuthCheck.setFocus();
         		return;
         	}
 
@@ -425,10 +427,6 @@
         	this.reload();
         };
 
-        this.sta_Id_onclick = function(obj,e)
-        {
-
-        };
 
         });
         
