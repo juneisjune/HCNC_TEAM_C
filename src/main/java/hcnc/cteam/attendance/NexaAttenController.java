@@ -33,7 +33,6 @@ public class NexaAttenController {
 			List<NexaAttenDTO> ds_AttenList = nexaAttenService.nexaGetAttenListByCondition(param);
 			result.addDataSet("ds_AttenList", ds_AttenList);
 		} catch (Exception ee) {
-			System.out.println(ee);
 			result.setErrorCode(-1);
 			result.setErrorMsg("catch 조회 오류");
 		}
@@ -48,7 +47,6 @@ public class NexaAttenController {
 			List<NexaAttenDTO> ds_EmpList = nexaAttenService.nexaGetEmpListByCondition(param);
 			result.addDataSet("ds_EmpList", ds_EmpList);
 		} catch (Exception ee) {
-			System.out.println(ee);
 			result.setErrorCode(-1);
 			result.setErrorMsg("catch 조회 오류");
 		}
@@ -60,7 +58,6 @@ public class NexaAttenController {
 	public NexacroResult selectUserInfo(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
 		NexacroResult result = new NexacroResult();
 		
-		System.out.println(param);
 		try {
 			 Map<String, Object> ds_AttenList = nexaAttenService.selectUserInfo(param);
 			 
@@ -72,7 +69,6 @@ public class NexaAttenController {
 		            result.addDataSet("ds_AttenList", ds_AttenList);
 		        }
 		} catch (Exception ee) {
-			System.out.println(ee);
 			result.setErrorCode(-1);
 			result.setErrorMsg("catch 조회 오류");
 		}
@@ -83,19 +79,14 @@ public class NexaAttenController {
 	@RequestMapping(value = "/attenSave.do")
 	public NexacroResult attenSave(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
 		NexacroResult result = new NexacroResult();
-			
-		System.out.println(param);
 		
 		// 해당 일자에 근태 정보가 있는지 체크
 		int KeyCheck = nexaAttenService.attenRegisterCheck(param);
-		
-		System.out.println("키 체크 값 : " + KeyCheck);
 		
 		if (KeyCheck == 0) {
 			try {
 				nexaAttenService.attenRegister(param);
 			} catch (Exception ee) {
-					System.out.println(ee);
 				result.setErrorCode(-1);
 				result.setErrorMsg("입력 정보가 올바른지 다시 확인하세요.");
 			}
@@ -103,7 +94,6 @@ public class NexaAttenController {
 			try {
 				nexaAttenService.editAttenList(param);
 			} catch (Exception ee) {
-					System.out.println(ee);
 				result.setErrorCode(-1);
 				result.setErrorMsg("입력 정보가 올바른지 다시 확인하세요.");
 			}

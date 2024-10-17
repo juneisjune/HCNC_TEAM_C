@@ -148,7 +148,6 @@
         	switch(svcID)
         	{
         		case "hrdList":
-        			console.log(this.ds_Hrdlist.saveXML());
         			break;
         		case "hrdListUpdate":
         			this.fnSearchList();
@@ -213,7 +212,6 @@
         			this.ds_UpdateHrdlist.setColumn(newRow, "assign_date", this.ds_assignDate.getColumn(0, "ASSIGN_DATE"));
                 }
             }
-        	console.log("업뎃리스트" + this.ds_UpdateHrdlist.saveXML());
 
                 // 변경된 데이터가 있을 경우 저장 로직 실행
                 var strSvcId    = "hrdListUpdate";                     // 콜백 서비스명
@@ -266,8 +264,6 @@
 
                         // 동일한 부서에서 assign_code가 5인 데이터가 있는지 확인
                         if (hrdListDepCode == depCode && (hrdListAssignCode == "5" || hrdListAssignCode == 5)) {
-                            console.log("부서코드: " + hrdListDepCode);
-                            console.log("직책코드: " + hrdListAssignCode);
                             alert("이미 해당 부서에 직책 코드 5(부장)가 존재합니다.");
                             return false;
                         }
