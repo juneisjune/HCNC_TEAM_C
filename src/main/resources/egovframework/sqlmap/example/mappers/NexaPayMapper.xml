@@ -35,8 +35,11 @@
 	<!-- 직책에 따른 monthly 조회 -->
 	<!-- 퇴사자는 기본급을 0으로 설정하고 일급으로 계산 -->
 	<select id="selectMonth" resultType="int" parameterType="java.util.Map">
+				<!-- 지난달 기준 퇴사자가 아닐시 -->
 		SELECT IF(e.resign_date IS NULL OR e.resign_date >= DATE_FORMAT(CURDATE(), '%Y-%m-01') 
+				<!-- 지난달 중도입사자일시  -->
 				, IF(e.join_date > DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')   
+						<!-- 일급 계산 -->
 					 , (SELECT COUNT(*)
 							FROM attendance a JOIN att_code ac 
 							ON a.atten_code = ac.atten_code 
@@ -46,8 +49,10 @@
 							AND (a.atten_code = 1 OR a.atten_code = 3)
 							AND work_date BETWEEN join_date AND DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-31')
 						) * 8 * a.hourly
+						<!-- 중도입사자 아닐시 직책에 따른 기본급으로 계산 -->
 			         , a.monthly 
 			      )
+			      <!-- 지난달 퇴사자일시 일급 계산-->
 				, (SELECT COUNT(*) 
 						FROM attendance a JOIN att_code ac 
 						ON a.atten_code = ac.atten_code 
@@ -80,7 +85,14 @@
 	
 	<!-- 사원의 지난달 결근 조회 -->
 	<select id="selectAbsence" resultType="int" parameterType="java.util.Map">
-		SELECT COUNT(*) absence
+				<!-- 지난달 중도입사자일시 -->
+		SELECT IF( join_date > DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')  
+			<!-- 또는 지난달 퇴사자일시 -->
+			OR DATE_FORMAT(resign_date, '%Y-%m') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m') 
+			<!-- 근무일수로 기본급을 계산하기 때문에 결근을 계산하지 않음 -->
+			, 0
+			<!-- 지난달 중도입사자 또는 퇴사자가 아닐시 결근 계산 -->
+			, COUNT(*)) absence
 		FROM attendance a JOIN att_code ac 
 			ON a.atten_code = ac.atten_code 
 		JOIN employee e 
@@ -133,9 +145,10 @@
 			, emp_insurance
 			, health_insurance
 			, longcare_insurance
-			, actual_pay 
-			, reg_name 
+			, actual_pay
 			, etc
+			, total_pay 
+			, reg_name 
 		)
 		VALUES (#{emp_code}
 			, YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
@@ -153,8 +166,9 @@
 			, #{health_insurance}
 			, #{longcare_insurance}
 			, #{actual_pay} 
-			, #{adm_name}
 			, #{etc}
+			, #{total_pay}
+			, #{adm_name}
 		);
 	</insert>
 	
@@ -165,8 +179,9 @@
 	           e.dep_name as depName,       
 	           b.pay_year as payYear,       
 	           b.pay_month as payMonth,     
-	           b.total_pay as totalPay,
+	           b.actual_pay as actualPay,
 	           b.etc as etc,
+	           b.total_pay as totalPay,
 	           b.upd_name as updName  <!-- 수정자의 이름을 추가 -->
 	    FROM employee a
 	    JOIN pay b ON a.emp_code = b.emp_code
@@ -198,7 +213,7 @@
 	    <if test="START_MONTH != null and END_MONTH != null">
 	        AND (b.pay_month BETWEEN #{START_MONTH} AND #{END_MONTH})
 	    </if>
-	    ORDER BY b.pay_month DESC ,a.emp_code ASC
+	    ORDER BY b.pay_month DESC, a.emp_code ASC
 	</select>
 
 	<update id="updatePayEtc" parameterType="payDTO">
