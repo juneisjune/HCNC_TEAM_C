@@ -3,7 +3,7 @@
   <Form id="Popup_FindLoginInfo" width="560" height="350" titletext="아이디 및 비밀번호 찾기">
     <Layouts>
       <Layout height="350" mobileorientation="landscape" width="560">
-        <Tab id="Tab00" taborder="1" tabindex="1" left="24" top="56" width="506" height="224" onchanged="Tab00_onchanged" cssclass="stc_stc">
+        <Tab id="Tab00" taborder="1" tabindex="0" left="24" top="56" width="506" height="224" onchanged="Tab00_onchanged" cssclass="stc_stc">
           <Tabpages>
             <Tabpage id="Tabpage1" text="아이디 찾기" formscrollbartype="none">
               <Layouts>

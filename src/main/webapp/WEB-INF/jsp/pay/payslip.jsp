@@ -151,8 +151,8 @@
                     <td style="text-align: right;"><strong><fmt:formatNumber value="${minus}" type="number" groupingUsed="true"/>원</strong></td>
                 </tr>
                 <tr>
-                    <th colspan="2">실수령액</th>
-                    <td colspan="2"><strong><fmt:formatNumber value="${myPay.actualPay}" type="currency" groupingUsed="true"/>원</strong></td>
+                    <th colspan="2">실지급액</th>
+                    <td colspan="2"><strong><fmt:formatNumber value="${myPay.totalPay}" type="currency" groupingUsed="true"/>원</strong></td>
                 </tr>
             </table>
 

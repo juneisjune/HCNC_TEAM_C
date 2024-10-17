@@ -165,7 +165,7 @@
 	           e.dep_name as depName,       
 	           b.pay_year as payYear,       
 	           b.pay_month as payMonth,     
-	           (b.actual_pay + b.etc) as actualPay,
+	           b.total_pay as totalPay,
 	           b.etc as etc,
 	           b.upd_name as updName  <!-- 수정자의 이름을 추가 -->
 	    FROM employee a
@@ -205,7 +205,7 @@
 	    UPDATE pay
 	    SET 
 	        etc = CASE WHEN #{etc} IS NOT NULL THEN #{etc} ELSE 0 END,  
-	        <!-- actual_pay = #{actualPay},  지급액 업데이트 -->
+	        total_pay = actual_pay + #{etc},
 	        upd_name = #{admName}  <!-- 수정자의 이름 업데이트 -->
 	    WHERE emp_code = #{empCode}
 	    
