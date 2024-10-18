@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Popup_Atten" width="600" height="560" titletext="근태 정보" onload="Popup_Atten_onload" background="whitesmoke">
+    <Layouts>
+      <Layout height="560" mobileorientation="landscape" width="600">
+        <Static id="sta_Title" taborder="0" left="190" top="25" width="220" height="50" textAlign="center" background="whitesmoke" cssclass="stc_popup" text=""/>
+        <Static id="sta_empCode" taborder="1" text="사번" left="30" top="120" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_name" taborder="2" text="이름" left="290" top="120" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_assignName" taborder="3" text="직책" left="30" top="210" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_depName" taborder="4" text="부서명" left="290" top="210" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workDate" taborder="5" text="근무일자" left="30" top="300" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workType" taborder="6" text="근무형태" left="290" top="300" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workStart" taborder="7" text="출근시간" left="30" top="390" width="80" height="30" cssclass="stc_stc"/>
+        <Static id="sta_workEnd" taborder="8" text="퇴근시간" left="290" top="390" width="80" height="30" cssclass="stc_stc"/>
+        <Button id="btn_Save" taborder="9" text="저장" left="260" top="480" width="70" height="30" onclick="btn_Save_onclick" cssclass="btn_edit"/>
+        <Combo id="cmb_workType" taborder="10" left="370" top="300" width="150" height="30" innerdataset="ds_WorkType" codecolumn="Name" datacolumn="Name" index="0" text="출근" value="출근" font="bold 16px/normal &quot;HY궁서B&quot;"/>
+        <Edit id="edt_empCode" taborder="11" left="110" top="122" width="150" height="30" inputtype="number" onchanged="edt_empCode_onchanged"/>
+        <Edit id="edt_name" taborder="12" left="370" top="122" width="150" height="30" readonly="true" background="#ffffff"/>
+        <Edit id="edt_assignName" taborder="13" left="110" top="210" width="150" height="30" readonly="true" background="#ffffff"/>
+        <Edit id="edt_depName" taborder="14" left="370" top="210" width="150" height="30" readonly="true" background="#ffffff"/>
+        <Calendar id="cal_workDate" taborder="15" left="110" top="300" width="150" height="30" dateformat="yyyy년 MM월 dd일" editformat="yyyy년 MM월 dd일"/>
+        <MaskEdit id="maskedt_workStart" taborder="16" left="110" top="390" width="150" height="30" format="##:##" type="string" textAlign="center" readonly="false"/>
+        <MaskEdit id="maskedt_workEnd" taborder="17" left="370" top="390" width="150" height="30" type="string" format="##:##" textAlign="center" readonly="false"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Popup_Atten_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_AttenList.clearData();
+	this.ds_AttenList.addRow();
+	this.ds_AttenList.setColumn(0, "condition", this.parent.condition);
+	
+	// 등록 시 dataset
+	if(this.ds_AttenList.getColumn(0, "condition") == 0) {
+		this.ds_Title.setColumn(0, "title", "근태 정보 등록");
+	}
+	
+	// 수정 시 dataset
+	if(this.ds_AttenList.getColumn(0, "condition") == 1) {
+		this.ds_Title.setColumn(0, "title", "근태 정보 수정");
+	
+		this.ds_AttenList.setColumn(0, "empCode", this.parent.empCode);
+		this.ds_AttenList.setColumn(0, "name", this.parent.name);
+		this.ds_AttenList.setColumn(0, "assignName", this.parent.assignName);
+		this.ds_AttenList.setColumn(0, "depName", this.parent.depName);
+		this.ds_AttenList.setColumn(0, "workDate", this.parent.workDate);
+		this.ds_AttenList.setColumn(0, "attenType", this.parent.attenType);
+		this.ds_AttenList.setColumn(0, "workStart", this.parent.workStart);
+		this.ds_AttenList.setColumn(0, "workEnd", this.parent.workEnd);
+
+	}
+	this.edt_name.setFocus();
+};
+
+// 저장 버튼
+this.btn_Save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.edt_name.setFocus();
+	
+	// 출근 입력 시 유효성 검사
+	if (this.ds_AttenList.getColumn(0, "attenType")=="출근") {
+	
+		var workStart = this.ds_AttenList.getColumn(0, "workStart");
+		var workEnd = this.ds_AttenList.getColumn(0, "workEnd");
+	
+        if(!workStart || !workEnd) {
+			alert("출근시간 또는 퇴근시간을 입력하세요.");
+			this.cmb_workType.setFocus();
+			return;
+		}
+		
+		var startHour = parseInt(workStart.slice(0, 2), 10);
+		var startMinute = parseInt(workStart.slice(2, 4), 10);
+		var endHour = parseInt(workEnd.slice(0, 2), 10);
+		var endMinute = parseInt(workEnd.slice(2, 4), 10);
+		
+		if (startHour > 23 || startMinute > 59) {
+			alert("출근시간을 올바르게 입력해주세요.");
+			this.maskedt_workStart.setFocus();		
+			return;
+		}
+
+		if (endHour > 23 || endMinute > 59) {
+			alert("퇴근시간을 올바르게 입력해주세요.");
+			this.maskedt_workEnd.setFocus();	
+			return;
+		}
+
+		if (startHour > endHour || (startHour == endHour && startMinute > endMinute)) {
+			alert("시간을 올바르게 입력해주세요.");
+			this.maskedt_workEnd.setFocus();	
+			return;
+		}
+    }
+	
+		this.ds_AttenList.setColumn(0, "admin_name", nexacro.getApplication().ds_userInfo.getColumn(0, "name"));
+	
+	var strSvcId    = "attenSave";
+	var strSvcUrl   = "svc::attenSave.do";
+	var inData      = "ds_AttenList=ds_AttenList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync     = true;
+	
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+// 콜백 함수
+this.fnCallback = function (svcID, errorCode, errorMsg) {
+	
+	// 근태 저장 콜백
+	if(svcID == "attenSave"){
+		if (errorCode < 0) {
+			alert(errorMsg);
+			return;
+		}
+		
+		alert("저장이 완료되었습니다.");
+		this.close('Close Popup');
+		
+		this.opener.fnSearch();
+	}
+	
+	// 사번 입력 후 콜백
+	if(svcID == "selectUserInfo"){
+		if (errorCode < 0) {
+			alert(errorMsg);
+			
+			this.ds_AttenList.setColumn(0, "empCode", null);
+			this.ds_AttenList.setColumn(0, "name", "");
+			this.ds_AttenList.setColumn(0, "assignName", "");
+			this.ds_AttenList.setColumn(0, "depName", "");
+			
+			return;
+		}
+	}
+};
+
+// 사번 입력 후 해당 직원 정보 가져오기
+this.edt_empCode_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	var strSvcId    = "selectUserInfo";
+	var strSvcUrl   = "svc::selectUserInfo.do";
+	var inData      = "ds_AttenList=ds_AttenList";
+	var outData     = "ds_AttenList=ds_AttenList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync     = true;
+	
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+]]></Script>
+    <Objects>
+      <Dataset id="ds_AttenList" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="empCode" type="INT" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="assignName" type="STRING" size="256"/>
+          <Column id="depName" type="STRING" size="256"/>
+          <Column id="workDate" type="STRING" size="256"/>
+          <Column id="attenType" type="STRING" size="256"/>
+          <Column id="workStart" type="STRING" size="256"/>
+          <Column id="workEnd" type="STRING" size="256"/>
+          <Column id="condition" type="INT" size="256"/>
+          <Column id="admin_name" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_Title">
+        <ColumnInfo>
+          <Column id="title" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_WorkType">
+        <ColumnInfo>
+          <Column id="Name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Name">출근</Col>
+          </Row>
+          <Row>
+            <Col id="Name">결근</Col>
+          </Row>
+          <Row>
+            <Col id="Name">휴가</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="sta_Title" propid="text" datasetid="ds_Title" columnid="title"/>
+      <BindItem id="item1" compid="edt_empCode" propid="value" datasetid="ds_AttenList" columnid="empCode"/>
+      <BindItem id="item2" compid="edt_name" propid="value" datasetid="ds_AttenList" columnid="name"/>
+      <BindItem id="item3" compid="edt_assignName" propid="value" datasetid="ds_AttenList" columnid="assignName"/>
+      <BindItem id="item4" compid="edt_depName" propid="value" datasetid="ds_AttenList" columnid="depName"/>
+      <BindItem id="item5" compid="cmb_workType" propid="value" datasetid="ds_AttenList" columnid="attenType"/>
+      <BindItem id="item6" compid="cal_workDate" propid="value" datasetid="ds_AttenList" columnid="workDate"/>
+      <BindItem id="item7" compid="maskedt_workEnd" propid="value" datasetid="ds_AttenList" columnid="workEnd"/>
+      <BindItem id="item8" compid="maskedt_workStart" propid="value" datasetid="ds_AttenList" columnid="workStart"/>
+    </Bind>
+  </Form>
+</FDL>

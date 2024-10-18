@@ -1,6 +1,7 @@
 package hcnc.cteam.attendance;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -63,10 +64,10 @@ public class DayoffUserController {
 		HttpSession session = request.getSession();
 		int empCode = (int)session.getAttribute("userCode");
 		
-		emp = empService.getEmployeeByEmpCode(empCode);
+		emp = empService.getEmployeeByEmpCode(empCode);	
 		model.addAttribute("emp",emp);
 
-		return "dayoffRequest";
+		return "atten/dayoffRequest";
 	}
 	//내역 페이지
 	@RequestMapping(value="/requestList.do")
@@ -78,7 +79,7 @@ public class DayoffUserController {
 		emp = empService.getEmployeeByEmpCode(empCode);
 		model.addAttribute("emp",emp);
 		
-		return "dayoffResult";
+		return "atten/dayoffResult";
 	}
 	
 	//휴가신청
@@ -86,10 +87,9 @@ public class DayoffUserController {
 	@RequestMapping(value="/sendRequest.do")
 	public String sendRequest(Model model, @ModelAttribute DayoffDTO dayoff) {
 		
+		System.out.println(dayoff.getName());
 		//휴가신청 insert문
 		int result = doUserService.sendRequest(dayoff);
-	
-		
 		if(result == 0) {
 			model.addAttribute("dayoffMsg","휴가신청에 실패했습니다. 다시신청해주세요");
 			return "redirect: /dayoff/doRequest.do";
@@ -104,7 +104,6 @@ public class DayoffUserController {
 	public ModelAndView requestListSearch(DayoffDTO dayoff,Model model, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("jsonView");
 		
-		String result = "";
 		HttpSession session = request.getSession();
 		int empCode = (int)session.getAttribute("userCode");
 		String name = (String)session.getAttribute("userName");

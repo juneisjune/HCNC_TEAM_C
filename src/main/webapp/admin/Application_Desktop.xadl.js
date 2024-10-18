@@ -73,11 +73,11 @@
             frame4.set_showtitlebar("false");
             frame2.addChild(frame4.name, frame4);
 
-            var frame5 = new ChildFrame("LoginFrame",null,null,null,null,null,null,"FrameBase::Form_InsertPay.xfdl",frame0);
+            var frame5 = new ChildFrame("LoginFrame",null,null,null,null,null,null,"FrameBase::Form_Login.xfdl",frame0);
             frame5.set_showcascadetitletext("true");
             frame5.set_showtitlebar("false");
             frame0.addChild(frame5.name, frame5);
-            frame5.set_formurl("FrameBase::Form_InsertPay.xfdl");
+            frame5.set_formurl("FrameBase::Form_Login.xfdl");
         };
         
         this.on_initEvent = function()
@@ -91,6 +91,7 @@
         
         this.loadPreloadList();
         this.loadCss("xcssrc::temp_main.xcss");
+        this.loadCss("xcssrc::Title.xcss");
         this.loadIncludeScript("Application_Desktop.xadl");
     };
 }

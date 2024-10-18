@@ -1,4 +1,10 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=bc406d7f4491f18f24116dca6aa95b3d812aa8c9
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/employee/employee.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/header.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/post/post.jsp=UTF-8
+encoding//src/main/webapp/fileUpload/fileUpload.jsp=UTF-8
 encoding//src/test/java=UTF-8

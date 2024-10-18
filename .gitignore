@@ -4,6 +4,8 @@
 *.so
 *.com
 *.class
+**/pom.properties
+MANIFEST.MF
 #=> 컴파일된 결과물입니다. 올릴 이유가 없겠죠?
 #=> *은 모두들 아시다시피 전체를 뜻하는 별칭입니다. 앞으로 많이 사용됩니다~
 
@@ -34,7 +36,6 @@ tmp/
 *.bak
 *.swp
 local.properties
-**/pom.properties
 .settings/
 .loadpath
 .recommenders
@@ -48,4 +49,3 @@ target/
 .springBeans
 .recommenders/
 *.geninfo
-MANIFEST.MF

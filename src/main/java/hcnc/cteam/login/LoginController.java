@@ -32,7 +32,8 @@ public class LoginController {
 	
 	//로그인 화면 
 	@RequestMapping(value="/login.do", method = RequestMethod.GET)
-	public String viewLogin() {
+	public String viewLogin(HttpSession session) {
+		session.invalidate();
 		return "login/login";
 	}
 	
@@ -45,29 +46,43 @@ public class LoginController {
 		
 		int result = loginService.userLogin(loginDTO);
 		
-		 if (result == 1) {
-			 
-			 //세션 생성
-			 HttpSession session = request.getSession();
-			 int userCode = loginService.selectUser(loginDTO).getEmpCode();
-			 session.setAttribute("userCode", userCode);
-			 String userName = loginService.selectUser(loginDTO).getName();
-			 session.setAttribute("userName", userName);
-
-			 
-			 AttenDTO workResult = loginService.selectWork(userCode);
-			 
-			 if (workResult != null) {
-				 LocalTime workStart = workResult.getWorkStart();
-				 LocalTime workEnd = workResult.getWorkEnd();
+		if(result == 100) {
+			
+			msg = "empty";
+			
+		} else if (result == 1) {
+			//부서 배정과 직책 배정이 되지 않았을 경우 로그인 안되도록
+			if(loginService.selectUser(loginDTO).getAssignCode() == null || loginService.selectUser(loginDTO).getAssignCode().equals("") 
+					|| loginService.selectUser(loginDTO).getDepCode() == null || loginService.selectUser(loginDTO).getDepCode().equals("") ){
+				
+				msg = "empty";
+				
+			 } else {
+				 //세션 생성
+				 HttpSession session = request.getSession();
+				 int userCode = loginService.selectUser(loginDTO).getEmpCode();
+				 session.setAttribute("userCode", userCode);
+				 String userName = loginService.selectUser(loginDTO).getName();
+				 session.setAttribute("userName", userName);
+	
+				 AttenDTO workResult = loginService.selectWork(userCode);
 				 
-				 session.setAttribute("workStart", workStart);
-				 session.setAttribute("workEnd", workEnd);
-			 }
-			 
-
-	         msg = "ok";
-	        }
+				 if (workResult != null) {
+					 LocalTime workStart = workResult.getWorkStart();
+					 LocalTime workEnd = workResult.getWorkEnd();
+					 
+					 session.setAttribute("workStart", workStart);
+					 session.setAttribute("workEnd", workEnd);
+				 }
+				 
+		         msg = "ok";
+		         
+		        //master(대표 아이디)는 2단계 인증하지 않고 바로 홈으로 접속  
+		        if(loginService.selectUser(loginDTO).getEmpCode() == 1) {
+		        	msg = "master";
+		        }
+			 }   
+	    }
 		 
 		 
 		 return msg;
@@ -82,7 +97,7 @@ public class LoginController {
 		
 		String email = loginService.selectEmail(empCode);
 		model.addAttribute("email", email);
-	
+		
 		int index = email.indexOf("@");
 		
 		if(index > 0) {
@@ -91,12 +106,15 @@ public class LoginController {
 			
 			StringBuilder markedId = new StringBuilder();
 			
-		    for (int i = 0; i < id.length() - 1; i++) {
-		        markedId.append('*');
-		    }
-
-		    //@앞 한자리 문자만 추가
-		    markedId.append(id.charAt(id.length() - 1));
+		        // 앞 1자리
+		        markedId.append(id.substring(0, 1));
+		        // 중간 부분 마스킹 
+		        for (int i = 1; i < id.length() - 1; i++) {
+		            markedId.append('*');
+		        }    
+		        // 끝 1자리 추가
+		        markedId.append(id.substring(id.length() - 1));
+		  
 			
 			model.addAttribute("markedEmail", markedId + email.substring(index));		
 		}
@@ -117,6 +135,7 @@ public class LoginController {
 		try {
 		    String authKey = mailSendService.sendAuthMail(email); 
 		    map.put("authKey", authKey);
+		    System.out.println("인증번호 : " + authKey);
 		    map.put("msg", "ok");
 		    
 		} catch(Exception e) {

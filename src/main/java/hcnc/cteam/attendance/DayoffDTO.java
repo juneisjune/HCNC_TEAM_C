@@ -32,6 +32,14 @@ public class DayoffDTO {
 	private int startMonth;
 	private int endMonth;
 	
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getDepName() {
 		return depName;
 	}
@@ -70,12 +78,7 @@ public class DayoffDTO {
 		this.empCode = empCode;
 	}
 	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public Date getStartDate() {
 		return startDate;
 	}

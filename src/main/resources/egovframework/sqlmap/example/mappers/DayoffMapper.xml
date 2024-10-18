@@ -24,24 +24,22 @@
 			AND name LIKE CONCAT('%',#{name},'%')
 	   </if>
 	   <if test="start_date != null ">
-			AND start_date = #{start_date}
+			AND start_date &gt;= #{start_date}
 	   </if>	   
 	    <!-- assign_code가 5일 경우: mng_code가 emp_code와 일치하는 경우 -->
-	    <if test="assign_code == 5">
-	        AND e.mng_code = #{emp_code}
+	    <if test="admin_assign == 5">
+	        AND e.mng_code = #{admin_emp}
 	    </if>
 	
 	    <!-- assign_code가 6일 경우: mng_confirm이 'Y'인 경우 -->
-	    <if test="assign_code == 6">
+	    <if test="admin_assign == 6">
 	        AND mng_confirm = 'Y'
 	    </if>
-	
-	    <!-- assign_code가 7일 경우: md_confirm이 'Y'인 경우 -->
-	    
-	    <!-- <if test="assign_code == 7">
-	        AND md_confirm = 'Y'
-	     </if> -->
-	    
+	    <!-- assign_code가 7일 경우: md_confirm이 'Y'인 경우 -->	    
+	    <if test="admin_assign == 7">
+	        AND (md_confirm = 'Y' OR e.assign_code = 6)
+	     </if> 
+	    ORDER BY start_date DESC;
 	</select>
 	
 	<!-- assign_code에 따른 승인 -->
@@ -51,18 +49,18 @@
 	   SET
 	   <!-- 세션으로 upd_name 넣을 예정  -->
 	       <!-- 부서장 승인 -->
-	       <if test="assign_code == 5 ">
+	       <if test="admin_assign == 5 ">
 	           mng_confirm = 'Y', off_result = '승인중'
 	       </if>
 	       <!-- 이사 승인 -->
-	       <if test="assign_code == 6 ">
+	       <if test="admin_assign == 6 ">
 	           md_confirm = 'Y', off_result = '승인중'
 	       </if>
 	       <!-- 대표 승인 -->
-	       <if test="assign_code == 7 ">
+	       <if test="admin_assign == 7 ">
 	           ceo_confirm = 'Y', off_result = '승 인'
 	       </if>
-	   
+	   ,d.upd_name = #{admin_name}
 	    WHERE e.name = #{name} 
 	     	 AND d.start_date = #{start_date}
 	</update>
@@ -75,22 +73,25 @@
 	   SET 
 	   <!-- 세션으로 upd_name 넣을 예정  -->
 	   	<!-- 부서장 반려 -->
-	       <if test="assign_code == 5">
+	       <if test="admin_assign == 5">
 	           mng_confirm = 'N', off_result = '반 려'
 	       </if>
 		<!-- 이사 반려 -->
-	       <if test="assign_code == 6">
+	       <if test="admin_assign == 6">
 	          md_confirm = 'N', off_result = '반 려'
 	       </if>
 		<!-- 대표 반려 -->
-	       <if test="assign_code == 7">
+	       <if test="admin_assign == 7">
 	           ceo_confirm = 'N', off_result = '반 려'
 	       </if>
+	       , d.upd_name = #{admin_name}
         WHERE e.name = #{name} 
      	 AND d.start_date = #{start_date}
        
 	</update>
-	<update id="increaseDayoffCnt" parameterType="java.util.Map">
+	
+	<!-- 연차 최종 승인시 갯수 차감 -->
+	<update id="updateDayoffCnt" parameterType="java.util.Map">
 		UPDATE dayoff_count dc
 			INNER JOIN dayoff d ON dc.emp_code = d.emp_code
 		SET used_cnt = 
@@ -105,59 +106,41 @@
 				WHEN #{off_code} = 5 THEN remain_cnt - 0.5 * (DATEDIFF(end_date,start_date) + 1)
 			ELSE remain_cnt - 1 * (DATEDIFF(end_date,start_date) + 1)
 			END
+			, dc.upd_name = #{admin_name}
 	    WHERE dc.emp_code = #{emp_code} 
 	      AND d.start_date = #{start_date}
 	</update>
-
-
-	<!-- 부서장  
-	승인
-	<update id="mngConfirm" parameterType = "java.util.Map">
-		UPDATE dayoff d INNER JOIN employee e
-			ON d.emp_code = e.emp_code
-		SET mng_confirm ='Y' , off_result = '승인중'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
-	반려 
-	<update id="mngReturn" parameterType = "java.util.Map">
-		UPDATE dayoff d INNER JOIN employee e
-			ON d.emp_code = e.emp_code 
-		SET mng_confirm = 'N', off_result = '반 려'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
 	
-	이사 
-	승인
-	<update id="mdConfirm" parameterType = "java.util.Map">
-		UPDATE dayoff d INNER JOIN employee e
-			ON d.emp_code = e.emp_code 
-		SET md_confirm ='Y' ,off_result = '승인중'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
-	반려 
-	<update id="mdReturn" parameterType = "java.util.Map">
-		UPDATE dayoff d INNER JOIN employee e
-			ON d.emp_code = e.emp_code 
-		SET md_confirm = 'N', off_result = '반 려'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
 	
-	대표
-	승인
-	<update id="ceoConfirm" parameterType = "java.util.Map">
-		UPDATE dayoff d INNER JOIN employee e
-				ON d.emp_code = e.emp_code 
-		SET ceo_confirm ='Y' , off_result = '승 인'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
-	반려 
-	<update id="ceoReturn" parameterType = "java.util.Map">
-		UPDATE dayoff 
-		SET ceo_confirm = 'N',off_result = '반 려'
-		WHERE name = #{name} AND start_date = #{start_date}
-	</update>
- -->
+	 <!--  직원등록 후에 실행될 연차발생   -->
+	 <insert id="insertDayoffCount" parameterType="java.util.Map">
+	 	INSERT INTO dayoff_count (create_date, emp_code, drop_date, dayoff_cnt, used_cnt, remain_cnt,reg_name)
+		SELECT 
+		    CURDATE() AS create_date,
+		    e.emp_code,
+		    CURDATE() + INTERVAL 364 DAY AS drop_date,   
+		    CASE 
+		        WHEN e.assign_code = 1 THEN 0
+		        ELSE 
+		           ROUND(a.total_cnt * (1-(MONTH(CURDATE())/12)))
+		    END AS dayoff_cnt,
+		    0 AS used_cnt, 
+		    CASE 
+		        WHEN e.assign_code = 1 THEN 0
+		        ELSE 
+		           ROUND(a.total_cnt * (1-(MONTH(CURDATE())/12)))
+		    END AS remain_cnt,
+		    #{admin_name} AS reg_name
+		FROM employee e LEFT JOIN assignment a 
+		    ON e.assign_code = a.assign_code
+		    WHERE e.emp_code = #{emp_code}
+	 </insert>
  
- 
+ 	<!-- emp_code로 연차갯수 조회 -->
+ 	<select id="findDayoff" parameterType="java.util.Map" resultType="int">
+	 	SELECT COUNT(*)
+		FROM dayoff_count dc 
+		WHERE YEAR(dc.create_date) = YEAR(CURDATE()) AND emp_code = #{emp_code}
+ 	</select>
  
  </mapper>

@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_EvalEdit" width="1280" height="720" titletext="New Form" onload="Form_EvalEdit_onload">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="800">
+        <Button id="btnSubmit" taborder="0" text="수정" left="710" top="510" width="70" height="30" onclick="btnSubmit_onclick" cssclass="btn_edit"/>
+        <Grid id="grdEdit" taborder="1" left="30" top="110" width="750" height="385" binddataset="dsQuestions" oncelldblclick="grdEdit_oncelldblclick" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="63"/>
+                <Column size="683"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="35"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="질문 번호"/>
+                <Cell col="1" text="질문 목록"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:guideCode" textAlign="center"/>
+                <Cell col="1" text="bind:question"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Edit id="EditQuestion" taborder="2" left="95" top="510" width="590" height="30" onchanged="EditQuestion_onchanged"/>
+        <Edit id="EditCode" taborder="3" left="30" top="510" width="65" height="30" enable="false" onchanged="EditCode_onchanged" textAlign="center"/>
+        <Static id="Static00" taborder="4" text="평가 기준 수정" left="30" top="20" width="250" height="50" onclick="Static00_onclick" cssclass="stc_title"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsQuestions">
+        <ColumnInfo>
+          <Column id="question" type="STRING" size="256"/>
+          <Column id="guideCode" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEdit">
+        <ColumnInfo>
+          <Column id="question" type="STRING" size="256"/>
+          <Column id="guideCode" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEditSave" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="guideCode" type="INT" size="256"/>
+          <Column id="question" type="STRING" size="256"/>
+          <Column id="admin_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.Form_EvalEdit_onload = function(obj:nexacro.Form, e:nexacro.LoadEventInfo) {
+    var strSvcID = "editRegister";
+    var strSvcUrl = "svc::editRegister.do";
+    var inData = "";
+    var outData = "dsQuestions=dsQuestions";
+    var strArg = "";
+    var callBackFnc = "fnQuestionCallback";
+    var isAsync = true;
+
+    this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+
+};
+
+	var selectedRow = -1;  // 전역 변수로 선택된 행을 저장
+
+// 그리드에서 셀을 더블 클릭했을 때 호출되는 함수
+this.grdEdit_oncelldblclick = function(obj:nexacro.Grid, e:nexacro.GridCellClickEventInfo) {
+	selectedRow = e.row;
+
+    if (selectedRow >= 0) {
+        var question = this.dsQuestions.getColumn(selectedRow, "question");  // 데이터셋에서 값을 가져옴
+        var guideCode = this.dsQuestions.getColumn(selectedRow, "guideCode");
+
+        this.EditQuestion.set_value(question);
+        this.EditCode.set_value(guideCode);
+    } else {
+        alert("선택된 데이터가 없습니다.");
+    }
+};
+
+// 수정 버튼 클릭 시 호출되는 함수
+this.btnSubmit_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+	this.EditQuestion.setFocus();
+	var admin_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
+    // Edit 박스에서 수정된 값 가져오기
+    var editedValue = this.EditQuestion.value;
+
+    // 선택된 행이 있는지 확인
+    if (selectedRow >= 0) {
+        // 그리드의 guideCode를 가져오기
+        var guideCode = this.grdEdit.getCellValue(selectedRow, 0);  // 0번째 컬럼에서 guideCode 가져오기
+
+        if (!guideCode) {
+            alert("guideCode 값을 가져올 수 없습니다.");
+            return;
+        }
+		var admin_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
+
+        // 수정할 데이터를 dsEditSave 데이터셋에 추가
+        this.dsEditSave.clearData();  // 데이터셋을 초기화하고 새 데이터 추가
+        this.dsEditSave.addRow();
+        this.dsEditSave.setColumn(0, "question", editedValue);
+        this.dsEditSave.setColumn(0, "guideCode", guideCode);  // guideCode 값을 추가
+		this.dsEditSave.setColumn(0, "admin_name", admin_name);
+
+        // 수정된 데이터 전송
+        var strSvcID = "updateRegister";
+        var strSvcUrl = "svc::updateRegister.do";
+        var inData = "dsEditSave=dsEditSave";
+        var outData = "";
+        var strArg = "";
+        var callBackFnc = "fnUpdateCallback";
+        var isAsync = true;
+
+        this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+    } else {
+        // 선택된 행이 없을 경우 사용자에게 알림
+        alert("수정할 행을 선택해 주세요.");
+    }
+};
+	
+	this.fnQuestionCallback = function(svcID, errorCode, errorMsg) {
+    if (errorCode < 0) {
+        alert("데이터 로드 실패: " + errorMsg);  // 에러가 발생한 경우
+    }
+};
+
+this.fnUpdateCallback = function(svcID, errorCode, errorMsg) {
+    if (errorCode < 0) {
+        alert("수정 실패 : " + errorMsg);  // 서버가 반환한 구체적인 오류 메시지를 확인
+    } else {
+        alert("수정이 성공적으로 완료되었습니다.");
+		
+		// 수정 후 데이터를 다시 로드
+        var strSvcID = "editRegister";
+        var strSvcUrl = "svc::editRegister.do";
+        var inData = "";
+        var outData = "dsQuestions=dsQuestions";
+        var strArg = "";
+        var callBackFnc = "fnQuestionCallback";
+        var isAsync = true;
+
+        this.transaction(strSvcID, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+    }
+
+};
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="grdEdit" propid="binddataset" datasetid="dsQuestions" columnid=""/>
+      <BindItem id="item1" compid="EditQuestion" propid="value" datasetid="dsEdit" columnid=""/>
+      <BindItem id="item2" compid="EditCode" propid="value" datasetid="dsEdit" columnid=""/>
+    </Bind>
+  </Form>
+</FDL>

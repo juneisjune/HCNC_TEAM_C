@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="sample_fileuptransfer_01" left="0" top="0" width="770" height="530" titletext="New Form" border="" background="" onload="sample_fileuptransfer_01_onload">
+    <Layouts>
+      <Layout height="530" width="770" stepcount="0">
+        <Static id="Static00" taborder="2" text="업로드할 파일을 여기에 드래그하세요." left="98" top="322" width="482" height="80" visible="true" background="aliceblue" color="dodgerblue" font="normal 20pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>
+        <Button id="open" taborder="0" text="폴더 열기" left="600" top="322" width="90" height="90" onclick="btn_open_onclick" cssclass="btn_download"/>
+        <Grid id="Grid00" taborder="1" left="100" top="322" width="482" height="90" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="380"/>
+                <Column size="100"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="name"/>
+                <Cell col="1" text="size"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:filename"/>
+                <Cell col="1" text="bind:filesize" textAlign="right"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="Button01" taborder="3" text="등록" left="346" top="440" width="70" height="30" onclick="Button01_onclick" cssclass="btn_regist"/>
+        <Edit id="Edit_title" taborder="4" left="100" top="101" width="590" height="39" onchanged="Edit_title_onchanged"/>
+        <TextArea id="TextArea01" taborder="5" left="100" top="160" width="590" height="144" wordWrap="english"/>
+        <Static id="Static00_00" taborder="6" text="공지사항 등록" left="30" top="23" width="220" height="50" onclick="Static00_00_onclick" cssclass="stc_title"/>
+        <Static id="Static_Label_Attachments" text="첨부파일" left="30" top="322" width="60" height="30" taborder="7" cssclass="stc_stc"/>
+        <Static id="Static_Label_Content" text="내용" left="30" top="160" width="60" height="30" taborder="8" cssclass="stc_stc"/>
+        <Static id="Static_Label_Title" text="제목" left="30" top="101" width="60" height="30" taborder="9" cssclass="stc_stc"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="filename" type="STRING" size="256"/>
+          <Column id="filesize" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <FileUpTransfer id="FileUpTransfer00" onprogress="FileUpTransfer00_onprogress" onsuccess="FileUpTransfer00_onsuccess" onerror="FileUpTransfer00_onerror"/>
+      <FileDialog id="FileDialog00" onclose="FileDialog00_onclose"/>
+      <Dataset id="ds_postInfo">
+        <ColumnInfo>
+          <Column id="title" type="STRING" size="256"/>
+          <Column id="content" type="STRING" size="256"/>
+          <Column id="upd_name" type="STRING" size="256"/>
+          <Column id="emp_code" type="STRING" size="256"/>
+          <Column id="reg_name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_fileInfo">
+        <ColumnInfo>
+          <Column id="ATTACH_NAME" type="STRING" size="256"/>
+          <Column id="ATTACH_URL" type="STRING" size="256"/>
+          <Column id="fileSize" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.sample_fileuptransfer_01_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.Grid00.setFocus();
+};
+
+//아래 첨부파일 관련 코드
+this.btn_open_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.Grid00.setFocus();
+	this.FileDialog00.open('nexacro17', FileDialog.LOAD);  // 단일 파일 선택 모드
+};
+
+this.FileDialog00_onclose = function(obj:nexacro.FileDialog, e:nexacro.FileDialogEventInfo) {
+    if (e.virtualfiles && e.virtualfiles.length > 0) {
+        trace("Selected files: " + e.virtualfiles.length);  // 파일 선택 개수 확인
+        this.addFileList(e.virtualfiles);  // 파일 리스트 추가
+    } else {
+        trace("No files selected.");
+    }
+};
+
+this.addFileList = function(filelist) {
+    for (var i = 0, len = filelist.length, vFile; i < len; i++) {
+        vFile = filelist[i];
+        trace("Opening file: " + vFile.filename);  // 파일 이름 확인
+        vFile.addEventHandler("onsuccess", this.FileList_onsuccess, this);
+        vFile.addEventHandler("onerror", this.FileList_onerror , this);
+        
+        vFile.open(null, 1);  // 1 = 읽기 전용으로 파일 열기
+    }
+}
+
+this.FileList_onsuccess = function(obj:nexacro.VirtualFile, e:nexacro.VirtualFileEventInfo)
+{
+	switch (e.reason)
+	{
+		case 1:
+			obj.getFileSize();
+			break;
+		case 9:
+			var nRowIdx = this.Dataset00.addRow();
+			this.Dataset00.setColumn(nRowIdx, 0, obj.filename);
+			this.Dataset00.setColumn(nRowIdx, 1, this.cutFileSize(e.filesize));
+			this.FileUpTransfer00.addFile(obj.filename, obj);
+			break;
+	}
+}
+
+this.FileList_onerror = function(obj:nexacro.VirtualFile, e:nexacro.VirtualFileErrorEventInfo)
+{
+	trace("errortype: "+e.errortype);
+	trace("errormsg: "+e.errormsg);
+	trace("statuscode: "+e.statuscode);
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications#Example_Showing_file(s)_size
+this.cutFileSize = function(filesize)
+{
+	var sOutput = filesize + " bytes";
+	for (var aMultiples = ["KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"], nMultiple = 0, nApprox = filesize / 1024; nApprox > 1; nApprox /= 1024, nMultiple++) 
+	{
+		sOutput = nApprox.toFixed(3) + " " + aMultiples[nMultiple];
+	}
+	return sOutput;
+};
+this.Grid00_ondragenter = function(obj:nexacro.Grid,e:nexacro.DragEventInfo)
+{
+	if(e.datatype == "file")
+	{
+		this.Grid00.set_opacity(0.5);
+	}
+};
+
+this.Grid00_ondragleave = function(obj:nexacro.Grid,e:nexacro.DragEventInfo)
+{
+	this.Grid00.set_opacity(1);
+};
+
+this.Grid00_ondrop = function(obj:nexacro.Grid,e:nexacro.GridDragEventInfo)
+{
+	this.Grid00.set_opacity(1);
+	if(e.datatype == "file")
+	{
+		this.addFileList(e.filelist);
+	}
+};
+
+this.Button01_onclick = function(obj, e) {
+	this.Grid00.setFocus();
+	
+    // ds_postInfo의 첫 번째 행을 생성 또는 선택
+    if (this.ds_postInfo.getRowCount() == 0) {
+        this.ds_postInfo.addRow();
+    }
+
+    var row = nexacro.getApplication().ds_userInfo.rowposition;
+    this.ds_postInfo.setColumn(0, "upd_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
+    this.ds_postInfo.setColumn(0, "emp_code", nexacro.getApplication().ds_userInfo.getColumn(row, "emp_code"));
+	this.ds_postInfo.setColumn(0, "reg_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
+
+	// Dataset00의 데이터를 ds_fileInfo로 복사하면서 컬럼명 매핑
+	for (var i = 0; i < this.Dataset00.getRowCount(); i++) {
+		var nRow = this.ds_fileInfo.addRow();
+		var originalFileName = this.Dataset00.getColumn(i, "filename");
+		var fileSize = this.Dataset00.getColumn(i, "filesize");
+
+		this.ds_fileInfo.setColumn(nRow, "ATTACH_NAME", originalFileName);
+		this.ds_fileInfo.setColumn(nRow, "ATTACH_URL", originalFileName); // 저장된 파일 이름
+		this.ds_fileInfo.setColumn(nRow, "fileSize", fileSize);
+		
+	}
+
+    // 데이터셋을 PostData로 설정
+    this.FileUpTransfer00.setPostData("ds_postInfo", this.ds_postInfo.saveXML());
+
+    // 파일 업로드 실행
+    this.FileUpTransfer00.upload('http://localhost:8080/fileUpload/fileUpload.jsp');
+	//alert("공지사항 업로드에 성공하였습니다!");
+	//nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
+	
+};
+
+
+this.FileUpTransfer00_onprogress = function(obj:nexacro.FileUploadTransfer,e:nexacro.FileUploadTransferProgressEventInfo)
+{
+	this.fn_addlog(e.loaded+"/"+e.total);
+};
+
+this.FileUpTransfer00_onsuccess = function(obj:nexacro.FileUploadTransfer, e:nexacro.FileUploadTransferEventInfo)
+{
+    // ds_fileInfo에 Dataset00의 데이터를 복사
+    this.ds_fileInfo.copyData(this.Dataset00);
+
+    // 파일 정보와 공지사항 데이터를 Controller로 전송
+    this.transaction(
+        "insertPost", // transaction ID
+        "svc::insertPost.do", // Controller URL
+        "ds_postInfo=ds_postInfo ds_fileInfo=ds_fileInfo", // 입력 DataSet 매핑
+        "", // 출력 DataSet
+        "", // 입력/출력 변수
+        "fn_callback" // 콜백 함수
+    );
+};
+
+this.fn_callback = function(strSvcID, nErrorCode, strErrorMsg) {
+    if (nErrorCode < 0) {
+        alert("공지사항 등록 중 오류 발생: " + strErrorMsg);
+    } else {
+        alert("공지사항이 성공적으로 등록되었습니다.");
+		//alert("공지사항 업로드에 성공하였습니다!");
+	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
+        // 필요한 경우 화면 초기화 등 추가 작업 수행
+    }
+};
+
+this.FileUpTransfer00_onerror = function(obj:nexacro.FileUploadTransfer,e:nexacro.FileUploadTransferErrorEventInfo)
+{	trace("Error while opening file: " + e.errormsg);  // 파일 처리 에러 메시지 출력
+	this.fn_addlog(e.errormsg);
+	this.fn_addlog(e.statuscode);
+};
+
+this.fn_addlog = function(strMessage)
+{
+	this.TextArea00.insertText(strMessage + '\n');
+}
+
+
+this.btn_close_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl("FrameBase::Form_Post.xfdl");
+};
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="Edit_title" propid="value" datasetid="ds_postInfo" columnid="title"/>
+      <BindItem id="item2" compid="TextArea01" propid="value" datasetid="ds_postInfo" columnid="content"/>
+    </Bind>
+  </Form>
+</FDL>

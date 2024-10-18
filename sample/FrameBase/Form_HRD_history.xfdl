@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_HRD_history" width="1280" height="720" titletext="New Form" onload="Form_HRD_history_onload">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00" taborder="0" text="인사기록" left="36" top="23" width="174" height="50" cssclass="stc_title"/>
+        <Edit id="edt_SearchWord" taborder="1" left="160" top="110" width="200" height="30"/>
+        <Button id="btn_HrdHistorySearch" taborder="2" text="조회" left="692" top="110" width="70" height="30" cssclass="btn_search" onclick="btn_HrdHistorySearch_onclick"/>
+        <Grid id="grd_HrdList" taborder="3" left="36" top="150" width="728" height="400" binddataset="ds_HrdHistorylist" autoenter="none" autoupdatetype="none" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="70"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="115"/>
+                <Column size="106"/>
+                <Column size="115"/>
+                <Column size="115"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사번"/>
+                <Cell col="1" text="이름"/>
+                <Cell col="2" text="직급"/>
+                <Cell col="3" text="직급발령일"/>
+                <Cell col="4" text="부서" calendardateformat="yyyy-MM-dd" displaytype="normal"/>
+                <Cell col="5" text="부서발령일"/>
+                <Cell col="6" text="종료일"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:emp_code" textAlign="center"/>
+                <Cell col="1" text="bind:name" textAlign="center"/>
+                <Cell col="2" text="bind:assign_name" textAlign="center"/>
+                <Cell col="3" displaytype="date" edittype="date" text="bind:assign_date" calendardateformat="yyyy-MM-dd" textAlign="center"/>
+                <Cell col="4" calendardateformat="yyyy-MM-dd" displaytype="normal" edittype="none" calendardisplayinvalidtype="none" calendardisplaynulltype="none" calendarpopuptype="none" text="bind:dep_name" textAlign="center"/>
+                <Cell col="5" text="bind:dep_in" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date" calendarshowmonthspin="true" calendarshowyearspin="true" calendardisplaynulltype="none" calendarautoselect="true" textAlign="center"/>
+                <Cell col="6" text="bind:dep_out" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="date" calendarshowmonthspin="true" calendarshowyearspin="true" calendardisplaynulltype="none" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Combo id="cmb_SearchType" taborder="4" left="36" top="110" width="110" height="30" value="all" codecolumn="Value" datacolumn="Name" innerdataset="ds_SearchType" text="사번" index="0"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_SearchType">
+        <ColumnInfo>
+          <Column id="Value" type="STRING" size="256"/>
+          <Column id="Name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Value">EMP_CODE</Col>
+            <Col id="Name">사번</Col>
+          </Row>
+          <Row>
+            <Col id="Value">NAME</Col>
+            <Col id="Name">이름</Col>
+          </Row>
+          <Row>
+            <Col id="Value">ASSIGN_NAME</Col>
+            <Col id="Name">직급</Col>
+          </Row>
+          <Row>
+            <Col id="Value">DEP_NAME</Col>
+            <Col id="Name">부서</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Search">
+        <ColumnInfo>
+          <Column id="SEARCH_TYPE" type="STRING" size="256"/>
+          <Column id="SEARCH_WORD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_HrdHistorylist" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="emp_code" type="INT" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="dep_name" type="STRING" size="256"/>
+          <Column id="dep_in" type="DATE" size="256"/>
+          <Column id="dep_out" type="DATE" size="256"/>
+          <Column id="assign_name" type="STRING" size="256"/>
+          <Column id="assign_date" type="DATE" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edt_SearchWord" propid="value" datasetid="ds_Search" columnid="SEARCH_WORD"/>
+      <BindItem id="item1" compid="cmb_SearchType" propid="value" datasetid="ds_Search" columnid="SEARCH_TYPE"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[
+// 조회 함수
+this.fnSearchList = function(){
+	
+	// 컨트롤러 호출
+	var strSvcId    = "hrdHistoryList";                     // 콜백 서비스명
+	var strSvcUrl   = "svc::hrdHistoryList.do";             // 호출 URL
+	var inData      = "ds_Search=ds_Search";               // Request Dataset 파라미터 (AAA=BBB) AAA = 컨트롤러에서 받을 파라미터명, BBB = 보낼 데이터셋명
+	var outData     = "ds_HrdHistorylist=ds_HrdHistorylist";     // Response Dataset 파라미터 (AAA=BBB) AAA = 데이터를 저장할 데이터셋명, BBB = 응답받은 데이터
+	var strArg      = ""                                   // Request 문자 파라미터
+	var callBackFnc = "fn_Callback";                        // 콜백 후 실행 할 함수
+	var isAsync     = true;                                // 동기/비동기
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+	
+};
+
+
+this.Form_HRD_history_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.ds_Search.setColumn(0,"SEARCH_TYPE","EMP_CODE");
+	this.fnSearchList();
+};
+
+
+
+this.btn_HrdHistorySearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.grd_HrdList.setFocus();
+	this.fnSearchList();
+};
+]]></Script>
+  </Form>
+</FDL>

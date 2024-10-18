@@ -35,5 +35,15 @@ public class NexaAttenServiceImpl implements NexaAttenService {
 	public void attenRegister(Map<String, Object> param) {
 		mapper.attenRegister(param);
 	}
+
+	@Override
+	public int attenRegisterCheck(Map<String, Object> param) {
+		return mapper.attenRegisterCheck(param);
+	}
+
+	@Override
+	public Map<String, Object> selectUserInfo(Map<String, Object> param) {
+		return mapper.selectUserInfo(param);
+	}
 	
 }

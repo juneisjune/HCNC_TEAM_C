@@ -33,7 +33,6 @@ public class NexaAttenController {
 			List<NexaAttenDTO> ds_AttenList = nexaAttenService.nexaGetAttenListByCondition(param);
 			result.addDataSet("ds_AttenList", ds_AttenList);
 		} catch (Exception ee) {
-			System.out.println(ee);
 			result.setErrorCode(-1);
 			result.setErrorMsg("catch 조회 오류");
 		}
@@ -48,42 +47,58 @@ public class NexaAttenController {
 			List<NexaAttenDTO> ds_EmpList = nexaAttenService.nexaGetEmpListByCondition(param);
 			result.addDataSet("ds_EmpList", ds_EmpList);
 		} catch (Exception ee) {
-			System.out.println(ee);
 			result.setErrorCode(-1);
 			result.setErrorMsg("catch 조회 오류");
 		}
 		return result;
 	}
 	
-	// 근태 정보 수정
-	@RequestMapping(value = "/editAttenList.do")
-	public NexacroResult editAttenList(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
+	// 사번 입력 시 정보 가져오기
+	@RequestMapping(value = "/selectUserInfo.do")
+	public NexacroResult selectUserInfo(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
 		NexacroResult result = new NexacroResult();
 		
-		System.out.println(param);
 		try {
-			nexaAttenService.editAttenList(param);
+			 Map<String, Object> ds_AttenList = nexaAttenService.selectUserInfo(param);
+			 
+			 	// 결과가 null 또는 비어있는 경우 처리
+		        if (ds_AttenList == null || ds_AttenList.isEmpty()) {
+		            result.setErrorCode(-1);
+		            result.setErrorMsg("없는 사번입니다.");
+		        } else {
+		            result.addDataSet("ds_AttenList", ds_AttenList);
+		        }
 		} catch (Exception ee) {
-			System.out.println(ee);
 			result.setErrorCode(-1);
 			result.setErrorMsg("catch 조회 오류");
 		}
 		return result;
 	}
 	
-	// 근태 정보 수정
-	@RequestMapping(value = "/attenRegister.do")
-	public NexacroResult attenRegister(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
+	// 근태 정보 저장
+	@RequestMapping(value = "/attenSave.do")
+	public NexacroResult attenSave(@ParamDataSet(name = "ds_AttenList", required = false) Map<String, Object> param) {
 		NexacroResult result = new NexacroResult();
-			
-		System.out.println(param);
-		try {
-			nexaAttenService.attenRegister(param);
-		} catch (Exception ee) {
-				System.out.println(ee);
-			result.setErrorCode(-1);
-			result.setErrorMsg("catch 조회 오류");
+		
+		// 해당 일자에 근태 정보가 있는지 체크
+		int KeyCheck = nexaAttenService.attenRegisterCheck(param);
+		
+		if (KeyCheck == 0) {
+			try {
+				nexaAttenService.attenRegister(param);
+			} catch (Exception ee) {
+				result.setErrorCode(-1);
+				result.setErrorMsg("입력 정보가 올바른지 다시 확인하세요.");
+			}
+		} else {
+			try {
+				nexaAttenService.editAttenList(param);
+			} catch (Exception ee) {
+				result.setErrorCode(-1);
+				result.setErrorMsg("입력 정보가 올바른지 다시 확인하세요.");
+			}
 		}
+		
 		return result;
 		}
 }

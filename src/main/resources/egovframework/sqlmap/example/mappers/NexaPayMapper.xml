@@ -26,7 +26,7 @@
 		<!-- 이번달 입사자들은 조회하지 않음 -->
 		WHERE join_date &lt; DATE_FORMAT(CURDATE(), '%Y-%m-01')
 		<!-- 저번달 퇴사자부터 퇴사 예정자까지 조회함 -->
-		AND (resign_date >= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')  OR resign_date IS NULL);
+		AND (resign_date &gt;= DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')  OR resign_date IS NULL)
 			<if test="assign_code != null and assign_code != 100">
 				AND a.assign_code = #{assign_code}
 			</if>
@@ -35,26 +35,39 @@
 	<!-- 직책에 따른 monthly 조회 -->
 	<!-- 퇴사자는 기본급을 0으로 설정하고 일급으로 계산 -->
 	<select id="selectMonth" resultType="int" parameterType="java.util.Map">
-		SELECT IF(e.resign_date IS NULL
-				, a.monthly as month 
-				, (SELECT	
-					(SELECT COUNT(*)
+				<!-- 지난달 기준 퇴사자가 아닐시 -->
+		SELECT IF(e.resign_date IS NULL OR e.resign_date >= DATE_FORMAT(CURDATE(), '%Y-%m-01') 
+				<!-- 지난달 중도입사자일시  -->
+				, IF(e.join_date > DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')   
+						<!-- 일급 계산 -->
+					 , (SELECT COUNT(*)
+							FROM attendance a JOIN att_code ac 
+							ON a.atten_code = ac.atten_code 
+							JOIN employee e 
+							ON a.emp_code = e.emp_code 
+							WHERE a.emp_code =  #{emp_code}
+							AND (a.atten_code = 1 OR a.atten_code = 3)
+							AND work_date BETWEEN join_date AND DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-31')
+						) * 8 * a.hourly
+						<!-- 중도입사자 아닐시 직책에 따른 기본급으로 계산 -->
+			         , a.monthly 
+			      )
+			      <!-- 지난달 퇴사자일시 일급 계산-->
+				, (SELECT COUNT(*) 
 						FROM attendance a JOIN att_code ac 
 						ON a.atten_code = ac.atten_code 
 						JOIN employee e 
 						ON a.emp_code = e.emp_code 
-						WHERE a.emp_code =  #{emp_code}
+						WHERE a.emp_code =   #{emp_code}
 						AND (a.atten_code = 1 OR a.atten_code = 3)
-						AND YEAR(work_date) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
-						AND MONTH(work_date) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
-					) 
-					* 8 * a.hourly
-				)		
-		) month
+						AND work_date BETWEEN DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01') AND resign_date
+				  ) 
+				* 8 * a.hourly
+		) month			
 		FROM `assignment` a JOIN employee e 
 		ON a.assign_code = e.assign_code 
-		WHERE a.assign_code = #{assign_code}	
-		AND emp_code = #{emp_code};	
+		WHERE a.assign_code = #{assign_code}
+		AND e.emp_code = #{emp_code}
 	</select>
 
 	<!-- 사원의 지난달 work_over 조회 -->
@@ -72,7 +85,14 @@
 	
 	<!-- 사원의 지난달 결근 조회 -->
 	<select id="selectAbsence" resultType="int" parameterType="java.util.Map">
-		SELECT COUNT(*) absence
+				<!-- 지난달 중도입사자일시 -->
+		SELECT IF( join_date > DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')  
+			<!-- 또는 지난달 퇴사자일시 -->
+			OR DATE_FORMAT(resign_date, '%Y-%m') = DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m') 
+			<!-- 근무일수로 기본급을 계산하기 때문에 결근을 계산하지 않음 -->
+			, 0
+			<!-- 지난달 중도입사자 또는 퇴사자가 아닐시 결근 계산 -->
+			, COUNT(*)) absence
 		FROM attendance a JOIN att_code ac 
 			ON a.atten_code = ac.atten_code 
 		JOIN employee e 
@@ -82,6 +102,23 @@
 		AND YEAR(work_date) = YEAR(DATE_SUB(NOW(), INTERVAL 1 MONTH))
 		AND MONTH(work_date) = MONTH(DATE_SUB(NOW(), INTERVAL 1 MONTH))
 	</select>	
+	
+	<!-- 퇴사시 dayoff count 조회 -->
+	<select id="selectDayOff" parameterType="java.util.Map" resultType="int">
+		SELECT count(*)
+		FROM employee e 
+		WHERE emp_code = #{emp_code}
+		AND DATE_FORMAT(resign_date, '%Y-%m-01') =  DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01');
+	</select>
+	
+	<!-- 잔여 연차 개수 조회해서 연차비로 지급위해 조회 -->
+	<select id="selectEtc" parameterType="java.util.Map" resultType="integer">
+		SELECT IF(DATE_FORMAT(resign_date, '%Y-%m-01') =  DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01') , remain_cnt, 0) remain_cnt 
+		FROM dayoff_count dc JOIN employee e 
+		ON dc.emp_code = e.emp_code 
+		WHERE e.emp_code = #{emp_code}
+		and DATE_SUB(NOW(), INTERVAL 1 MONTH) BETWEEN create_date AND drop_date;
+	</select>
 	
 	<select id="duplidacatedPay" resultType="int" parameterType="java.util.Map" >
 		SELECT COUNT(*)
@@ -108,7 +145,9 @@
 			, emp_insurance
 			, health_insurance
 			, longcare_insurance
-			, actual_pay 
+			, actual_pay
+			, etc
+			, total_pay 
 			, reg_name 
 		)
 		VALUES (#{emp_code}
@@ -127,10 +166,73 @@
 			, #{health_insurance}
 			, #{longcare_insurance}
 			, #{actual_pay} 
-			, "오명진"
+			, #{etc}
+			, #{total_pay}
+			, #{adm_name}
 		);
 	</insert>
 	
+	<select id="nexaGetPayListByCondition" resultType="payDTO">
+	    SELECT a.emp_code as empCode,       
+	           a.name as name,              
+	           d.assign_name as assignName, 
+	           e.dep_name as depName,       
+	           b.pay_year as payYear,       
+	           b.pay_month as payMonth,     
+	           b.actual_pay as actualPay,
+	           b.etc as etc,
+	           b.total_pay as totalPay,
+	           b.upd_name as updName  <!-- 수정자의 이름을 추가 -->
+	    FROM employee a
+	    JOIN pay b ON a.emp_code = b.emp_code
+	    JOIN assignment d ON a.assign_code = d.assign_code
+	    JOIN department e ON a.dep_code = e.dep_code
+	    
+	    <!-- 검색 조건 -->
+	    <if test="SEARCH_WORD != null and SEARCH_WORD != '' and SEARCH_TYPE != null">
+	        <if test="SEARCH_TYPE == 'ALL'">
+	            AND (a.emp_code LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+	            OR a.name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+	            OR d.assign_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+	            OR e.dep_name LIKE CONCAT('%', #{SEARCH_WORD}, '%'))
+	        </if>
+	        <if test="SEARCH_TYPE == 'NAME'">
+	            AND a.name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+	        </if>
+	        <if test="SEARCH_TYPE == 'DEPARTMENT'">
+	            AND e.dep_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+	        </if>
+	        <if test="SEARCH_TYPE == 'ASSIGNMENT'">
+	            AND d.assign_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+	        </if>
+	    </if>    
+	    <!-- 년도 및 월 필터링 -->
+	    <if test="START_YEAR != null and END_YEAR != null">
+	        AND (b.pay_year BETWEEN #{START_YEAR} AND #{END_YEAR})
+	    </if>
+	    <if test="START_MONTH != null and END_MONTH != null">
+	        AND (b.pay_month BETWEEN #{START_MONTH} AND #{END_MONTH})
+	    </if>
+	    ORDER BY b.pay_month DESC, a.emp_code ASC
+	</select>
 
+	<update id="updatePayEtc" parameterType="payDTO">
+	    UPDATE pay
+	    SET 
+	        etc = CASE WHEN #{etc} IS NOT NULL THEN #{etc} ELSE 0 END,  
+	        total_pay = actual_pay + #{etc},
+	        upd_name = #{admName}  <!-- 수정자의 이름 업데이트 -->
+	    WHERE emp_code = #{empCode}
+	    
+	    AND pay_year = #{payYear}
+	    AND pay_month = #{payMonth};
+	</update>
 
+   <delete id="deletePay" parameterType="payDTO">
+       DELETE FROM pay
+       WHERE emp_code = #{empCode}
+       AND pay_year = #{payYear}
+       AND pay_month = #{payMonth};
+   </delete>
+      
 </mapper>	

@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_employee" width="1280" height="720" titletext="직원 관리" onload="Form_employee_onload">
+    <Objects>
+      <Dataset id="ds_empList">
+        <ColumnInfo>
+          <Column id="empCode" type="STRING" size="256"/>
+          <Column id="dep_name" type="STRING" size="256"/>
+          <Column id="assign_name" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="gender" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="account" type="STRING" size="256"/>
+          <Column id="id" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_employee">
+        <ColumnInfo>
+          <Column id="id" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="name" type="STRING" size="256"/>
+          <Column id="birth" type="STRING" size="256"/>
+          <Column id="gender" type="STRING" size="256"/>
+          <Column id="phone" type="STRING" size="256"/>
+          <Column id="address" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="joinDate" type="STRING" size="256"/>
+          <Column id="account" type="STRING" size="256"/>
+          <Column id="empCode" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="SEARCH_TYPE" type="STRING" size="256"/>
+          <Column id="SEARCH_WORD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_SearchType">
+        <ColumnInfo>
+          <Column id="Value" type="STRING" size="256"/>
+          <Column id="Name" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Name">전체</Col>
+            <Col id="Value">ALL</Col>
+          </Row>
+          <Row>
+            <Col id="Name">이름</Col>
+            <Col id="Value">NAME</Col>
+          </Row>
+          <Row>
+            <Col id="Name">부서</Col>
+            <Col id="Value">DEP</Col>
+          </Row>
+          <Row>
+            <Col id="Name">직책</Col>
+            <Col id="Value">ASSIGN</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Title" taborder="0" text="직원 정보 관리" left="30" top="20" width="235" height="50" cssclass="stc_title"/>
+        <Grid id="grd_employee" taborder="1" left="30" top="150" width="1150" height="400" binddataset="ds_empList" oncellposchanged="grd_employee_oncellposchanged" autofittype="col" onheaddblclick="grd_employee_onheaddblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="76"/>
+                <Column size="69"/>
+                <Column size="123"/>
+                <Column size="73"/>
+                <Column size="92"/>
+                <Column size="67"/>
+                <Column size="117"/>
+                <Column size="136"/>
+                <Column size="221"/>
+                <Column size="174"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="사번"/>
+                <Cell col="1" text="아이디"/>
+                <Cell col="2" text="부서명"/>
+                <Cell col="3" text="직책"/>
+                <Cell col="4" text="이름"/>
+                <Cell col="5" text="성별"/>
+                <Cell col="6" text="전화번호"/>
+                <Cell col="7" text="생년월일"/>
+                <Cell col="8" text="주소"/>
+                <Cell col="9" text="이메일"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:empCode" textAlign="center"/>
+                <Cell col="1" text="bind:id" textAlign="center"/>
+                <Cell col="2" text="bind:depName" textAlign="center"/>
+                <Cell col="3" text="bind:assignName" textAlign="center"/>
+                <Cell col="4" text="bind:name" textAlign="center"/>
+                <Cell col="5" text="bind:gender" textAlign="center"/>
+                <Cell col="6" text="bind:phone" textAlign="center"/>
+                <Cell col="7" text="bind:birth" displaytype="date" calendardateformat="yyyy년 MM월 dd일" calendareditformat="yyyy-MM-dd"/>
+                <Cell col="8" text="bind:address" textAlign="center"/>
+                <Cell col="9" text="bind:email" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_Register" taborder="2" text="등록" left="940" top="110" width="70" height="30" onclick="btn_Register_onclick" cssclass="btn_regist"/>
+        <Button id="btn_Edit" taborder="3" text="수정" left="1025" top="110" width="70" height="30" onclick="btn_Edit_onclick" cssclass="btn_edit"/>
+        <Button id="btn_Delete" taborder="4" text="삭제" left="1107" top="110" width="70" height="30" onclick="btn_Delete_onclick" cssclass="btn_delete"/>
+        <Combo id="cmb_SearchType" taborder="5" text="전체" left="30" top="110" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" value="ALL" onitemchanged="cmb_SearchType_onitemchanged"/>
+        <Edit id="edt_SearchWord" taborder="6" left="140" top="110" width="180" height="30" binddataset="ds_search" text="bind:SEARCH_WORD" onchanged="edt_SearchWord_onchanged"/>
+        <Button id="btn_Search" taborder="7" text="조회" left="855" top="110" width="70" height="30" onclick="btn_Search_onclick" cssclass="btn_search"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[// 검색 버튼 클릭 이벤트
+this.btn_Search_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+	this.grd_employee.setFocus();
+    this.fnSearch();  // 검색 함수 호출
+};
+
+// 폼 로드 이벤트
+this.Form_employee_onload = function(obj:nexacro.Form, e:nexacro.LoadEventInfo) {
+    this.ds_search.setColumn(0, "SEARCH_TYPE", "ALL");  // 검색 유형을 ALL로 설정
+
+    this.fnSearch();  // 폼 로드 시 자동 검색
+};
+
+// 검색 함수
+this.fnSearch = function() {
+    var strSvcId    = "selectEmployeeList";  // 서비스 ID
+    var strSvcUrl   = "svc::selectEmployeeList.do";  // 서비스 URL
+    var inData      = "ds_search=ds_search";  // 입력 데이터셋
+    var outData     = "ds_empList=ds_empList";  // 출력 데이터셋
+    var callBackFnc = "fnCallback";  // 콜백 함수
+    var isAsync     = true;  // 비동기 처리
+
+    // 트랜잭션 호출
+    this.transaction(strSvcId, strSvcUrl, inData, outData, "", callBackFnc, isAsync);
+};
+
+// 등록 버튼 클릭 이벤트
+this.btn_Register_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
+	this.grd_employee.setFocus();
+    this.showRegisterPopup();  // 등록 팝업 호출 함수 호출
+};
+
+// 등록 팝업 호출 함수
+this.showRegisterPopup = function() {
+
+    var popup = new nexacro.ChildFrame;
+    popup.init("popupRegisterEmp", 100, 100, 800, 700, null, null, "FrameBase::Popup_RegisterEmp.xfdl");
+    popup.set_dragmovetype("all");
+    popup.set_layered(true);
+    popup.set_autosize(true);
+    popup.set_showtitlebar(true);
+    popup.set_showstatusbar(false);
+    popup.set_resizable(true);
+    popup.set_openalign("center middle");
+    popup.showModal(this.getOwnerFrame(), null, this, "fn_popupCallback", true);
+};
+
+
+
+// 수정팝업 호출 함수
+this.showEditPopup = function(objParam) {
+    // 고유한 팝업 ID를 생성
+    var popupId = "popupEditEmp_" + new Date().getTime();  // 시간을 기반으로 고유한 ID 생성
+
+    // 1. 새로운 팝업 생성
+    var popup = new nexacro.ChildFrame;
+    popup.init(popupId, 100, 100, 800, 700, null, null, "FrameBase::Popup_EditEmp.xfdl");
+    popup.set_dragmovetype("all");
+    popup.set_layered(true);
+    popup.set_autosize(true);
+    popup.set_showtitlebar(true);
+    popup.set_showstatusbar(false);
+    popup.set_resizable(true);
+    popup.set_openalign("center middle");
+
+    // 2. 팝업을 호출 (고유한 ID 사용)
+    popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
+};
+
+
+
+
+
+this.btn_Edit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.grd_employee.setFocus();
+	
+	var objParam = {id:this.ds_empList.getColumn(this.ds_empList.rowposition, "id")
+                  , name:this.ds_empList.getColumn(this.ds_empList.rowposition, "name")
+                  , birth:this.ds_empList.getColumn(this.ds_empList.rowposition, "birth")
+              , gender:this.ds_empList.getColumn(this.ds_empList.rowposition, "gender")
+              , phone:this.ds_empList.getColumn(this.ds_empList.rowposition, "phone")
+              , address:this.ds_empList.getColumn(this.ds_empList.rowposition, "address")
+              , email:this.ds_empList.getColumn(this.ds_empList.rowposition, "email")
+              , account:this.ds_empList.getColumn(this.ds_empList.rowposition, "account")
+              , emp_code:this.ds_empList.getColumn(this.ds_empList.rowposition, "empCode")};
+			  
+   this.showEditPopup(objParam);
+};
+
+
+
+
+this.btn_Delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.grd_employee.setFocus();
+	
+    if (!this.confirm("정말로 삭제하시겠습니까?", "")) {
+        return;  // 취소 시 동작 중단
+    }
+	
+  var nRow = this.ds_empList.rowposition;
+    if (nRow < 0) {
+        this.alert("삭제할 데이터를 선택하세요.");
+        return;
+    }
+
+    // 삭제 처리 함수 호출
+    this.fnDeleteEmployee();
+}	
+	
+this.fnDeleteEmployee = function() 
+{
+
+    // 트랜잭션을 통해 삭제 요청
+    var strSvcId    = "deleteEmployee";  // 서비스 ID
+    var strSvcUrl   = "svc::deleteEmployee.do";  // 서비스 URL
+    var inData      = "ds_employee=ds_employee";  // 입력 데이터셋
+    var outData     = "";  // 출력 데이터셋 없음
+    var callBackFnc = "fnCallbackDelete";  // 콜백 함수
+    var isAsync     = true;  // 비동기 처리
+
+    this.transaction(strSvcId, strSvcUrl, inData, outData, "", callBackFnc, isAsync);
+};
+this.fnCallbackDelete = function(svcID, errorCode, errorMsg) 
+{
+    if (errorCode == 0) {
+        this.alert("삭제가 완료되었습니다.");
+        this.fnSearch();  // 삭제 후 재조회
+    } else {
+        this.alert("삭제 중 오류가 발생하였습니다: " + errorMsg);
+    }
+};
+
+this.grd_employee_oncellposchanged = function(obj:nexacro.Grid,e:nexacro.GridSelectEventInfo)
+{
+
+	this.ds_employee.setColumn(0, "empCode", this.ds_empList.getColumn(this.ds_empList.rowposition, "empCode"));
+	
+};
+
+// head 더블 클릭 시 정렬
+this.grd_employee_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var objDs = this.objects[obj.binddataset];
+    var colId = "";
+
+	// 컬럼 확인
+    if (e.col == 0) {
+        colId = "empCode";
+    } else if (e.col == 4) {
+        colId = "name";
+    } else if (e.col == 7) {
+        colId = "birth";
+    } else {
+        return;
+    }
+
+    for (var i = 0; i < obj.getCellCount("head"); i++) {
+        var sHeadText = obj.getCellText(-1, i);  // 헤더의 텍스트 가져오기
+        var nLen = sHeadText.length - 1;  // 텍스트 길이 계산
+
+        if (i == e.col) { // 클릭한 셀에 대해 처리
+            if (sHeadText.substr(nLen) == "▲") {  // 오름차순인 경우
+                obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▼");
+                objDs.set_keystring("S:-" + colId);  // 내림차순 정렬
+            } else if (sHeadText.substr(nLen) == "▼") {  // 내림차순인 경우
+                obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▲");
+                objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+            } else {  // 정렬이 설정되지 않은 경우 기본 오름차순 적용
+                obj.setCellProperty("head", i, "text", sHeadText + "▲");
+                objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+            }
+        } else {
+            // 클릭되지 않은 다른 셀의 정렬 표시 제거
+            if (sHeadText.substr(nLen) == "▲" || sHeadText.substr(nLen) == "▼") {
+                obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen));
+            }
+        }
+    }
+
+    // 정렬 후 데이터셋 강제 적용
+    objDs.applyChange();
+	
+	// 정렬 후 첫 번째 행을 선택
+    objDs.set_rowposition(0);
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="cmb_SearchType" propid="value" datasetid="ds_search" columnid="SEARCH_TYPE"/>
+      <BindItem id="item1" compid="edt_SearchWord" propid="value" datasetid="ds_search" columnid="SEARCH_WORD"/>
+    </Bind>
+  </Form>
+</FDL>

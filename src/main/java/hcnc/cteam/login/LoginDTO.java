@@ -5,8 +5,8 @@ import java.time.LocalTime;
 
 public class LoginDTO {
 	private int empCode;
-	private int assignCode;
-	private int depCode;
+	private Integer assignCode;
+	private Integer depCode;
 	private String id;
 	private String password;
 	private String name;
@@ -22,16 +22,16 @@ public class LoginDTO {
 	public void setEmpCode(int empCode) {
 		this.empCode = empCode;
 	}
-	public int getAssignCode() {
+	public Integer getAssignCode() {
 		return assignCode;
 	}
-	public void setAssignCode(int assignCode) {
+	public void setAssignCode(Integer assignCode) {
 		this.assignCode = assignCode;
 	}
-	public int getDepCode() {
+	public Integer getDepCode() {
 		return depCode;
 	}
-	public void setDepCode(int depCode) {
+	public void setDepCode(Integer depCode) {
 		this.depCode = depCode;
 	}
 	public String getId() {

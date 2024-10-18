@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_Attendance" width="1280" height="720" titletext="출/퇴근 목록" onload="Form_Attendance_onload">
+  <Form id="Form_Attendance" width="1490" height="720" titletext="출/퇴근 목록" onload="Form_Attendance_onload">
     <Layouts>
       <Layout height="720" mobileorientation="landscape" width="1280">
-        <Static id="sta_Title" taborder="0" text="직원 출/퇴근 기록 관리" left="15" top="45" width="350" height="50" font="32px/normal &quot;Gulim&quot;"/>
-        <Combo id="cmb_SearchType" taborder="1" text="전체" left="450" top="120" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL"/>
-        <Edit id="edt_SearchWord" taborder="2" left="570" top="120" width="180" height="30"/>
-        <Calendar id="cal_Start" taborder="3" left="770" top="120" width="150" height="30"/>
-        <Calendar id="cal_End" taborder="4" left="960" top="120" width="150" height="30"/>
-        <Button id="btn_Search" taborder="5" text="검색" left="1120" top="120" width="70" height="30" onclick="btn_Search_onclick"/>
-        <Static id="Static01" taborder="6" text="~" left="930" top="120" width="20" height="30" font="24px/normal &quot;Gulim&quot;"/>
-        <Grid id="grid_Atten" taborder="7" left="20" top="160" width="1240" height="460" binddataset="ds_AttenList" oncelldblclick="grid_Atten_oncelldblclick">
+        <Static id="sta_Title" taborder="0" text="직원 출/퇴근 기록 관리" left="25" top="25" width="305" height="50" cssclass="stc_title"/>
+        <Combo id="cmb_SearchType" taborder="1" text="전체" left="20" top="110" width="100" height="30" innerdataset="ds_SearchType" codecolumn="Value" datacolumn="Name" index="0" value="ALL"/>
+        <Edit id="edt_SearchWord" taborder="2" left="129" top="110" width="180" height="30"/>
+        <Calendar id="cal_Start" taborder="3" left="329" top="110" width="150" height="30"/>
+        <Calendar id="cal_End" taborder="4" left="519" top="110" width="150" height="30"/>
+        <Button id="btn_Search" taborder="5" text="조회" left="890" top="110" width="70" height="30" onclick="btn_Search_onclick" icon="url('imagerc::img_WF_search01.png')" cssclass="btn_search"/>
+        <Static id="Static01" taborder="6" text="~" left="489" top="110" width="20" height="30" font="24px/normal &quot;Gulim&quot;"/>
+        <Grid id="grid_Atten" taborder="7" left="20" top="150" width="1105" height="460" binddataset="ds_AttenList" oncelldblclick="grid_Atten_oncelldblclick" autofittype="col" onheaddblclick="grid_Atten_onheaddblclick">
           <Formats>
             <Format id="default">
               <Columns>
-                <Column size="120"/>
+                <Column size="104"/>
                 <Column size="130"/>
-                <Column size="120"/>
-                <Column size="160"/>
-                <Column size="240"/>
-                <Column size="130"/>
+                <Column size="104"/>
+                <Column size="151"/>
+                <Column size="173"/>
+                <Column size="109"/>
                 <Column size="100"/>
                 <Column size="100"/>
-                <Column size="138"/>
+                <Column size="114"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
@@ -53,14 +53,14 @@
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_RegisterAtten" taborder="8" text="+ 등록" left="1180" top="630" width="80" height="40" onclick="btn_RegisterAtten_onclick"/>
-        <Button id="btn_SearchReset" taborder="9" text="초기화" left="1200" top="120" width="60" height="30" onclick="btn_SearchReset_onclick"/>
-        <Button id="btn_EditAtten" taborder="10" text="수정" left="1080" top="630" width="80" height="40" onclick="btn_EditAtten_onclick"/>
+        <Button id="btn_EditAtten" taborder="8" text="수정" left="975" top="110" width="70" height="30" onclick="btn_EditAtten_onclick" cssclass="btn_edit"/>
+        <Button id="btn_RegisterAtten" taborder="9" text="등록" left="1055" top="110" width="70" height="30" onclick="btn_RegisterAtten_onclick" cssclass="btn_regist"/>
       </Layout>
     </Layouts>
     <Script type="xscript5.1"><![CDATA[
 this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
+{	
+	this.grid_Atten.setFocus();
 	this.fnSearch();
 };
 
@@ -74,11 +74,6 @@ this.Form_Attendance_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 
 //조회 함수
 this.fnSearch = function(){
-
- 	console.log("SEARCH_TYPE = " + this.ds_Search.getColumn(0, "SEARCH_TYPE"));
- 	console.log("SEARCH_WORD = " + this.ds_Search.getColumn(0, "SEARCH_WORD"));
- 	console.log("START_DATE = " + this.ds_Search.getColumn(0, "START_DATE"));
- 	console.log("END_DATE = " + this.ds_Search.getColumn(0, "END_DATE"));
 	
 	var strSvcId    = "selectAttenList"; 					// 콜백 서비스명
 	var strSvcUrl   = "svc::selectAttenList.do"; 			// 호출 URL
@@ -112,21 +107,13 @@ this.fnCallback = function(svcID,errorCode,errorMsg)
 	}
 };
 
-// 초기화 버튼 클릭 시 검색조건 초기화
-this.btn_SearchReset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
-{
-	
-	this.ds_Search.setColumn(0, "SEARCH_TYPE", "ALL");
-	this.ds_Search.setColumn(0, "SEARCH_WORD", "");
-	this.ds_Search.setColumn(0, "START_DATE", "");
-	this.ds_Search.setColumn(0, "END_DATE", "");
-	
-};
-
 // 그리드에서 원하는 열 더블클릭 시 수정 팝업 호출
 this.grid_Atten_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
 {
-	var objParam = {empCode:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "empCode")
+	this.ds_Condition.setColumn(0, "condition", 1);
+
+	var objParam = {condition:this.ds_Condition.getColumn(0, "condition")
+				  , empCode:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "empCode")
                   , name:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "name")
                   , assignName:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "assignName")
 				  , depName:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "depName")
@@ -135,13 +122,17 @@ this.grid_Atten_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEv
 				  , workStart:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workStart")
 				  , workEnd:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workEnd")};
 				  
-	this.showEditAtten(objParam);
+	this.showAtten(objParam);
 };
 
 // 수정 버튼 클릭 시 수정 팝업 호출
 this.btn_EditAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	var objParam = {empCode:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "empCode")
+	this.grid_Atten.setFocus();
+	this.ds_Condition.setColumn(0, "condition", 1);
+	
+	var objParam = {condition:this.ds_Condition.getColumn(0, "condition")
+				  , empCode:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "empCode")
                   , name:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "name")
                   , assignName:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "assignName")
 				  , depName:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "depName")
@@ -150,24 +141,29 @@ this.btn_EditAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInf
 				  , workStart:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workStart")
 				  , workEnd:this.ds_AttenList.getColumn(this.ds_AttenList.rowposition, "workEnd")};
 				  
-	this.showEditAtten(objParam);
+	this.showAtten(objParam);
 };
 
 // 등록 버튼 클릭 시 등록 팝업 호출
 this.btn_RegisterAtten_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	this.showRegisterAtten();
+	this.grid_Atten.setFocus();
+	this.ds_Condition.setColumn(0, "condition", 0);
+	
+	var objParam = {condition:this.ds_Condition.getColumn(0, "condition")};
+
+	this.showAtten(objParam);
 };
 
-// 수정 팝업호출
-this.showEditAtten = function (objParam) 
+// 근태 팝업 호출
+this.showAtten = function (objParam) 
 {		  
 	popup = new nexacro.ChildFrame;
-	popup.init("popupEditAtten", 0, 0, 1050, 200, null, null, "FrameBase::Popup_EditAtten.xfdl");
+	popup.init("popupRegisterAtten", 0, 0, 600, 600, null, null, "FrameBase::Popup_Atten.xfdl");
 	popup.set_dragmovetype("all");
 	popup.set_layered("true");
 	popup.set_autosize(true);
-	popup.set_showtitlebar("근태 수정 화면");
+	popup.set_showtitlebar("근태 화면");
 	popup.set_showstatusbar(false);
 	popup.set_resizable(true);
 	popup.set_openalign("center middle");
@@ -177,23 +173,53 @@ this.showEditAtten = function (objParam)
 	
 }
 
-// 등록 팝업호출
-this.showRegisterAtten = function (objParam) 
-{		  
-	popup = new nexacro.ChildFrame;
-	popup.init("popupRegisterAtten", 0, 0, 1100, 600, null, null, "FrameBase::Popup_RegisterAtten.xfdl");
-	popup.set_dragmovetype("all");
-	popup.set_layered("true");
-	popup.set_autosize(true);
-	popup.set_showtitlebar("근태 등록 화면");
-	popup.set_showstatusbar(false);
-	popup.set_resizable(true);
-	popup.set_openalign("center middle");
-	popup.showModal(this.getOwnerFrame(), objParam, this, "fn_popupCallback", true);
-	popup.style.set_overlaycolor("#6666664C");
-	popup.form.style.set_border("1 solid #4c5a6f");
+// 헤드 더블 클릭 시 정렬
+this.grid_Atten_onheaddblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+    var objDs = this.objects[obj.binddataset];
+    var colId = "";
+
+	// 컬럼 확인
+    if (e.col == 0) {
+        colId = "empCode";
+    } else if (e.col == 1) {
+        colId = "name";
+    } else if (e.col == 4) {
+        colId = "workDate";
+    } else {
+        return;
+    }
+
+    for (var i = 0; i < obj.getCellCount("head"); i++) {
+        var sHeadText = obj.getCellText(-1, i);  // 헤더의 텍스트 가져오기
+        var nLen = sHeadText.length - 1;  // 텍스트 길이 계산
+
+        if (i == e.col) { // 클릭한 셀에 대해 처리
+            if (sHeadText.substr(nLen) == "▲") {  // 오름차순인 경우
+                obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▼");
+                objDs.set_keystring("S:-" + colId);  // 내림차순 정렬
+            } else if (sHeadText.substr(nLen) == "▼") {  // 내림차순인 경우
+                obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▲");
+                objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+            } else {  // 정렬이 설정되지 않은 경우 기본 오름차순 적용
+                obj.setCellProperty("head", i, "text", sHeadText + "▲");
+                objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+            }
+        } else {
+            // 클릭되지 않은 다른 셀의 정렬 표시 제거
+            if (sHeadText.substr(nLen) == "▲" || sHeadText.substr(nLen) == "▼") {
+                obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen));
+            }
+        }
+    }
+
+    // 정렬 후 데이터셋 강제 적용
+    objDs.applyChange();
 	
-}
+	// 정렬 후 첫 번째 행을 선택
+    objDs.set_rowposition(0);
+};
+
 ]]></Script>
     <Objects>
       <Dataset id="ds_AttenList">
@@ -246,6 +272,14 @@ this.showRegisterAtten = function (objParam)
             <Col id="Name">근무형태</Col>
             <Col id="Value">WORK_TYPE</Col>
           </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_Condition">
+        <ColumnInfo>
+          <Column id="condition" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
         </Rows>
       </Dataset>
     </Objects>

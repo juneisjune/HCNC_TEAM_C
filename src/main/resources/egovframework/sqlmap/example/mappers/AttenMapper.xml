@@ -77,7 +77,8 @@
 		   , CURTIME()
 		   , #{name}
 		);
-		</insert>
+	</insert>
+	
 	<!-- 퇴근  -->
 	<update id="endWork" parameterType="attenDTO">
 		UPDATE attendance 
@@ -99,9 +100,7 @@
 		    AND work_date = CURDATE();
     </update>
    
-    
      <!-- 로그인성공후 실행할 근태정보 가져오기  -->
-     <!-- 로그인기능이 들어가는 컨트롤러에 옮길예정 -->
      <select id="userAttendanceInfo" parameterType="java.util.Map" resultType="attenDTO">
      	SELECT a.emp_code , a.work_start, a.work_end 
 		FROM employee e JOIN attendance a 
@@ -110,5 +109,6 @@
 			AND password = SHA2(#{password},256)
 			AND work_date = CURDATE(); 
      </select>
-
+	<!-- 출퇴근 시간 가져오기 -->
+	
 </mapper>

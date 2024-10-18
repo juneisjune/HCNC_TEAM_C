@@ -1,25 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Form_dayoff_Confirm" width="1280" height="720" titletext="New Form">
+  <Form id="Form_dayoff_Confirm" width="1280" height="720" titletext="New Form" onload="Form_dayoff_Confirm_onload">
     <Layouts>
       <Layout height="720" width="1280">
-        <Static id="Static00" taborder="0" text="휴 가 승 인" left="56" top="13" width="842" height="67" font="bold 36px/normal &quot;Gulim&quot;" textAlign="center"/>
-        <Edit id="edt_Confirm" taborder="1" left="180" top="105" width="216" height="40"/>
-        <Button id="btn_offListSearch" taborder="2" text="조회" left="708" top="102" width="100" height="44" onclick="btn_offListSearch_onclick"/>
-        <Grid id="grd_offList" taborder="3" left="28" top="160" width="942" height="460" binddataset="ds_doRequestList" onheadclick="grd_offList_onheadclick">
+        <Static id="Static00" taborder="0" text="휴가 승인" left="28" top="23" width="154" height="50" cssclass="stc_title" onclick="Static00_onclick"/>
+        <Grid id="grd_offList" taborder="1" left="28" top="160" width="1070" height="460" binddataset="ds_doRequestList" onheadclick="grd_offList_onheadclick" autofittype="col" onheaddblclick="grd_offList_onheaddblclick">
           <Formats>
             <Format id="default">
               <Columns>
                 <Column size="48" band="left"/>
-                <Column size="63"/>
-                <Column size="80"/>
+                <Column size="100"/>
+                <Column size="120"/>
                 <Column size="100"/>
                 <Column size="100"/>
-                <Column size="48"/>
+                <Column size="72"/>
                 <Column size="193"/>
-                <Column size="80"/>
-                <Column size="79"/>
-                <Column size="66"/>
+                <Column size="89"/>
+                <Column size="88"/>
+                <Column size="74"/>
                 <Column size="84"/>
               </Columns>
               <Rows>
@@ -41,25 +39,27 @@
               </Band>
               <Band id="body">
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:chk"/>
-                <Cell col="1" text="bind:name"/>
-                <Cell col="2" text="bind:dep_name"/>
-                <Cell col="3" text="bind:start_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="none" calendardisplayinvalidtype="none" calendardisplaynulltype="none" calendarpopuptype="none"/>
-                <Cell col="4" text="bind:end_date" calendardateformat="yyyy-MM-dd" displaytype="date"/>
-                <Cell col="5" text="bind:off_type"/>
+                <Cell col="1" text="bind:name" textAlign="center"/>
+                <Cell col="2" text="bind:dep_name" textAlign="center"/>
+                <Cell col="3" text="bind:start_date" calendardateformat="yyyy-MM-dd" displaytype="date" edittype="none" calendardisplayinvalidtype="none" calendardisplaynulltype="none" calendarpopuptype="none" textAlign="center"/>
+                <Cell col="4" text="bind:end_date" calendardateformat="yyyy-MM-dd" displaytype="date" textAlign="center"/>
+                <Cell col="5" text="bind:off_type" textAlign="center"/>
                 <Cell col="6" text="bind:reason"/>
-                <Cell col="7" text="bind:mng_confirm"/>
-                <Cell col="8" text="bind:md_confirm"/>
-                <Cell col="9" text="bind:ceo_confirm"/>
-                <Cell col="10" text="bind:off_result"/>
+                <Cell col="7" text="bind:mng_confirm" textAlign="center"/>
+                <Cell col="8" text="bind:md_confirm" textAlign="center"/>
+                <Cell col="9" text="bind:ceo_confirm" textAlign="center"/>
+                <Cell col="10" text="bind:off_result" textAlign="center"/>
               </Band>
             </Format>
           </Formats>
         </Grid>
-        <Button id="btn_confirm" taborder="4" text="승인" left="762" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_confirm_onclick"/>
-        <Button id="btn_return" taborder="5" text="반려" left="870" top="634" width="98" height="33" font="16px/normal &quot;Gulim&quot;" textAlign="center" onclick="btn_return_onclick"/>
-        <Static id="Static01" taborder="6" text="이 름" left="96" top="101" width="84" height="47" font="18px/normal &quot;Gulim&quot;" textAlign="center"/>
-        <Static id="Static01_00" taborder="7" text="시작일" left="390" top="101" width="84" height="47" font="18px/normal &quot;Gulim&quot;" textAlign="center"/>
-        <Calendar id="cal_Confirm" taborder="8" left="470" top="105" width="216" height="40"/>
+        <Button id="btn_confirm" taborder="2" text="승인" left="938" top="110" width="70" height="30" textAlign="center" onclick="btn_confirm_onclick" cssclass="btn_check"/>
+        <Button id="btn_return" taborder="3" text="반려" left="1025" top="110" width="70" height="30" textAlign="center" onclick="btn_return_onclick" cssclass="btn_delete"/>
+        <Calendar id="cal_Confirm" taborder="4" left="345" top="110" width="190" height="30"/>
+        <Static id="Static01_00" taborder="5" text="시작일" left="272" top="110" width="84" height="30" cssclass="stc_stc"/>
+        <Edit id="edt_Confirm" taborder="6" left="82" top="110" width="190" height="30"/>
+        <Static id="Static01" taborder="7" text="이 름" left="8" top="110" width="84" height="30" cssclass="stc_stc"/>
+        <Button id="btn_offListSearch" taborder="8" text="조회" left="850" top="110" width="70" height="30" onclick="btn_offListSearch_onclick" cssclass="btn_search"/>
       </Layout>
     </Layouts>
     <Objects>
@@ -84,8 +84,9 @@
         <ColumnInfo>
           <Column id="name" type="STRING" size="256"/>
           <Column id="start_date" type="DATE" size="256"/>
-          <Column id="emp_code" type="STRING" size="256"/>
-          <Column id="assign_code" type="STRING" size="256"/>
+          <Column id="admin_emp" type="STRING" size="256"/>
+          <Column id="admin_assign" type="STRING" size="256"/>
+          <Column id="admin_dep" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -107,23 +108,27 @@
           <Column id="mng_code" type="STRING" size="256"/>
           <Column id="off_code" type="INT" size="256"/>
           <Column id="off_result" type="STRING" size="256"/>
+          <Column id="admin_name" type="STRING" size="256"/>
+          <Column id="admin_assign" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
     </Objects>
-    <Bind>
-      <BindItem id="item0" compid="edt_Confirm" propid="value" datasetid="ds_offList" columnid="name"/>
-      <BindItem id="item1" compid="cal_Confirm" propid="value" datasetid="ds_offList" columnid="start_date"/>
-    </Bind>
-    <Script type="xscript5.1"><![CDATA[
+    <Script type="xscript5.1"><![CDATA[this.Form_dayoff_Confirm_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fnSearchList();
+};
+
 // 조회 함수
 this.fnSearchList = function(){
 	// application 변수에서 emp_code와 assign_code를 가져옴
-    var loginEmpCode = nexacro.getApplication().gv_emp_code;
-    var loginAssignCode = nexacro.getApplication().gv_assign_code;
+    var loginEmpCode = nexacro.getApplication().ds_userInfo.getColumn(0, "emp_code");
+    var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
+	var loginDepCode = nexacro.getApplication().ds_userInfo.getColumn(0, "dep_code");
 
-    this.ds_offList.setColumn(0, "emp_code", "7");
-    this.ds_offList.setColumn(0, "assign_code", "7");
-	console.log(this.ds_offList);
+    this.ds_offList.setColumn(0, "admin_emp", loginEmpCode);
+    this.ds_offList.setColumn(0, "admin_assign", loginAssignCode);
+	this.ds_offList.setColumn(0, "admin_dep", loginDepCode);
+	
 	// 컨트롤러 호출
 	var strSvcId    = "dayoffList";                     // 콜백 서비스명
 	var strSvcUrl   = "svc::dayOffList.do";             // 호출 URL
@@ -138,20 +143,17 @@ this.fnSearchList = function(){
 
 this.btn_offListSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	// 바인딩 된 값 콘솔로그로 찍어서 조회
-	console.log("edt_confirm = " + this.ds_offList.getColumn(0,"name"));
-	console.log("cal_confirm = " + this.ds_offList.getColumn(0,"start_date"));
+	this.grd_offList.setFocus();
 	this.fnSearchList();
 };
 
 //승인 함수
 this.btn_confirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	console.log("승인 함수 실행");
-	// application 변수에서 emp_code와 assign_code를 가져옴
-
-    var loginAssignCode = nexacro.getApplication().gv_assign_code;
-
+	this.grd_offList.setFocus();
+	// application 변수에서assign_code를 가져옴
+    var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
+	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 	
     // 체크된 데이터를 새로운 Dataset에 추가
 	this.ds_doRequestListCopy.clearData();
@@ -160,22 +162,18 @@ this.btn_confirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
         if (isChecked == 1) {  // 체크된 경우
             var newRow = this.ds_doRequestListCopy.addRow();  // 새로운 행 추가
             this.ds_doRequestListCopy.copyRow(newRow, this.ds_doRequestList, i);  // 기존 데이터에서 해당 행 복사
-			
-			//로그인한 assign_code 가져올예정
-			this.ds_doRequestListCopy.setColumn(0, "assign_code", "7");
+			this.ds_doRequestListCopy.setColumn(newRow, "admin_assign", loginAssignCode);
+			this.ds_doRequestListCopy.setColumn(newRow, "admin_name", loginAdminName);
         }
     }
 	var off_result = this.ds_doRequestListCopy.getColumn(0,"off_result");
-	console.log(off_result);
+
 	
 	// off_result 값이 '반 려', '승 인', '승인중'일 경우 함수 실행 중지 및 경고 메시지
     if (off_result === "반 려" || off_result === "승 인" ) {
         alert("결재가 완료된 건은 재결재 할 수 없습니다.");
         return;  // 함수 실행 중지
     }
-	
-	
-	console.log("전송할 데이터셋 확인:", this.ds_doRequestListCopy.saveXML());
 
     // Transaction을 통해 서버로 전송
     var strSvcId = "confirmDayoff";
@@ -191,14 +189,16 @@ this.btn_confirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 		this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 	}
 };
+
 //반려함수
 this.btn_return_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
-	console.log("반려 함수 실행");
-	
-	var loginAssignCode = nexacro.getApplication().gv_assign_code;
+	this.grd_offList.setFocus();
+	// application 변수에서 emp_code와 assign_code를 가져옴
+    var loginAssignCode = nexacro.getApplication().ds_userInfo.getColumn(0, "assign_code");
+	var loginAdminName = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
 
-    this.ds_offList.setColumn(0, "assign_code", "7");
+    this.ds_offList.setColumn(0, "admin_assign", loginAssignCode);
 	
     // 체크된 데이터를 새로운 Dataset에 추가
 	this.ds_doRequestListCopy.clearData();
@@ -207,16 +207,12 @@ this.btn_return_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
         if (isChecked == 1) {  // 체크된 경우
             var newRow = this.ds_doRequestListCopy.addRow();  // 새로운 행 추가
             this.ds_doRequestListCopy.copyRow(newRow, this.ds_doRequestList, i);  // 기존 데이터에서 해당 행 복사
-			
-			//로그인한 assign_code 가져올예정
-			this.ds_doRequestListCopy.setColumn(0, "assign_code", "7");
+			this.ds_doRequestListCopy.setColumn(newRow, "admin_assign", loginAssignCode);
+			this.ds_doRequestListCopy.setColumn(newRow, "admin_name", loginAdminName);
         }
     }
-	
-	console.log("전송할 데이터셋 확인:", this.ds_doRequestListCopy.saveXML());
-	
 	var off_result = this.ds_doRequestListCopy.getColumn(0,"off_result");
-	console.log(off_result);
+
 	
 	// off_result 값이 '반 려', '승 인', '승인중'일 경우 함수 실행 중지 및 경고 메시지
     if (off_result === "반 려" || off_result === "승 인" ) {
@@ -271,7 +267,7 @@ this.fn_Callback = function(svcID,errorCode,errorMsg) {
 // -------------------------------------------------- //
 
 this.grd_offList_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
-{
+{	if(e.col == 0) {
 	// 아래 속성에서 0은 그리드에서 0번쨰 column을 의미하며 text 값을 가져오라는 의미입니다.
 	var chkVal = obj.getCellProperty("head", 0, "text"); 
 	
@@ -288,11 +284,60 @@ this.grd_offList_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEven
 		for (var i=0; i<this.ds_doRequestList.rowcount; i++) { //프론트에 적용 ROW 부분
 			this.ds_doRequestList.setColumn(i,"chk","1");
 		}
-		
+	}
 	}
 };
 
+// 헤드 더블 클릭 시 정렬
+this.grd_offList_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var objDs = this.objects[obj.binddataset];
+    var colId = "";
 
+	// 컬럼 확인
+    if (e.col == 1) {
+        colId = "name";
+    } else if (e.col == 3) {
+        colId = "start_date";
+    } else if (e.col == 4) {
+        colId = "end_date";
+    } else {
+        return;
+    }
+
+    for (var i = 0; i < obj.getCellCount("head"); i++) {
+        var sHeadText = obj.getCellText(-1, i);  // 헤더의 텍스트 가져오기
+        var nLen = sHeadText.length - 1;  // 텍스트 길이 계산
+
+        if (i == e.col) { // 클릭한 셀에 대해 처리
+            if (sHeadText.substr(nLen) == "▲") {  // 오름차순인 경우
+                obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▼");
+                objDs.set_keystring("S:-" + colId);  // 내림차순 정렬
+            } else if (sHeadText.substr(nLen) == "▼") {  // 내림차순인 경우
+                obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▲");
+                objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+            } else {  // 정렬이 설정되지 않은 경우 기본 오름차순 적용
+                obj.setCellProperty("head", i, "text", sHeadText + "▲");
+                objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+            }
+        } else {
+            // 클릭되지 않은 다른 셀의 정렬 표시 제거
+            if (sHeadText.substr(nLen) == "▲" || sHeadText.substr(nLen) == "▼") {
+                obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen));
+            }
+        }
+    }
+
+    // 정렬 후 데이터셋 강제 적용
+    objDs.applyChange();
+	
+	// 정렬 후 첫 번째 행을 선택
+    objDs.set_rowposition(0);
+};
 ]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="cal_Confirm" propid="value" datasetid="ds_offList" columnid="start_date"/>
+      <BindItem id="item1" compid="edt_Confirm" propid="value" datasetid="ds_offList" columnid="name"/>
+    </Bind>
   </Form>
 </FDL>

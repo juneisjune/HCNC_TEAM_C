@@ -101,7 +101,7 @@
 				, work_over = null
 			</if>
 		   		, upd_date = CURTIME()
-		   		, upd_name = #{managerName}
+		   		, upd_name = #{admin_name}
 			WHERE 1=1
 				AND emp_code = #{empCode}
 				AND work_date = SUBSTRING(#{workDate}, 1, 8)
@@ -124,7 +124,7 @@
 			<!-- 전체 조회 -->
 			<if test="SEARCH_TYPE == 'ALL'">
 				AND a.name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
-				OR d.assign_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
+				OR b.assign_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
 				OR c.dep_name LIKE CONCAT('%', #{SEARCH_WORD}, '%')
 				OR a.birth LIKE CONCAT('%', #{SEARCH_WORD}, '%')
 				OR a.gender LIKE CONCAT('%', #{SEARCH_WORD}, '%')
@@ -186,7 +186,29 @@
 		            ) / 1800
 		        ) * 0.5
 			, CURTIME()
-			, #{managerName}
+			, #{admin_name}
 			)
 		</insert>
+		
+		<!-- 이미 근태 정보가 등록된 날짜인지 체크 -->
+		<select id="attenRegisterCheck" parameterType="map" resultType="int">
+			SELECT COUNT(emp_code)
+			FROM attendance
+			WHERE 1=1
+				AND emp_code = #{empCode}
+				AND work_date = #{workDate}
+		</select>
+		
+		<!-- 사번 입력 시 해당 직원 정보 가져오기 -->
+		<select id="selectUserInfo" parameterType="map" resultType="map">
+			SELECT a.emp_code as empCode
+				, a.name as name
+				, b.assign_name as assignName
+				, c.dep_name as depName
+			FROM employee a
+			JOIN assignment b ON a.assign_code = b.assign_code
+			JOIN department c ON a.dep_code = c.dep_code
+			WHERE 1=1
+				AND a.emp_code = #{empCode}
+		</select>
 </mapper>

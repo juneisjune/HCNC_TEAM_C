@@ -18,7 +18,7 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("ds_AssignType", this);
-            obj._setContents("<ColumnInfo><Column id=\"assign_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"assign_code\">100</Col><Col id=\"assign_name\">전체</Col></Row><Row><Col id=\"assign_code\">1</Col><Col id=\"assign_name\">사원</Col></Row><Row><Col id=\"assign_name\">대리</Col><Col id=\"assign_code\">2</Col></Row><Row><Col id=\"assign_name\">과장</Col><Col id=\"assign_code\">3</Col></Row><Row><Col id=\"assign_name\">차장</Col><Col id=\"assign_code\">4</Col></Row><Row><Col id=\"assign_name\">부장</Col><Col id=\"assign_code\">5</Col></Row><Row><Col id=\"assign_name\">이사</Col><Col id=\"assign_code\">6</Col></Row><Row><Col id=\"assign_name\">대표</Col><Col id=\"assign_code\">7</Col></Row></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"assign_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"assign_code\">100</Col><Col id=\"assign_name\">전체</Col></Row><Row><Col id=\"assign_code\">1</Col><Col id=\"assign_name\">사원</Col></Row><Row><Col id=\"assign_code\">2</Col><Col id=\"assign_name\">대리</Col></Row><Row><Col id=\"assign_code\">3</Col><Col id=\"assign_name\">과장</Col></Row><Row><Col id=\"assign_code\">4</Col><Col id=\"assign_name\">차장</Col></Row><Row><Col id=\"assign_code\">5</Col><Col id=\"assign_name\">부장</Col></Row><Row><Col id=\"assign_code\">6</Col><Col id=\"assign_name\">이사</Col></Row><Row><Col id=\"assign_code\">7</Col><Col id=\"assign_name\">대표</Col></Row></Rows>");
             this.addChild(obj.name, obj);
 
 
@@ -28,7 +28,7 @@
 
 
             obj = new Dataset("ds_EmpList", this);
-            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\" text=\"bind:chkVal\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\" text=\"bind:emp_code\"/><Column id=\"name\" type=\"STRING\" size=\"256\" text=\"bind:name\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\" text=\"bind:assign_code\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\" text=\"bind:assign_name\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\" text=\"bind:dep_name\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\" text=\"bind:join_date\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\" text=\"bind:resign_date\"/><Column id=\"account\" type=\"STRING\" size=\"256\" text=\"bind:account\"/><Column id=\"month\" type=\"INT\" size=\"256\" text=\"bind:month\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\" text=\"bind:pay_over\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\" text=\"bind:pay_meal\"/><Column id=\"absence\" type=\"INT\" size=\"256\" text=\"bind:absence\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\" text=\"bind:pay_amount\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\" text=\"bind:income_tax\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\" text=\"bind:resident_tax\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\" text=\"bind:national_tax\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\" text=\"bind:emp_insurance\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\" text=\"bind:health_insurance\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\" text=\"bind:longcare_insurance\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\" text=\"bind:actual_pay\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"month\" type=\"INT\" size=\"256\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\"/><Column id=\"absence\" type=\"INT\" size=\"256\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\"/><Column id=\"etc\" type=\"INT\" size=\"256\"/><Column id=\"total_pay\" type=\"INT\" size=\"256\"/><Column id=\"give_date\" type=\"DATE\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -38,54 +38,57 @@
 
 
             obj = new Dataset("ds_EmpListCopy", this);
-            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\" text=\"bind:chkVal\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\" text=\"bind:emp_code\"/><Column id=\"name\" type=\"STRING\" size=\"256\" text=\"bind:name\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\" text=\"bind:assign_code\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\" text=\"bind:assign_name\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\" text=\"bind:dep_name\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\" text=\"bind:join_date\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\" text=\"bind:resign_date\"/><Column id=\"account\" type=\"STRING\" size=\"256\" text=\"bind:account\"/><Column id=\"month\" type=\"INT\" size=\"256\" text=\"bind:month\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\" text=\"bind:pay_over\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\" text=\"bind:pay_meal\"/><Column id=\"absence\" type=\"INT\" size=\"256\" text=\"bind:absence\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\" text=\"bind:pay_amount\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\" text=\"bind:income_tax\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\" text=\"bind:resident_tax\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\" text=\"bind:national_tax\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\" text=\"bind:emp_insurance\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\" text=\"bind:health_insurance\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\" text=\"bind:longcare_insurance\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\" text=\"bind:actual_pay\"/><Column id=\"give_date\" type=\"DATE\" size=\"256\" text=\"bind:give_date\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"month\" type=\"INT\" size=\"256\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\"/><Column id=\"absence\" type=\"INT\" size=\"256\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\"/><Column id=\"etc\" type=\"INT\" size=\"256\"/><Column id=\"total_pay\" type=\"INT\" size=\"256\"/><Column id=\"give_date\" type=\"DATE\" size=\"256\"/><Column id=\"adm_name\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("title","60","12","278","78",null,null,null,null,null,null,this);
-            obj.set_font("24px/normal \"Gulim\"");
+            obj = new Static("Static00","31","20","154","50",null,null,null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("급여 등록");
+            obj.set_cssclass("stc_title");
             this.addChild(obj.name, obj);
 
-            obj = new Static("stc_Assign","60","71","120","60",null,null,null,null,null,null,this);
+            obj = new Static("stc_Assign","30","110","30","30",null,null,null,null,null,null,this);
             obj.set_taborder("1");
             obj.set_text("직책");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Combo("cmb_Assign","95","91","105","20",null,null,null,null,null,null,this);
+            obj = new Combo("cmb_Assign","69","110","130","30",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_innerdataset("ds_AssignType");
             obj.set_codecolumn("assign_code");
             obj.set_datacolumn("assign_name");
-            obj.set_font("12pt/normal gulim");
-            obj.set_text("");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Search","215","91","43","20",null,null,null,null,null,null,this);
+            obj = new Button("btn_Search","210","110","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("3");
             obj.set_text("조회");
+            obj.set_cssclass("btn_search");
             this.addChild(obj.name, obj);
 
-            obj = new Grid("grd_Emp","60","125","830","330",null,null,null,null,null,null,this);
+            obj = new Grid("grd_Emp","30","155","890","415",null,null,null,null,null,null,this);
             obj.set_taborder("4");
             obj.set_binddataset("ds_EmpList");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"67\"/><Column size=\"92\"/><Column size=\"70\"/><Column size=\"97\"/><Column size=\"121\"/><Column size=\"119\"/><Column size=\"213\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/><Cell col=\"7\" text=\"계좌번호\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chkVal\"/><Cell col=\"1\" textAlign=\"center\" text=\"bind:emp_code\"/><Cell col=\"2\" textAlign=\"center\" text=\"bind:name\"/><Cell col=\"3\" textAlign=\"center\" text=\"bind:assign_name\"/><Cell col=\"4\" textAlign=\"center\" text=\"bind:dep_name\"/><Cell col=\"5\" textAlign=\"center\" text=\"bind:join_date\" displaytype=\"date\"/><Cell col=\"6\" text=\"bind:resign_date\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:account\"/></Band></Format></Formats>");
+            obj.set_autofittype("col");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"88\"/><Column size=\"109\"/><Column size=\"82\"/><Column size=\"110\"/><Column size=\"121\"/><Column size=\"119\"/><Column size=\"210\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"직책\"/><Cell col=\"4\" text=\"부서\"/><Cell col=\"5\" text=\"입사일\"/><Cell col=\"6\" text=\"퇴사일\"/><Cell col=\"7\" text=\"계좌번호\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chkVal\"/><Cell col=\"1\" textAlign=\"center\" text=\"bind:emp_code\"/><Cell col=\"2\" textAlign=\"center\" text=\"bind:name\"/><Cell col=\"3\" textAlign=\"center\" text=\"bind:assign_name\"/><Cell col=\"4\" textAlign=\"center\" text=\"bind:dep_name\"/><Cell col=\"5\" textAlign=\"center\" text=\"bind:join_date\" displaytype=\"date\"/><Cell col=\"6\" text=\"bind:resign_date\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:account\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
-            obj = new Static("Static04","570","455","120","60",null,null,null,null,null,null,this);
+            obj = new Static("Static04","580","590","120","30",null,null,null,null,null,null,this);
             obj.set_taborder("5");
             obj.set_text("지급일");
+            obj.set_cssclass("stc_stc");
             this.addChild(obj.name, obj);
 
-            obj = new Calendar("cal_GiveDate","625","475","150","20",null,null,null,null,null,null,this);
+            obj = new Calendar("cal_GiveDate","675","590","150","30",null,null,null,null,null,null,this);
             obj.set_taborder("6");
             obj.set_dateformat("yyyy-MM-dd");
             this.addChild(obj.name, obj);
 
-            obj = new Button("btn_Insert","800","470","90","30",null,null,null,null,null,null,this);
+            obj = new Button("btn_Insert","850","590","70","30",null,null,null,null,null,null,this);
             obj.set_taborder("7");
             obj.set_text("등록");
+            obj.set_cssclass("btn_regist");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -116,36 +119,39 @@
         this.Form_InsertPay_onload = function(obj,e)
         {
         	this.ds_Assign.setColumn(0, "assign_code", "100");
+        	this.fnSearch();
         };
 
 
         this.btn_Search_onclick = function(obj,e)
         {
+        	this.grd_Emp.setFocus();
         	this.fnSearch();
 
         };
 
         this.grd_Emp_onheadclick = function(obj,e)
         {
-        	//grid의 head에서 0번째 셀의 값을 가져옴
-        	var chkVal = obj.getCellProperty("head", 0, "text");
+        	//0번째 column일 때 onheadclick 작동(체크박스)
+        	if(e.col == 0) {
+        		//grid의 head에서 0번째 셀의 값을 가져옴
+        		var chkVal = obj.getCellProperty("head", 0, "text");
 
-        	if (chkVal == "1") { // 이미 체크된 상태라면 체크 해지로 변환
-        		chkVal	= "0";
-        		obj.setCellProperty("head", 0, "text", chkVal);
-        		for (var i=0; i<this.ds_EmpList.rowcount; i++) {
-        			this.ds_EmpList.setColumn(i,"chkVal","0");
+        		if (chkVal == "1") { // 이미 체크된 상태라면 체크 해지로 변환
+        			chkVal	= "0";
+        			obj.setCellProperty("head", 0, "text", chkVal);
+        			for (var i=0; i<this.ds_EmpList.rowcount; i++) {
+        				this.ds_EmpList.setColumn(i,"chkVal","0");
+        			}
+        		} else {
+        			chkVal	= "1";
+        			obj.setCellProperty("head", 0, "text", chkVal);
+        			for (var i=0; i<this.ds_EmpList.rowcount; i++) {
+        				this.ds_EmpList.setColumn(i,"chkVal","1");
+        			}
         		}
-        	} else {
-        		chkVal	= "1";
-        		obj.setCellProperty("head", 0, "text", chkVal);
-        		for (var i=0; i<this.ds_EmpList.rowcount; i++) {
-        			this.ds_EmpList.setColumn(i,"chkVal","1");
-        		}
-
         	}
         };
-
 
         this.fnSearch = function() {
         	if(this.ds_Assign.getColumn(0, "assign_code") == ''
@@ -178,11 +184,14 @@
         	switch(svcID)
         	{
         		case "selectAssign":
-        			this.alert("조회가 완료되었습니다.");
+        			if(this.ds_EmpList.getRowCount() == 0) {
+        				this.alert("등록할 직원이 없습니다.");
+        			}
         			break;
 
         		case "insertPay":
         			this.alert("등록이 완료되었습니다.");
+        			this.fnSearch();
         			break;
 
         		default :
@@ -192,6 +201,10 @@
 
         this.btn_Insert_onclick = function(obj,e)
         {
+        	this.grd_Emp.setFocus();
+
+        	var adm_name = nexacro.getApplication().ds_userInfo.getColumn(0, "name");
+
         	if(this.ds_GiveDate.getColumn(0, "give_date") == ''
         	|| this.ds_GiveDate.getColumn(0, "give_date") == 'undefined'
         	|| this.ds_GiveDate.getColumn(0, "give_date") == null){
@@ -213,11 +226,10 @@
                 if (isChecked == 1) {
                     var newRow = this.ds_EmpListCopy.addRow();
                     this.ds_EmpListCopy.copyRow(newRow, this.ds_EmpList, i);
-        			this.ds_EmpListCopy.setColumn(i,"give_date", this.ds_GiveDate.getColumn(0, "give_date"));
+        			this.ds_EmpListCopy.setColumn(newRow, "give_date", this.ds_GiveDate.getColumn(0, "give_date"));
+        			this.ds_EmpListCopy.setColumn(newRow, "adm_name", adm_name);
                 }
             }
-
-        	console.log(this.ds_EmpListCopy.saveXML());
 
         	var strSvcId    = "insertPay";
         	var strSvcUrl   = "svc::insertPay.do";
@@ -230,6 +242,59 @@
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
 
+        // 그리드 헤드 더블 클릭 시 정렬
+        this.grd_Emp_onheaddblclick = function(obj,e)
+        {
+        	//데이터셋 바인딩
+        	var objDs = this.objects[obj.binddataset];
+            var colId = "";
+
+        	// 컬럼 확인
+            if (e.col == 1) {
+                colId = "emp_code";
+            } else if (e.col == 2) {
+                colId = "name";
+            } else if (e.col == 5) {
+                colId = "join_date";
+            } else if (e.col == 6) {
+                colId = "resign_date";
+            } else {
+                return;
+            }
+
+            for (var i = 0; i < obj.getCellCount("head"); i++) {
+        		// 헤더의 텍스트 가져오기(-1일시 headband)
+                var sHeadText = obj.getCellText(-1, i);
+                var nLen = sHeadText.length - 1;  // 텍스트 길이 계산
+
+                if (i == e.col) { // 클릭한 셀에 대해 처리
+                    if (sHeadText.substr(nLen) == "▲") {  // 오름차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▼");
+        			    objDs.set_keystring("S:-" + colId);
+                    } else if (sHeadText.substr(nLen) == "▼") {  // 내림차순인 경우
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▲");
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    } else {  // 정렬이 설정되지 않은 경우 기본 오름차순 적용
+                        obj.setCellProperty("head", i, "text", sHeadText + "▲");
+        				//set_keystring : 데이터를 그룹화하거나 정렬
+        				//G 그룹화 S 정렬 - 내림차순 + 오름차순
+                        objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
+                    }
+                } else {
+                    // 클릭되지 않은 다른 셀의 정렬 표시 제거
+                    if (sHeadText.substr(nLen) == "▲" || sHeadText.substr(nLen) == "▼") {
+                        obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen));
+                    }
+                }
+            }
+
+            // 정렬 후 데이터셋 강제 적용
+            objDs.applyChange();
+
+        	// 정렬 후 첫 번째 행을 선택
+            objDs.set_rowposition(0);
+        };
+
 
         });
         
@@ -237,9 +302,12 @@
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Form_InsertPay_onload,this);
+            this.Static00.addEventHandler("onclick",this.title_onclick,this);
             this.cmb_Assign.addEventHandler("onitemchanged",this.Combo00_onitemchanged,this);
             this.btn_Search.addEventHandler("onclick",this.btn_Search_onclick,this);
             this.grd_Emp.addEventHandler("onheadclick",this.grd_Emp_onheadclick,this);
+            this.grd_Emp.addEventHandler("onheaddblclick",this.grd_Emp_onheaddblclick,this);
+            this.cal_GiveDate.addEventHandler("onchanged",this.cal_GiveDate_onchanged,this);
             this.btn_Insert.addEventHandler("onclick",this.btn_Insert_onclick,this);
         };
         this.loadIncludeScript("Form_InsertPay.xfdl");
