@@ -132,6 +132,7 @@
 	    DELETE FROM post WHERE post_code IN
 	    <foreach item="post_code" collection="list" open="(" separator="," close=")">
 	        #{post_code}
+	   
 	    </foreach>
 	</delete>
 	
