@@ -116,13 +116,11 @@
         // 검색 버튼 클릭 이벤트
         this.btn_Search_onclick = function(obj, e) {
         	this.grd_employee.setFocus();
-            console.log("검색 버튼 클릭됨");
             this.fnSearch();  // 검색 함수 호출
         };
 
         // 폼 로드 이벤트
         this.Form_employee_onload = function(obj, e) {
-            console.log("폼 로드됨. 초기 검색 유형 설정: ALL");
             this.ds_search.setColumn(0, "SEARCH_TYPE", "ALL");  // 검색 유형을 ALL로 설정
 
             this.fnSearch();  // 폼 로드 시 자동 검색
@@ -138,20 +136,17 @@
             var isAsync     = true;  // 비동기 처리
 
             // 트랜잭션 호출
-            console.log("트랜잭션 시작. 서비스 ID: " + strSvcId + ", URL: " + strSvcUrl);
             this.transaction(strSvcId, strSvcUrl, inData, outData, "", callBackFnc, isAsync);
         };
 
         // 등록 버튼 클릭 이벤트
         this.btn_Register_onclick = function(obj, e) {
         	this.grd_employee.setFocus();
-            console.log("등록 팝업 호출");
             this.showRegisterPopup();  // 등록 팝업 호출 함수 호출
         };
 
         // 등록 팝업 호출 함수
         this.showRegisterPopup = function() {
-            console.log("등록 팝업 열기");
 
             var popup = new nexacro.ChildFrame;
             popup.init("popupRegisterEmp", 100, 100, 800, 700, null, null, "FrameBase::Popup_RegisterEmp.xfdl");
@@ -205,7 +200,6 @@
                       , account:this.ds_empList.getColumn(this.ds_empList.rowposition, "account")
                       , emp_code:this.ds_empList.getColumn(this.ds_empList.rowposition, "empCode")};
 
-        			  console.log(this.ds_empList.saveXML());
            this.showEditPopup(objParam);
         };
 
@@ -258,7 +252,6 @@
 
         	this.ds_employee.setColumn(0, "empCode", this.ds_empList.getColumn(this.ds_empList.rowposition, "empCode"));
 
-        	console.log(this.ds_employee.saveXML());
         };
 
         // head 더블 클릭 시 정렬

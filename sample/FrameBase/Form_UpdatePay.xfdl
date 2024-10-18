@@ -23,14 +23,15 @@
             <Format id="default">
               <Columns>
                 <Column size="48" band="left"/>
+                <Column size="102"/>
+                <Column size="99"/>
                 <Column size="110"/>
-                <Column size="110"/>
-                <Column size="110"/>
-                <Column size="110"/>
-                <Column size="110"/>
-                <Column size="98"/>
-                <Column size="121"/>
-                <Column size="117"/>
+                <Column size="91"/>
+                <Column size="91"/>
+                <Column size="75"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="100"/>
               </Columns>
               <Rows>
                 <Row size="24" band="head"/>
@@ -44,8 +45,9 @@
                 <Cell col="4" text="직책"/>
                 <Cell col="5" text="급여년도"/>
                 <Cell col="6" text="급여월"/>
-                <Cell col="7" text="지급액"/>
-                <Cell col="8" text="수정금액"/>
+                <Cell col="7" text="공제후지급액"/>
+                <Cell col="8" text="기타금액"/>
+                <Cell col="9" text="실지급액"/>
               </Band>
               <Band id="body">
                 <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:chk"/>
@@ -57,6 +59,7 @@
                 <Cell col="6" text="bind:payMonth" textAlign="center"/>
                 <Cell col="7" text="bind:actualPay"/>
                 <Cell col="8" text="bind:etc"/>
+                <Cell col="9" text="bind:totalPay"/>
               </Band>
             </Format>
           </Formats>
@@ -76,7 +79,7 @@
               <Band id="head">
                 <Cell text="사번" textAlign="center"/>
                 <Cell col="1" text="이름" textAlign="center"/>
-                <Cell col="2" text="수정금액" textAlign="center"/>
+                <Cell col="2" text="기타금액" textAlign="center"/>
               </Band>
               <Band id="body">
                 <Cell text="bind:empCode" textAlign="center"/>
@@ -156,6 +159,7 @@
           <Column id="payMonth" type="STRING" size="256"/>
           <Column id="actualPay" type="STRING" size="256"/>
           <Column id="etc" type="STRING" size="256"/>
+          <Column id="totalPay" type="STRING" size="256"/>
           <Column id="chk" type="STRING" size="256"/>
           <Column id="admName" type="STRING" size="256"/>
         </ColumnInfo>
@@ -195,9 +199,6 @@ this.btn_Search_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo)
 
 // 조회 함수
 this.fnSearch = function() {
-    // 검색 조건 확인 (필요하다면 조건 추가)
-    console.log("SEARCH_TYPE = " + this.ds_Search.getColumn(0, "SEARCH_TYPE"));
-    console.log("SEARCH_WORD = " + this.ds_Search.getColumn(0, "SEARCH_WORD"));
 
     var empCode = this.ds_Search.getColumn(0, "SEARCH_EMP_CODE");
     var name = this.ds_Search.getColumn(0, "SEARCH_NAME");
@@ -245,7 +246,6 @@ this.fnCallback = function(svcID, errorCode, errorMsg) {
             // 조회된 데이터에서 chk 컬럼 값이 제대로 설정되었는지 확인
             for (var i = 0; i < this.ds_Pay.getRowCount(); i++) {
                 var chkValue = this.ds_Pay.getColumn(i, "chk");
-                console.log("Row " + i + ": chk = " + chkValue);
 
                 // 만약 chk 값이 없다면 기본값 설정
                 if (chkValue == null || chkValue === "") {

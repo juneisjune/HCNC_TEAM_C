@@ -107,7 +107,7 @@
                         if (result === "ok") {
                             location.href = "/viewAuth.do";
                         } else if(result === "empty") { 
-                        	$(".error-message").text("관리자에게 문의하세요.").show();
+                        	$(".error-message").text("권한이 없습니다. 관리자에게 문의하세요.").show();
                         } else if(result === "master"){
                         	 location.href = "/post/viewPost.do";
                         } else {

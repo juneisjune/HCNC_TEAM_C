@@ -181,7 +181,6 @@
         // User Script
         this.registerScript("Form_Login.xfdl", function() {
 
-
         // 인증번호 발송(로그인) 버튼
         this.btn_Login_onclick = function(obj,e) {
         	this.edt_AuthCheck.setFocus();
@@ -226,8 +225,6 @@
             var callBackFnc = "fnCallback";  // 콜백 함수 이름
             var isAsync     = true;  // 비동기 설정
 
-        	console.log(this.ds_email.getColumn(0, "email"));
-
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
 
@@ -235,15 +232,12 @@
         this.fnCallback = function(strSvcId, nErrorCode, strErrorMsg) {
             // 통신 성공 시 처리
             if (nErrorCode == 0) {
-                console.log("Success: " + strSvcId);
 
         		alert("인증 번호가 발송되었습니다.");
 
         		this.ds_email.setColumn(0, "maskedEmail", this.maskEmail(this.ds_email.getColumn(0, "email")));
 
-                // 서버에서 넘어온 인증 키(authKey)를 확인
                 var authKey = this.ds_Auth.getColumn(0, "authKey");
-                console.log("Received AuthKey: " + authKey);
 
         		this.div_LoginMain.set_visible(false);
         		this.sta_LoginMain1.set_visible(false);
@@ -259,7 +253,6 @@
 
             } else {
                 // 통신 실패 시 에러 처리
-                console.log("Error: " + strErrorMsg);
                 alert("Error occurred: " + strErrorMsg);
             }
         };
@@ -306,8 +299,6 @@
         // 로그인 함수
         this.fnLogin = function() {
 
-            //console.log(this.ds_login.saveXML());  // DataSet 내용 확인
-
             var strSvcId = "Nexalogin";
             var strSvcUrl = "svc::Nexalogin.do";
             var inData = "ds_login=ds_login";
@@ -318,7 +309,6 @@
 
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 
-        	console.log(this.ds_login.saveXML());
         };
 
         // 로그인 함수 콜백
@@ -416,8 +406,6 @@
         	nexacro.getApplication().ds_userInfo.setColumn(0, "dep_code", 1);
         	nexacro.getApplication().ds_userInfo.setColumn(0, "assign_code", 7);
 
-        	console.log(nexacro.getApplication().ds_userInfo.saveXML());
-
         	this.fn_LoginSuccess();
         }
 
@@ -426,7 +414,6 @@
         {
         	this.reload();
         };
-
 
         });
         

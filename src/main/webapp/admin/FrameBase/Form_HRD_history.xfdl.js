@@ -106,7 +106,6 @@
         	var isAsync     = true;                                // 동기/비동기
         	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 
-        	console.log(this.ds_HrdHistyrolist.saveXML());
         };
 
 

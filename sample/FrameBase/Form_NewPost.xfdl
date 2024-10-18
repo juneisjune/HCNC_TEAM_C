@@ -3,7 +3,7 @@
   <Form id="sample_fileuptransfer_01" left="0" top="0" width="770" height="530" titletext="New Form" border="" background="" onload="sample_fileuptransfer_01_onload">
     <Layouts>
       <Layout height="530" width="770" stepcount="0">
-        <Static id="Static00" taborder="2" text="Drop Files Here" left="98" top="322" width="482" height="80" visible="true" background="aliceblue" color="dodgerblue" font="normal 30pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>
+        <Static id="Static00" taborder="2" text="업로드할 파일을 여기에 드래그하세요." left="98" top="322" width="482" height="80" visible="true" background="aliceblue" color="dodgerblue" font="normal 20pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>
         <Button id="open" taborder="0" text="폴더 열기" left="600" top="322" width="90" height="90" onclick="btn_open_onclick" cssclass="btn_download"/>
         <Grid id="Grid00" taborder="1" left="100" top="322" width="482" height="90" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop" autofittype="col">
           <Formats>
@@ -66,7 +66,6 @@
       </Dataset>
     </Objects>
     <Script type="xscript5.1"><![CDATA[
-
 this.sample_fileuptransfer_01_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.Grid00.setFocus();
@@ -166,15 +165,9 @@ this.Button01_onclick = function(obj, e) {
     this.ds_postInfo.setColumn(0, "upd_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
     this.ds_postInfo.setColumn(0, "emp_code", nexacro.getApplication().ds_userInfo.getColumn(row, "emp_code"));
 	this.ds_postInfo.setColumn(0, "reg_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
-	
-	
-	trace("ds_fileInfo: " + this.ds_fileInfo.saveXML());
 
-	
-	console.log("for문 위");
 	// Dataset00의 데이터를 ds_fileInfo로 복사하면서 컬럼명 매핑
 	for (var i = 0; i < this.Dataset00.getRowCount(); i++) {
-	console.log("for문 안");
 		var nRow = this.ds_fileInfo.addRow();
 		var originalFileName = this.Dataset00.getColumn(i, "filename");
 		var fileSize = this.Dataset00.getColumn(i, "filesize");
@@ -184,14 +177,6 @@ this.Button01_onclick = function(obj, e) {
 		this.ds_fileInfo.setColumn(nRow, "fileSize", fileSize);
 		
 	}
-	// ds_fileInfo의 내용을 로그로 출력하여 확인
-	trace("ds_fileInfo 데이터 확인:");
-	trace(this.ds_fileInfo.saveXML());
-
-
-	console.log("file info: "+this.ds_fileInfo.saveXML());
-
-   
 
     // 데이터셋을 PostData로 설정
     this.FileUpTransfer00.setPostData("ds_postInfo", this.ds_postInfo.saveXML());

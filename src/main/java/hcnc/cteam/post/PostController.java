@@ -115,9 +115,6 @@ public class PostController {
         NexacroResult result = new NexacroResult();
 
         try {
-            // 로그 출력
-            System.out.println("postInfo: " + postInfo);
-            System.out.println("fileList: " + fileList);
 
             postService.updatePost(postInfo, fileList);  // 게시글과 첨부파일 업데이트 처리
             result.setErrorCode(0);

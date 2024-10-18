@@ -93,8 +93,6 @@
         	var userName = nexacro.getApplication().ds_userInfo.getColumn(0, "name").concat("", "님");
 
         	this.ds_UserName.setColumn(0, "userName", userName);
-
-        	console.log(this.ds_UserName.saveXML());
         };
 
         });

@@ -136,7 +136,7 @@ $(function() {
                     requestListBody.empty(); // 기존 데이터를 초기화
 
                     $.each(requestList, function(index, item) {
-                        var row = "<tr>"
+                        var row = "<tr>" 
                             + "<td>" + item.name + "</td>"
                             + "<td>" + item.empCode + "</td>"
                             + "<td>" + item.depName + "</td>"
@@ -153,7 +153,6 @@ $(function() {
                         requestListBody.append(row);  // 테이블에 행 추가
                     });
 
-                    alert("조회가 완료되었습니다.");
                 } else {
                     alert("에러 발생: " + result.msg);
                 }
@@ -168,7 +167,7 @@ $(function() {
     });
     $("#searchBtn").click();
 });
- 
+
 //년도,월을 현재기준 3개년 보는 스크립트
 document.addEventListener("DOMContentLoaded", function() {
        // 현재 연도 가져오기

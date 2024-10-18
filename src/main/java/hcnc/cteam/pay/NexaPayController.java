@@ -44,6 +44,7 @@ public class NexaPayController {
 					emp.put("chkVal", "1");
 					
 					//월지급액
+					//지난달 중도입사자 또는 퇴사자일 시 근로일수에 따라 일급으로 계산함
 					int month = nexaPayService.selectMonth(emp);
 					emp.put("month", month);
 	
@@ -59,6 +60,7 @@ public class NexaPayController {
 					emp.put("pay_meal", pay_meal);
 	
 					// 결근
+					// 지난달 퇴사자일시 결근은 0으로 계산함
 					int absence = hourly * 8 * nexaPayService.selectAbsence(emp);
 					emp.put("absence", absence);
 	
@@ -96,13 +98,15 @@ public class NexaPayController {
 						emp.put("etc", etc);
 					} 
 	
-					// 실지급액 = 지급액 - 공제액
+					// 공제후지급액 = 지급총액 - 공제액
 					int actual_pay = pay_amount - (income_tax + resident_tax + national_tax + emp_insurance
-							+ health_insurance + longcare_insurance) + etc;
-							
-					// 1의 자리에서 올림
-					actual_pay = (int) Math.ceil(actual_pay / 10.0) * 10;
+							+ health_insurance + longcare_insurance);
 					emp.put("actual_pay", actual_pay);
+					
+					//실지급액
+					// 1의 자리에서 올림
+					int total_pay = (int) Math.ceil((actual_pay + etc) / 10.0) * 10;;
+					emp.put("total_pay", total_pay);
 					
 					results.add(emp);
 					

@@ -39,7 +39,7 @@
 	    <if test="admin_assign == 7">
 	        AND (md_confirm = 'Y' OR e.assign_code = 6)
 	     </if> 
-	    
+	    ORDER BY start_date DESC;
 	</select>
 	
 	<!-- assign_code에 따른 승인 -->

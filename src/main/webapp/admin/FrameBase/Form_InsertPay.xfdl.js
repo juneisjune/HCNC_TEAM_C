@@ -28,7 +28,7 @@
 
 
             obj = new Dataset("ds_EmpList", this);
-            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"month\" type=\"INT\" size=\"256\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\"/><Column id=\"absence\" type=\"INT\" size=\"256\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\"/><Column id=\"etc\" type=\"INT\" size=\"256\"/><Column id=\"give_date\" type=\"DATE\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"month\" type=\"INT\" size=\"256\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\"/><Column id=\"absence\" type=\"INT\" size=\"256\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\"/><Column id=\"etc\" type=\"INT\" size=\"256\"/><Column id=\"total_pay\" type=\"INT\" size=\"256\"/><Column id=\"give_date\" type=\"DATE\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
@@ -38,7 +38,7 @@
 
 
             obj = new Dataset("ds_EmpListCopy", this);
-            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"month\" type=\"INT\" size=\"256\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\"/><Column id=\"absence\" type=\"INT\" size=\"256\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\"/><Column id=\"etc\" type=\"INT\" size=\"256\"/><Column id=\"give_date\" type=\"DATE\" size=\"256\"/><Column id=\"adm_name\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"chkVal\" type=\"STRING\" size=\"256\"/><Column id=\"emp_code\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"assign_code\" type=\"INT\" size=\"256\"/><Column id=\"assign_name\" type=\"STRING\" size=\"256\"/><Column id=\"dep_name\" type=\"STRING\" size=\"256\"/><Column id=\"join_date\" type=\"DATE\" size=\"256\"/><Column id=\"resign_date\" type=\"DATE\" size=\"256\"/><Column id=\"account\" type=\"STRING\" size=\"256\"/><Column id=\"month\" type=\"INT\" size=\"256\"/><Column id=\"pay_meal\" type=\"INT\" size=\"256\"/><Column id=\"pay_over\" type=\"INT\" size=\"256\"/><Column id=\"absence\" type=\"INT\" size=\"256\"/><Column id=\"pay_amount\" type=\"INT\" size=\"256\"/><Column id=\"income_tax\" type=\"INT\" size=\"256\"/><Column id=\"resident_tax\" type=\"INT\" size=\"256\"/><Column id=\"national_tax\" type=\"INT\" size=\"256\"/><Column id=\"emp_insurance\" type=\"INT\" size=\"256\"/><Column id=\"health_insurance\" type=\"INT\" size=\"256\"/><Column id=\"longcare_insurance\" type=\"INT\" size=\"256\"/><Column id=\"actual_pay\" type=\"INT\" size=\"256\"/><Column id=\"etc\" type=\"INT\" size=\"256\"/><Column id=\"total_pay\" type=\"INT\" size=\"256\"/><Column id=\"give_date\" type=\"DATE\" size=\"256\"/><Column id=\"adm_name\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -119,7 +119,6 @@
         this.Form_InsertPay_onload = function(obj,e)
         {
         	this.ds_Assign.setColumn(0, "assign_code", "100");
-
         	this.fnSearch();
         };
 
@@ -133,23 +132,24 @@
 
         this.grd_Emp_onheadclick = function(obj,e)
         {
+        	//0번째 column일 때 onheadclick 작동(체크박스)
         	if(e.col == 0) {
-        	//grid의 head에서 0번째 셀의 값을 가져옴
-        	var chkVal = obj.getCellProperty("head", 0, "text");
+        		//grid의 head에서 0번째 셀의 값을 가져옴
+        		var chkVal = obj.getCellProperty("head", 0, "text");
 
-        	if (chkVal == "1") { // 이미 체크된 상태라면 체크 해지로 변환
-        		chkVal	= "0";
-        		obj.setCellProperty("head", 0, "text", chkVal);
-        		for (var i=0; i<this.ds_EmpList.rowcount; i++) {
-        			this.ds_EmpList.setColumn(i,"chkVal","0");
+        		if (chkVal == "1") { // 이미 체크된 상태라면 체크 해지로 변환
+        			chkVal	= "0";
+        			obj.setCellProperty("head", 0, "text", chkVal);
+        			for (var i=0; i<this.ds_EmpList.rowcount; i++) {
+        				this.ds_EmpList.setColumn(i,"chkVal","0");
+        			}
+        		} else {
+        			chkVal	= "1";
+        			obj.setCellProperty("head", 0, "text", chkVal);
+        			for (var i=0; i<this.ds_EmpList.rowcount; i++) {
+        				this.ds_EmpList.setColumn(i,"chkVal","1");
+        			}
         		}
-        	} else {
-        		chkVal	= "1";
-        		obj.setCellProperty("head", 0, "text", chkVal);
-        		for (var i=0; i<this.ds_EmpList.rowcount; i++) {
-        			this.ds_EmpList.setColumn(i,"chkVal","1");
-        		}
-        	}
         	}
         };
 
@@ -184,11 +184,14 @@
         	switch(svcID)
         	{
         		case "selectAssign":
-        			this.alert("조회가 완료되었습니다.");
+        			if(this.ds_EmpList.getRowCount() == 0) {
+        				this.alert("등록할 직원이 없습니다.");
+        			}
         			break;
 
         		case "insertPay":
         			this.alert("등록이 완료되었습니다.");
+        			this.fnSearch();
         			break;
 
         		default :
@@ -228,8 +231,6 @@
                 }
             }
 
-        	console.log(this.ds_EmpListCopy.saveXML());
-
         	var strSvcId    = "insertPay";
         	var strSvcUrl   = "svc::insertPay.do";
         	var inData      = "ds_EmpListCopy=ds_EmpListCopy";
@@ -244,6 +245,7 @@
         // 그리드 헤드 더블 클릭 시 정렬
         this.grd_Emp_onheaddblclick = function(obj,e)
         {
+        	//데이터셋 바인딩
         	var objDs = this.objects[obj.binddataset];
             var colId = "";
 
@@ -261,18 +263,21 @@
             }
 
             for (var i = 0; i < obj.getCellCount("head"); i++) {
-                var sHeadText = obj.getCellText(-1, i);  // 헤더의 텍스트 가져오기
+        		// 헤더의 텍스트 가져오기(-1일시 headband)
+                var sHeadText = obj.getCellText(-1, i);
                 var nLen = sHeadText.length - 1;  // 텍스트 길이 계산
 
                 if (i == e.col) { // 클릭한 셀에 대해 처리
                     if (sHeadText.substr(nLen) == "▲") {  // 오름차순인 경우
                         obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▼");
-                        objDs.set_keystring("S:-" + colId);  // 내림차순 정렬
+        			    objDs.set_keystring("S:-" + colId);
                     } else if (sHeadText.substr(nLen) == "▼") {  // 내림차순인 경우
                         obj.setCellProperty("head", i, "text", sHeadText.substr(0, nLen) + "▲");
                         objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
                     } else {  // 정렬이 설정되지 않은 경우 기본 오름차순 적용
                         obj.setCellProperty("head", i, "text", sHeadText + "▲");
+        				//set_keystring : 데이터를 그룹화하거나 정렬
+        				//G 그룹화 S 정렬 - 내림차순 + 오름차순
                         objDs.set_keystring("S:+" + colId);  // 오름차순 정렬
                     }
                 } else {

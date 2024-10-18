@@ -29,9 +29,6 @@ public class NexaLoginController {
 
 		if (ds_userInfo != null) {
 
-			// 디버깅용 출력
-			System.out.println("ds_userInfo: " + ds_userInfo);
-
 			// Nexacro에서 사용할 데이터셋에 추가
 			result.addDataSet("ds_userInfo", ds_userInfo); // 사용자 정보 전체 반환
 			result.setErrorCode(0); // 성공

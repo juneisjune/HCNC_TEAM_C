@@ -44,11 +44,11 @@
             // UI Components Initialize
             obj = new Static("Static00","98","322","482","80",null,null,null,null,null,null,this);
             obj.set_taborder("2");
-            obj.set_text("Drop Files Here");
+            obj.set_text("업로드할 파일을 여기에 드래그하세요.");
             obj.set_visible("true");
             obj.set_background("aliceblue");
             obj.set_color("dodgerblue");
-            obj.set_font("normal 30pt/normal \"Arial\"");
+            obj.set_font("normal 20pt/normal \"Arial\"");
             obj.set_textAlign("center");
             obj.set_verticalAlign("middle");
             this.addChild(obj.name, obj);
@@ -130,7 +130,6 @@
         
         // User Script
         this.registerScript("Form_NewPost.xfdl", function() {
-
 
         this.sample_fileuptransfer_01_onload = function(obj,e)
         {
@@ -232,14 +231,8 @@
             this.ds_postInfo.setColumn(0, "emp_code", nexacro.getApplication().ds_userInfo.getColumn(row, "emp_code"));
         	this.ds_postInfo.setColumn(0, "reg_name", nexacro.getApplication().ds_userInfo.getColumn(row, "name"));
 
-
-        	trace("ds_fileInfo: " + this.ds_fileInfo.saveXML());
-
-
-        	console.log("for문 위");
         	// Dataset00의 데이터를 ds_fileInfo로 복사하면서 컬럼명 매핑
         	for (var i = 0; i < this.Dataset00.getRowCount(); i++) {
-        	console.log("for문 안");
         		var nRow = this.ds_fileInfo.addRow();
         		var originalFileName = this.Dataset00.getColumn(i, "filename");
         		var fileSize = this.Dataset00.getColumn(i, "filesize");
@@ -249,14 +242,6 @@
         		this.ds_fileInfo.setColumn(nRow, "fileSize", fileSize);
 
         	}
-        	// ds_fileInfo의 내용을 로그로 출력하여 확인
-        	trace("ds_fileInfo 데이터 확인:");
-        	trace(this.ds_fileInfo.saveXML());
-
-
-        	console.log("file info: "+this.ds_fileInfo.saveXML());
-
-
 
             // 데이터셋을 PostData로 설정
             this.FileUpTransfer00.setPostData("ds_postInfo", this.ds_postInfo.saveXML());

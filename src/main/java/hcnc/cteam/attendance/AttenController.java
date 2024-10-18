@@ -43,7 +43,6 @@ public class AttenController {
 		
 		HttpSession session = request.getSession();
 		
-		
 		int empCode = (int) session.getAttribute("userCode")  ; // 세션으로 empCode
 		
 		params.put("empCode", empCode);
@@ -82,7 +81,6 @@ public class AttenController {
 		attenDto.setEmpCode(empCode);
 		attenDto.setName(name);
 		attenDto.setAttenCode(1);
-		
 		
 		//attenDto는 현재 로그인한 유저의 emp코드를 기준으로 입력
 		attenService.startWork(attenDto);
