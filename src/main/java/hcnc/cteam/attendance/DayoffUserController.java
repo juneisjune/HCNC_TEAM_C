@@ -94,7 +94,6 @@ public class DayoffUserController {
 			model.addAttribute("dayoffMsg","휴가신청에 실패했습니다. 다시신청해주세요");
 			return "redirect: /dayoff/doRequest.do";
 		} else {
-			
 			return "redirect: /dayoff/requestList.do";
 		}
 	}
