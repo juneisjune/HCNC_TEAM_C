@@ -287,8 +287,8 @@ document.addEventListener("DOMContentLoaded", function() {
                             <td>${request.name}</td> 
                             <td>${request.empCode}</td>
                             <td>${request.depName}</td>
-                            <td><fmt:formatDate value="${request.startDate}" pattern="yyyy-MM-dd"/></td>
-                            <td><fmt:formatDate value="${request.endDate}" pattern="yyyy-MM-dd"/></td>
+                            <td>${request.startDate}</td>
+                            <td>${request.endDate}</td>
                             <td>${request.offType}</td>
                             <td>${request.reason}</td>
                             <td>${request.mngConfirm}</td>

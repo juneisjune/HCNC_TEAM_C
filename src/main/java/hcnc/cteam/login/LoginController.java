@@ -46,40 +46,42 @@ public class LoginController {
 		
 		int result = loginService.userLogin(loginDTO);
 		
-		//부서 배정과 직책 배정이 되지 않았을 경우 로그인 안되도록
-		if(loginService.selectUser(loginDTO).getAssignCode() == null || loginService.selectUser(loginDTO).getAssignCode().equals("") 
-				|| loginService.selectUser(loginDTO).getDepCode() == null || loginService.selectUser(loginDTO).getDepCode().equals("") ){
+		if(result == 100) {
 			
 			msg = "empty";
 			
-			return msg;
-		 } 
-		
-		 if (result == 1) {
-			 
-			 //세션 생성
-			 HttpSession session = request.getSession();
-			 int userCode = loginService.selectUser(loginDTO).getEmpCode();
-			 session.setAttribute("userCode", userCode);
-			 String userName = loginService.selectUser(loginDTO).getName();
-			 session.setAttribute("userName", userName);
-
-			 AttenDTO workResult = loginService.selectWork(userCode);
-			 
-			 if (workResult != null) {
-				 LocalTime workStart = workResult.getWorkStart();
-				 LocalTime workEnd = workResult.getWorkEnd();
+		} else if (result == 1) {
+			//부서 배정과 직책 배정이 되지 않았을 경우 로그인 안되도록
+			if(loginService.selectUser(loginDTO).getAssignCode() == null || loginService.selectUser(loginDTO).getAssignCode().equals("") 
+					|| loginService.selectUser(loginDTO).getDepCode() == null || loginService.selectUser(loginDTO).getDepCode().equals("") ){
+				
+				msg = "empty";
+				
+			 } else {
+				 //세션 생성
+				 HttpSession session = request.getSession();
+				 int userCode = loginService.selectUser(loginDTO).getEmpCode();
+				 session.setAttribute("userCode", userCode);
+				 String userName = loginService.selectUser(loginDTO).getName();
+				 session.setAttribute("userName", userName);
+	
+				 AttenDTO workResult = loginService.selectWork(userCode);
 				 
-				 session.setAttribute("workStart", workStart);
-				 session.setAttribute("workEnd", workEnd);
-			 }
-			 
-	         msg = "ok";
-	         
-	        //master(대표 아이디)는 2단계 인증하지 않고 바로 홈으로 접속  
-	        if(loginService.selectUser(loginDTO).getEmpCode() == 1) {
-	        	msg = "master";
-	        }
+				 if (workResult != null) {
+					 LocalTime workStart = workResult.getWorkStart();
+					 LocalTime workEnd = workResult.getWorkEnd();
+					 
+					 session.setAttribute("workStart", workStart);
+					 session.setAttribute("workEnd", workEnd);
+				 }
+				 
+		         msg = "ok";
+		         
+		        //master(대표 아이디)는 2단계 인증하지 않고 바로 홈으로 접속  
+		        if(loginService.selectUser(loginDTO).getEmpCode() == 1) {
+		        	msg = "master";
+		        }
+			 }   
 	    }
 		 
 		 

@@ -8,5 +8,6 @@ public interface DayoffUserService {
 	
 	public List<DayoffDTO> requestResult(DayoffDTO dayoffdto);
 	
+	public int findRequest(DayoffDTO dayoffdto);
 
 }
