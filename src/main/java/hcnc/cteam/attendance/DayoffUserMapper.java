@@ -11,4 +11,6 @@ public interface DayoffUserMapper {
 	
 	public List<DayoffDTO> requestResult(DayoffDTO dayoffdto);
 	
+	public int findRequest(DayoffDTO dayoffdto);
+	
 }

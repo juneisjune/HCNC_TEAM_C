@@ -189,6 +189,7 @@
 
 
 <script>
+
     var dayoffMsg = "${dayoffMsg}";
     if(dayoffMsg){
         alert(dayoffMsg);
