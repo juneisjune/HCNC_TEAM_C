@@ -89,14 +89,16 @@ public class DayoffUserController {
 		
 		System.out.println(dayoff.getName());
 		//휴가신청 insert문
-		int result = doUserService.sendRequest(dayoff);
-		if(result == 0) {
-			model.addAttribute("dayoffMsg","휴가신청에 실패했습니다. 다시신청해주세요");
-			return "redirect: /dayoff/doRequest.do";
+		int result = doUserService.findRequest(dayoff);
+		
+		if (result ==0) {
+			doUserService.sendRequest(dayoff);
+			return "redirect:/dayoff/requestList.do";
 		} else {
-			
-			return "redirect: /dayoff/requestList.do";
+			model.addAttribute("dayoffMsg","이미 신청된 날짜입니다.");
+			return "forward:/dayoff/doRequest.do";
 		}
+		
 	}
 	
 	@RequestMapping(value = "/requestListSearch.do", method = RequestMethod.POST)

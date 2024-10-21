@@ -31,6 +31,11 @@
 			AND MONTH(start_date) BETWEEN #{startMonth} AND #{endMonth}
 	</select>
 	
+	<select id="findRequest" parameterType="dayoffDto" resultType="int">
+		SELECT COUNT(*)
+		FROM dayoff d
+		WHERE emp_code = #{empCode} AND start_date = #{startDate}
+	</select>
 	
 
 	

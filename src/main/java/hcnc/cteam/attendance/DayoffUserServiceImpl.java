@@ -21,6 +21,12 @@ public class DayoffUserServiceImpl implements DayoffUserService{
 	public List<DayoffDTO> requestResult(DayoffDTO dayoffdto) {
 		return doMapper.requestResult(dayoffdto);
 	}
+
+	@Override
+	public int findRequest(DayoffDTO dayoffdto) {
+		// TODO Auto-generated method stub
+		return doMapper.findRequest(dayoffdto);
+	}
 	
 
 }
