@@ -25,7 +25,7 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="1" checkboxtruevalue="1" checkboxfalsevalue="0"/>
                 <Cell col="1" text="사번"/>
                 <Cell col="2" text="이름"/>
                 <Cell col="3" text="직책"/>
@@ -170,15 +170,14 @@
     <Script type="xscript5.1"><![CDATA[this.Form_InsertPay_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.ds_Assign.setColumn(0, "assign_code", "100"); 
+	this.ds_GiveDate.setColumn(0, "give_date", new Date());
 	this.fnSearch();
 };
-
 
 this.btn_Search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
 	this.grd_Emp.setFocus();
 	this.fnSearch();
-
 };
 
 this.grd_Emp_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
@@ -223,6 +222,19 @@ this.fnSearch = function() {
 	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
 }
 
+this.fnSearchAfterInsert  = function() {
+	
+	var strSvcId    = "fnSearchAfterInsert "; 
+	var strSvcUrl   = "svc::selectAssign.do";
+	var inData      = "ds_Assign=ds_Assign";
+	var outData     = "ds_EmpList=ds_EmpList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync     = true;
+	
+	this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+}
+
 this.fnCallback = function(svcID,errorCode,errorMsg)
 {	
 		
@@ -242,6 +254,7 @@ this.fnCallback = function(svcID,errorCode,errorMsg)
 		
 		case "insertPay":
 			this.alert("등록이 완료되었습니다.");
+			this.fnInsertAfterSearch();
 			break;
 		
 		default :

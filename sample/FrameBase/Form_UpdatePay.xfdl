@@ -18,7 +18,7 @@
         <Combo id="com_Month00" taborder="12" left="614" top="110" width="60" height="30" onitemchanged="com_Month00_onitemchanged" value="10" index="9" innerdataset="ds_Month" datacolumn="month" codecolumn="month"/>
         <Combo id="cmb_SearType" taborder="13" text="전체" left="30" top="110" width="90" height="30" index="0" innerdataset="ds_SearchType" datacolumn="Name" codecolumn="Value" onitemchanged="cmb_SearType_onitemchanged" value="ALL"/>
         <Button id="btn_Delete" taborder="14" text="삭제" left="915" top="110" width="70" height="30" onclick="btn_Delete_onclick" cssclass="btn_delete"/>
-        <Grid id="grd_CodeMst" taborder="15" left="30" top="150" width="955" height="280" binddataset="ds_Pay" onheadclick="grd_CodeMst_onheadclick" autofittype="col" onheaddblclick="grd_CodeMst_onheaddblclick">
+        <Grid id="grd_CodeMst" taborder="15" left="30" top="150" width="955" height="280" binddataset="ds_Pay" autofittype="col" onheaddblclick="grd_CodeMst_onheaddblclick" onheadclick="grd_CodeMst_onheadclick">
           <Formats>
             <Format id="default">
               <Columns>
@@ -38,7 +38,7 @@
                 <Row size="24"/>
               </Rows>
               <Band id="head">
-                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="0"/>
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" text="0" checkboxtruevalue="1" checkboxfalsevalue="0"/>
                 <Cell col="1" text="사번"/>
                 <Cell col="2" text="이름"/>
                 <Cell col="3" text="부서"/>
@@ -149,7 +149,7 @@
           <Column id="month" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
-      <Dataset id="ds_Pay">
+      <Dataset id="ds_Pay" useclientlayout="false">
         <ColumnInfo>
           <Column id="empCode" type="INT" size="256"/>
           <Column id="name" type="STRING" size="256"/>
@@ -249,7 +249,7 @@ this.fnCallback = function(svcID, errorCode, errorMsg) {
 
                 // 만약 chk 값이 없다면 기본값 설정
                 if (chkValue == null || chkValue === "") {
-                    this.ds_Pay.setColumn(i, "chk", "0");  // 기본적으로 체크 해제
+                    this.ds_Pay.setColumn(i, "chk", "1");  // 기본적으로 체크
                 }
             }
             break;
@@ -258,11 +258,7 @@ this.fnCallback = function(svcID, errorCode, errorMsg) {
     }
 };
 
-
-
-
 ////////////////////////////////////////////////////////////삭제
-
 
 this.btn_Delete_onclick = function(obj:nexacro.Button, e:nexacro.ClickEventInfo) {
 	this.grd_CodeMst.setFocus();
@@ -317,12 +313,7 @@ this.fnDeleteCallback = function(svcID, errorCode, errorMsg) {
     }
 };
 
-
-
-
-
 ////////////////////////////////////////////////////////////////////////수정
-
 
 this.btn_Update_onclick = function(obj, e) {
 	this.grd_CodeMst.setFocus();
@@ -360,7 +351,6 @@ this.btn_Update_onclick = function(obj, e) {
 
     this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
 };
-
 
 // 트랜잭션 완료 후 콜백 함수
 this.fnCallback = function(svcID, errorCode, errorMsg) {
@@ -424,6 +414,19 @@ this.grd_CodeMst_onheaddblclick = function(obj:nexacro.Grid,e:nexacro.GridClickE
     objDs.set_rowposition(0);
 };
 
+this.grd_CodeMst_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	//0번째 column일 때 onheadclick 작동(체크박스)
+	if (e.cell == 0) {  
+        var isChecked = this.grd_CodeMst.getCellProperty("head", 0, "text") == "1";  
+
+        this.grd_CodeMst.setCellProperty("head", 0, "text", isChecked ? "0" : "1");
+
+        for (var i = 0; i < this.ds_Pay.getRowCount(); i++) {
+            this.ds_Pay.setColumn(i, "chk", isChecked ? "0" : "1"); 
+        }
+    }
+};
 ]]></Script>
   </Form>
 </FDL>
