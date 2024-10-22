@@ -21,6 +21,8 @@
 		JOIN department b ON a.dep_code =
 		b.dep_code
 		JOIN assignment c ON a.assign_code = c.assign_code
+		WHERE 1=1
+			AND (a.resign_date IS NULL OR a.resign_date > CURDATE());
 	</select>
 
 	<!-- 직원 코드로 직원 조회 -->
@@ -99,6 +101,7 @@
 				</when>
 			</choose>
 		</if>
+		AND (a.resign_date IS NULL OR a.resign_date > CURDATE());
 	</select>
 
 </mapper>
