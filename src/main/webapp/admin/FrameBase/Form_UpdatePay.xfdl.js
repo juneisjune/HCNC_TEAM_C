@@ -38,6 +38,7 @@
 
 
             obj = new Dataset("ds_Pay", this);
+            obj.set_useclientlayout("false");
             obj._setContents("<ColumnInfo><Column id=\"empCode\" type=\"INT\" size=\"256\"/><Column id=\"name\" type=\"STRING\" size=\"256\"/><Column id=\"depName\" type=\"STRING\" size=\"256\"/><Column id=\"assignName\" type=\"STRING\" size=\"256\"/><Column id=\"payYear\" type=\"STRING\" size=\"256\"/><Column id=\"payMonth\" type=\"STRING\" size=\"256\"/><Column id=\"actualPay\" type=\"STRING\" size=\"256\"/><Column id=\"etc\" type=\"STRING\" size=\"256\"/><Column id=\"totalPay\" type=\"STRING\" size=\"256\"/><Column id=\"chk\" type=\"STRING\" size=\"256\"/><Column id=\"admName\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
@@ -152,7 +153,7 @@
             obj.set_taborder("15");
             obj.set_binddataset("ds_Pay");
             obj.set_autofittype("col");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"102\"/><Column size=\"99\"/><Column size=\"110\"/><Column size=\"91\"/><Column size=\"91\"/><Column size=\"75\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"0\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"부서\"/><Cell col=\"4\" text=\"직책\"/><Cell col=\"5\" text=\"급여년도\"/><Cell col=\"6\" text=\"급여월\"/><Cell col=\"7\" text=\"공제후지급액\"/><Cell col=\"8\" text=\"기타금액\"/><Cell col=\"9\" text=\"실지급액\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chk\"/><Cell col=\"1\" text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:payYear\" textAlign=\"center\" displaytype=\"text\" mask=\"####\"/><Cell col=\"6\" text=\"bind:payMonth\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:actualPay\"/><Cell col=\"8\" text=\"bind:etc\"/><Cell col=\"9\" text=\"bind:totalPay\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\" band=\"left\"/><Column size=\"102\"/><Column size=\"99\"/><Column size=\"110\"/><Column size=\"91\"/><Column size=\"91\"/><Column size=\"75\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"0\" checkboxtruevalue=\"1\" checkboxfalsevalue=\"0\"/><Cell col=\"1\" text=\"사번\"/><Cell col=\"2\" text=\"이름\"/><Cell col=\"3\" text=\"부서\"/><Cell col=\"4\" text=\"직책\"/><Cell col=\"5\" text=\"급여년도\"/><Cell col=\"6\" text=\"급여월\"/><Cell col=\"7\" text=\"공제후지급액\"/><Cell col=\"8\" text=\"기타금액\"/><Cell col=\"9\" text=\"실지급액\"/></Band><Band id=\"body\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:chk\"/><Cell col=\"1\" text=\"bind:empCode\" textAlign=\"center\"/><Cell col=\"2\" text=\"bind:name\" textAlign=\"center\"/><Cell col=\"3\" text=\"bind:depName\" textAlign=\"center\"/><Cell col=\"4\" text=\"bind:assignName\" textAlign=\"center\"/><Cell col=\"5\" text=\"bind:payYear\" textAlign=\"center\" displaytype=\"text\" mask=\"####\"/><Cell col=\"6\" text=\"bind:payMonth\" textAlign=\"center\"/><Cell col=\"7\" text=\"bind:actualPay\"/><Cell col=\"8\" text=\"bind:etc\"/><Cell col=\"9\" text=\"bind:totalPay\"/></Band></Format></Formats>");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grd_CodeMst2","30","444","437","153",null,null,null,null,null,null,this);
@@ -287,7 +288,7 @@
 
                         // 만약 chk 값이 없다면 기본값 설정
                         if (chkValue == null || chkValue === "") {
-                            this.ds_Pay.setColumn(i, "chk", "0");  // 기본적으로 체크 해제
+                            this.ds_Pay.setColumn(i, "chk", "1");  // 기본적으로 체크
                         }
                     }
                     break;
@@ -296,11 +297,7 @@
             }
         };
 
-
-
-
         ////////////////////////////////////////////////////////////삭제
-
 
         this.btn_Delete_onclick = function(obj, e) {
         	this.grd_CodeMst.setFocus();
@@ -355,12 +352,7 @@
             }
         };
 
-
-
-
-
         ////////////////////////////////////////////////////////////////////////수정
-
 
         this.btn_Update_onclick = function(obj, e) {
         	this.grd_CodeMst.setFocus();
@@ -398,7 +390,6 @@
 
             this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
         };
-
 
         // 트랜잭션 완료 후 콜백 함수
         this.fnCallback = function(svcID, errorCode, errorMsg) {
@@ -462,6 +453,19 @@
             objDs.set_rowposition(0);
         };
 
+        this.grd_CodeMst_onheadclick = function(obj,e)
+        {
+        	//0번째 column일 때 onheadclick 작동(체크박스)
+        	if (e.cell == 0) {
+                var isChecked = this.grd_CodeMst.getCellProperty("head", 0, "text") == "1";
+
+                this.grd_CodeMst.setCellProperty("head", 0, "text", isChecked ? "0" : "1");
+
+                for (var i = 0; i < this.ds_Pay.getRowCount(); i++) {
+                    this.ds_Pay.setColumn(i, "chk", isChecked ? "0" : "1");
+                }
+            }
+        };
 
         });
         
@@ -482,8 +486,8 @@
             this.com_Month00.addEventHandler("onitemchanged",this.com_Month00_onitemchanged,this);
             this.cmb_SearType.addEventHandler("onitemchanged",this.cmb_SearType_onitemchanged,this);
             this.btn_Delete.addEventHandler("onclick",this.btn_Delete_onclick,this);
-            this.grd_CodeMst.addEventHandler("onheadclick",this.grd_CodeMst_onheadclick,this);
             this.grd_CodeMst.addEventHandler("onheaddblclick",this.grd_CodeMst_onheaddblclick,this);
+            this.grd_CodeMst.addEventHandler("onheadclick",this.grd_CodeMst_onheadclick,this);
         };
         this.loadIncludeScript("Form_UpdatePay.xfdl");
         this.loadPreloadList();
