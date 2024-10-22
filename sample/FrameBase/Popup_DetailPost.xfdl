@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="Popup_DetailPost" width="1000" height="630" titletext="공지사항 조회" onload="Popup_DetailPost_onload">
+  <Form id="Popup_DetailPost" width="1000" height="630" titletext="공지사항 조회" onload="Popup_DetailPost_onload" onclose="Popup_DetailPost_onclose">
     <Objects>
       <Dataset id="ds_Post">
         <ColumnInfo>
@@ -116,6 +116,11 @@ this.FileDownTransfer00_onsuccess = function(obj:nexacro.FileDownTransfer, e:nex
 this.FileDownTransfer00_onerror = function(obj:nexacro.FileDownTransfer, e:nexacro.FileDownTransferErrorEventInfo)
 {
     alert("파일 다운로드 중 오류가 발생했습니다. 오류 코드: " + e.errormsg);
+};
+
+this.Popup_DetailPost_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	this.opener.fnSearch();
 };
 ]]></Script>
     <Layouts>

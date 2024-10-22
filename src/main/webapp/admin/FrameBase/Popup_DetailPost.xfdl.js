@@ -237,12 +237,18 @@
             alert("파일 다운로드 중 오류가 발생했습니다. 오류 코드: " + e.errormsg);
         };
 
+        this.Popup_DetailPost_onclose = function(obj,e)
+        {
+        	this.opener.fnSearch();
+        };
+
         });
         
         // Regist UI Components Event
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.Popup_DetailPost_onload,this);
+            this.addEventHandler("onclose",this.Popup_DetailPost_onclose,this);
             this.Edit_Author.addEventHandler("onchanged",this.Edit_Author_onchanged,this);
             this.Static_Label_Attachments.addEventHandler("onclick",this.Static_Label_Attachments_onclick,this);
             this.Button_Download.addEventHandler("onclick",this.Button_Download_onclick,this);

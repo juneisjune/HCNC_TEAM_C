@@ -174,10 +174,6 @@
             if (errorCode < 0)
         	{
                 alert("첨부파일 조회 중 오류 발생: " + errorMsg);
-            } else
-        	{
-                alert("첨부파일 정보가 성공적으로 조회되었습니다.");
-
             }
         };
         // 첨부파일 추가 함수
@@ -284,6 +280,7 @@
                 alert("수정 중 오류 발생: " + errorMsg);
             } else {
                 alert("수정 사항이 성공적으로 반영되었습니다.");
+        		this.opener.fnSearch();
                 this.close();
             }
         };
