@@ -72,10 +72,6 @@ this.fn_callbackAttachments = function(svcID, errorCode, errorMsg)
     if (errorCode < 0) 
 	{
         alert("첨부파일 조회 중 오류 발생: " + errorMsg);
-    } else 
-	{
-        alert("첨부파일 정보가 성공적으로 조회되었습니다.");
-
     }
 };
 // 첨부파일 추가 함수

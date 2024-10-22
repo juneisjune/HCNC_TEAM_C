@@ -124,44 +124,37 @@
       </Dataset>
     </Objects>
     <Script type="xscript5.1"><![CDATA[
-this.grid_LeftMenu_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+this.grid_LeftMenu_oncellclick = function(obj:nexacro.Grid, e:nexacro.GridClickEventInfo)
 {
-	// 클릭한 행(row)의 인덱스
-	var rowIndex = e.row;
-	var colIndex = e.cell;    // 클릭한 셀의 열 인덱스
-    var treeCellIndex = 1;    // 트리로 표시된 열의 인덱스 (예: 이름 열이 트리로 표시되는 경우 1)
+    // 클릭한 행(row)의 인덱스
+    var rowIndex = e.row;
+    var colIndex = e.cell;    // 클릭한 셀의 열 인덱스
 
-    // 트리 열을 클릭했는지 확인
-    if (this.ds_Left.getColumn(rowIndex, "MENU_LEVEL")  == 1) {
-        var isExpanded = obj.isTreeExpandedRow(rowIndex)
+        // 해당 행의 MENU_LEVEL 값이 1인지 확인
+        if (this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") == 1) {
+            
+                var RowTree = this.grid_LeftMenu.getTreeRow(rowIndex);
+                var Status = this.grid_LeftMenu.getTreeStatus(RowTree);
 
-        // 현재 행이 확장된 상태라면 축소하고, 그렇지 않으면 확장
-        if (isExpanded) {
-            obj.collapseTreeItem(rowIndex); // 트리 아이템 축소
-        } else {
-            obj.expandTreeItem(rowIndex);   // 트리 아이템 확장
-        }
-    }
-	
-	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") == 1) {
-		this.grid_LeftMenu.set_treeinitstatus(  );
-	}
-	
-	if(this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") != 1) {
+                Status = (Status == 0 ? 1 : 0);
+                this.grid_LeftMenu.setTreeStatus(RowTree, Status);
+		}
     
-    var value = this.ds_Left.getColumn(rowIndex, "MENU_PATH");
-	
-	//WorkFrame 이동
-	nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl(value);
-	}
+    // MENU_LEVEL이 1이 아니면 다른 작업 처리
+    if (this.ds_Left.getColumn(rowIndex, "MENU_LEVEL") != 1) {
+        var value = this.ds_Left.getColumn(rowIndex, "MENU_PATH");
+        // WorkFrame으로 이동
+        nexacro.getApplication().mainframe.VFrameSet00.HFrameSet00.WorkFrame.set_formurl(value);
+    }
 };
+
+
 
 // 로그인이 성공하여 폼의 크기가 변경될 때
 this.Form_Left_onsize = function(obj:nexacro.Form,e:nexacro.SizeEventInfo)
 {
 	this.reload();
 };
-
 ]]></Script>
     <InitValue scrolltype="vertical" scrollbartype="auto"/>
   </Form>
