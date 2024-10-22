@@ -284,6 +284,7 @@
                 alert("수정 중 오류 발생: " + errorMsg);
             } else {
                 alert("수정 사항이 성공적으로 반영되었습니다.");
+        		this.opener.fnSearch();
                 this.close();
             }
         };
