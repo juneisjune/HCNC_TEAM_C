@@ -3,7 +3,7 @@
   <Form id="Popup_edit_page" left="0" top="0" width="750" height="470" titletext="editPost" border="" background="" onload="Popup_edit_page_onload">
     <Layouts>
       <Layout height="470" width="750" stepcount="0">
-        <Static id="Static00" taborder="2" text="Drop Files Here" left="99" top="280" width="482" height="70" visible="true" background="aliceblue" color="dodgerblue" font="normal 30pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>
+        <Static id="Static00" taborder="2" text="Drop Files Here" left="101" top="275" width="482" height="70" visible="true" background="aliceblue" color="dodgerblue" font="normal 30pt/normal &quot;Arial&quot;" textAlign="center" verticalAlign="middle" onclick="Static00_onclick"/>
         <Button id="open" taborder="0" text="폴더 열기" left="599" top="260" width="120" height="90" onclick="btn_open_onclick" cssclass="btn_download"/>
         <Grid id="attach_grid" taborder="1" left="101" top="260" width="488" height="90" binddataset="Dataset00" ondragenter="Grid00_ondragenter" ondragleave="Grid00_ondragleave" ondrop="Grid00_ondrop" oncellclick="attach_grid_oncellclick" autofittype="col">
           <Formats>

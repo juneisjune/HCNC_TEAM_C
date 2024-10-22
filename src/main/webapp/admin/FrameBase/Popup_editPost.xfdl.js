@@ -47,7 +47,7 @@
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
-            obj = new Static("Static00","99","280","482","70",null,null,null,null,null,null,this);
+            obj = new Static("Static00","101","275","482","70",null,null,null,null,null,null,this);
             obj.set_taborder("2");
             obj.set_text("Drop Files Here");
             obj.set_visible("true");
