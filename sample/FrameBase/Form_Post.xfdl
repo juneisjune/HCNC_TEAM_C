@@ -21,7 +21,7 @@
                 <Row size="34"/>
               </Rows>
               <Band id="head">
-                <Cell displaytype="none" edittype="none" text="0" checkboxtruevalue="1" checkboxfalsevalue="0"/>
+                <Cell displaytype="none" edittype="none" checkboxtruevalue="1" checkboxfalsevalue="0"/>
                 <Cell col="1" text="번호"/>
                 <Cell col="2" text="제목"/>
                 <Cell col="3" text="작성일자"/>
