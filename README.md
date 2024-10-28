@@ -31,6 +31,6 @@
 - **공지사항 등록, 수정, 삭제**: 공지사항을 관리하는 기능.
 - **공지사항 목록 조회**: 등록된 공지사항 목록을 조회할 수 있는 기능.
 
-#E-R diaram
+# E-R diaram
 ![image](https://github.com/user-attachments/assets/5e6a0b18-53f9-4d55-9286-36e2637e11ec)
 
